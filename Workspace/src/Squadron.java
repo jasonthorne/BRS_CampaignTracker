@@ -10,8 +10,11 @@ public class Squadron {
 
 	void addPilot(){
 		pilots.add(new Pilot());
+		////pilots.toString();
 		
 	}
+	
+	
 	
 }
 
