@@ -9,7 +9,6 @@ public class Main {
 		
 		Squadron squadron = new Squadron();
 		
-	
 		squadron.addPilot();
 		squadron.addPilot();
 		squadron.addPilot();

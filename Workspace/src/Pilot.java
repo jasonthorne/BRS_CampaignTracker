@@ -6,17 +6,20 @@ public class Pilot {
 	
 	
 	Pilot(){
-	
-		counter++;
+		id = ++counter;
 		
-		id = counter;
 		
-		System.out.println("id: " + id);
+		
+		
+		System.out.println(this.toString());
 	}
 	
 	 @Override
 	 public String toString() { 
-	     return "yo";
+	     return "id:" + this.id;
 	 } 
 
 }
+
+
+	
