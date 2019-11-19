@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Squadron {
 	
-	List<Pilot>pilots = new ArrayList();
+	private List<Pilot>pilots = new ArrayList<Pilot>();
 	
 
 	void addPilot(){
