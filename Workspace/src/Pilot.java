@@ -10,15 +10,21 @@ public class Pilot {
 	private int status;
 	
 	private Plane plane;
-	PilotSkill pilotSkill; 
+	PilotSkill pilotSkill;
 	
+	//set pilotSkills
 	private enum PilotSkill {
 		Rookie, Average, Veteran, Ace;
 	}
 	
+	private void setPilotSkill(PilotSkill pilotSkill){
+		
+	}
+	
 	Pilot(){
 		this.id = ++counter;
-		this.pilotSkill = PilotSkill.Ace; ///////test
+		//this.pilotSkill = PilotSkill.Ace; ///////test
+		setPilotSkill(PilotSkill.Ace);
 		System.out.println(this.toString());
 	}
 
@@ -30,6 +36,7 @@ public class Pilot {
 
 	
 
+	//HAVE INTERFACES FOR ACCESSING ONLY THESE VARS ++++++++++++++++++++++++++++++
 	
 	
 
