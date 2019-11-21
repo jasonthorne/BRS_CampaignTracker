@@ -13,7 +13,7 @@ public class Squadron {
 	private int skillPoints = 0;
 	
 	void addPilot(){
-		pilots.add(new Pilot());
+		pilots.add(new Pilot(PilotSkill.VETERAN));
 	}
 	
 	
