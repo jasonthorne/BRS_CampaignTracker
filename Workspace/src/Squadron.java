@@ -12,8 +12,16 @@ public class Squadron {
 	private final int STARTING_SKILL_POINTS = 24;
 	private int skillPoints = 0;
 	
+	Squadron(){
+
+	}
+	
+	
 	void addPilot(){
+		pilots.add(new Pilot(PilotSkill.ROOKIE));
+		pilots.add(new Pilot(PilotSkill.AVERAGE));
 		pilots.add(new Pilot(PilotSkill.VETERAN));
+		pilots.add(new Pilot(PilotSkill.ACE));
 	}
 	
 	
