@@ -3,16 +3,19 @@ public class Main {
 
 	public static void main(String[] args) {
 	
+		//have a list of campaigns
 		
-		//Campaign campaign = new Campaign();
+		
+		Campaign campaign = new Campaign();
 		
 		
-		Squadron squadron = new Squadron();
+		//create a campaign
 		
-		squadron.addPilot();
-		//squadron.addPilot();
-		//squadron.addPilot();
+		//open a campaign
 		
+		//delete a campaign
+		
+		//close program
 		
 		
 	}

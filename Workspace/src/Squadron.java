@@ -22,6 +22,8 @@ public class Squadron {
 		pilots.add(new Pilot(PilotSkill.AVERAGE));
 		pilots.add(new Pilot(PilotSkill.VETERAN));
 		pilots.add(new Pilot(PilotSkill.ACE));
+		
+		//System.out.println(pilots);//test print of pilots list
 	}
 	
 	

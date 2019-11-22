@@ -1,42 +1,45 @@
 
 public class Player{
 	
+	private String name;
+	private int score;
+	private AirForce airForce; //airForce chosen by player
 	
-	private AirForce airforce;
+	private Squadron squadron = new Squadron();
 	
-	Squadron squadron = new Squadron();
+	private int joinDate;
+	
 	
 	//Name name;
 	
-	Player(AirForce airForce){ //test airforce param
-		System.out.println("Creating player:");
-		setAirForce(airForce);
-		
+	//Constructors:
+	
+	Player(){
+		setAirForce(AirForce.RAF); //test airForce set
+		System.out.println("air force is: " + airForce); //test print
+		squadron.addPilot(); //testPilotAdd
 	}
 	
 	
-	private void setAirForce(AirForce airforce){
-		
-		/*
-		switch(airforce) {
-		  case ROOKIE:
-			  this.pilotSkill = PilotSkill.ROOKIE;
-			  setExp((((int)(Math.random()*6)+1)-1)); //D6-1 xp
-			  break;
-		  case AVERAGE:
-			  this.pilotSkill = PilotSkill.AVERAGE;
-			  setExp((((int)(Math.random()*6)+1)+10)); //D6+10 xp
-			  break;
-		  case VETERAN:
-			  this.pilotSkill = PilotSkill.VETERAN;
-			  setExp(((((int)(Math.random()*6)+1) + ((int)(Math.random()*6)+1) + ((int)(Math.random()*6)+1)) + 20)); //3D6+20 xp
-			  break;
-		  case ACE:
-			  this.pilotSkill = PilotSkill.ACE;
-			  setExp((((int)(Math.random()*6)+1)+50)); //D6+50 xp
-			  break;
-			  */
+	//-----------------------
+	//Setters:
+	
+	private void setAirForce(AirForce airForce){
+		this.airForce = airForce;
 	}
+	
+	//------
+	//Getters:
+	
+
+	public AirForce getAirForce() {
+		return airForce;
+	}
+	
+
+
+	
+	
 	
 	
 	
