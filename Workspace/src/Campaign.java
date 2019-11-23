@@ -3,6 +3,7 @@ public class Campaign {
 	
 	//A Campaign HAS a historic date
 	
+	
 	//A campaign HAS players (should be a list of players)
 	private Player player;
 	

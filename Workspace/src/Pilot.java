@@ -14,13 +14,18 @@ public class Pilot {
 	
 	
 	Pilot(PilotSkill pilotSkill){
-		this.id = ++counter;
+		setId();
 		setPilotSkill(pilotSkill);
 		setExp();
 		System.out.println(this.toString());
 	}
-
 	
+	//-----------------------------------------------------
+	//setters
+	private void setId() {
+		this.id = ++counter;
+	}
+
 	private void setPilotSkill(PilotSkill pilotSkill){
 		this.pilotSkill = pilotSkill;
 	}
@@ -53,6 +58,15 @@ public class Pilot {
 	//HAVE INTERFACES FOR ACCESSING ONLY THESE VARS ++++++++++++++++++++++++++++++
 
 }
+
+
+
+/*
+enum PilotSkill {
+	ROOKIE, AVERAGE, VETERAN, ACE;
+}
+*/
+
 
 
 

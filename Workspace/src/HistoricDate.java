@@ -10,9 +10,9 @@ public class HistoricDate {
 	private Name name;
 	
 	private enum Name{
-		Battle_of_Britain, 
+		BATTLE_OF_BRITAIN, 
 		GUADALCANAL, 
-		Stalingrad,
+		STALINGRAD,
 		ASSAULT_ON_THE_REICH, 
 		KURSK, 
 		THE_ITALIAN_CAMPAIGN,
@@ -36,14 +36,15 @@ public class HistoricDate {
 	private List<Name> names = Arrays.asList(Name.values());
 	
 	public List<String>getNames(){
-		
+		/*
 		List<String>stringNames = new ArrayList<String>();
-		
 		names.forEach((name) -> {
 		    stringNames.add(name.toString());
-		    });
-	
+		});
 		return stringNames;
+		*/
+		
+		return null;
 	}
 	
 	
