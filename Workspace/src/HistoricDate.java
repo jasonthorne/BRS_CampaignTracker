@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class HistoricDate {
 	
@@ -29,5 +32,18 @@ public class HistoricDate {
 	}
 	
 	
+	//=====================
+	List<Name> names = Arrays.asList(Name.values());
+	
+	public List<String>getNames(){
+		
+		List<String>stringNames = new ArrayList<String>();
+		names.forEach(Name -> {
+		   // System.out.println(Name);
+		    stringNames.add(Name.toString());
+		    });
+		
+		return stringNames;
+	}
 	
 }
