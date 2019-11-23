@@ -10,9 +10,9 @@ public class HistoricDate {
 	private Name name;
 	
 	private enum Name{
-		BATTLE_OF_BRITAIN, 
+		Battle_of_Britain, 
 		GUADALCANAL, 
-		STALINGRAD,
+		Stalingrad,
 		ASSAULT_ON_THE_REICH, 
 		KURSK, 
 		THE_ITALIAN_CAMPAIGN,
