@@ -19,7 +19,6 @@ public class Main {
 		//---------------
 		HistoricDate a = new HistoricDate();
 		
-		
 		System.out.println(a.getNames());
 		//create a campaign
 		
@@ -28,7 +27,7 @@ public class Main {
 		//delete a campaign
 		
 		//close program
-		
+
 		
 	}
 

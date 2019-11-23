@@ -4,7 +4,7 @@ import java.util.List;
 
 public class HistoricDate {
 	
-	private int startDate;
+	private int startDate; //should be dates,not ints ++++++++++++++
 	private int endDate;
 	private String airForce;
 	private Name name;
@@ -20,7 +20,7 @@ public class HistoricDate {
 	}
 	
 	HistoricDate(){ 
-		setName(Name.BATTLE_OF_BRITAIN);
+		setName(Name.BATTLE_OF_BRITAIN); //change to accept 
 	}
 	
 	private void setName(Name name){
@@ -33,17 +33,21 @@ public class HistoricDate {
 	
 	
 	//=====================
-	List<Name> names = Arrays.asList(Name.values());
+	private List<Name> names = Arrays.asList(Name.values());
 	
 	public List<String>getNames(){
 		
 		List<String>stringNames = new ArrayList<String>();
-		names.forEach(Name -> {
-		   // System.out.println(Name);
-		    stringNames.add(Name.toString());
-		    });
 		
+		names.forEach((name) -> {
+		    stringNames.add(name.toString());
+		    });
+	
 		return stringNames;
 	}
+	
+	
+	
+	
 	
 }
