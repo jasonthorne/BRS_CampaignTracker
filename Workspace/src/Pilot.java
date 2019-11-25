@@ -1,3 +1,4 @@
+import com.android.Plane;
 
 public class Pilot {
 	
@@ -55,17 +56,19 @@ public class Pilot {
 				+ kills + ", status=" + status + ", plane=" + plane + ", pilotSkill=" + pilotSkill + "]";
 	}
 	
-	//HAVE INTERFACES FOR ACCESSING ONLY THESE VARS ++++++++++++++++++++++++++++++
+	
+	//=========================================================================
+	
+	
+	
+	
+	
+	
 
 }
 
 
 
-/*
-enum PilotSkill {
-	ROOKIE, AVERAGE, VETERAN, ACE;
-}
-*/
 
 
 

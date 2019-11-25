@@ -1,0 +1,13 @@
+
+public enum HistoricEvent {
+	BATTLE_OF_BRITAIN, 
+	GUADALCANAL, 
+	STALINGRAD,
+	ASSAULT_ON_THE_REICH, 
+	KURSK, 
+	THE_ITALIAN_CAMPAIGN,
+	DEFENCE_OF_THE_HOME_ISLANDS;
+}
+
+
+//amke a period class
