@@ -43,10 +43,11 @@ public class Pilot {
 		
 		public PilotBuilder setPilotSkill(PilotSkill pilotSkill) {
 			pilot.pilotSkill = pilotSkill;
+			setExp(); //set experience based on pilotSkill
 			return this;
 		}
 		
-		public PilotBuilder setExp() {
+		private void setExp() {
 			switch(pilot.pilotSkill) {
 			  case ROOKIE:
 				  pilot.exp=(((int)(Math.random()*6)+1)-1); //D6-1 xp
@@ -63,7 +64,6 @@ public class Pilot {
 			  default:
 				  pilot.exp=0;
 			}
-			return this;
 		}
 		
 		public Pilot build() {

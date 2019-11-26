@@ -67,10 +67,10 @@ public class Main {
 		
 		//-------------PILOT TEST---------
 		PilotBuilder pilotBuilder = new PilotBuilder();
-		Pilot pilot1 = pilotBuilder.setPilotSkill(PilotSkill.ACE).setExp().build();
+		Pilot pilot1 = pilotBuilder.setPilotSkill(PilotSkill.ACE).build();
 		System.out.println(pilot1);
 		
-		Pilot pilot2 = new PilotBuilder().setPilotSkill(PilotSkill.ROOKIE).setExp().build();
+		Pilot pilot2 = new PilotBuilder().setPilotSkill(PilotSkill.ROOKIE).build();
 		System.out.println(pilot2);
 		
 		
@@ -78,7 +78,7 @@ public class Main {
 		System.out.println(pilot3);
 		
 		
-		Pilot pilot4 = new PilotBuilder().setExp().build();
+		Pilot pilot4 = new PilotBuilder().build();
 		System.out.println(pilot4);
 		//-------------------------------
 	}
