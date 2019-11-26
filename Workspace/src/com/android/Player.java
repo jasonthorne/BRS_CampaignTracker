@@ -1,4 +1,4 @@
-
+package com.android;
 public class Player{
 	
 	private String name;

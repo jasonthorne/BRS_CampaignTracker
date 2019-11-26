@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 */
 
-public class Plane {
+public final class Plane {
 	
 	private final String model;
 	private final int status; //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -25,7 +25,8 @@ public class Plane {
 	
 	
 	//Builder class:
-	static class PlaneBuilder{ //WHY DOES THIS NEED TO BE PUBLIC???????????
+	static class PlaneBuilder{ 
+
 		
 		private String model;
 		private int status;

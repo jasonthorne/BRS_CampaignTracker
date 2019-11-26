@@ -2,6 +2,7 @@ package com.android;
 import java.util.Arrays;
 import java.util.List;
 
+import com.android.PilotTest.PilotTestBuilder;
 import com.android.Plane.PlaneBuilder;
 
 /*
@@ -47,8 +48,18 @@ public class Main {
 
 		//-------------PLANE TEST---------
 		PlaneBuilder planeBuilder = new PlaneBuilder();
-		Plane testPlane = planeBuilder.setModel("test").setStatus(333).build();
-		System.out.println(testPlane);
+		Plane testPlane1 = planeBuilder.setModel("test").setStatus(333).build();
+		System.out.println(testPlane1);
+		
+		
+		//-------------------------------
+		
+		//-------------PILOT TEST---------
+		PilotTestBuilder pilotTestBuilder = new PilotTestBuilder();
+		PilotTest testPilot1 = pilotTestBuilder.setName("Bob").setAge(33).build();
+		System.out.println(testPilot1);
+		
+		
 		
 		//-------------------------------
 	}

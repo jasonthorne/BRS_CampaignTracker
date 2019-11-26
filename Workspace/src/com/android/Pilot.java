@@ -1,5 +1,4 @@
-import com.android.Plane;
-
+package com.android;
 public class Pilot {
 	
 	private static int counter = 0;
