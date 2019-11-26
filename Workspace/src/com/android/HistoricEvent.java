@@ -23,4 +23,4 @@ public class HistoricEvent {
 }
 
 
-//amke a period class
+//make a period class

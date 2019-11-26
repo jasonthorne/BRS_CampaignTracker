@@ -17,7 +17,7 @@ public class Squadron {
 
 	}
 	
-	
+	/*
 	void addPilot(){
 		pilots.add(new Pilot(PilotSkill.ROOKIE));
 		pilots.add(new Pilot(PilotSkill.AVERAGE));
@@ -26,7 +26,7 @@ public class Squadron {
 		
 		//System.out.println(pilots);//test print of pilots list
 	}
-	
+	*/
 	
 	
 }

@@ -2,7 +2,8 @@ package com.android;
 import java.util.Arrays;
 import java.util.List;
 
-import com.android.PilotTest.PilotTestBuilder;
+import com.android.Pilot.PilotBuilder;
+import com.android.Pilot.PilotSkill;
 import com.android.Plane.PlaneBuilder;
 import com.android.Plane.Status;
 
@@ -46,20 +47,39 @@ public class Main {
 		//---------------
 		
 		*/
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		//-------------PLANE TEST---------
 		PlaneBuilder planeBuilder = new PlaneBuilder();
-		Plane testPlane1 = planeBuilder.setStatus(Status.AUTO).setModel("testModel").build();
-		System.out.println(testPlane1);
+		Plane plane1 = planeBuilder.setStatus(Status.AUTO).setModel("testModel").build();
+		System.out.println(plane1);
 		//-------------------------------
 		
 		//-------------PILOT TEST---------
-		PilotTestBuilder pilotTestBuilder = new PilotTestBuilder();
-		PilotTest testPilot1 = pilotTestBuilder.setName("Bob").setAge(33).build();
-		System.out.println(testPilot1);
+		PilotBuilder pilotBuilder = new PilotBuilder();
+		Pilot pilot1 = pilotBuilder.setPilotSkill(PilotSkill.ACE).setExp().build();
+		System.out.println(pilot1);
+		
+		Pilot pilot2 = new PilotBuilder().setPilotSkill(PilotSkill.ROOKIE).setExp().build();
+		System.out.println(pilot2);
 		
 		
+		Pilot pilot3 = new PilotBuilder().setName("Bob").build();
+		System.out.println(pilot3);
 		
+		
+		Pilot pilot4 = new PilotBuilder().setExp().build();
+		System.out.println(pilot4);
 		//-------------------------------
 	}
 

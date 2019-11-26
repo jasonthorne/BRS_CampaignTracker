@@ -17,7 +17,7 @@ public class Player{
 	Player(){
 		setAirForce(AirForce.RAF); //test airForce set
 		System.out.println("air force is: " + airForce); //test print
-		squadron.addPilot(); //testPilotAdd
+		//squadron.addPilot(); //testPilotAdd
 	}
 	
 	
