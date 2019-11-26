@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.android.PilotTest.PilotTestBuilder;
 import com.android.Plane.PlaneBuilder;
+import com.android.Plane.Status;
 
 /*
 import Campaign;
@@ -48,10 +49,8 @@ public class Main {
 
 		//-------------PLANE TEST---------
 		PlaneBuilder planeBuilder = new PlaneBuilder();
-		Plane testPlane1 = planeBuilder.setModel("test").setStatus(333).build();
+		Plane testPlane1 = planeBuilder.setStatus(Status.AUTO).setModel("testModel").build();
 		System.out.println(testPlane1);
-		
-		
 		//-------------------------------
 		
 		//-------------PILOT TEST---------

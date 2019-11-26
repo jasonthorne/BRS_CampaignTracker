@@ -12,7 +12,6 @@ public class Pilot {
 	private Plane plane;
 	private PilotSkill pilotSkill;
 	
-	
 	Pilot(PilotSkill pilotSkill){
 		setId();
 		setPilotSkill(pilotSkill);

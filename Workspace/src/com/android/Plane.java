@@ -6,18 +6,25 @@ import java.util.ArrayList;
 import java.util.List;
 */
 
-public final class Plane {
+//public final class Plane {
+public class Plane {
 	
-	private final String model;
-	private final int status; //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//private final String model;
+	private String model;
+	private Status status;
 	
-	private Plane(String model, int status) {
+	enum Status{ //try make private somehow!!  ++++++++++++++++
+		NONE,
+		LIMIT,
+		AUTO;
+	}
+	
+	private Plane(String model, Status status) {
 		System.out.println("Plane constructed");
 		this.model = model;
 		this.status = status;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "Plane [model=" + model + ", status=" + status + "]";
@@ -27,17 +34,16 @@ public final class Plane {
 	//Builder class:
 	static class PlaneBuilder{ 
 
-		
 		private String model;
-		private int status;
+		private Status status;
 		
 		//setters:
-		public PlaneBuilder setModel(String model) { //test string input +++++++++++++++
+		public PlaneBuilder setModel(String model) { 
 			this.model = model;
 			return this;
 		}
 		
-		public PlaneBuilder setStatus(int status) { //test status input +++++++++++++++
+		public PlaneBuilder setStatus(Status status) {
 			this.status = status;
 			return this;
 		}
@@ -46,49 +52,10 @@ public final class Plane {
 			return new Plane(model, status);
 		}
 		
-		
-		/*
-		 * MUTABLE method:
-		private Plane plane = new Plane();
+	}
+	
 
-		public PlaneBuilder setModel(String model) { //test string input +++++++++++++++
-			plane.model = model;
-			return this;
-		}
-		
-		public PlaneBuilder setStatus(String status) { //test status input +++++++++++++++
-			plane.status = status;
-			return this;
-		}
-		
-		public Plane build() {
-			return plane;
-		}
-		*/
-		
-		
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/*
-	private enum Status{
-		NONE,
-		LIMIT,
-		AUTO;
-	}
 	
 	private List<Avaliablility>avaliabilites = new ArrayList<Avaliablility>(); //list of availabilities
 	Avaliablility avalability;

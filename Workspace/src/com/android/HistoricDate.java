@@ -44,7 +44,6 @@ public class HistoricDate {
 		});
 		return stringNames;
 		*/
-		
 		return null;
 	}
 	
