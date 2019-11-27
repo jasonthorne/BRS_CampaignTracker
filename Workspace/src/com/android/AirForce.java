@@ -12,10 +12,10 @@ public enum AirForce{
 	
 	//constructor:
 	private AirForce(String airForce) {
-		this.airForce = airForce; //assign name to air force
+		this.airForce = airForce; //assign name of air force
 	}
 	
-	@Override
+	@Override //override toString:
 	public String toString() {
 		return airForce; //return name of air force
 	}

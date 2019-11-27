@@ -12,12 +12,26 @@ public class Pilot {
 	private Plane plane;
 	
 	enum PilotSkill{
-		ROOKIE, AVERAGE, VETERAN, ACE;
+		ROOKIE("Rookie"), AVERAGE("Average"), VETERAN("Veteran"), ACE("Ace");
+		private String pilotSkill; //name of skill
+		private PilotSkill(String pilotSkill) { //constructor
+			this.pilotSkill = pilotSkill; //assign name of skill
+		}
+		
+		@Override //override toString:
+		public String toString() {
+			return pilotSkill; //return name of skill
+		}
 	}
 	
 	//constructor:
 	private Pilot() {
 		System.out.println("Pilot constructed");
+	}
+	
+	
+	public PilotSkill getPilotSkill() {
+		return pilotSkill;
 	}
 
 	@Override

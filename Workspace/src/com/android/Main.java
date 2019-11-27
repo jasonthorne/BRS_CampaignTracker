@@ -84,6 +84,12 @@ public class Main {
 		
 		Pilot pilot4 = new PilotBuilder().setPilotSkill(PilotSkill.ROOKIE).build();
 		System.out.println(pilot4);
+		
+		PilotSkill testSkill = PilotSkill.ACE;
+		System.out.println(testSkill);
+		
+		
+		System.out.println("getPilotSkill: " + pilot1.getPilotSkill());
 		//-------------------------------
 		
 		
@@ -96,6 +102,12 @@ public class Main {
 		
 		HistoricEvent historicEvent2 = new HistoricEventBuilder().setName(Name.DEFENCE_OF_THE_HOME_ISLANDS).build();
 		System.out.println(historicEvent2);
+		//-------------------------------
+		
+		
+		//-------------AIRFORCE TEST---------
+		AirForce testAirForce = AirForce.RAF;
+		System.out.println(testAirForce);
 		//-------------------------------
 		
 	}
