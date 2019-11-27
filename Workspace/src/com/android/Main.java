@@ -2,6 +2,8 @@ package com.android;
 import java.util.Arrays;
 import java.util.List;
 
+import com.android.HistoricEvent.HistoricEventBuilder;
+import com.android.HistoricEvent.Name;
 import com.android.Pilot.PilotBuilder;
 import com.android.Pilot.PilotSkill;
 import com.android.Plane.PlaneBuilder;
@@ -60,27 +62,43 @@ public class Main {
 		
 
 		//-------------PLANE TEST---------
+		System.out.println("\nPlanes:");
+		
 		PlaneBuilder planeBuilder = new PlaneBuilder();
 		Plane plane1 = planeBuilder.setStatus(Status.AUTO).setModel("testModel").build();
 		System.out.println(plane1);
 		//-------------------------------
 		
 		//-------------PILOT TEST---------
+		System.out.println("\nPilots:");
+		
 		PilotBuilder pilotBuilder = new PilotBuilder();
 		Pilot pilot1 = pilotBuilder.setPilotSkill(PilotSkill.ACE).build();
 		System.out.println(pilot1);
 		
-		Pilot pilot2 = new PilotBuilder().setPilotSkill(PilotSkill.ROOKIE).build();
+		Pilot pilot2 = new PilotBuilder().setPilotSkill(PilotSkill.VETERAN).build();
 		System.out.println(pilot2);
 		
-		
-		Pilot pilot3 = new PilotBuilder().setName("Bob").build();
+		Pilot pilot3 = new PilotBuilder().setPilotSkill(PilotSkill.AVERAGE).build();
 		System.out.println(pilot3);
 		
-		
-		Pilot pilot4 = new PilotBuilder().build();
+		Pilot pilot4 = new PilotBuilder().setPilotSkill(PilotSkill.ROOKIE).build();
 		System.out.println(pilot4);
 		//-------------------------------
+		
+		
+		//-------------HISTORIC EVENT TEST---------
+		System.out.println("\nHistoric events:");
+		
+		HistoricEventBuilder historicEventBuilder = new HistoricEventBuilder();
+		HistoricEvent historicEvent1 = historicEventBuilder.setName(Name.BATTLE_OF_BRITAIN).build();
+		System.out.println(historicEvent1);
+		
+		HistoricEvent historicEvent2 = new HistoricEventBuilder().setName(Name.DEFENCE_OF_THE_HOME_ISLANDS).build();
+		System.out.println(historicEvent2);
+		
+		//-------------------------------
+		
 	}
 
 }

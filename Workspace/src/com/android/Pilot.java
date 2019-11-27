@@ -43,7 +43,7 @@ public class Pilot {
 		
 		public PilotBuilder setPilotSkill(PilotSkill pilotSkill) {
 			pilot.pilotSkill = pilotSkill;
-			setExp(); //set experience based on pilotSkill
+			setExp();
 			return this;
 		}
 		
@@ -61,8 +61,6 @@ public class Pilot {
 			  case ACE:
 				  pilot.exp=(((int)(Math.random()*6)+1)+50); //D6+50 xp
 				  break;
-			  default:
-				  pilot.exp=0;
 			}
 		}
 		
