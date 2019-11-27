@@ -1,20 +1,11 @@
 package com.android;
 
 public enum AirForce{
-	
-	RAF("RAF"), //Britain
-	LUFTWAFFE("Luftwaffe"), //Germany
-	USAAF("USA"), //America
-	VVS("Soviet"), //Russia
-	IJAAF("Japan"); //Japan
-	
-	private String airForce; //name of air force
-	
-	//constructor:
-	private AirForce(String airForce) {
+	RAF("RAF"), LUFTWAFFE("Luftwaffe"), USAAF("USA"), VVS("Soviet"), IJAAF("Japan"); //air forces
+	private String airForce; //name of chosen air force
+	private AirForce(String airForce) { //constructor
 		this.airForce = airForce; //assign name of air force
 	}
-	
 	@Override //override toString:
 	public String toString() {
 		return airForce; //return name of air force

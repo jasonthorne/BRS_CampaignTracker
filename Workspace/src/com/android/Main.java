@@ -90,6 +90,14 @@ public class Main {
 		
 		
 		System.out.println("getPilotSkill: " + pilot1.getPilotSkill());
+		
+		//=========
+		
+		PilotSkill p1 = pilot1.getPilotSkill();
+		System.out.println("p1 is: " + p1);
+		
+		p1 = p1.ROOKIE;
+		System.out.println("p1 is now: " + p1);
 		//-------------------------------
 		
 		

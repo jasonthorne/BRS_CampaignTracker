@@ -36,7 +36,7 @@ public class HistoricEvent {
 	
 	//constructor:
 	private HistoricEvent() {
-		
+		System.out.println("HistoricEvent constructed");
 	}
 
 	@Override
@@ -51,11 +51,11 @@ public class HistoricEvent {
 		
 		public HistoricEventBuilder setName(Name name) {
 			historicEvent.name = name;
-			setAirForces(); //set air forces 
+			setAirForces(); //set available air forces 
 			return this;
 		}
 		
-		//add air forces to list of available air forces:
+		//create a list of available air forces:
 		private void setAirForces() { 
 			switch(historicEvent.name) {
 			  case BATTLE_OF_BRITAIN:

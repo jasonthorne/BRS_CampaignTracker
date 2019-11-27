@@ -12,8 +12,8 @@ public class Pilot {
 	private Plane plane;
 	
 	enum PilotSkill{
-		ROOKIE("Rookie"), AVERAGE("Average"), VETERAN("Veteran"), ACE("Ace");
-		private String pilotSkill; //name of skill
+		ROOKIE("Rookie"), AVERAGE("Average"), VETERAN("Veteran"), ACE("Ace"); //pilot skills
+		private String pilotSkill; //name of chosen skill
 		private PilotSkill(String pilotSkill) { //constructor
 			this.pilotSkill = pilotSkill; //assign name of skill
 		}
@@ -33,6 +33,8 @@ public class Pilot {
 	public PilotSkill getPilotSkill() {
 		return pilotSkill;
 	}
+	
+	
 
 	@Override
 	public String toString() {
