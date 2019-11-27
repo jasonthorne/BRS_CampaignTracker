@@ -6,11 +6,8 @@ public class Player{
 	private AirForce airForce; //airForce chosen by player
 	
 	private Squadron squadron = new Squadron();
-	
 	private int joinDate;
 	
-	
-	//Name name;
 	
 	//Constructors:
 	

@@ -96,7 +96,6 @@ public class Main {
 		
 		HistoricEvent historicEvent2 = new HistoricEventBuilder().setName(Name.DEFENCE_OF_THE_HOME_ISLANDS).build();
 		System.out.println(historicEvent2);
-		
 		//-------------------------------
 		
 	}

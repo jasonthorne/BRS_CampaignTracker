@@ -1,6 +1,6 @@
 package com.android;
 
-public class Period {
+public interface Period {
 
 	enum Year{
 		NINETEEN_FORTY,
