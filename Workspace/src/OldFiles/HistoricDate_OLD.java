@@ -1,9 +1,9 @@
-package com.android;
+package OldFiles;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class HistoricDate {
+public class HistoricDate_OLD {
 	
 	private int startDate; //should be dates,not ints ++++++++++++++
 	private int endDate;
@@ -20,7 +20,7 @@ public class HistoricDate {
 		DEFENCE_OF_THE_HOME_ISLANDS;
 	}
 	
-	HistoricDate(){ 
+	HistoricDate_OLD(){ 
 		setName(Name.BATTLE_OF_BRITAIN); //change to accept 
 	}
 	

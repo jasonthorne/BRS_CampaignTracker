@@ -18,10 +18,22 @@ public class Campaign {
 	//a Campaign has a start date (maybe make it the start of the historic date instead of current date)
 	//private Date; 
 	
-	//constructor:
-	Campaign(){
+	//constructor: 
+	private Campaign(){
 		System.out.println("Campaign constructed");
 	}
+	
+	
+	
+	
+	//-----------GETTERS-----------
+	
+	public Name getHistoricEventName() {
+		return this.historicEvent.getName();
+	}
+	 
+	
+	//----------------------------
 	
 	//builder class:
 	static class CampaignBuilder { 

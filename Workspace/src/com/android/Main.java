@@ -126,11 +126,22 @@ public class Main {
 		
 		//show historic event names for selection of name:
 		
-		System.out.println("\nlist of historic events:");
+		System.out.println("\ngrab list of list of historic events (for adding to buttons for setter");
 		List<Name>names = Arrays.asList(Name.values());
 		names.forEach(name -> {
-			System.out.println(name.toString());
+			System.out.println(name);
 		});
+		
+		
+		System.out.println("campaign is: " + campaign.getHistoricEventName());
+		
+		
+		Name test = campaign.getHistoricEventName();
+		System.out.println("test is: " + test);
+		
+		
+		
+		
 		//----------------------------------------------
 		
 	}

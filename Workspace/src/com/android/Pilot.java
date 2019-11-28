@@ -30,12 +30,12 @@ public class Pilot {
 	}
 	
 	
+	//-------------getters-----------------------
 	public PilotSkill getPilotSkill() {
 		return pilotSkill;
 	}
+	//--------------------------------------------
 	
-	
-
 	@Override
 	public String toString() {
 		return "Pilot [name=" + name + ", joinDate=" + joinDate + ", exp=" + exp + ", kills=" + kills
