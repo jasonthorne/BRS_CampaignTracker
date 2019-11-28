@@ -11,27 +11,20 @@ public class Player{
 	
 	//constructor:
 	private Player(){
-		//setAirForce(AirForce.RAF); //test airForce set
-		System.out.println("air force is: " + airForce); //test print
-		//squadron.addPilot(); //testPilotAdd
+		System.out.println("Player constructed");
 	}
 	
 	
-	//-----------------------
-	//Setters:
-	
-	
+	//=====================remove
 	private void setAirForce(AirForce airForce){
 		this.airForce = airForce;
 	}
 	
-	//------
-	//Getters:
 	
-
 	public AirForce getAirForce() {
 		return airForce;
 	}
+	//==========================
 	
 	//builder class:
 	static class PlayerBuilder{
