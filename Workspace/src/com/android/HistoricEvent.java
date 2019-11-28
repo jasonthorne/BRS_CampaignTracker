@@ -33,6 +33,16 @@ public class HistoricEvent {
 	}
 	*/
 	
+	//-----------------------------------------
+	//getters:
+	
+	/*
+	public getName{
+		
+	}
+	*/
+	//-----------------------------------------
+	
 	
 	//constructor:
 	private HistoricEvent() {

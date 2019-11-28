@@ -2,6 +2,7 @@ package com.android;
 import java.util.Arrays;
 import java.util.List;
 
+import com.android.Campaign.CampaignBuilder;
 import com.android.HistoricEvent.HistoricEventBuilder;
 import com.android.HistoricEvent.Name;
 import com.android.Pilot.PilotBuilder;
@@ -117,6 +118,20 @@ public class Main {
 		AirForce testAirForce = AirForce.RAF;
 		System.out.println(testAirForce);
 		//-------------------------------
+		
+		
+		//------------------CAMPAIGN TEST---------------
+		CampaignBuilder campaignBuilder = new CampaignBuilder();
+		Campaign campaign = campaignBuilder.setHistoricEvent().build();
+		
+		//show historic event names for selection of name:
+		
+		System.out.println("\nlist of historic events:");
+		List<Name>names = Arrays.asList(Name.values());
+		names.forEach(name -> {
+			System.out.println(name.toString());
+		});
+		//----------------------------------------------
 		
 	}
 
