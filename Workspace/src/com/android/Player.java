@@ -9,10 +9,9 @@ public class Player{
 	private int joinDate;
 	
 	
-	//Constructors:
-	
-	Player(){
-		setAirForce(AirForce.RAF); //test airForce set
+	//constructor:
+	private Player(){
+		//setAirForce(AirForce.RAF); //test airForce set
 		System.out.println("air force is: " + airForce); //test print
 		//squadron.addPilot(); //testPilotAdd
 	}
@@ -20,6 +19,7 @@ public class Player{
 	
 	//-----------------------
 	//Setters:
+	
 	
 	private void setAirForce(AirForce airForce){
 		this.airForce = airForce;
@@ -33,6 +33,24 @@ public class Player{
 		return airForce;
 	}
 	
+	//builder class:
+	static class PlayerBuilder{
+		private Player player = new Player();
+		
+		public PlayerBuilder setName(String name) {
+			player.name = name;
+			return this;
+		}
+		
+		public PlayerBuilder setAirForce(AirForce airForce) {
+			player.airForce = airForce;
+			return this;
+		}
+		
+		
+		
+		
+	}
 
 
 	

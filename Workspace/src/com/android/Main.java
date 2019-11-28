@@ -140,6 +140,8 @@ public class Main {
 		System.out.println("test is: " + test);
 		
 		
+		Name test2 = Name.ASSAULT_ON_THE_REICH;
+		
 		
 		
 		//----------------------------------------------
