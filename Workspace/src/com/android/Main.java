@@ -130,19 +130,26 @@ public class Main {
 		*/
 		
 		
-		//------------------CAMPAIGN ---------------
+		//------------------PICK CAMPAIGN ---------------
 		CampaignBuilder campaignBuilder = new CampaignBuilder(); //create builder
 		Campaign campaign1 = campaignBuilder.setHistoricEvent(Name.BATTLE_OF_BRITAIN).build(); //create campaign with historic event 
 		System.out.println("Campaign is: " + campaign1.getHistoricEventName());
 		
-		//-----------------PLAYER1 -----------------
-		campaign1 = campaignBuilder.addPlayer().build(); //add player to campaign
+		//-----------------ADD PLAYERS -----------------
+		PlayerBuilder playerBuilder = new PlayerBuilder(); //make player builder 
+		
+		playerBuilder.setName("player1"); //assign player name
+		playerBuilder.setAirForce(AirForce.RAF); //assign air force
+		campaign1 = campaignBuilder.setPlayer(playerBuilder).build(); //add player to campaign
 		
 		
+		playerBuilder = new PlayerBuilder(); //re-instantiate player builder (as precaution)
+		playerBuilder.setName("player2"); //assign player name
+		playerBuilder.setAirForce(AirForce.LUFTWAFFE); //assign air force
+		campaign1 = campaignBuilder.setPlayer(playerBuilder).build(); //add player to campaign
 		
 		
-		
-		 
+		 System.out.println(campaign1.getPlayers());
 		
 		
 		

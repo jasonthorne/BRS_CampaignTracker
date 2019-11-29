@@ -11,11 +11,11 @@ public class Campaign {
 	
 	//Historic event:
 	private HistoricEvent historicEvent;
-	private HistoricEventBuilder historicEventBuilder;
+	//private HistoricEventBuilder historicEventBuilder;
 	
 	private List<Player>players = new ArrayList<Player>(); //list of players in campaign
 	private Player player; 
-	private PlayerBuilder playerBuilder;
+	/////////private PlayerBuilder playerBuilder;
 	
 	
 	//a Campaign has a start date (maybe make it the start of the historic date instead of current date)
@@ -34,6 +34,10 @@ public class Campaign {
 		return this.historicEvent.getName();
 	}
 	
+	public List<Player> getPlayers() {
+		return this.players;
+	}
+	
 	 
 	//----------------------------
 	
@@ -46,20 +50,26 @@ public class Campaign {
 		//private Player player;
 		
 		public CampaignBuilder setHistoricEvent(Name name) {
-			campaign.historicEventBuilder = new HistoricEventBuilder(); //create builder
-			campaign.historicEvent = campaign.historicEventBuilder.setName(name).build();
+			//campaign.historicEventBuilder = new HistoricEventBuilder(); //create builder
+			//campaign.historicEvent = campaign.historicEventBuilder.setName(name).build();
+			campaign.historicEvent = new HistoricEventBuilder().setName(name).build();
 			return this;
 		}
 		
-		
-		public CampaignBuilder addPlayer() {
-			campaign.playerBuilder = new PlayerBuilder(); //create builder
-			campaign.player = campaign.playerBuilder.build();
+		public CampaignBuilder setPlayer(PlayerBuilder playerBuilder) {
+			//campaign.playerBuilder = new PlayerBuilder(); //create builder
+			//campaign.player = campaign.playerBuilder.build();
+			
+			//campaign.player = playerBuilder.build();
+			//System.out.println(campaign.player);
+			
+			campaign.players.add(playerBuilder.build()); //add a built player to list of players
 			return this;
 		}
 		
 		public Campaign build() {
 			return campaign;
+			
 		}
 		
 	}
