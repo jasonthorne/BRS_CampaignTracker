@@ -41,7 +41,7 @@ public class Pilot {
 		return "Pilot [name=" + name + ", joinDate=" + joinDate + ", exp=" + exp + ", kills=" + kills
 				+ ", status=" + status + ", plane=" + plane + ", pilotSkill=" + pilotSkill + "]";
 	}
-	
+		
 	//builder class:
 	static class PilotBuilder{
 		

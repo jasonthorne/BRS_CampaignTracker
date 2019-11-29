@@ -11,7 +11,7 @@ public class HistoricEvent {
 	private Period period;
 	
 	private List<AirForce>airForces; //holds air forces available
-	private AirForce airForce; //NEEDED????????????? ++++++++++++++++++++++++++++
+	//private AirForce airForce; //NEEDED????????????? ++++++++++++++++++++++++++++
 	
 	enum Name{
 		BATTLE_OF_BRITAIN("Battle of Britain"), //Britain v Germany
@@ -27,16 +27,16 @@ public class HistoricEvent {
 			this.name = name;
 		}
 		
-		/*
 		@Override //override toString:
 		public String toString() {
 			return name;
 		}
-		*/
 		
+		/*
 		public String getName() {
 			return name;
 		}
+		*/
 	}
 	
 	/*

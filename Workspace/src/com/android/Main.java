@@ -9,6 +9,7 @@ import com.android.Pilot.PilotBuilder;
 import com.android.Pilot.PilotSkill;
 import com.android.Plane.PlaneBuilder;
 import com.android.Plane.Status;
+import com.android.Player.PlayerBuilder;
 
 /*
 import Campaign;
@@ -61,7 +62,7 @@ public class Main {
 		
 		
 		
-
+		/*
 		//-------------PLANE TEST---------
 		System.out.println("\nPlanes:");
 		
@@ -118,33 +119,45 @@ public class Main {
 		AirForce testAirForce = AirForce.RAF;
 		System.out.println(testAirForce);
 		//-------------------------------
+	
 		
-		
-		//------------------CAMPAIGN TEST---------------
-		CampaignBuilder campaignBuilder = new CampaignBuilder();
-		Campaign campaign = campaignBuilder.setHistoricEvent().build();
-		
-		//show historic event names for selection of name:
-		
-		System.out.println("\ngrab list of list of historic events (for adding to buttons for setter");
+		// print list of historic events
 		List<Name>names = Arrays.asList(Name.values());
 		names.forEach(name -> {
 			System.out.println(name);
 		});
 		
-		
-		System.out.println("campaign is: " + campaign.getHistoricEventName());
-		
-		
-		Name test = campaign.getHistoricEventName();
-		System.out.println("test is: " + test);
+		*/
 		
 		
-		Name test2 = Name.ASSAULT_ON_THE_REICH;
+		//------------------CAMPAIGN ---------------
+		CampaignBuilder campaignBuilder = new CampaignBuilder(); //create builder
+		Campaign campaign1 = campaignBuilder.setHistoricEvent(Name.BATTLE_OF_BRITAIN).build(); //create campaign with historic event 
+		System.out.println("Campaign is: " + campaign1.getHistoricEventName());
 		
+		//-----------------PLAYER1 -----------------
+		campaign1 = campaignBuilder.addPlayer().build(); //add player to campaign
+		
+		
+		
+		
+		
+		 
+		
+		
+		
+		//https://stackoverflow.com/questions/33211585/builder-pattern-nested-objects-created-through-other-builders
 		
 		
 		//----------------------------------------------
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 

@@ -10,5 +10,4 @@ public enum AirForce{
 	public String toString() {
 		return airForce; //return name of air force
 	}
-	
 }
