@@ -52,10 +52,11 @@ public class Pilot {
 			return this;
 		}
 		
+		/*
 		public PilotBuilder setJoinDate(int joinDate) { //++++++++++++++++Change this to use proper date
 			pilot.joinDate = joinDate;
 			return this;
-		}
+		}*/
 		
 		public PilotBuilder setPilotSkill(PilotSkill pilotSkill) {
 			pilot.pilotSkill = pilotSkill;
@@ -79,6 +80,8 @@ public class Pilot {
 				  break;
 			}
 		}
+		
+		//private void setJoinDate
 		
 		public Pilot build() {
 			return pilot;

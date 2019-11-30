@@ -1,4 +1,7 @@
 package com.android;
+
+import com.android.Squadron.SquadronBuilder;
+
 public class Player{
 	
 	private String name;
@@ -36,8 +39,8 @@ public class Player{
 			return this;
 		}
 		
-		private void setSquadron() { 
-			player.squadron = new Squadron();
+		private void setSquadron() {
+			player.squadron = new SquadronBuilder().build();
 		}
 		
 		private void setJoinDate() {

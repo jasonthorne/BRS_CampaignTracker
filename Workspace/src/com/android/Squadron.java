@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.android.Pilot.PilotBuilder;
+
 public class Squadron {
 	
 	private List<Pilot>pilots = new ArrayList<Pilot>();
@@ -14,8 +16,8 @@ public class Squadron {
 	private int skillPoints = 0;
 	
 	//constructor:
-	Squadron(){ //+++++++++++++++++++change to private
-
+	private Squadron(){ //+++++++++++++++++++change to private
+		System.out.println("Squadron constructed");
 	}
 
 	@Override
@@ -23,6 +25,20 @@ public class Squadron {
 		return "Squadron [pilots=" + pilots + ", pilotNum=" + pilotNum + ", skillPoints=" + skillPoints + "]";
 	}
 	
+	//builder class:
+	static class SquadronBuilder{
+		
+		private Squadron squadron = new Squadron();
+		
+		public SquadronBuilder setPilot(PilotBuilder pilotBuilder) {
+			squadron.pilots.add(pilotBuilder.build()); //add a built pilot to list of pilots
+			return this;
+		}
+		
+		public Squadron build() {
+			return squadron;
+		}
+	}
 	
 	
 	

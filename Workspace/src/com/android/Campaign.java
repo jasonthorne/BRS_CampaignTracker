@@ -14,12 +14,12 @@ public class Campaign {
 	//private HistoricEventBuilder historicEventBuilder;
 	
 	private List<Player>players = new ArrayList<Player>(); //list of players in campaign
-	private Player player; 
+	//private Player player; 
 	/////////private PlayerBuilder playerBuilder;
 	
 	
 	//a Campaign has a start date (maybe make it the start of the historic date instead of current date)
-	//private Date; 
+	private int startDate; //++++++++++++++++make a proper date
 	
 	//constructor: 
 	private Campaign(){
@@ -27,18 +27,41 @@ public class Campaign {
 	}
 	
 	
+	//toString:
+	@Override
+	public String toString() {
+		return "Campaign: " + historicEvent.getName() + ". Created: " + startDate;
+	}
+
+
+	
 
 	//-----------GETTERS-----------
 	
+	/*
 	public Name getHistoricEventName() {
 		return this.historicEvent.getName();
 	}
+	*/
 	
-	public List<Player> getPlayers() {
+	public String getHistoricEventName() {
+		return this.historicEvent.getName();
+	}
+	
+	public List<Player>getPlayers() {
 		return this.players;
 	}
 	
-	 
+	
+	public int getStartDate() { //+++change to proper date
+		return this.startDate;
+	}
+	
+	/*
+	public Campaign getCampaign() { //+++++++++++++Should probably return a copy!!
+		return this;
+	}
+	*/
 	//----------------------------
 	
 	//builder class:
@@ -67,9 +90,14 @@ public class Campaign {
 			return this;
 		}
 		
+		private void setStartDate() {
+			campaign.startDate = 333; //+++++++++++++++++edit to set proper date
+		}
+		
+		
 		public Campaign build() {
+			setStartDate();
 			return campaign;
-			
 		}
 		
 	}

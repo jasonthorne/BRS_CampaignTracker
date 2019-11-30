@@ -1,8 +1,10 @@
 package com.android;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import com.android.Campaign.CampaignBuilder;
+import com.android.Campaign;
 import com.android.HistoricEvent.HistoricEventBuilder;
 import com.android.HistoricEvent.Name;
 import com.android.Pilot.PilotBuilder;
@@ -130,28 +132,54 @@ public class Main {
 		*/
 		
 		
-		//------------------PICK CAMPAIGN ---------------
-		CampaignBuilder campaignBuilder = new CampaignBuilder(); //create builder
-		Campaign campaign1 = campaignBuilder.setHistoricEvent(Name.BATTLE_OF_BRITAIN).build(); //create campaign with historic event 
-		System.out.println("Campaign is: " + campaign1.getHistoricEventName());
+		//------------------LANDING PAGE ---------------
 		
-		//-----------------ADD PLAYERS -----------------
+		List<Campaign>campaigns= new ArrayList<Campaign>(); //list of campaigns created
+		
+		//create a campaign, selecting a historic event:
+		CampaignBuilder campaignBuilder = new CampaignBuilder(); //create builder
+		campaigns.add(campaignBuilder.setHistoricEvent(Name.BATTLE_OF_BRITAIN).build()); //create campaign with historic event and add to list
+		
+		
+		
+		//show the list of campaigns created. giving buttons to each for opening that specific campaign.
+		Campaign campaign = new CampaignBuilder().build(); //reference for holding chosen campaign from list below
+		
+		for(Campaign i : campaigns){ //++++++++++++++++++this should prob be in a method from a btn click event, (passing in BoB string)
+			////System.out.println("i is: " + i);
+			if (i.getHistoricEventName() == "Battle of Britain") campaign = i; //assign target campaign to reference
+		}
+		
+		System.out.println(campaign); //test print target campaign
+		
+		//-----------------CAMPAIGN PAGE -----------------
+		
+		//campaign ref is sent to this page 
+		
+		//add a player to the campaign with a selected airforce:
 		PlayerBuilder playerBuilder = new PlayerBuilder(); //make player builder 
 		
+		//player1:
 		playerBuilder.setName("player1"); //assign player name
 		playerBuilder.setAirForce(AirForce.RAF); //assign air force
-		campaign1 = campaignBuilder.setPlayer(playerBuilder).build(); //add player to campaign
+		campaign = campaignBuilder.setPlayer(playerBuilder).build(); //add player to campaign
 		
 		
+		/*
+		 * 
+		//player2:
 		playerBuilder = new PlayerBuilder(); //re-instantiate player builder (as precaution)
+		
 		playerBuilder.setName("player2"); //assign player name
 		playerBuilder.setAirForce(AirForce.LUFTWAFFE); //assign air force
 		campaign1 = campaignBuilder.setPlayer(playerBuilder).build(); //add player to campaign
 		
+		*/
+		/////////System.out.println(campaign1.getPlayers());
 		
-		 System.out.println(campaign1.getPlayers());
 		
 		
+		//-----------------PLAYER PAGE -----------------
 		
 		//https://stackoverflow.com/questions/33211585/builder-pattern-nested-objects-created-through-other-builders
 		
