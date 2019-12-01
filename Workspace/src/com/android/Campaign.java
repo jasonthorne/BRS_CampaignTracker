@@ -14,7 +14,7 @@ public class Campaign {
 	//private HistoricEventBuilder historicEventBuilder;
 	
 	private List<Player>players = new ArrayList<Player>(); //list of players in campaign
-	//private Player player; 
+	/////private Player player; //--------------------------------------------------------------------????????
 	/////////private PlayerBuilder playerBuilder;
 	
 	
@@ -58,6 +58,12 @@ public class Campaign {
 	}
 	
 	/*
+	public Player getPlayer() { //CHECK IF THIS IS UNSAFE!!! hould probably return a copy!!+++++++++++++++++++++
+		return this.player;
+	}
+	*/
+	
+	/*
 	public Campaign getCampaign() { //+++++++++++++Should probably return a copy!!
 		return this;
 	}
@@ -83,8 +89,8 @@ public class Campaign {
 			//campaign.playerBuilder = new PlayerBuilder(); //create builder
 			//campaign.player = campaign.playerBuilder.build();
 			
-			//campaign.player = playerBuilder.build();
-			//System.out.println(campaign.player);
+			//campaign.player = playerBuilder.build(); //create player
+			//campaign.players.add(campaign.player); //add a  player to list of players
 			
 			campaign.players.add(playerBuilder.build()); //add a built player to list of players
 			return this;

@@ -179,20 +179,33 @@ public class Main {
 		playerBuilder.setName("player2"); //assign player name
 		playerBuilder.setAirForce(AirForce.LUFTWAFFE); //assign air force
 		campaignInCampaignPage = campaignBuilder.setPlayer(playerBuilder).build(); //add player to campaign
+	
+		
+		
+		///playerBuilder = new PlayerBuilder(); //re-instantiate player builder (as precaution)
 		
 		Player selectedPlayer;
+		
 		//show list of players for user selection:
 		for(Player i : campaignInCampaignPage.getPlayers()){
-			if (i.getName() == "Player1") selectedPlayer = i; //assign target campaign to reference
+			//if (i.getName() == "Player1") selectedPlayer = i.getPlayer(); //assign target campaign to reference
+			if (i.getName() == "Player1") selectedPlayer = i.getPlayer(); //assign target campaign to reference
 		}
 		
 		System.out.println("Players: " + campaignInCampaignPage.getPlayers());
-		
+		/////System.out.println("selectedPlayer is: " + selectedPlayer.getName());
 		//-----------------PLAYER PAGE -----------------
 		
 		Campaign campaignInPlayerPage = campaignInCampaignPage;
 		
-		//Player player = selectedPlayer; //++++++++++++++DOESNT WORK :P FIX THIS :P
+		//Player player 
+		
+		//selectedPlayer = campaignInPlayerPage.getPlayer();
+		
+		
+		/////Player player = selectedPlayer; //++++++++++++++DOESNT WORK :P FIX THIS :P
+		
+		//System.out.println(selectedPlayer.getName());
 		
 		
 		//https://stackoverflow.com/questions/33211585/builder-pattern-nested-objects-created-through-other-builders

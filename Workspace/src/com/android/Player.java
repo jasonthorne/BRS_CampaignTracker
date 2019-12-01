@@ -10,6 +10,9 @@ public class Player{
 	private Squadron squadron;
 	private int joinDate;
 	
+	
+	//private Player player;
+
 	//constructor:
 	private Player(){
 		System.out.println("Player constructed");
@@ -27,6 +30,12 @@ public class Player{
 	public String getName(){
 		return name;
 	}
+	
+	
+	public Player getPlayer() {
+		return this;
+	}
+	
 	
 	//--------------------------
 
@@ -59,12 +68,18 @@ public class Player{
 			player.score = 0;
 		}
 		
+		/*
+		private void setThis(Player player) {
+			player.player = player;
+		}*/
+		
 		public Player build() {
 			
 			//PUT CHECKS ON THESE: +++++++++++++
 			setSquadron();
 			setJoinDate();
 			setScore();
+			//setThis(player);
 			
 			return player;
 		}
