@@ -21,6 +21,14 @@ public class Player{
 		return "Player [name=" + name + ", score=" + score + ", airForce=" + airForce + ", squadron=" + squadron
 				+ ", joinDate=" + joinDate + "]";
 	}
+	
+	//---------------getters------
+	
+	public String getName(){
+		return name;
+	}
+	
+	//--------------------------
 
 
 
