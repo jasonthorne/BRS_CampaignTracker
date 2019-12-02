@@ -12,6 +12,7 @@ import com.android.Pilot.PilotSkill;
 import com.android.Plane.PlaneBuilder;
 import com.android.Plane.Status;
 import com.android.Player.PlayerBuilder;
+import com.android.Squadron.SquadronBuilder;
 
 /*
 import Campaign;
@@ -163,56 +164,52 @@ public class Main {
 		
 		
 		//CREATE PLAYER:
-		Player player;
 		//add a player to the campaign with a selected airforce:
+		Player player; //player reference
 		PlayerBuilder playerBuilder = new PlayerBuilder(); //make player builder 
 		
 		//player1:
 		playerBuilder.setName("player1"); //assign player name
 		playerBuilder.setAirForce(AirForce.RAF); //assign air force
-		player = playerBuilder.build();
+		player = playerBuilder.build(); //build player
 		campaign = campaignBuilder.setPlayer(player).build(); //add player to campaign
-		//////////////////campaignInCampaignPage = campaignBuilder.setPlayer(playerBuilder).build(); //add player to campaign
-		//+++++++++++++JUMP PLAYER TO PLAYER PAGE HERE (passing campaign reference as before)++++++++++++++++++++
+		//+++++++++++++JUMP PLAYER TO PLAYER PAGE HERE (passing campaign (OR PLAYER) reference as before)++++++++++++++++++++
 		
 		//second player:
 		//player2:
 		playerBuilder = new PlayerBuilder(); //re-instantiate player builder
-		
 		playerBuilder.setName("player2"); //assign player name
 		playerBuilder.setAirForce(AirForce.LUFTWAFFE); //assign air force
-		player = playerBuilder.build();
+		player = playerBuilder.build(); //build player
 		campaign = campaignBuilder.setPlayer(player).build(); //add player to campaign
-		////////////////campaignInCampaignPage = campaignBuilder.setPlayer(playerBuilder).build(); //add player to campaign
 	
-		////////playerBuilder = new PlayerBuilder(); //re-instantiate player builder
-		
-		//Player selectedPlayer = playerBuilder.build();
 		
 		//show list of players for user selection:
 		for(Player i : campaign.getPlayers()){
 			System.out.println("i is: " + i);
 			if (i.getName() == "player1") player = i; //assign target player to reference
-				
-			//if (i.getName() == "Player1") selectedPlayer = i.getPlayer(); //assign target campaign to reference
 		}
 		
-		System.out.println("Players: " + campaign.getPlayers());
+		//System.out.println("Players: " + campaign.getPlayers());
 		System.out.println("selected Player is: " + player.getName());
 		System.out.println("selected Player's airForce is: " + player.getAirForce());
 		
 		//-----------------PLAYER PAGE -----------------
 		
-		//////////Campaign campaignInPlayerPage = campaign;
-		
-		//Player player 
-		
-		//selectedPlayer = campaignInPlayerPage.getPlayer();
+		//Either player or campaign reference is passed here (probably player!) ++++++++++++++
 		
 		
-		/////Player player = selectedPlayer; //++++++++++++++DOESNT WORK :P FIX THIS :P
+		Squadron squadron; //squadron reference
+		///////SquadronBuilder squadronBuilder = new SquadronBuilder(); //make squadron builder //maybe dont need this!! +++++++
 		
-		//System.out.println(selectedPlayer.getName());
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		//https://stackoverflow.com/questions/33211585/builder-pattern-nested-objects-created-through-other-builders

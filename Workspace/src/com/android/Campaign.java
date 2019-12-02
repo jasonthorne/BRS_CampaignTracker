@@ -87,7 +87,7 @@ public class Campaign {
 			return this;
 		}
 		
-		public CampaignBuilder setPlayer(Player player) { ///////needs ot take in a player! @@@@@@@@@@@@@
+		public CampaignBuilder setPlayer(Player player) { 
 		//public CampaignBuilder setPlayer(PlayerBuilder playerBuilder) { ///////needs ot take in a player! @@@@@@@@@@@@@
 			//campaign.playerBuilder = new PlayerBuilder(); //create builder
 			//campaign.player = campaign.playerBuilder.build();
