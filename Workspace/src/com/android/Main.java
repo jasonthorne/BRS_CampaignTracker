@@ -159,44 +159,51 @@ public class Main {
 		//-----------------CAMPAIGN PAGE -----------------
 		
 		//campaign ref is sent to this page ++++++++++++++++++
-		Campaign campaignInCampaignPage = campaign;
+		////Campaign campaignInCampaignPage = campaign;
 		
 		
 		//CREATE PLAYER:
+		Player player;
 		//add a player to the campaign with a selected airforce:
 		PlayerBuilder playerBuilder = new PlayerBuilder(); //make player builder 
 		
 		//player1:
 		playerBuilder.setName("player1"); //assign player name
 		playerBuilder.setAirForce(AirForce.RAF); //assign air force
-		campaignInCampaignPage = campaignBuilder.setPlayer(playerBuilder).build(); //add player to campaign
+		player = playerBuilder.build();
+		campaign = campaignBuilder.setPlayer(player).build(); //add player to campaign
+		//////////////////campaignInCampaignPage = campaignBuilder.setPlayer(playerBuilder).build(); //add player to campaign
 		//+++++++++++++JUMP PLAYER TO PLAYER PAGE HERE (passing campaign reference as before)++++++++++++++++++++
 		
 		//second player:
 		//player2:
-		playerBuilder = new PlayerBuilder(); //re-instantiate player builder (as precaution)
+		playerBuilder = new PlayerBuilder(); //re-instantiate player builder
 		
 		playerBuilder.setName("player2"); //assign player name
 		playerBuilder.setAirForce(AirForce.LUFTWAFFE); //assign air force
-		campaignInCampaignPage = campaignBuilder.setPlayer(playerBuilder).build(); //add player to campaign
+		player = playerBuilder.build();
+		campaign = campaignBuilder.setPlayer(player).build(); //add player to campaign
+		////////////////campaignInCampaignPage = campaignBuilder.setPlayer(playerBuilder).build(); //add player to campaign
 	
+		////////playerBuilder = new PlayerBuilder(); //re-instantiate player builder
 		
-		
-		///playerBuilder = new PlayerBuilder(); //re-instantiate player builder (as precaution)
-		
-		Player selectedPlayer;
+		//Player selectedPlayer = playerBuilder.build();
 		
 		//show list of players for user selection:
-		for(Player i : campaignInCampaignPage.getPlayers()){
+		for(Player i : campaign.getPlayers()){
+			System.out.println("i is: " + i);
+			if (i.getName() == "player1") player = i; //assign target player to reference
+				
 			//if (i.getName() == "Player1") selectedPlayer = i.getPlayer(); //assign target campaign to reference
-			if (i.getName() == "Player1") selectedPlayer = i.getPlayer(); //assign target campaign to reference
 		}
 		
-		System.out.println("Players: " + campaignInCampaignPage.getPlayers());
-		/////System.out.println("selectedPlayer is: " + selectedPlayer.getName());
+		System.out.println("Players: " + campaign.getPlayers());
+		System.out.println("selected Player is: " + player.getName());
+		System.out.println("selected Player's airForce is: " + player.getAirForce());
+		
 		//-----------------PLAYER PAGE -----------------
 		
-		Campaign campaignInPlayerPage = campaignInCampaignPage;
+		//////////Campaign campaignInPlayerPage = campaign;
 		
 		//Player player 
 		

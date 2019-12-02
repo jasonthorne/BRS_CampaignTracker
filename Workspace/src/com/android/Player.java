@@ -10,8 +10,6 @@ public class Player{
 	private Squadron squadron;
 	private int joinDate;
 	
-	
-	//private Player player;
 
 	//constructor:
 	private Player(){
@@ -31,11 +29,15 @@ public class Player{
 		return name;
 	}
 	
-	
+	/*
 	public Player getPlayer() {
 		return this;
 	}
+	*/
 	
+	public AirForce getAirForce() {
+		return airForce;
+	}
 	
 	//--------------------------
 
@@ -68,18 +70,12 @@ public class Player{
 			player.score = 0;
 		}
 		
-		/*
-		private void setThis(Player player) {
-			player.player = player;
-		}*/
-		
 		public Player build() {
 			
 			//PUT CHECKS ON THESE: +++++++++++++
 			setSquadron();
 			setJoinDate();
 			setScore();
-			//setThis(player);
 			
 			return player;
 		}

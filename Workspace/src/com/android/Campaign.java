@@ -58,8 +58,10 @@ public class Campaign {
 	}
 	
 	/*
-	public Player getPlayer() { //CHECK IF THIS IS UNSAFE!!! hould probably return a copy!!+++++++++++++++++++++
-		return this.player;
+	public Player getPlayer(Player player) { //CHECK IF THIS IS UNSAFE!!! hould probably return a copy!!+++++++++++++++++++++
+		
+		
+		return null;
 	}
 	*/
 	
@@ -85,14 +87,16 @@ public class Campaign {
 			return this;
 		}
 		
-		public CampaignBuilder setPlayer(PlayerBuilder playerBuilder) {
+		public CampaignBuilder setPlayer(Player player) { ///////needs ot take in a player! @@@@@@@@@@@@@
+		//public CampaignBuilder setPlayer(PlayerBuilder playerBuilder) { ///////needs ot take in a player! @@@@@@@@@@@@@
 			//campaign.playerBuilder = new PlayerBuilder(); //create builder
 			//campaign.player = campaign.playerBuilder.build();
 			
 			//campaign.player = playerBuilder.build(); //create player
 			//campaign.players.add(campaign.player); //add a  player to list of players
+			campaign.players.add(player);
 			
-			campaign.players.add(playerBuilder.build()); //add a built player to list of players
+			///campaign.players.add(playerBuilder.build()); //add a built player to list of players
 			return this;
 		}
 		
