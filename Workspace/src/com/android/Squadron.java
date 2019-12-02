@@ -25,6 +25,20 @@ public class Squadron {
 		return "Squadron [pilots=" + pilots + ", pilotNum=" + pilotNum + ", skillPoints=" + skillPoints + "]";
 	}
 	
+	
+	//------------------getters-
+	/*
+	public Squadron getSquadron() {
+		return this;
+	}
+	*/
+	
+	public int getTest(){
+		return MIN_PILOT_NUM;
+	}
+	//------------------
+	
+	
 	//builder class:
 	static class SquadronBuilder{
 		

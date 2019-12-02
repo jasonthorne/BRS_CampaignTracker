@@ -168,6 +168,7 @@ public class Main {
 		Player player; //player reference
 		PlayerBuilder playerBuilder = new PlayerBuilder(); //make player builder 
 		
+	
 		//player1:
 		playerBuilder.setName("player1"); //assign player name
 		playerBuilder.setAirForce(AirForce.RAF); //assign air force
@@ -186,9 +187,17 @@ public class Main {
 		
 		//show list of players for user selection:
 		for(Player i : campaign.getPlayers()){
-			System.out.println("i is: " + i);
+			///System.out.println("i is: " + i);
 			if (i.getName() == "player1") player = i; //assign target player to reference
+			//if (i.getName() == "player1") player = i.getPlayer(); //assign target player to reference
 		}
+		
+		
+		//FIX THIS PLAYER NEEDING BUILT FIRST BUG +++++++++++
+		////////Player testPlayer = playerBuilder; //new PlayerBuilder().build();
+		
+		////////player = testPlayer;
+		
 		
 		//System.out.println("Players: " + campaign.getPlayers());
 		System.out.println("selected Player is: " + player.getName());
@@ -199,15 +208,13 @@ public class Main {
 		//Either player or campaign reference is passed here (probably player!) ++++++++++++++
 		
 		
-		Squadron squadron; //squadron reference
+		//Squadron squadron; //squadron reference
 		///////SquadronBuilder squadronBuilder = new SquadronBuilder(); //make squadron builder //maybe dont need this!! +++++++
 		
 		
+		Squadron squadron = player.getSquadron(); //this works!! :P +++
 		
-		
-		
-		
-		
+		System.out.println(squadron.getTest());
 		
 		
 		

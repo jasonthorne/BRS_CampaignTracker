@@ -29,8 +29,13 @@ public class Player{
 		return name;
 	}
 	
+	
+	public Squadron getSquadron() {
+		return squadron;
+	}
+	
 	/*
-	public Player getPlayer() {
+	public Player getPlayer() { /////////TEST
 		return this;
 	}
 	*/
