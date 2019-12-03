@@ -144,9 +144,11 @@ public class Main {
 		CampaignBuilder campaignBuilder = new CampaignBuilder(); //create builder
 		
 		if (campaigns.isEmpty()){
-			System.out.println("No campaigns - add options to create a campaign");
+			System.out.println("No campaigns");
 		}else {
-			
+			for(Campaign i : campaigns){ 
+				System.out.println("Campaign name: " + i);  //.getHistoricEventName());
+			}
 		}
 		
 		
@@ -154,7 +156,7 @@ public class Main {
 		//show the list of campaigns created, for selection of campaign:
 		for(Campaign i : campaigns){ 
 			System.out.println("i is: " + i);  //.getHistoricEventName());
-			if (i.getHistoricEventName() == "Battle of Britain") campaign = i; //.getCampaign(); //assign target campaign to reference
+			//if (i.getHistoricEventName() == "Battle of Britain") campaign = i; //.getCampaign(); //assign target campaign to reference
 			
 		}
 		
