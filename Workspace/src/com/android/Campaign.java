@@ -45,16 +45,16 @@ public class Campaign {
 	*/
 	
 	public String getHistoricEventName() {
-		return this.historicEvent.getName();
+		return historicEvent.getName();
 	}
 	
 	public List<Player>getPlayers() {
-		return this.players;
+		return players;
 	}
 	
 	
 	public int getStartDate() { //+++change to proper date
-		return this.startDate;
+		return startDate;
 	}
 	
 	/*
@@ -65,11 +65,18 @@ public class Campaign {
 	}
 	*/
 	
-	/*
+	public Player getPlayer(String player) {
+		for(Player i : getPlayers()){
+			if (i.getName() == player) return i;
+		}
+		return null;
+	}
+	
 	public Campaign getCampaign() { //+++++++++++++Should probably return a copy!!
 		return this;
 	}
-	*/
+	
+	
 	//----------------------------
 	
 	//builder class:

@@ -138,24 +138,46 @@ public class Main {
 		List<Campaign>campaigns= new ArrayList<Campaign>(); //list of campaigns created
 		
 		
-		//CREATE CAMPAIGN:
+		
 		//create a campaign, selecting a historic event:
 		Campaign campaign; //reference for campaign
 		CampaignBuilder campaignBuilder = new CampaignBuilder(); //create builder
-		campaign = campaignBuilder.setHistoricEvent(Name.BATTLE_OF_BRITAIN).build(); //create campaign with historic event
-		campaigns.add(campaign);  //and add to list of campaigns
 		
-		//+++++++++++++JUMP PLAYER TO CAMPAIGN PAGE HERE (passing campaign reference)++++++++++++++++++++
-		
-		
-		//show the list of campaigns created, for selection of campaign:
-		for(Campaign i : campaigns){ //++++++++++++++++++this should prob be in a method from a btn click event, (passing in BoB string)
-			////System.out.println("i is: " + i);
-			if (i.getHistoricEventName() == "Battle of Britain") campaign = i; //assign target campaign to reference
+		if (campaigns.isEmpty()){
+			System.out.println("No campaigns - add options to create a campaign");
+		}else {
 			
 		}
 		
-		System.out.println(campaign); //test print target campaign
+		
+		
+		//show the list of campaigns created, for selection of campaign:
+		for(Campaign i : campaigns){ 
+			System.out.println("i is: " + i);  //.getHistoricEventName());
+			if (i.getHistoricEventName() == "Battle of Britain") campaign = i; //.getCampaign(); //assign target campaign to reference
+			
+		}
+		
+		//System.out.println(campaign); //test print target campaign
+		
+		
+		
+		
+		
+		
+		/*
+		//CREATE CAMPAIGN:
+		campaign = campaignBuilder.setHistoricEvent(Name.BATTLE_OF_BRITAIN).build(); //create campaign with historic event
+		campaigns.add(campaign);  //and add to list of campaigns
+		*/
+		//+++++++++++++JUMP PLAYER TO CAMPAIGN PAGE HERE (passing campaign reference)++++++++++++++++++++
+		
+		
+		
+		//+++++++++++++++++++++++
+		/*
+		
+		
 		
 		//-----------------CAMPAIGN PAGE -----------------
 		
@@ -168,7 +190,6 @@ public class Main {
 		Player player; //player reference
 		PlayerBuilder playerBuilder = new PlayerBuilder(); //make player builder 
 		
-	
 		//player1:
 		playerBuilder.setName("player1"); //assign player name
 		playerBuilder.setAirForce(AirForce.RAF); //assign air force
@@ -183,13 +204,12 @@ public class Main {
 		playerBuilder.setAirForce(AirForce.LUFTWAFFE); //assign air force
 		player = playerBuilder.build(); //build player
 		campaign = campaignBuilder.setPlayer(player).build(); //add player to campaign
-	
+		
 		
 		//show list of players for user selection:
 		for(Player i : campaign.getPlayers()){
-			///System.out.println("i is: " + i);
-			if (i.getName() == "player1") player = i; //assign target player to reference
-			//if (i.getName() == "player1") player = i.getPlayer(); //assign target player to reference
+			System.out.println("i is: " + i);
+			//if (i.getName() == "player1") player = i; //assign target player to reference
 		}
 		
 		
@@ -197,7 +217,18 @@ public class Main {
 		////////Player testPlayer = playerBuilder; //new PlayerBuilder().build();
 		
 		////////player = testPlayer;
+		//========================
+		player = campaign.getPlayer("player1");
 		
+		
+		
+		if (player!=null)
+			System.out.println("player test is: "+ player);
+		else
+			System.out.println("player not found");
+			
+		
+		//=======================
 		
 		//System.out.println("Players: " + campaign.getPlayers());
 		System.out.println("selected Player is: " + player.getName());
@@ -207,23 +238,19 @@ public class Main {
 		
 		//Either player or campaign reference is passed here (probably player!) ++++++++++++++
 		
+		Squadron squadron = player.getSquadron(); //squadron reference
 		
-		//Squadron squadron; //squadron reference
-		///////SquadronBuilder squadronBuilder = new SquadronBuilder(); //make squadron builder //maybe dont need this!! +++++++
+		//System.out.println(squadron.getTest());
 		
-		
-		Squadron squadron = player.getSquadron(); //this works!! :P +++
-		
-		System.out.println(squadron.getTest());
-		
-		
+		System.out.println(squadron);
 		
 		
 		//https://stackoverflow.com/questions/33211585/builder-pattern-nested-objects-created-through-other-builders
 		
 		
 		
-		
+		*/
+		//+++++++++++++++++++++++
 		
 		
 		//----------------------------------------------
