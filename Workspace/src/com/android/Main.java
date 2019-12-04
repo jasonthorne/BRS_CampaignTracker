@@ -138,11 +138,11 @@ public class Main {
 		//CAMPAIGN VARS:
 		List<Campaign>campaigns= new ArrayList<Campaign>(); //list of campaigns created
 		CampaignBuilder campaignBuilder = new CampaignBuilder(); //create builder
-		Campaign campaign; //reference for campaign //+++++++++USED FOR TESTING
+		//Campaign campaign; //reference for campaign //+++++++++USED FOR TESTING
 		//============
 		//ideal setup for both grabbing and creating campaigns:
-		//Campaign campaign = campaignBuilder.build(); //reference for campaign
-		Campaign campTestGrabber = campaignBuilder.build(); 
+		Campaign campaign = campaignBuilder.build(); //reference for campaign. PreBuilt to allow for selecting of campaign.
+		///Campaign campTestGrabber = campaignBuilder.build(); 
 		//=========
 		
 		//SHOW CAMPAIGNS:
@@ -154,6 +154,7 @@ public class Main {
 				System.out.println("Campaign name: " + i); //show campaign
 			}
 		}
+		
 		
 		//CREATE CAMPAIGNS:
 		//create a campaign, selecting a historic event:
@@ -167,32 +168,40 @@ public class Main {
 		campaign = campaignBuilder.setHistoricEvent(Name.DEFENCE_OF_THE_HOME_ISLANDS).build(); //create campaign with historic event
 		campaigns.add(campaign);  //and add to list of campaigns
 		
+	
 		//SELECT A CAMPAIGN:
 		//select target campaign: 
 		for(Campaign i : campaigns){ 
 			System.out.println(i); 
-			if (i.getHistoricEventName() == "Battle of Britain") campTestGrabber = i; //assign target campaign to reference
+			if (i.getHistoricEventName() == "Battle of Britain") campaign = i; //assign target campaign to reference
 		}
 		
-		System.out.println("campTest: "+ campTestGrabber);
+		System.out.println("\ncampTest: "+ campaign);
 		
 	
 		//-----------------CAMPAIGN PAGE -----------------
 		
-		//campaign ref is sent to this page ++++++++++++++++++
+		//campaign ref is sent to this page ++++++++++++++++++Might need to send campaignBuilder too for player creation. (or change how this is configed)
 		////Campaign campaignInCampaignPage = campaign;
 		
-		//++++++NEED TO SHOW PLAYERS FIRST . THEN USE MADE REFERENCE TO CREATE NEW PLAYERS +++++++++++
-		
-		
-		
-		
-		//CREATE PLAYER:
-		//add a player to the campaign with a selected airforce:
-		Player player; //player reference
+		//PLAYER VARS:
 		PlayerBuilder playerBuilder = new PlayerBuilder(); //make player builder 
+		Player player = playerBuilder.build(); //player reference
 		
+		//SHOW PLAYERS:
+		//grab the list of players created, for selection of player: //stick this in it's own method +++++++++++++++++++++++
+		if (campaign.getPlayers().isEmpty()){
+			System.out.println("No players");
+		}else {
+			for(Player i : campaign.getPlayers()) { 
+				System.out.println("Player name: " + i); //show campaign
+			}
+		}
+		
+		//CREATE PLAYERS:
+		//add a player to the campaign with a selected airforce:
 		//player1:
+		playerBuilder = new PlayerBuilder(); //re-instantiate player builder
 		playerBuilder.setName("player1"); //assign player name
 		playerBuilder.setAirForce(AirForce.RAF); //assign air force
 		player = playerBuilder.build(); //build player
@@ -208,17 +217,12 @@ public class Main {
 		campaign = campaignBuilder.setPlayer(player).build(); //add player to campaign
 		
 		
-		//show list of players for user selection:
+		//SELECT A PLAYER:
 		for(Player i : campaign.getPlayers()){
-			System.out.println("i is: " + i);
-			//if (i.getName() == "player1") player = i; //assign target player to reference
+			System.out.println(i);
+			if (i.getName() == "player1") player = i; //assign target player to reference
 		}
 		
-		
-		//FIX THIS PLAYER NEEDING BUILT FIRST BUG +++++++++++
-		////////Player testPlayer = playerBuilder; //new PlayerBuilder().build();
-		
-		////////player = testPlayer;
 		//========================
 		player = campaign.getPlayer("player1");
 		

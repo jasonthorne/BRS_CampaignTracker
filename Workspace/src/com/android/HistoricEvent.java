@@ -84,7 +84,7 @@ public class HistoricEvent {
 			return this;
 		}
 		
-		//create a list of available air forces:
+		//create a list of available air forces: //++++++++++++++++MAKE THESE FINAL AND FULLY IMMUTABLE
 		private void setAirForces() { 
 			switch(historicEvent.name) {
 			  case BATTLE_OF_BRITAIN:

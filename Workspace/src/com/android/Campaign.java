@@ -48,7 +48,7 @@ public class Campaign {
 		return historicEvent.getName();
 	}
 	
-	public List<Player>getPlayers() {
+	public List<Player> getPlayers() {
 		return players;
 	}
 	
@@ -66,7 +66,7 @@ public class Campaign {
 	*/
 	
 	public Player getPlayer(String player) {
-		for(Player i : getPlayers()){
+		for(Player i : players){
 			if (i.getName() == player) return i;
 		}
 		return null;
