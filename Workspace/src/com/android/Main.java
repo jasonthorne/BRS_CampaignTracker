@@ -135,56 +135,56 @@ public class Main {
 		
 		//------------------LANDING PAGE ---------------
 		
+		//CAMPAIGN VARS:
 		List<Campaign>campaigns= new ArrayList<Campaign>(); //list of campaigns created
-		
-		
-		
-		//create a campaign, selecting a historic event:
-		Campaign campaign; //reference for campaign
 		CampaignBuilder campaignBuilder = new CampaignBuilder(); //create builder
+		Campaign campaign; //reference for campaign //+++++++++USED FOR TESTING
+		//============
+		//ideal setup for both grabbing and creating campaigns:
+		//Campaign campaign = campaignBuilder.build(); //reference for campaign
+		Campaign campTestGrabber = campaignBuilder.build(); 
+		//=========
 		
+		//SHOW CAMPAIGNS:
+		//show the list of campaigns created, for selection of campaign: //stick this in it's own method +++++++++++++++++++++++
 		if (campaigns.isEmpty()){
 			System.out.println("No campaigns");
 		}else {
 			for(Campaign i : campaigns){ 
-				System.out.println("Campaign name: " + i);  //.getHistoricEventName());
+				System.out.println("Campaign name: " + i); //show campaign
 			}
 		}
 		
-		
-		
-		//show the list of campaigns created, for selection of campaign:
-		for(Campaign i : campaigns){ 
-			System.out.println("i is: " + i);  //.getHistoricEventName());
-			//if (i.getHistoricEventName() == "Battle of Britain") campaign = i; //.getCampaign(); //assign target campaign to reference
-			
-		}
-		
-		//System.out.println(campaign); //test print target campaign
-		
-		
-		
-		
-		
-		
-		/*
-		//CREATE CAMPAIGN:
+		//CREATE CAMPAIGNS:
+		//create a campaign, selecting a historic event:
+		campaignBuilder = new CampaignBuilder(); //reset builder. IMPORTANT :P
 		campaign = campaignBuilder.setHistoricEvent(Name.BATTLE_OF_BRITAIN).build(); //create campaign with historic event
 		campaigns.add(campaign);  //and add to list of campaigns
-		*/
-		//+++++++++++++JUMP PLAYER TO CAMPAIGN PAGE HERE (passing campaign reference)++++++++++++++++++++
+		//+++++++++++++JUMP USER TO CAMPAIGN PAGE HERE (passing campaign reference)++++++++++++++++++++
 		
+		//add another:
+		campaignBuilder = new CampaignBuilder(); //reset builder. IMPORTANT :P
+		campaign = campaignBuilder.setHistoricEvent(Name.DEFENCE_OF_THE_HOME_ISLANDS).build(); //create campaign with historic event
+		campaigns.add(campaign);  //and add to list of campaigns
 		
+		//SELECT A CAMPAIGN:
+		//select target campaign: 
+		for(Campaign i : campaigns){ 
+			System.out.println(i); 
+			if (i.getHistoricEventName() == "Battle of Britain") campTestGrabber = i; //assign target campaign to reference
+		}
 		
-		//+++++++++++++++++++++++
-		/*
+		System.out.println("campTest: "+ campTestGrabber);
 		
-		
-		
+	
 		//-----------------CAMPAIGN PAGE -----------------
 		
 		//campaign ref is sent to this page ++++++++++++++++++
 		////Campaign campaignInCampaignPage = campaign;
+		
+		//++++++NEED TO SHOW PLAYERS FIRST . THEN USE MADE REFERENCE TO CREATE NEW PLAYERS +++++++++++
+		
+		
 		
 		
 		//CREATE PLAYER:
@@ -197,7 +197,7 @@ public class Main {
 		playerBuilder.setAirForce(AirForce.RAF); //assign air force
 		player = playerBuilder.build(); //build player
 		campaign = campaignBuilder.setPlayer(player).build(); //add player to campaign
-		//+++++++++++++JUMP PLAYER TO PLAYER PAGE HERE (passing campaign (OR PLAYER) reference as before)++++++++++++++++++++
+		//+++++++++++++JUMP USER TO PLAYER PAGE HERE (passing campaign (OR PLAYER) reference as before)++++++++++++++++++++
 		
 		//second player:
 		//player2:
@@ -251,7 +251,7 @@ public class Main {
 		
 		
 		
-		*/
+	
 		//+++++++++++++++++++++++
 		
 		
@@ -261,11 +261,9 @@ public class Main {
 		
 		
 		
-		
-		
-		
-		
 	}
+	
+	
 
 	
 	
