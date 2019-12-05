@@ -91,6 +91,7 @@ public class Campaign {
 			//campaign.historicEventBuilder = new HistoricEventBuilder(); //create builder
 			//campaign.historicEvent = campaign.historicEventBuilder.setName(name).build();
 			campaign.historicEvent = new HistoricEventBuilder().setName(name).build();
+			setStartDate(); //set startDate (as campaign is being created)
 			return this;
 		}
 		
@@ -113,7 +114,7 @@ public class Campaign {
 		
 		
 		public Campaign build() {
-			setStartDate();
+			//setStartDate();
 			return campaign;
 		}
 		

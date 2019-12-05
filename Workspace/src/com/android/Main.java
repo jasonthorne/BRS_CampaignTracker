@@ -134,7 +134,7 @@ public class Main {
 		
 		
 		//------------------LANDING PAGE ---------------
-		System.out.println("LANDING PAGE:");
+		System.out.println("\nLANDING PAGE:");
 		
 		
 		//CAMPAIGN VARS:
@@ -156,6 +156,8 @@ public class Main {
 				System.out.println("Campaign name: " + i); //show campaign
 			}
 		}
+		
+		
 		
 		//CREATE CAMPAIGNS:
 		//create a campaign, selecting a historic event:
