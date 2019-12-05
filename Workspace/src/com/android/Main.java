@@ -134,6 +134,8 @@ public class Main {
 		
 		
 		//------------------LANDING PAGE ---------------
+		System.out.println("LANDING PAGE:");
+		
 		
 		//CAMPAIGN VARS:
 		List<Campaign>campaigns= new ArrayList<Campaign>(); //list of campaigns created
@@ -155,7 +157,6 @@ public class Main {
 			}
 		}
 		
-		
 		//CREATE CAMPAIGNS:
 		//create a campaign, selecting a historic event:
 		campaignBuilder = new CampaignBuilder(); //reset builder. IMPORTANT :P
@@ -169,6 +170,8 @@ public class Main {
 		campaigns.add(campaign);  //and add to list of campaigns
 		
 	
+		//+++++++++++++++++++++++.get .contains ++++++++++++++++++++++++++++++++USE THIS NSTEAD OF LOOP ABOVE!! :P
+		
 		//SELECT A CAMPAIGN:
 		//select target campaign: 
 		for(Campaign i : campaigns){ 
@@ -176,10 +179,12 @@ public class Main {
 			if (i.getHistoricEventName() == "Battle of Britain") campaign = i; //assign target campaign to reference
 		}
 		
-		System.out.println("\ncampTest: "+ campaign);
+		System.out.println("campaign is: "+ campaign);
+		
 		
 	
 		//-----------------CAMPAIGN PAGE -----------------
+		System.out.println("\nCAMPAIGN PAGE:");
 		
 		//campaign ref is sent to this page ++++++++++++++++++Might need to send campaignBuilder too for player creation. (or change how this is configed)
 		////Campaign campaignInCampaignPage = campaign;
@@ -194,7 +199,7 @@ public class Main {
 			System.out.println("No players");
 		}else {
 			for(Player i : campaign.getPlayers()) { 
-				System.out.println("Player name: " + i); //show campaign
+				System.out.println("Player name: " + i); //show player
 			}
 		}
 		
@@ -218,29 +223,26 @@ public class Main {
 		
 		
 		//SELECT A PLAYER:
+		player = campaign.getPlayer("player1");
+		System.out.println("selected Player is: " + player.getName());
+		System.out.println("selected Player's airForce is: " + player.getAirForce());
+		
+		/*
 		for(Player i : campaign.getPlayers()){
 			System.out.println(i);
 			if (i.getName() == "player1") player = i; //assign target player to reference
 		}
-		
-		//========================
-		player = campaign.getPlayer("player1");
-		
-		
-		
+		*/
+
+		/*
 		if (player!=null)
 			System.out.println("player test is: "+ player);
 		else
 			System.out.println("player not found");
-			
-		
-		//=======================
-		
-		//System.out.println("Players: " + campaign.getPlayers());
-		System.out.println("selected Player is: " + player.getName());
-		System.out.println("selected Player's airForce is: " + player.getAirForce());
+		*/
 		
 		//-----------------PLAYER PAGE -----------------
+		System.out.println("\nPLAYER PAGE:");
 		
 		//Either player or campaign reference is passed here (probably player!) ++++++++++++++
 		
