@@ -249,6 +249,21 @@ public class Main {
 		//I "THINK" we show squadron and give edit options on this page. Though it might need its owm +++++++++++++++
 		Squadron squadron = player.getSquadron(); //squadron reference
 		
+		System.out.println(squadron);
+		
+		//PILOT VARS:
+		PilotBuilder pilotBuilder = new PilotBuilder();
+		Pilot pilot = pilotBuilder.setPilotSkill(PilotSkill.ACE).build();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
