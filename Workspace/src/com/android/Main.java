@@ -140,11 +140,9 @@ public class Main {
 		//CAMPAIGN VARS:
 		List<Campaign>campaigns= new ArrayList<Campaign>(); //list of campaigns created
 		CampaignBuilder campaignBuilder = new CampaignBuilder(); //create builder
-		//Campaign campaign; //reference for campaign //+++++++++USED FOR TESTING
 		//============
 		//ideal setup for both grabbing and creating campaigns:
 		Campaign campaign = campaignBuilder.build(); //reference for campaign. PreBuilt to allow for selecting of campaign.
-		///Campaign campTestGrabber = campaignBuilder.build(); 
 		//=========
 		
 		//SHOW CAMPAIGNS:
@@ -158,10 +156,9 @@ public class Main {
 		}
 		
 		
-		
 		//CREATE CAMPAIGNS:
 		//create a campaign, selecting a historic event:
-		campaignBuilder = new CampaignBuilder(); //reset builder. IMPORTANT :P
+		////////campaignBuilder = new CampaignBuilder(); //++++++++++++++++++NO NEEDED AS BUILT ABOVE (method should pass a new builder)
 		campaign = campaignBuilder.setHistoricEvent(Name.BATTLE_OF_BRITAIN).build(); //create campaign with historic event
 		campaigns.add(campaign);  //and add to list of campaigns
 		//+++++++++++++JUMP USER TO CAMPAIGN PAGE HERE (passing campaign reference)++++++++++++++++++++
@@ -208,7 +205,7 @@ public class Main {
 		//CREATE PLAYERS:
 		//add a player to the campaign with a selected airforce:
 		//player1:
-		playerBuilder = new PlayerBuilder(); //re-instantiate player builder
+		playerBuilder = new PlayerBuilder(); //re-instantiate player builder //++++++++++++++++++NO NEEDED AS BUILT ABOVE (method should pass a new builder)
 		playerBuilder.setName("player1"); //assign player name
 		playerBuilder.setAirForce(AirForce.RAF); //assign air force
 		player = playerBuilder.build(); //build player
@@ -225,7 +222,7 @@ public class Main {
 		
 		
 		//SELECT A PLAYER:
-		player = campaign.getPlayer("player1");
+		player = campaign.getPlayer("player1"); //change this setup +++++++++++++++(if null warn user)
 		System.out.println("selected Player is: " + player.getName());
 		System.out.println("selected Player's airForce is: " + player.getAirForce());
 		
@@ -247,12 +244,12 @@ public class Main {
 		System.out.println("\nPLAYER PAGE:");
 		
 		//Either player or campaign reference is passed here (probably player!) ++++++++++++++
+		System.out.println(player);
 		
+		//I "THINK" we show squadron and give edit options on this page. Though it might need its owm +++++++++++++++
 		Squadron squadron = player.getSquadron(); //squadron reference
 		
-		//System.out.println(squadron.getTest());
 		
-		System.out.println(squadron);
 		
 		
 		//https://stackoverflow.com/questions/33211585/builder-pattern-nested-objects-created-through-other-builders
@@ -260,7 +257,7 @@ public class Main {
 		
 		
 	
-		//+++++++++++++++++++++++
+		//+++++++++++++++++++++++NONE OF THIS CLASS IS IMPLEMENTED !! :P
 		
 		
 		//----------------------------------------------

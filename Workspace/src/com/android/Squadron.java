@@ -38,17 +38,22 @@ public class Squadron {
 	}
 	//------------------
 	
+	void addPilot(PilotBuilder pilotBuilder) {
+		pilots.add(pilotBuilder.build()); //add a built pilot to list of pilots
+	}
+	
 	
 	//builder class:
 	static class SquadronBuilder{
 		
 		private Squadron squadron = new Squadron();
 		
+		/*
 		public SquadronBuilder setPilot(PilotBuilder pilotBuilder) {
 			squadron.pilots.add(pilotBuilder.build()); //add a built pilot to list of pilots
 			return this;
 		}
-		
+		*/
 		public Squadron build() {
 			return squadron;
 		}

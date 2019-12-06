@@ -29,7 +29,6 @@ public class Pilot {
 		System.out.println("Pilot constructed");
 	}
 	
-	
 	//-------------getters-----------------------
 	public PilotSkill getPilotSkill() {
 		return pilotSkill;

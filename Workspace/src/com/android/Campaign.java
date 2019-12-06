@@ -65,11 +65,12 @@ public class Campaign {
 	}
 	*/
 	
+	//THIS IS WAAAAY TOO CLUNKY :P ++++++++++++++++++
 	public Player getPlayer(String player) {
 		for(Player i : players){
 			if (i.getName() == player) return i;
 		}
-		return null;
+		return null; //better way than this???
 	}
 	
 	public Campaign getCampaign() { //+++++++++++++Should probably return a copy!!
