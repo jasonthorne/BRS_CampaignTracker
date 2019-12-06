@@ -27,19 +27,19 @@ public class Squadron {
 	
 	
 	//------------------getters-
-	/*
-	public Squadron getSquadron() {
-		return this;
+	
+	public List<Pilot> getPilots() {
+		return pilots;
 	}
-	*/
+	
 	
 	public int getTest(){
 		return MIN_PILOT_NUM;
 	}
 	//------------------
 	
-	void addPilot(PilotBuilder pilotBuilder) {
-		pilots.add(pilotBuilder.build()); //add a built pilot to list of pilots
+	void addPilot(Pilot pilot) {
+		pilots.add(pilot); //add a built pilot to list of pilots
 	}
 	
 	

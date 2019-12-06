@@ -255,6 +255,10 @@ public class Main {
 		PilotBuilder pilotBuilder = new PilotBuilder();
 		Pilot pilot = pilotBuilder.setPilotSkill(PilotSkill.ACE).build();
 		
+		//SHOW SQUADRON:
+		
+		
+		
 		
 		
 		
