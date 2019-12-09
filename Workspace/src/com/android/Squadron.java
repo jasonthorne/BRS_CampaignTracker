@@ -48,32 +48,13 @@ public class Squadron {
 		
 		private Squadron squadron = new Squadron();
 		
-		/*
-		public SquadronBuilder setPilot(PilotBuilder pilotBuilder) {
-			squadron.pilots.add(pilotBuilder.build()); //add a built pilot to list of pilots
-			return this;
-		}
-		*/
 		public Squadron build() {
 			return squadron;
 		}
 	}
 	
 	
-	
-	/*
-	void addPilot(){
-		pilots.add(new Pilot(PilotSkill.ROOKIE));
-		pilots.add(new Pilot(PilotSkill.AVERAGE));
-		pilots.add(new Pilot(PilotSkill.VETERAN));
-		pilots.add(new Pilot(PilotSkill.ACE));
-		
-		//System.out.println(pilots);//test print of pilots list
-	}
-	*/
-	
-	
-	
+
 	
 }
 

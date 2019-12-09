@@ -246,27 +246,39 @@ public class Main {
 		//Either player or campaign reference is passed here (probably player!) ++++++++++++++
 		System.out.println(player);
 		
-		//I "THINK" we show squadron and give edit options on this page. Though it might need its owm +++++++++++++++
-		Squadron squadron = player.getSquadron(); //squadron reference
+		//I "THINK" we show squadron and give edit options on this page. Though it might need its own +++++++++++++++
 		
-		System.out.println(squadron);
+		//SQUADRON VARS:
+		Squadron squadron = player.getSquadron(); //squadron reference
+		System.out.println("squadron: " + squadron);
 		
 		//PILOT VARS:
+		List<Pilot>pilots = squadron.getPilots();
 		PilotBuilder pilotBuilder = new PilotBuilder();
-		Pilot pilot = pilotBuilder.setPilotSkill(PilotSkill.ACE).build();
+		Pilot pilotTest;
+		System.out.println(pilots);
+		
+		//-------------
+		//CREATE PILOTS:
+		//add a pilot:
+		
+		pilotTest = pilotBuilder.setPilotSkill(PilotSkill.ACE).build();
+		squadron.addPilot(pilotTest);
+		//--
+		pilotBuilder = new PilotBuilder();
+		pilotTest = pilotBuilder.setPilotSkill(PilotSkill.ROOKIE).build();
+		squadron.addPilot(pilotTest);
+		
+		System.out.println("pilots: " + pilots);
+		//--------------
 		
 		//SHOW SQUADRON:
+		//List<Pilot>pilots= new ArrayList<Pilot>(); //list of campaigns created
 		
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
+	
 		
 		
 		
@@ -274,10 +286,7 @@ public class Main {
 		//https://stackoverflow.com/questions/33211585/builder-pattern-nested-objects-created-through-other-builders
 		
 		
-		
-	
-		//+++++++++++++++++++++++NONE OF THIS CLASS IS IMPLEMENTED !! :P
-		
+
 		
 		//----------------------------------------------
 		
