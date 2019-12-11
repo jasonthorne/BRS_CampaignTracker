@@ -34,12 +34,6 @@ public class HistoricEvent {
 		public String toString() {
 			return name;
 		}
-		
-		/*
-		public String getName() {
-			return name;
-		}
-		*/
 	}
 	
 	
@@ -76,40 +70,71 @@ public class HistoricEvent {
 		public HistoricEventBuilder setName(Name name) {
 			historicEvent.name = name;
 			setPeriodsAndAirForces(); //set periods of history and available air forces
-			//setPeriods(); //set periods of history 
 			return this;
 		}
 		
-		//create a list of available air forces: //++++++++++++++++MAKE THESE FINAL AND FULLY IMMUTABLE
-		/////private void setAirForces() {
 		private void setPeriodsAndAirForces() {
 			switch(historicEvent.name) {
 			  case BATTLE_OF_BRITAIN:
 				  historicEvent.airForces = Arrays.asList(AirForce.RAF, AirForce.LUFTWAFFE); //Britain & Germany
 				  historicEvent.periods = Arrays.asList( //+++++++++++++++++++++++++++++Look into using some sort of queue for these maybe!! Or some other collection anyway :P
-						  new Period(Block.MID, Year.NINETEEN_FORTY), 
-						  new Period(Block.LATE, Year.NINETEEN_FORTY),
-						  new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE)); 
-				  
+						  	new Period(Block.MID, Year.NINETEEN_FORTY), 
+						  	new Period(Block.LATE, Year.NINETEEN_FORTY),
+						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE)); 
 				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			  case GUADALCANAL:
 				  historicEvent.airForces = Arrays.asList(AirForce.USAAF, AirForce.IJAAF); //USA & Japan
+				  historicEvent.periods = Arrays.asList( 
+						  	new Period(Block.MID, Year.NINETEEN_FORTY_TWO),
+						  	new Period(Block.LATE, Year.NINETEEN_FORTY_TWO),
+						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_THREE)); 
+				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
-			  case STALINGRAD:
+			  case STALINGRAD: //????????????????????
 				  historicEvent.airForces = Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE); //Russia & Germany
+				  historicEvent.periods = Arrays.asList( 
+						  	new Period(Block.MID, Year.NINETEEN_FORTY), 
+						  	new Period(Block.LATE, Year.NINETEEN_FORTY),
+						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE)); 
+				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			  case ASSAULT_ON_THE_REICH:
 				  historicEvent.airForces = Arrays.asList(AirForce.RAF, AirForce.USAAF, AirForce.LUFTWAFFE); //Britain, USA & Germany
+				  historicEvent.periods = Arrays.asList( //+++++++++++++++++++++++++++++Look into using some sort of queue for these maybe!! Or some other collection anyway :P
+						  	new Period(Block.MID, Year.NINETEEN_FORTY_THREE), 
+						  	new Period(Block.LATE, Year.NINETEEN_FORTY_THREE),
+						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_FOUR),
+						  	new Period(Block.MID, Year.NINETEEN_FORTY_FOUR),
+						  	new Period(Block.LATE, Year.NINETEEN_FORTY_FOUR),
+						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_FIVE)); 
+				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
-			  case KURSK:
-				  historicEvent.airForces = Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE); //Russia & Germany 
+			  case KURSK: //??????????????????????????
+				  historicEvent.airForces = Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE); //Russia & Germany
+				  historicEvent.periods = Arrays.asList(
+						  	new Period(Block.MID, Year.NINETEEN_FORTY), 
+						  	new Period(Block.LATE, Year.NINETEEN_FORTY),
+						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE)); 
+				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			  case THE_ITALIAN_CAMPAIGN:
 				  historicEvent.airForces = Arrays.asList(AirForce.RAF, AirForce.USAAF, AirForce.LUFTWAFFE); //Britain, USA & Germany
+				  historicEvent.periods = Arrays.asList( 
+						  	new Period(Block.MID, Year.NINETEEN_FORTY_THREE), 
+						  	new Period(Block.LATE, Year.NINETEEN_FORTY_THREE),
+						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_FOUR),
+						  	new Period(Block.MID, Year.NINETEEN_FORTY_FOUR)); 
+				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			  case DEFENCE_OF_THE_HOME_ISLANDS:
 				  historicEvent.airForces = Arrays.asList(AirForce.USAAF, AirForce.IJAAF); //USA & Japan
+				  historicEvent.periods = Arrays.asList( 
+						  	new Period(Block.MID, Year.NINETEEN_FORTY_FOUR), 
+						  	new Period(Block.LATE, Year.NINETEEN_FORTY_FOUR),
+						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_FIVE),
+						  	new Period(Block.MID, Year.NINETEEN_FORTY_FIVE)); 
+				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			}
 		}

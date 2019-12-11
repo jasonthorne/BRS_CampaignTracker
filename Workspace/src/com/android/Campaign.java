@@ -26,7 +26,6 @@ public class Campaign {
 		System.out.println("Campaign constructed");
 	}
 	
-	
 	//toString:
 	@Override
 	public String toString() {
