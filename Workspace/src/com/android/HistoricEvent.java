@@ -4,22 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.android.Period.Block;
+import com.android.Period.Year;
+
 public class HistoricEvent {
 	
 	private Name name; 
 	//////////private Period period;
 	//////private List<Period>periods; //holds periods of history pertaining to historic event
-	private List<HistoricPeriod>periods; //holds periods of history pertaining to historic event
+	private List<Period>periods; //holds periods of history pertaining to historic event
 	
 	private List<AirForce>airForces; //holds air forces available
-	//private AirForce airForce; //NEEDED????????????? ++++++++++++++++++++++++++++
-	
-	private class HistoricPeriod{
-		
-		//private Period period;
-		
-	}
-	
+
 	enum Name{
 		BATTLE_OF_BRITAIN("Battle of Britain"), //Britain & Germany
 		GUADALCANAL("Guadalcanal"), //USA & Japan
@@ -46,15 +42,6 @@ public class HistoricEvent {
 		*/
 	}
 	
-	/*
-	enum AirForce{
-		RAF, //Britain
-		LUFTWAFFE, //Germany
-		USAAF, //America
-		VVS, //Russia
-		IJAAF; //Japan
-	}
-	*/
 	
 	//-----------------------------------------
 	//getters:
@@ -69,7 +56,6 @@ public class HistoricEvent {
 	}
 	
 	//-----------------------------------------
-	
 	
 	//constructor:
 	private HistoricEvent() {
@@ -100,7 +86,12 @@ public class HistoricEvent {
 			switch(historicEvent.name) {
 			  case BATTLE_OF_BRITAIN:
 				  historicEvent.airForces = Arrays.asList(AirForce.RAF, AirForce.LUFTWAFFE); //Britain & Germany
-				 // historicEvent.periods = Arrays.asList(Period.Year.NINETEEN_FORTY)
+				  historicEvent.periods = Arrays.asList( //+++++++++++++++++++++++++++++Look into using some sort of queue for these maybe!! Or some other collection anyway :P
+						  new Period(Block.MID, Year.NINETEEN_FORTY), 
+						  new Period(Block.LATE, Year.NINETEEN_FORTY),
+						  new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE)); 
+				  
+				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			  case GUADALCANAL:
 				  historicEvent.airForces = Arrays.asList(AirForce.USAAF, AirForce.IJAAF); //USA & Japan
@@ -123,20 +114,18 @@ public class HistoricEvent {
 			}
 		}
 		
-		private void setPeriods() {
-			
-		}
-		
 		public HistoricEvent build() {
 			return historicEvent;
 		}
 		
 	}
 	
-	
-	
-	
-	
+
+}
+
+/*
+class Period{
 	
 }
 
+*/

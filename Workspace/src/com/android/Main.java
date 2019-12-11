@@ -180,7 +180,6 @@ public class Main {
 		
 		System.out.println("campaign is: "+ campaign);
 		
-		
 	
 		//-----------------CAMPAIGN PAGE -----------------
 		System.out.println("\nCAMPAIGN PAGE:");

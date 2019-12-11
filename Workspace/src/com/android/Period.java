@@ -1,8 +1,16 @@
 package com.android;
 
-public interface Period {
-//public class Period {
-
+public class Period{
+	
+	private Block block;
+	private Year year;
+	
+	enum Block{
+		EARLY,
+		MID,
+		LATE;
+	}
+	
 	enum Year{
 		NINETEEN_FORTY,
 		NINETEEN_FORTY_ONE,
@@ -12,9 +20,16 @@ public interface Period {
 		NINETEEN_FORTY_FIVE;
 	}
 	
-	enum Block{
-		EARLY,
-		MID,
-		LATE;
+	Period(Block block, Year year){
+		this.year = year;
+		this.block = block;
 	}
+
+	
+	@Override
+	public String toString() {
+		return "Period [block=" + block + ", year=" + year + "]";
+	}
+	
+	
 }
