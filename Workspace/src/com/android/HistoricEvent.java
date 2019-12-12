@@ -16,7 +16,7 @@ public class HistoricEvent {
 	
 	private List<AirForce>airForces; //holds air forces available
 
-	enum Name{
+	public enum Name{
 		BATTLE_OF_BRITAIN("Battle of Britain"), //Britain & Germany
 		GUADALCANAL("Guadalcanal"), //USA & Japan
 		STALINGRAD("Stalingrad"), //Russia & Germany
@@ -101,7 +101,7 @@ public class HistoricEvent {
 				  break;
 			  case ASSAULT_ON_THE_REICH:
 				  historicEvent.airForces = Arrays.asList(AirForce.RAF, AirForce.USAAF, AirForce.LUFTWAFFE); //Britain, USA & Germany
-				  historicEvent.periods = Arrays.asList( //+++++++++++++++++++++++++++++Look into using some sort of queue for these maybe!! Or some other collection anyway :P
+				  historicEvent.periods = Arrays.asList( 
 						  	new Period(Block.MID, Year.NINETEEN_FORTY_THREE), 
 						  	new Period(Block.LATE, Year.NINETEEN_FORTY_THREE),
 						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_FOUR),
