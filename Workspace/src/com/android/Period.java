@@ -15,57 +15,55 @@ public class Period{
 	
 	public static List<Period> getPeriods(Period first, Period last){
 		
+		
+	
+		
+	
+		
 		blocksIterator = blocks.listIterator(); //set blocks iterator
 		yearsIterator = years.listIterator(); //set years iterator
 		Year currYear = null;
 		Block currBlock = null;
-		Period currPeriod;
+		Period currPeriod = null;
 		
 		
 		
-		currYear = yearsIterator.next();
+		//currYear = yearsIterator.next();
+		
 		
 		//loop through block and year lists and grab relevant periods ++++++++++++++++++
-		while (yearsIterator.hasNext()) {
-			
-			
+		while (yearsIterator.hasNext()) { //((!last.year.equals(currYear))) {
 			
 			
 			/*
 			if(blocksIterator.hasNext()) {
+				currBlock = blocksIterator.next(); //move to next block
+				System.out.println("current block is: " + currBlock);
+				System.out.println("current year is: " + currYear);
 				
-				currYear = yearsIterator.next();
+				
 			}else {
-				blocksIterator = blocks.listIterator();
+				blocksIterator = blocks.listIterator(); //reset blocks
+				currYear = yearsIterator.next(); //move to next year
+				
 			}
 			*/
 			
+			blocksIterator = blocks.listIterator(); //reset blocks
+			currYear = yearsIterator.next(); //move to next year
 			
-			
-			//currYear = yearsIterator.next();
-			currBlock = blocksIterator.next();
-			System.out.println("current block is: " + currBlock);
-			//System.out.println("current year is: " + currYear);
-			
-			if(!(blocksIterator.hasNext())) {
-				blocksIterator = blocks.listIterator();
-				currYear = yearsIterator.next();
+			while(blocksIterator.hasNext()) {
+				currBlock = blocksIterator.next(); //move to next block
+				System.out.println("current block is: " + currBlock);
+				System.out.println("current year is: " + currYear);
 			}
 			
-			//System.out.println("current block is: " + currBlock);
-			System.out.println("current year is: " + currYear);
 			
 		}
 		
 		
 		
-		/*
-		//===================
-		while (blocksIterator.hasNext()) {
-			currBlock = blocksIterator.next();
-			System.out.println("current block is: " + currBlock);
-		}
-		*/
+		
 		
 
 		/*
@@ -135,11 +133,6 @@ public class Period{
 	Period(Block block, Year year){ 
 		this.year = year;
 		this.block = block;
-	}
-
-	
-	public Period() {
-		// TODO Auto-generated constructor stub
 	}
 
 
