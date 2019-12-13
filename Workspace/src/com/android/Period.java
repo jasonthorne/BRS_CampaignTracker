@@ -7,23 +7,76 @@ import java.util.ListIterator;
 public class Period{
 	
 	//----------------------------------------------
-	//private final List<String>blocks = Arrays.asList("Early", "Mid", "Late");
-	//private final List<String>years = Arrays.asList("1940", "1941", "1942", "1943", "1943", "1945");
+	private final static List<Block>blocks = Arrays.asList(Block.values());
+	private final static List<Year>years = Arrays.asList(Year.values());
 	
-	private final List<Block>blocks = Arrays.asList(Block.EARLY, Block.MID, Block.LATE);
-	private final List<Year>years = Arrays.asList(
-			Year.NINETEEN_FORTY, Year.NINETEEN_FORTY_ONE, Year.NINETEEN_FORTY_TWO, Year.NINETEEN_FORTY_THREE, Year.NINETEEN_FORTY_FOUR, Year.NINETEEN_FORTY_FIVE);
-	
-	private ListIterator<Block>blocksIterator; //= blocks.listIterator();
-	private ListIterator<Year>yearsIterator; // = years.listIterator();
-	
+	private static ListIterator<Block>blocksIterator; 
+	private static ListIterator<Year>yearsIterator;
 	
 	//private constructor called using getList ??????????????????????????????????????
-	public List<Period> getPeriods(Period startPeriod, Period endPeriod){
+	public static List<Period> getPeriods(Period first, Period last){
+		
 		blocksIterator = blocks.listIterator(); //instantiate blocks iterator
 		yearsIterator = years.listIterator(); //instantiate years iterator
+		Year currYear = null;
+		Block currBlock = null;
+		Period currPeriod;
 		
+		/*
+		while (yearsIterator.hasNext()) { //loop through years length
+			
+			System.out.println("current block is: " + currBlock);
+			System.out.println("current year is: " + currYear); //+++++++++++++++
+		
+			if(blocksIterator.hasNext()) { //if next block:
+				currBlock = blocksIterator.next(); //move to next block
+				
+			}else {
+				blocksIterator = blocks.listIterator(); //reset blocks iterator
+				currYear = yearsIterator.next(); //move to next year
+			}
+			
+			//System.out.println("current block is: " + currBlock);
+			//System.out.println("current year is: " + currYear); //+++++++++++++++
+			
+		}
+		*/
+		
+		
+		currYear = yearsIterator.next();
 		//loop through block and year lists and grab relevant periods ++++++++++++++++++
+		while (yearsIterator.hasNext()) {
+			
+			//currYear = yearsIterator.next();
+			currBlock = blocksIterator.next();
+			System.out.println("current block is: " + currBlock);
+			//System.out.println("current year is: " + currYear);
+			
+			if(!(blocksIterator.hasNext())) {
+				blocksIterator = blocks.listIterator();
+				currYear = yearsIterator.next();
+			}
+			
+			//System.out.println("current block is: " + currBlock);
+			System.out.println("current year is: " + currYear);
+			//System.out.println("current block is: " + currBlock);
+			//System.out.println("current year is: " + currYear); //+++++++++++++++
+			
+			/*
+			if(currYear.equals(first.year)) {
+				System.out.println("found first year! " + currYear);
+			}
+			*/
+		}
+		
+		/*
+		//===================
+		while (blocksIterator.hasNext()) {
+			currBlock = blocksIterator.next();
+			System.out.println("current block is: " + currBlock);
+		}
+		*/
+		
 		
 		return null;
 	}
@@ -72,6 +125,11 @@ public class Period{
 	}
 
 	
+	public Period() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	@Override
 	public String toString() {
 		return "Period: [" + block + " " + year + "]";

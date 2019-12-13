@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.android.Period.Block;
 import com.android.Period.Year;
+import com.android.Period.*;
 
 public class HistoricEvent {
 	
@@ -82,6 +83,9 @@ public class HistoricEvent {
 						  	new Period(Block.LATE, Year.NINETEEN_FORTY),
 						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE)); 
 				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
+				  
+				  Period.getPeriods(new Period(Block.MID, Year.NINETEEN_FORTY), new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE));
+				  
 				  break;
 			  case GUADALCANAL:
 				  historicEvent.airForces = Arrays.asList(AirForce.USAAF, AirForce.IJAAF); //USA & Japan
@@ -139,6 +143,7 @@ public class HistoricEvent {
 			}
 		}
 		
+
 		public HistoricEvent build() {
 			return historicEvent;
 		}
