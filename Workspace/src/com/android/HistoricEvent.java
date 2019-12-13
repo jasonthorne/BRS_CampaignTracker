@@ -78,70 +78,44 @@ public class HistoricEvent {
 			switch(historicEvent.name) {
 			  case BATTLE_OF_BRITAIN:
 				  historicEvent.airForces = Arrays.asList(AirForce.RAF, AirForce.LUFTWAFFE); //Britain & Germany
-				 /* historicEvent.periods = Arrays.asList( //+++++++++++++++++++++++++++++Look into using some sort of queue for these maybe!! Or some other collection anyway :P
-						  	new Period(Block.MID, Year.NINETEEN_FORTY), 
-						  	new Period(Block.LATE, Year.NINETEEN_FORTY),
-						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE)); */
-				  
-				  
-				  historicEvent.periods = Period.getPeriods(new Period(Block.MID, Year.NINETEEN_FORTY), new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE));
-				  System.out.println("NEW PERIODS TEST: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
+				  historicEvent.periods = Period.getPeriods(new Period(Block.MID, Year.FORTY), new Period(Block.EARLY, Year.FORTY_ONE));
+				  System.out.println("BATTLE_OF_BRITAIN periods: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			  case GUADALCANAL:
 				  historicEvent.airForces = Arrays.asList(AirForce.USAAF, AirForce.IJAAF); //USA & Japan
-				  historicEvent.periods = Arrays.asList( 
-						  	new Period(Block.MID, Year.NINETEEN_FORTY_TWO),
-						  	new Period(Block.LATE, Year.NINETEEN_FORTY_TWO),
-						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_THREE)); 
-				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
+				  historicEvent.periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_THREE));
+				  System.out.println("GUADALCANAL periods: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			  case STALINGRAD: //????????????????????
 				  historicEvent.airForces = Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE); //Russia & Germany
 				  historicEvent.periods = Arrays.asList( 
-						  	new Period(Block.MID, Year.NINETEEN_FORTY), 
-						  	new Period(Block.LATE, Year.NINETEEN_FORTY),
-						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE)); 
-				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
+						  	new Period(Block.MID, Year.FORTY), 
+						  	new Period(Block.LATE, Year.FORTY),
+						  	new Period(Block.EARLY, Year.FORTY_ONE)); 
+				  System.out.println("STALINGRAD periods: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			  case ASSAULT_ON_THE_REICH:
 				  historicEvent.airForces = Arrays.asList(AirForce.RAF, AirForce.USAAF, AirForce.LUFTWAFFE); //Britain, USA & Germany
-				  historicEvent.periods = Arrays.asList( 
-						  	new Period(Block.MID, Year.NINETEEN_FORTY_THREE), 
-						  	new Period(Block.LATE, Year.NINETEEN_FORTY_THREE),
-						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_FOUR),
-						  	new Period(Block.MID, Year.NINETEEN_FORTY_FOUR),
-						  	new Period(Block.LATE, Year.NINETEEN_FORTY_FOUR),
-						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_FIVE)); 
-				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
+				  historicEvent.periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_THREE), new Period(Block.EARLY, Year.FORTY_FIVE));
+				  System.out.println("ASSAULT_ON_THE_REICH periods: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			  case KURSK: //??????????????????????????
 				  historicEvent.airForces = Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE); //Russia & Germany
 				  historicEvent.periods = Arrays.asList(
-						  	new Period(Block.MID, Year.NINETEEN_FORTY), 
-						  	new Period(Block.LATE, Year.NINETEEN_FORTY),
-						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE)); 
-				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
+						  	new Period(Block.MID, Year.FORTY), 
+						  	new Period(Block.LATE, Year.FORTY),
+						  	new Period(Block.EARLY, Year.FORTY_ONE)); 
+				  System.out.println("KURSK periods: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			  case THE_ITALIAN_CAMPAIGN:
 				  historicEvent.airForces = Arrays.asList(AirForce.RAF, AirForce.USAAF, AirForce.LUFTWAFFE); //Britain, USA & Germany
-				  historicEvent.periods = Arrays.asList( 
-						  	new Period(Block.MID, Year.NINETEEN_FORTY_THREE), 
-						  	new Period(Block.LATE, Year.NINETEEN_FORTY_THREE),
-						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_FOUR),
-						  	new Period(Block.MID, Year.NINETEEN_FORTY_FOUR)); 
-				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
+				  historicEvent.periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_THREE), new Period(Block.MID, Year.FORTY_FOUR));
+				  System.out.println("THE_ITALIAN_CAMPAIGN periods: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			  case DEFENCE_OF_THE_HOME_ISLANDS:
 				  historicEvent.airForces = Arrays.asList(AirForce.USAAF, AirForce.IJAAF); //USA & Japan
-				  historicEvent.periods = Period.getPeriods(new Period(Block.MID, Year.NINETEEN_FORTY_FOUR), new Period(Block.MID, Year.NINETEEN_FORTY_FIVE));
-						  
-						  /*Arrays.asList( 
-						  	new Period(Block.MID, Year.NINETEEN_FORTY_FOUR), 
-						  	new Period(Block.LATE, Year.NINETEEN_FORTY_FOUR),
-						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_FIVE),
-						  	new Period(Block.MID, Year.NINETEEN_FORTY_FIVE)); 
-						  	*/
-				  System.out.println("DEFENCE TEST: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
+				  historicEvent.periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE));
+				  System.out.println("DEFENCE_OF_THE_HOME_ISLANDS periods: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			}
 		}

@@ -22,12 +22,12 @@ public class Period{
 	}
 	
 	public enum Year{
-		NINETEEN_FORTY("1940"),
-		NINETEEN_FORTY_ONE("1941"),
-		NINETEEN_FORTY_TWO("1942"),
-		NINETEEN_FORTY_THREE("1943"),
-		NINETEEN_FORTY_FOUR("1944"),
-		NINETEEN_FORTY_FIVE("1945");
+		FORTY("1940"),
+		FORTY_ONE("1941"),
+		FORTY_TWO("1942"),
+		FORTY_THREE("1943"),
+		FORTY_FOUR("1944"),
+		FORTY_FIVE("1945");
 		private String year; //name of chosen year
 		private Year(String year) { //constructor
 			this.year = year; //assign name of year
@@ -52,69 +52,39 @@ public class Period{
 		return "Period: [" + block + " " + year + "]";
 	}
 	
-	
-	//----------------------------------------------
-	private final static List<Block>blocks = Arrays.asList(Block.values());
-	private final static List<Year>years = Arrays.asList(Year.values());
-	private static List<Period>periods; // = new ArrayList<Period>();
-	private static ListIterator<Block>blocksIterator; 
-	private static ListIterator<Year>yearsIterator;
-	private static Year currYear;
-	private static Block currBlock;
-	private static boolean canAdd = false;
-	
+	//creates and returns a list of Periods from the range of Periods given to it
 	public static List<Period>getPeriods(Period first, Period last){
 		
-		periods = new ArrayList<Period>();
-		yearsIterator = years.listIterator(); //set years iterator
-		
-		//loop through block and year lists and grab relevant periods ++++++++++++++++++
-		while (yearsIterator.hasNext()) { 
+		final List<Block>blocks = Arrays.asList(Block.values()); //list of all Block values
+		final List<Year>years = Arrays.asList(Year.values()); //list of all Year values
+		List<Period>periods = new ArrayList<Period>(); //list for holding range of Periods
+		ListIterator<Block>blocksIterator; //blocks iterator ref
+		ListIterator<Year>yearsIterator = years.listIterator(); //years iterator
+		Year currYear; //holds year values
+		Block currBlock; //holds block values
+		boolean canAdd = false; //flag for adding values
+	
+		while (yearsIterator.hasNext()){ //loop through years
 			
 			blocksIterator = blocks.listIterator(); //(re)set blocks iterator
 			currYear = yearsIterator.next(); //move year
 			
-			while(blocksIterator.hasNext()) {
+			while(blocksIterator.hasNext()) { //loop through blocks
+				
 				currBlock = blocksIterator.next(); //move block
-				System.out.println("current block is: " + currBlock);
-				System.out.println("current year is: " + currYear);
+			
+				//if found start date, allow adding of values
+				if(currBlock.equals(first.block) && currYear.equals(first.year)) {canAdd = true;}
 				
-				if(currBlock.equals(first.block) && currYear.equals(first.year)) { //if found start date
-					canAdd = true;
-					System.out.println("first date is: " + currBlock + " " + currYear);
-				}
-				
-				//add values to list of Periods
+				//create a Period with current values, and add to list of periods
 				if(canAdd){ periods.add(new Period(currBlock, currYear));}
 				
-				//if hit last date:
-				if((currBlock.equals(last.block)) && (currYear.equals(last.year))) {
-					System.out.println("last date is: " + currBlock + " " + currYear);
-					canAdd = false;
-					return periods;
-				}
+				//return list of periods once final target Period has been added
+				if((currBlock.equals(last.block)) && (currYear.equals(last.year))) { return periods; }
 			}
 		}
 		
 		return null;
 	}
-	
-	/*
-	if(blocksIterator.hasNext()) {
-		currBlock = blocksIterator.next(); //move to next block
-		System.out.println("current block is: " + currBlock);
-		System.out.println("current year is: " + currYear);
-		
-		
-	}else {
-		blocksIterator = blocks.listIterator(); //reset blocks
-		currYear = yearsIterator.next(); //move to next year
-		
-	}
-	*/
-	
-	//----------------------------------------------
-		
-	
 	
 }

@@ -168,6 +168,10 @@ public class Main {
 		campaign = campaignBuilder.setHistoricEvent(Name.DEFENCE_OF_THE_HOME_ISLANDS).build(); //create campaign with historic event
 		campaigns.add(campaign);  //and add to list of campaigns
 		
+		//add another:
+		campaignBuilder = new CampaignBuilder(); //reset builder. IMPORTANT :P
+		campaign = campaignBuilder.setHistoricEvent(Name.ASSAULT_ON_THE_REICH).build(); //create campaign with historic event
+		campaigns.add(campaign);  //and add to list of campaigns
 	
 		//+++++++++++++++++++++++.get .contains ++++++++++++++++++++++++++++++++USE THIS NSTEAD OF LOOP ABOVE!! :P
 		
