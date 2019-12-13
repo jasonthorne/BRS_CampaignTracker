@@ -1,5 +1,6 @@
 package com.android;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
@@ -55,15 +56,16 @@ public class Period{
 	//----------------------------------------------
 	private final static List<Block>blocks = Arrays.asList(Block.values());
 	private final static List<Year>years = Arrays.asList(Year.values());
-	
+	private static List<Period>periods; // = new ArrayList<Period>();
 	private static ListIterator<Block>blocksIterator; 
 	private static ListIterator<Year>yearsIterator;
 	private static Year currYear;
 	private static Block currBlock;
-	private static Period currPeriod; 
+	private static boolean canAdd = false;
 	
 	public static List<Period>getPeriods(Period first, Period last){
 		
+		periods = new ArrayList<Period>();
 		yearsIterator = years.listIterator(); //set years iterator
 		
 		//loop through block and year lists and grab relevant periods ++++++++++++++++++
@@ -76,10 +78,22 @@ public class Period{
 				currBlock = blocksIterator.next(); //move block
 				System.out.println("current block is: " + currBlock);
 				System.out.println("current year is: " + currYear);
+				
+				if(currBlock.equals(first.block) && currYear.equals(first.year)) { //if found start date
+					canAdd = true;
+					System.out.println("first date is: " + currBlock + " " + currYear);
+				}
+				
+				//add values to list of Periods
+				if(canAdd){ periods.add(new Period(currBlock, currYear));}
+				
+				//if hit last date:
+				if((currBlock.equals(last.block)) && (currYear.equals(last.year))) {
+					System.out.println("last date is: " + currBlock + " " + currYear);
+					canAdd = false;
+					return periods;
+				}
 			}
-			
-			
-			
 		}
 		
 		return null;

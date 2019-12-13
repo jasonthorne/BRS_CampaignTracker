@@ -78,14 +78,14 @@ public class HistoricEvent {
 			switch(historicEvent.name) {
 			  case BATTLE_OF_BRITAIN:
 				  historicEvent.airForces = Arrays.asList(AirForce.RAF, AirForce.LUFTWAFFE); //Britain & Germany
-				  historicEvent.periods = Arrays.asList( //+++++++++++++++++++++++++++++Look into using some sort of queue for these maybe!! Or some other collection anyway :P
+				 /* historicEvent.periods = Arrays.asList( //+++++++++++++++++++++++++++++Look into using some sort of queue for these maybe!! Or some other collection anyway :P
 						  	new Period(Block.MID, Year.NINETEEN_FORTY), 
 						  	new Period(Block.LATE, Year.NINETEEN_FORTY),
-						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE)); 
-				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
+						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE)); */
 				  
-				  Period.getPeriods(new Period(Block.MID, Year.NINETEEN_FORTY), new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE));
 				  
+				  historicEvent.periods = Period.getPeriods(new Period(Block.MID, Year.NINETEEN_FORTY), new Period(Block.EARLY, Year.NINETEEN_FORTY_ONE));
+				  System.out.println("NEW PERIODS TEST: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			  case GUADALCANAL:
 				  historicEvent.airForces = Arrays.asList(AirForce.USAAF, AirForce.IJAAF); //USA & Japan
@@ -133,12 +133,15 @@ public class HistoricEvent {
 				  break;
 			  case DEFENCE_OF_THE_HOME_ISLANDS:
 				  historicEvent.airForces = Arrays.asList(AirForce.USAAF, AirForce.IJAAF); //USA & Japan
-				  historicEvent.periods = Arrays.asList( 
+				  historicEvent.periods = Period.getPeriods(new Period(Block.MID, Year.NINETEEN_FORTY_FOUR), new Period(Block.MID, Year.NINETEEN_FORTY_FIVE));
+						  
+						  /*Arrays.asList( 
 						  	new Period(Block.MID, Year.NINETEEN_FORTY_FOUR), 
 						  	new Period(Block.LATE, Year.NINETEEN_FORTY_FOUR),
 						  	new Period(Block.EARLY, Year.NINETEEN_FORTY_FIVE),
 						  	new Period(Block.MID, Year.NINETEEN_FORTY_FIVE)); 
-				  System.out.println("Periods test: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
+						  	*/
+				  System.out.println("DEFENCE TEST: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			}
 		}
