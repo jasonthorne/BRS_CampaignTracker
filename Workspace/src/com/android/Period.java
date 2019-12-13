@@ -13,7 +13,6 @@ public class Period{
 	private static ListIterator<Block>blocksIterator; 
 	private static ListIterator<Year>yearsIterator;
 	
-	//private constructor called using getList ??????????????????????????????????????
 	public static List<Period> getPeriods(Period first, Period last){
 		
 		blocksIterator = blocks.listIterator(); //instantiate blocks iterator
@@ -50,7 +49,7 @@ public class Period{
 			//currYear = yearsIterator.next();
 			currBlock = blocksIterator.next();
 			System.out.println("current block is: " + currBlock);
-			//System.out.println("current year is: " + currYear);
+			System.out.println("current year is: " + currYear);
 			
 			if(!(blocksIterator.hasNext())) {
 				blocksIterator = blocks.listIterator();
@@ -58,7 +57,7 @@ public class Period{
 			}
 			
 			//System.out.println("current block is: " + currBlock);
-			System.out.println("current year is: " + currYear);
+			//System.out.println("current year is: " + currYear);
 			//System.out.println("current block is: " + currBlock);
 			//System.out.println("current year is: " + currYear); //+++++++++++++++
 			
@@ -119,7 +118,7 @@ public class Period{
 	}
 	
 	//constructor:
-	Period(Block block, Year year){ /////////Maybe should be private!!!!!!!
+	Period(Block block, Year year){ 
 		this.year = year;
 		this.block = block;
 	}
