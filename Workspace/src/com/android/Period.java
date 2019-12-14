@@ -7,20 +7,22 @@ import java.util.ListIterator;
 
 public class Period{
 	
+	//Block values:
 	public enum Block{
 		EARLY("Early"), 
 		MID("Mid"), 
 		LATE("Late");
 		private String block; //name of chosen block
-		private Block(String block) { //constructor
-			this.block = block; //assign name of block
+		private Block(String block) { 
+			this.block = block; //constructor assigns name of chosen block
 		}
-		@Override //override toString
-		public String toString() {
-			return block; //return name of chosen block
-		}
+		@Override 
+		public String toString() { 
+			return block; //return chosen block
+		} 
 	}
 	
+	//Year values:
 	public enum Year{
 		FORTY("1940"),
 		FORTY_ONE("1941"),
@@ -29,13 +31,13 @@ public class Period{
 		FORTY_FOUR("1944"),
 		FORTY_FIVE("1945");
 		private String year; //name of chosen year
-		private Year(String year) { //constructor
-			this.year = year; //assign name of year
-		}
-		@Override //override toString
+		private Year(String year) { 
+			this.year = year; //constructor assigns name of chosen year
+		} 
+		@Override 
 		public String toString() {
-			return year; //return name of chosen year
-		}
+			return year; //return chosen year
+		} 
 	}
 	
 	private Block block;
@@ -52,7 +54,7 @@ public class Period{
 		return "Period: [" + block + " " + year + "]";
 	}
 	
-	//creates and returns a list of Periods from the range of Periods given to it
+	//creates and returns a list of a range of Periods, based upon the Periods provided to it
 	public static List<Period>getPeriods(Period first, Period last){
 		
 		final List<Block>blocks = Arrays.asList(Block.values()); //list of all Block values
@@ -67,20 +69,20 @@ public class Period{
 		while (yearsIterator.hasNext()){ //loop through years
 			
 			blocksIterator = blocks.listIterator(); //(re)set blocks iterator
-			currYear = yearsIterator.next(); //move year
+			currYear = yearsIterator.next(); //advance to next year
 			
 			while(blocksIterator.hasNext()) { //loop through blocks
 				
-				currBlock = blocksIterator.next(); //move block
+				currBlock = blocksIterator.next(); //advance to next block
 			
 				//if found start date, allow adding of values
-				if(currBlock.equals(first.block) && currYear.equals(first.year)) {canAdd = true;}
+				if(currBlock.equals(first.block) && currYear.equals(first.year)) { canAdd = true; }
 				
 				//create a Period with current values, and add to list of periods
-				if(canAdd){ periods.add(new Period(currBlock, currYear));}
+				if(canAdd){ periods.add(new Period(currBlock, currYear)); }
 				
 				//return list of periods once final target Period has been added
-				if((currBlock.equals(last.block)) && (currYear.equals(last.year))) { return periods; }
+				if(currBlock.equals(last.block) && currYear.equals(last.year)) { return periods; }
 			}
 		}
 		

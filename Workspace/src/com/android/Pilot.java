@@ -11,8 +11,9 @@ public class Pilot {
 	private int status;
 	private Plane plane;
 	
-	enum PilotSkill{
-		ROOKIE("Rookie"), AVERAGE("Average"), VETERAN("Veteran"), ACE("Ace"); //pilot skills
+	//pilot skills:
+	public enum PilotSkill{
+		ROOKIE("Rookie"), AVERAGE("Average"), VETERAN("Veteran"), ACE("Ace"); 
 		private String pilotSkill; //name of chosen skill
 		private PilotSkill(String pilotSkill) { //constructor
 			this.pilotSkill = pilotSkill; //assign name of skill

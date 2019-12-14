@@ -41,11 +41,6 @@ public class HistoricEvent {
 	//-----------------------------------------
 	//getters:
 	
-	/*
-	public Name getName(){
-		return this.name;
-	}
-	*/
 	public String getName(){
 		return name.toString();
 	}
