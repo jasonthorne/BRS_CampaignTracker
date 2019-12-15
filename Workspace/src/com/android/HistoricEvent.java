@@ -1,6 +1,5 @@
 package com.android;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,12 +13,12 @@ public final class HistoricEvent {
 	
 	private final String name;
 	//////////private Period period;
-	//////private List<Period>periods; //holds periods of history pertaining to historic event
+
 	private final List<Period>periods; //holds periods of history pertaining to historic event
 	
 	private final List<AirForce>airForces; //holds air forces available
 	
-	public enum Name{
+	public enum EventName{
 		
 		BATTLE_OF_BRITAIN(
 				"Battle of Britain", 
@@ -71,7 +70,7 @@ public final class HistoricEvent {
 		}
 		*/
 		//constructor
-		private Name(String name, List<AirForce>airForces, List<Period>periods) { 
+		private EventName(String name, List<AirForce>airForces, List<Period>periods) { 
 			this.name = name;
 			this.airForces = airForces;
 			this.periods = periods;
@@ -94,8 +93,8 @@ public final class HistoricEvent {
 	//-----------------------------------------
 	//getters:
 	
-	public String getName(){
-		return name.toString();
+	public String getName(){ //???????????????????????NEEDED NOW WE DONT HAVE AN INSTANCE OF THE ENUM???
+		return name;
 	}
 	
 	//-----------------------------------------
@@ -108,11 +107,11 @@ public final class HistoricEvent {
 	*/
 	
 	//constructor:
-	private HistoricEvent(Name name) {
+	private HistoricEvent(EventName eventName) {
 		System.out.println("NEW HistoricEvent constructed");
-		this.name = name.name; //??????????????
-		this.airForces = name.airForces;
-		this.periods = name.periods;
+		this.name = eventName.name; //??????????????
+		this.airForces = eventName.airForces;
+		this.periods = eventName.periods;
 		System.out.println("Periods are: " + this.periods);
 		System.out.println(this.name);
 	}
@@ -127,11 +126,11 @@ public final class HistoricEvent {
 	static class HistoricEventBuilder {
 		
 		//private HistoricEvent historicEvent = new HistoricEvent();
-		private Name name;
+		private EventName eventName;
 		
-		public HistoricEventBuilder setName(Name name) { //+++++++++++++++++change to setValues
+		public HistoricEventBuilder setEventName(EventName eventName) { //+++++++++++++++++change to setValues
 			//historicEvent.name = name; //change to setName
-			this.name = name; //change to setName
+			this.eventName = eventName; //change to setName
 			//SWICH WOULD HAVE TO BE HERE!! - for chosing  which event name to pick.
 			//take in name as string, use switch in setName above to set enum.
 			//---------------
@@ -194,7 +193,7 @@ public final class HistoricEvent {
 
 		public HistoricEvent build() {
 			//return historicEvent;
-			return new HistoricEvent(name);
+			return new HistoricEvent(eventName);
 		}
 		
 	}

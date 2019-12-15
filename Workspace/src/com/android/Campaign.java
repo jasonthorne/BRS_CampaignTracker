@@ -3,8 +3,8 @@ package com.android;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.android.HistoricEvent.EventName;
 import com.android.HistoricEvent.HistoricEventBuilder;
-import com.android.HistoricEvent.Name;
 import com.android.Player.PlayerBuilder;
 
 public class Campaign {
@@ -87,13 +87,13 @@ public class Campaign {
 		///private PlayerBuilder playerBuilder;
 		//private Player player;
 		
-		public CampaignBuilder setHistoricEvent(Name name) {
+		public CampaignBuilder setHistoricEvent(EventName name) {
 		//public CampaignBuilder setHistoricEvent(String name) {
 	
 			//campaign.historicEventBuilder = new HistoricEventBuilder(); //create builder
 			//campaign.historicEvent = campaign.historicEventBuilder.setName(name).build();
 			//--------------------
-			campaign.historicEvent = new HistoricEventBuilder().setName(name).build(); //+++CHANGE TO setValues
+			campaign.historicEvent = new HistoricEventBuilder().setEventName(name).build(); //+++CHANGE TO setValues
 	
 			//------------------
 			
