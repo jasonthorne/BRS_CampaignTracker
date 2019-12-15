@@ -8,14 +8,16 @@ import com.android.Period.Block;
 import com.android.Period.Year;
 
 
-public class HistoricEvent {
+public final class HistoricEvent {
 	
-	private Name name; 
+	/////////private Name name; 
+	
+	private final String name;
 	//////////private Period period;
 	//////private List<Period>periods; //holds periods of history pertaining to historic event
-	private List<Period>periods; //holds periods of history pertaining to historic event
+	private final List<Period>periods; //holds periods of history pertaining to historic event
 	
-	private List<AirForce>airForces; //holds air forces available
+	private final List<AirForce>airForces; //holds air forces available
 	
 	public enum Name{
 		
@@ -63,11 +65,13 @@ public class HistoricEvent {
 		private List<Period>periods; //periods of history covered
 		//private String description; //=====================================
 		
+		/*
 		private Name(String name) { //constructor
 			this.name = name;
 		}
-		
-		private Name(String name, List<AirForce>airForces, List<Period>periods) { //constructor
+		*/
+		//constructor
+		private Name(String name, List<AirForce>airForces, List<Period>periods) { 
 			this.name = name;
 			this.airForces = airForces;
 			this.periods = periods;
@@ -95,10 +99,22 @@ public class HistoricEvent {
 	}
 	
 	//-----------------------------------------
-	
+
+	/*
 	//constructor:
 	private HistoricEvent() {
 		System.out.println("HistoricEvent constructed");
+	}
+	*/
+	
+	//constructor:
+	private HistoricEvent(Name name) {
+		System.out.println("NEW HistoricEvent constructed");
+		this.name = name.name; //??????????????
+		this.airForces = name.airForces;
+		this.periods = name.periods;
+		System.out.println("Periods are: " + this.periods);
+		System.out.println(this.name);
 	}
 
 	@Override
@@ -110,29 +126,31 @@ public class HistoricEvent {
 	//builder class:
 	static class HistoricEventBuilder {
 		
-		private HistoricEvent historicEvent = new HistoricEvent();
+		//private HistoricEvent historicEvent = new HistoricEvent();
 		private Name name;
 		
 		public HistoricEventBuilder setName(Name name) { //+++++++++++++++++change to setValues
-			historicEvent.name = name; //change to setName
-			////////this.name = name; //change to setName
+			//historicEvent.name = name; //change to setName
+			this.name = name; //change to setName
 			//SWICH WOULD HAVE TO BE HERE!! - for chosing  which event name to pick.
 			//take in name as string, use switch in setName above to set enum.
 			//---------------
 			//set airforces
-			setAirForces();
-			historicEvent.airForces = name.airForces;
+			//setAirForces();
+			//historicEvent.airForces = name.airForces;
 			//set periods
 			//set descriptions
-			setPeriodsAndAirForces(); //set periods of history and available air forces
+			////////////////setPeriodsAndAirForces(); //set periods of history and available air forces
 			return this;
 		}
 		
-		
+		/*
 		private void setAirForces() {
 			historicEvent.airForces = name.airForces;
 		}
+		*/
 		
+		/*
 		private void setPeriodsAndAirForces() {
 			switch(historicEvent.name) {
 			  case BATTLE_OF_BRITAIN: //Britain & Germany. Mid 1940 - Mid 1941.
@@ -171,11 +189,12 @@ public class HistoricEvent {
 				  System.out.println("DEFENCE_OF_THE_HOME_ISLANDS periods: " + historicEvent.periods); //++++++++++++++++++++++++++++++++++++++TEST PRINT
 				  break;
 			}
-		}
+		}*/
 		
 
 		public HistoricEvent build() {
-			return historicEvent;
+			//return historicEvent;
+			return new HistoricEvent(name);
 		}
 		
 	}
