@@ -54,19 +54,25 @@ public class Period{
 		return "Period: [" + block + " " + year + "]";
 	}
 	
+	//getPeriods() vars:
+	private final static List<Block>blocks = Arrays.asList(Block.values()); //list of all Block values
+	private final static List<Year>years = Arrays.asList(Year.values()); //list of all Year values
+	private static List<Period>periods; //list for holding range of Periods
+	private static ListIterator<Block>blocksIterator; //blocks iterator
+	private static ListIterator<Year>yearsIterator; //years iterator
+	private static Year currYear; //holds year values
+	private static Block currBlock; //holds block values
+	private static boolean canAdd; //flag for adding values
+	
 	//creates and returns a list of a range of Periods, based upon the Periods provided to it
 	public static List<Period>getPeriods(Period first, Period last){
 		
-		final List<Block>blocks = Arrays.asList(Block.values()); //list of all Block values
-		final List<Year>years = Arrays.asList(Year.values()); //list of all Year values
-		List<Period>periods = new ArrayList<Period>(); //list for holding range of Periods
-		ListIterator<Block>blocksIterator; //blocks iterator ref
-		ListIterator<Year>yearsIterator = years.listIterator(); //years iterator
-		Year currYear; //holds year values
-		Block currBlock; //holds block values
-		boolean canAdd = false; //flag for adding values
-	
-		while (yearsIterator.hasNext()){ //loop through years
+		periods = new ArrayList<Period>(); //(re)set periods list
+		yearsIterator = years.listIterator(); //(re)set years iterator
+		canAdd = false; //(re)set canAdd
+		
+		outerWhile: 
+		while(yearsIterator.hasNext()){ //loop through years
 			
 			blocksIterator = blocks.listIterator(); //(re)set blocks iterator
 			currYear = yearsIterator.next(); //advance to next year
@@ -75,18 +81,18 @@ public class Period{
 				
 				currBlock = blocksIterator.next(); //advance to next block
 			
-				//if found start date, allow adding of values
+				//if found start date, allow adding of values:
 				if(currBlock.equals(first.block) && currYear.equals(first.year)) { canAdd = true; }
 				
-				//create a Period with current values, and add to list of periods
-				if(canAdd){ periods.add(new Period(currBlock, currYear)); }
-				
-				//return list of periods once final target Period has been added
-				if(currBlock.equals(last.block) && currYear.equals(last.year)) { return periods; }
+				if(canAdd){ 
+					//create a Period with current values, and add to list of periods:
+					periods.add(new Period(currBlock, currYear)); 
+					//stop when final target Period is added:
+					if(currBlock.equals(last.block) && currYear.equals(last.year)) { break outerWhile; }
+				}
 			}
 		}
-		
-		return null;
+		return periods; //return list
 	}
 	
 }

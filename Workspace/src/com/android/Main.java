@@ -136,7 +136,6 @@ public class Main {
 		//------------------LANDING PAGE ---------------
 		System.out.println("\nLANDING PAGE:");
 		
-		
 		//CAMPAIGN VARS:
 		List<Campaign>campaigns= new ArrayList<Campaign>(); //list of campaigns created
 		CampaignBuilder campaignBuilder = new CampaignBuilder(); //create builder
@@ -155,14 +154,13 @@ public class Main {
 			}
 		}
 		
-		
 		//CREATE CAMPAIGNS:
 		//create a campaign, selecting a historic event:
 		////////campaignBuilder = new CampaignBuilder(); //++++++++++++++++++NO NEEDED AS BUILT ABOVE (method should pass a new builder)
 		campaign = campaignBuilder.setHistoricEvent(Name.BATTLE_OF_BRITAIN).build(); //create campaign with historic event
 		campaigns.add(campaign);  //and add to list of campaigns
 		//+++++++++++++JUMP USER TO CAMPAIGN PAGE HERE (passing campaign reference)++++++++++++++++++++
-		
+	
 		//add another:
 		campaignBuilder = new CampaignBuilder(); //reset builder. IMPORTANT :P
 		campaign = campaignBuilder.setHistoricEvent(Name.DEFENCE_OF_THE_HOME_ISLANDS).build(); //create campaign with historic event
@@ -171,6 +169,11 @@ public class Main {
 		//add another:
 		campaignBuilder = new CampaignBuilder(); //reset builder. IMPORTANT :P
 		campaign = campaignBuilder.setHistoricEvent(Name.ASSAULT_ON_THE_REICH).build(); //create campaign with historic event
+		campaigns.add(campaign);  //and add to list of campaigns
+		
+		//add another:
+		campaignBuilder = new CampaignBuilder(); //reset builder. IMPORTANT :P
+		campaign = campaignBuilder.setHistoricEvent(Name.OPERATION_BARBAROSSA).build(); //create campaign with historic event
 		campaigns.add(campaign);  //and add to list of campaigns
 	
 		//+++++++++++++++++++++++.get .contains ++++++++++++++++++++++++++++++++USE THIS NSTEAD OF LOOP ABOVE!! :P
