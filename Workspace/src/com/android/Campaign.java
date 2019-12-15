@@ -88,9 +88,15 @@ public class Campaign {
 		//private Player player;
 		
 		public CampaignBuilder setHistoricEvent(Name name) {
+		//public CampaignBuilder setHistoricEvent(String name) {
+	
 			//campaign.historicEventBuilder = new HistoricEventBuilder(); //create builder
 			//campaign.historicEvent = campaign.historicEventBuilder.setName(name).build();
+			//--------------------
 			campaign.historicEvent = new HistoricEventBuilder().setName(name).build();
+	
+			//------------------
+			
 			setStartDate(); //set startDate (as campaign is being created)
 			return this;
 		}
