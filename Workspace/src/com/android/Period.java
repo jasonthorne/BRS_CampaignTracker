@@ -40,8 +40,8 @@ public class Period{
 		} 
 	}
 	
-	private Block block;
-	private Year year;
+	private final Block block;
+	private final Year year;
 	
 	//constructor:
 	public Period(Block block, Year year){ 

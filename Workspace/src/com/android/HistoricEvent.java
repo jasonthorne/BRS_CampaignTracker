@@ -17,7 +17,6 @@ public class HistoricEvent {
 	
 	private List<AirForce>airForces; //holds air forces available
 	
-
 	public enum Name{
 		
 		BATTLE_OF_BRITAIN(
@@ -28,7 +27,7 @@ public class HistoricEvent {
 				"Operation Barbarossa",
 				Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE),
 				Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_ONE))),
-		GUADALCANAL( //USA & Japan. Mid 1942 - Early 1943.
+		GUADALCANAL(
 				"Guadalcanal",
 				Arrays.asList(AirForce.USAAF, AirForce.IJAAF),
 				Period.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_THREE))), 
@@ -62,6 +61,7 @@ public class HistoricEvent {
 		private String name; //name of chosen historic event
 		private List<AirForce>airForces; //air forces involved
 		private List<Period>periods; //periods of history covered
+		//private String description; //=====================================
 		
 		private Name(String name) { //constructor
 			this.name = name;
@@ -71,6 +71,7 @@ public class HistoricEvent {
 			this.name = name;
 			this.airForces = airForces;
 			this.periods = periods;
+			//this.description = getDescription(name); //===================================
 		}
 		
 		@Override //override toString:
@@ -111,8 +112,15 @@ public class HistoricEvent {
 		
 		private HistoricEvent historicEvent = new HistoricEvent();
 		
-		public HistoricEventBuilder setName(Name name) {
-			historicEvent.name = name;
+		public HistoricEventBuilder setName(Name name) { //+++++++++++++++++change to setValues
+			historicEvent.name = name; //change to setName
+			
+			//SWICH WOULD HAVE TO BE HERE!! - for chosing  which event name to pick.
+			//take in name as string, use switch in setName above to set enum.
+			//---------------
+			//set airforces
+			//set periods
+			//set descriptions
 			setPeriodsAndAirForces(); //set periods of history and available air forces
 			return this;
 		}

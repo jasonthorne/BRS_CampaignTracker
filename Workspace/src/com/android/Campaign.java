@@ -93,7 +93,7 @@ public class Campaign {
 			//campaign.historicEventBuilder = new HistoricEventBuilder(); //create builder
 			//campaign.historicEvent = campaign.historicEventBuilder.setName(name).build();
 			//--------------------
-			campaign.historicEvent = new HistoricEventBuilder().setName(name).build();
+			campaign.historicEvent = new HistoricEventBuilder().setName(name).build(); //+++CHANGE TO setValues
 	
 			//------------------
 			
