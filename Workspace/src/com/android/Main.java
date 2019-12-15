@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.android.Campaign.CampaignBuilder;
 import com.android.Campaign;
-import com.android.HistoricEvent.EventName;
-import com.android.HistoricEvent.HistoricEventBuilder;
+import com.android.Event.EventName;
+import com.android.Event.EventBuilder;
 import com.android.Pilot.PilotBuilder;
 import com.android.Pilot.PilotSkill;
 import com.android.Plane.PlaneBuilder;
@@ -157,23 +157,23 @@ public class Main {
 		//CREATE CAMPAIGNS:
 		//create a campaign, selecting a historic event:
 		////////campaignBuilder = new CampaignBuilder(); //++++++++++++++++++NO NEEDED AS BUILT ABOVE (method should pass a new builder)
-		campaign = campaignBuilder.setHistoricEvent(EventName.BATTLE_OF_BRITAIN).build(); //create campaign with historic event
+		campaign = campaignBuilder.setEvent(EventName.BATTLE_OF_BRITAIN).build(); //create campaign with historic event
 		campaigns.add(campaign);  //and add to list of campaigns
 		//+++++++++++++JUMP USER TO CAMPAIGN PAGE HERE (passing campaign reference)++++++++++++++++++++
 	
 		//add another:
 		campaignBuilder = new CampaignBuilder(); //reset builder. IMPORTANT :P
-		campaign = campaignBuilder.setHistoricEvent(EventName.DEFENCE_OF_THE_HOME_ISLANDS).build(); //create campaign with historic event
+		campaign = campaignBuilder.setEvent(EventName.DEFENCE_OF_THE_HOME_ISLANDS).build(); //create campaign with historic event
 		campaigns.add(campaign);  //and add to list of campaigns
 		
 		//add another:
 		campaignBuilder = new CampaignBuilder(); //reset builder. IMPORTANT :P
-		campaign = campaignBuilder.setHistoricEvent(EventName.ASSAULT_ON_THE_REICH).build(); //create campaign with historic event
+		campaign = campaignBuilder.setEvent(EventName.ASSAULT_ON_THE_REICH).build(); //create campaign with historic event
 		campaigns.add(campaign);  //and add to list of campaigns
 		
 		//add another:
 		campaignBuilder = new CampaignBuilder(); //reset builder. IMPORTANT :P
-		campaign = campaignBuilder.setHistoricEvent(EventName.OPERATION_BARBAROSSA).build(); //create campaign with historic event
+		campaign = campaignBuilder.setEvent(EventName.OPERATION_BARBAROSSA).build(); //create campaign with historic event
 		campaigns.add(campaign);  //and add to list of campaigns
 	
 		//+++++++++++++++++++++++.get .contains ++++++++++++++++++++++++++++++++USE THIS NSTEAD OF LOOP ABOVE!! :P
@@ -182,7 +182,7 @@ public class Main {
 		//select target campaign: 
 		for(Campaign i : campaigns){ 
 			System.out.println(i); 
-			if (i.getHistoricEventName() == "Battle of Britain") campaign = i; //assign target campaign to reference
+			if (i.getEventName() == "Battle of Britain") campaign = i; //assign target campaign to reference
 		}
 		
 		System.out.println("campaign is: "+ campaign);
