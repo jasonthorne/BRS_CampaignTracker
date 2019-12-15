@@ -111,26 +111,27 @@ public class HistoricEvent {
 	static class HistoricEventBuilder {
 		
 		private HistoricEvent historicEvent = new HistoricEvent();
+		private Name name;
 		
 		public HistoricEventBuilder setName(Name name) { //+++++++++++++++++change to setValues
 			historicEvent.name = name; //change to setName
-			
+			////////this.name = name; //change to setName
 			//SWICH WOULD HAVE TO BE HERE!! - for chosing  which event name to pick.
 			//take in name as string, use switch in setName above to set enum.
 			//---------------
 			//set airforces
+			setAirForces();
+			historicEvent.airForces = name.airForces;
 			//set periods
 			//set descriptions
 			setPeriodsAndAirForces(); //set periods of history and available air forces
 			return this;
 		}
 		
-		/*
-		private void test3() {
-			int test3 = historicEvent.name.magic;
-			System.out.println(test3);
-			System.out.println(historicEvent.name.magic);
-		}*/
+		
+		private void setAirForces() {
+			historicEvent.airForces = name.airForces;
+		}
 		
 		private void setPeriodsAndAirForces() {
 			switch(historicEvent.name) {
