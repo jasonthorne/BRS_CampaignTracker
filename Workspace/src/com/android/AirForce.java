@@ -19,3 +19,10 @@ public enum AirForce{
 
 
 ///this should be a class and dictate the polane avbaliablilty once the airforce is xelected. ++++++++++++++++
+
+
+//name
+
+//desciption
+
+//planes

@@ -64,7 +64,7 @@ public class Period{
 	private static Block currBlock; //holds block values
 	private static boolean canAdd; //flag for adding values
 	
-	//creates and returns a list of a range of Periods, based upon the Periods provided to it
+	//creates and returns a list of a range of Periods, based upon the Periods provided to it:
 	public static List<Period>getPeriods(Period first, Period last){
 		
 		periods = new ArrayList<Period>(); //(re)set periods list
