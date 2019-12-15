@@ -29,6 +29,26 @@ public final class AirForceData{
 
 	//planes
 	
+	/*
+	 * MAKE A PLANE DATA CLASS - include all models of planes avaliable
+	 * //and plane statuses.
+	 * for default val: 
+	 * https://stackoverflow.com/questions/4664026/default-or-initial-value-for-a-java-enum-array
+	 * Day[] days = new Day[3];
+	Arrays.fill(days, Day.MONDAY);
+	 * and name and description
+	 * 
+	 *  In THIS class add the data of which planes are related to what airforce.
+	 *  and what dates they're avalaible(somehow!!!)
+	 *  and what planes 
+	 *  
+	 *  eg:
+	 *  
+	 *  plane models hashmap - airForces_models
+	 *  plane avaliability hashmap - airForces_avaliability
+	 */
+	
+	
 }
 
 

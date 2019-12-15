@@ -8,7 +8,7 @@ import com.android.AirForceData.AirForce;
 import com.android.Period.Block;
 import com.android.Period.Year;
 
-public final class Event {
+public final class Event { //+++++++++++++++++put all data into its own class. Use gettters with generic protected methods to pull map data into here.
 	
 	//event name values:
 	public enum EventName{
