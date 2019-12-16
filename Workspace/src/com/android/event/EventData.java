@@ -62,7 +62,7 @@ public abstract class EventData {
 	}};
 	
 	
-	//getters (protected so only Event class has access to them):
+	//getters (protected so only Event has access):
 	
 	//get AirForces associated with target event:
 	protected static List<AirForce>getAirForces(String name){
@@ -79,5 +79,5 @@ public abstract class EventData {
 		return eventNames_descriptions.get(name);
 	}
 	
-
+	
 }

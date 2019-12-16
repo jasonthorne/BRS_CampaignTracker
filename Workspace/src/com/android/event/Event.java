@@ -23,7 +23,7 @@ public final class Event {
 		
 		System.out.println("AIRFORCES: " + this.airForces); //+++++++++++++++TEST PRINT
 		System.out.println("PERIODS: " + this.periods); //+++++++++++++++TEST PRINT
-		System.out.println("DESCRIPTION: " + this.description); 
+		System.out.println("DESCRIPTION: " + this.description); //+++++++++++++++TEST PRINT
 	}
 	
 	public String getName(){ return name; } //get name of event
@@ -36,18 +36,15 @@ public final class Event {
 	//builder class:
 	public static final class EventBuilder {
 		
-		private String eventName; //chosen event
+		private String eventName; //chosen event name
 		
 		//set chosen event name:
 		public EventBuilder setEventName(EventName eventName) { 
 			this.eventName = eventName.toString(); 
 			return this;
 		}
-		//build and return an Event:
-		public Event build() { 
-			return new Event(eventName); 
-		}
-		
+		//build and return Event:
+		public Event build() { return new Event(eventName); }
 	}
 	
 }

@@ -278,14 +278,8 @@ public class Main {
 		//SHOW SQUADRON:
 		//List<Pilot>pilots= new ArrayList<Pilot>(); //list of campaigns created
 		
-		
-		
-		
 	
-		
-		
-		
-		
+	
 		//https://stackoverflow.com/questions/33211585/builder-pattern-nested-objects-created-through-other-builders
 		
 		
