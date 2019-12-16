@@ -1,42 +1,16 @@
-package com.android;
+package com.android.period;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
+import com.android.period.PeriodData.Block;
+import com.android.period.PeriodData.Year;
 
 public class Period{
 	
-	//Block values:
-	public enum Block{
-		EARLY("Early"), 
-		MID("Mid"), 
-		LATE("Late");
-		private String block; //name of chosen block
-		private Block(String block) { 
-			this.block = block; //constructor assigns name of chosen block
-		}
-		@Override 
-		public String toString() { 
-			return block; //return chosen block
-		} 
-	}
-	
-	//Year values:
-	public enum Year{
-		FORTY("1940"), FORTY_ONE("1941"), FORTY_TWO("1942"), FORTY_THREE("1943"), FORTY_FOUR("1944"), FORTY_FIVE("1945");
-		private String year; //name of chosen year
-		private Year(String year) { 
-			this.year = year; //constructor assigns name of chosen year
-		} 
-		@Override 
-		public String toString() {
-			return year; //return chosen year
-		} 
-	}
-	
-	private final Block block;
-	private final Year year;
+	private final Block block; //early, mid, late
+	private final Year year; //1940 - 1945
 	
 	//constructor:
 	public Period(Block block, Year year){ 

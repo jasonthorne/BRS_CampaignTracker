@@ -4,15 +4,16 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import com.android.Period;
 import com.android.AirForceData.AirForce;
-import com.android.Period.Block;
-import com.android.Period.Year;
+import com.android.period.Period;
+import com.android.period.PeriodData.Block;
+import com.android.period.PeriodData.Year;
 
 public abstract class EventData {
 	
 	//event name values:
 	public enum EventName{
+		
 		BATTLE_OF_BRITAIN("Battle of Britain"), 
 		OPERATION_BARBAROSSA("Operation Barbarossa"),
 		GUADALCANAL("Guadalcanal"),

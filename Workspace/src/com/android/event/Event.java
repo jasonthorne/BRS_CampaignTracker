@@ -1,8 +1,9 @@
 package com.android.event;
 
 import java.util.List;
-import com.android.Period;
+
 import com.android.event.EventData.EventName;
+import com.android.period.Period;
 import com.android.AirForceData.AirForce;
 
 
@@ -15,6 +16,7 @@ public final class Event {
 	
 	//constructor:
 	private Event(String eventName) { 
+		
 		System.out.println("Event constructed");
 		this.name = eventName; //name event
 		this.airForces = EventData.getAirForces(name); //assign air forces
