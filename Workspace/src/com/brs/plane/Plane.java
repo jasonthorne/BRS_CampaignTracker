@@ -1,10 +1,5 @@
-package com.brs;
+package com.brs.plane;
 
-
-/*
-import java.util.ArrayList;
-import java.util.List;
-*/
 
 //public final class Plane {
 public class Plane {
@@ -54,18 +49,4 @@ public class Plane {
 		
 	}
 	
-
-	/*
-	
-	private List<Avaliablility>avaliabilites = new ArrayList<Avaliablility>(); //list of availabilities
-	Avaliablility avalability;
-	
-	class Avaliablility{
-		Period period;
-		Status status;
-	}
-	*/
-	
-	
-
 }

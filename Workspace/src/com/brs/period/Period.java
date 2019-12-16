@@ -20,10 +20,8 @@ public class Period{
 	}
 
 	@Override
-	public String toString() {
-		return "Period: [" + block + " " + year + "]";
-	}
-	
+	public String toString() { return "Period: [" + block + " " + year + "]"; }
+		
 	//getPeriods() vars:
 	private final static List<Block>blocks = Arrays.asList(Block.values()); //list of all Block values
 	private final static List<Year>years = Arrays.asList(Year.values()); //list of all Year values
