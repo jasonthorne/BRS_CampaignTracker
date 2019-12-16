@@ -3,9 +3,10 @@ package com.android;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.android.EventData.EventName;
-import com.android.Event.EventBuilder;
 import com.android.Player.PlayerBuilder;
+import com.android.event.Event;
+import com.android.event.Event.EventBuilder;
+import com.android.event.EventData.EventName;
 
 public class Campaign {
 	
@@ -80,7 +81,7 @@ public class Campaign {
 	//----------------------------
 	
 	//builder class:
-	static class CampaignBuilder { 
+	static class CampaignBuilder { //+++++++++++++MAYBE SHOULD BE STATIC AND FINAL - same for all other builder classes :P
 		
 		private Campaign campaign = new Campaign();
 		//private HistoricEventBuilder historicEventBuilder;

@@ -1,9 +1,10 @@
-package com.android;
+package com.android.event;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import com.android.Period;
 import com.android.AirForceData.AirForce;
 import com.android.Period.Block;
 import com.android.Period.Year;
@@ -61,34 +62,22 @@ public abstract class EventData {
 	}};
 	
 	
-	public static List<AirForce>getAirForces(String name){
+	//getters (protected so only Event class has access to them):
+	
+	//get AirForces associated with target event:
+	protected static List<AirForce>getAirForces(String name){
 		return eventNames_airForces.get(name);
 	}
 	
-	public static List<Period>getPeriods(String name){
+	//get Periods associated with target event:
+	protected static List<Period>getPeriods(String name){
 		return eventNames_periods.get(name);
 	}
 	
-	public static String getDescription(String name){
+	//get description associated with target event:
+	protected static String getDescription(String name){
 		return eventNames_descriptions.get(name);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 }
