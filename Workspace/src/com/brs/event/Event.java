@@ -1,10 +1,10 @@
-package com.android.event;
+package com.brs.event;
 
 import java.util.List;
 
-import com.android.event.EventData.EventName;
-import com.android.period.Period;
-import com.android.AirForceData.AirForce;
+import com.brs.AirForceData.AirForce;
+import com.brs.event.EventData.EventName;
+import com.brs.period.Period;
 
 
 public final class Event { 

@@ -1,4 +1,4 @@
-package com.android.period;
+package com.brs.period;
 
 public class PeriodData {
 	

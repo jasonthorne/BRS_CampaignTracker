@@ -1,14 +1,14 @@
-package com.android;
+package com.brs;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.android.Campaign.CampaignBuilder;
-import com.android.AirForceData.AirForce;
-import com.android.Campaign;
-import com.android.Pilot.PilotBuilder;
-import com.android.Pilot.PilotSkill;
-import com.android.Player.PlayerBuilder;
-import com.android.event.EventData.EventName;
+import com.brs.Campaign;
+import com.brs.AirForceData.AirForce;
+import com.brs.Campaign.CampaignBuilder;
+import com.brs.Pilot.PilotBuilder;
+import com.brs.Pilot.PilotSkill;
+import com.brs.Player.PlayerBuilder;
+import com.brs.event.EventData.EventName;
 
 
 /*

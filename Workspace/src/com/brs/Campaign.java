@@ -1,11 +1,11 @@
-package com.android;
+package com.brs;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.android.event.Event;
-import com.android.event.Event.EventBuilder;
-import com.android.event.EventData.EventName;
+import com.brs.event.Event;
+import com.brs.event.Event.EventBuilder;
+import com.brs.event.EventData.EventName;
 
 public class Campaign {
 	

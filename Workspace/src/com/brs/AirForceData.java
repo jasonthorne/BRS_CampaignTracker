@@ -1,8 +1,8 @@
-package com.android;
+package com.brs;
 
 public final class AirForceData{
 	
-	//airForce values:
+	//AirForce values:
 	public enum AirForce{
 		RAF("RAF"), 
 		LUFTWAFFE("Luftwaffe"), 

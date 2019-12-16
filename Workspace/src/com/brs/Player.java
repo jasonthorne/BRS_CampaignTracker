@@ -1,7 +1,7 @@
-package com.android;
+package com.brs;
 
-import com.android.AirForceData.AirForce;
-import com.android.Squadron.SquadronBuilder;
+import com.brs.AirForceData.AirForce;
+import com.brs.Squadron.SquadronBuilder;
 
 public class Player{
 	

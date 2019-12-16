@@ -1,13 +1,13 @@
-package com.android.event;
+package com.brs.event;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import com.android.AirForceData.AirForce;
-import com.android.period.Period;
-import com.android.period.PeriodData.Block;
-import com.android.period.PeriodData.Year;
+import com.brs.AirForceData.AirForce;
+import com.brs.period.Period;
+import com.brs.period.PeriodData.Block;
+import com.brs.period.PeriodData.Year;
 
 public abstract class EventData {
 	

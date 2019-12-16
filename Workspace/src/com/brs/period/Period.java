@@ -1,11 +1,12 @@
-package com.android.period;
+package com.brs.period;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
-import com.android.period.PeriodData.Block;
-import com.android.period.PeriodData.Year;
+
+import com.brs.period.PeriodData.Block;
+import com.brs.period.PeriodData.Year;
 
 public class Period{
 	

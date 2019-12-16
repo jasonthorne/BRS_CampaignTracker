@@ -1,9 +1,9 @@
-package com.android;
+package com.brs;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.android.Pilot.PilotBuilder;
+import com.brs.Pilot.PilotBuilder;
 
 public class Squadron {
 	

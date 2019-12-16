@@ -1,4 +1,4 @@
-package com.android;
+package com.brs;
 public class Pilot {
 	
 	////private static int counter = 0; //figure this out!! (builder makes an extra object each time it's instantiated) :P
