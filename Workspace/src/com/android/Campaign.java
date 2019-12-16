@@ -3,7 +3,7 @@ package com.android;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.android.Event.EventName;
+import com.android.EventData.EventName;
 import com.android.Event.EventBuilder;
 import com.android.Player.PlayerBuilder;
 
