@@ -8,7 +8,7 @@ import java.util.ListIterator;
 import com.brs.period.PeriodData.Block;
 import com.brs.period.PeriodData.Year;
 
-public class Period{
+public class Period{ //MAKE THIS IMMUTABLE ++++++++++right now these can be reasigned to null. have a final be returned 
 	
 	private final Block block; //early, mid, late
 	private final Year year; //1940 - 1945

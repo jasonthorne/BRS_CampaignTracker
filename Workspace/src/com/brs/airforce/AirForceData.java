@@ -46,9 +46,9 @@ public final class AirForceData{
 	}};
 	
 	
+	//new plane???
 	
-	
-	
+	//avalabilities - status period
 	
 	///this should be a class and dictate the polane avbaliablilty once the airforce is xelected. ++++++++++++++++
 
