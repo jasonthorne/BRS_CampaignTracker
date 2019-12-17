@@ -1,7 +1,7 @@
 package com.brs;
 
-import com.brs.AirForceData.AirForce;
 import com.brs.Squadron.SquadronBuilder;
+import com.brs.airforce.AirForceData.AirForce;
 
 public class Player{
 	

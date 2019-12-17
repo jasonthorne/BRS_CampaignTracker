@@ -2,7 +2,7 @@ package com.brs.event;
 
 import java.util.List;
 
-import com.brs.AirForceData.AirForce;
+import com.brs.airforce.AirForceData.AirForce;
 import com.brs.event.EventData.EventName;
 import com.brs.period.Period;
 
