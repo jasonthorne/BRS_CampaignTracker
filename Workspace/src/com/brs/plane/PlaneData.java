@@ -5,7 +5,7 @@ public class PlaneData {
 	//Plane models:
 	public enum Model{
 		//56 models in rows of 4:
-		A6_M2_ZERO("A6-M2 Zero"), A6_M5_Zero("A6-M5 Zero"), BF109_E("Bf109 E"), BF109_F("Bf109 F"), 
+		A6_M2_ZERO("A6-M2 Zero"), A6_M5_ZERO("A6-M5 Zero"), BF109_E("Bf109 E"), BF109_F("Bf109 F"), 
 		BF109_G("Bf109 G"), BF109_K("Bf109 K"), BF110_C("Bf110 C"), BF110_G("Bf110 G"), 
 		F4F_WILDCAT("F4F Wildcat"), F4U_CORSAIR("F4U Corsair"), F6F_HELLCAT("F6F Hellcat"), FW190_A("Fw190 A"), 
 		FW190_D("Fw190 D"), HURRICANE_I("Hurricane I"), HURRICANE_II("Hurricane II"), IL_2M3_STURMOVIK("Il-2m3 Sturmovik"), 
