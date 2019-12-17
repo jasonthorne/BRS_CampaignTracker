@@ -4,9 +4,16 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import com.brs.airforce.AirForceData.AirForce;
+import com.brs.period.Period;
+import com.brs.period.PeriodData.Block;
+import com.brs.period.PeriodData.Year;
+import com.brs.plane.Plane;
+import com.brs.plane.Plane.Availability;
 import com.brs.plane.PlaneData.Model;
+import com.brs.plane.PlaneData.Status;;
 
-public final class AirForceData{
+public class AirForceData{
 	
 	//AirForce values:
 	public enum AirForce{
@@ -45,38 +52,44 @@ public final class AirForceData{
 	    		Model.KI_43_HAYABUSA, Model.KI_44_SHOKI, Model.KI_61_HIEN, Model.KI_100_HIEN, Model.KI_84_HAYATE));
 	}};
 	
+	//++++++++++++++++++++map inside map: https://stackoverflow.com/questions/5056708/storing-hashmap-in-a-hashmap
 	
-	//new plane???
+	//POPULATE THE INNER MAP BY ITERATING OVER THE ABOVE MAP 
+	//inner map: airForces_model
+	private static final HashMap<AirForce, Model> airForces_model = new HashMap<AirForce, Model>(){{
+		put(AirForce.RAF, Model.SPITFIRE_II); //++++++TEST KEYS
+		
+	}};
 	
-	//avalabilities - status period
+	//Map<String, Map<String, Value>> outerMap = new HashMap<String, HashMap<String, Value>>();
+	//Map<Map<String, Value>,String> outerMap = new HashMap<HashMap<String, Value>, String>();
+	// outer map: airForcesModels_Availabilities
+	private static final HashMap<HashMap<AirForce, Model>, Availability> airForcesModels_Availabilities = new HashMap<HashMap<AirForce, Model>, Availability>(){{
+		put(airForces_model, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO));
+		
+	}};
+		
+	//====================
+	public static void getTest(){
+		System.out.println(airForcesModels_Availabilities);
+	}
 	
-	///this should be a class and dictate the polane avbaliablilty once the airforce is xelected. ++++++++++++++++
+	//==================
+	//outerMap.put("OuterKey", innerMap);
+	
+	//list of availability objects. each with a period and a status.
+	
 
 
+	//availabilities - status periods
 	//name
 
-	//desciption
+	//AIRFORCE DESCRIPTION HASHMAP NEEDED ++++++++++++++++++++++++++:
+	
+	
 
 	//planes
-	
-	/*
-	 * MAKE A PLANE DATA CLASS - include all models of planes avaliable
-	 * //and plane statuses.
-	 * for default val: 
-	 * https://stackoverflow.com/questions/4664026/default-or-initial-value-for-a-java-enum-array
-	 * Day[] days = new Day[3];
-	Arrays.fill(days, Day.MONDAY);
-	 * and name and description
-	 * 
-	 *  In THIS class add the data of which planes are related to what airforce.
-	 *  and what dates they're avalaible(somehow!!!)
-	 *  and what planes 
-	 *  
-	 *  eg:
-	 *  
-	 *  plane models hashmap - airForces_models
-	 *  plane avaliability hashmap - airForces_avaliability
-	 */
+
 	
 	
 }

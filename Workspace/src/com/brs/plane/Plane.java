@@ -1,19 +1,21 @@
 package com.brs.plane;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.brs.period.Period;
+import com.brs.plane.PlaneData.Status;
 
 //public final class Plane {
 public class Plane {
 	
 	//private final String model;
 	private String model;
+	private List<Availability>availabilities = new ArrayList<Availability>();
 	private Status status;
 	
-	enum Status{ //try make private somehow!!  ++++++++++++++++
-		NONE,
-		LIMIT,
-		AUTO;
-	}
 	
+
 	private Plane(String model, Status status) {
 		System.out.println("Plane constructed");
 		this.model = model;
@@ -24,6 +26,29 @@ public class Plane {
 	public String toString() {
 		return "Plane [model=" + model + ", status=" + status + "]";
 	}
+	
+	//=========================
+	//create a list of availability objects - containing the periods avaliable and the plasnes status within them
+	public static class Availability{
+		
+		private final Period period;
+		private final Status status;
+		
+		public Availability(Period period, Status status){
+			this.period = period;
+			this.status = status;
+		}
+
+		@Override
+		public String toString() {
+			return "Availability [period=" + period + ", status=" + status + "]";
+		}
+		
+		
+	}
+	
+	//NEED A METHOD HERE THAT RETURNS AN AVALIBILTY THATS STATIC. THIS class itslef SHOULDNT BE STATIC (dumb asss) :P
+	//========================
 	
 	
 	//Builder class:
