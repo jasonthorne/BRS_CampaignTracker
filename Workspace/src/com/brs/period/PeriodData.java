@@ -1,6 +1,5 @@
 package com.brs.period;
 
-
 public abstract class PeriodData {
 	
 	//Period block values:

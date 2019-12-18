@@ -42,21 +42,6 @@ public abstract class EventData {
 	    put("Defence of the home islands", Arrays.asList(AirForce.USAAF, AirForce.IJAAF));
 	}};
 	
-	//events and their corresponding periods of history: ////////++++++++++++++++TRY THIS!!! +++++++++++++++++++++++++++++GULP!!! :P
-	private static final HashMap<String, List<List<?>>> eventNames_periods = new HashMap<String, List<List<?>>>() {{
-	    put("Battle of Britain", Arrays.asList(Arrays.asList(Block.MID, Year.FORTY), Arrays.asList(Block.MID, Year.FORTY_ONE)));
-	    put("Operation Barbarossa", Arrays.asList(Arrays.asList(Block.MID, Year.FORTY), Arrays.asList(Block.MID, Year.FORTY_ONE)));
-	    put("Guadalcanal", Arrays.asList(Arrays.asList(Block.MID, Year.FORTY), Arrays.asList(Block.MID, Year.FORTY_ONE)));
-	    put("Stalingrad", Arrays.asList(Arrays.asList(Block.MID, Year.FORTY), Arrays.asList(Block.MID, Year.FORTY_ONE)));
-	    put("Assault on the Reich", Arrays.asList(Arrays.asList(Block.MID, Year.FORTY), Arrays.asList(Block.MID, Year.FORTY_ONE)));
-	    put("The Italian Campaign", Arrays.asList(Arrays.asList(Block.MID, Year.FORTY), Arrays.asList(Block.MID, Year.FORTY_ONE)));
-	    put("Defence of the home islands", Arrays.asList(Arrays.asList(Block.MID, Year.FORTY), Arrays.asList(Block.MID, Year.FORTY_ONE)));
-	}};
-	
-	/* https://stackoverflow.com/questions/19602601/create-an-arraylist-with-multiple-object-types
-	 * 
-	 * https://stackoverflow.com/questions/22806202/java-nested-generic-type
-	 * 
 	//events and their corresponding periods of history:
 	private static final HashMap<String, List<Period>> eventNames_periods = new HashMap<String, List<Period>>() {{
 	    put("Battle of Britain", Period.getPeriods(new Period(Block.MID, Year.FORTY), new Period(Block.MID, Year.FORTY_ONE)));
@@ -67,7 +52,6 @@ public abstract class EventData {
 	    put("The Italian Campaign", Period.getPeriods(new Period(Block.MID, Year.FORTY_THREE), new Period(Block.MID, Year.FORTY_FOUR)));
 	    put("Defence of the home islands", Period.getPeriods(new Period(Block.MID, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE)));
 	}};
-	*/
 	
 	//events and their corresponding description:
 	private static final HashMap<String, String> eventNames_descriptions = new HashMap<String, String>() {{
@@ -88,12 +72,10 @@ public abstract class EventData {
 		return eventNames_airForces.get(name);
 	}
 	
-	/*
 	//get Periods associated with target event:
 	protected static List<Period>getPeriods(String name){
 		return eventNames_periods.get(name);
 	}
-	*/
 	
 	//get description associated with target event:
 	protected static String getDescription(String name){

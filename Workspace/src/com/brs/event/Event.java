@@ -11,7 +11,7 @@ public final class Event {
 	
 	private final String name; //name of event
 	private final List<AirForce>airForces; //air forces involved
-	/////////////////private final List<Period>periods; //periods of history covered
+	private final List<Period>periods; //periods of history covered
 	private final String description; //description of event
 	
 	//constructor:
@@ -20,11 +20,10 @@ public final class Event {
 		System.out.println("Event constructed");
 		this.name = eventName; //name event
 		this.airForces = EventData.getAirForces(name); //assign air forces
-		///////////////////this.periods = EventData.getPeriods(name); //assign periods
+		this.periods = EventData.getPeriods(name); //assign periods
 		this.description = EventData.getDescription(name); //assign description
-		
 		System.out.println("AIRFORCES: " + this.airForces); //+++++++++++++++TEST PRINT
-		//////////////////////////System.out.println("PERIODS: " + this.periods); //+++++++++++++++TEST PRINT
+		System.out.println("PERIODS: " + this.periods); //+++++++++++++++TEST PRINT
 		System.out.println("DESCRIPTION: " + this.description); //+++++++++++++++TEST PRINT
 	}
 	

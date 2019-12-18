@@ -1,6 +1,6 @@
 package com.brs.plane;
 
-public class PlaneData {
+public abstract class PlaneData {
 	
 	//Plane models:
 	public enum Model{
