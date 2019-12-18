@@ -1,6 +1,7 @@
 package com.brs.period;
 
-public class PeriodData {
+
+public abstract class PeriodData {
 	
 	//Period block values:
 	public enum Block{
