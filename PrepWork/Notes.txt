@@ -1,2 +1,5 @@
 Barbarossa:
 https://en.wikipedia.org/wiki/Axis_and_Soviet_air_operations_during_Operation_Barbarossa#Siege_of_Leningrad
+
+
+++++++++++ADD new plane with the relevent dates it's active and the level of asctivity (hashmap with key being date and value being status), DURING first hashmap creation.

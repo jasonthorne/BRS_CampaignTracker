@@ -30,7 +30,14 @@ public class AirForceData{
 		@Override 
 		public String toString() { return airForce; }  //return name of air forc
 	}
+	
+	//MAKE hashmap OF "avaliablePlanes" INSTEAD. by creating a plane object with a hashmap of avaliable dates and their statuses
+	//ONE issue here though is these objects are ALL created. 
+	//maybe here we add a list of hashmapsa as the value instead, with the plane type being the key, and maybe a third hashmap holding  the dates and values.
 
+	//WHY ISNT THIS IN A SWITCH STEMENT!! - passing in the name of the chosen airfoce, and then creating the revelent plane objects
+	//and giving them a hashmap of avaliable dates and their statuses.
+	
 	//air forces and the models of planes available to them:
 	private static final HashMap<AirForce, List<Model>> airForces_models = new HashMap<AirForce, List<Model>>() {{
 	    put(AirForce.RAF, Arrays.asList(
