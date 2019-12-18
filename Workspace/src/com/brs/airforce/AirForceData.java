@@ -31,13 +31,6 @@ public class AirForceData{
 		public String toString() { return airForce; }  //return name of air force
 	}
 	
-	//MAKE hashmap OF "avaliablePlanes" INSTEAD. by creating a plane object with a hashmap of avaliable dates and their statuses
-	//ONE issue here though is these objects are ALL created. 
-	//maybe here we add a list of hashmapsa as the value instead, with the plane type being the key, and maybe a third hashmap holding  the dates and values.
-
-	//WHY ISNT THIS IN A SWITCH STEMENT!! - passing in the name of the chosen airfoce, and then creating the revelent plane objects
-	//and giving them a hashmap of avaliable dates and their statuses.
-	
 	//air forces and the models of planes available to them:
 	private static final HashMap<AirForce, List<Model>> airForces_models = new HashMap<AirForce, List<Model>>() {{
 	    put(AirForce.RAF, Arrays.asList(
@@ -62,7 +55,21 @@ public class AirForceData{
 	//++++++++++++++++++++map inside map: https://stackoverflow.com/questions/5056708/storing-hashmap-in-a-hashmap
 	
 	//POPULATE THE INNER MAP BY ITERATING OVER THE ABOVE MAP 
-	//inner map: airForces_model
+	//inner map: models_avaliabilities
+	private static final HashMap<Model, Availability> models_Availabilities = new HashMap<Model, Availability>(){{
+		put(Model.SPITFIRE_II, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO)); //++++++TEST KEYS
+		
+	}};
+	
+	//Map<String, Map<String, Value>> outerMap = new HashMap<String, HashMap<String, Value>>();
+	//Map<Map<String, Value>,String> outerMap = new HashMap<HashMap<String, Value>, String>();
+	// outer map: airForcesModels_Availabilities
+	private static final HashMap<AirForce, HashMap<Model,Availability>> airForces_ModelsAvailabilities = new HashMap<AirForce, HashMap<Model,Availability>>(){{
+		//put(AirForce.RAF, models_Availabilities); 
+		put(AirForce.RAF, models_Availabilities); //.put(Model.SPITFIRE_II, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO)));
+	}};
+	
+	/*
 	private static final HashMap<AirForce, Model> airForces_model = new HashMap<AirForce, Model>(){{
 		put(AirForce.RAF, Model.SPITFIRE_II); //++++++TEST KEYS
 		
@@ -76,9 +83,10 @@ public class AirForceData{
 		
 	}};
 		
+	*/
 	//====================
 	public static void getTest(){
-		System.out.println(airForcesModels_Availabilities);
+		System.out.println(airForces_ModelsAvailabilities);
 	}
 	
 	//==================
@@ -96,6 +104,13 @@ public class AirForceData{
 	
 
 	//planes
+	
+	//MAKE hashmap OF "avaliablePlanes" INSTEAD. by creating a plane object with a hashmap of avaliable dates and their statuses
+		//ONE issue here though is these objects are ALL created. 
+		//maybe here we add a list of hashmapsa as the value instead, with the plane type being the key, and maybe a third hashmap holding  the dates and values.
+
+		//WHY ISNT THIS IN A SWITCH STEMENT!! - passing in the name of the chosen airfoce, and then creating the revelent plane objects
+		//and giving them a hashmap of avaliable dates and their statuses.
 
 	
 	

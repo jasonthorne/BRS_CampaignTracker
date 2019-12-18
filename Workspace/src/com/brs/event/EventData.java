@@ -64,7 +64,6 @@ public abstract class EventData {
 	    put("Defence of the home islands", "'Defence of the home islands' description");
 	}};
 	
-	
 	//getters (protected so only Event has access):
 	
 	//get AirForces associated with target event:
