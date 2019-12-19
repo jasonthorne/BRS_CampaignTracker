@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.brs.Campaign;
+import com.brs.DoubleKey;
 import com.brs.airforce.AirForceData.AirForce;
 import com.brs.event.EventData.EventName;
 import com.brs.period.Period;
@@ -69,9 +70,16 @@ public class AirForceData{
 	
 	//----------------https://stackoverflow.com/questions/14677993/how-to-create-a-hashmap-with-two-keys-key-pair-value
 	
-	private static final HashMap<List<Enum<?>>, List<?>> test = new HashMap<List<Enum<?>>, List<?>>() {{
-	    put(Arrays.asList(AirForce.RAF, Model.HURRICANE_I), Arrays.asList(Arrays.asList(Block.EARLY, Year.FORTY_ONE), Status.LIMIT));
+	
+	
+	//private static final HashMap<List<Enum<?>>, List<?>> test = new HashMap<List<Enum<?>>, List<?>>() {{
+	private static final HashMap<DoubleKey, List<?>> test = new HashMap<DoubleKey, List<?>>() {{
+	   /* put(Arrays.asList(AirForce.RAF, Model.HURRICANE_I), Arrays.asList(Arrays.asList(Block.EARLY, Year.FORTY_ONE), Status.LIMIT));
 	    put(Arrays.asList(AirForce.LUFTWAFFE, Model.A6_M5_ZERO), Arrays.asList(Arrays.asList(Block.LATE, Year.FORTY_FIVE), Status.NONE));
+	    */
+		
+	    put(testDbl(AirForce.RAF, Model.HURRICANE_I) , Arrays.asList(Arrays.asList(Block.EARLY, Year.FORTY_ONE), Status.LIMIT));
+	    put(testDbl(AirForce.LUFTWAFFE, Model.A6_M5_ZERO), Arrays.asList(Arrays.asList(Block.LATE, Year.FORTY_FIVE), Status.NONE));
 	   
 	}};
 
@@ -80,7 +88,11 @@ public class AirForceData{
 	//Map<Key, V> map = //...
 		
 	//	map.get(new Key(2, 5));
-	
+	public static DoubleKey testDbl(AirForce a, Model b) {
+		
+		//DoubleKey doubleKey = new Double
+		return new DoubleKey(a, b);
+	}
 	
 	
 	
@@ -122,6 +134,8 @@ public class AirForceData{
 		System.out.println(test);
 		List<Enum<?>> t= Arrays.asList(AirForce.RAF, Model.HURRICANE_I);
 		System.out.println(test.get(t));
+		
+		System.out.println(test.get(new DoubleKey(AirForce.RAF, Model.HURRICANE_I)));
 	}
 	
 	

@@ -14,8 +14,8 @@ public class DoubleKey {
         this.key1 = key1;
         this.key2 = key2;
     }
-
-
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
