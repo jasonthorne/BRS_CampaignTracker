@@ -32,7 +32,7 @@ public abstract class EventData {
 	}
 	
 	//events and the corresponding air forces involved:
-	private static final HashMap<String, List<AirForce>> eventNames_airForces = new HashMap<String, List<AirForce>>() {{
+	private static final HashMap<String, List<AirForce>> eventNameToAirForces = new HashMap<String, List<AirForce>>() {{
 	    put("Battle of Britain", Arrays.asList(AirForce.RAF, AirForce.LUFTWAFFE));
 	    put("Operation Barbarossa", Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE));
 	    put("Guadalcanal", Arrays.asList(AirForce.USAAF, AirForce.IJAAF));
@@ -44,7 +44,7 @@ public abstract class EventData {
 	
 	
 	//events and their corresponding periods of history:
-	private static final HashMap<String, List<Period>> eventNames_periods = new HashMap<String, List<Period>>() {{
+	private static final HashMap<String, List<Period>> eventNameToPeriods = new HashMap<String, List<Period>>() {{
 	    put("Battle of Britain", Period.getPeriods(new Period(Block.MID, Year.FORTY), new Period(Block.MID, Year.FORTY_ONE)));
 	    put("Operation Barbarossa", Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_ONE)));
 	    put("Guadalcanal", Period.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_THREE)));
@@ -56,7 +56,7 @@ public abstract class EventData {
 	
 	
 	//events and their corresponding description:
-	private static final HashMap<String, String> eventNames_descriptions = new HashMap<String, String>() {{
+	private static final HashMap<String, String> eventNameToDescription = new HashMap<String, String>() {{
 	    put("Battle of Britain", "'Battle of Britain' description");
 	    put("Operation Barbarossa", "'Operation Barbarossa' description");
 	    put("Guadalcanal", "'Guadalcanal' description");
@@ -71,17 +71,17 @@ public abstract class EventData {
 	
 	//get AirForces associated with target event:
 	protected static List<AirForce>getAirForces(String name){
-		return eventNames_airForces.get(name);
+		return eventNameToAirForces.get(name);
 	}
 	
 	//get Periods associated with target event:
 	protected static List<Period>getPeriods(String name){
-		return eventNames_periods.get(name);
+		return eventNameToPeriods.get(name);
 	}
 	
 	//get description associated with target event:
 	protected static String getDescription(String name){
-		return eventNames_descriptions.get(name);
+		return eventNameToDescription.get(name);
 	}
 	
 	

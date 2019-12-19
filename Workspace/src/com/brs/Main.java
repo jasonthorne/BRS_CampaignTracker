@@ -321,20 +321,26 @@ public class Main {
 		
 
 		/*
+		 
 		]
 		<K: <k: airforce, v: model>, V: availability>
 		<K: <k: airforce, v: model>, V: availability>
 		<K: <k: airforce, v: model>, V: availability>
 		[
-		*/
 		
-		HashMap<AirForce, Model> K_airForce_V_model1 = new HashMap<AirForce, Model>(){{
-			put(AirForce.RAF, Model.SPITFIRE_II); //++++++TEST KEYS
-			
+		*/
+		//HASHMAP .CLEAR
+		//https://www.geeksforgeeks.org/hashmap-clear-method-in-java/
+		
+		HashMap<AirForce, Model> K_airForce_V_model1 = new HashMap<AirForce, Model>(){{ 
+			put(AirForce.RAF, Model.SPITFIRE_II);
 		}};
+			
+			
+		
 		
 		HashMap<AirForce, Model> K_airForce_V_model2 = new HashMap<AirForce, Model>(){{
-			put(AirForce.LUFTWAFFE, Model.BF109_E); //++++++TEST KEYS
+			put(AirForce.LUFTWAFFE, Model.BF109_E); 
 			
 		}};
 		
@@ -349,12 +355,19 @@ public class Main {
 			
 		}};
 		
+		
+		//K_k_airForce_v_Model_V_availabilities1.put(K_airForce_V_model1, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.LIMIT));
+		
+		//K_airForce_V_model1.put(AirForce.LUFTWAFFE, Model.BF109_E);
+		
 		List<HashMap>TEST = Arrays.asList(
 				K_k_airForce_v_Model_V_availabilities1,
 				K_k_airForce_v_Model_V_availabilities2
 		);
 				
-		System.out.println("TEST:" + TEST);
+		/////////////////System.out.println("TEST:" + TEST);
+		System.out.println();
+		AirForceData.testLoops(); //TEST PRINT
 
 	}
 	

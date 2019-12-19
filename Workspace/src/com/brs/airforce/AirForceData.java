@@ -33,7 +33,7 @@ public class AirForceData{
 	}
 	
 	//air forces and the models of planes available to them:
-	private static final HashMap<AirForce, List<Model>> airForces_models = new HashMap<AirForce, List<Model>>() {{
+	private static final HashMap<AirForce, List<Model>> airForceToModels = new HashMap<AirForce, List<Model>>() {{
 	    put(AirForce.RAF, Arrays.asList(
 	    		Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
 	    		Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV,  Model.TEMPEST_V, Model.TYPHOON_IB));
@@ -53,52 +53,94 @@ public class AirForceData{
 	    		Model.KI_61_HIEN, Model.KI_84_HAYATE, Model.KI_100_HIEN, Model.N1K1_J_SHIDEN, Model.N1K2_J_SHIDEN_KAI));
 	}};
 	
-	//++++++++++++++++++++map inside map: https://stackoverflow.com/questions/5056708/storing-hashmap-in-a-hashmap
 	
-	
-	/*
-	//POPULATE THE INNER MAP BY ITERATING OVER THE ABOVE MAP 
-	//inner map: models_avaliabilities
-	private static final HashMap<Model, Availability> models_Availabilities = new HashMap<Model, Availability>(){{
-		put(Model.SPITFIRE_II, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO)); //++++++TEST KEYS
-		
-	}};
-	
-	//Map<String, Map<String, Value>> outerMap = new HashMap<String, HashMap<String, Value>>();
-	//Map<Map<String, Value>,String> outerMap = new HashMap<HashMap<String, Value>, String>();
-	// outer map: airForcesModels_Availabilities
-	private static final HashMap<AirForce, HashMap<Model,Availability>> airForces_ModelsAvailabilities = new HashMap<AirForce, HashMap<Model,Availability>>(){{
-		//put(AirForce.RAF, models_Availabilities); 
-		put(AirForce.RAF, models_Availabilities); //.put(Model.SPITFIRE_II, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO)));
-	}};
-	
-	//THIS IS THE MONEY :P
-	
-	private static final HashMap<AirForce, Model> airForces_modelddd = new HashMap<AirForce, Model>(){{
-		put(AirForce.RAF, Model.SPITFIRE_II); //++++++TEST KEYS
-		put(AirForce.LUFTWAFFE, Model.BF109_E); //++++++SHIT :D 
-	}};
-	
-	//Map<String, Map<String, Value>> outerMap = new HashMap<String, HashMap<String, Value>>();
-	//Map<Map<String, Value>,String> outerMap = new HashMap<HashMap<String, Value>, String>();
-	// outer map: airForcesModels_Availabilities
-	private static final HashMap<HashMap<AirForce, Model>, Availability> airForcesModels_Availabilities = new HashMap<HashMap<AirForce, Model>, Availability>(){{
-		put(airForces_modelddd, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO));
-		
-	}};
-	*/
-	
-	
-	
-	
-	
+	//==================================================================================================================
+	//map inside map: https://stackoverflow.com/questions/5056708/storing-hashmap-in-a-hashmap
 	
 	/*
-	//====================
-	public static void getTest(){
-		System.out.println(airForcesModels_Availabilities);
+	]
+		<K: <k: airforce, v: model>, V: availability>
+		<K: <k: airforce, v: model>, V: availability>
+		<K: <k: airforce, v: model>, V: availability>
+	[
+	*/		
+	
+
+	//------------------------+++ADD PROTECTION TO ALL THIS STATIC STUFF
+	static HashMap<AirForce, Model> airForceToModel = new HashMap<AirForce, Model>(); //hashmap for airForce and model (key hashmap)
+	static HashMap<HashMap<AirForce,Model>,Availability>airForceModelToAvailabilities = new HashMap<HashMap<AirForce,Model>,Availability>();
+	static List<HashMap<HashMap<AirForce,Model>,Availability>>TEST2 = new ArrayList<HashMap<HashMap<AirForce, Model>, Availability>>(); //NOT SAFE
+	
+	public static void testLoops(){ 
+		
+		//LOOP OVER ORIGINAL LIST AND CEATE A LIST (OR HASHMAP) OF ALL PLANE AND ARIFORCE OPTIONS
+		
+		//NEW HASHMAPS
+		/////HashMap<AirForce, Model> airForceToModel2 = new HashMap<AirForce, Model>(); //hashmap for airForce and model (key hashmap)
+		//////HashMap<HashMap<AirForce, Model>, Availability> airForceModelToAvailabilities2 = new HashMap<HashMap<AirForce,Model>,Availability>();
+		
+		//add values to hashMaps:
+		airForceToModel.put(AirForce.RAF, Model.SPITFIRE_II); 
+		airForceModelToAvailabilities.put(airForceToModel, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.LIMIT)); 
+		
+		TEST2.add(airForceModelToAvailabilities); //add values to list
+		System.out.println("TEST2 is: " + TEST2);
+		
+		//clear hashmaps:
+		airForceToModel.clear();
+		airForceModelToAvailabilities.clear();
+		
+		System.out.println("airForceToModel is: " + airForceToModel);
+		System.out.println("airForceModelToAvailabilities is: " + airForceModelToAvailabilities);
+		System.out.println("TEST2 is: " + TEST2);
+		
+		//rinse and repeat... 
 	}
-	*/
+	
+	
+	//-------------------------https://stackoverflow.com/questions/28288546/how-to-copy-hashmap-not-shallow-copy-in-java
+	
+	static HashMap<AirForce, Model> K_airForce_V_model1 = new HashMap<AirForce, Model>(){{ 
+		put(AirForce.RAF, Model.SPITFIRE_II);
+	}};
+		
+	
+	static HashMap<AirForce, Model> K_airForce_V_model2 = new HashMap<AirForce, Model>(){{
+		put(AirForce.LUFTWAFFE, Model.BF109_E); 
+		
+	}};
+	
+	static HashMap<HashMap<AirForce,Model>,Availability>K_k_airForce_v_Model_V_availabilities1 = new HashMap<HashMap<AirForce,Model>,Availability>(){{
+		put(K_airForce_V_model1, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.LIMIT));
+		
+	}};
+	
+	static HashMap<HashMap<AirForce,Model>,Availability>K_k_airForce_v_Model_V_availabilities2 = new HashMap<HashMap<AirForce,Model>,Availability>(){{
+		put(K_airForce_V_model2, new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO));
+		
+	}};
+	
+	
+	//K_k_airForce_v_Model_V_availabilities1.put(K_airForce_V_model1, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.LIMIT));
+	
+	//K_airForce_V_model1.put(AirForce.LUFTWAFFE, Model.BF109_E);
+	
+	static List<HashMap<HashMap<AirForce,Model>,Availability>>TEST = Arrays.asList(
+			K_k_airForce_v_Model_V_availabilities1,
+			K_k_airForce_v_Model_V_availabilities2
+	);
+	
+	//=========================================================================================================
+	
+	
+	//====================
+	public static void getTest(){ //+++ADD PROTECTION TO ALL THIS STATIC STUFF
+		
+		
+		
+		System.out.println("TEST: " + TEST);
+	}
+	
 	//==================
 	
 	
