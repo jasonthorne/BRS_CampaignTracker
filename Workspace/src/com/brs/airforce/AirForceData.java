@@ -1,5 +1,6 @@
 package com.brs.airforce;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -54,6 +55,8 @@ public class AirForceData{
 	
 	//++++++++++++++++++++map inside map: https://stackoverflow.com/questions/5056708/storing-hashmap-in-a-hashmap
 	
+	
+	/*
 	//POPULATE THE INNER MAP BY ITERATING OVER THE ABOVE MAP 
 	//inner map: models_avaliabilities
 	private static final HashMap<Model, Availability> models_Availabilities = new HashMap<Model, Availability>(){{
@@ -69,8 +72,8 @@ public class AirForceData{
 		put(AirForce.RAF, models_Availabilities); //.put(Model.SPITFIRE_II, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO)));
 	}};
 	
-	/* THIS IS THE MONEY :P
-	 */
+	//THIS IS THE MONEY :P
+	
 	private static final HashMap<AirForce, Model> airForces_modelddd = new HashMap<AirForce, Model>(){{
 		put(AirForce.RAF, Model.SPITFIRE_II); //++++++TEST KEYS
 		put(AirForce.LUFTWAFFE, Model.BF109_E); //++++++SHIT :D 
@@ -83,14 +86,28 @@ public class AirForceData{
 		put(airForces_modelddd, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO));
 		
 	}};
-		
+	*/
 	
+	
+	
+	
+	
+	
+	/*
 	//====================
 	public static void getTest(){
 		System.out.println(airForcesModels_Availabilities);
 	}
-	
+	*/
 	//==================
+	
+	
+	
+	
+	
+	
+	
+	
 	//outerMap.put("OuterKey", innerMap);
 	
 	//list of availability objects. each with a period and a status.

@@ -42,6 +42,7 @@ public abstract class EventData {
 	    put("Defence of the home islands", Arrays.asList(AirForce.USAAF, AirForce.IJAAF));
 	}};
 	
+	
 	//events and their corresponding periods of history:
 	private static final HashMap<String, List<Period>> eventNames_periods = new HashMap<String, List<Period>>() {{
 	    put("Battle of Britain", Period.getPeriods(new Period(Block.MID, Year.FORTY), new Period(Block.MID, Year.FORTY_ONE)));
@@ -53,6 +54,7 @@ public abstract class EventData {
 	    put("Defence of the home islands", Period.getPeriods(new Period(Block.MID, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE)));
 	}};
 	
+	
 	//events and their corresponding description:
 	private static final HashMap<String, String> eventNames_descriptions = new HashMap<String, String>() {{
 	    put("Battle of Britain", "'Battle of Britain' description");
@@ -63,6 +65,7 @@ public abstract class EventData {
 	    put("The Italian Campaign", "'The Italian Campaign' description");
 	    put("Defence of the home islands", "'Defence of the home islands' description");
 	}};
+	
 	
 	//getters (protected so only Event has access):
 	

@@ -1,5 +1,6 @@
 package com.brs;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -142,7 +143,7 @@ public class Main {
 		//------------------LANDING PAGE ---------------
 		System.out.println("\nLANDING PAGE:");
 		
-		AirForceData.getTest();
+		//////////////AirForceData.getTest();
 		
 		//CAMPAIGN VARS:
 		List<Campaign>campaigns= new ArrayList<Campaign>(); //list of campaigns created
@@ -316,8 +317,62 @@ public class Main {
 		//models_Availabilities.put(Model.SPITFIRE_II, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO));
 		airForces_ModelsAvailabilities.put(AirForce.RAF, (models_Availabilities.put(Model.SPITFIRE_II, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO))));
 		*/
+		
+		
+
+		/*
+		]
+		<K: <k: airforce, v: model>, V: availability>
+		<K: <k: airforce, v: model>, V: availability>
+		<K: <k: airforce, v: model>, V: availability>
+		[
+		*/
+		
+		HashMap<AirForce, Model> K_airForce_V_model1 = new HashMap<AirForce, Model>(){{
+			put(AirForce.RAF, Model.SPITFIRE_II); //++++++TEST KEYS
+			
+		}};
+		
+		HashMap<AirForce, Model> K_airForce_V_model2 = new HashMap<AirForce, Model>(){{
+			put(AirForce.LUFTWAFFE, Model.BF109_E); //++++++TEST KEYS
+			
+		}};
+		
+		
+		 HashMap<HashMap<AirForce,Model>,Availability>K_k_airForce_v_Model_V_availabilities1 = new HashMap<HashMap<AirForce,Model>,Availability>(){{
+			put(K_airForce_V_model1, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.LIMIT));
+			
+		}};
+		
+		HashMap<HashMap<AirForce,Model>,Availability>K_k_airForce_v_Model_V_availabilities2 = new HashMap<HashMap<AirForce,Model>,Availability>(){{
+			put(K_airForce_V_model2, new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO));
+			
+		}};
+		
+		List<HashMap>TEST = Arrays.asList(
+				K_k_airForce_v_Model_V_availabilities1,
+				K_k_airForce_v_Model_V_availabilities2
+		);
+				
+		System.out.println("TEST:" + TEST);
 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 
