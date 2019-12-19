@@ -1,5 +1,6 @@
 package com.brs;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.brs.Campaign;
@@ -10,6 +11,13 @@ import com.brs.Player.PlayerBuilder;
 import com.brs.airforce.AirForceData;
 import com.brs.airforce.AirForceData.AirForce;
 import com.brs.event.EventData.EventName;
+import com.brs.period.Period;
+import com.brs.period.PeriodData.Block;
+import com.brs.period.PeriodData.Year;
+import com.brs.plane.Plane;
+import com.brs.plane.Plane.Availability;
+import com.brs.plane.PlaneData.Model;
+import com.brs.plane.PlaneData.Status;
 
 
 /*
@@ -287,13 +295,28 @@ public class Main {
 		
 		
 
-		
+		/*
 		//----------------------------------------------
+		//POPULATE THE INNER MAP BY ITERATING OVER THE ABOVE MAP 
+		//inner map: models_avaliabilities
+		  HashMap<Model, Availability> models_Availabilities = new HashMap<Model, Availability>(); //{{
+			//put(Model.SPITFIRE_II, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO)); //++++++TEST KEYS
+			
+		//}};
+		
+		//Map<String, Map<String, Value>> outerMap = new HashMap<String, HashMap<String, Value>>();
+		//Map<Map<String, Value>,String> outerMap = new HashMap<HashMap<String, Value>, String>();
+		// outer map: airForcesModels_Availabilities
+		 HashMap<AirForce, HashMap<Model,Availability>> airForces_ModelsAvailabilities = new HashMap<AirForce, HashMap<Model,Availability>>(); //{{
+			//put(AirForce.RAF, models_Availabilities); 
+			
+		//}};
 		
 		
-		
-		
-		
+		//models_Availabilities.put(Model.SPITFIRE_II, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO));
+		airForces_ModelsAvailabilities.put(AirForce.RAF, (models_Availabilities.put(Model.SPITFIRE_II, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO))));
+		*/
+
 	}
 	
 	

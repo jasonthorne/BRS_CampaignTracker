@@ -69,24 +69,25 @@ public class AirForceData{
 		put(AirForce.RAF, models_Availabilities); //.put(Model.SPITFIRE_II, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO)));
 	}};
 	
-	/*
-	private static final HashMap<AirForce, Model> airForces_model = new HashMap<AirForce, Model>(){{
+	/* THIS IS THE MONEY :P
+	 */
+	private static final HashMap<AirForce, Model> airForces_modelddd = new HashMap<AirForce, Model>(){{
 		put(AirForce.RAF, Model.SPITFIRE_II); //++++++TEST KEYS
-		
+		put(AirForce.LUFTWAFFE, Model.BF109_E); //++++++SHIT :D 
 	}};
 	
 	//Map<String, Map<String, Value>> outerMap = new HashMap<String, HashMap<String, Value>>();
 	//Map<Map<String, Value>,String> outerMap = new HashMap<HashMap<String, Value>, String>();
 	// outer map: airForcesModels_Availabilities
 	private static final HashMap<HashMap<AirForce, Model>, Availability> airForcesModels_Availabilities = new HashMap<HashMap<AirForce, Model>, Availability>(){{
-		put(airForces_model, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO));
+		put(airForces_modelddd, new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO));
 		
 	}};
 		
-	*/
+	
 	//====================
 	public static void getTest(){
-		System.out.println(airForces_ModelsAvailabilities);
+		System.out.println(airForcesModels_Availabilities);
 	}
 	
 	//==================
