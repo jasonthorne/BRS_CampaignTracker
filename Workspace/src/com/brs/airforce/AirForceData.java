@@ -77,7 +77,9 @@ public class AirForceData{
 
 	
 	
-	
+	//Map<Key, V> map = //...
+		
+	//	map.get(new Key(2, 5));
 	
 	
 	
