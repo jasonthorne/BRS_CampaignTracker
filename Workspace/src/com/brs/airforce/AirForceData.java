@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import com.brs.Campaign;
 import com.brs.airforce.AirForceData.AirForce;
+import com.brs.event.EventData.EventName;
 import com.brs.period.Period;
 import com.brs.period.PeriodData.Block;
 import com.brs.period.PeriodData.Year;
@@ -65,7 +67,21 @@ public class AirForceData{
 	[
 	*/		
 	
+	//----------------https://stackoverflow.com/questions/14677993/how-to-create-a-hashmap-with-two-keys-key-pair-value
+	
+	private static final HashMap<List<Enum<?>>, List<?>> test = new HashMap<List<Enum<?>>, List<?>>() {{
+	    put(Arrays.asList(AirForce.RAF, Model.HURRICANE_I), Arrays.asList(Arrays.asList(Block.EARLY, Year.FORTY_ONE), Status.LIMIT));
+	    put(Arrays.asList(AirForce.LUFTWAFFE, Model.A6_M5_ZERO), Arrays.asList(Arrays.asList(Block.LATE, Year.FORTY_FIVE), Status.NONE));
+	   
+	}};
 
+	
+	
+	
+	
+	
+	
+	
 	//------------------------+++ADD PROTECTION TO ALL THIS STATIC STUFF
 	static HashMap<AirForce, Model> airForceToModel = new HashMap<AirForce, Model>(); //hashmap for airForce and model (key hashmap)
 	static HashMap<HashMap<AirForce,Model>,Availability>airForceModelToAvailabilities = new HashMap<HashMap<AirForce,Model>,Availability>();
@@ -95,6 +111,15 @@ public class AirForceData{
 		System.out.println("TEST2 is: " + TEST2);
 		
 		//rinse and repeat... 
+		
+		List<Object> s= new ArrayList<>();
+		s.add(AirForce.RAF);
+		s.add(EventName.ASSAULT_ON_THE_REICH);
+		System.out.println(s);
+		
+		System.out.println(test);
+		List<Enum<?>> t= Arrays.asList(AirForce.RAF, Model.HURRICANE_I);
+		System.out.println(test.get(t));
 	}
 	
 	
@@ -165,13 +190,7 @@ public class AirForceData{
 
 	//planes
 	
-	//MAKE hashmap OF "avaliablePlanes" INSTEAD. by creating a plane object with a hashmap of avaliable dates and their statuses
-		//ONE issue here though is these objects are ALL created. 
-		//maybe here we add a list of hashmapsa as the value instead, with the plane type being the key, and maybe a third hashmap holding  the dates and values.
-
-		//WHY ISNT THIS IN A SWITCH STEMENT!! - passing in the name of the chosen airfoce, and then creating the revelent plane objects
-		//and giving them a hashmap of avaliable dates and their statuses.
-
+	
 	
 	
 }

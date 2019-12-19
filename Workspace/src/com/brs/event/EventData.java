@@ -33,37 +33,37 @@ public abstract class EventData {
 	
 	//events and the corresponding air forces involved:
 	private static final HashMap<String, List<AirForce>> eventNameToAirForces = new HashMap<String, List<AirForce>>() {{
-	    put("Battle of Britain", Arrays.asList(AirForce.RAF, AirForce.LUFTWAFFE));
-	    put("Operation Barbarossa", Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE));
-	    put("Guadalcanal", Arrays.asList(AirForce.USAAF, AirForce.IJAAF));
-	    put("Stalingrad", Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE));
-	    put("Assault on the Reich", Arrays.asList(AirForce.RAF, AirForce.USAAF, AirForce.LUFTWAFFE));
-	    put("The Italian Campaign", Arrays.asList(AirForce.RAF, AirForce.USAAF, AirForce.LUFTWAFFE));
-	    put("Defence of the home islands", Arrays.asList(AirForce.USAAF, AirForce.IJAAF));
+	    put(EventName.BATTLE_OF_BRITAIN.toString(), Arrays.asList(AirForce.RAF, AirForce.LUFTWAFFE));
+	    put(EventName.OPERATION_BARBAROSSA.toString(), Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE));
+	    put(EventName.GUADALCANAL.toString(), Arrays.asList(AirForce.USAAF, AirForce.IJAAF));
+	    put(EventName.STALINGRAD.toString(), Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE));
+	    put(EventName.ASSAULT_ON_THE_REICH.toString(), Arrays.asList(AirForce.RAF, AirForce.USAAF, AirForce.LUFTWAFFE));
+	    put(EventName.THE_ITALIAN_CAMPAIGN.toString(), Arrays.asList(AirForce.RAF, AirForce.USAAF, AirForce.LUFTWAFFE));
+	    put(EventName.DEFENCE_OF_THE_HOME_ISLANDS.toString(), Arrays.asList(AirForce.USAAF, AirForce.IJAAF));
 	}};
 	
 	
-	//events and their corresponding periods of history:
+	//events and their corresponding periods of history: //+++++++++++++THINK ABOUT STORING IN JUST BLOCKS AND YEARS, AND CREATING PERIODS IN METHOD INSTEAD
 	private static final HashMap<String, List<Period>> eventNameToPeriods = new HashMap<String, List<Period>>() {{
-	    put("Battle of Britain", Period.getPeriods(new Period(Block.MID, Year.FORTY), new Period(Block.MID, Year.FORTY_ONE)));
-	    put("Operation Barbarossa", Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_ONE)));
-	    put("Guadalcanal", Period.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_THREE)));
-	    put("Stalingrad", Period.getPeriods(new Period(Block.LATE, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_THREE)));
-	    put("Assault on the Reich", Period.getPeriods(new Period(Block.MID, Year.FORTY_THREE), new Period(Block.EARLY, Year.FORTY_FIVE)));
-	    put("The Italian Campaign", Period.getPeriods(new Period(Block.MID, Year.FORTY_THREE), new Period(Block.MID, Year.FORTY_FOUR)));
-	    put("Defence of the home islands", Period.getPeriods(new Period(Block.MID, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE)));
+	    put(EventName.BATTLE_OF_BRITAIN.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY), new Period(Block.MID, Year.FORTY_ONE)));
+	    put(EventName.OPERATION_BARBAROSSA.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_ONE)));
+	    put(EventName.GUADALCANAL.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_THREE)));
+	    put(EventName.STALINGRAD.toString(), Period.getPeriods(new Period(Block.LATE, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_THREE)));
+	    put(EventName.ASSAULT_ON_THE_REICH.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY_THREE), new Period(Block.EARLY, Year.FORTY_FIVE)));
+	    put(EventName.THE_ITALIAN_CAMPAIGN.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY_THREE), new Period(Block.MID, Year.FORTY_FOUR)));
+	    put(EventName.DEFENCE_OF_THE_HOME_ISLANDS.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE)));
 	}};
 	
 	
 	//events and their corresponding description:
 	private static final HashMap<String, String> eventNameToDescription = new HashMap<String, String>() {{
-	    put("Battle of Britain", "'Battle of Britain' description");
-	    put("Operation Barbarossa", "'Operation Barbarossa' description");
-	    put("Guadalcanal", "'Guadalcanal' description");
-	    put("Stalingrad", "'Stalingrad' description");
-	    put("Assault on the Reich", "'Assault on the Reich' description");
-	    put("The Italian Campaign", "'The Italian Campaign' description");
-	    put("Defence of the home islands", "'Defence of the home islands' description");
+	    put(EventName.BATTLE_OF_BRITAIN.toString(), "'Battle of Britain' description");
+	    put(EventName.OPERATION_BARBAROSSA.toString(), "'Operation Barbarossa' description");
+	    put(EventName.GUADALCANAL.toString(), "'Guadalcanal' description");
+	    put(EventName.STALINGRAD.toString(), "'Stalingrad' description");
+	    put(EventName.ASSAULT_ON_THE_REICH.toString(), "'Assault on the Reich' description");
+	    put(EventName.THE_ITALIAN_CAMPAIGN.toString(), "'The Italian Campaign' description");
+	    put(EventName.DEFENCE_OF_THE_HOME_ISLANDS.toString(), "'Defence of the home islands' description");
 	}};
 	
 	
