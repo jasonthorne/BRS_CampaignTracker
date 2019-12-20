@@ -43,10 +43,6 @@ public abstract class EventData {
 	    put(EventName.DEFENCE_OF_THE_HOME_ISLANDS.toString(), Arrays.asList(AirForce.USAAF, AirForce.IJAAF));
 	}};
 	
-	//get AirForces associated with target event:
-	protected static List<AirForce>getAirForces(String name){ return eventNameToAirForces.get(name);}
-	
-	
 	
 	//events and their corresponding periods of history: //+++++++++++++THINK ABOUT STORING IN JUST BLOCKS AND YEARS, AND CREATING PERIODS IN METHOD INSTEAD
 	private static final Map<String, List<Period>> eventNameToPeriods = new HashMap<String, List<Period>>() {{
@@ -59,10 +55,6 @@ public abstract class EventData {
 	    put(EventName.DEFENCE_OF_THE_HOME_ISLANDS.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE)));
 	}};
 	
-	//get Periods associated with target event:
-	protected static List<Period>getPeriods(String name){ return eventNameToPeriods.get(name); }
-	
-	
 	
 	//events and their corresponding description:
 	private static final Map<String, String> eventNameToDescription = new HashMap<String, String>() {{
@@ -74,6 +66,15 @@ public abstract class EventData {
 	    put(EventName.THE_ITALIAN_CAMPAIGN.toString(), "'The Italian Campaign' description");
 	    put(EventName.DEFENCE_OF_THE_HOME_ISLANDS.toString(), "'Defence of the home islands' description");
 	}};
+	
+	
+	//getters:
+	
+	//get AirForces associated with target event:
+	protected static List<AirForce>getAirForces(String name){ return eventNameToAirForces.get(name); }
+		
+	//get Periods associated with target event:
+	protected static List<Period>getPeriods(String name){ return eventNameToPeriods.get(name); }
 	
 	//get description associated with target event:
 	protected static String getDescription(String name){ return eventNameToDescription.get(name); }

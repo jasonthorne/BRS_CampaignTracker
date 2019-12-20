@@ -16,15 +16,13 @@ import com.brs.plane.PlaneData.Status;
 
 public class Raf implements AirForce{
 	
-	//plane models available:
+	private final String description = "Raf description"; //description of air force
+	
+	//models of plane available:
 	private final List<Model>models = Arrays.asList(
 			Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
     		Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV,  Model.TEMPEST_V, Model.TYPHOON_IB);
 	
-	@Override
-	public List<Model> getModels() { return models; } //get models available
-
-
 	//plane model periods of availability:
 	private static final Map<Model, List<Availability>> modelToAvailabilities = new HashMap<Model, List<Availability>>() {{
 		put(Model.HURRICANE_I, 
@@ -114,9 +112,17 @@ public class Raf implements AirForce{
 	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
 	}};
 
-	@Override //get availabilities of a chosen model:
-	public List<Availability> getAvailabilities(Model model) { return modelToAvailabilities.get(model); }
+	//Getters: //++++++++++++++++++++CHANGE PRIVACY OF THESE +++++++++
+	@Override
+	public String getDescription() { return description; } //get description
+	
+	@Override
+	public List<Model> getModels() { return models; } //get models available
 
+	@Override 
+	public List<Availability> getAvailabilities(Model model) { return modelToAvailabilities.get(model); } //get model availabilities
+
+	
 
 	
 
