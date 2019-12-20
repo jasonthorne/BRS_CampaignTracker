@@ -3,6 +3,7 @@ package com.brs.event;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.brs.airforce.AirForceData.AirForce;
 import com.brs.period.Period;
@@ -32,7 +33,7 @@ public abstract class EventData {
 	}
 	
 	//events and the corresponding air forces involved:
-	private static final HashMap<String, List<AirForce>> eventNameToAirForces = new HashMap<String, List<AirForce>>() {{
+	private static final Map<String, List<AirForce>> eventNameToAirForces = new HashMap<String, List<AirForce>>() {{
 	    put(EventName.BATTLE_OF_BRITAIN.toString(), Arrays.asList(AirForce.RAF, AirForce.LUFTWAFFE));
 	    put(EventName.OPERATION_BARBAROSSA.toString(), Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE));
 	    put(EventName.GUADALCANAL.toString(), Arrays.asList(AirForce.USAAF, AirForce.IJAAF));
@@ -44,7 +45,7 @@ public abstract class EventData {
 	
 	
 	//events and their corresponding periods of history: //+++++++++++++THINK ABOUT STORING IN JUST BLOCKS AND YEARS, AND CREATING PERIODS IN METHOD INSTEAD
-	private static final HashMap<String, List<Period>> eventNameToPeriods = new HashMap<String, List<Period>>() {{
+	private static final Map<String, List<Period>> eventNameToPeriods = new HashMap<String, List<Period>>() {{
 	    put(EventName.BATTLE_OF_BRITAIN.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY), new Period(Block.MID, Year.FORTY_ONE)));
 	    put(EventName.OPERATION_BARBAROSSA.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_ONE)));
 	    put(EventName.GUADALCANAL.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_THREE)));
@@ -56,7 +57,7 @@ public abstract class EventData {
 	
 	
 	//events and their corresponding description:
-	private static final HashMap<String, String> eventNameToDescription = new HashMap<String, String>() {{
+	private static final Map<String, String> eventNameToDescription = new HashMap<String, String>() {{
 	    put(EventName.BATTLE_OF_BRITAIN.toString(), "'Battle of Britain' description");
 	    put(EventName.OPERATION_BARBAROSSA.toString(), "'Operation Barbarossa' description");
 	    put(EventName.GUADALCANAL.toString(), "'Guadalcanal' description");

@@ -41,7 +41,7 @@ public class Plane {
 
 		@Override
 		public String toString() {
-			return "Availability [period=" + period + ", status=" + status + "]";
+			return "\nAvailability: [" + period + ", " + status + "]";
 		}
 		
 		

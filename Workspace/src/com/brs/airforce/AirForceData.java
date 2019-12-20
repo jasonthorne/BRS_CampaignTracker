@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import com.brs.Campaign;
 import com.brs.DoubleKey;
@@ -36,7 +38,7 @@ public class AirForceData{
 	}
 	
 	//air forces and the models of planes available to them:
-	private static final HashMap<AirForce, List<Model>> airForceToModels = new HashMap<AirForce, List<Model>>() {{
+	private static final Map<AirForce, List<Model>> airForceToModels = new HashMap<AirForce, List<Model>>() {{
 	    put(AirForce.RAF, Arrays.asList(
 	    		Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
 	    		Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV,  Model.TEMPEST_V, Model.TYPHOON_IB));
@@ -55,9 +57,203 @@ public class AirForceData{
 	    		Model.A6_M2_ZERO, Model.A6_M5_ZERO, Model.J2M_RAIDEN, Model.KI_43_HAYABUSA,  Model.KI_44_SHOKI,  
 	    		Model.KI_61_HIEN, Model.KI_84_HAYATE, Model.KI_100_HIEN, Model.N1K1_J_SHIDEN, Model.N1K2_J_SHIDEN_KAI));
 	}};
+
+	//air force models of planes, and their periods of availability: //CHANGE TO PRIVATE +++++++++++++++++++++++++
+	public static final Map<DoubleKey, List<Availability>> airForceModelsToAvailabilities = new HashMap<DoubleKey, List<Availability>>() {{
+		
+		//RAF:
+	    put(new DoubleKey(AirForce.RAF, Model.HURRICANE_I), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY),Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY), Status.AUTO)));
+	    put(new DoubleKey(AirForce.RAF, Model.HURRICANE_II), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY), Status.LIMIT),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.LIMIT), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.LIMIT),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.LIMIT),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.LIMIT)));
+	    put(new DoubleKey(AirForce.RAF, Model.MOSQUITO_II), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+	    put(new DoubleKey(AirForce.RAF, Model.MOSQUITO_VI), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.LIMIT), new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+	    put(new DoubleKey(AirForce.RAF, Model.SPITFIRE_II), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.LIMIT),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.LIMIT)));
+	    put(new DoubleKey(AirForce.RAF, Model.SPITFIRE_V), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.LIMIT), new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.AUTO), new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.LIMIT)));
+	    put(new DoubleKey(AirForce.RAF, Model.SPITFIRE_IX), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.LIMIT), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO), new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.LIMIT)));
+	    put(new DoubleKey(AirForce.RAF, Model.SPITFIRE_XIV), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+	    put(new DoubleKey(AirForce.RAF, Model.TEMPEST_V), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+	    put(new DoubleKey(AirForce.RAF, Model.TYPHOON_IB), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+	    
+	    //LUFTWAFFE:
+	    put(new DoubleKey(AirForce.LUFTWAFFE, Model.BF109_E), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.LIMIT),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.LIMIT)));
+	    put(new DoubleKey(AirForce.LUFTWAFFE, Model.BF109_F), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY), Status.LIMIT), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.AUTO), new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.LIMIT),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.LIMIT)));
+	    put(new DoubleKey(AirForce.LUFTWAFFE, Model.BF109_G), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+	    put(new DoubleKey(AirForce.LUFTWAFFE, Model.BF109_K), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+	    put(new DoubleKey(AirForce.LUFTWAFFE, Model.BF110_C), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.LIMIT),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.LIMIT)));
+	    put(new DoubleKey(AirForce.LUFTWAFFE, Model.BF110_G), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.LIMIT),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO), new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+	    put(new DoubleKey(AirForce.LUFTWAFFE, Model.FW190_A), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO), new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+	    put(new DoubleKey(AirForce.LUFTWAFFE, Model.FW190_D), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.LIMIT), new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+	    put(new DoubleKey(AirForce.LUFTWAFFE, Model.ME_262_A), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.LIMIT), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.LIMIT),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.LIMIT)));
+	    put(new DoubleKey(AirForce.LUFTWAFFE, Model.ME_262_B), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.LIMIT), new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.LIMIT)));
+	    
+	    //USAAF:
+	    put(new DoubleKey(AirForce.USAAF, Model.F4F_WILDCAT), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.LIMIT), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.AUTO), new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.LIMIT),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.LIMIT)));
+	    put(new DoubleKey(AirForce.USAAF, Model.F4U_CORSAIR), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.LIMIT), new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+	    put(new DoubleKey(AirForce.USAAF, Model.F6F_HELLCAT), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+	    put(new DoubleKey(AirForce.USAAF, Model.P_38E_LIGHTNING), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.LIMIT), new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO), new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.LIMIT)));
+	    put(new DoubleKey(AirForce.USAAF, Model.P_38J_LIGHTNING), 
+	    		Arrays.asList(
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.LIMIT), new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO), new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO),
+	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+	}};
+
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	//==================================================================================================================
+	/*
+	//GENERIC OPTION:
+	private static final HashMap<List<Enum<?>>, List<?>> test = new HashMap<List<Enum<?>>, List<?>>() {{
+	put(Arrays.asList(AirForce.RAF, Model.HURRICANE_I), Arrays.asList(Arrays.asList(Block.EARLY, Year.FORTY_ONE), Status.LIMIT));
+	  put(Arrays.asList(AirForce.LUFTWAFFE, Model.A6_M5_ZERO), Arrays.asList(Arrays.asList(Block.LATE, Year.FORTY_FIVE), Status.NONE));
+	
+	}};
+	*/
+	//MAP AS KEY OPTION:
 	//map inside map: https://stackoverflow.com/questions/5056708/storing-hashmap-in-a-hashmap
 	
 	/*
@@ -70,33 +266,7 @@ public class AirForceData{
 	
 	//----------------https://stackoverflow.com/questions/14677993/how-to-create-a-hashmap-with-two-keys-key-pair-value
 	
-	
-	
-	private static final HashMap<List<Enum<?>>, List<?>> test = new HashMap<List<Enum<?>>, List<?>>() {{
-	//private static final HashMap<DoubleKey, List<?>> test = new HashMap<DoubleKey, List<?>>() {{
-	    put(Arrays.asList(AirForce.RAF, Model.HURRICANE_I), Arrays.asList(Arrays.asList(Block.EARLY, Year.FORTY_ONE), Status.LIMIT));
-	    put(Arrays.asList(AirForce.LUFTWAFFE, Model.A6_M5_ZERO), Arrays.asList(Arrays.asList(Block.LATE, Year.FORTY_FIVE), Status.NONE));
-	    
-		
-		/*
-	    put(testDbl(AirForce.RAF, Model.HURRICANE_I) , Arrays.asList(Arrays.asList(Block.EARLY, Year.FORTY_ONE), Status.LIMIT));
-	    put(testDbl(AirForce.LUFTWAFFE, Model.A6_M5_ZERO), Arrays.asList(Arrays.asList(Block.LATE, Year.FORTY_FIVE), Status.NONE));
-	   */
-	}};
-
-	
-	
-	//Map<Key, V> map = //...
-		
-	//	map.get(new Key(2, 5));
-	public static DoubleKey testDbl(AirForce a, Model b) {
-		
-		//DoubleKey doubleKey = new Double
-		return new DoubleKey(a, b);
-	}
-	
-	
-	
+	/*
 	//------------------------+++ADD PROTECTION TO ALL THIS STATIC STUFF
 	static HashMap<AirForce, Model> airForceToModel = new HashMap<AirForce, Model>(); //hashmap for airForce and model (key hashmap)
 	static HashMap<HashMap<AirForce,Model>,Availability>airForceModelToAvailabilities = new HashMap<HashMap<AirForce,Model>,Availability>();
@@ -185,7 +355,7 @@ public class AirForceData{
 	}
 	
 	//==================
-	
+	*/
 	
 	
 	

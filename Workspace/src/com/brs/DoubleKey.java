@@ -47,6 +47,12 @@ public class DoubleKey {
 			return false;
 		return true;
 	}
+
+
+	@Override
+	public String toString() {
+		return "\n[" + key1 + ", " + key2 + "]";
+	}
 	
 	
 	

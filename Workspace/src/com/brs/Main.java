@@ -366,8 +366,8 @@ public class Main {
 		);
 				
 		/////////////////System.out.println("TEST:" + TEST);
-		System.out.println();
-		AirForceData.testLoops(); //TEST PRINT
+		System.out.println(AirForceData.airForceModelsToAvailabilities);
+		//AirForceData.testLoops(); //TEST PRINT
 
 	}
 	
