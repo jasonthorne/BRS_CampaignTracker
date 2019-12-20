@@ -14,9 +14,9 @@ import com.brs.plane.PlaneData.Model;
 import com.brs.plane.PlaneData.Status;
 
 
-public class Luftwaffe implements AirForce{
+public class AirForceLuftwaffe implements AirForce{
 	
-	private final String description = "Luftwaffe description"; //description of air force
+	private final String description = "AirForceLuftwaffe description"; //description of air force
 	
 	//models of plane available:
 	private final List<Model>models = Arrays.asList(

@@ -17,7 +17,7 @@ public abstract class EventData {
 	//event name values:
 	public enum EventName{
 		
-		BATTLE_OF_BRITAIN("Battle of Britain"), 
+		BATTLE_OF_BRITAIN("Battle of AirForceRAF"), 
 		OPERATION_BARBAROSSA("Operation Barbarossa"),
 		GUADALCANAL("Guadalcanal"),
 		STALINGRAD("Stalingrad"),
@@ -58,7 +58,7 @@ public abstract class EventData {
 	
 	//events and their corresponding description:
 	private static final Map<String, String> eventNameToDescription = new HashMap<String, String>() {{
-	    put(EventName.BATTLE_OF_BRITAIN.toString(), "'Battle of Britain' description");
+	    put(EventName.BATTLE_OF_BRITAIN.toString(), "'Battle of AirForceRAF' description");
 	    put(EventName.OPERATION_BARBAROSSA.toString(), "'Operation Barbarossa' description");
 	    put(EventName.GUADALCANAL.toString(), "'Guadalcanal' description");
 	    put(EventName.STALINGRAD.toString(), "'Stalingrad' description");

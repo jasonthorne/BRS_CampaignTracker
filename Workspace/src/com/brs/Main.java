@@ -191,7 +191,7 @@ public class Main {
 		//select target campaign: 
 		for(Campaign i : campaigns){ 
 			System.out.println(i); 
-			if (i.getEventName() == "Battle of Britain") campaign = i; //assign target campaign to reference
+			if (i.getEventName() == "Battle of AirForceRAF") campaign = i; //assign target campaign to reference
 		}
 		
 		System.out.println("campaign is: "+ campaign);
