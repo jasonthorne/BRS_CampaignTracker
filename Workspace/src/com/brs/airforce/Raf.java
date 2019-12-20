@@ -16,7 +16,7 @@ import com.brs.plane.PlaneData.Status;
 
 public class Raf implements AirForce{
 	
-	private final String description = "Raf description"; //description of air force
+	private  final String description = "Raf description"; //description of air force
 	
 	//models of plane available:
 	private final List<Model>models = Arrays.asList(
@@ -123,7 +123,4 @@ public class Raf implements AirForce{
 	public List<Availability> getAvailabilities(Model model) { return modelToAvailabilities.get(model); } //get model availabilities
 
 	
-
-	
-
 }
