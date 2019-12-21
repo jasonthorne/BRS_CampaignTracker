@@ -14,7 +14,7 @@ import com.brs.plane.PlaneData.Model;
 import com.brs.plane.PlaneData.Status;
 
 
-public class AirForceRAF implements AirForce{
+public class AirForceRAF {//implements AirForce{
 	
 	private  final String description = "AirForceRAF description"; //description of air force
 	
@@ -112,6 +112,7 @@ public class AirForceRAF implements AirForce{
 	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
 	}};
 
+	/*
 	//Getters: //++++++++++++++++++++CHANGE PRIVACY OF THESE +++++++++
 	@Override
 	public String getDescription() { return description; } //get description
@@ -121,6 +122,6 @@ public class AirForceRAF implements AirForce{
 
 	@Override 
 	public List<Availability> getAvailabilities(Model model) { return modelToAvailabilities.get(model); } //get model availabilities
-
+	*/
 	
 }

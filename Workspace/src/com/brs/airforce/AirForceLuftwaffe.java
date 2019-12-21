@@ -14,7 +14,7 @@ import com.brs.plane.PlaneData.Model;
 import com.brs.plane.PlaneData.Status;
 
 
-public class AirForceLuftwaffe implements AirForce{
+public class AirForceLuftwaffe {//implements AirForce{
 	
 	private final String description = "AirForceLuftwaffe description"; //description of air force
 	
@@ -116,6 +116,8 @@ public class AirForceLuftwaffe implements AirForce{
 		
 	}};
 
+	
+	/*
 	//Getters: //++++++++++++++++++++CHANGE PRIVACY OF THESE +++++++++
 	@Override
 	public String getDescription() { return description; } //get description
@@ -125,6 +127,6 @@ public class AirForceLuftwaffe implements AirForce{
 
 	@Override 
 	public List<Availability> getAvailabilities(Model model) { return modelToAvailabilities.get(model); } //get model availabilities
-
+*/
 	
 }

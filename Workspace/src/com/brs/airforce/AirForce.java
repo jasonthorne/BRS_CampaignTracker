@@ -1,11 +1,13 @@
 package com.brs.airforce;
 
+import java.util.HashMap;
 import java.util.List;
 
-import com.brs.plane.Plane.Availability;
+import com.brs.period.Period;
 import com.brs.plane.PlaneData.Model;
+import com.brs.plane.PlaneData.Status;
 
-public interface AirForce {
+public abstract class AirForce {
 	
 	//AirForce names:
 	public enum AirForceName{
@@ -24,11 +26,25 @@ public interface AirForce {
 	}
 	
 	
-	//getters:
-	String getDescription(); //get description of air force
+	//protected String description; 
+	//protected List<Model>models;
 	
-	List<Model>getModels(); //get models available to air force
+	//SET AVAILABILITIES - used switch to create a hasahmap of periods and statuses to return to plane object.
 	
-	List<Availability>getAvailabilities(Model model); //get availabilities of a model
 
+	protected String getDescription() { return null; } //get description of air force
+	protected List<Model> getModels() { return null; } //get models available to air force
+
+	//protected HashMap<Period, Status>getAvailabilities() {return null;} //get availabilities of a model
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
