@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import com.brs.period.Period;
 import com.brs.period.PeriodData.Block;
@@ -23,22 +22,6 @@ public class AirForceUSAAF implements AirForce{
 			Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
     		Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
     		Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
-	
-	/*
-	 * grab a list of periods from start date to last date (like with periods)
-	 * declare a list of statuses
-	 * loop through the ammount of dates,
-	 *  and create new availabilities according to the date pos and it's corrisponding status list  pos value 
-	 *  
-	 *  List<Status>statuses = Arrays.asList(Status.LIMIT, ... ); //THINK ABOUT USING A QUEUE HERE
-	 *  Period.getPeriods(new Period(Block.LATE, Year.FORTY_ONE), new Period(Block.MID, Year.FORTY_FOUR)
-	 *  
-	 *  spin through periods returned and create a hashmap with the period you're at and the index you're at
-	 *  
-	 *  return that hashmap (called periodToStatus) to the plane class
-	 *  
-	 *  planeclass can call this to get its status, by passing in current period
-	 */
 	
 	private static List<Period>periods; //holds periods
 	private static List<Status>statuses; //holds statuses of periods
@@ -111,7 +94,7 @@ public class AirForceUSAAF implements AirForce{
 	
 	
 	
-	
+	/*
 	//plane model periods of availability:
 	private static final Map<Model, List<Availability>> modelToAvailabilities = new HashMap<Model, List<Availability>>() {{
 		put(Model.F4F_WILDCAT, 
@@ -225,7 +208,7 @@ public class AirForceUSAAF implements AirForce{
 				new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO),
 				new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
 	}};
-
+*/
 	//Getters: //++++++++++++++++++++CHANGE PRIVACY OF THESE +++++++++
 	@Override
 	public String getDescription() { 

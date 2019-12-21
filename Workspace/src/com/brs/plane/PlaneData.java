@@ -29,15 +29,15 @@ public abstract class PlaneData {
 	
 	//Status values:
 	public enum Status{ 
-		NONE("None"), 
+		NONE("Unavailable"), 
 		LIMIT("Limit"), 
 		AUTO("Auto");
 		
-		private String status; //name of chosen model
+		private String status; //name of chosen status
 		//constructor:
-		private Status(String status) {this.status = status;} //set name of model
+		private Status(String status) {this.status = status;} //set name of status
 		@Override 
-		public String toString() {return status;} //return chosen model
+		public String toString() {return status;} //return chosen status
 	}
 		
 

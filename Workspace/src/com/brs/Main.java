@@ -368,7 +368,7 @@ public class Main {
 		);
 				
 		/////////////////System.out.println("TEST:" + TEST);
-		System.out.println(AirForceData.airForceModelsToAvailabilities);
+		//System.out.println(AirForceData.airForceModelsToAvailabilities);
 		//AirForceData.testLoops(); //TEST PRINT
 			
 		//==========================SWITCH HASMAP TESTING ==========================
@@ -380,8 +380,8 @@ public class Main {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("status is: " + periodToStatus.get(new Period(Block.MID, Year.FORTY_FOUR)));
+		//GETORDEFAULT ++++++++++++++++++++++++++++++++++++++USE THIS!! :P
+		System.out.println("STATUS IS: " + periodToStatus.getOrDefault(new Period(Block.EARLY, Year.FORTY_ONE), Status.NONE));
 		
 		for ( Period key : periodToStatus.keySet() ) {
 		    System.out.println( key );

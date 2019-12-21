@@ -19,10 +19,36 @@ public class Period { //MAKE THIS IMMUTABLE ++++++++++right now these can be rea
 		this.block = block;
 	}
 
-	@Override
+	@Override 
 	public String toString() { return "Period: [" + block + " " + year + "]"; }
-		
-	//getPeriods() vars:
+	
+	
+	@Override //override for comparing against other Periods:
+	public int hashCode() { 
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((block == null) ? 0 : block.hashCode());
+		result = prime * result + ((year == null) ? 0 : year.hashCode());
+		return result;
+	}
+
+	@Override //override for comparing against other Periods:
+	public boolean equals(Object obj) { 
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Period other = (Period) obj;
+		if (block != other.block)
+			return false;
+		if (year != other.year)
+			return false;
+		return true;
+	}
+
+	//getPeriods vars:
 	private final static List<Block>blocks = Arrays.asList(Block.values()); //list of all Block values
 	private final static List<Year>years = Arrays.asList(Year.values()); //list of all Year values
 	private static List<Period>periods; //list for holding range of Periods
