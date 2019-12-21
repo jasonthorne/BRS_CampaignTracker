@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.brs.Campaign;
 import com.brs.Campaign.CampaignBuilder;
@@ -11,6 +12,7 @@ import com.brs.Pilot.PilotSkill;
 import com.brs.Player.PlayerBuilder;
 import com.brs.airforce.AirForceData;
 import com.brs.airforce.AirForceData.AirForce;
+import com.brs.airforce.AirForceUSAAF;
 import com.brs.event.EventData.EventName;
 import com.brs.period.Period;
 import com.brs.period.PeriodData.Block;
@@ -368,10 +370,28 @@ public class Main {
 		/////////////////System.out.println("TEST:" + TEST);
 		System.out.println(AirForceData.airForceModelsToAvailabilities);
 		//AirForceData.testLoops(); //TEST PRINT
+			
+		//==========================SWITCH HASMAP TESTING ==========================
+		Map<Period, Status>periodToStatus = null;
 
+		try {
+			periodToStatus = AirForceUSAAF.getPeriodToStatus(Model.P_51D_MUSTANG);
+			System.out.println(periodToStatus);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("status is: " + periodToStatus.get(new Period(Block.MID, Year.FORTY_FOUR)));
+		
+		for ( Period key : periodToStatus.keySet() ) {
+		    System.out.println( key );
+		}
+		
+		for ( Status status : periodToStatus.values() ) {
+		    System.out.println( status );
+		}
+		
 	}
-	
-	
 	
 	
 	

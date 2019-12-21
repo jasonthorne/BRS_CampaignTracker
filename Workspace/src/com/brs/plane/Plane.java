@@ -10,7 +10,7 @@ import com.brs.plane.PlaneData.Status;
 public class Plane {
 	
 	//private final String model;
-	private String model;
+	private String model; //this might be better as the enum object!!! +++++++++++ (as might other versions tgurned to string. Check those too!)
 	private List<Availability>availabilities = new ArrayList<Availability>();
 	private Status status;
 	

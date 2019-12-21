@@ -7,7 +7,8 @@ import com.brs.period.Period;
 import com.brs.plane.PlaneData.Model;
 import com.brs.plane.PlaneData.Status;
 
-public abstract class AirForce {
+//public abstract class AirForce {
+public interface AirForce {
 	
 	//AirForce names:
 	public enum AirForceName{
@@ -25,16 +26,17 @@ public abstract class AirForce {
 		public String toString() { return airForce; }  //return name of air force
 	}
 	
-	
+
 	//protected String description; 
 	//protected List<Model>models;
 	
 	//SET AVAILABILITIES - used switch to create a hasahmap of periods and statuses to return to plane object.
 	
 
-	protected String getDescription() { return null; } //get description of air force
-	protected List<Model> getModels() { return null; } //get models available to air force
+	String getDescription(); //get description of air force
+	List<Model> getModels(); //get models available to air force
 
+	
 	//protected HashMap<Period, Status>getAvailabilities() {return null;} //get availabilities of a model
 	
 	
