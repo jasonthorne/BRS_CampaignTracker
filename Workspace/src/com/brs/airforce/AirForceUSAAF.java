@@ -24,10 +24,6 @@ public class AirForceUSAAF extends AirForce{ //INTERFACE OR ABSRTRACT???? hmmmmm
 			Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
     		Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
     		Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
-	
-	private static List<Period>periods; //periods
-	private static List<Status>statuses; //statuses of periods
-	private static Map<Period, Status>periodToStatus; //periods and their statuses
 	*/
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it:  
@@ -98,19 +94,12 @@ public class AirForceUSAAF extends AirForce{ //INTERFACE OR ABSRTRACT???? hmmmmm
 	}
 	
 	
-	
 	//Getters: //++++++++++++++++++++CHANGE PRIVACY OF THESE +++++++++
 	@Override
 	public String getDescription() { 
 		return "AirForceUSAAF description..."; 	//description of air force
 	} 
 	
-	
-	@Override
-	List<Model> getAirForceModels() {
-		// TODO Auto-generated method stub
-		return null;
-	} 
 	
 	/*
 	//+++++++++++++THIS SHOULD PROB BE NON STATIC AND KEPT PUBLIC, but be in parent class, not here :P

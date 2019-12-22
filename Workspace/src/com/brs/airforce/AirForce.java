@@ -25,7 +25,7 @@ public abstract class AirForce {
 		@Override public String toString() { return airForce; }  //return name of air force
 	}
 	
-	//air forces and the models of planes available to them:
+	//air force models:
 	@SuppressWarnings("serial") private static final Map<AirForceName, List<Model>> airForceToModels = new HashMap<AirForceName, List<Model>>() {{
 	    put(AirForceName.RAF, Arrays.asList(
 	    		Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
@@ -46,9 +46,10 @@ public abstract class AirForce {
 	    		Model.KI_61_HIEN, Model.KI_84_HAYATE, Model.KI_100_HIEN, Model.N1K1_J_SHIDEN, Model.N1K2_J_SHIDEN_KAI));
 	}};
 
+	
 	protected static List<Period>periods; //periods
 	protected static List<Status>statuses; //statuses of periods
-	protected static Map<Period, Status>periodToStatus; //periods and their statuses
+	protected static Map<Period, Status>periodToStatus; //Map of periods and their statuses
 	
 	protected abstract void setPeriodToStatus(Model model) throws Exception;
 	
@@ -57,10 +58,12 @@ public abstract class AirForce {
 		return periodToStatus;
 	}
 	
-	abstract List<Model>getAirForceModels(); //get models available to an air force
-	abstract String getDescription(); //get description of air force
+	public abstract String getDescription(); //get description of air force
 	
-	List<Model>getAllModels(){ //get all models available to all air forces
+	//get models available to an air force:
+	public static List<Model>getAirForceModels(AirForceName airForceName){ return airForceToModels.get(airForceName); }
+		
+	public List<Model>getAllModels(){ //get all models available to all air forces
 		return null; 
 		
 	}; 

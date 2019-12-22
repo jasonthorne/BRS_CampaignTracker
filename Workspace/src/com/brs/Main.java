@@ -11,7 +11,7 @@ import com.brs.Pilot.PilotBuilder;
 import com.brs.Pilot.PilotSkill;
 import com.brs.Player.PlayerBuilder;
 import com.brs.airforce.AirForceData;
-import com.brs.airforce.AirForceData.AirForce;
+import com.brs.airforce.AirForce;
 import com.brs.airforce.AirForceUSAAF;
 import com.brs.event.EventData.EventName;
 import com.brs.period.Period;
@@ -333,7 +333,7 @@ public class Main {
 		*/
 		//HASHMAP .CLEAR
 		//https://www.geeksforgeeks.org/hashmap-clear-method-in-java/
-		
+		/*
 		HashMap<AirForce, Model> K_airForce_V_model1 = new HashMap<AirForce, Model>(){{ 
 			put(AirForce.RAF, Model.SPITFIRE_II);
 		}};
@@ -366,16 +366,19 @@ public class Main {
 				K_k_airForce_v_Model_V_availabilities1,
 				K_k_airForce_v_Model_V_availabilities2
 		);
-				
+		*/		
 		/////////////////System.out.println("TEST:" + TEST);
 		//System.out.println(AirForceData.airForceModelsToAvailabilities);
 		//AirForceData.testLoops(); //TEST PRINT
 			
 		//==========================SWITCH HASMAP TESTING ==========================
+		
+		AirForce testAirForce = new AirForceUSAAF();
+		
 		Map<Period, Status>periodToStatus = null;
 
 		try {
-			periodToStatus = AirForceUSAAF.getPeriodToStatus(Model.P_51D_MUSTANG);
+			periodToStatus = testAirForce.getPeriodToStatus(Model.P_51D_MUSTANG);
 			System.out.println(periodToStatus);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -395,7 +398,7 @@ public class Main {
 		//===============================
 		
 		try {
-			periodToStatus = AirForceUSAAF.getPeriodToStatus(Model.P_38E_LIGHTNING);
+			periodToStatus = testAirForce.getPeriodToStatus(Model.P_38E_LIGHTNING);
 			System.out.println(periodToStatus);
 		} catch (Exception e) {
 			e.printStackTrace();
