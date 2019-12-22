@@ -28,9 +28,7 @@ public class AirForceUSAAF implements AirForce{ //INTERFACE OR ABSRTRACT???? hmm
 	private static List<Status>statuses; //statuses of periods
 	private static Map<Period, Status>periodToStatus; //periods and their statuses
 	
-	//creates and returns a HashMap of Periods and their Status, for the Model of Plane passed to it:  
-	//public static Map<Period, Status> makePeriodToStatus(Model model) throws Exception {
-	
+	//creates a HashMap of periods and their statuses for the model of plane passed to it:  
 	private static void setPeriodToStatus(Model model) throws Exception {	
 		periodToStatus = new HashMap<Period, Status>(); //(re)set HashMap
 		
@@ -112,8 +110,7 @@ public class AirForceUSAAF implements AirForce{ //INTERFACE OR ABSRTRACT???? hmm
 		return periodToStatus;
 	}
 
-	//@Override //MAYBE RETURN A HASHMAP!!! key:period, value status
-	//public List<Availability> getAvailabilities(Model model) { return modelToAvailabilities.get(model); } //get model availabilities
-
+	//HERE we OVERRIDE THE getairForceModels method THAT YOU NEED TO PUT IN SUPER with the returning of all american planes (other classes obv retunr their ariforce planes)
+	
 	
 }
