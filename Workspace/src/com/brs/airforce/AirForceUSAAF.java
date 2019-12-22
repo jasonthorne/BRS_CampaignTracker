@@ -15,9 +15,10 @@ import com.brs.plane.PlaneData.Status;
 import com.brs.airforce.AirForce;
 
 
-public class AirForceUSAAF implements AirForce{ //INTERFACE OR ABSRTRACT???? hmmmmm......
+//public class AirForceUSAAF implements AirForce{ //INTERFACE OR ABSRTRACT???? hmmmmm......
+public class AirForceUSAAF extends AirForce{ //INTERFACE OR ABSRTRACT???? hmmmmm......
 	
-	
+	/*
 	//models of plane available: 
 	private static final List<Model>models = Arrays.asList(
 			Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
@@ -27,9 +28,11 @@ public class AirForceUSAAF implements AirForce{ //INTERFACE OR ABSRTRACT???? hmm
 	private static List<Period>periods; //periods
 	private static List<Status>statuses; //statuses of periods
 	private static Map<Period, Status>periodToStatus; //periods and their statuses
+	*/
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it:  
-	private static void setPeriodToStatus(Model model) throws Exception {	
+	@Override 
+	protected void setPeriodToStatus(Model model) throws Exception {	
 		periodToStatus = new HashMap<Period, Status>(); //(re)set HashMap
 		
 		switch(model) { //populate periods and statuses, according to model:
@@ -91,6 +94,7 @@ public class AirForceUSAAF implements AirForce{ //INTERFACE OR ABSRTRACT???? hmm
 		}
 		 //add periods and statuses to HashMap:
 		for (int i=0; i<periods.size(); i++) { periodToStatus.put(periods.get(i), statuses.get(i)); }
+		
 	}
 	
 	
@@ -101,16 +105,20 @@ public class AirForceUSAAF implements AirForce{ //INTERFACE OR ABSRTRACT???? hmm
 		return "AirForceUSAAF description..."; 	//description of air force
 	} 
 	
-	@Override
-	public List<Model> getModels() { return models; } 
 	
+	@Override
+	List<Model> getAirForceModels() {
+		// TODO Auto-generated method stub
+		return null;
+	} 
+	
+	/*
 	//+++++++++++++THIS SHOULD PROB BE NON STATIC AND KEPT PUBLIC, but be in parent class, not here :P
-	public static Map<Period, Status>getPeriodToStatus(Model model) throws Exception{ //+++++++++++++all the throws here minght not be needed. We;ll see!! 
+	public Map<Period, Status>getPeriodToStatus(Model model) throws Exception{ //+++++++++++++all the throws here minght not be needed. We;ll see!! 
 		setPeriodToStatus(model);
 		return periodToStatus;
-	}
+	}*/
 
 	//HERE we OVERRIDE THE getairForceModels method THAT YOU NEED TO PUT IN SUPER with the returning of all american planes (other classes obv retunr their ariforce planes)
-	
 	
 }
