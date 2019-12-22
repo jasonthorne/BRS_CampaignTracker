@@ -391,6 +391,26 @@ public class Main {
 		    System.out.println( status );
 		}
 		
+		
+		//===============================
+		
+		try {
+			periodToStatus = AirForceUSAAF.getPeriodToStatus(Model.P_38E_LIGHTNING);
+			System.out.println(periodToStatus);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//GETORDEFAULT ++++++++++++++++++++++++++++++++++++++USE THIS!! :P
+		System.out.println("STATUS IS: " + periodToStatus.getOrDefault(new Period(Block.EARLY, Year.FORTY_TWO), Status.NONE));
+		
+		for ( Period key : periodToStatus.keySet() ) {
+		    System.out.println( key );
+		}
+		
+		for ( Status status : periodToStatus.values() ) {
+		    System.out.println( status );
+		}
+		
 	}
 	
 	
