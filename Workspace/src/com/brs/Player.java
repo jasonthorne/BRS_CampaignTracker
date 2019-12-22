@@ -2,6 +2,7 @@ package com.brs;
 
 import com.brs.Squadron.SquadronBuilder;
 import com.brs.airforce.AirForceData.AirForce;
+import com.brs.airforce.AirForceData.AirForceName;
 
 public class Player{
 	
@@ -20,7 +21,7 @@ public class Player{
 	
 	@Override
 	public String toString() {
-		return "Player [name=" + name + ", score=" + score + ", airForce=" + airForce + ", squadron=" + squadron
+		return "Player [name=" + name + ", score=" + score + ", airForce=" + AirForceName + ", squadron=" + squadron
 				+ ", joinDate=" + joinDate + "]";
 	}
 	

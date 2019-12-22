@@ -26,12 +26,18 @@ public abstract class AirForce {
 		@Override public String toString() { return airForce; }  //return name of air force
 	}
 	
-	//protected String name; //name of AirForce
-	///protected abstract void setName(); //concrete class sets name
-	public abstract String getName(); //get name
+	protected String name; //name of AirForce
+	protected abstract void setName(); //concrete class sets name
+	public String getName() { return name; } //return name
 		
-
+	protected List<Model>models; //models of plane available
+	protected abstract void setModels(); //concrete class sets models
+	public List<Model> getModels() { return models; }  //return models
 	
+	
+	protected static Map<AirForceName, List<Model>> airForceToModels = new HashMap<AirForceName, List<Model>>();
+	
+	/*
 	//HAVE THIS HASHMAP BE MADE FROM PULLING EACH PLANE CLASSES LIST OF PLANES FROM ITS SUBSIQUENT CLASS:
 	//air force models:
 	@SuppressWarnings("serial") private static final Map<AirForceName, List<Model>> airForceToModels = new HashMap<AirForceName, List<Model>>() {{
@@ -53,7 +59,10 @@ public abstract class AirForce {
 	    		Model.A6_M2_ZERO, Model.A6_M5_ZERO, Model.J2M_RAIDEN, Model.KI_43_HAYABUSA,  Model.KI_44_SHOKI,  
 	    		Model.KI_61_HIEN, Model.KI_84_HAYATE, Model.KI_100_HIEN, Model.N1K1_J_SHIDEN, Model.N1K2_J_SHIDEN_KAI));
 	}};
-
+	
+	//get models available to an air force:
+	public static List<Model>getAirForceModels(AirForceName airForceName){ return airForceToModels.get(airForceName); }
+	*/
 	
 	protected static List<Period>periods; //periods
 	protected static List<Status>statuses; //statuses of periods
@@ -68,8 +77,7 @@ public abstract class AirForce {
 	
 	public abstract String getDescription(); //get description of air force
 	
-	//get models available to an air force:
-	public static List<Model>getAirForceModels(AirForceName airForceName){ return airForceToModels.get(airForceName); }
+	
 		
 	public List<Model>getAllModels(){ //get all models available to all air forces
 		return null; 

@@ -22,7 +22,7 @@ import com.brs.plane.PlaneData.Status;;
 public class AirForceData{
 	
 	//AirForce values:
-	public enum AirForce{
+	public enum AirForceName{
 		
 		RAF("RAF"), 
 		LUFTWAFFE("Luftwaffe"), 
@@ -32,7 +32,7 @@ public class AirForceData{
 		
 		private String airForce; //name of chosen air force
 		//constructor:
-		private AirForce(String airForce) { this.airForce = airForce; }  //assign name of air force
+		private AirForceName(String airForce) { this.airForce = airForce; }  //assign name of air force
 		@Override 
 		public String toString() { return airForce; }  //return name of air force
 	}

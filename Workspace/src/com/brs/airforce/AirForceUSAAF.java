@@ -17,13 +17,36 @@ import com.brs.airforce.AirForce;
 
 public class AirForceUSAAF extends AirForce{
 	
-	private static String name = AirForceName.USAAF.toString(); //name of AirForce
+	@Override
+	protected void setName() { name = AirForceName.USAAF.toString(); }  //name of AirForce
+		
+	@Override
+	protected void setModels() { //models of plane available: 
+		models = Arrays.asList(
+				Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
+	    		Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
+	    		Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
+	}
+
 	
-	//models of plane available: 
-	private static final List<Model>models = Arrays.asList(
-			Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
-    		Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
-    		Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
+	public AirForceUSAAF(){
+		setName(); //set name of of AirForce
+		setModels(); //set models of plane available
+		//ADD NAME AND MODELS TO MAP OF ALL MODELS AND THEIR NAMES +++++++++++++
+	}
+	
+	
+	//private static final String name = AirForceName.USAAF.toString(); //name of AirForce
+	
+		/*
+		//models of plane available: 
+		private static final List<Model>models = Arrays.asList(
+				Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
+	    		Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
+	    		Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
+		*/
+		
+	
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it:  
 	@Override 
@@ -100,21 +123,20 @@ public class AirForceUSAAF extends AirForce{
 	}
 
 
-	/*
-	@Override
-	protected void setName() {
-		name = AirForceName.USAAF.toString(); //+++CONSTRUCTOR SHOULD DO THIS :P
-		
-	} */
+	
+	
 	
 	String test() {
 		return name;
 	}
 
 
-	@Override
-	public String getName() { return name; }
+	//@Override
+	//public static String getName() { return name; }
+
+
 	
+
 	/*
 	//+++++++++++++THIS SHOULD PROB BE NON STATIC AND KEPT PUBLIC, but be in parent class, not here :P
 	public Map<Period, Status>getPeriodToStatus(Model model) throws Exception{ //+++++++++++++all the throws here minght not be needed. We;ll see!! 
