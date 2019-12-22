@@ -7,7 +7,7 @@ import com.brs.event.EventData.EventName;
 import com.brs.period.Period;
 
 
-public final class Event { 
+public final class Event { //++++++DD FINALS TO ALL OTHER CLASSES THHAT NEED IT (aren't extended.)
 	
 	private final String name; //name of event
 	private final List<AirForce>airForces; //air forces involved

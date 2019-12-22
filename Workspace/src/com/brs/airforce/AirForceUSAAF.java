@@ -15,16 +15,15 @@ import com.brs.plane.PlaneData.Status;
 import com.brs.airforce.AirForce;
 
 
-//public class AirForceUSAAF implements AirForce{ //INTERFACE OR ABSRTRACT???? hmmmmm......
-public class AirForceUSAAF extends AirForce{ //INTERFACE OR ABSRTRACT???? hmmmmm......
+public class AirForceUSAAF extends AirForce{
 	
-	/*
+	private static String name = AirForceName.USAAF.toString(); //name of AirForce
+	
 	//models of plane available: 
 	private static final List<Model>models = Arrays.asList(
 			Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
     		Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
     		Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
-	*/
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it:  
 	@Override 
@@ -98,8 +97,23 @@ public class AirForceUSAAF extends AirForce{ //INTERFACE OR ABSRTRACT???? hmmmmm
 	@Override
 	public String getDescription() { 
 		return "AirForceUSAAF description..."; 	//description of air force
-	} 
+	}
+
+
+	/*
+	@Override
+	protected void setName() {
+		name = AirForceName.USAAF.toString(); //+++CONSTRUCTOR SHOULD DO THIS :P
+		
+	} */
 	
+	String test() {
+		return name;
+	}
+
+
+	@Override
+	public String getName() { return name; }
 	
 	/*
 	//+++++++++++++THIS SHOULD PROB BE NON STATIC AND KEPT PUBLIC, but be in parent class, not here :P

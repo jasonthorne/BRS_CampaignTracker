@@ -14,6 +14,7 @@ public abstract class AirForce {
 	
 	//air force names:
 	public enum AirForceName{
+		
 		RAF("RAF"), 
 		LUFTWAFFE("Luftwaffe"), 
 		USAAF("USA"), 
@@ -25,6 +26,13 @@ public abstract class AirForce {
 		@Override public String toString() { return airForce; }  //return name of air force
 	}
 	
+	//protected String name; //name of AirForce
+	///protected abstract void setName(); //concrete class sets name
+	public abstract String getName(); //get name
+		
+
+	
+	//HAVE THIS HASHMAP BE MADE FROM PULLING EACH PLANE CLASSES LIST OF PLANES FROM ITS SUBSIQUENT CLASS:
 	//air force models:
 	@SuppressWarnings("serial") private static final Map<AirForceName, List<Model>> airForceToModels = new HashMap<AirForceName, List<Model>>() {{
 	    put(AirForceName.RAF, Arrays.asList(
@@ -67,6 +75,8 @@ public abstract class AirForce {
 		return null; 
 		
 	}; 
+	
+	
 	
 	
 	
