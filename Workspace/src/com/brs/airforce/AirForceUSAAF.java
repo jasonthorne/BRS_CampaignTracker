@@ -32,7 +32,7 @@ public class AirForceUSAAF extends AirForce{
 	public AirForceUSAAF(){
 		setName(); //set name of air force
 		setDescription(); //set description of air force
-		setModels(); //set models of plane available
+		//setModels(); //set models of plane available +++++++++++++++++
 		putAirForceToModels(); //add name and models to Map
 	}
 	
@@ -107,23 +107,9 @@ public class AirForceUSAAF extends AirForce{
 	protected void setName() { name = NAME.toString(); } //set name of of AirForce
 	@Override
 	protected void setDescription() { description = DESCRIPTION; } //set description of AirForce
-	@Override
-	protected void setModels() { models = MODELS; } //set models of plane available
+	////////////@Override
+	/////////protected void setModels() { models = MODELS; } //set models of plane available ++++++++++++++++++++++++++++++++++
 	@Override 
 	protected void putAirForceToModels() { airForceToModels.put(NAME, MODELS); } //add name and models to Map
 
-	
-	
-
-	
-
-	/*
-	//+++++++++++++THIS SHOULD PROB BE NON STATIC AND KEPT PUBLIC, but be in parent class, not here :P
-	public Map<Period, Status>getPeriodToStatus(Model model) throws Exception{ //+++++++++++++all the throws here minght not be needed. We;ll see!! 
-		setPeriodToStatus(model);
-		return periodToStatus;
-	}*/
-
-	//HERE we OVERRIDE THE getairForceModels method THAT YOU NEED TO PUT IN SUPER with the returning of all american planes (other classes obv retunr their ariforce planes)
-	
 }
