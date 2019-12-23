@@ -17,36 +17,24 @@ import com.brs.airforce.AirForce;
 
 public class AirForceUSAAF extends AirForce{
 	
-	@Override
-	protected void setName() { name = AirForceName.USAAF.toString(); }  //name of AirForce
-		
-	@Override
-	protected void setModels() { //models of plane available: 
-		models = Arrays.asList(
-				Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
-	    		Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
-	    		Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
-	}
+	private static final AirForceName NAME = AirForceName.USAAF; //name of air force
+	
+	//description of air force:
+	private static final String DESCRIPTION = "***AirForceUSAAF description here***"; 
+	
+	//models of plane available: 
+	private static final List<Model>MODELS = Arrays.asList(
+			Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
+    		Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
+    		Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
 
-	
+	//constructor:
 	public AirForceUSAAF(){
-		setName(); //set name of of AirForce
+		setName(); //set name of air force
+		setDescription(); //set description of air force
 		setModels(); //set models of plane available
-		//ADD NAME AND MODELS TO MAP OF ALL MODELS AND THEIR NAMES +++++++++++++
+		putAirForceToModels(); //add name and models to Map
 	}
-	
-	
-	//private static final String name = AirForceName.USAAF.toString(); //name of AirForce
-	
-		/*
-		//models of plane available: 
-		private static final List<Model>models = Arrays.asList(
-				Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
-	    		Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
-	    		Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
-		*/
-		
-	
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it:  
 	@Override 
@@ -55,8 +43,8 @@ public class AirForceUSAAF extends AirForce{
 		
 		switch(model) { //populate periods and statuses, according to model:
 		  case F4F_WILDCAT:
-			  periods = Period.getPeriods(new Period(Block.LATE, Year.FORTY_ONE), new Period(Block.MID, Year.FORTY_FOUR)); //++++++++CHECK FOR COLLISIONS FROM PREVIOUS FILLS HERE!!!
-			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, //++++++++CHECK FOR COLLISIONS FROM PREVIOUS FILLS HERE!!!
+			  periods = Period.getPeriods(new Period(Block.LATE, Year.FORTY_ONE), new Period(Block.MID, Year.FORTY_FOUR)); 
+			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.LIMIT, Status.LIMIT);
 			  break;
 		  case F4U_CORSAIR:
@@ -112,28 +100,20 @@ public class AirForceUSAAF extends AirForce{
 		}
 		 //add periods and statuses to HashMap:
 		for (int i=0; i<periods.size(); i++) { periodToStatus.put(periods.get(i), statuses.get(i)); }
-		
+			
 	}
 	
-	
-	//Getters: //++++++++++++++++++++CHANGE PRIVACY OF THESE +++++++++
 	@Override
-	public String getDescription() { 
-		return "AirForceUSAAF description..."; 	//description of air force
-	}
-
+	protected void setName() { name = NAME.toString(); } //set name of of AirForce
+	@Override
+	protected void setDescription() { description = DESCRIPTION; } //set description of AirForce
+	@Override
+	protected void setModels() { models = MODELS; } //set models of plane available
+	@Override 
+	protected void putAirForceToModels() { airForceToModels.put(NAME, MODELS); } //add name and models to Map
 
 	
 	
-	
-	String test() {
-		return name;
-	}
-
-
-	//@Override
-	//public static String getName() { return name; }
-
 
 	
 

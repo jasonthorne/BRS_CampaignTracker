@@ -29,13 +29,17 @@ public abstract class AirForce {
 	protected String name; //name of AirForce
 	protected abstract void setName(); //concrete class sets name
 	public String getName() { return name; } //return name
-		
+	
+	protected String description; //description of AirForce
+	protected abstract void setDescription(); //concrete class sets description
+	public String getDescription() { return description; } //return description
+		//+++++++++++++NONE OF BELOW MIGHT BE NEEDED> (as we can pull this info from the hashmap below)make a getModel that puts with a key into HashMap +++++++++++++
 	protected List<Model>models; //models of plane available
 	protected abstract void setModels(); //concrete class sets models
 	public List<Model> getModels() { return models; }  //return models
 	
-	
 	protected static Map<AirForceName, List<Model>> airForceToModels = new HashMap<AirForceName, List<Model>>();
+	protected abstract void putAirForceToModels(); //concrete class puts name and models to airForceToModels
 	
 	/*
 	//HAVE THIS HASHMAP BE MADE FROM PULLING EACH PLANE CLASSES LIST OF PLANES FROM ITS SUBSIQUENT CLASS:
@@ -75,10 +79,7 @@ public abstract class AirForce {
 		return periodToStatus;
 	}
 	
-	public abstract String getDescription(); //get description of air force
 	
-	
-		
 	public List<Model>getAllModels(){ //get all models available to all air forces
 		return null; 
 		
