@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.brs.airforce.AirForceData.AirForce;
+import com.brs.airforce.AirForceName;
 import com.brs.period.Period;
 import com.brs.period.PeriodData;
 import com.brs.period.PeriodData.Block;
@@ -14,10 +14,12 @@ import com.brs.plane.PlaneData;
 
 public abstract class EventData {
 	
+	
+	
 	//event name values:
 	public enum EventName{
 		
-		BATTLE_OF_BRITAIN("Battle of AirForceRAF"), 
+		BATTLE_OF_BRITAIN("Battle of Britain"), 
 		OPERATION_BARBAROSSA("Operation Barbarossa"),
 		GUADALCANAL("Guadalcanal"),
 		STALINGRAD("Stalingrad"),
@@ -32,15 +34,16 @@ public abstract class EventData {
 		public String toString() {return name;} //return chosen event
 	}
 	
+	
 	//events and the corresponding air forces involved:
-	private static final Map<String, List<AirForce>> eventNameToAirForces = new HashMap<String, List<AirForce>>() {{
-	    put(EventName.BATTLE_OF_BRITAIN.toString(), Arrays.asList(AirForce.RAF, AirForce.LUFTWAFFE));
-	    put(EventName.OPERATION_BARBAROSSA.toString(), Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE));
-	    put(EventName.GUADALCANAL.toString(), Arrays.asList(AirForce.USAAF, AirForce.IJAAF));
-	    put(EventName.STALINGRAD.toString(), Arrays.asList(AirForce.VVS, AirForce.LUFTWAFFE));
-	    put(EventName.ASSAULT_ON_THE_REICH.toString(), Arrays.asList(AirForce.RAF, AirForce.USAAF, AirForce.LUFTWAFFE));
-	    put(EventName.THE_ITALIAN_CAMPAIGN.toString(), Arrays.asList(AirForce.RAF, AirForce.USAAF, AirForce.LUFTWAFFE));
-	    put(EventName.DEFENCE_OF_THE_HOME_ISLANDS.toString(), Arrays.asList(AirForce.USAAF, AirForce.IJAAF));
+	private static final Map<String, List<AirForceName>> eventNameToAirForces = new HashMap<String, List<AirForceName>>() {{
+	    put(EventName.BATTLE_OF_BRITAIN.toString(), Arrays.asList(AirForceName.RAF, AirForceName.LUFTWAFFE));
+	    put(EventName.OPERATION_BARBAROSSA.toString(), Arrays.asList(AirForceName.VVS, AirForceName.LUFTWAFFE));
+	    put(EventName.GUADALCANAL.toString(), Arrays.asList(AirForceName.USAAF, AirForceName.IJAAF));
+	    put(EventName.STALINGRAD.toString(), Arrays.asList(AirForceName.VVS, AirForceName.LUFTWAFFE));
+	    put(EventName.ASSAULT_ON_THE_REICH.toString(), Arrays.asList(AirForceName.RAF, AirForceName.USAAF, AirForceName.LUFTWAFFE));
+	    put(EventName.THE_ITALIAN_CAMPAIGN.toString(), Arrays.asList(AirForceName.RAF, AirForceName.USAAF, AirForceName.LUFTWAFFE));
+	    put(EventName.DEFENCE_OF_THE_HOME_ISLANDS.toString(), Arrays.asList(AirForceName.USAAF, AirForceName.IJAAF));
 	}};
 	
 	
@@ -58,7 +61,7 @@ public abstract class EventData {
 	
 	//events and their corresponding description:
 	private static final Map<String, String> eventNameToDescription = new HashMap<String, String>() {{
-	    put(EventName.BATTLE_OF_BRITAIN.toString(), "'Battle of AirForceRAF' description");
+	    put(EventName.BATTLE_OF_BRITAIN.toString(), "'Battle of Britain' description");
 	    put(EventName.OPERATION_BARBAROSSA.toString(), "'Operation Barbarossa' description");
 	    put(EventName.GUADALCANAL.toString(), "'Guadalcanal' description");
 	    put(EventName.STALINGRAD.toString(), "'Stalingrad' description");
@@ -71,7 +74,7 @@ public abstract class EventData {
 	//getters:
 	
 	//get AirForces associated with target event:
-	protected static List<AirForce>getAirForces(String name){ return eventNameToAirForces.get(name); }
+	protected static List<AirForceName>getAirForces(String name){ return eventNameToAirForces.get(name); }
 		
 	//get Periods associated with target event:
 	protected static List<Period>getPeriods(String name){ return eventNameToPeriods.get(name); }

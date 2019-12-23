@@ -1,6 +1,5 @@
 package com.brs.airforce;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,7 @@ import com.brs.plane.PlaneData.Status;
 
 public abstract class AirForce {
 	
+	/*
 	//air force names:
 	public enum AirForceName{
 		
@@ -24,6 +24,7 @@ public abstract class AirForce {
 		private AirForceName(String airForce) { this.airForce = airForce; }  //assign name of air force
 		@Override public String toString() { return airForce; }  //return name of air force
 	}
+	*/
 	
 	protected String name; //name of AirForce
 	protected abstract void setName(); //concrete class sets name

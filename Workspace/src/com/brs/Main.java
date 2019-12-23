@@ -10,9 +10,9 @@ import com.brs.Campaign.CampaignBuilder;
 import com.brs.Pilot.PilotBuilder;
 import com.brs.Pilot.PilotSkill;
 import com.brs.Player.PlayerBuilder;
-import com.brs.airforce.AirForceData;
+import com.brs.airforce.AirForceName;
 import com.brs.airforce.AirForce;
-import com.brs.airforce.AirForceUSAAF;
+import com.brs.airforce.USAAF;
 import com.brs.event.EventData.EventName;
 import com.brs.period.Period;
 import com.brs.period.PeriodData.Block;
@@ -224,7 +224,7 @@ public class Main {
 		//player1:
 		playerBuilder = new PlayerBuilder(); //re-instantiate player builder //++++++++++++++++++NO NEEDED AS BUILT ABOVE (method should pass a new builder)
 		playerBuilder.setName("player1"); //assign player name
-		playerBuilder.setAirForce(AirForce.RAF); //assign air force
+		playerBuilder.setAirForce(AirForceName.RAF); //assign air force
 		player = playerBuilder.build(); //build player
 		campaign = campaignBuilder.setPlayer(player).build(); //add player to campaign
 		//+++++++++++++JUMP USER TO PLAYER PAGE HERE (passing campaign (OR PLAYER) reference as before)++++++++++++++++++++
@@ -233,7 +233,7 @@ public class Main {
 		//player2:
 		playerBuilder = new PlayerBuilder(); //re-instantiate player builder
 		playerBuilder.setName("player2"); //assign player name
-		playerBuilder.setAirForce(AirForce.LUFTWAFFE); //assign air force
+		playerBuilder.setAirForce(AirForceName.LUFTWAFFE); //assign air force
 		player = playerBuilder.build(); //build player
 		campaign = campaignBuilder.setPlayer(player).build(); //add player to campaign
 		
@@ -373,7 +373,7 @@ public class Main {
 			
 		//==========================SWITCH HASMAP TESTING ==========================
 		
-		AirForce testAirForce = new AirForceUSAAF();
+		AirForce testAirForce = new USAAF();
 		
 		Map<Period, Status>periodToStatus = null;
 

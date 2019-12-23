@@ -15,12 +15,12 @@ import com.brs.plane.PlaneData.Status;
 import com.brs.airforce.AirForce;
 
 
-public class AirForceUSAAF extends AirForce{
+public class USAAF extends AirForce{
 	
 	private static final AirForceName NAME = AirForceName.USAAF; //name of air force
 	
 	//description of air force:
-	private static final String DESCRIPTION = "***AirForceUSAAF description here***"; 
+	private static final String DESCRIPTION = "***USAAF description here***"; 
 	
 	//models of plane available: 
 	private static final List<Model>MODELS = Arrays.asList(
@@ -29,7 +29,7 @@ public class AirForceUSAAF extends AirForce{
     		Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
 
 	//constructor:
-	public AirForceUSAAF(){
+	public USAAF(){
 		setName(); //set name of air force
 		setDescription(); //set description of air force
 		//setModels(); //set models of plane available +++++++++++++++++

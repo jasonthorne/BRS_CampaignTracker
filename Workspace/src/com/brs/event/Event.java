@@ -2,7 +2,7 @@ package com.brs.event;
 
 import java.util.List;
 
-import com.brs.airforce.AirForceData.AirForce;
+import com.brs.airforce.AirForceName;
 import com.brs.event.EventData.EventName;
 import com.brs.period.Period;
 
@@ -10,7 +10,7 @@ import com.brs.period.Period;
 public final class Event { //++++++DD FINALS TO ALL OTHER CLASSES THHAT NEED IT (aren't extended.)
 	
 	private final String name; //name of event
-	private final List<AirForce>airForces; //air forces involved
+	private final List<AirForceName>airForces; //air forces involved
 	private final List<Period>periods; //periods of history covered
 	private final String description; //description of event
 	

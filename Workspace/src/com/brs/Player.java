@@ -1,14 +1,14 @@
 package com.brs;
 
 import com.brs.Squadron.SquadronBuilder;
-import com.brs.airforce.AirForceData.AirForce;
-import com.brs.airforce.AirForceData.AirForceName;
+//import com.brs.airforce.AirForceData.AirForce; ++++++++++++++
+import com.brs.airforce.AirForceName;
 
 public class Player{
 	
 	private String name;
 	private int score;
-	private AirForce airForce; 
+	private AirForceName airForce; 
 	private Squadron squadron;
 	private int joinDate;
 	
@@ -21,7 +21,7 @@ public class Player{
 	
 	@Override
 	public String toString() {
-		return "Player [name=" + name + ", score=" + score + ", airForce=" + AirForceName + ", squadron=" + squadron
+		return "Player [name=" + name + ", score=" + score + ", airForce=" + airForce + ", squadron=" + squadron
 				+ ", joinDate=" + joinDate + "]";
 	}
 	
@@ -42,7 +42,7 @@ public class Player{
 	}
 	*/
 	
-	public AirForce getAirForce() {
+	public AirForceName getAirForce() {
 		return airForce;
 	}
 	
@@ -60,8 +60,8 @@ public class Player{
 			return this;
 		}
 		
-		public PlayerBuilder setAirForce(AirForce airForce) { 
-			player.airForce = airForce;
+		public PlayerBuilder setAirForce(AirForceName airForceName) { 
+			player.airForce = airForceName;
 			return this;
 		}
 		
