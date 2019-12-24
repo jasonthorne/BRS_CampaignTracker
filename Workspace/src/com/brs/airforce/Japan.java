@@ -1,6 +1,6 @@
 package com.brs.airforce;
 
-public class IJAAF {
+public class Japan {
 	
 
 	/*

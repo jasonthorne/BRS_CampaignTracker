@@ -14,8 +14,6 @@ import com.brs.plane.PlaneData;
 
 public abstract class EventData {
 	
-	
-	
 	//event name values:
 	public enum EventName{
 		

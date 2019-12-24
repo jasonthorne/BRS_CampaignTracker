@@ -12,7 +12,7 @@ import com.brs.Pilot.PilotSkill;
 import com.brs.Player.PlayerBuilder;
 import com.brs.airforce.AirForceName;
 import com.brs.airforce.AirForce;
-import com.brs.airforce.USAAF;
+import com.brs.airforce.UnitedStates;
 import com.brs.event.EventData.EventName;
 import com.brs.period.Period;
 import com.brs.period.PeriodData.Block;
@@ -373,7 +373,7 @@ public class Main {
 			
 		//==========================SWITCH HASMAP TESTING ==========================
 		
-		AirForce testAirForce = new USAAF();
+		AirForce testAirForce = new UnitedStates();
 		
 		Map<Period, Status>periodToStatus = null;
 

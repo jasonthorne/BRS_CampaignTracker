@@ -15,7 +15,7 @@ import com.brs.plane.PlaneData.Status;
 import com.brs.airforce.AirForce;
 
 
-public class USAAF extends AirForce{
+public class UnitedStates extends AirForce{
 	
 	private static final AirForceName NAME = AirForceName.USAAF; //name of air force
 	
@@ -29,7 +29,7 @@ public class USAAF extends AirForce{
     		Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
 
 	//constructor:
-	public USAAF(){
+	public UnitedStates(){
 		setName(); //set name of air force
 		setDescription(); //set description of air force
 		//setModels(); //set models of plane available +++++++++++++++++
