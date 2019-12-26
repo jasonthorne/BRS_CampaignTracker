@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
-import com.brs.period.PeriodData.Block;
-import com.brs.period.PeriodData.Year;
+import com.brs.period.Block;
+import com.brs.period.Year;
 
 public class Period { //MAKE THIS IMMUTABLE ++++++++++right now these can be reasigned to null. have a final be returned 
 	

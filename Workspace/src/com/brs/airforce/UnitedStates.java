@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.brs.period.Period;
-import com.brs.period.PeriodData.Block;
-import com.brs.period.PeriodData.Year;
+import com.brs.period.Block;
+import com.brs.period.Year;
 import com.brs.plane.Plane;
 import com.brs.plane.Plane.Availability;
 import com.brs.plane.PlaneData.Model;

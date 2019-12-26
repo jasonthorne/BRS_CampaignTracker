@@ -2,6 +2,7 @@ package com.brs.period;
 
 public abstract class PeriodData {
 	
+	/*
 	//Period block values:
 	public enum Block{
 		
@@ -29,5 +30,5 @@ public abstract class PeriodData {
 		private Year(String year) { this.year = year; } //constructor sets name of chosen year
 		@Override 
 		public String toString() { return year; }  //return chosen year
-	}
+	}*/
 }
