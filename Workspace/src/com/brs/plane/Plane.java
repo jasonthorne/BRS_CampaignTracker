@@ -15,7 +15,6 @@ public class Plane {
 	private Status status;
 	
 	
-
 	private Plane(String model, Status status) {
 		System.out.println("Plane constructed");
 		this.model = model;

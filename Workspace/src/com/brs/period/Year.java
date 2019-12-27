@@ -1,8 +1,7 @@
 package com.brs.period;
 
+//Period year values:
 public enum Year {
-	
-	//Period year values:
 	
 	FORTY("1940"), 
 	FORTY_ONE("1941"), 
@@ -11,10 +10,9 @@ public enum Year {
 	FORTY_FOUR("1944"), 
 	FORTY_FIVE("1945");
 	
-	private String year; //name of chosen year
+	private final String year; //name of chosen year
 	private Year(String year) { this.year = year; } //constructor sets name of chosen year
 	@Override 
 	public String toString() { return year; }  //return chosen year
 		
-	
 }
