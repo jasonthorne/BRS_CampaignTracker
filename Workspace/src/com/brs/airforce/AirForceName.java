@@ -1,8 +1,7 @@
 package com.brs.airforce;
 
+//AirForce name values:
 public enum AirForceName {
-	
-	//AirForce name values:
 	
 	RAF("RAF"), 
 	LUFTWAFFE("Luftwaffe"), 
@@ -10,10 +9,9 @@ public enum AirForceName {
 	VVS("Soviet"), 
 	IJAAF("Japan"); 
 	
-	private String airForce; //name of chosen air force
+	private final String airForce; //name of chosen air force
 	private AirForceName(String airForce) { this.airForce = airForce; } //constructor sets name of air force
 	@Override 
 	public String toString() { return airForce; } //return chosen air force
 		
-	
 }
