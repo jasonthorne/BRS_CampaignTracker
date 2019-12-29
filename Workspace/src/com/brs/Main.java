@@ -11,6 +11,7 @@ import com.brs.Pilot.PilotBuilder;
 import com.brs.Pilot.PilotSkill;
 import com.brs.Player.PlayerBuilder;
 import com.brs.airforce.AirForceName;
+import com.brs.airforce.RoyalAirForce;
 import com.brs.airforce.AirForce;
 import com.brs.airforce.UnitedStates;
 import com.brs.event.EventData.EventName;
@@ -413,6 +414,20 @@ public class Main {
 		for ( Status status : periodToStatus.values() ) {
 		    System.out.println( status );
 		}
+		
+		
+		System.out.println("PRINT BE HERE: " + AirForce.getAirForceModels(AirForceName.RAF));
+		
+
+		//System.out.println("PRINT BE HERE2: " + RoyalAirForce.putAirForceToModels());
+		
+		RoyalAirForce.putAirForceToModels();
+
+		System.out.println("PRINT BE HERE2: " + AirForce.getAirForceModels(AirForceName.RAF));
+		
+
+		System.out.println(testAirForce.getAirForceModels(AirForceName.RAF));
+		System.out.println(testAirForce.getAirForceModels(AirForceName.USAAF));
 		
 	}
 	

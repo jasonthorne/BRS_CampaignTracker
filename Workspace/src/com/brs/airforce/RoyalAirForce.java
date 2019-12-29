@@ -14,14 +14,35 @@ import com.brs.plane.PlaneData.Model;
 import com.brs.plane.PlaneData.Status;
 
 
-public class RoyalAirForce {//implements AirForce{
+public class RoyalAirForce extends AirForce{
 	
-	private  final String description = "RAF description"; //description of air force
+	
+	
+	
+	//name of air force:
+	private static final AirForceName NAME = AirForceName.RAF; 
+	
+	//description of air force:
+	private static final String DESCRIPTION = "RAF description"; 
 	
 	//models of plane available:
-	private final List<Model>models = Arrays.asList(
+	private static final List<Model>MODELS= Arrays.asList(
 			Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
     		Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV,  Model.TEMPEST_V, Model.TYPHOON_IB);
+	
+	static {
+		putAirForceToModels(); //add name and models to Map
+		
+	}
+	
+	//constructor:
+	public RoyalAirForce(){
+		//setName(); //set name of air force
+		//setDescription(); //set description of air force
+		//setModels(); //set models of plane available +++++++++++++++++
+		//putAirForceToModels(); //add name and models to Map
+	}
+	
 	
 	//plane model periods of availability:
 	private static final Map<Model, List<Availability>> modelToAvailabilities = new HashMap<Model, List<Availability>>() {{
@@ -111,6 +132,34 @@ public class RoyalAirForce {//implements AirForce{
 	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), 
 	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
 	}};
+
+
+	@Override
+	protected void setName() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	protected void setDescription() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	
+
+	@Override
+	protected void setPeriodToStatus(Model model) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void putAirForceToModels() {
+		airForceToModels.put(NAME, MODELS);
+		
+	}
 
 	/*
 	//Getters: //++++++++++++++++++++CHANGE PRIVACY OF THESE +++++++++

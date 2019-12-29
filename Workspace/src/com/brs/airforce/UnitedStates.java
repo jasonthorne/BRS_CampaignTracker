@@ -33,7 +33,7 @@ public class UnitedStates extends AirForce{
 		setName(); //set name of air force
 		setDescription(); //set description of air force
 		//setModels(); //set models of plane available +++++++++++++++++
-		putAirForceToModels(); //add name and models to Map
+		///////putAirForceToModels(); //add name and models to Map
 	}
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it:  
@@ -109,7 +109,7 @@ public class UnitedStates extends AirForce{
 	protected void setDescription() { description = DESCRIPTION; } //set description of AirForce
 	////////////@Override
 	/////////protected void setModels() { models = MODELS; } //set models of plane available ++++++++++++++++++++++++++++++++++
-	@Override 
-	protected void putAirForceToModels() { airForceToModels.put(NAME, MODELS); } //add name and models to Map
+	//@Override 
+	//protected void putAirForceToModels() { airForceToModels.put(NAME, MODELS); } //add name and models to Map
 
 }
