@@ -16,9 +16,6 @@ import com.brs.plane.PlaneData.Status;
 
 public class RoyalAirForce extends AirForce{
 	
-	
-	
-	
 	//name of air force:
 	private static final AirForceName NAME = AirForceName.RAF; 
 	
@@ -30,17 +27,19 @@ public class RoyalAirForce extends AirForce{
 			Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
     		Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV,  Model.TEMPEST_V, Model.TYPHOON_IB);
 	
-	static {
-		putAirForceToModels(); //add name and models to Map
-		
-	}
-	
 	//constructor:
 	public RoyalAirForce(){
-		//setName(); //set name of air force
-		//setDescription(); //set description of air force
+		setName(); //set name of air force
+		setDescription(); //set description of air force
 		//setModels(); //set models of plane available +++++++++++++++++
-		//putAirForceToModels(); //add name and models to Map
+		addAirForceModels(); //add air force and it's models to Map
+	}
+	
+	
+	@Override
+	protected void setPeriodToStatus(Model model) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
@@ -135,42 +134,14 @@ public class RoyalAirForce extends AirForce{
 
 
 	@Override
-	protected void setName() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
+	protected void setName() { name = NAME.toString(); } //set name of of AirForce
 	@Override
-	protected void setDescription() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	
-
-	@Override
-	protected void setPeriodToStatus(Model model) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public static void putAirForceToModels() {
-		airForceToModels.put(NAME, MODELS);
-		
-	}
-
-	/*
-	//Getters: //++++++++++++++++++++CHANGE PRIVACY OF THESE +++++++++
-	@Override
-	public String getDescription() { return description; } //get description
-	
-	@Override
-	public List<Model> getModels() { return models; } //get models available
-
+	protected void setDescription() { description = DESCRIPTION; } //set description of AirForce
+	////////////@Override
+	/////////protected void setModels() { models = MODELS; } //set models of plane available ++++++++++++++++++++++++++++++++++
 	@Override 
-	public List<Availability> getAvailabilities(Model model) { return modelToAvailabilities.get(model); } //get model availabilities
-	*/
+	protected void addAirForceModels() { airForceToModels.put(NAME, MODELS); } //add name and models to Map
+	
+
 	
 }

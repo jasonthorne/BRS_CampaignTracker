@@ -21,19 +21,14 @@ public abstract class AirForce {
 	public String getDescription() { return description; } //return description
 	
 	
-	//Map of air forces and their models:
-	protected static Map<AirForceName, List<Model>> airForceToModels = new HashMap<AirForceName, List<Model>>();
-	//protected abstract void putAirForceToModels(); //concrete class puts name and models to airForceToModels
-	
-	/*
-	protected static void putAirForceToModels() {
-		System.out.println("yo");
-	}
-	*/
-	
+	//Map of all air forces and their models:
+	protected static Map<AirForceName, List<Model>>airForceToModels = new HashMap<AirForceName, List<Model>>();
+	protected abstract void addAirForceModels(); //concrete class puts name and models to airForceToModels
 	
 	//get models available to an air force:
-	public static List<Model>getAirForceModels(AirForceName airForceName){ return airForceToModels.get(airForceName); }
+	public static List<Model>getAirForceModels(AirForceName airForceName){
+		return airForceToModels.get(airForceName); 
+	}
 
 	
 	protected static List<Period>periods; //periods
