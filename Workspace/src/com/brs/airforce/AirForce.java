@@ -1,5 +1,6 @@
 package com.brs.airforce;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,17 +48,33 @@ public abstract class AirForce {
 	/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 */
 	//createa listof available models. 
-	private static List<Model>avaiableModels;
+	//private List<Model>avaliableModels;
+	private List<String>avaliableModels;
 	
 	//based on the atatus in relation to the CURRENT period.
-	public List<Model> getAvaliableModels(Period period, AirForceName airForceName) {
+	//public List<Model> getAvaliableModels(Period period, AirForceName airForceName) {
+	public List<String> getAvaliableModels(Period period, AirForceName airForceName) { //+++++++++++++RETURN A HASMAP INSTEAD (to include status) :P 
+		
+		avaliableModels = new ArrayList<>();
+		Map<Period, Status>testMap; 
 		
 		for(Model i: getAirForceModels(airForceName)){
 			
-			getPeriodToStatus(i)
+			testMap = getPeriodToStatus(i); //map holding periods and their statuses for model i
+			
+			///System.out.println("TEST MAP: " + testMap);
+			
+			
+			if (testMap.get(period) != null){ //if status of model doesnt have a value of none for current period
+				System.out.println("model: " + i.toString() + ". TEST MAP: " + testMap);
+				avaliableModels.add(i.toString()); //add to list of periods. 
+			}
 		}
-		return null;
+		return avaliableModels;
 	}
+	
+	
+	
 	
 	/*
 	for(Campaign i : campaigns){ 

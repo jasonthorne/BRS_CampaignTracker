@@ -14,7 +14,7 @@ import com.brs.plane.PlaneData.Model;
 import com.brs.plane.PlaneData.Status;
 
 
-public class RoyalAirForce extends AirForce{
+public class RoyalAirForce { ///extends AirForce{
 	
 	//name of air force:
 	private static final AirForceName NAME = AirForceName.RAF; 
@@ -29,19 +29,19 @@ public class RoyalAirForce extends AirForce{
 	
 	//constructor:
 	public RoyalAirForce(){
-		setName(); //set name of air force
-		setDescription(); //set description of air force
+		/////////setName(); //set name of air force
+		///////////setDescription(); //set description of air force
 		//setModels(); //set models of plane available +++++++++++++++++
-		addAirForceModels(); //add air force and it's models to Map
+		///////////addAirForceModels(); //add air force and it's models to Map
 	}
 	
-	
+	/*
 	@Override
 	protected void setPeriodToStatus(Model model) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
-	
+	*/
 	
 	//plane model periods of availability:
 	private static final Map<Model, List<Availability>> modelToAvailabilities = new HashMap<Model, List<Availability>>() {{
@@ -132,7 +132,7 @@ public class RoyalAirForce extends AirForce{
 	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
 	}};
 
-
+/*
 	@Override
 	protected void setName() { name = NAME.toString(); } //set name of of AirForce
 	@Override
@@ -141,7 +141,7 @@ public class RoyalAirForce extends AirForce{
 	/////////protected void setModels() { models = MODELS; } //set models of plane available ++++++++++++++++++++++++++++++++++
 	@Override 
 	protected void addAirForceModels() { airForceToModels.put(NAME, MODELS); } //add name and models to Map
-	
+	*/
 
 	
 }

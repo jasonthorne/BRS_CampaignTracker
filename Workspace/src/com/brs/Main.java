@@ -376,22 +376,22 @@ public class Main {
 		
 		AirForce testUSAirForce = new UnitedStates();
 		
-		Map<Period, Status>periodToStatus = null;
+		Map<Period, Status>TestMap_periodToStatus = null;
 
 		try {
-			periodToStatus = testUSAirForce.getPeriodToStatus(Model.P_51D_MUSTANG);  //a map for the plane being passed
-			System.out.println(periodToStatus);
+			TestMap_periodToStatus = testUSAirForce.getPeriodToStatus(Model.P_51D_MUSTANG);  //a map for the plane being passed
+			System.out.println(TestMap_periodToStatus);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		//GETORDEFAULT ++++++++++++++++++++++++++++++++++++++USE THIS!! :P
-		System.out.println("STATUS IS: " + periodToStatus.getOrDefault(new Period(Block.EARLY, Year.FORTY_ONE), Status.NONE));
+		System.out.println("STATUS IS: " + TestMap_periodToStatus.getOrDefault(new Period(Block.EARLY, Year.FORTY_ONE), Status.NONE));
 		
-		for ( Period key : periodToStatus.keySet() ) {
+		for ( Period key : TestMap_periodToStatus.keySet() ) {
 		    System.out.println( key );
 		}
 		
-		for ( Status status : periodToStatus.values() ) {
+		for ( Status status : TestMap_periodToStatus.values() ) {
 		    System.out.println( status );
 		}
 		
@@ -399,19 +399,19 @@ public class Main {
 		//===============================
 		
 		try {
-			periodToStatus = testUSAirForce.getPeriodToStatus(Model.P_38E_LIGHTNING); //a map for the plane being passed
-			System.out.println(periodToStatus);
+			TestMap_periodToStatus = testUSAirForce.getPeriodToStatus(Model.P_38E_LIGHTNING); //a map for the plane being passed
+			System.out.println(TestMap_periodToStatus);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		//GETORDEFAULT ++++++++++++++++++++++++++++++++++++++USE THIS!! :P
-		System.out.println("STATUS IS: " + periodToStatus.getOrDefault(new Period(Block.EARLY, Year.FORTY_TWO), Status.NONE));
+		System.out.println("STATUS IS: " + TestMap_periodToStatus.getOrDefault(new Period(Block.EARLY, Year.FORTY_TWO), Status.NONE));
 		
-		for ( Period key : periodToStatus.keySet() ) {
+		for ( Period key : TestMap_periodToStatus.keySet() ) {
 		    System.out.println( key );
 		}
 		
-		for ( Status status : periodToStatus.values() ) {
+		for ( Status status : TestMap_periodToStatus.values() ) {
 		    System.out.println( status );
 		}
 		
@@ -434,12 +434,27 @@ public class Main {
 		
 		System.out.println(UnitedStates.getAirForceModels(AirForceName.USAAF));
 		
-		AirForce testRAFAirForce = new RoyalAirForce();
+		//AirForce testRAFAirForce = new RoyalAirForce();
 		
 
 		System.out.println(AirForce.getAirForceModels(AirForceName.RAF));
 		System.out.println(UnitedStates.getAirForceModels(AirForceName.RAF));
+		
+		
+		
+		//===================
+		//List<Model>TESTavaiableModels;
+		List<String>TESTavaiableModels;
+		
+		//testList of available models is:
+		TESTavaiableModels = testUSAirForce.getAvaliableModels(new Period(Block.MID, Year.FORTY_THREE), AirForceName.USAAF);
+		
+		System.out.println("yo dawg! " + TESTavaiableModels);
+		
+		
 	}
+
+	
 	
 	
 	
