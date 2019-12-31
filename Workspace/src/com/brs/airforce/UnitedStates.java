@@ -17,7 +17,8 @@ import com.brs.airforce.AirForce;
 
 public class UnitedStates extends AirForce{
 	
-	private static final AirForceName NAME = AirForceName.USAAF; //name of air force
+	//name of air force:
+	private static final AirForceName NAME = AirForceName.USAAF; 
 	
 	//description of air force:
 	private static final String DESCRIPTION = "***USAAF description here***"; 
@@ -36,7 +37,9 @@ public class UnitedStates extends AirForce{
 		addAirForceModels(); //add air force and it's models to Map
 	}
 	
-	//creates a HashMap of periods and their statuses for the model of plane passed to it:  
+	
+	
+	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 
 	protected void setPeriodToStatus(Model model) throws Exception {	
 		periodToStatus = new HashMap<Period, Status>(); //(re)set HashMap
