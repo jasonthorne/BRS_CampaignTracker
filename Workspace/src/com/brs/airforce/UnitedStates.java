@@ -37,11 +37,9 @@ public class UnitedStates extends AirForce{
 		addAirForceModels(); //add air force and it's models to Map
 	}
 	
-	
-	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 
-	protected void setPeriodToStatus(Model model) throws Exception {	
+	protected void setPeriodToStatus(Model model) { ////////////////// throws Exception {	
 		periodToStatus = new HashMap<Period, Status>(); //(re)set HashMap
 		
 		switch(model) { //populate periods and statuses, according to model:
@@ -99,7 +97,7 @@ public class UnitedStates extends AirForce{
 			  periods = Period.getPeriods(new Period(Block.EARLY, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO);
 			  break;
-		  default: throw new Exception("Error: model not found.");
+		 // default: throw new Exception("Error: model not found.");
 		}
 		 //add periods and statuses to HashMap:
 		for (int i=0; i<periods.size(); i++) { periodToStatus.put(periods.get(i), statuses.get(i)); }

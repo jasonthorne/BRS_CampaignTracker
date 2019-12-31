@@ -374,12 +374,12 @@ public class Main {
 			
 		//==========================SWITCH HASMAP TESTING ==========================
 		
-		AirForce testAirForce = new UnitedStates();
+		AirForce testUSAirForce = new UnitedStates();
 		
 		Map<Period, Status>periodToStatus = null;
 
 		try {
-			periodToStatus = testAirForce.getPeriodToStatus(Model.P_51D_MUSTANG);  //a map for the plane being passed
+			periodToStatus = testUSAirForce.getPeriodToStatus(Model.P_51D_MUSTANG);  //a map for the plane being passed
 			System.out.println(periodToStatus);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -399,7 +399,7 @@ public class Main {
 		//===============================
 		
 		try {
-			periodToStatus = testAirForce.getPeriodToStatus(Model.P_38E_LIGHTNING); //a map for the plane being passed
+			periodToStatus = testUSAirForce.getPeriodToStatus(Model.P_38E_LIGHTNING); //a map for the plane being passed
 			System.out.println(periodToStatus);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -426,14 +426,19 @@ public class Main {
 		System.out.println("PRINT BE HERE2: " + AirForce.getAirForceModels(AirForceName.RAF));
 		
 
-		System.out.println(testAirForce.getAirForceModels(AirForceName.RAF));
+		System.out.println(testUSAirForce.getAirForceModels(AirForceName.RAF));
 		
 		//UnitedStates.putAirForceToModels();
 		
 		System.out.println(AirForce.getAirForceModels(AirForceName.USAAF));
 		
-		System.out.println(UnitedStates.getAirForceModels(AirForceName.RAF));
+		System.out.println(UnitedStates.getAirForceModels(AirForceName.USAAF));
 		
+		AirForce testRAFAirForce = new RoyalAirForce();
+		
+
+		System.out.println(AirForce.getAirForceModels(AirForceName.RAF));
+		System.out.println(UnitedStates.getAirForceModels(AirForceName.RAF));
 	}
 	
 	
