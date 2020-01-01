@@ -445,20 +445,18 @@ public class Main {
 		
 		
 		//===================
-		//List<Model>TESTavaiableModels;
-		//List<String>TESTavaiableModels;
+		
 		Map<Model, Status>TESTmodelToStatus;
 		
-		//testList of available models is:
-		//TESTavaiableModels = testUSAirForce.getAvaliableModels(new Period(Block.MID, Year.FORTY_ONE), AirForceName.USAAF);
-		
-		//THIS SHOULD EXIST IN AIRFORCE CLASS!! 
-		TESTmodelToStatus  = testUSAirForce.getAvaliableModels(new Period(Block.MID, Year.FORTY_FIVE), AirForceName.USAAF);
+		//THIS SHOULD EXIST IN CLASS THAT CONTAIS AIRFORCE ('player' for now)!! 
+		TESTmodelToStatus  = testUSAirForce.getAvailableModels(new Period(Block.MID, Year.FORTY_FIVE), AirForceName.USAAF);
 		
 		
 		
 		System.out.println("yo dawg! " + TESTmodelToStatus);
 		
+		
+		//UnitedStates a = new UnitedStates(); //++++++++++++FIX THIS BEIMNG ALLOWED!! :P
 		
 	}
 

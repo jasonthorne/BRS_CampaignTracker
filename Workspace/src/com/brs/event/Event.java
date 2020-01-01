@@ -10,7 +10,7 @@ import com.brs.period.Period;
 public final class Event { //++++++DD FINALS TO ALL OTHER CLASSES THHAT NEED IT (aren't extended.)
 	
 	private final String name; //name of event
-	private final List<AirForceName>airForces; //air forces involved
+	private final List<AirForceName>airForces; //air forces involved +++++++++++CREATE AIFORCE OBJECTS IN THIS LIST. these are then assigned to player when they pick an airforce from them.
 	private final List<Period>periods; //periods of history covered
 	private final String description; //description of event
 	

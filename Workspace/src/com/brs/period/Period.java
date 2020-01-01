@@ -8,7 +8,7 @@ import java.util.ListIterator;
 import com.brs.period.Block;
 import com.brs.period.Year;
 
-public class Period { //MAKE THIS IMMUTABLE ++++++++++right now these can be reasigned to null. have a final be returned 
+public class Period {
 	
 	private final Block block; //early, mid, late
 	private final Year year; //1940 - 1945
@@ -49,8 +49,8 @@ public class Period { //MAKE THIS IMMUTABLE ++++++++++right now these can be rea
 	}
 
 	//getPeriods vars:
-	private final static List<Block>blocks = Arrays.asList(Block.values()); //list of all Block values
-	private final static List<Year>years = Arrays.asList(Year.values()); //list of all Year values
+	private final static List<Block>blocks = Arrays.asList(Block.values()); //list of all Block values (early, mid, late)
+	private final static List<Year>years = Arrays.asList(Year.values()); //list of all Year values (1940 - 1945)
 	private static List<Period>periods; //list for holding range of Periods
 	private static ListIterator<Block>blocksIterator; //blocks iterator
 	private static ListIterator<Year>yearsIterator; //years iterator
