@@ -378,6 +378,7 @@ public class Main {
 		
 		Map<Period, Status>TestMap_periodToStatus = null;
 
+		/*
 		try {
 			TestMap_periodToStatus = testUSAirForce.getPeriodToStatus(Model.P_51D_MUSTANG);  //a map for the plane being passed
 			System.out.println(TestMap_periodToStatus);
@@ -394,10 +395,11 @@ public class Main {
 		for ( Status status : TestMap_periodToStatus.values() ) {
 		    System.out.println( status );
 		}
-		
+		*/
 		
 		//===============================
 		
+		/*
 		try {
 			TestMap_periodToStatus = testUSAirForce.getPeriodToStatus(Model.P_38E_LIGHTNING); //a map for the plane being passed
 			System.out.println(TestMap_periodToStatus);
@@ -414,7 +416,7 @@ public class Main {
 		for ( Status status : TestMap_periodToStatus.values() ) {
 		    System.out.println( status );
 		}
-		
+		*/
 		
 		System.out.println("PRINT BE HERE: " + AirForce.getAirForceModels(AirForceName.RAF));
 		
@@ -444,12 +446,18 @@ public class Main {
 		
 		//===================
 		//List<Model>TESTavaiableModels;
-		List<String>TESTavaiableModels;
+		//List<String>TESTavaiableModels;
+		Map<Model, Status>TESTmodelToStatus;
 		
 		//testList of available models is:
-		TESTavaiableModels = testUSAirForce.getAvaliableModels(new Period(Block.MID, Year.FORTY_THREE), AirForceName.USAAF);
+		//TESTavaiableModels = testUSAirForce.getAvaliableModels(new Period(Block.MID, Year.FORTY_ONE), AirForceName.USAAF);
 		
-		System.out.println("yo dawg! " + TESTavaiableModels);
+		//THIS SHOULD EXIST IN AIRFORCE CLASS!! 
+		TESTmodelToStatus  = testUSAirForce.getAvaliableModels(new Period(Block.MID, Year.FORTY_FIVE), AirForceName.USAAF);
+		
+		
+		
+		System.out.println("yo dawg! " + TESTmodelToStatus);
 		
 		
 	}

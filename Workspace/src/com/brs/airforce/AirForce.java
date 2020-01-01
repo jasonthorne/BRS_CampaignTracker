@@ -30,7 +30,7 @@ public abstract class AirForce {
 	
 	//nereded?????????????????????????
 	public static List<Model>getAirForceModels(AirForceName airForceName){ //get models available to an air force
-		return airForceToModels.getOrDefault(airForceName, null); 
+		return airForceToModels.get(airForceName); 
 	}
 	
 	//vars for creating maps of a model's periods and their statuses:
@@ -39,48 +39,37 @@ public abstract class AirForce {
 	protected static Map<Period, Status>periodToStatus; //Map for holding a model's periods and their statuses
 	protected abstract void setPeriodToStatus(Model model); ////++++++++ throws Exception; //concrete class creates Map of periods and their statuses
 	
+	
+	/*
 	//gets a Map of a model's periods and their statuses:
 	public Map<Period, Status>getPeriodToStatus(Model model){ ///++++++ throws Exception{ 
 		setPeriodToStatus(model); //create Map based on Model
 		return periodToStatus; //return Map.
-	}
+	}*/
 	
-	/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	 */
-	//createa listof available models. 
-	//private List<Model>avaliableModels;
-	private List<String>avaliableModels;
+	/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++NEED TO DEAL WITH IF INVALID DATES ARTE ENTERED (Late 1945)
+	*/
 	
-	//based on the atatus in relation to the CURRENT period.
-	//public List<Model> getAvaliableModels(Period period, AirForceName airForceName) {
-	public List<String> getAvaliableModels(Period period, AirForceName airForceName) { //+++++++++++++RETURN A HASMAP INSTEAD (to include status) :P 
+	private static Map<Model, Status>modelToStatus;
+	private static Status statusVal; 
+	
+	public Map<Model, Status> getAvaliableModels(Period period, AirForceName airForceName) { 
+		modelToStatus = new HashMap<Model, Status>(); //(re)set HashMap 
 		
-		avaliableModels = new ArrayList<>();
-		Map<Period, Status>testMap; 
-		
-		for(Model i: getAirForceModels(airForceName)){
+		for(Model currModel: airForceToModels.get(airForceName)){ //every model returned with airForceName key
 			
-			testMap = getPeriodToStatus(i); //map holding periods and their statuses for model i
+			setPeriodToStatus(currModel); //(re)set periodToStatus with the current model's periods and their statuses
+			statusVal = periodToStatus.getOrDefault(period, Status.NONE); //assign status value returned with period key (or NONE if period not found)
 			
-			///System.out.println("TEST MAP: " + testMap);
-			
-			
-			if (testMap.get(period) != null){ //if status of model doesnt have a value of none for current period
-				System.out.println("model: " + i.toString() + ". TEST MAP: " + testMap);
-				avaliableModels.add(i.toString()); //add to list of periods. 
+			if ((!statusVal.equals(Status.NONE))){ //if period key returned a value:
+				//System.out.println("model: " + currModel.toString() + ". TEST MAP: " + periodToStatus); //++++++++++++++++++
+				modelToStatus.put(currModel, statusVal); //add current model and it's status
 			}
 		}
-		return avaliableModels;
+		
+		return modelToStatus; //return available models
 	}
 	
-	
-	
-	
-	/*
-	for(Campaign i : campaigns){ 
-		System.out.println(i); 
-		if (i.getEventName() == "Battle of AirForceRAF") campaign = i; //assign target campaign to reference
-	}*/
 	
 	/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 */
