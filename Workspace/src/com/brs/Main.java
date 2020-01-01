@@ -455,6 +455,7 @@ public class Main {
 		
 		System.out.println("yo dawg! " + TESTmodelToStatus);
 		
+		System.out.println("boop " + testUSAirForce.getName() + "bing " + testUSAirForce.getDescription());
 		
 		//UnitedStates a = new UnitedStates(); //++++++++++++FIX THIS BEIMNG ALLOWED!! :P
 		

@@ -51,7 +51,7 @@ public class DataDump {
 	//===================================================================
 	
 	//RoyalAirForce:
-	
+	/*
 	//plane model periods of availability:
 	private static final Map<Model, List<Availability>> modelToAvailabilities = new HashMap<Model, List<Availability>>() {{
 		put(Model.HURRICANE_I, 
@@ -134,12 +134,16 @@ public class DataDump {
 	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), 
 	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
 	    put(Model.TYPHOON_IB, 
-	    		Arrays.asList(
+	    		Arrays.asList( //THIS IS WRONG (should have different data): 
 	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.LIMIT), 
 	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO),
 	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), 
 	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
-	}};
+	}};		
 	
-
+*/
+	
+	
+	
+	
 }

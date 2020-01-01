@@ -31,8 +31,6 @@ public class UnitedStates extends AirForce{
 
 	//constructor:
 	public UnitedStates(){
-		setName(); //set name of air force
-		setDescription(); //set description of air force
 		addAirForceModels(); //add air force and it's models to Map
 	}
 	
@@ -103,9 +101,9 @@ public class UnitedStates extends AirForce{
 	}
 	
 	@Override
-	protected void setName() { name = NAME.toString(); } //set name of of AirForce
+	public String getName() { return NAME.toString(); } //return name of air force
 	@Override
-	protected void setDescription() { description = DESCRIPTION; } //set description of AirForce
+	public String getDescription() { return DESCRIPTION; } //return description of air force
 	@Override 
 	protected void addAirForceModels() { airForceToModels.put(NAME, MODELS); } //add name and models to Map
 
