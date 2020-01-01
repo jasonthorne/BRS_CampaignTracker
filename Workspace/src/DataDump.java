@@ -7,7 +7,6 @@ import com.brs.period.Block;
 import com.brs.period.Period;
 import com.brs.period.Year;
 import com.brs.plane.Plane;
-import com.brs.plane.Plane.Availability;
 import com.brs.plane.PlaneData.Model;
 import com.brs.plane.PlaneData.Status;
 

@@ -22,8 +22,7 @@ public class Period {
 	@Override 
 	public String toString() { return "Period: [" + block + " " + year + "]"; }
 	
-	
-	@Override //override for comparing against other Periods:
+	@Override //for comparison against other Periods. Used in getAvailableModels() in AirForce class:
 	public int hashCode() { 
 		final int prime = 31;
 		int result = 1;
@@ -32,7 +31,7 @@ public class Period {
 		return result;
 	}
 
-	@Override //override for comparing against other Periods:
+	@Override //for comparison against other Periods. Used in getAvailableModels() in AirForce class:
 	public boolean equals(Object obj) { 
 		if (this == obj)
 			return true;
@@ -49,9 +48,9 @@ public class Period {
 	}
 
 	//getPeriods vars:
-	private final static List<Block>blocks = Arrays.asList(Block.values()); //list of all Block values (early, mid, late)
-	private final static List<Year>years = Arrays.asList(Year.values()); //list of all Year values (1940 - 1945)
-	private static List<Period>periods; //list for holding range of Periods
+	private final static List<Block>blocks = Arrays.asList(Block.values()); //all Block values (early, mid, late)
+	private final static List<Year>years = Arrays.asList(Year.values()); //all Year values (1940 - 1945)
+	private static List<Period>periods; //holds a range of Periods
 	private static ListIterator<Block>blocksIterator; //blocks iterator
 	private static ListIterator<Year>yearsIterator; //years iterator
 	private static Year currYear; //holds year values

@@ -13,6 +13,7 @@ import com.brs.plane.PlaneData;
 
 public abstract class EventData {
 	
+	/*
 	//event name values:
 	public enum EventName{
 		
@@ -30,7 +31,7 @@ public abstract class EventData {
 		@Override 
 		public String toString() {return name;} //return chosen event
 	}
-	
+	*/
 	
 	//events and the corresponding air forces involved:
 	private static final Map<String, List<AirForceName>> eventNameToAirForces = new HashMap<String, List<AirForceName>>() {{

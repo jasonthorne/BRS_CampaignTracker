@@ -1,10 +1,5 @@
 package com.brs.airforce;
 
-import java.util.Arrays;
-import java.util.List;
-
-import com.brs.airforce.RoyalAirForce;
-
 //AirForce name values:
 public enum AirForceName {
 	

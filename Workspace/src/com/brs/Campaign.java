@@ -5,7 +5,8 @@ import java.util.List;
 
 import com.brs.event.Event;
 import com.brs.event.Event.EventBuilder;
-import com.brs.event.EventData.EventName;
+//import com.brs.event.EventData.EventName;
+import com.brs.event.EventName;
 
 public class Campaign {
 	

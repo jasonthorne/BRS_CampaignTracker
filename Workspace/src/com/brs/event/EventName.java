@@ -1,6 +1,6 @@
 package com.brs.event;
 
-//event name values:
+//Event name values:
 public enum EventName {
 	
 	BATTLE_OF_BRITAIN("Battle of Britain"), 

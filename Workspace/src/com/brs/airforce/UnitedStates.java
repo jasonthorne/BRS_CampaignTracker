@@ -9,7 +9,6 @@ import com.brs.period.Period;
 import com.brs.period.Block;
 import com.brs.period.Year;
 import com.brs.plane.Plane;
-import com.brs.plane.Plane.Availability;
 import com.brs.plane.PlaneData.Model;
 import com.brs.plane.PlaneData.Status;
 import com.brs.airforce.AirForce;
@@ -19,7 +18,7 @@ public class UnitedStates extends AirForce{
 	
 	//name of air force:
 	private static final AirForceName NAME = AirForceName.USAAF; 
-	
+
 	//description of air force:
 	private static final String DESCRIPTION = "***USAAF description here***"; 
 	

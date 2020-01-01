@@ -11,7 +11,7 @@ public class Plane {
 	
 	//private final String model;
 	private String model; //this might be better as the enum object!!! +++++++++++ (as might other versions tgurned to string. Check those too!)
-	private List<Availability>availabilities = new ArrayList<Availability>();
+	///private List<Availability>availabilities = new ArrayList<Availability>();
 	private Status status;
 	
 	
@@ -26,6 +26,7 @@ public class Plane {
 		return "Plane [model=" + model + ", status=" + status + "]";
 	}
 	
+	/*
 	//=========================
 	//create a list of availability objects - containing the periods avaliable and the plasnes status within them
 	public static class Availability{
@@ -48,6 +49,8 @@ public class Plane {
 	
 	//NEED A METHOD HERE THAT RETURNS AN AVALIBILTY THATS STATIC. THIS class itslef SHOULDNT BE STATIC (dumb asss) :P
 	//========================
+	 * 
+	 */
 	
 	
 	//Builder class:
