@@ -14,13 +14,13 @@ import com.brs.plane.PlaneData.Status;
 
 public abstract class AirForce {
 	
-	private AirForceName name; //name of air force
-	private String description; //description of air force
-	private List<Model>models; //models of plane available
+	protected AirForceName name; //name of air force
+	protected String description; //description of air force
+	protected List<Model>models; //models of plane available
 	
-	protected void setName(AirForceName name) { this.name = name; } //set name of air force
-	protected void setDescription(String description) { this.description = description; } //set description of air force 
-	protected void setModels(List<Model>models) { this.models = models; } //set all air force models
+	protected abstract void setName(); //extended class sets name
+	protected abstract void setDescription(); //extended class sets description
+	protected abstract void setModels(); //extended class sets models
 	
 	//++++CHANGE THESE TO ONLY RETURN DEEP COPIES!!!!!!!!!!++++++++++++++
 	public String getName() { return name.toString(); } //return name of air force
@@ -32,7 +32,7 @@ public abstract class AirForce {
 	protected static List<Period>periods; //periods
 	protected static List<Status>statuses; //statuses of periods
 	protected static Map<Period, Status>periodToStatus; //map for holding periods and their statuses
-	protected abstract void setPeriodToStatus(Model model); //concrete class sets map above
+	protected abstract void setPeriodToStatus(Model model); //extended class sets periodToStatus
 	
 	
 	//map for holding a model and it's status (in relation to a given period):
@@ -45,7 +45,7 @@ public abstract class AirForce {
 		
 		models.forEach((model) -> { //forEach model in models:
 			setPeriodToStatus(model); //(re)set periodToStatus with the current model's periods and their statuses
-			status = periodToStatus.getOrDefault(period, Status.NONE); //assign status returned with period key (or NONE if period not found)
+			status = periodToStatus.getOrDefault(period, Status.NONE); //assign status returned with period key (or NONE if period not found) //+++TRY USE PREDICATE HERE INSTEAD!! 
 			
 			if ((!status.equals(Status.NONE))){ //if period key returned a value:
 				//System.out.println("model: " + model.toString() + ". TEST MAP: " + periodToStatus); //++++++++++++++++++
