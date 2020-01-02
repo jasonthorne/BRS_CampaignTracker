@@ -33,7 +33,7 @@ public class Campaign {
 		return "Campaign: " + event.getName() + ". Created: " + startDate;
 	}
 
-
+	//has a list of events ++++++++++++++++++++++++++++++++
 	
 
 	//-----------GETTERS-----------

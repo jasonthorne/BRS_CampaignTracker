@@ -13,26 +13,6 @@ import com.brs.period.Year;
 
 public abstract class EventData {
 	
-	/*
-	//event name values:
-	public enum EventName{
-		
-		BATTLE_OF_BRITAIN("Battle of Britain"), 
-		OPERATION_BARBAROSSA("Operation Barbarossa"),
-		GUADALCANAL("Guadalcanal"),
-		STALINGRAD("Stalingrad"),
-		ASSAULT_ON_THE_REICH("Assault on the Reich"),
-		THE_ITALIAN_CAMPAIGN("The Italian Campaign"),
-		DEFENCE_OF_THE_HOME_ISLANDS("Defence of the home islands");
-		
-		private String name; //name of chosen event
-		//constructor:
-		private EventName(String name) {this.name = name;} //set name of event
-		@Override 
-		public String toString() {return name;} //return chosen event
-	}
-	*/
-	
 	//events and the corresponding air forces involved:
 	private static final Map<String, List<AirForceName>> eventNameToAirForces = new HashMap<String, List<AirForceName>>() {{
 	    put(EventName.BATTLE_OF_BRITAIN.toString(), Arrays.asList(AirForceName.RAF, AirForceName.LUFTWAFFE));

@@ -41,7 +41,7 @@ public abstract class AirForce {
 		
 		models.forEach((model) -> { //forEach model in models:
 			setPeriodToStatus(model); //(re)set periodToStatus with the current model's periods and their statuses
-			status = periodToStatus.getOrDefault(period, Status.NONE); //assign status returned with period key (or NONE if period not found) //+++TRY USE PREDICATE HERE INSTEAD!! 
+			status = periodToStatus.getOrDefault(period, Status.NONE); //assign status returned with period key (or NONE if period not found) 
 			
 			if ((!status.equals(Status.NONE))){ //if period key returned a value:
 				//System.out.println("model: " + model.toString() + ". TEST MAP: " + periodToStatus); //++++++++++++++++++

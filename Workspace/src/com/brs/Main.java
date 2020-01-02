@@ -489,28 +489,20 @@ public class Main {
 		
 		BattleOfBritain TEST_BOB = new BattleOfBritain();
 		
-		List<AirForce>testAirForces = TEST_BOB.getAirForcesTEST();
-		
-		System.out.println("testAirForces: " + testAirForces);
-		
-		AirForce testBOB_RAF = testAirForces.get(0);
-		System.out.println("testBOB_RAF_getName: " + testBOB_RAF.getName());
-		System.out.println("testBOB_RAF_getAllModels: " + testBOB_RAF.getAllModels());
-		System.out.println("testBOB_RAF_getDescription: " + testBOB_RAF.getDescription());
-		System.out.println("testBOB_RAF_getAvailableModels: " + testBOB_RAF.getAvailableModels(new Period(Block.LATE, Year.FORTY)));
-		
 		//---------------------
+		//BELOW ALL WORKS (but shouldnt be grabbed as a hashmap)
 		
+		/*
 		Map<AirForceName, AirForce>testAirForcesMAP = TEST_BOB.getAIRFORCES2();
 		
 		//System.out.println(testAirForcesMAP);
 		
-		AirForce testBOB_USA = testAirForcesMAP.get(AirForceName.USAAF);
+		AirForce testBOB_USA = testAirForcesMAP.get(AirForceName.LUFTWAFFE);
 		System.out.println("testBOB_USA_getName: " + testBOB_USA.getName());
 		System.out.println("testBOB_USA_getAllModels: " + testBOB_USA.getAllModels());
 		System.out.println("testBOB_USA_getDescription: " + testBOB_USA.getDescription());
 		System.out.println("testBOB_USA_getAvailableModels: " + testBOB_USA.getAvailableModels(new Period(Block.LATE, Year.FORTY_ONE)));
-		
+		*/
 	}
 
 	

@@ -16,8 +16,19 @@ public final class Event { //++++++ADD FINALS TO ALL OTHER CLASSES THHAT NEED IT
 	private final String description; //description of event
 	
 	//=======================
-	private List<AirForce>airForcesTEST; //change to final
 	
+	/*
+	 * set airforces
+	 * 
+	 * set periods
+	 * 
+	 * 
+	 * set description
+	 * 
+	 * set name
+	 * 
+	 * 
+	 */
 	
 	
 	//========================
