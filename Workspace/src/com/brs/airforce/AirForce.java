@@ -14,59 +14,36 @@ import com.brs.plane.PlaneData.Status;
 
 public abstract class AirForce {
 	
+	private AirForceName name; //name of air force
+	private String description; //description of air force
+	private List<Model>models; //models of plane available
 	
-	//-----------------
-	private AirForceName testName; //maybe static???
+	protected void setName(AirForceName name) { this.name = name; } //set name of air force
+	protected void setDescription(String description) { this.description = description; } //set description of air force 
+	protected void setModels(List<Model>models) { this.models = models; } //set all air force models
 	
-	protected void setNameTest(AirForceName test) { //maybe static???
-		testName = test;
-	}
-	
-	private List<Model>testModelsList;//maybe static???
-	
-	protected void setTestModelsList(List<Model>testList) { //maybe static???
-		testModelsList = testList;
-	}
-	//------------------
+	//++++CHANGE THESE TO ONLY RETURN DEEP COPIES!!!!!!!!!!++++++++++++++
+	public String getName() { return name.toString(); } //return name of air force
+	public String getDescription() { return description; } //return description of air force 
+	public List<Model>getAllModels() { return models; } //return all air force models
 	
 	
-	
-	public abstract String getName(); //concrete class returns name
-	public abstract String getDescription(); //concrete class returns description
-	
-	//Map of all air forces used and their respective models:
-	protected static Map<AirForceName, List<Model>>airForceToModels = new HashMap<AirForceName, List<Model>>();
-	protected abstract void addAirForceModels(); //concrete class puts name and models to airForceToModels
-	
-	//needed????????????????????????? +++++++++++++++++++++
-	public static List<Model>getAirForceModels(AirForceName airForceName){ //get models available to an air force
-		return airForceToModels.get(airForceName); 
-	}
-	
-	//variables for creating a Map of an air force model's periods and their statuses:
+	//variables for creating a map of an air force model's periods and their statuses:
 	protected static List<Period>periods; //periods
 	protected static List<Status>statuses; //statuses of periods
-	protected static Map<Period, Status>periodToStatus; //Map for holding periods and their statuses
+	protected static Map<Period, Status>periodToStatus; //map for holding periods and their statuses
 	protected abstract void setPeriodToStatus(Model model); //concrete class sets map above
 	
-	/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++NEED TO DEAL WITH IF INVALID DATES ARTE ENTERED (Late 1945)
-	*/
-	private static Map<Model, Status>modelToStatus; //Map for holding a model and it's status (in relation to a given period)
-	private static Status status; //holds a status value, for insertion into modelToStatus
 	
-	public Map<Model, Status>getAvailableModels(Period period, AirForceName airForceName) { 
+	//map for holding a model and it's status (in relation to a given period):
+	private static Map<Model, Status>modelToStatus; 
+	private static Status status; //holds a status value for insertion into modelToStatus
+	
+	//returns a map of models available to a given period:
+	public Map<Model, Status>getAvailableModels(Period period) {  //NEED TO DEAL WITH IF INVALID DATES ARTE ENTERED (Late 1945)+++++++++++++++++
 		modelToStatus = new HashMap<Model, Status>(); //(re)set HashMap 
 		
-		//======================================================
-		System.out.println("testName is: " + testName);
-		
-		
-		System.out.println("testList is: " + testModelsList);
-		//======================================================
-		//forEach model in the list returned from airForceName key:
-		/////////////////airForceToModels.get(airForceName).forEach((model) -> {
-		testModelsList.forEach((model) -> {
-		
+		models.forEach((model) -> { //forEach model in models:
 			setPeriodToStatus(model); //(re)set periodToStatus with the current model's periods and their statuses
 			status = periodToStatus.getOrDefault(period, Status.NONE); //assign status returned with period key (or NONE if period not found)
 			
@@ -81,6 +58,10 @@ public abstract class AirForce {
 	
 	/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++https://stackoverflow.com/questions/18410035/ways-to-iterate-over-a-list-in-java
 	 * //for(Model model: airForceToModels.get(airForceName)){ //each model in list returned from airForceName key:
+	 * 
+	 * 
+	 * //forEach model in the list returned from airForceName key:
+		/////////////////airForceToModels.get(airForceName).forEach((model) -> {
 	 */
 	
 	/* MIGHT KEEP. Good for showing a planes total statuses.
@@ -90,6 +71,18 @@ public abstract class AirForce {
 		return periodToStatus; //return Map.
 	}*/
 	
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//MAP FOR HOLDING ALL AIRFORCES AND THEIR MODELS: - might use later! :P
+	/*
+	//Map of all air forces used and their respective models:
+	protected static Map<AirForceName, List<Model>>airForceToModels = new HashMap<AirForceName, List<Model>>(); //PROBABLY DONT NEED!! woohoo!
+	protected abstract void addAirForceModels(); //concrete class puts name and models to airForceToModels
+	
+	//needed????????????????????????? +++++++++++++++++++++
+	public static List<Model>getAirForceModels(AirForceName airForceName){ //get models available to an air force
+		return airForceToModels.get(airForceName); 
+	}
+	*/
 
 	
 }

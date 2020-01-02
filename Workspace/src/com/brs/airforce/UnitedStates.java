@@ -16,13 +16,13 @@ import com.brs.airforce.AirForce;
 
 public class UnitedStates extends AirForce{
 	
-	//name of air force:
+	//UnitedStates name:
 	private static final AirForceName NAME = AirForceName.USAAF; 
 
-	//description of air force:
+	//UnitedStates description:
 	private static final String DESCRIPTION = "***USAAF description here***"; 
 	
-	//models of plane available: 
+	//UnitedStates models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
     		Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
@@ -30,12 +30,9 @@ public class UnitedStates extends AirForce{
 
 	//constructor:
 	public UnitedStates(){
-		addAirForceModels(); //add air force and it's models to Map
-		
-		//---------------
-		setNameTest(NAME);
-		setTestModelsList(MODELS);
-		//--------------
+		setName(NAME); //set name of air force
+		setDescription(DESCRIPTION); //set description of air force 
+		setModels(MODELS); //set models of plane available
 	}
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
@@ -104,11 +101,4 @@ public class UnitedStates extends AirForce{
 			
 	}
 	
-	@Override
-	public String getName() { return NAME.toString(); } //return name of air force
-	@Override
-	public String getDescription() { return DESCRIPTION; } //return description of air force
-	@Override 
-	protected void addAirForceModels() { airForceToModels.put(NAME, MODELS); } //add name and models to Map
-
 }

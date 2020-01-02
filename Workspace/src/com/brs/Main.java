@@ -419,7 +419,11 @@ public class Main {
 		}
 		*/
 		
+		/*
+		
+		//Pulling from now obsolete hashmap of ALL airforce and their planes
 		System.out.println("PRINT BE HERE: " + AirForce.getAirForceModels(AirForceName.RAF));
+		
 		
 
 		//System.out.println("PRINT BE HERE2: " + RoyalAirForce.putAirForceToModels());
@@ -437,20 +441,22 @@ public class Main {
 		
 		System.out.println(UnitedStates.getAirForceModels(AirForceName.USAAF));
 		
-		AirForce testRAFAirForce = new RoyalAirForce();
+		
 		
 
 		System.out.println(AirForce.getAirForceModels(AirForceName.RAF));
 		System.out.println(UnitedStates.getAirForceModels(AirForceName.RAF));
-		
+		*/
 		
 		
 		//===================
 		
+		AirForce testRAFAirForce = new RoyalAirForce();
+		
 		Map<Model, Status>TESTmodelToStatus;
 		
 		//THIS SHOULD EXIST IN CLASS THAT CONTAIS AIRFORCE ('player' for now)!! 
-		TESTmodelToStatus  = testUSAirForce.getAvailableModels(new Period(Block.MID, Year.FORTY_ONE), AirForceName.USAAF);
+		TESTmodelToStatus  = testUSAirForce.getAvailableModels(new Period(Block.MID, Year.FORTY_ONE)); //should pass in current (or newly current) date
 		
 		
 		System.out.println("yo dawg 1: " + TESTmodelToStatus);
@@ -462,19 +468,21 @@ public class Main {
 		//UnitedStates a = new UnitedStates(); //++++++++++++FIX THIS BEIMNG ALLOWED!! :P
 		
 		
-		TESTmodelToStatus  = testUSAirForce.getAvailableModels(new Period(Block.LATE, Year.FORTY_ONE), AirForceName.USAAF);
+		TESTmodelToStatus  = testUSAirForce.getAvailableModels(new Period(Block.LATE, Year.FORTY_ONE));
 		System.out.println("yo dawg 2: " + TESTmodelToStatus);
 		
 		
-		TESTmodelToStatus  = testRAFAirForce.getAvailableModels(new Period(Block.MID, Year.FORTY_ONE), AirForceName.RAF);
+		TESTmodelToStatus  = testRAFAirForce.getAvailableModels(new Period(Block.MID, Year.FORTY_ONE));
 		System.out.println("RAF TEST. yo dawg 3: " + TESTmodelToStatus);
 		
-		//Doesnt work because it doesnt have accesss to RAF plae and period HM setter.
-		TESTmodelToStatus  = testUSAirForce.getAvailableModels(new Period(Block.MID, Year.FORTY_ONE), AirForceName.RAF);
-		System.out.println("RAF TEST 2. yo dawg 4: " + TESTmodelToStatus);
+		TESTmodelToStatus  = testUSAirForce.getAvailableModels(new Period(Block.LATE, Year.FORTY_ONE));
+		System.out.println("yo dawg 4: " + TESTmodelToStatus);
 		
-		TESTmodelToStatus  = testUSAirForce.getAvailableModels(new Period(Block.LATE, Year.FORTY_ONE), AirForceName.USAAF);
-		System.out.println("yo dawg 5: " + TESTmodelToStatus);
+		System.out.println("name is: " + testUSAirForce.getName());
+		System.out.println("desc is: " + testUSAirForce.getDescription());
+		System.out.println("all models is: " + testUSAirForce.getAllModels());
+		System.out.println("available models is: " + testUSAirForce.getAvailableModels(new Period(Block.MID, Year.FORTY_TWO)));
+		
 		
 		
 	}

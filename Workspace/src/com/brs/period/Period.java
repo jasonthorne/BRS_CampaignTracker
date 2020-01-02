@@ -48,8 +48,8 @@ public class Period {
 	}
 
 	//getPeriods vars:
-	private final static List<Block>blocks = Arrays.asList(Block.values()); //all Block values (early, mid, late)
-	private final static List<Year>years = Arrays.asList(Year.values()); //all Year values (1940 - 1945)
+	private final static List<Block>BLOCKS = Arrays.asList(Block.values()); //all Block values (early, mid, late)
+	private final static List<Year>YEARS = Arrays.asList(Year.values()); //all Year values (1940 - 1945)
 	private static List<Period>periods; //holds a range of Periods
 	private static ListIterator<Block>blocksIterator; //blocks iterator
 	private static ListIterator<Year>yearsIterator; //years iterator
@@ -61,13 +61,13 @@ public class Period {
 	public static List<Period>getPeriods(Period first, Period last){
 		
 		periods = new ArrayList<Period>(); //(re)set periods list
-		yearsIterator = years.listIterator(); //(re)set years iterator
+		yearsIterator = YEARS.listIterator(); //(re)set years iterator
 		canAdd = false; //(re)set canAdd
 		
 		outerWhile: 
 		while(yearsIterator.hasNext()){ //loop through years
 			
-			blocksIterator = blocks.listIterator(); //(re)set blocks iterator
+			blocksIterator = BLOCKS.listIterator(); //(re)set blocks iterator
 			currYear = yearsIterator.next(); //advance to next year
 			
 			while(blocksIterator.hasNext()) { //loop through blocks

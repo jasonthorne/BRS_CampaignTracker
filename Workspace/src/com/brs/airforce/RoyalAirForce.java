@@ -15,25 +15,22 @@ import com.brs.plane.PlaneData.Status;
 
 public class RoyalAirForce extends AirForce{
 	
-	//name of air force:
+	//RoyalAirForce name:
 	private static final AirForceName NAME = AirForceName.RAF; 
 	
-	//description of air force:
+	//RoyalAirForce description:
 	private static final String DESCRIPTION = "***RAF description here***"; 
 	
-	//models of plane available:
+	//RoyalAirForce models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
     		Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV,  Model.TEMPEST_V, Model.TYPHOON_IB);
 	
 	//constructor:
 	public RoyalAirForce(){
-		addAirForceModels(); //add air force and it's models to Map
-		
-		//---------------
-		setNameTest(NAME);
-		setTestModelsList(MODELS);
-		//--------------
+		setName(NAME); //set name of air force
+		setDescription(DESCRIPTION); //set description of air force 
+		setModels(MODELS); //set models of plane available
 	}
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
@@ -94,11 +91,4 @@ public class RoyalAirForce extends AirForce{
 			
 	}
 	
-	@Override
-	public String getName() { return NAME.toString(); } //return name of air force
-	@Override
-	public String getDescription() { return DESCRIPTION; } //return description of air force
-	@Override 
-	protected void addAirForceModels() { airForceToModels.put(NAME, MODELS); } //add name and models to Map
-
 }
