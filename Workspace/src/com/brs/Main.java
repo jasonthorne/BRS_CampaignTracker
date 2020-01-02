@@ -22,8 +22,8 @@ import com.brs.period.Block;
 import com.brs.period.Year;
 import com.brs.plane.Plane;
 //import com.brs.plane.Plane.Availability;
-import com.brs.plane.PlaneData.Model;
-import com.brs.plane.PlaneData.Status;
+import com.brs.plane.Model;
+import com.brs.plane.Status;
 
 
 /*
@@ -497,7 +497,7 @@ public class Main {
 		System.out.println("testBOB_RAF_getName: " + testBOB_RAF.getName());
 		System.out.println("testBOB_RAF_getAllModels: " + testBOB_RAF.getAllModels());
 		System.out.println("testBOB_RAF_getDescription: " + testBOB_RAF.getDescription());
-		System.out.println("testBOB_RAF_getAllModels: " + testBOB_RAF.getAvailableModels(new Period(Block.LATE, Year.FORTY)));
+		System.out.println("testBOB_RAF_getAvailableModels: " + testBOB_RAF.getAvailableModels(new Period(Block.LATE, Year.FORTY)));
 		
 		//---------------------
 		
@@ -509,7 +509,7 @@ public class Main {
 		System.out.println("testBOB_USA_getName: " + testBOB_USA.getName());
 		System.out.println("testBOB_USA_getAllModels: " + testBOB_USA.getAllModels());
 		System.out.println("testBOB_USA_getDescription: " + testBOB_USA.getDescription());
-		System.out.println("testBOB_USA_getAllModels: " + testBOB_USA.getAvailableModels(new Period(Block.LATE, Year.FORTY_ONE)));
+		System.out.println("testBOB_USA_getAvailableModels: " + testBOB_USA.getAvailableModels(new Period(Block.LATE, Year.FORTY_ONE)));
 		
 	}
 

@@ -1,16 +1,12 @@
 package com.brs.airforce;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.brs.Campaign;
-import com.brs.period.Block;
 import com.brs.period.Period;
-import com.brs.period.Year;
-import com.brs.plane.PlaneData.Model;
-import com.brs.plane.PlaneData.Status;
+import com.brs.plane.Model;
+import com.brs.plane.Status;
 
 public abstract class AirForce {
 	

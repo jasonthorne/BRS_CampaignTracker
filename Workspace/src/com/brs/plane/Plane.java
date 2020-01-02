@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.brs.period.Period;
-import com.brs.plane.PlaneData.Status;
+import com.brs.plane.Status;
 
 //public final class Plane {
 public class Plane {

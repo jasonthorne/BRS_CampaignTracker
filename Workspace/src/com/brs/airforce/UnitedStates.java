@@ -9,8 +9,8 @@ import com.brs.period.Period;
 import com.brs.period.Block;
 import com.brs.period.Year;
 import com.brs.plane.Plane;
-import com.brs.plane.PlaneData.Model;
-import com.brs.plane.PlaneData.Status;
+import com.brs.plane.Model;
+import com.brs.plane.Status;
 import com.brs.airforce.AirForce;
 
 
@@ -25,8 +25,8 @@ public class UnitedStates extends AirForce{
 	//UnitedStates models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
-    		Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
-    		Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
+			Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
+			Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
 
 	//constructor calls setters:
 	public UnitedStates(){

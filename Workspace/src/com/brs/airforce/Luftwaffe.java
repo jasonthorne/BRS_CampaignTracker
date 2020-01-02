@@ -9,123 +9,90 @@ import com.brs.period.Period;
 import com.brs.period.Block;
 import com.brs.period.Year;
 import com.brs.plane.Plane;
-import com.brs.plane.PlaneData.Model;
-import com.brs.plane.PlaneData.Status;
+import com.brs.plane.Model;
+import com.brs.plane.Status;
 
 
-public class Luftwaffe {//implements AirForce{
-	/*
-	private final String description = "Luftwaffe description"; //description of air force
+public class Luftwaffe extends AirForce{
 	
-	//models of plane available:
-	private final List<Model>models = Arrays.asList(
+	//Luftwaffe name:
+	private static final AirForceName NAME = AirForceName.LUFTWAFFE; 
+	
+	//Luftwaffe description:
+	private static final String DESCRIPTION = "***Luftwaffe description here***"; 
+	
+	//Luftwaffe models of plane:
+	private static final List<Model>MODELS = Arrays.asList(
 			Model.BF109_E, Model.BF109_F, Model.BF109_G, Model.BF109_K, Model.BF110_C, 
-    		Model.BF110_G, Model.FW190_A, Model.FW190_D,  Model.ME_262_A, Model.ME_262_B);
+			Model.BF110_G, Model.FW190_A, Model.FW190_D,  Model.ME_262_A, Model.ME_262_B);
 	
-	//plane model periods of availability:
-	private static final Map<Model, List<Availability>> modelToAvailabilities = new HashMap<Model, List<Availability>>() {{
-		put(Model.BF109_E, 
-	    		Arrays.asList(
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.LIMIT), 
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.LIMIT),
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.LIMIT)));
-	    put(Model.BF109_F, 
-	    		Arrays.asList(
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY), Status.LIMIT), 
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.LIMIT),
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.LIMIT)));
-	    put(Model.BF109_G, 
-	    		Arrays.asList(
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.LIMIT), 
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
-	    put(Model.BF109_K, 
-	    		Arrays.asList(
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.LIMIT), 
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
-	    put(Model.BF110_C, 
-	    		Arrays.asList(
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.LIMIT),
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.LIMIT)));
-	    put(Model.BF110_G, 
-	    		Arrays.asList(
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.LIMIT), 
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.LIMIT),
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
-	    put(Model.FW190_A, 
-	    		Arrays.asList(
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.LIMIT), 
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO), 
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO),
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
-	    put(Model.FW190_D, 
-	    		Arrays.asList(
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.LIMIT), 
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
-	    put(Model.ME_262_A, 
-	    		Arrays.asList(
-	    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.LIMIT), 
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.LIMIT),
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.LIMIT)));
-	    put(Model.ME_262_B, 
-	    		Arrays.asList(
-	    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.LIMIT), 
-	    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.LIMIT)));
-		
-	}};
-
+	//constructor calls setters:
+	public Luftwaffe(){ 
+		setName(); 
+		setDescription(); 
+		setModels(); 
+	}
 	
-	/*
-	//Getters: //++++++++++++++++++++CHANGE PRIVACY OF THESE +++++++++
-	@Override
-	public String getDescription() { return description; } //get description
-	
-	@Override
-	public List<Model> getModels() { return models; } //get models available
-
+	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 
-	public List<Availability> getAvailabilities(Model model) { return modelToAvailabilities.get(model); } //get model availabilities
-*/
+	protected void setPeriodToStatus(Model model) {
+		periodToStatus = new HashMap<Period, Status>(); //(re)set HashMap
+		
+		switch(model) { //populate periods and statuses, according to model:
+		  case BF109_E:
+			  periods = Period.getPeriods(new Period(Block.EARLY, Year.FORTY), new Period(Block.EARLY, Year.FORTY_TWO)); 
+			  statuses = Arrays.asList(Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.LIMIT, Status.LIMIT, Status.LIMIT);
+			  break;
+		  case BF109_F:
+			  periods = Period.getPeriods(new Period(Block.LATE, Year.FORTY), new Period(Block.MID, Year.FORTY_THREE));
+			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, 
+			  Status.AUTO, Status.LIMIT, Status.LIMIT);
+			  break;
+		  case BF109_G:
+			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
+			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
+			  Status.AUTO, Status.AUTO, Status.AUTO);
+			  break;
+		  case BF109_K:
+			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE));
+			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO);
+			  break;
+		  case BF110_C:
+			  periods = Period.getPeriods(new Period(Block.EARLY, Year.FORTY), new Period(Block.MID, Year.FORTY_ONE));
+			  statuses = Arrays.asList(Status.AUTO, Status.AUTO, Status.AUTO, Status.LIMIT, Status.LIMIT);
+			  break;
+		  case BF110_G:
+			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.MID, Year.FORTY_FIVE));
+			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
+			  Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO);
+			  break; 
+		  case FW190_A: 
+			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.MID, Year.FORTY_FIVE));
+			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
+			  Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO);
+			  break;
+		  case FW190_D:
+			  periods = Period.getPeriods(new Period(Block.EARLY, Year.FORTY_FIVE), new Period(Block.MID, Year.FORTY_FIVE));
+			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO);
+			  break;
+		  case ME_262_A:
+			  periods = Period.getPeriods(new Period(Block.LATE, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE));
+			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.LIMIT);
+			  break;
+		  case ME_262_B:
+			  periods = Period.getPeriods(new Period(Block.EARLY, Year.FORTY_FIVE), new Period(Block.MID, Year.FORTY_FIVE));
+			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT);
+			  break;
+		}
+		 //add periods and statuses to HashMap:
+		for (int i=0; i<periods.size(); i++) { periodToStatus.put(periods.get(i), statuses.get(i)); }
+	}
 	
+	@Override
+	protected void setName(){name = NAME;} //set name of air force
+	@Override
+	protected void setDescription(){description = DESCRIPTION;} //set description of air force 
+	@Override
+	protected void setModels(){models = MODELS;} //set models of plane available
+		
 }

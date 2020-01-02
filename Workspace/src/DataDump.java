@@ -7,8 +7,8 @@ import com.brs.period.Block;
 import com.brs.period.Period;
 import com.brs.period.Year;
 import com.brs.plane.Plane;
-import com.brs.plane.PlaneData.Model;
-import com.brs.plane.PlaneData.Status;
+import com.brs.plane.Model;
+import com.brs.plane.Status;
 
 public class DataDump {
 	
@@ -142,7 +142,110 @@ public class DataDump {
 	
 */
 	
+	//================================================================================================
 	
+	//Luftwaffe
+	
+	/*
+	//models of plane available:
+		private final List<Model>models = Arrays.asList(
+				Model.BF109_E, Model.BF109_F, Model.BF109_G, Model.BF109_K, Model.BF110_C, 
+	    		Model.BF110_G, Model.FW190_A, Model.FW190_D,  Model.ME_262_A, Model.ME_262_B);
+		
+		//plane model periods of availability:
+		private static final Map<Model, List<Availability>> modelToAvailabilities = new HashMap<Model, List<Availability>>() {{
+			put(Model.BF109_E, 
+		    		Arrays.asList(
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.LIMIT), 
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.LIMIT),
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.LIMIT)));
+		    put(Model.BF109_F, 
+		    		Arrays.asList(
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY), Status.LIMIT), 
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.LIMIT),
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.LIMIT)));
+		    put(Model.BF109_G, 
+		    		Arrays.asList(
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.LIMIT), 
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+		    put(Model.BF109_K, 
+		    		Arrays.asList(
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.LIMIT), 
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+		    put(Model.BF110_C, 
+		    		Arrays.asList(
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_ONE), Status.LIMIT),
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.LIMIT)));
+		    put(Model.BF110_G, 
+		    		Arrays.asList(
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.LIMIT), 
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.LIMIT),
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+		    put(Model.FW190_A, 
+		    		Arrays.asList(
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_ONE), Status.LIMIT), 
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_ONE), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_TWO), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_TWO), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_TWO), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_THREE), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_THREE), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_THREE), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FOUR), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FOUR), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.AUTO), 
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.AUTO),
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+		    put(Model.FW190_D, 
+		    		Arrays.asList(
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.LIMIT), 
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.AUTO)));
+		    put(Model.ME_262_A, 
+		    		Arrays.asList(
+		    		new Plane.Availability(new Period(Block.LATE, Year.FORTY_FOUR), Status.LIMIT), 
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.LIMIT),
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.LIMIT)));
+		    put(Model.ME_262_B, 
+		    		Arrays.asList(
+		    		new Plane.Availability(new Period(Block.EARLY, Year.FORTY_FIVE), Status.LIMIT), 
+		    		new Plane.Availability(new Period(Block.MID, Year.FORTY_FIVE), Status.LIMIT)));
+			
+		}};
+	
+	*/
 	
 	
 }

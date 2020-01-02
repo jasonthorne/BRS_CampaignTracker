@@ -9,8 +9,8 @@ import com.brs.period.Period;
 import com.brs.period.Block;
 import com.brs.period.Year;
 import com.brs.plane.Plane;
-import com.brs.plane.PlaneData.Model;
-import com.brs.plane.PlaneData.Status;
+import com.brs.plane.Model;
+import com.brs.plane.Status;
 
 
 public class RoyalAirForce extends AirForce{
@@ -24,7 +24,7 @@ public class RoyalAirForce extends AirForce{
 	//RoyalAirForce models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
-    		Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV,  Model.TEMPEST_V, Model.TYPHOON_IB);
+			Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV,  Model.TEMPEST_V, Model.TYPHOON_IB);
 	
 	//constructor calls setters:
 	public RoyalAirForce(){ 
