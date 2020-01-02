@@ -14,6 +14,23 @@ import com.brs.plane.PlaneData.Status;
 
 public abstract class AirForce {
 	
+	
+	//-----------------
+	private AirForceName testName; //maybe static???
+	
+	protected void setNameTest(AirForceName test) { //maybe static???
+		testName = test;
+	}
+	
+	private List<Model>testModelsList;//maybe static???
+	
+	protected void setTestModelsList(List<Model>testList) { //maybe static???
+		testModelsList = testList;
+	}
+	//------------------
+	
+	
+	
 	public abstract String getName(); //concrete class returns name
 	public abstract String getDescription(); //concrete class returns description
 	
@@ -40,8 +57,16 @@ public abstract class AirForce {
 	public Map<Model, Status>getAvailableModels(Period period, AirForceName airForceName) { 
 		modelToStatus = new HashMap<Model, Status>(); //(re)set HashMap 
 		
+		//======================================================
+		System.out.println("testName is: " + testName);
+		
+		
+		System.out.println("testList is: " + testModelsList);
+		//======================================================
 		//forEach model in the list returned from airForceName key:
-		airForceToModels.get(airForceName).forEach((model) -> {
+		/////////////////airForceToModels.get(airForceName).forEach((model) -> {
+		testModelsList.forEach((model) -> {
+		
 			setPeriodToStatus(model); //(re)set periodToStatus with the current model's periods and their statuses
 			status = periodToStatus.getOrDefault(period, Status.NONE); //assign status returned with period key (or NONE if period not found)
 			

@@ -29,6 +29,11 @@ public class RoyalAirForce extends AirForce{
 	//constructor:
 	public RoyalAirForce(){
 		addAirForceModels(); //add air force and it's models to Map
+		
+		//---------------
+		setNameTest(NAME);
+		setTestModelsList(MODELS);
+		//--------------
 	}
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
