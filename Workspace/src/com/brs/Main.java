@@ -14,6 +14,7 @@ import com.brs.airforce.AirForceName;
 import com.brs.airforce.RoyalAirForce;
 import com.brs.airforce.AirForce;
 import com.brs.airforce.UnitedStates;
+import com.brs.event.BattleOfBritain;
 import com.brs.event.EventName;
 //import com.brs.event.EventData.EventName;
 import com.brs.period.Period;
@@ -483,7 +484,32 @@ public class Main {
 		System.out.println("all models is: " + testUSAirForce.getAllModels());
 		System.out.println("available models is: " + testUSAirForce.getAvailableModels(new Period(Block.MID, Year.FORTY_TWO)));
 		
+		//=====================================
 		
+		
+		BattleOfBritain TEST_BOB = new BattleOfBritain();
+		
+		List<AirForce>testAirForces = TEST_BOB.getAirForcesTEST();
+		
+		System.out.println("testAirForces: " + testAirForces);
+		
+		AirForce testBOB_RAF = testAirForces.get(0);
+		System.out.println("testBOB_RAF_getName: " + testBOB_RAF.getName());
+		System.out.println("testBOB_RAF_getAllModels: " + testBOB_RAF.getAllModels());
+		System.out.println("testBOB_RAF_getDescription: " + testBOB_RAF.getDescription());
+		System.out.println("testBOB_RAF_getAllModels: " + testBOB_RAF.getAvailableModels(new Period(Block.LATE, Year.FORTY)));
+		
+		//---------------------
+		
+		Map<AirForceName, AirForce>testAirForcesMAP = TEST_BOB.getAIRFORCES2();
+		
+		//System.out.println(testAirForcesMAP);
+		
+		AirForce testBOB_USA = testAirForcesMAP.get(AirForceName.USAAF);
+		System.out.println("testBOB_USA_getName: " + testBOB_USA.getName());
+		System.out.println("testBOB_USA_getAllModels: " + testBOB_USA.getAllModels());
+		System.out.println("testBOB_USA_getDescription: " + testBOB_USA.getDescription());
+		System.out.println("testBOB_USA_getAllModels: " + testBOB_USA.getAvailableModels(new Period(Block.LATE, Year.FORTY_ONE)));
 		
 	}
 
