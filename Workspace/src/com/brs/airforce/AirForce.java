@@ -23,13 +23,11 @@ public abstract class AirForce {
 	public String getDescription() { return description; } //return description of air force 
 	public List<Model>getAllModels() { return models; } //return all air force models
 	
-	
 	//variables for creating a map of an air force model's periods and their statuses:
 	protected static List<Period>periods; //periods
 	protected static List<Status>statuses; //statuses of periods
 	protected static Map<Period, Status>periodToStatus; //map for holding periods and their statuses
 	protected abstract void setPeriodToStatus(Model model); //extended class sets periodToStatus
-	
 	
 	//map for holding a model and it's status (in relation to a given period):
 	private static Map<Model, Status>modelToStatus; 
@@ -50,6 +48,32 @@ public abstract class AirForce {
 		});
 		return modelToStatus; //return available models
 	}
+	
+	/* MIGHT NOT BE NEEDED FOR PUT IF ABSENT!! WE SHALL SEE....
+	@Override //for comparison against other AirForces. See putAirForceIfAbsent() in Event.java:
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+	
+	@Override //for comparison against other AirForces. See putAirForceIfAbsent() in Event.java:
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AirForce other = (AirForce) obj;
+		if (name != other.name)
+			return false;
+		return true;
+	}
+	
+	*/
+	
 	
 	
 	/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++https://stackoverflow.com/questions/18410035/ways-to-iterate-over-a-list-in-java

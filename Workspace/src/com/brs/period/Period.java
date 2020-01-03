@@ -22,7 +22,7 @@ public class Period {
 	@Override 
 	public String toString() { return "Period: [" + block + " " + year + "]"; }
 	
-	@Override //for comparison against other Periods. Used in getAvailableModels() in AirForce class:
+	@Override //for comparison against other Periods. See getAvailableModels() in AirForce.java:
 	public int hashCode() { 
 		final int prime = 31;
 		int result = 1;
@@ -31,7 +31,7 @@ public class Period {
 		return result;
 	}
 
-	@Override //for comparison against other Periods. Used in getAvailableModels() in AirForce class:
+	@Override //for comparison against other Periods. See getAvailableModels() in AirForce.java:
 	public boolean equals(Object obj) { 
 		if (this == obj)
 			return true;

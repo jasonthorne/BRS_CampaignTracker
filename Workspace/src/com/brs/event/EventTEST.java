@@ -21,16 +21,21 @@ public abstract class EventTEST {
 	protected abstract void setAirForceNames(); //extended class sets airForces
 	protected abstract void setPeriods(); //extended class sets periods
 	
-	//++++CHANGE THESE TO ONLY RETURN DEEP COPIES!!!!!!!!!!++++++++++++++
+	//++++CHANGE THESE TO ONLY RETURN DEEP COPIES!!!!!!!!!maybe!++++++++++++++
 	public String getName() { return name.toString(); } //return name of event
 	public String getDescription() { return description; } //return description of event 
 	public List<AirForceName>getAirForceNames() { return airForceNames; } //return air forces involved 
-	public List<Period> getPeriods() { return periods; } //return periods covered
+	public List<Period>getPeriods() { return periods; } //return periods covered
 	
-	//map for holding selected AirForces:
+	//map for holding AirForces relevant to event:
 	protected Map<AirForceName, AirForce>airForceNameToAirForce = new HashMap<AirForceName, AirForce>();
-	protected abstract void setAirForceNameToAirForce(AirForceName airForceName);  //extended class sets map above
-	
+	protected abstract void putAirForceIfAbsent(AirForceName airForceName);  //extended class adds to map above
+
+	//returns required AirForce:
+	public AirForce getAirForce(AirForceName airForceName) {
+		putAirForceIfAbsent(airForceName); //add AirForce object to map if absent
+		return airForceNameToAirForce.get(airForceName); //return reference to AirForce object
+	}
 	
 	
 		
