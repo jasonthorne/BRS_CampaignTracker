@@ -37,8 +37,15 @@ public abstract class EventTEST {
 		return airForceNameToAirForce.get(airForceName); //return reference to AirForce object
 	}
 	
+	//-------------
 	
+	//code for moving period UNTILL you hit the last period in the list. //////////MAYBE THIS SHOULD BE IN CAMPAIGN PAGE????
+	
+	public Period getCurrPeriod() {
+		return null;
+		//hmmmmmmmmmmmmmm..........
+	}
 		
-	
+	//--------------
 
 }

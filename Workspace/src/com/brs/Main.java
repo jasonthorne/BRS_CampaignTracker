@@ -24,7 +24,7 @@ import com.brs.plane.Plane;
 //import com.brs.plane.Plane.Availability;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
-
+import com.brs.event.EventTEST;
 
 /*
 import Campaign;
@@ -502,6 +502,22 @@ public class Main {
 		System.out.println("testBOB_USA_getAllModels: " + testBOB_USA.getAllModels());
 		System.out.println("testBOB_USA_getDescription: " + testBOB_USA.getDescription());
 		System.out.println("testBOB_USA_getAvailableModels: " + testBOB_USA.getAvailableModels(new Period(Block.LATE, Year.FORTY_ONE)));
+		*/
+		
+		
+		//Retrieving AirForce from EventTEST:
+		AirForce eventTestAirForce1 = TEST_BOB.getAirForce(AirForceName.RAF);
+		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getName());
+		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getAllModels());
+		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getAvailableModels(new Period(Block.MID, Year.FORTY)));
+		
+		
+		/*
+		//Retrieving AirForce from EventTEST:
+		AirForce eventTestAirForce2 = TEST_BOB.getAirForce(AirForceName.USAAF); ///OOPS!! :P
+		System.out.println("eventTestAirForce1: " + eventTestAirForce2.getName());
+		System.out.println("eventTestAirForce1: " + eventTestAirForce2.getAllModels());
+		System.out.println("eventTestAirForce1: " + eventTestAirForce2.getAvailableModels(new Period(Block.MID, Year.FORTY)));
 		*/
 	}
 
