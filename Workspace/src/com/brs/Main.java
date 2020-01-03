@@ -1,4 +1,7 @@
 package com.brs;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,6 +14,7 @@ import com.brs.Pilot.PilotBuilder;
 import com.brs.Pilot.PilotSkill;
 import com.brs.Player.PlayerBuilder;
 import com.brs.airforce.AirForceName;
+import com.brs.airforce.Japan;
 import com.brs.airforce.RoyalAirForce;
 import com.brs.airforce.AirForce;
 import com.brs.airforce.UnitedStates;
@@ -512,13 +516,26 @@ public class Main {
 		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getAvailableModels(new Period(Block.MID, Year.FORTY)));
 		
 		
-		/*
 		//Retrieving AirForce from EventTEST:
-		AirForce eventTestAirForce2 = TEST_BOB.getAirForce(AirForceName.USAAF); ///OOPS!! :P
-		System.out.println("eventTestAirForce1: " + eventTestAirForce2.getName());
-		System.out.println("eventTestAirForce1: " + eventTestAirForce2.getAllModels());
-		System.out.println("eventTestAirForce1: " + eventTestAirForce2.getAvailableModels(new Period(Block.MID, Year.FORTY)));
-		*/
+		//AirForce eventTestAirForce2 = TEST_BOB.getAirForce(AirForceName.USAAF); ///OOPS!! :P
+		//System.out.println("eventTestAirForce1: " + eventTestAirForce2.getName());
+		//System.out.println("eventTestAirForce1: " + eventTestAirForce2.getAllModels());
+		//System.out.println("eventTestAirForce1: " + eventTestAirForce2.getAvailableModels(new Period(Block.MID, Year.FORTY)));
+		
+		
+		Japan testRead = new Japan();
+		
+		
+		
+				try {
+					testRead.test();
+				} catch (Exception e) {
+					
+					e.printStackTrace();
+				}
+			
+		
+		
 	}
 
 	

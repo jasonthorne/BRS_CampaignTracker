@@ -40,9 +40,9 @@ public class BattleOfBritain extends EventTEST{
 		setPeriods(); 
 	}
 
-	@Override
-	protected void putAirForceIfAbsent(AirForceName airForceName) {
-		switch(airForceName) { 
+	@Override //add requested AirForce object to map if absent:
+	protected void putAirForceIfAbsent(AirForceName airForceName){
+		switch(airForceName){ 
 		  case RAF:
 			  airForceNameToAirForce.putIfAbsent(airForceName, new RoyalAirForce());
 			  break;
