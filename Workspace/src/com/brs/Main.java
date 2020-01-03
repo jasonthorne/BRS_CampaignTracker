@@ -41,7 +41,7 @@ import PilotSkill;
 
 
 
-public class Main {
+public class Main  implements DescriptionReader{
 
 	public static void main(String[] args) {
 	
@@ -526,7 +526,7 @@ public class Main {
 		Japan testRead = new Japan();
 		
 		
-		
+			/*
 				try {
 					testRead.test();
 				} catch (Exception e) {
@@ -534,8 +534,17 @@ public class Main {
 					e.printStackTrace();
 				}
 			
+			*/
 		
-		
+		String testPath = "/com/brs/airforce/TestDescription";
+		try {
+			DescriptionReader.getDescription(testPath);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+				
 	}
 
 	
