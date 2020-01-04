@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.brs.FileReading;
 import com.brs.period.Period;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
 
-public abstract class AirForce {
+public abstract class AirForce implements FileReading{
 	
 	protected AirForceName name; //name of air force
 	protected String description; //description of air force
@@ -48,6 +49,10 @@ public abstract class AirForce {
 		});
 		return modelToStatus; //return available models
 	}
+	
+	
+	
+	
 	
 	/* MIGHT NOT BE NEEDED FOR PUT IF ABSENT!! WE SHALL SEE....
 	@Override //for comparison against other AirForces. See putAirForceIfAbsent() in Event.java:

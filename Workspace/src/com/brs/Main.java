@@ -532,7 +532,7 @@ public class Main {
 			e.printStackTrace();
 		}*/
 		
-		//System.out.println(TextReader.getText("/com/brs/airforce/TestDescription2"));
+		//System.out.println(FileReading.getText("/com/brs/airforce/TestDescription2"));
 		
 		      
 		//System.out.println(this.getClass().getCanonicalName());

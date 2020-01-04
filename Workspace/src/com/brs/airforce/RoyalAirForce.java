@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.brs.period.Period;
-import com.brs.TextReader;
+import com.brs.FileReading;
 import com.brs.period.Block;
 import com.brs.period.Year;
 import com.brs.plane.Plane;
@@ -16,8 +16,9 @@ import com.brs.plane.Status;
 
 public class RoyalAirForce extends AirForce{
 	
+	
 	//https://stackoverflow.com/questions/8275499/how-to-call-getclass-from-a-static-method-in-java
-	static Class currentClass = new Object(){}.getClass().getEnclosingClass();
+	static Class currentClass = new Object(){}.getClass().getEnclosingClass(); //pass the second half of this into a method????
 	
 	
 	//RoyalAirForce name:
@@ -27,8 +28,8 @@ public class RoyalAirForce extends AirForce{
 	private final static String FILE_PATH = "/".concat(currentClass.getCanonicalName().replace(".", "/").concat("Description")); 
 	
 	//RoyalAirForce description (read in from file):
-	//private static final String DESCRIPTION = TextReader.getText("/com/brs/airforce/TestDescription");
-	private static final String DESCRIPTION = TextReader.getText(FILE_PATH); 
+	//private static final String DESCRIPTION = FileReading.getText("/com/brs/airforce/TestDescription");
+	 static final String DESCRIPTION = "";	//getText("/com/brs/airforce/TestDescription"); 
 	
 	//RoyalAirForce models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
@@ -40,11 +41,15 @@ public class RoyalAirForce extends AirForce{
 	public RoyalAirForce(){ 
 		
 		System.out.println("CURRENT CLASS: " + currentClass.getSimpleName());
+		System.out.println(FILE_PATH);
 		setName(); 
 		setDescription(); 
 		setModels(); 
-		
-		System.out.println(FILE_PATH);
+		//	"/".concat(currentClass.getCanonicalName().replace(".", "/").concat("Description"));
+		System.out.println("NEW4: "+ getText(getPath(this.getClass())));
+		System.out.println("NEW3: "+ getText("/".concat(this.getClass().getCanonicalName().replace(".", "/").concat("Description"))));
+		System.out.println("NEW2: "+ getText("/".concat(currentClass.getCanonicalName().replace(".", "/").concat("Description"))));
+		System.out.println("NEW: "+ getText("/com/brs/airforce/TestDescription"));
 		System.out.println("CLASS NAME: " + this.getClass().getCanonicalName().replace(".", "/").concat("Description"));
 		System.out.println("PACKAGE NAME: " + this.getClass().getPackage());
 		System.out.println("SIMPLE NAME: " + this.getClass().getSimpleName());

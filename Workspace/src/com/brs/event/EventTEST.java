@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.brs.TextReader;
+import com.brs.FileReading;
 import com.brs.airforce.AirForce;
 import com.brs.airforce.AirForceName;
 import com.brs.period.Period;

@@ -5,9 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
 
-public interface TextReader {
+public interface FileReading {
 	
-    static String getText(String path) {
+    default String getText(String path) {
     	
     	String text = "";
 		String currentLine;
@@ -29,6 +29,21 @@ public interface TextReader {
 		}
 		return text; //return text
     } 
+    
+    
+    
+    default String getPath(Class<?> currClass) {
+		return "/" + (currClass.getCanonicalName().replace(".", "/")) + "Description";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 //+++++++++++++++++++++++++++++++++++++NOTES:++++++++++++++++++++++++++++
