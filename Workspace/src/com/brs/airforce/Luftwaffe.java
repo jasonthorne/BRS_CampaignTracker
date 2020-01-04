@@ -6,21 +6,19 @@ import java.util.List;
 import java.util.Map;
 
 import com.brs.period.Period;
-import com.brs.FileIdentifier;
 import com.brs.period.Block;
 import com.brs.period.Year;
 import com.brs.plane.Plane;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
 
+import ideas.FileIdentifier;
+
 
 public class Luftwaffe extends AirForce{
 	
 	//Luftwaffe name:
 	private static final AirForceName NAME = AirForceName.LUFTWAFFE; 
-	
-	//Luftwaffe description:
-	private static final String DESCRIPTION = "***Luftwaffe description here***"; 
 	
 	//Luftwaffe models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
@@ -29,10 +27,7 @@ public class Luftwaffe extends AirForce{
 	
 	//constructor calls setters:
 	public Luftwaffe(){ 
-		//System.out.println("NEW6+++++++++++++: "+ getText2(this.getClass(), FileIdentifier.DESCRIPTION));
-		System.out.println("NEW6+++++++++++++: "+ getText(FileIdentifier.DESCRIPTION));
 		setName(); 
-		setDescription(); 
 		setModels(); 
 	}
 	
@@ -93,8 +88,6 @@ public class Luftwaffe extends AirForce{
 	
 	@Override
 	protected void setName(){name = NAME;} //set name of air force
-	@Override
-	protected void setDescription(){description = DESCRIPTION;} //set description of air force 
 	@Override
 	protected void setModels(){models = MODELS;} //set models of plane available
 		

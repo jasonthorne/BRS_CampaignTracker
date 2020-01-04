@@ -1,4 +1,4 @@
-package com.brs;
+package ideas;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,7 +10,7 @@ public interface FileReading {
 	default String getText(FileIdentifier fileId) {
 		String text = "";
 		String currLine;
-		//path to file made using calling classe's canonical name and file identifier:
+		//path to file constructed from classe's canonical name and file identifier:
 		String path = "/" + (this.getClass().getCanonicalName().replace(".", "/")) + fileId.toString();
 		
 		try { //try find & read from file
@@ -30,9 +30,21 @@ public interface FileReading {
 		}
 		return text; //return text
 	}    
+	
+	
+	//	System.out.println("PRINTING DESCRIPTION*: "+ getText(FileIdentifier.DESCRIPTION));
 }
 
+
 //+++++++++++++++++++++++++++++++++++++NOTES:++++++++++++++++++++++++++++
+
+
+//https://stackoverflow.com/questions/8275499/how-to-call-getclass-from-a-static-method-in-java
+//static Class currentClass = new Object(){}.getClass().getEnclosingClass(); //pass the second half of this into a method????
+	
+
+
+
 //https://funnelgarden.com/java_read_file/#2a_BufferedReader_Default_Encoding
 ////URL url = new Object().getClass().getResource("/com/brs/airforce/TestDescription");
 

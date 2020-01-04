@@ -4,24 +4,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.brs.FileReading;
 import com.brs.period.Period;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
 
-public abstract class AirForce implements FileReading{
+public abstract class AirForce {
 	
 	protected AirForceName name; //name of air force
 	protected String description; //description of air force
 	protected List<Model>models; //models of plane available
 	
 	protected abstract void setName(); //extended class sets name
-	protected abstract void setDescription(); //extended class sets description
 	protected abstract void setModels(); //extended class sets models
 	
 	//++++CHANGE THESE TO ONLY RETURN DEEP COPIES!!!!!!!!!!++++++++++++++
 	public String getName() { return name.toString(); } //return name of air force
-	public String getDescription() { return description; } //return description of air force 
 	public List<Model>getAllModels() { return models; } //return all air force models
 	
 	//variables for creating a map of an air force model's periods and their statuses:

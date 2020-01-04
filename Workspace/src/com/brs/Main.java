@@ -484,7 +484,6 @@ public class Main {
 		System.out.println("yo dawg 4: " + TESTmodelToStatus);
 		
 		System.out.println("name is: " + testUSAirForce.getName());
-		System.out.println("desc is: " + testUSAirForce.getDescription());
 		System.out.println("all models is: " + testUSAirForce.getAllModels());
 		System.out.println("available models is: " + testUSAirForce.getAvailableModels(new Period(Block.MID, Year.FORTY_TWO)));
 		
@@ -514,14 +513,14 @@ public class Main {
 		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getName());
 		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getAllModels());
 		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getAvailableModels(new Period(Block.MID, Year.FORTY)));
-		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getDescription());
+		
 		
 		//Retrieving AirForce from EventTEST:
 		AirForce eventTestAirForce2 = TEST_BOB.getAirForce(AirForceName.LUFTWAFFE);
 		System.out.println("eventTestAirForce2: " + eventTestAirForce2.getName());
 		System.out.println("eventTestAirForce2: " + eventTestAirForce2.getAllModels());
 		System.out.println("eventTestAirForce2: " + eventTestAirForce2.getAvailableModels(new Period(Block.MID, Year.FORTY)));
-		System.out.println("eventTestAirForce2: " + eventTestAirForce2.getDescription());
+	
 		
 		//Retrieving AirForce from EventTEST:
 		//AirForce eventTestAirForce2 = TEST_BOB.getAirForce(AirForceName.USAAF); ///OOPS!! :P

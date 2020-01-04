@@ -19,9 +19,6 @@ public class UnitedStates extends AirForce{
 	//UnitedStates name:
 	private static final AirForceName NAME = AirForceName.USAAF; 
 
-	//UnitedStates description:
-	private static final String DESCRIPTION = "***USAAF description here***"; 
-	
 	//UnitedStates models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
@@ -31,7 +28,6 @@ public class UnitedStates extends AirForce{
 	//constructor calls setters:
 	public UnitedStates(){
 		setName(); 
-		setDescription(); 
 		setModels(); 
 	}
 	
@@ -102,8 +98,6 @@ public class UnitedStates extends AirForce{
 	
 	@Override
 	protected void setName(){name = NAME;} //set name of air force
-	@Override
-	protected void setDescription(){description = DESCRIPTION;} //set description of air force 
 	@Override
 	protected void setModels(){models = MODELS;} //set models of plane available
 	

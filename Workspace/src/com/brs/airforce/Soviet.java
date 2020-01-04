@@ -15,9 +15,6 @@ public class Soviet extends AirForce{
 	//Soviet name:
 	private static final AirForceName NAME = AirForceName.VVS; 
 	
-	//Soviet description:
-	private static final String DESCRIPTION = "***Soviet description here***"; 
-	
 	//Soviet models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.HURRICANE_II, Model.IL_2M3_STURMOVIK, Model.LAGG_3, Model.LAVOCHKIN_LA_5FN, Model.MIG_3,
@@ -27,7 +24,6 @@ public class Soviet extends AirForce{
 	//constructor calls setters:
 	public Soviet(){ 
 		setName(); 
-		setDescription(); 
 		setModels(); 
 	}
 	
@@ -113,8 +109,6 @@ public class Soviet extends AirForce{
 	
 	@Override
 	protected void setName(){name = NAME;} //set name of air force
-	@Override
-	protected void setDescription(){description = DESCRIPTION;} //set description of air force 
 	@Override
 	protected void setModels(){models = MODELS;} //set models of plane available
 		

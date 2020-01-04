@@ -6,42 +6,32 @@ import java.util.List;
 import java.util.Map;
 
 import com.brs.period.Period;
-import com.brs.FileIdentifier;
-import com.brs.FileReading;
 import com.brs.period.Block;
 import com.brs.period.Year;
 import com.brs.plane.Plane;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
 
+import ideas.FileIdentifier;
+import ideas.FileReading;
+
 
 public class RoyalAirForce extends AirForce{
 	
-	
-	//https://stackoverflow.com/questions/8275499/how-to-call-getclass-from-a-static-method-in-java
-	static Class currentClass = new Object(){}.getClass().getEnclosingClass(); //pass the second half of this into a method????
-	
 	//RoyalAirForce name:
 	private static final AirForceName NAME = AirForceName.RAF; 
-	
-	//RoyalAirForce description (read in from file):
-	//private static final String DESCRIPTION = FileReading.getText("/com/brs/airforce/TestDescription");
-	static final String DESCRIPTION = ""; //getText2(FileIdentifier.DESCRIPTION);	//getText("/com/brs/airforce/TestDescription"); 
 	
 	//RoyalAirForce models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
 			Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV,  Model.TEMPEST_V, Model.TYPHOON_IB);
 	
-	
 	//constructor calls setters:
 	public RoyalAirForce(){ 
-		System.out.println("NEW5******: "+ getText(FileIdentifier.DESCRIPTION));
 		setName(); 
-		setDescription(); 
 		setModels(); 
 	}
-	
+		
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 
 	protected void setPeriodToStatus(Model model) {
@@ -101,8 +91,6 @@ public class RoyalAirForce extends AirForce{
 	
 	@Override
 	protected void setName(){name = NAME;} //set name of air force
-	@Override
-	protected void setDescription(){description = DESCRIPTION;} //set description of air force 
 	@Override
 	protected void setModels(){models = MODELS;} //set models of plane available
 	

@@ -21,9 +21,6 @@ public class BattleOfBritain extends EventTEST{
 	//BattleOfBritain name:
 	private static final EventName NAME = EventName.BATTLE_OF_BRITAIN;
 	
-	//BattleOfBritain description:
-	private static final String DESCRIPTION = "***BattleOfBritain description here***";
-	
 	//BattleOfBritain air forces:
 	private static final List<AirForceName>AIRFORCENAMES = Arrays.asList(
 			AirForceName.RAF, AirForceName.LUFTWAFFE);
@@ -35,7 +32,6 @@ public class BattleOfBritain extends EventTEST{
 	//constructor calls setters:
 	public BattleOfBritain(){ 
 		setName(); 
-		setDescription(); 
 		setAirForceNames(); 
 		setPeriods(); 
 	}
@@ -54,8 +50,6 @@ public class BattleOfBritain extends EventTEST{
 	
 	@Override
 	protected void setName(){name = NAME;}
-	@Override
-	protected void setDescription(){description = DESCRIPTION;}
 	@Override
 	protected void setAirForceNames(){airForceNames = AIRFORCENAMES;}
 	@Override
