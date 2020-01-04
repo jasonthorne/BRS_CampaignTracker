@@ -26,12 +26,12 @@ public class RoyalAirForce extends AirForce{
 			Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
 			Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV,  Model.TEMPEST_V, Model.TYPHOON_IB);
 	
-	//constructor calls setters:
-	public RoyalAirForce(){ 
-		setName(); 
-		setModels(); 
-	}
-		
+	@Override
+	public String getName() {return NAME.toString();} //get name of air force
+	
+	@Override
+	public List<Model> getAllModels() {return MODELS;} //get models of plane available
+	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 
 	protected void setPeriodToStatus(Model model) {
@@ -88,10 +88,5 @@ public class RoyalAirForce extends AirForce{
 		 //add periods and statuses to HashMap:
 		for (int i=0; i<periods.size(); i++) { periodToStatus.put(periods.get(i), statuses.get(i)); }
 	}
-	
-	@Override
-	protected void setName(){name = NAME;} //set name of air force
-	@Override
-	protected void setModels(){models = MODELS;} //set models of plane available
 	
 }

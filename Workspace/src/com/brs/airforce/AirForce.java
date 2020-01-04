@@ -10,6 +10,7 @@ import com.brs.plane.Status;
 
 public abstract class AirForce {
 	
+	/*
 	protected AirForceName name; //name of air force
 	protected String description; //description of air force
 	protected List<Model>models; //models of plane available
@@ -20,6 +21,10 @@ public abstract class AirForce {
 	//++++CHANGE THESE TO ONLY RETURN DEEP COPIES!!!!!!!!!!++++++++++++++
 	public String getName() { return name.toString(); } //return name of air force
 	public List<Model>getAllModels() { return models; } //return all air force models
+	*/
+	
+	public abstract String getName(); //return name of air force
+	public abstract List<Model>getAllModels(); //return all air force models
 	
 	//variables for creating a map of an air force model's periods and their statuses:
 	protected static List<Period>periods; //periods
@@ -36,7 +41,7 @@ public abstract class AirForce {
 		modelToStatus = new HashMap<Model, Status>(); //(re)set HashMap 
 		
 		//models.forEach((model) -> { //forEach model in models:
-		getAllModels().forEach((model) -> { //forEach model in models:
+		getAllModels().forEach((model) -> { //forEach model in list of models:
 			setPeriodToStatus(model); //(re)set periodToStatus with the current model's periods and their statuses
 			status = periodToStatus.getOrDefault(period, Status.NONE); //assign status returned with period key (or NONE if period not found) 
 			
