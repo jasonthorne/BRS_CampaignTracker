@@ -25,11 +25,11 @@ public class Luftwaffe extends AirForce{
 			Model.BF109_E, Model.BF109_F, Model.BF109_G, Model.BF109_K, Model.BF110_C, 
 			Model.BF110_G, Model.FW190_A, Model.FW190_D,  Model.ME_262_A, Model.ME_262_B);
 	
-	//constructor calls setters:
-	public Luftwaffe(){ 
-		setName(); 
-		setModels(); 
-	}
+	@Override
+	public String getName() {return NAME.toString();} //get name of air force
+	
+	@Override
+	public List<Model> getAllModels() {return MODELS;} //get models of plane available
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 
@@ -86,9 +86,4 @@ public class Luftwaffe extends AirForce{
 		for (int i=0; i<periods.size(); i++) { periodToStatus.put(periods.get(i), statuses.get(i)); }
 	}
 	
-	@Override
-	protected void setName(){name = NAME;} //set name of air force
-	@Override
-	protected void setModels(){models = MODELS;} //set models of plane available
-		
 }

@@ -21,11 +21,11 @@ public class Soviet extends AirForce{
 			Model.P_39_AIRCOBRA, Model.P_63_KINGCOBRA, Model.POLIKARPOV_I_15, Model.POLIKARPOV_I_16, Model.POLIKARPOV_I_153,
 			Model.YAK_1, Model.YAK_3, Model.YAK_7B, Model.YAK_9D, Model.YAK_9U);
 	
-	//constructor calls setters:
-	public Soviet(){ 
-		setName(); 
-		setModels(); 
-	}
+	@Override
+	public String getName() {return NAME.toString();} //get name of air force
+	
+	@Override
+	public List<Model> getAllModels() {return MODELS;} //get models of plane available
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 
@@ -107,9 +107,4 @@ public class Soviet extends AirForce{
 		for (int i=0; i<periods.size(); i++) { periodToStatus.put(periods.get(i), statuses.get(i)); }
 	}
 	
-	@Override
-	protected void setName(){name = NAME;} //set name of air force
-	@Override
-	protected void setModels(){models = MODELS;} //set models of plane available
-		
 }

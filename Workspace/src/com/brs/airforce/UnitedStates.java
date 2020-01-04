@@ -25,11 +25,11 @@ public class UnitedStates extends AirForce{
 			Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
 			Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
 
-	//constructor calls setters:
-	public UnitedStates(){
-		setName(); 
-		setModels(); 
-	}
+	@Override
+	public String getName() {return NAME.toString();} //get name of air force
+	
+	@Override
+	public List<Model> getAllModels() {return MODELS;} //get models of plane available
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 
@@ -95,10 +95,5 @@ public class UnitedStates extends AirForce{
 		 //add periods and statuses to HashMap:
 		for (int i=0; i<periods.size(); i++) { periodToStatus.put(periods.get(i), statuses.get(i)); }	
 	}
-	
-	@Override
-	protected void setName(){name = NAME;} //set name of air force
-	@Override
-	protected void setModels(){models = MODELS;} //set models of plane available
 	
 }
