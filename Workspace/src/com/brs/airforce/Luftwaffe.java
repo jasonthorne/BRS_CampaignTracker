@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.brs.period.Period;
+import com.brs.FileIdentifier;
 import com.brs.period.Block;
 import com.brs.period.Year;
 import com.brs.plane.Plane;
@@ -28,6 +29,7 @@ public class Luftwaffe extends AirForce{
 	
 	//constructor calls setters:
 	public Luftwaffe(){ 
+		System.out.println("NEW6+++++++++++++: "+ getText2(this.getClass(), FileIdentifier.DESCRIPTION));
 		setName(); 
 		setDescription(); 
 		setModels(); 

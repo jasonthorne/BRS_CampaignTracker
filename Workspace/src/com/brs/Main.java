@@ -517,6 +517,13 @@ public class Main {
 		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getDescription());
 		
 		//Retrieving AirForce from EventTEST:
+		AirForce eventTestAirForce2 = TEST_BOB.getAirForce(AirForceName.LUFTWAFFE);
+		System.out.println("eventTestAirForce2: " + eventTestAirForce2.getName());
+		System.out.println("eventTestAirForce2: " + eventTestAirForce2.getAllModels());
+		System.out.println("eventTestAirForce2: " + eventTestAirForce2.getAvailableModels(new Period(Block.MID, Year.FORTY)));
+		System.out.println("eventTestAirForce2: " + eventTestAirForce2.getDescription());
+		
+		//Retrieving AirForce from EventTEST:
 		//AirForce eventTestAirForce2 = TEST_BOB.getAirForce(AirForceName.USAAF); ///OOPS!! :P
 		//System.out.println("eventTestAirForce1: " + eventTestAirForce2.getName());
 		//System.out.println("eventTestAirForce1: " + eventTestAirForce2.getAllModels());

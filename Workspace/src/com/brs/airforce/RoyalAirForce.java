@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.brs.period.Period;
+import com.brs.FileIdentifier;
 import com.brs.FileReading;
 import com.brs.period.Block;
 import com.brs.period.Year;
@@ -45,7 +46,7 @@ public class RoyalAirForce extends AirForce{
 		setName(); 
 		setDescription(); 
 		setModels(); 
-		System.out.println("NEW5******: "+ getText2(this.getClass(), "Description"));
+		System.out.println("NEW5******: "+ getText2(this.getClass(), FileIdentifier.DESCRIPTION));
 		//	"/".concat(currentClass.getCanonicalName().replace(".", "/").concat("Description"));
 		////////////System.out.println("NEW4: "+ getText(getPath(this.getClass())));
 		///////////////System.out.println("NEW3: "+ getText("/".concat(this.getClass().getCanonicalName().replace(".", "/").concat("Description"))));

@@ -42,12 +42,12 @@ public interface FileReading {
     //===========================
     
     
-	 default String getText2(Class<?> callingClass, String descriptor) {
+	 default String getText2(Class<?> callingClass, FileIdentifier fileIdentifier) {
 	    	
 	    	String text = "";
 			String currentLine;
-			//build path to file using calling classe's conical name and the 
-			String path = "/" + (callingClass.getCanonicalName().replace(".", "/")) + descriptor;
+			//build path to file using calling classe's canonical name and file identifier
+			String path = "/" + (callingClass.getCanonicalName().replace(".", "/")) + fileIdentifier.toString();
 			
 			try { //try find & read from file
 				
