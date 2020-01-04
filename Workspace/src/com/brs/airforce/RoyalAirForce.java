@@ -39,17 +39,18 @@ public class RoyalAirForce extends AirForce{
 	
 	//constructor calls setters:
 	public RoyalAirForce(){ 
-		
+		/////////////////////////////System.out.println("GET TEXT2: " + getText2());
 		System.out.println("CURRENT CLASS: " + currentClass.getSimpleName());
 		System.out.println(FILE_PATH);
 		setName(); 
 		setDescription(); 
 		setModels(); 
+		System.out.println("NEW5******: "+ getText2(this.getClass(), "Description"));
 		//	"/".concat(currentClass.getCanonicalName().replace(".", "/").concat("Description"));
-		System.out.println("NEW4: "+ getText(getPath(this.getClass())));
-		System.out.println("NEW3: "+ getText("/".concat(this.getClass().getCanonicalName().replace(".", "/").concat("Description"))));
-		System.out.println("NEW2: "+ getText("/".concat(currentClass.getCanonicalName().replace(".", "/").concat("Description"))));
-		System.out.println("NEW: "+ getText("/com/brs/airforce/TestDescription"));
+		////////////System.out.println("NEW4: "+ getText(getPath(this.getClass())));
+		///////////////System.out.println("NEW3: "+ getText("/".concat(this.getClass().getCanonicalName().replace(".", "/").concat("Description"))));
+		/////////////System.out.println("NEW2: "+ getText("/".concat(currentClass.getCanonicalName().replace(".", "/").concat("Description"))));
+		////////////System.out.println("NEW: "+ getText("/com/brs/airforce/TestDescription"));
 		System.out.println("CLASS NAME: " + this.getClass().getCanonicalName().replace(".", "/").concat("Description"));
 		System.out.println("PACKAGE NAME: " + this.getClass().getPackage());
 		System.out.println("SIMPLE NAME: " + this.getClass().getSimpleName());

@@ -14,8 +14,9 @@ public interface FileReading {
 		
 		try { //try find & read from file
 			
-	    	final URL url = new Object().getClass().getResource(path);
-	    	final File file = new File(url.toURI());
+	    	URL url = this.getClass().getResource(path);
+	    	////////final URL url = new Object().getClass().getResource(path);
+	    	File file = new File(url.toURI());
 			BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 
 			while ((currentLine = bufferedReader.readLine()) != null) {
@@ -31,10 +32,53 @@ public interface FileReading {
     } 
     
     
+    //---------------------
     
     default String getPath(Class<?> currClass) {
 		return "/" + (currClass.getCanonicalName().replace(".", "/")) + "Description";
     }
+    
+    
+    //===========================
+    
+    
+	 default String getText2(Class<?> callingClass, String descriptor) {
+	    	
+	    	String text = "";
+			String currentLine;
+			//build path to file using calling classe's conical name and the 
+			String path = "/" + (callingClass.getCanonicalName().replace(".", "/")) + descriptor;
+			
+			try { //try find & read from file
+				
+		    	URL url = this.getClass().getResource(path);
+		    	File file = new File(url.toURI());
+				BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+	
+				while ((currentLine = bufferedReader.readLine()) != null) {
+					text = text.concat(currentLine.concat("\n")); //add current line (with line break) to text
+				}
+				bufferedReader.close(); //close reader
+				
+			}catch (Exception e) {
+				e.printStackTrace();
+				return ""; //return blank string in event of error
+			}
+			return text; //return text
+	    } 
+	    
+	    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

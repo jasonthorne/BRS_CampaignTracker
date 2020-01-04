@@ -11,6 +11,13 @@ import com.brs.plane.Status;
 
 public abstract class AirForce implements FileReading{
 	
+	protected static String setDescriptionTEST() {
+		
+		//getText(getPath(this.getClass())));
+		
+		return null;
+	}
+	
 	protected AirForceName name; //name of air force
 	protected String description; //description of air force
 	protected List<Model>models; //models of plane available
