@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.brs.period.Period;
+import com.brs.TextReader;
 import com.brs.period.Block;
 import com.brs.period.Year;
 import com.brs.plane.Plane;
@@ -18,8 +19,8 @@ public class RoyalAirForce extends AirForce{
 	//RoyalAirForce name:
 	private static final AirForceName NAME = AirForceName.RAF; 
 	
-	//RoyalAirForce description:
-	private static final String DESCRIPTION = "***RAF description here***"; 
+	//RoyalAirForce description (read in from file):
+	private static final String DESCRIPTION = TextReader.getText("/com/brs/airforce/TestDescription"); 
 	
 	//RoyalAirForce models of plane:
 	private static final List<Model>MODELS = Arrays.asList(

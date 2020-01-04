@@ -4,13 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.brs.DescriptionReader;
+import com.brs.TextReader;
 import com.brs.airforce.AirForce;
 import com.brs.airforce.AirForceName;
 import com.brs.period.Period;
 import com.brs.plane.Model;
 
-public abstract class EventTEST implements DescriptionReader{
+public abstract class EventTEST{
 	
 	protected EventName name; //name of event
 	protected String description; //description of event

@@ -514,7 +514,7 @@ public class Main {
 		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getName());
 		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getAllModels());
 		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getAvailableModels(new Period(Block.MID, Year.FORTY)));
-		
+		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getDescription());
 		
 		//Retrieving AirForce from EventTEST:
 		//AirForce eventTestAirForce2 = TEST_BOB.getAirForce(AirForceName.USAAF); ///OOPS!! :P
@@ -523,27 +523,16 @@ public class Main {
 		//System.out.println("eventTestAirForce1: " + eventTestAirForce2.getAvailableModels(new Period(Block.MID, Year.FORTY)));
 		
 		
-		Japan testRead = new Japan();
-		
-		
-			/*
-				try {
-					testRead.test();
-				} catch (Exception e) {
-					
-					e.printStackTrace();
-				}
-			
-			*/
-		
+		/*
 		String testPath = "/com/brs/airforce/TestDescription";
 		try {
 			DescriptionReader.getDescription(testPath);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-				
+		}*/
+		
+		System.out.println(TextReader.getText("/com/brs/airforce/TestDescription2"));
 				
 	}
 
