@@ -16,22 +16,38 @@ import com.brs.plane.Status;
 
 public class RoyalAirForce extends AirForce{
 	
+	//https://stackoverflow.com/questions/8275499/how-to-call-getclass-from-a-static-method-in-java
+	static Class currentClass = new Object(){}.getClass().getEnclosingClass();
+	
+	
 	//RoyalAirForce name:
 	private static final AirForceName NAME = AirForceName.RAF; 
 	
+	//private static final String path = "/".concat(RoyalAirForce.class.getCanonicalName().replace(".", "/").concat("Description")); 
+	private final static String FILE_PATH = "/".concat(currentClass.getCanonicalName().replace(".", "/").concat("Description")); 
+	
 	//RoyalAirForce description (read in from file):
-	private static final String DESCRIPTION = TextReader.getText("/com/brs/airforce/TestDescription"); 
+	//private static final String DESCRIPTION = TextReader.getText("/com/brs/airforce/TestDescription");
+	private static final String DESCRIPTION = TextReader.getText(FILE_PATH); 
 	
 	//RoyalAirForce models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
 			Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV,  Model.TEMPEST_V, Model.TYPHOON_IB);
 	
+	
 	//constructor calls setters:
 	public RoyalAirForce(){ 
+		
+		System.out.println("CURRENT CLASS: " + currentClass.getSimpleName());
 		setName(); 
 		setDescription(); 
 		setModels(); 
+		
+		System.out.println(FILE_PATH);
+		System.out.println("CLASS NAME: " + this.getClass().getCanonicalName().replace(".", "/").concat("Description"));
+		System.out.println("PACKAGE NAME: " + this.getClass().getPackage());
+		System.out.println("SIMPLE NAME: " + this.getClass().getSimpleName());
 	}
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 

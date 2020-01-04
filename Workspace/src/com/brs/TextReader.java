@@ -11,8 +11,8 @@ public interface TextReader {
     	
     	String text = "";
 		String currentLine;
-    	
-		try { //try read from file
+		
+		try { //try find & read from file
 			
 	    	final URL url = new Object().getClass().getResource(path);
 	    	final File file = new File(url.toURI());
@@ -27,10 +27,8 @@ public interface TextReader {
 			e.printStackTrace();
 			return ""; //return blank string in event of error
 		}
-    	
 		return text; //return text
     } 
-    
 }
 
 //+++++++++++++++++++++++++++++++++++++NOTES:++++++++++++++++++++++++++++
