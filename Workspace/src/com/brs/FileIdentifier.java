@@ -1,6 +1,6 @@
 package com.brs;
 
-//for identifying files during file path creation
+//for identifying files during path creation:
 public enum FileIdentifier {
 	
 	DESCRIPTION("Description");

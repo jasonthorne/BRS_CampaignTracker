@@ -29,7 +29,8 @@ public class Luftwaffe extends AirForce{
 	
 	//constructor calls setters:
 	public Luftwaffe(){ 
-		System.out.println("NEW6+++++++++++++: "+ getText2(this.getClass(), FileIdentifier.DESCRIPTION));
+		//System.out.println("NEW6+++++++++++++: "+ getText2(this.getClass(), FileIdentifier.DESCRIPTION));
+		System.out.println("NEW6+++++++++++++: "+ getText(FileIdentifier.DESCRIPTION));
 		setName(); 
 		setDescription(); 
 		setModels(); 

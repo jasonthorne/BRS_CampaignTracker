@@ -11,13 +11,6 @@ import com.brs.plane.Status;
 
 public abstract class AirForce implements FileReading{
 	
-	protected static String setDescriptionTEST() {
-		
-		//getText(getPath(this.getClass())));
-		
-		return null;
-	}
-	
 	protected AirForceName name; //name of air force
 	protected String description; //description of air force
 	protected List<Model>models; //models of plane available
@@ -45,7 +38,8 @@ public abstract class AirForce implements FileReading{
 	public Map<Model, Status>getAvailableModels(Period period) {  //NEED TO DEAL WITH IF INVALID DATES ARTE ENTERED (Late 1945)+++++++++++++++++
 		modelToStatus = new HashMap<Model, Status>(); //(re)set HashMap 
 		
-		models.forEach((model) -> { //forEach model in models:
+		//models.forEach((model) -> { //forEach model in models:
+		getAllModels().forEach((model) -> { //forEach model in models:
 			setPeriodToStatus(model); //(re)set periodToStatus with the current model's periods and their statuses
 			status = periodToStatus.getOrDefault(period, Status.NONE); //assign status returned with period key (or NONE if period not found) 
 			

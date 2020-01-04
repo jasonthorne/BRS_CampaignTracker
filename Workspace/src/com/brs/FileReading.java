@@ -7,20 +7,20 @@ import java.net.URL;
 
 public interface FileReading {
 	
-    default String getText(String path) {
-    	
-    	String text = "";
-		String currentLine;
+	default String getText(FileIdentifier fileId) {
+		String text = "";
+		String currLine;
+		//path to file made using calling classe's canonical name and file identifier:
+		String path = "/" + (this.getClass().getCanonicalName().replace(".", "/")) + fileId.toString();
 		
 		try { //try find & read from file
 			
 	    	URL url = this.getClass().getResource(path);
-	    	////////final URL url = new Object().getClass().getResource(path);
 	    	File file = new File(url.toURI());
 			BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-
-			while ((currentLine = bufferedReader.readLine()) != null) {
-				text = text.concat(currentLine.concat("\n")); //add current line (with line break) to text
+	
+			while ((currLine = bufferedReader.readLine()) != null) {
+				text = text.concat(currLine.concat("\n")); //add current line (with line break) to text
 			}
 			bufferedReader.close(); //close reader
 			
@@ -29,65 +29,7 @@ public interface FileReading {
 			return ""; //return blank string in event of error
 		}
 		return text; //return text
-    } 
-    
-    
-    //---------------------
-    
-    default String getPath(Class<?> currClass) {
-		return "/" + (currClass.getCanonicalName().replace(".", "/")) + "Description";
-    }
-    
-    
-    //===========================
-    
-    
-	 default String getText2(Class<?> callingClass, FileIdentifier fileIdentifier) {
-	    	
-	    	String text = "";
-			String currentLine;
-			//build path to file using calling classe's canonical name and file identifier
-			String path = "/" + (callingClass.getCanonicalName().replace(".", "/")) + fileIdentifier.toString();
-			
-			try { //try find & read from file
-				
-		    	URL url = this.getClass().getResource(path);
-		    	File file = new File(url.toURI());
-				BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-	
-				while ((currentLine = bufferedReader.readLine()) != null) {
-					text = text.concat(currentLine.concat("\n")); //add current line (with line break) to text
-				}
-				bufferedReader.close(); //close reader
-				
-			}catch (Exception e) {
-				e.printStackTrace();
-				return ""; //return blank string in event of error
-			}
-			return text; //return text
-	    } 
-	    
-	    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+	}    
 }
 
 //+++++++++++++++++++++++++++++++++++++NOTES:++++++++++++++++++++++++++++

@@ -21,16 +21,12 @@ public class RoyalAirForce extends AirForce{
 	//https://stackoverflow.com/questions/8275499/how-to-call-getclass-from-a-static-method-in-java
 	static Class currentClass = new Object(){}.getClass().getEnclosingClass(); //pass the second half of this into a method????
 	
-	
 	//RoyalAirForce name:
 	private static final AirForceName NAME = AirForceName.RAF; 
 	
-	//private static final String path = "/".concat(RoyalAirForce.class.getCanonicalName().replace(".", "/").concat("Description")); 
-	private final static String FILE_PATH = "/".concat(currentClass.getCanonicalName().replace(".", "/").concat("Description")); 
-	
 	//RoyalAirForce description (read in from file):
 	//private static final String DESCRIPTION = FileReading.getText("/com/brs/airforce/TestDescription");
-	 static final String DESCRIPTION = "";	//getText("/com/brs/airforce/TestDescription"); 
+	static final String DESCRIPTION = ""; //getText2(FileIdentifier.DESCRIPTION);	//getText("/com/brs/airforce/TestDescription"); 
 	
 	//RoyalAirForce models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
@@ -40,21 +36,10 @@ public class RoyalAirForce extends AirForce{
 	
 	//constructor calls setters:
 	public RoyalAirForce(){ 
-		/////////////////////////////System.out.println("GET TEXT2: " + getText2());
-		System.out.println("CURRENT CLASS: " + currentClass.getSimpleName());
-		System.out.println(FILE_PATH);
+		System.out.println("NEW5******: "+ getText(FileIdentifier.DESCRIPTION));
 		setName(); 
 		setDescription(); 
 		setModels(); 
-		System.out.println("NEW5******: "+ getText2(this.getClass(), FileIdentifier.DESCRIPTION));
-		//	"/".concat(currentClass.getCanonicalName().replace(".", "/").concat("Description"));
-		////////////System.out.println("NEW4: "+ getText(getPath(this.getClass())));
-		///////////////System.out.println("NEW3: "+ getText("/".concat(this.getClass().getCanonicalName().replace(".", "/").concat("Description"))));
-		/////////////System.out.println("NEW2: "+ getText("/".concat(currentClass.getCanonicalName().replace(".", "/").concat("Description"))));
-		////////////System.out.println("NEW: "+ getText("/com/brs/airforce/TestDescription"));
-		System.out.println("CLASS NAME: " + this.getClass().getCanonicalName().replace(".", "/").concat("Description"));
-		System.out.println("PACKAGE NAME: " + this.getClass().getPackage());
-		System.out.println("SIMPLE NAME: " + this.getClass().getSimpleName());
 	}
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
