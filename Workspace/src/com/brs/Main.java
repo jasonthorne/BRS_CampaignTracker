@@ -489,9 +489,14 @@ public class Main {
 		
 		//=====================================
 		
-		
+		//----------
+		System.out.println();
 		BattleOfBritain TEST_BOB = new BattleOfBritain();
 		
+		System.out.println("TEST_BOB: " + TEST_BOB.getName());
+		System.out.println("TEST_BOB: " + TEST_BOB.getAirForceNames());
+		System.out.println("TEST_BOB: " + TEST_BOB.getPeriods());
+		System.out.println();
 		//---------------------
 		//BELOW ALL WORKS (but shouldnt be grabbed as a hashmap)
 		

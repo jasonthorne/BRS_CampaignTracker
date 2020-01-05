@@ -1,5 +1,6 @@
 package com.brs.event;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,7 @@ import com.brs.airforce.Luftwaffe;
 import com.brs.period.Block;
 import com.brs.period.Period;
 import com.brs.period.Year;
+import com.brs.plane.Model;
 import com.brs.plane.Status;
 
 
@@ -28,12 +30,13 @@ public class BattleOfBritain extends EventTEST{
 	private static final List<Period>PERIODS = Period.getPeriods(
 			new Period(Block.MID, Year.FORTY), new Period(Block.MID, Year.FORTY_ONE));
 
+	/*
 	//constructor calls setters:
 	public BattleOfBritain(){ 
 		setName(); 
 		setAirForceNames(); 
 		setPeriods(); 
-	}
+	}*/
 
 	@Override //add requested AirForce object to map if absent:
 	protected void putAirForceIfAbsent(AirForceName airForceName){
@@ -46,12 +49,12 @@ public class BattleOfBritain extends EventTEST{
 			  break;
 		}
 	}
-	
+
 	@Override
-	protected void setName(){name = NAME;}
+	public String getName() {return NAME.toString();} //get name of event
 	@Override
-	protected void setAirForceNames(){airForceNames = AIR_FORCE_NAMES;}
+	public List<AirForceName> getAirForceNames() {return new ArrayList<AirForceName>(AIR_FORCE_NAMES);} //get copy of air forces involved
 	@Override
-	protected void setPeriods(){periods = PERIODS;}
+	public List<Period> getPeriods() {return new ArrayList<Period>(PERIODS);} //get copy of periods covered
 	
 }

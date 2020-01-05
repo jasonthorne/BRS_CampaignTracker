@@ -14,20 +14,11 @@ import ideas.FileReading;
 
 public abstract class EventTEST{
 	
-	protected EventName name; //name of event
-	protected List<AirForceName>airForceNames; //air forces involved 
-	protected List<Period>periods; //periods of history covered
+	public abstract String getName(); //return name of event
+	public abstract List<AirForceName>getAirForceNames(); //return air forces involved 
+	public abstract List<Period>getPeriods(); //return periods covered
 	
-	protected abstract void setName(); //extended class sets name
-	protected abstract void setAirForceNames(); //extended class sets airForces
-	protected abstract void setPeriods(); //extended class sets periods
-	
-	//++++CHANGE THESE TO ONLY RETURN DEEP COPIES!!!!!!!!!maybe!++++++++++++++
-	public String getName() { return name.toString(); } //return name of event
-	public List<AirForceName>getAirForceNames() { return airForceNames; } //return air forces involved 
-	public List<Period>getPeriods() { return periods; } //return periods covered
-	
-	//map for holding AirForces relevant to event:
+	//map for holding AirForces involved in event:
 	protected Map<AirForceName, AirForce>airForceNameToAirForce = new HashMap<AirForceName, AirForce>();
 	protected abstract void putAirForceIfAbsent(AirForceName airForceName);  //extended class adds to map above
 
