@@ -8,18 +8,14 @@ import java.util.List;
 
 import com.brs.period.Period;
 import com.brs.plane.Model;
+import com.brs.plane.Status;
 
 public interface FileReading {
 	
+	//+++++++++++++++++++testing (remove!):
+	//public abstract String getName(); //return name of air force //======================
+	//public abstract List<Model>getAllModels(); //return all air force models
 	//+++++++++++++++++++
-	public abstract String getName(); //return name of air force //======================
-	public abstract List<Model>getAllModels(); //return all air force models
-	
-	
-	
-	//+++++++++++++++++++
-	
-	
 	
 	default String getText(FileIdentifier fileId) {
 		String text = "";

@@ -14,10 +14,9 @@ import com.brs.period.Period;
 import com.brs.period.Year;
 import com.brs.plane.Status;
 
-//PLAYER SHOULD CONTAIN THE AIRFORCE. THIS CLASS MERELY DICTATES WHAT AIRFORCES ARE ALLOWED AND PROVIDES REFERENCES TO THEM!! +++++++++++
 
 public class BattleOfBritain extends EventTEST{
-	
+	//PLAYER SHOULD CONTAIN THE AIRFORCE. THIS CLASS MERELY DICTATES WHAT AIRFORCES ARE ALLOWED AND PROVIDES REFERENCES TO THEM!! +++++++++++
 	//BattleOfBritain name:
 	private static final EventName NAME = EventName.BATTLE_OF_BRITAIN;
 	

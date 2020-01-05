@@ -12,9 +12,6 @@ import com.brs.plane.Plane;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
 
-import ideas.FileIdentifier;
-import ideas.FileReading;
-
 
 public class RoyalAirForce extends AirForce{
 	
@@ -25,13 +22,7 @@ public class RoyalAirForce extends AirForce{
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
 			Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV,  Model.TEMPEST_V, Model.TYPHOON_IB);
-	
-	@Override
-	public String getName() {return NAME.toString();} //get name of air force
-	
-	@Override
-	public List<Model> getAllModels() {return MODELS;} //get models of plane available
-	
+
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 
 	protected void setPeriodToStatus(Model model) {
@@ -88,5 +79,10 @@ public class RoyalAirForce extends AirForce{
 		 //add periods and statuses to HashMap:
 		for (int i=0; i<periods.size(); i++) { periodToStatus.put(periods.get(i), statuses.get(i)); }
 	}
+	
+	@Override
+	public String getName() {return NAME.toString();} //get name of air force
+	@Override
+	public List<Model> getAllModels() {return MODELS;} //get models of plane available
 	
 }

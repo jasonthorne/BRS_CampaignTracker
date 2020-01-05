@@ -8,31 +8,19 @@ import com.brs.period.Period;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
 
+
 public abstract class AirForce {
-	
-	/*
-	protected AirForceName name; //name of air force
-	protected String description; //description of air force
-	protected List<Model>models; //models of plane available
-	
-	protected abstract void setName(); //extended class sets name
-	protected abstract void setModels(); //extended class sets models
-	
-	//++++CHANGE THESE TO ONLY RETURN DEEP COPIES!!!!!!!!!!++++++++++++++
-	public String getName() { return name.toString(); } //return name of air force
-	public List<Model>getAllModels() { return models; } //return all air force models
-	*/
 	
 	public abstract String getName(); //return name of air force
 	public abstract List<Model>getAllModels(); //return all air force models
 	
-	//variables for creating a map of an air force model's periods and their statuses:
+	//variables for creating a map of a singular model's periods and their corresponding status values:
 	protected static List<Period>periods; //periods
 	protected static List<Status>statuses; //statuses of periods
 	protected static Map<Period, Status>periodToStatus; //map for holding periods and their statuses
 	protected abstract void setPeriodToStatus(Model model); //extended class sets periodToStatus
 	
-	//map for holding a model and it's status (in relation to a given period):
+	//map for holding a collection of models and their status in relation to a given period:
 	private static Map<Model, Status>modelToStatus; 
 	private static Status status; //holds a status value for insertion into modelToStatus
 	
@@ -40,7 +28,6 @@ public abstract class AirForce {
 	public Map<Model, Status>getAvailableModels(Period period) {  //NEED TO DEAL WITH IF INVALID DATES ARTE ENTERED (Late 1945)+++++++++++++++++
 		modelToStatus = new HashMap<Model, Status>(); //(re)set HashMap 
 		
-		//models.forEach((model) -> { //forEach model in models:
 		getAllModels().forEach((model) -> { //forEach model in list of models:
 			setPeriodToStatus(model); //(re)set periodToStatus with the current model's periods and their statuses
 			status = periodToStatus.getOrDefault(period, Status.NONE); //assign status returned with period key (or NONE if period not found) 

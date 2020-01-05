@@ -10,6 +10,7 @@ import com.brs.period.Year;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
 
+
 public class Soviet extends AirForce{
 	
 	//Soviet name:
@@ -20,12 +21,6 @@ public class Soviet extends AirForce{
 			Model.HURRICANE_II, Model.IL_2M3_STURMOVIK, Model.LAGG_3, Model.LAVOCHKIN_LA_5FN, Model.MIG_3,
 			Model.P_39_AIRCOBRA, Model.P_63_KINGCOBRA, Model.POLIKARPOV_I_15, Model.POLIKARPOV_I_16, Model.POLIKARPOV_I_153,
 			Model.YAK_1, Model.YAK_3, Model.YAK_7B, Model.YAK_9D, Model.YAK_9U);
-	
-	@Override
-	public String getName() {return NAME.toString();} //get name of air force
-	
-	@Override
-	public List<Model> getAllModels() {return MODELS;} //get models of plane available
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 
@@ -106,5 +101,10 @@ public class Soviet extends AirForce{
 		 //add periods and statuses to HashMap:
 		for (int i=0; i<periods.size(); i++) { periodToStatus.put(periods.get(i), statuses.get(i)); }
 	}
+	
+	@Override
+	public String getName() {return NAME.toString();} //get name of air force
+	@Override
+	public List<Model> getAllModels() {return MODELS;} //get models of plane available
 	
 }
