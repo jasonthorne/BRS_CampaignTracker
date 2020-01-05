@@ -21,7 +21,7 @@ public class BattleOfBritain extends EventTEST{
 	private static final EventName NAME = EventName.BATTLE_OF_BRITAIN;
 	
 	//BattleOfBritain air forces:
-	private static final List<AirForceName>AIRFORCENAMES = Arrays.asList(
+	private static final List<AirForceName>AIR_FORCE_NAMES = Arrays.asList(
 			AirForceName.RAF, AirForceName.LUFTWAFFE);
 	
 	//BattleOfBritain periods:
@@ -50,7 +50,7 @@ public class BattleOfBritain extends EventTEST{
 	@Override
 	protected void setName(){name = NAME;}
 	@Override
-	protected void setAirForceNames(){airForceNames = AIRFORCENAMES;}
+	protected void setAirForceNames(){airForceNames = AIR_FORCE_NAMES;}
 	@Override
 	protected void setPeriods(){periods = PERIODS;}
 	

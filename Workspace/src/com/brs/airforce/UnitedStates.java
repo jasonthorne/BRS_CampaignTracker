@@ -1,5 +1,6 @@
 package com.brs.airforce;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -93,6 +94,6 @@ public class UnitedStates extends AirForce{
 	@Override
 	public String getName() {return NAME.toString();} //get name of air force
 	@Override
-	public List<Model> getAllModels() {return MODELS;} //get models of plane available
+	public List<Model> getAllModels() {return new ArrayList<Model>(MODELS);} //get copy of models of plane available
 	
 }
