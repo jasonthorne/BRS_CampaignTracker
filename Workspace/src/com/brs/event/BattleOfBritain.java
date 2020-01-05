@@ -25,20 +25,13 @@ public class BattleOfBritain extends EventTEST{
 	//BattleOfBritain air forces:
 	private static final List<AirForceName>AIR_FORCE_NAMES = Arrays.asList(
 			AirForceName.RAF, AirForceName.LUFTWAFFE);
-	
+			
 	//BattleOfBritain periods:
 	private static final List<Period>PERIODS = Period.getPeriods(
 			new Period(Block.MID, Year.FORTY), new Period(Block.MID, Year.FORTY_ONE));
 
-	/*
-	//constructor calls setters:
-	public BattleOfBritain(){ 
-		setName(); 
-		setAirForceNames(); 
-		setPeriods(); 
-	}*/
-
-	@Override //add requested AirForce object to map if absent:
+	//creates and adds an instance of requested AirForce to map if absent:
+	@Override 
 	protected void putAirForceIfAbsent(AirForceName airForceName){
 		switch(airForceName){ 
 		  case RAF:

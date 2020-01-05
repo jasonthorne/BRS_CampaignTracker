@@ -18,7 +18,7 @@ public abstract class EventTEST{
 	public abstract List<AirForceName>getAirForceNames(); //return air forces involved 
 	public abstract List<Period>getPeriods(); //return periods covered
 	
-	//map for holding AirForces involved in event:
+	//map for holding AirForces required:
 	protected Map<AirForceName, AirForce>airForceNameToAirForce = new HashMap<AirForceName, AirForce>();
 	protected abstract void putAirForceIfAbsent(AirForceName airForceName);  //extended class adds to map above
 
