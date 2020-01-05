@@ -28,7 +28,7 @@ public class BattleOfBritain extends EventTEST{
 			
 	//BattleOfBritain periods:
 	private static final List<Period>PERIODS = Period.getPeriods(
-			new Period(Block.MID, Year.FORTY), new Period(Block.MID, Year.FORTY_ONE));
+			new Period(Block.MID, Year.FORTY), new Period(Block.EARLY, Year.FORTY_ONE));
 
 	//creates and adds an instance of requested AirForce to map if absent:
 	@Override 

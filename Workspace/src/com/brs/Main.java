@@ -18,6 +18,7 @@ import com.brs.airforce.Japan;
 import com.brs.airforce.RoyalAirForce;
 import com.brs.airforce.AirForce;
 import com.brs.airforce.UnitedStates;
+import com.brs.campaign.CampaignTEST;
 import com.brs.event.BattleOfBritain;
 import com.brs.event.EventName;
 //import com.brs.event.EventData.EventName;
@@ -557,21 +558,12 @@ public class Main {
 		//System.out.println("eventTestAirForce1: " + eventTestAirForce2.getAllModels());
 		//System.out.println("eventTestAirForce1: " + eventTestAirForce2.getAvailableModels(new Period(Block.MID, Year.FORTY)));
 		
+		///======================================
+		CampaignTEST campaignTEST = new CampaignTEST(EventName.BATTLE_OF_BRITAIN);
 		
-		/*
-		String testPath = "/com/brs/airforce/TestDescription";
-		try {
-			DescriptionReader.getDescription(testPath);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
-		//System.out.println(FileReading.getText("/com/brs/airforce/TestDescription2"));
-		
-		      
-		//System.out.println(this.getClass().getCanonicalName());
-		
+		System.out.println(campaignTEST.getName());
+		System.out.println(campaignTEST.getAirForceNames());
+		//System.out.println(campaignTEST.getPeriods());
 		
 	}
 

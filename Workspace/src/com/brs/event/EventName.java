@@ -3,8 +3,8 @@ package com.brs.event;
 //Event name values:
 public enum EventName {
 	
-	BATTLE_OF_BRITAIN("Battle of Britain"), 
-	OPERATION_BARBAROSSA("Operation Barbarossa"),
+	BATTLE_OF_BRITAIN("Battle of Britain"),
+	OPERATION_BARBAROSSA("Operation Barbarossa"),	
 	GUADALCANAL("Guadalcanal"),
 	STALINGRAD("Stalingrad"),
 	ASSAULT_ON_THE_REICH("Assault on the Reich"),
