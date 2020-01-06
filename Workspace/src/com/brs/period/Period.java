@@ -18,6 +18,16 @@ public class Period {
 		this.year = year;
 		this.block = block;
 	}
+	
+	public Block getBlock() {
+		return block;
+	}
+
+	public Year getYear() {
+		return year;
+	}
+
+	
 
 	@Override 
 	public String toString() { return "Period: [" + block + " " + year + "]"; }

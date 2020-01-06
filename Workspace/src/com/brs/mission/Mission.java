@@ -1,5 +1,5 @@
 package com.brs.mission;
 
-public class MissionTEST {
+public class Mission {
 
 }

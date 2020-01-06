@@ -3,7 +3,7 @@ package com.brs.player;
 import com.brs.Squadron;
 import com.brs.airforce.AirForceName;
 
-public class PlayerTEST {
+public class Player {
 	
 	private String name;
 	private int score;

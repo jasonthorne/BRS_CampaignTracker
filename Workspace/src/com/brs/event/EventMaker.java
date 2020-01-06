@@ -3,9 +3,9 @@ package com.brs.event;
 import com.brs.event.EventTEST;
 
 //create an event according to chosen event name:
-public abstract class EventFactory {
+public abstract class EventMaker {
 	
-	protected EventTEST setEvent(EventName eventName) { //CHANGE TO EVENT +++++++++++++
+	protected EventTEST getEvent(EventName eventName) { //CHANGE TO EVENT +++++++++++++
 		
 		switch(eventName){
 			case ASSAULT_ON_THE_REICH:

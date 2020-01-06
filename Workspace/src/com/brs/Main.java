@@ -571,6 +571,11 @@ public class Main {
 		//campaignTEST.changePeriod();
 		//campaignTEST.changePeriod();
 		//campaignTEST.changePeriod();
+		
+		campaignTEST.getPeriodTEST();
+		campaignTEST.getPeriodTEST();
+		campaignTEST.getPeriodTEST();
+		campaignTEST.getPeriodTEST();
 	}
 
 	
