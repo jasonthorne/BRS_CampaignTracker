@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.brs.period.Periods;
 import com.brs.period.Period;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
@@ -39,7 +40,6 @@ public abstract class AirForce {
 		});
 		return modelToStatus; //return available models
 	}
-	
 	
 	
 	

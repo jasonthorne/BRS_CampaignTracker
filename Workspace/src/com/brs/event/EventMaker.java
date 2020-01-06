@@ -2,9 +2,9 @@ package com.brs.event;
 
 import com.brs.event.EventTEST;
 
-//create an event according to chosen event name:
 public abstract class EventMaker {
 	
+	//create an event according to chosen event name:
 	protected EventTEST getEvent(EventName eventName) { //CHANGE TO EVENT +++++++++++++
 		
 		switch(eventName){

@@ -535,7 +535,7 @@ public class Main {
 		//Retrieving AirForce from EventTEST:
 		AirForce eventTestAirForce2 = TEST_BOB.getAirForce(AirForceName.LUFTWAFFE);
 		System.out.println("eventTestAirForce2: " + eventTestAirForce2.getName());
-		System.out.println("eventTestAirForce2: " + eventTestAirForce2.getAllModels());
+		//System.out.println("eventTestAirForce2: " + eventTestAirForce2.getAllModels());
 		System.out.println("eventTestAirForce2: " + eventTestAirForce2.getAvailableModels(new Period(Block.MID, Year.FORTY)));
 	
 		//----------
@@ -576,6 +576,7 @@ public class Main {
 		campaignTEST.getPeriodTEST();
 		campaignTEST.getPeriodTEST();
 		campaignTEST.getPeriodTEST();
+		
 	}
 
 	

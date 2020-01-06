@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.brs.airforce.AirForceName;
 import com.brs.period.Period;
+import com.brs.period.Periods;
 import com.brs.period.Block;
 import com.brs.period.Year;
 
@@ -27,13 +28,13 @@ public abstract class EventData {
 	
 	//events and their corresponding periods of history: //+++++++++++++THINK ABOUT STORING IN JUST BLOCKS AND YEARS, AND CREATING PERIODS IN METHOD INSTEAD
 	private static final Map<String, List<Period>> eventNameToPeriods = new HashMap<String, List<Period>>() {{
-	    put(EventName.BATTLE_OF_BRITAIN.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY), new Period(Block.MID, Year.FORTY_ONE)));
-	    put(EventName.OPERATION_BARBAROSSA.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_ONE)));
-	    put(EventName.GUADALCANAL.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_THREE)));
-	    put(EventName.STALINGRAD.toString(), Period.getPeriods(new Period(Block.LATE, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_THREE)));
-	    put(EventName.ASSAULT_ON_THE_REICH.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY_THREE), new Period(Block.EARLY, Year.FORTY_FIVE)));
-	    put(EventName.THE_ITALIAN_CAMPAIGN.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY_THREE), new Period(Block.MID, Year.FORTY_FOUR)));
-	    put(EventName.DEFENCE_OF_THE_HOME_ISLANDS.toString(), Period.getPeriods(new Period(Block.MID, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE)));
+	    put(EventName.BATTLE_OF_BRITAIN.toString(), Periods.getPeriods(new Period(Block.MID, Year.FORTY), new Period(Block.MID, Year.FORTY_ONE)));
+	    put(EventName.OPERATION_BARBAROSSA.toString(), Periods.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_ONE)));
+	    put(EventName.GUADALCANAL.toString(), Periods.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_THREE)));
+	    put(EventName.STALINGRAD.toString(), Periods.getPeriods(new Period(Block.LATE, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_THREE)));
+	    put(EventName.ASSAULT_ON_THE_REICH.toString(), Periods.getPeriods(new Period(Block.MID, Year.FORTY_THREE), new Period(Block.EARLY, Year.FORTY_FIVE)));
+	    put(EventName.THE_ITALIAN_CAMPAIGN.toString(), Periods.getPeriods(new Period(Block.MID, Year.FORTY_THREE), new Period(Block.MID, Year.FORTY_FOUR)));
+	    put(EventName.DEFENCE_OF_THE_HOME_ISLANDS.toString(), Periods.getPeriods(new Period(Block.MID, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE)));
 	}};
 	
 	

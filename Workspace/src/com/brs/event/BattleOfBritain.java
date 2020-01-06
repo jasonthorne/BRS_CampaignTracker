@@ -12,6 +12,7 @@ import com.brs.airforce.RoyalAirForce;
 import com.brs.airforce.Luftwaffe;
 import com.brs.period.Block;
 import com.brs.period.Period;
+import com.brs.period.Periods;
 import com.brs.period.Year;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
@@ -27,7 +28,7 @@ public class BattleOfBritain extends EventTEST{
 			AirForceName.RAF, AirForceName.LUFTWAFFE);
 			
 	//BattleOfBritain periods:
-	private static final List<Period>PERIODS = Period.getPeriods(
+	private static final List<Period>PERIODS = Periods.getPeriods(
 			new Period(Block.MID, Year.FORTY), new Period(Block.EARLY, Year.FORTY_ONE));
 
 	//creates and adds an instance of requested AirForce to map if absent:

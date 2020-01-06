@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.brs.period.Block;
 import com.brs.period.Period;
+import com.brs.period.Periods;
 import com.brs.period.Year;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
@@ -30,72 +31,72 @@ public class Soviet extends AirForce{
 		
 		switch(model) { //populate periods and statuses according to model:
 		  case HURRICANE_II:
-			  periods = Period.getPeriods(new Period(Block.EARLY, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE)); 
+			  periods = Periods.getPeriods(new Period(Block.EARLY, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE)); 
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, 
 			  Status.AUTO, Status.AUTO, Status.LIMIT, Status.LIMIT);
 			  break;
 		  case IL_2M3_STURMOVIK:
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, 
 			  Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO);
 			  break;
 		  case LAGG_3:
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_FOUR));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_FOUR));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.AUTO, Status.AUTO, Status.LIMIT, Status.LIMIT);
 			  break;
 		  case LAVOCHKIN_LA_5FN:
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.AUTO, Status.AUTO, Status.AUTO);
 			  break;
 		  case MIG_3:
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.EARLY, Year.FORTY_TWO));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.EARLY, Year.FORTY_TWO));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.LIMIT);
 			  break;
 		  case P_39_AIRCOBRA:
-			  periods = Period.getPeriods(new Period(Block.LATE, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.LATE, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.AUTO, Status.LIMIT);
 			  break; 
 		  case P_63_KINGCOBRA:
-			  periods = Period.getPeriods(new Period(Block.EARLY, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.EARLY, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.LIMIT, Status.LIMIT, Status.LIMIT);
 			  break;
 		  case POLIKARPOV_I_15:
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_TWO));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_TWO));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.LIMIT, Status.LIMIT, Status.LIMIT);
 			  break;
 		  case POLIKARPOV_I_16:
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.MID, Year.FORTY_THREE));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.MID, Year.FORTY_THREE));
 			  statuses = Arrays.asList(Status.AUTO, Status.LIMIT, Status.AUTO, Status.AUTO, Status.LIMIT, Status.LIMIT, Status.LIMIT);
 			  break;
 		  case POLIKARPOV_I_153: 
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_TWO));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_TWO));
 			  statuses = Arrays.asList(Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.LIMIT);
 			  break;
 		  case YAK_1: 
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.AUTO, Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.LIMIT, Status.AUTO, Status.AUTO, Status.LIMIT, Status.LIMIT, Status.LIMIT);
 			  break;
 		  case YAK_3: 
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO);
 			  break;
 		  case YAK_7B: 
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.AUTO, Status.AUTO, Status.AUTO);
 			  break;
 		  case YAK_9D:
-			  periods = Period.getPeriods(new Period(Block.LATE, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.LATE, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.AUTO, Status.AUTO);
 			  break;
 		  case YAK_9U:
-			  periods = Period.getPeriods(new Period(Block.EARLY, Year.FORTY_FIVE), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.EARLY, Year.FORTY_FIVE), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT);
 			  break;
 		}

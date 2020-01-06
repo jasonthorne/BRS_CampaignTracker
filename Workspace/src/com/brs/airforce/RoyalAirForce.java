@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.brs.period.Period;
+import com.brs.period.Periods;
 import com.brs.period.Block;
 import com.brs.period.Year;
 import com.brs.plane.Plane;
@@ -31,48 +32,48 @@ public class RoyalAirForce extends AirForce{
 		
 		switch(model) { //populate periods and statuses, according to model:
 		  case HURRICANE_I:
-			  periods = Period.getPeriods(new Period(Block.EARLY, Year.FORTY), new Period(Block.LATE, Year.FORTY)); 
+			  periods = Periods.getPeriods(new Period(Block.EARLY, Year.FORTY), new Period(Block.LATE, Year.FORTY)); 
 			  statuses = Arrays.asList(Status.AUTO, Status.AUTO, Status.AUTO);
 			  break;
 		  case HURRICANE_II:
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY), new Period(Block.EARLY, Year.FORTY_THREE));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY), new Period(Block.EARLY, Year.FORTY_THREE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.AUTO, Status.AUTO, Status.LIMIT, Status.LIMIT, 
 			  Status.LIMIT, Status.LIMIT, Status.LIMIT);
 			  break;
 		  case MOSQUITO_II:
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.AUTO, Status.AUTO, Status.AUTO);
 			  break;
 		  case MOSQUITO_VI:
-			  periods = Period.getPeriods(new Period(Block.EARLY, Year.FORTY_THREE), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.EARLY, Year.FORTY_THREE), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.AUTO);
 			  break;
 		  case SPITFIRE_II:
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY), new Period(Block.LATE, Year.FORTY_ONE));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY), new Period(Block.LATE, Year.FORTY_ONE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.LIMIT, Status.LIMIT);
 			  break;
 		  case SPITFIRE_V:
-			  periods = Period.getPeriods(new Period(Block.EARLY, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_THREE));
+			  periods = Periods.getPeriods(new Period(Block.EARLY, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_THREE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.AUTO, Status.LIMIT);
 			  break; 
 		  case SPITFIRE_IX:
-			  periods = Period.getPeriods(new Period(Block.LATE, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.LATE, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.AUTO, Status.LIMIT);
 			  break;
 		  case SPITFIRE_XIV:
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO);
 			  break;
 		  case TEMPEST_V:
-			  periods = Period.getPeriods(new Period(Block.MID, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_FOUR), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO);
 			  break;
 		  case TYPHOON_IB:
-			  periods = Period.getPeriods(new Period(Block.EARLY, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_FIVE));
+			  periods = Periods.getPeriods(new Period(Block.EARLY, Year.FORTY_TWO), new Period(Block.EARLY, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.LIMIT, Status.LIMIT, Status.LIMIT);
 			  break;

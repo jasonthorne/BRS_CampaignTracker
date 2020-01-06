@@ -19,15 +19,9 @@ public class Period {
 		this.block = block;
 	}
 	
-	public Block getBlock() {
-		return block;
-	}
-
-	public Year getYear() {
-		return year;
-	}
-
-	
+	//getters:
+	public Block getBlock() {return block;}
+	public Year getYear() {return year;}
 
 	@Override 
 	public String toString() { return "Period: [" + block + " " + year + "]"; }
@@ -57,6 +51,7 @@ public class Period {
 		return true;
 	}
 
+	/*
 	//getPeriods vars:
 	private final static List<Block>BLOCKS = Arrays.asList(Block.values()); //all Block values (early, mid, late)
 	private final static List<Year>YEARS = Arrays.asList(Year.values()); //all Year values (1940 - 1945)
@@ -97,5 +92,5 @@ public class Period {
 		}
 		return periods; //return list
 	}
-	
+	*/
 }
