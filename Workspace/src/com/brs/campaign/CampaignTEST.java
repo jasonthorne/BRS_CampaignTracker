@@ -1,6 +1,7 @@
 package com.brs.campaign;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import com.brs.player.PlayerTEST;
 import com.brs.airforce.AirForceName;
@@ -12,43 +13,49 @@ import com.brs.period.Period;
 
 public class CampaignTEST extends EventFactory { //+++++++++++change to Campaign
 	
-	//name of campaign:
-	private final String name;
+	private final String name; //name of campaign
+	//CURRENT DATE STUFF HERE :P //date of creation
+	private final EventTEST event; //historical event chosen
+	private final List<Period>periods; //periods of history covered
+	private Period currPeriod; //current period of history
+	private List<PlayerTEST>players; //players involved
+	private List<MissionTEST>missions; //missions assigned to players
 	
-	//date of creation:
-	//CURRENT DATE STUFF HERE :P
-	
-	//historical event being played:
-	private final EventTEST event; //++++++++++++++change to Event event 
-	
-	//current period of history:
-	private Period currentPeriod;
-	
-	//players involved in campaign:
-	private List<PlayerTEST>players; //++++++++++++++change to List<Player>
-	
-	//missions currently assigned to players:
-	private List<MissionTEST>currentMissions; //++++++++++++++change to List<Mission>
-	
-	//constructor sets event and name:
-	public CampaignTEST(EventName eventName) { //+++++++++++change to Campaign
-		event = setEvent(eventName);  //from EventFactory
+	public CampaignTEST(EventName eventName) { //+++++++++++++++++change access level from public
+		event = setEvent(eventName); //from EventFactory
 		name = event.getName() + " Campaign";
+		//creation date implementation here +++++++++++++
+		periods = event.getPeriods();
 	}
 	
 	
+	//A player (one in list of players) pushes begin campaign: 
+	//-------------
+	/*
+	advance campaign(){
+		movePeriod();
+		assignMissions();
+	}
+	
+	*/
 	
 	
+	private static ListIterator<Period>periodsIterator; //periods iterator
 	
+	private void movePeriod() {
+		if(periodsIterator.hasNext()) {
+			currPeriod = periodsIterator.next();
+		}
+		else {
+			//GAME OVER MAN!!! 
+		}
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	private void setMissions(){
+		
+		//randomly assign pairings
+		//create missions for each pairing, add to list of missions
+	}
 	
 	
 	
