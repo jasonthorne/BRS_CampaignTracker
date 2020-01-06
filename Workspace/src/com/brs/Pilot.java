@@ -67,7 +67,7 @@ public class Pilot {
 			return this;
 		}
 		
-		private void setExp() {
+		private void setExp() { //LOOK UP Chapter 4. 4.2 Ex3 for idea about setting skill automatically (I "think this works!!")
 			switch(pilot.pilotSkill) {
 			  case ROOKIE:
 				  pilot.exp=(((int)(Math.random()*6)+1)-1); //D6-1 xp

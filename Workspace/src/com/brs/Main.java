@@ -563,8 +563,14 @@ public class Main {
 		
 		System.out.println(campaignTEST.getName());
 		System.out.println(campaignTEST.getAirForceNames());
-		//System.out.println(campaignTEST.getPeriods());
+		System.out.println(campaignTEST.getPeriods());
 		
+		
+		//System.out.println("current period: " + campaignTEST.getPeriodTEST());
+		//campaignTEST.changePeriod();
+		//campaignTEST.changePeriod();
+		//campaignTEST.changePeriod();
+		//campaignTEST.changePeriod();
 	}
 
 	

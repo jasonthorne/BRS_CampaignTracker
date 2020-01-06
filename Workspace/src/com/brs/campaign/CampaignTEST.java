@@ -16,8 +16,11 @@ public class CampaignTEST extends EventFactory { //+++++++++++change to Campaign
 	private final String name; //name of campaign
 	//CURRENT DATE STUFF HERE :P //date of creation
 	private final EventTEST event; //historical event chosen
+	
 	private final List<Period>periods; //periods of history covered
-	private Period currPeriod; //current period of history
+	private ListIterator<Period>periodsIterator; //periods iterator
+	private Period period; //current period
+	
 	private List<PlayerTEST>players; //players involved
 	private List<MissionTEST>missions; //missions assigned to players
 	
@@ -26,6 +29,7 @@ public class CampaignTEST extends EventFactory { //+++++++++++change to Campaign
 		name = event.getName() + " Campaign";
 		//creation date implementation here +++++++++++++
 		periods = event.getPeriods();
+		periodsIterator = periods.listIterator();
 	}
 	
 	
@@ -33,6 +37,7 @@ public class CampaignTEST extends EventFactory { //+++++++++++change to Campaign
 	//-------------
 	/*
 	advance campaign(){
+		recordResults();
 		movePeriod();
 		assignMissions();
 	}
@@ -40,14 +45,18 @@ public class CampaignTEST extends EventFactory { //+++++++++++change to Campaign
 	*/
 	
 	
-	private static ListIterator<Period>periodsIterator; //periods iterator
 	
-	private void movePeriod() {
+	//advance period to following period of history
+	private void changePeriod() {
+		
 		if(periodsIterator.hasNext()) {
-			currPeriod = periodsIterator.next();
+			period = periodsIterator.next();
+			System.out.println(period);
 		}
 		else {
-			//GAME OVER MAN!!! 
+			//CAMPAIGN OVER!!  
+			//add some sort of campaign ending functionality +++++
+			System.out.println("end of periods");
 		}
 	}
 	
@@ -70,11 +79,18 @@ public class CampaignTEST extends EventFactory { //+++++++++++change to Campaign
 		//return airForceNames; 
 		return event.getAirForceNames();
 	}	
-	///////////public List<Period> getPeriods() { return periods; }	
 	
 	
+	public List<Period> getPeriods() { return periods; }	
 	
 	
+	 public void getPeriodTEST() { 
+		 changePeriod();
+		// currPeriod = periods.get(0);
+		System.out.println("period is: " + period);
+	}	
+	
+	//+++++++++++++++++++++++++++++++++++++++++++++++
 	
 	
 	
