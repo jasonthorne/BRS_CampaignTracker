@@ -9,19 +9,19 @@ public abstract class EventMaker {
 		
 		switch(eventName){
 			case ASSAULT_ON_THE_REICH:
-				//return new AssaultOnTheReich();
+				return new AssaultOnTheReich();
 			case BATTLE_OF_BRITAIN:
 				return new BattleOfBritain();
 			case DEFENCE_OF_THE_HOME_ISLANDS:
-				//return new DefenceOfTheHomeIslands();
+				return new DefenceOfTheHomeIslands();
 			case GUADALCANAL:
-				//return new Guadalcanal();
+				return new Guadalcanal();
 			case OPERATION_BARBAROSSA:
-				//return new OperationBarbarossa();
+				return new OperationBarbarossa();
 			case STALINGRAD:
-				//return new Stalingrad();
+				return new Stalingrad();
 			case THE_ITALIAN_CAMPAIGN:
-				//return new TheItalianCampaign();
+				return new TheItalianCampaign();
 		}
 		return null; //HAVE ERROR HANDLING FOR THIS +++++++++++++++
 	}

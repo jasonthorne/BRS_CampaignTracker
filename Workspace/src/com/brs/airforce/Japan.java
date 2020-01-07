@@ -20,7 +20,7 @@ public class Japan extends AirForce{
 	//Japan models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.A6_M2_ZERO, Model.A6_M5_ZERO, Model.J2M_RAIDEN, Model.N1K1_J_SHIDEN, Model.N1K2_J_SHIDEN_KAI,
-			Model.KI_43_HAYABUSA, Model.KI_44_SHOKI, Model.KI_61_HIEN,  Model.KI_84_HAYATE, Model.KI_100_HIEN);
+			Model.KI_43_HAYABUSA, Model.KI_44_SHOKI, Model.KI_61_HIEN, Model.KI_84_HAYATE, Model.KI_100_HIEN);
 
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 

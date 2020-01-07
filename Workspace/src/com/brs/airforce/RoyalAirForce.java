@@ -23,7 +23,7 @@ public class RoyalAirForce extends AirForce{
 	//RoyalAirForce models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
-			Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV,  Model.TEMPEST_V, Model.TYPHOON_IB);
+			Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV, Model.TEMPEST_V, Model.TYPHOON_IB);
 
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 

@@ -22,7 +22,7 @@ public class Luftwaffe extends AirForce{
 	//Luftwaffe models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.BF109_E, Model.BF109_F, Model.BF109_G, Model.BF109_K, Model.BF110_C, 
-			Model.BF110_G, Model.FW190_A, Model.FW190_D,  Model.ME_262_A, Model.ME_262_B);
+			Model.BF110_G, Model.FW190_A, Model.FW190_D, Model.ME_262_A, Model.ME_262_B);
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 

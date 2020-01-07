@@ -10,7 +10,7 @@ public interface Periods {
 	//creates and returns a list of a range of Periods, based upon the Periods provided to it:
 	public static List<Period>getPeriods(Period first, Period last){
 		
-		List<Period>periods = new ArrayList<Period>(); //holds a range of Periods
+		List<Period>periods = new ArrayList<Period>(); //holds the range of periods
 		ListIterator<Year>yearsIterator = Arrays.asList(Year.values()).listIterator(); //years iterator
 		ListIterator<Block>blocksIterator; //blocks iterator
 		Year currYear; //holds year values

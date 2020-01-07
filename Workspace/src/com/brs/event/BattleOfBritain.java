@@ -17,9 +17,8 @@ import com.brs.period.Year;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
 
-
 public class BattleOfBritain extends EventTEST{
-	//PLAYER SHOULD CONTAIN THE AIRFORCE. THIS CLASS MERELY DICTATES WHAT AIRFORCES ARE ALLOWED AND PROVIDES REFERENCES TO THEM!! +++++++++++
+
 	//BattleOfBritain name:
 	private static final EventName NAME = EventName.BATTLE_OF_BRITAIN;
 	
@@ -50,5 +49,4 @@ public class BattleOfBritain extends EventTEST{
 	public List<AirForceName> getAirForceNames() {return new ArrayList<AirForceName>(AIR_FORCE_NAMES);} //get copy of air forces involved
 	@Override
 	public List<Period> getPeriods() {return new ArrayList<Period>(PERIODS);} //get copy of periods covered
-	
 }
