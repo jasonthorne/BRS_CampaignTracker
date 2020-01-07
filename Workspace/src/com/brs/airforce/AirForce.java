@@ -26,7 +26,7 @@ public abstract class AirForce {
 	private static Status status; //holds a status value for insertion into modelToStatus
 	
 	//returns a map of models available to a given period:
-	public Map<Model, Status>getAvailableModels(Period period) {  //NEED TO DEAL WITH IF INVALID DATES ARTE ENTERED (Late 1945)+++++++++++++++++
+	public Map<Model, Status>getAvailableModels(Period period) {  //NEED TO DEAL WITH IF INVALID DATES ARE ENTERED (Late 1945)+++++++++++++++++
 		modelToStatus = new HashMap<Model, Status>(); //(re)set HashMap 
 		
 		getAllModels().forEach((model) -> { //forEach model in list of models:

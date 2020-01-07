@@ -33,6 +33,81 @@ public class CampaignTEST extends EventMaker { //+++++++++++change to Campaign
 	}
 	
 	
+	
+
+	public void setPlayer(String name, AirForceName airForceName) {
+		//add a copy of a player to list of players +++++++++++++++++++++
+		
+		//++++++++++++++CHECK IF NAME EXISTS FIRST (before adding as key, (or use put if absent actually!!) )
+		players.add(new Player(name, event.getAirForce(airForceName))); //+++HAVE THIS BE A HASHMAP WITH NAME AS KEY, Player as value.
+	}
+	
+	
+	
+	public String getName() { return name; }
+	public List<AirForceName> getAirForceNames() { return event.getAirForceNames();}	
+	
+	
+	public List<Period> getPeriods() { return periods; }	
+	
+	//+++++++++++++++++++++++++++++++++++++++++++++TEST method below:
+	 public void getPeriodTEST() { 
+		 movePeriod();
+		// currPeriod = periods.get(0);
+		//System.out.println("period is: " + period);
+	}	
+	
+	//+++++++++++++++++++++++++++++++++++++++++++++++
+	
+	//advance period to following period of history
+		private void movePeriod() {
+			
+			if(periodsIterator.hasNext()) {
+				period = periodsIterator.next();
+				System.out.println(period); //++++++++++++++
+			}
+			else {
+				//CAMPAIGN OVER!!  
+				//add some sort of campaign ending functionality +++++
+				System.out.println("end of periods"); //++++++++++++++
+			}
+		}
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//A player (one in list of players) pushes begin campaign: 
 	//-------------
 	/*
@@ -46,19 +121,6 @@ public class CampaignTEST extends EventMaker { //+++++++++++change to Campaign
 	
 	
 	
-	//advance period to following period of history
-	private void movePeriod() {
-		
-		if(periodsIterator.hasNext()) {
-			period = periodsIterator.next();
-			System.out.println(period); //++++++++++++++
-		}
-		else {
-			//CAMPAIGN OVER!!  
-			//add some sort of campaign ending functionality +++++
-			System.out.println("end of periods"); //++++++++++++++
-		}
-	}
 	
 	private void setMissions(){
 		
@@ -73,24 +135,7 @@ public class CampaignTEST extends EventMaker { //+++++++++++change to Campaign
 	
 	
 	
-	//+++++++++++++++++++++++++++++++++++++++++++++TEST method below:
-	public String getName() { return name; }
-	public List<AirForceName> getAirForceNames() { 
-		//return airForceNames; 
-		return event.getAirForceNames();
-	}	
 	
-	
-	public List<Period> getPeriods() { return periods; }	
-	
-	
-	 public void getPeriodTEST() { 
-		 movePeriod();
-		// currPeriod = periods.get(0);
-		//System.out.println("period is: " + period);
-	}	
-	
-	//+++++++++++++++++++++++++++++++++++++++++++++++
 	
 	
 	
