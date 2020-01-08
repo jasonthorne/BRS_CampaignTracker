@@ -43,18 +43,12 @@ public class CampaignTEST extends EventMaker { //+++++++++++change to Campaign
 	
 	//add a player map of players involved:
 	public void setPlayer(String name, AirForceName airForceName) { 
-		
-		/*
-		//+++++++++++++++++I think because trhis is a tree map, that we need a comparator for this to work +++++++++++
-		if(nameToPlayer.putIfAbsent(name, new Player(name, event.getAirForce(airForceName))).equals(null)){
-			System.out.println("ENTRY ADDED");
+		//+++++++++comment here!
+		if(!(nameToPlayer.putIfAbsent(name, new Player(name, event.getAirForce(airForceName)))==null)){
+			System.out.println("Error: Player name already exists! "); //+++++++++++++++make this better :P +++++++++++++++++
+		}else {
+			System.out.println("Player added."); //+++++++++++++++make this better :P +++++++++++++++++
 		}
-		*/
-		
-		//if player name already exists in nameToPlayer (a value other than null was returned by the put):
-		//if(!nameToPlayer.putIfAbsent(name, new Player(name, event.getAirForce(airForceName))).equals(null)) {
-		//	System.out.println("Error: Player name already exists. "); //+++++++++++++++make this better :P +++++++++++++++++
-		//}
 	}
 	
 	public String getName() { return name; }

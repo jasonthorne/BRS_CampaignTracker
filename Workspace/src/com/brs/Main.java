@@ -579,11 +579,13 @@ public class Main {
 
 		
 		campaignTEST.setPlayer("z", AirForceName.RAF);
+		campaignTEST.setPlayer("A", AirForceName.RAF);
 		campaignTEST.setPlayer("J", AirForceName.RAF);
 		campaignTEST.setPlayer("C", AirForceName.RAF);
 		campaignTEST.setPlayer("A", AirForceName.RAF);
+		campaignTEST.setPlayer("a", AirForceName.RAF);
 		campaignTEST.setPlayer("1", AirForceName.RAF);
-		//campaignTEST.setPlayer("A", AirForceName.RAF);
+		
 		//System.out.println(campaignTEST.nameToPlayer.get("Jammy").getPlayerStuff());
 		
 		campaignTEST.test();
