@@ -4,26 +4,30 @@ import com.brs.Squadron;
 import com.brs.airforce.AirForce;
 import com.brs.airforce.AirForceName;
 
-public class Player { //look at this access level +++++++++++++
-	
-	//PLAYER SHOULD CONTAIN THE AIRFORCE. THIS CLASS MERELY DICTATES WHAT AIRFORCES ARE ALLOWED AND PROVIDES REFERENCES TO THEM!! +++++++++++
+public class Player {
 	
 	private final String name;
-	private final AirForce airForce;
+	private final AirForce airForce; //=================PLAYER HAS THEIR OWN AIRFORCE OBJECT!!! 
 	private Squadron squadron;
 	private int joinDate;
 	private int score;
 	
-	public Player(String name, AirForce airForce) {
-		this.name = name;
-		this.airForce = airForce;
+	public Player(String name, AirForce airForce) { //++++++++++++change privacy!
+		this.name = name; //assign name
+		this.airForce = airForce; //assign ref to chosen air force
+		//make join date
+		
 	}
 	
 	
 	//++++TEST PRINTING ++++++++++++++++++++++
-	public void getPlayerStuff() { 
-		System.out.println("name is: " + name);
-		System.out.println("airforce is: " + airForce.getName());
+	public String getPlayerStuff() { 
+		return"name is: " + name + ". airforce is: " + airForce.getName();
+		//return"name is: " + name;
 	}
+
+	
+	
+	
 
 }

@@ -7,9 +7,6 @@ import java.util.Map;
 import com.brs.airforce.AirForce;
 import com.brs.airforce.AirForceName;
 import com.brs.period.Period;
-import com.brs.plane.Model;
-
-import ideas.FileReading;
 
 
 public abstract class EventTEST{
@@ -28,15 +25,4 @@ public abstract class EventTEST{
 		return airForceNameToAirForce.get(airForceName); //return reference to AirForce object
 	}
 	
-	//-------------
-	
-	//code for moving period UNTILL you hit the last period in the list. //////////MAYBE THIS SHOULD BE IN CAMPAIGN PAGE????
-	
-	public Period getCurrPeriod() {
-		return null;
-		//hmmmmmmmmmmmmmm..........
-	}
-		
-	//--------------
-
 }

@@ -26,14 +26,14 @@ public abstract class AirForce {
 	private static Status status; //holds a status value for insertion into modelToStatus
 	
 	//returns a map of models available to a given period:
-	public Map<Model, Status>getAvailableModels(Period period) {  //NEED TO DEAL WITH IF INVALID DATES ARE ENTERED (Late 1945)+++++++++++++++++
+	public Map<Model, Status>getAvailableModels(Period period) { 
 		modelToStatus = new HashMap<Model, Status>(); //(re)set HashMap 
 		
 		getAllModels().forEach((model) -> { //forEach model in list of models:
 			setPeriodToStatus(model); //(re)set periodToStatus with the current model's periods and their statuses
 			status = periodToStatus.getOrDefault(period, Status.NONE); //assign status returned with period key (or NONE if period not found) 
 			
-			if ((!status.equals(Status.NONE))){ //if period key returned a value:
+			if (!status.equals(Status.NONE)){ //if period key returned a value:
 				//System.out.println("model: " + model.toString() + ". TEST MAP: " + periodToStatus); //++++++++++++++++++
 				modelToStatus.put(model, status); //add current model and it's status
 			}
@@ -41,7 +41,7 @@ public abstract class AirForce {
 		return modelToStatus; //return available models
 	}
 	
-	
+	//================AIRFORCE MIGHT HAVE A SQUADRON ++++++++++++++++++????????????
 	
 	
 	/* MIGHT NOT BE NEEDED FOR PUT IF ABSENT!! WE SHALL SEE....
