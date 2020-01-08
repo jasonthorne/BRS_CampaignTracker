@@ -1,8 +1,5 @@
 package com.brs.campaign;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
@@ -11,8 +8,9 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import com.brs.player.Player;
-import com.brs.DateTime;
 import com.brs.airforce.AirForceName;
+import com.brs.datetime.DateTime;
+import com.brs.datetime.DateTimeFormat;
 import com.brs.event.EventMaker;
 import com.brs.event.EventName;
 import com.brs.event.EventTEST;
@@ -33,7 +31,7 @@ public class CampaignTEST extends EventMaker { //+++++++++++change to Campaign
 	private Map<Mission, List<Player>>missionToPlayers = new HashMap<Mission, List<Player>>(); //map of current missions
 
 	public CampaignTEST(EventName eventName) {
-		dateTime = DateTime.getDateTime(); //record date & time of creation
+		dateTime = DateTime.getDateTime(DateTimeFormat.DATE_TIME); //set dateTime
 		event = getEvent(eventName); //create event from EventMaker
 		name = event.getName() + " Campaign"; //create campaign name
 		periods = event.getPeriods(); //set periods of history
