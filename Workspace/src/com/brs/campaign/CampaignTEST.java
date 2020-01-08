@@ -1,5 +1,7 @@
 package com.brs.campaign;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import com.brs.player.Player;
+import com.brs.DateTime;
 import com.brs.airforce.AirForceName;
 import com.brs.event.EventMaker;
 import com.brs.event.EventName;
@@ -20,26 +23,21 @@ import com.brs.plane.Model;
 public class CampaignTEST extends EventMaker { //+++++++++++change to Campaign
 	
 	private final String name; //name of campaign
-	//CURRENT DATE STUFF HERE :P //date of creation
+	private final String dateTime; //date & time of creation
 	private final EventTEST event; //historical event chosen
-	
 	private final List<Period>periods; //periods of history covered
 	private final ListIterator<Period>periodsIterator; //periods iterator
 	private Period period; //current period
 	
-	//+++++++AIRFORCES HERE????????????????????
-	
 	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
 	private Map<Mission, List<Player>>missionToPlayers = new HashMap<Mission, List<Player>>(); //map of current missions
-	
-	
-	//+++++++++++++++have landing page extend this class to make these in it's collection of Campaigns
-	public CampaignTEST(EventName eventName) { //+++++++++++++++++change access level from public to pretected.
-		//creation date implementation here +++++++++++++
-		event = getEvent(eventName); //from EventMaker
-		name = event.getName() + " Campaign";
-		periods = event.getPeriods();
-		periodsIterator = periods.listIterator();
+
+	public CampaignTEST(EventName eventName) {
+		dateTime = DateTime.getDateTime(); //record date & time of creation
+		event = getEvent(eventName); //create event from EventMaker
+		name = event.getName() + " Campaign"; //create campaign name
+		periods = event.getPeriods(); //set periods of history
+		periodsIterator = periods.listIterator(); //create iterator from periods
 	}
 	
 	//add a player to map of players:
@@ -52,9 +50,10 @@ public class CampaignTEST extends EventMaker { //+++++++++++change to Campaign
 		}
 	}
 	
-	public String getName() { return name; }
-	public List<AirForceName> getAirForceNames() { return event.getAirForceNames(); }	
-	public List<Period> getPeriods() { return event.getPeriods(); }	
+	public String getName() { return name; } //get name of campaign
+	public String getDateTime() { return dateTime; }
+	public List<AirForceName> getAirForceNames() { return event.getAirForceNames(); } //get air forces involved
+	public List<Period> getPeriods() { return event.getPeriods(); } //get periods of history
 	
 	
 	

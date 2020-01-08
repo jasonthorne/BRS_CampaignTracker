@@ -10,7 +10,7 @@ public class Player {
 	private final String name;
 	private final AirForce airForce;
 	private Squadron squadron;
-	private int joinDate;
+	private int joinDate;//////////////////change to date
 	private int score;
 	
 	public Player(String name, AirForce airForce, Period period) { //++++++++++++change privacy!
