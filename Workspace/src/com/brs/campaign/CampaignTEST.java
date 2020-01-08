@@ -27,6 +27,8 @@ public class CampaignTEST extends EventMaker { //+++++++++++change to Campaign
 	private final ListIterator<Period>periodsIterator; //periods iterator
 	private Period period; //current period
 	
+	//+++++++AIRFORCES HERE????????????????????
+	
 	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
 	private Map<Mission, List<Player>>missionToPlayers = new HashMap<Mission, List<Player>>(); //map of current missions
 	
@@ -40,11 +42,10 @@ public class CampaignTEST extends EventMaker { //+++++++++++change to Campaign
 		periodsIterator = periods.listIterator();
 	}
 	
-	
-	//add a player map of players involved:
-	public void setPlayer(String name, AirForceName airForceName) { 
-		//+++++++++comment here!
-		if(!(nameToPlayer.putIfAbsent(name, new Player(name, event.getAirForce(airForceName)))==null)){
+	//add a player to map of players:
+	public void setPlayer(String name, AirForceName airForceName) {  
+		//attempt to add player to map using their name as key. Warn user if unsuccessful (returned value other than null): 
+		if(!(nameToPlayer.putIfAbsent(name, new Player(name, event.getAirForce(airForceName), period))==null)){
 			System.out.println("Error: Player name already exists! "); //+++++++++++++++make this better :P +++++++++++++++++
 		}else {
 			System.out.println("Player added."); //+++++++++++++++make this better :P +++++++++++++++++
@@ -89,7 +90,7 @@ public class CampaignTEST extends EventMaker { //+++++++++++change to Campaign
 	public void test() {
 		for (Entry<String, Player> entry : nameToPlayer.entrySet()) {
 			System.out.println(entry.getKey() + " - " + entry.getValue());
-			}
+		}
 	}
 	
 	
