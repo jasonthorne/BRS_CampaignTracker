@@ -44,32 +44,6 @@ public abstract class AirForce {
 	//================AIRFORCE MIGHT HAVE A SQUADRON ++++++++++++++++++????????????
 	
 	
-	/* MIGHT NOT BE NEEDED FOR PUT IF ABSENT!! WE SHALL SEE....
-	@Override //for comparison against other AirForces. See putAirForceIfAbsent() in Event.java:
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
-	
-	@Override //for comparison against other AirForces. See putAirForceIfAbsent() in Event.java:
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AirForce other = (AirForce) obj;
-		if (name != other.name)
-			return false;
-		return true;
-	}
-	
-	*/
-	
-	
 	
 	/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++https://stackoverflow.com/questions/18410035/ways-to-iterate-over-a-list-in-java
 	 * //for(Model model: airForceToModels.get(airForceName)){ //each model in list returned from airForceName key:

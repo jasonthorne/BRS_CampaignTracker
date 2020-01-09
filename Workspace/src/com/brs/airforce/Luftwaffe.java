@@ -13,7 +13,6 @@ import com.brs.plane.Model;
 import com.brs.plane.Status;
 
 
-
 public class Luftwaffe extends AirForce{
 	
 	//Luftwaffe name:
