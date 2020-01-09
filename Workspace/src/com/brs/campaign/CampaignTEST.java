@@ -33,7 +33,7 @@ public class CampaignTEST extends EventMaker { //+++++++++++change to Campaign
 	public CampaignTEST(EventName eventName) {
 		date = Date.getDate(); //set date
 		event = getEvent(eventName); //create event from EventMaker
-		name = event.getName() + " Campaign"; //create campaign name
+		name = "Campaign: " + event.getName(); //create campaign name
 		periods = event.getPeriods(); //set periods of history
 		periodsIterator = periods.listIterator(); //create iterator from periods
 	}
@@ -52,7 +52,7 @@ public class CampaignTEST extends EventMaker { //+++++++++++change to Campaign
 	public String getDate() { return date; } //get date of creation
 	public List<AirForceName> getAirForceNames() { return event.getAirForceNames(); } //get air forces involved
 	public List<Period> getPeriods() { return event.getPeriods(); } //get periods of history covered
-	
+	//////////////////////public static Period getPeriod() { return period; }
 	
 	
 	//+++++++++++++++++++++++++++++++++++++++++++++TEST methods below:
