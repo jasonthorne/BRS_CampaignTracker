@@ -2,12 +2,19 @@ package com.brs.mission;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
 
 public class MissionManager {
 	
 	private final List<String>unpairedPlayers = new ArrayList<String>(); //list to draw pairings from
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
+	
+	//map of players and their previous opponents:
+	private final Map<String, List<String>>playerToPrevOpps = new HashMap<String, List<String>>(); 
 	
 	//add players to list of unpaired players:
 	public void setUnpairedPlayers(List<String>players){
@@ -18,36 +25,44 @@ public class MissionManager {
 	
 	//===============ADD IMPLEMENTATION FOR IF A NEW PLAYER IS ADDED (see recommendations in pdf), or if a player leaves
 	
-	
-	/*
-	{
-		test.add("bye");
-	}
-	
-	public void test() {
-		System.out.println(test);
-	}
-	
-	*/
-	/*
-	//public static Map<Mission, List<Player>>getMissions(List<Player> players){
-	public static Map<Mission, List<Player>>getMissions(List<String> players){
+	public void pairPlayers() {
 		
-		String byePairing = "bye"; //extra pairing for odd number of players
+		Random random = new Random();
+		int randomIndex;
 		
-		System.out.println(players);
-		
-		List<String>pairingsPool = new ArrayList<String>(players);
-		
-		//if odd number of players, add a bye ++++++++++++
-		if(players.size()%2==1) { pairingsPool.add(byePairing); }
+		for(int i=0;i<(unpairedPlayers.size()/2);i++) {
+			System.out.println("outer: " + i);
 			
+			for(int j=0;j<2;j++) {
+				System.out.println("	inner: " + j);
+				/*
+				randomIndex = random.nextInt(unpairedPlayers.size());
+				String randomPlayer = unpairedPlayers.get(randomIndex);
+				System.out.println(randomPlayer);
+				unpairedPlayers.remove(randomIndex);
+				*/
+			}
+			
+		}
 		
 		
-		System.out.println(pairingsPool);
 		
-		*/
 		
+		
+		System.out.println(unpairedPlayers);
+		
+		
+		
+		
+		/*
+		unpairedPlayers.forEach((player) ->{
+			
+		});*/
+	}
+	
+	/*
+	 * String, list<String>playerToPrevPlayers
+	 */
 		
 		/*
 		 	add everyone to array (add a buy player if player number is odd), randomly shuffle array,

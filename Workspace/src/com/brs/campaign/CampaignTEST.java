@@ -95,8 +95,9 @@ public class CampaignTEST { //+++++++++++change to Campaign
 		//+++++++++++++++++++
 		//MissionManager.getMissions(new ArrayList<Player>(nameToPlayer.values()));
 		//MissionManager.getMissions(new ArrayList<String>(nameToPlayer.keySet()));
-		
-		new MissionManager().setUnpairedPlayers(new ArrayList<String>(nameToPlayer.keySet()));
+		MissionManager test = new MissionManager();
+		test.setUnpairedPlayers(new ArrayList<String>(nameToPlayer.keySet()));
+		test.pairPlayers();
 	}
 	
 	
