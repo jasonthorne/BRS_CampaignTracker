@@ -29,7 +29,7 @@ public abstract class AirForce {
 	public Map<Model, Status>getAvailableModels(Period period) { 
 		modelToStatus = new HashMap<Model, Status>(); //(re)set HashMap 
 		
-		getAllModels().forEach((model) -> { //forEach model in list of models:
+		getAllModels().forEach((model) -> { //forEach model in list of models: ++++++++++++++++++++4.4 ex3 ++++++++++for filter idea for this!!! :P
 			setPeriodToStatus(model); //(re)set periodToStatus with the current model's periods and their statuses
 			status = periodToStatus.getOrDefault(period, Status.NONE); //assign status returned with period key (or NONE if period not found) 
 			
