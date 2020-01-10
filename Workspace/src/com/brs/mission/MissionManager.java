@@ -7,9 +7,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.brs.player.Player;
+
 
 public class MissionManager {
 	
+	
+	//---------
+	private Map<Mission, List<String>>missionToPlayers = new HashMap<Mission, List<String>>(); //map of current missions
+	//---------
 	private final List<String>unpairedPlayers = new ArrayList<String>(); //list to draw pairings from
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
 	
@@ -27,21 +33,38 @@ public class MissionManager {
 	
 	public void pairPlayers() {
 		
-		Random random = new Random();
+
+		Random random; 
 		int randomIndex;
+		//int loopNum = unpairedPlayers.size()/2;
+		Mission mission; 
+		List<String>players;
 		
-		for(int i=0;i<(unpairedPlayers.size()/2);i++) {
-			System.out.println("outer: " + i);
+		//for(int i=0;i<loopNum;i++) {
+		
+		//while there are unpaired players:
+		while(!unpairedPlayers.isEmpty()) { 
+			//System.out.println("outer: " + i);
+			
+			players = new ArrayList<String>();
 			
 			for(int j=0;j<2;j++) {
-				System.out.println("	inner: " + j);
-				/*
+				System.out.println("inner: " + j);
+				
+				random = new Random();
 				randomIndex = random.nextInt(unpairedPlayers.size());
 				String randomPlayer = unpairedPlayers.get(randomIndex);
+				//-----
+				players.add(randomPlayer);
+				//--------
 				System.out.println(randomPlayer);
 				unpairedPlayers.remove(randomIndex);
-				*/
+				
 			}
+			
+			mission = new Mission(players);
+			//needd to add mission to map of missions now!! 
+			missionToPlayers.put(mission, players);
 			
 		}
 		
@@ -51,7 +74,7 @@ public class MissionManager {
 		
 		System.out.println(unpairedPlayers);
 		
-		
+		System.out.println(missionToPlayers);
 		
 		
 		/*

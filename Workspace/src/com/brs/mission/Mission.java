@@ -7,15 +7,30 @@ import com.brs.player.Player;
 
 public class Mission {
 	
-	private final List<Player>players; //players involved
-	private final Period period; //period represented
-	private final String date; //date played
+	private final List<String>players; //players involved
+	/////////////private final Period period; //period represented
+	/////////////private final String date; //date played
 	//private Results resutls; ??????????????????
 	
-	public Mission(List<Player>players, Period period, String date) {
+	/*
+	public Mission(List<String>players, Period period, String date) {
 		this.players = players; //set list of players
 		this.period = period; //set period
 		this.date = date; //set date played
+	}*/
+	
+	public Mission(List<String>players) {
+		this.players = players; //set list of players
+		
+	}
+	
+	public void getPlayersTEST() {
+		System.out.println(players);
+	}
+
+	@Override
+	public String toString() {
+		return "Mission";
 	}
 	
 	
