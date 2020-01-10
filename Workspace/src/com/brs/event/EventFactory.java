@@ -4,7 +4,7 @@ import com.brs.event.EventTEST;
 
 public class EventFactory {
 	
-	//creates an event from chosen event name:
+	//creates an event from given event name:
 	public EventTEST getEvent(EventName eventName) { 
 		
 		EventTEST event = null;

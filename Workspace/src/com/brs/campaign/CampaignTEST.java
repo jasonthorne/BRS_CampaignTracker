@@ -15,7 +15,7 @@ import com.brs.event.EventFactory;
 import com.brs.event.EventName;
 import com.brs.event.EventTEST;
 import com.brs.mission.Mission;
-import com.brs.mission.MissionTracker;
+import com.brs.mission.MissionManager;
 import com.brs.period.Period;
 
 public class CampaignTEST { //+++++++++++change to Campaign
@@ -92,7 +92,11 @@ public class CampaignTEST { //+++++++++++change to Campaign
 			System.out.println(entry.getKey() + " - " + entry.getValue());
 		}
 		
-		MissionTracker.getMissions(new ArrayList<Player>(nameToPlayer.values()));
+		//+++++++++++++++++++
+		//MissionManager.getMissions(new ArrayList<Player>(nameToPlayer.values()));
+		//MissionManager.getMissions(new ArrayList<String>(nameToPlayer.keySet()));
+		
+		new MissionManager().setUnpairedPlayers(new ArrayList<String>(nameToPlayer.keySet()));
 	}
 	
 	
