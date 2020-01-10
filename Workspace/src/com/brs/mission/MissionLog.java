@@ -7,10 +7,15 @@ import com.brs.period.Period;
 
 public class MissionLog {
 	
-	private Map<Period, Mission>periodToMission = new TreeMap<Period, Mission>(); //map of player's previous missions
 	private Mission mission; //player's current mission
+	private final Map<Period, Mission>periodToMission = new TreeMap<Period, Mission>(); //map of player's previous missions
 	
+	//set current mission:
 	public void setCurrentMission(Mission mission){ this.mission = mission; }
+	
+	
+	
+	
 		
 	public Map<Period, Mission> getMissions() {
 		

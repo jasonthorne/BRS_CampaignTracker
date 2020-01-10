@@ -15,11 +15,11 @@ import com.brs.period.Period;
 public class Player {
 	
 	private final String name; //player name
-	private final String date; //date of creation
+	private final String date = Date.getDate(); //date of creation
 	private final AirForce airForce; //reference to chosen air force
 	private final Squadron squadron; //player's squadron 
 	private int score; //current score 
-	private final MissionLog missionLog;
+	private final MissionLog missionLog = new MissionLog(); //player's mission log
 	
 	
 	//mission log instance instead +++++
@@ -28,11 +28,9 @@ public class Player {
 	
 	public Player(String name, AirForce airForce, Period period) { //++++++++++++change privacy!
 		this.name = name; //assign name
-		date = Date.getDate(); //set date
 		this.airForce = airForce; //assign reference to chosen air force
 		//create a squadron, giving it a map of the models available to it:
 		squadron = new Squadron(airForce.getAvailableModels(period)); 
-		missionLog = new MissionLog();
 	}
 	
 	

@@ -1,0 +1,59 @@
+
+odd players:
+
+randomise pairings: a b c
+
+ab - c 
+bc - a
+ca - b
+
+everyone played everyone, so randomise again: c b a
+
+cb - a
+
+everyone now player 4 times, so advance period:
+
+ba - c
+ac - b
+
+everyone played everyone, so randomise again
+
+
+===============
+
+even players:
+
+randomise pairings: a b c d
+
+ab cd 
+ac bd [1st - 1st, 2nd - 2nd]
+ad cb [1st - 2nd, 2nd - 1st]
+
+
+
+//==========================================
+Each campaign turn covers one month. In each month, one mission can be run by the squadron. 
+Experience and losses are accrued for the mission, and replacement pilots arrive at the end of the month. 
+At the end of four months, the campaign advances one block (i.e. “early” to “mid”), and new kinds of aircraft become available for future missions. 
+It is suggested players keep a mission log to track experience and losses. 
+
+add everyone to array (add a buy player if player number is odd), randonmly shuffle array,
+randomly pull someone from array
+randomly pull them a partner. repat untill everyone is matched - record who got the buy.
+
+next seeding, make sure that the person who got the buy last time doesnt get it this time
+(make new array for them with only non buy players and pull them a partner, then nuke that array. )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
