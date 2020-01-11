@@ -26,10 +26,13 @@ public class CampaignTEST { //+++++++++++change to Campaign
 	private final List<Period>periods; //periods of history covered
 	private final ListIterator<Period>periodsIterator; //periods iterator
 	private Period period; //current period represented
+	//++++++++++++++++++++months 1 - 4. after month 4, then move one period
+	//private Month month; //current month represented
 	
 	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
+/////////++++++++++++++++CURRENT mission: ++++++++++++++++++++++++
 	private Map<Mission, List<Player>>missionToPlayers = new HashMap<Mission, List<Player>>(); //map of current missions
-
+	
 	public CampaignTEST(EventName eventName) {
 		event = new EventFactory().getEvent(eventName); //create event from EventFactory
 		name = "Campaign: " + event.getName(); //create campaign name

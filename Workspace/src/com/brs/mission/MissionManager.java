@@ -12,6 +12,10 @@ import com.brs.player.Player;
 
 public class MissionManager {
 	
+	/*
+	 * take in all players
+	 * add to
+	 */
 	
 	//---------
 	private Map<Mission, List<String>>missionToPlayers = new HashMap<Mission, List<String>>(); //map of current missions
@@ -33,38 +37,34 @@ public class MissionManager {
 	
 	public void pairPlayers() {
 		
-
 		Random random; 
 		int randomIndex;
-		//int loopNum = unpairedPlayers.size()/2;
 		Mission mission; 
 		List<String>players;
 		
-		//for(int i=0;i<loopNum;i++) {
-		
 		//while there are unpaired players:
 		while(!unpairedPlayers.isEmpty()) { 
-			//System.out.println("outer: " + i);
 			
 			players = new ArrayList<String>();
 			
-			for(int j=0;j<2;j++) {
-				System.out.println("inner: " + j);
+			while(players.size()!=2) {
+				//System.out.println("inner: " + j);
 				
 				random = new Random();
 				randomIndex = random.nextInt(unpairedPlayers.size());
-				String randomPlayer = unpairedPlayers.get(randomIndex);
+				//String randomPlayer = unpairedPlayers.get(randomIndex);
 				//-----
-				players.add(randomPlayer);
+				//players.add(randomPlayer);
+				players.add(unpairedPlayers.get(randomIndex));
 				//--------
-				System.out.println(randomPlayer);
+				///////System.out.println(randomPlayer);
 				unpairedPlayers.remove(randomIndex);
 				
 			}
 			
-			mission = new Mission(players);
-			//needd to add mission to map of missions now!! 
-			missionToPlayers.put(mission, players);
+			//mission = new Mission(pair);
+			missionToPlayers.put(new Mission(players), players);
+			
 			
 		}
 		
