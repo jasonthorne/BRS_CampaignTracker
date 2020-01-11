@@ -12,7 +12,7 @@ public final class Plane {
 	}
 	
 	//update status of plane:
-	public void updateStatus(Status status) { this.status = status; }
+	public void updateStatus(Status status) { this.status = status; } //NOT SURE IF NEEDED!!
 	
 	@Override
 	public String toString() { return "Plane: [model=" + model + ", status=" + status + "]"; }

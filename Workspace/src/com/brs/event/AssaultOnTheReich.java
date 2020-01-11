@@ -13,7 +13,7 @@ import com.brs.period.Period;
 import com.brs.period.Periods;
 import com.brs.period.Year;
 
-public class AssaultOnTheReich extends EventTEST{
+public class AssaultOnTheReich extends Event{
 	
 	//AssaultOnTheReich name:
 	private static final EventName NAME = EventName.ASSAULT_ON_THE_REICH;

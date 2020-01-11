@@ -1,9 +1,7 @@
-package com.brs;
+package OldFiles;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import com.brs.Pilot.PilotBuilder;
 
 public class Squadron {
 	

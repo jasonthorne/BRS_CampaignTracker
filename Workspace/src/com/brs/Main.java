@@ -8,17 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.brs.Campaign;
-import com.brs.Campaign.CampaignBuilder;
-import com.brs.Pilot.PilotBuilder;
-import com.brs.Pilot.PilotSkill;
-import com.brs.Player.PlayerBuilder;
 import com.brs.airforce.AirForceName;
 import com.brs.airforce.Japan;
 import com.brs.airforce.RoyalAirForce;
 import com.brs.airforce.AirForce;
 import com.brs.airforce.UnitedStates;
-import com.brs.campaign.CampaignTEST;
+import com.brs.campaign.Campaign;
 import com.brs.event.BattleOfBritain;
 import com.brs.event.EventName;
 //import com.brs.event.EventData.EventName;
@@ -29,7 +24,16 @@ import com.brs.plane.Plane;
 //import com.brs.plane.Plane.Availability;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
-import com.brs.event.EventTEST;
+
+import OldFiles.Pilot;
+import OldFiles.Player;
+import OldFiles.Squadron;
+//import OldFiles.Campaign.CampaignBuilder;
+//import OldFiles.Pilot.PilotBuilder;
+//import OldFiles.Pilot.PilotSkill;
+//import OldFiles.Player.PlayerBuilder;
+
+import com.brs.event.Event;
 
 /*
 import Campaign;
@@ -150,6 +154,7 @@ public class Main {
 		*/
 		
 		
+		/*
 		//------------------LANDING PAGE ---------------
 		System.out.println("\nLANDING PAGE:");
 		
@@ -206,7 +211,8 @@ public class Main {
 		
 		System.out.println("campaign is: "+ campaign);
 		
-	
+	*/
+		/*
 		//-----------------CAMPAIGN PAGE -----------------
 		System.out.println("\nCAMPAIGN PAGE:");
 		
@@ -250,7 +256,7 @@ public class Main {
 		player = campaign.getPlayer("player1"); //change this setup +++++++++++++++(if null warn user)
 		System.out.println("selected Player is: " + player.getName());
 		System.out.println("selected Player's airForce is: " + player.getAirForce());
-		
+		*/
 		/*
 		for(Player i : campaign.getPlayers()){
 			System.out.println(i);
@@ -265,6 +271,7 @@ public class Main {
 			System.out.println("player not found");
 		*/
 		
+		/*
 		//-----------------PLAYER PAGE -----------------
 		System.out.println("\nPLAYER PAGE:");
 		
@@ -304,7 +311,7 @@ public class Main {
 	
 		//https://stackoverflow.com/questions/33211585/builder-pattern-nested-objects-created-through-other-builders
 		
-		
+		*/
 
 		/*
 		//----------------------------------------------
@@ -514,7 +521,7 @@ public class Main {
 		*/
 		
 		
-		//Retrieving AirForce from EventTEST:
+		//Retrieving AirForce from Event:
 		AirForce eventTestAirForce1 = TEST_BOB.getAirForce(AirForceName.RAF);
 		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getName());
 		System.out.println("eventTestAirForce1: " + eventTestAirForce1.getAllModels());
@@ -532,7 +539,7 @@ public class Main {
 		//------------
 		
 		
-		//Retrieving AirForce from EventTEST:
+		//Retrieving AirForce from Event:
 		AirForce eventTestAirForce2 = TEST_BOB.getAirForce(AirForceName.LUFTWAFFE);
 		System.out.println("eventTestAirForce2: " + eventTestAirForce2.getName());
 		//System.out.println("eventTestAirForce2: " + eventTestAirForce2.getAllModels());
@@ -552,14 +559,14 @@ public class Main {
 		
 		
 		
-		//Retrieving AirForce from EventTEST:
+		//Retrieving AirForce from Event:
 		//AirForce eventTestAirForce2 = TEST_BOB.getAirForce(AirForceName.USAAF); ///OOPS!! :P
 		//System.out.println("eventTestAirForce1: " + eventTestAirForce2.getName());
 		//System.out.println("eventTestAirForce1: " + eventTestAirForce2.getAllModels());
 		//System.out.println("eventTestAirForce1: " + eventTestAirForce2.getAvailableModels(new Period(Block.MID, Year.FORTY)));
 		
 		///======================================
-		CampaignTEST campaignTEST = new CampaignTEST(EventName.BATTLE_OF_BRITAIN);
+		Campaign campaignTEST = new Campaign(EventName.BATTLE_OF_BRITAIN);
 		
 		System.out.println(campaignTEST.getName());
 		System.out.println(campaignTEST.getAirForceNames());

@@ -12,7 +12,7 @@ import com.brs.period.Period;
 import com.brs.period.Periods;
 import com.brs.period.Year;
 
-public class OperationBarbarossa extends EventTEST{
+public class OperationBarbarossa extends Event{
 
 	//OperationBarbarossa name:
 	private static final EventName NAME = EventName.OPERATION_BARBAROSSA;

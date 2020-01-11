@@ -9,35 +9,46 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import com.brs.player.Player;
+import com.brs.turn.Turn;
 import com.brs.airforce.AirForceName;
 import com.brs.date.Date;
 import com.brs.event.EventFactory;
 import com.brs.event.EventName;
-import com.brs.event.EventTEST;
+import com.brs.event.Event;
 import com.brs.mission.Mission;
 import com.brs.mission.MissionManager;
 import com.brs.period.Period;
 
-public class CampaignTEST { //+++++++++++change to Campaign
+public class Campaign { //+++++++++++change to Campaign
 	
 	private final String name; //name of campaign
 	private final String date = Date.getDate(); //date of creation
-	private final EventTEST event; //historical event chosen
+	private final Event event; //historical event chosen
 	private final List<Period>periods; //periods of history covered
 	private final ListIterator<Period>periodsIterator; //periods iterator
 	private Period period; //current period represented
-	//++++++++++++++++++++months 1 - 4. after month 4, then move one period
+	//=======================================months 1 - 4. after month 4, then move one period
 	//private Month month; //current month represented
+	private int turnNum;
+	private List<Turn>turns; 
+	
+	
+	//=======================================
 	
 	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
 /////////++++++++++++++++CURRENT mission: ++++++++++++++++++++++++
 	private Map<Mission, List<Player>>missionToPlayers = new HashMap<Mission, List<Player>>(); //map of current missions
 	
-	public CampaignTEST(EventName eventName) {
+	public Campaign(EventName eventName) {
 		event = new EventFactory().getEvent(eventName); //create event from EventFactory
 		name = "Campaign: " + event.getName(); //create campaign name
 		periods = event.getPeriods(); //set periods of history
 		periodsIterator = periods.listIterator(); //create iterator from periods
+		
+		//======================================
+		
+		
+		//=======================================
 	}
 	
 	//add a new player to map of players:

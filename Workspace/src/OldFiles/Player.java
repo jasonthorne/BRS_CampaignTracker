@@ -1,6 +1,5 @@
-package com.brs;
+package OldFiles;
 
-import com.brs.Squadron.SquadronBuilder;
 //import com.brs.airforce.AirForceData.AirForce; ++++++++++++++
 import com.brs.airforce.AirForceName;
 
@@ -66,7 +65,7 @@ public class Player{
 		}
 		
 		private void setSquadron() {
-			player.squadron = new SquadronBuilder().build();
+			//player.squadron = new SquadronBuilder().build();
 		}
 		
 		private void setJoinDate() {

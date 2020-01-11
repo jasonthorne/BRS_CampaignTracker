@@ -12,7 +12,7 @@ import com.brs.period.Period;
 import com.brs.period.Periods;
 import com.brs.period.Year;
 
-public class DefenceOfTheHomeIslands extends EventTEST{
+public class DefenceOfTheHomeIslands extends Event{
 
 	//DefenceOfTheHomeIslands name:
 	private static final EventName NAME = EventName.DEFENCE_OF_THE_HOME_ISLANDS;

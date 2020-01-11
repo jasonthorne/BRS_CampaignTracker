@@ -1,13 +1,13 @@
 package com.brs.event;
 
-import com.brs.event.EventTEST;
+import com.brs.event.Event;
 
 public class EventFactory {
 	
 	//creates an event from given event name:
-	public EventTEST getEvent(EventName eventName) { 
+	public Event getEvent(EventName eventName) { 
 		
-		EventTEST event = null;
+		Event event = null;
 		switch(eventName){
 			case ASSAULT_ON_THE_REICH:
 				event = new AssaultOnTheReich();

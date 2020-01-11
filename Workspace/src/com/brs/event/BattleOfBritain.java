@@ -17,7 +17,7 @@ import com.brs.period.Year;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
 
-public class BattleOfBritain extends EventTEST{
+public class BattleOfBritain extends Event{
 
 	//BattleOfBritain name:
 	private static final EventName NAME = EventName.BATTLE_OF_BRITAIN;

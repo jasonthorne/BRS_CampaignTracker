@@ -12,7 +12,7 @@ import com.brs.period.Period;
 import com.brs.period.Periods;
 import com.brs.period.Year;
 
-public class Stalingrad extends EventTEST{
+public class Stalingrad extends Event{
 
 	//Stalingrad name:
 	private static final EventName NAME = EventName.STALINGRAD;

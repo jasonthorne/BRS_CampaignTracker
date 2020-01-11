@@ -12,7 +12,7 @@ import com.brs.period.Period;
 import com.brs.period.Periods;
 import com.brs.period.Year;
 
-public class Guadalcanal extends EventTEST{
+public class Guadalcanal extends Event{
 
 	//Guadalcanal name:
 	private static final EventName NAME = EventName.GUADALCANAL;

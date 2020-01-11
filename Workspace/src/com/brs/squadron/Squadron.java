@@ -5,11 +5,12 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 
-import com.brs.Pilot;
 import com.brs.plane.Model;
 import com.brs.plane.Plane;
 import com.brs.plane.Status;
 import com.brs.player.Player;
+
+import OldFiles.Pilot;
 
 
 public class Squadron {
