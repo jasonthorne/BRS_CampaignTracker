@@ -10,29 +10,42 @@ import java.util.Random;
 import com.brs.player.Player;
 
 
-public class MissionBuilder {
-	
+public class MissionBuilder { //++++++++++++++CHECK PRIVACY LEVEL OF EVERYTHING
 	
 	
 	//---------
-	private Map<Mission, List<String>>missionToPlayers = new HashMap<Mission, List<String>>(); //map of current missions
+	private Map<Mission, List<String>>missionToPlayers = new HashMap<Mission, List<String>>(); //map of current missions ????????
 	//---------
+	
+	
+	private final List<String>allPlayers = new ArrayList<String>(); //list of all players
 	private final List<String>unpairedPlayers = new ArrayList<String>(); //list to draw pairings from
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
 	
-	//map of players and their previous opponents:
+	//map of players and their previous opponents: USE THIS TO CHECK THAT ALL OPPS HAVE BEEN PLAYED +++++++++
 	private final Map<String, List<String>>playerToPrevOpps = new HashMap<String, List<String>>(); 
 	
+	//================
+	/*
+	check size of above map.
+	If not equal to list of players 
+	
+	*/
+	
+	
+	
+	
 	//add players to list of unpaired players:
-	public void setUnpairedPlayers(List<String>players){
-		unpairedPlayers.addAll(players); //add unpaired players to list
-		if(players.size()%2==1) { unpairedPlayers.add(BYE); } //if odd number of players, add a bye
+	public void setUnpairedPlayers(){
+		unpairedPlayers.addAll(allPlayers); //add unpaired players to list
+		if(allPlayers.size()%2==1) { unpairedPlayers.add(BYE); } //if odd number of players, add a bye
 		Collections.shuffle(unpairedPlayers); //shuffle list
 	}
 	
 	
 	public MissionBuilder(List<String>players) {
 		
+		allPlayers.addAll(players); //add all players
 		/*
 		unpairedPlayers.addAll(players); //add unpaired players to list
 		if(players.size()%2==1) { unpairedPlayers.add(BYE); } //if odd number of players, add a bye
@@ -41,7 +54,12 @@ public class MissionBuilder {
 	}
 	
 	
-	
+	public void addNewPlayer(String player) { ///////////FIGURE OUT WHAT NEEDS OTO HAPPEN HERE (what needs to happen to throw a new player into mix(maybe remove bye if existing or add bye if everyone is already paired ))
+		allPlayers.add(player);
+		
+		//check current pairings for bye, and add new player as pairing instead.
+		//if no buyt exists, then create a bye (as number is now odd) and pair bye with this new player
+	}
 	
 	
 	
@@ -76,7 +94,7 @@ public class MissionBuilder {
 			}
 			
 			//mission = new Mission(pair);
-			//////////////////missionToPlayers.put(new Mission(players), players);
+			missionToPlayers.put(new Mission(players), players);
 			
 			
 		}

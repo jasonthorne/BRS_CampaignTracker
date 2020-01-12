@@ -1,12 +1,20 @@
 package com.brs.turn;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
+import com.brs.mission.Mission;
 import com.brs.mission.MissionBuilder;
 import com.brs.period.Period;
 
 public class TurnManager {
+	
+	//A TURN MANAGER MAKES AND MANAGES TURNS
+	private Map<Period, List<Turn>>periodToTurns = new HashMap<Period, List<Turn>>(); //map of each period's turns
+	private Turn turn;
+	
 	
 	////////private List<Period>periods;
 	private Period period; //current period of history represented

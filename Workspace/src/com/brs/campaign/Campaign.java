@@ -109,8 +109,8 @@ public class Campaign { //+++++++++++change to Campaign
 		//+++++++++++++++++++
 		//MissionBuilder.getMissions(new ArrayList<Player>(nameToPlayer.values()));
 		//MissionBuilder.getMissions(new ArrayList<String>(nameToPlayer.keySet()));
-		MissionBuilder test = new MissionBuilder(null);
-		test.setUnpairedPlayers(new ArrayList<String>(nameToPlayer.keySet()));
+		MissionBuilder test = new MissionBuilder(new ArrayList<String>(nameToPlayer.keySet()));
+		test.setUnpairedPlayers();
 		test.pairPlayers();
 	}
 	
