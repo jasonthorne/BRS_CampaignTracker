@@ -44,6 +44,25 @@ randomly pull them a partner. repat untill everyone is matched - record who got 
 next seeding, make sure that the person who got the buy last time doesnt get it this time
 (make new array for them with only non buy players and pull them a partner, then nuke that array. )
 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ number of missions in a turn
+4 Turns in a period
+THEN UPDATE PERIODS 
+Then update planes
+
+-Make a turn
+-Make x pairings (give each pairing a mission)
+- once everyones finished their missions: check if everyones now played everyone else:
+ If so, reseed. 
+Check if everyones now played 4 missions: 
+if so move period, update planes, force players to change planes if their now unavailable.
+
+ 
+ - reseed once each player has played everyone else (Including new players added before last reseed)
+-Once everyone's played 4 missions: move periods, update planes, force players to change planes if their now unavailable.
+
+
 
 
 

@@ -32,26 +32,28 @@ public class MissionBuilder { //++++++++++++++CHECK PRIVACY LEVEL OF EVERYTHING
 	
 	*/
 	
+	public MissionBuilder(List<String>players) {
+		allPlayers.addAll(players); //add players
+	}
 	
+	
+	public void createPairings() {
+		
+		//add all players to list of unpairedPlayers (ready for pairing):
+		setUnpairedPlayers();
+		pairPlayers();
+	}
 	
 	
 	//add players to list of unpaired players:
 	public void setUnpairedPlayers(){
-		unpairedPlayers.addAll(allPlayers); //add unpaired players to list
+		unpairedPlayers.addAll(allPlayers); //add players to unpaired list
 		if(allPlayers.size()%2==1) { unpairedPlayers.add(BYE); } //if odd number of players, add a bye
 		Collections.shuffle(unpairedPlayers); //shuffle list
 	}
 	
 	
-	public MissionBuilder(List<String>players) {
-		
-		allPlayers.addAll(players); //add all players
-		/*
-		unpairedPlayers.addAll(players); //add unpaired players to list
-		if(players.size()%2==1) { unpairedPlayers.add(BYE); } //if odd number of players, add a bye
-		Collections.shuffle(unpairedPlayers); //shuffle list
-		*/
-	}
+	
 	
 	
 	public void addNewPlayer(String player) { ///////////FIGURE OUT WHAT NEEDS OTO HAPPEN HERE (what needs to happen to throw a new player into mix(maybe remove bye if existing or add bye if everyone is already paired ))
@@ -104,8 +106,7 @@ public class MissionBuilder { //++++++++++++++CHECK PRIVACY LEVEL OF EVERYTHING
 		
 		
 		System.out.println(unpairedPlayers);
-		
-		////////////System.out.println(missionToPlayers);
+		System.out.println(missionToPlayers);
 		
 		
 		/*

@@ -19,7 +19,7 @@ public class Player {
 	private final AirForce airForce; //reference to chosen air force
 	private final Squadron squadron; //player's squadron 
 	private int score; //current score 
-	private final MissionLog missionLog = new MissionLog(); //player's mission log
+	//////////////private final MissionLog missionLog = new MissionLog(); //player's mission log
 	
 	
 	//mission log instance instead +++++

@@ -23,19 +23,21 @@ public class TurnManager {
 	private static final int TURNS_PER_PERIOD = 4; //amount of turns played per period
 	///MIGHT NOT BE NEEDED//////////private final int maxTurns; //maximum amount of turns available to campaign
 	private int turnNum;
-	private final MissionBuilder missionBuilder;
+	private MissionBuilder missionBuilder;
 	
 	
 	
 	public TurnManager(List<Period>periods, int maxTurns, List<String>players) {
 		periodsIterator = periods.listIterator();
 		/////////MIGHT NOT BE NEEDED/////this.maxTurns = periods.size()*MISSIONS_PER_PERIOD; //calc max amount of turns 
-		this.missionBuilder = new MissionBuilder(players); //create a mission builder, giving it players 
+		//this.missionBuilder = new MissionBuilder(players); //create a mission builder, giving it players 
 	}
 	
 	
 	public void makeTurn() {
-		turnNum++;
+		turnNum++; //add to turn num
+		turn = new Turn();
+		
 		//////////////missionBuilder.makeMissions();
 		
 	}
