@@ -16,7 +16,7 @@ import com.brs.event.EventFactory;
 import com.brs.event.EventName;
 import com.brs.event.Event;
 import com.brs.mission.Mission;
-import com.brs.mission.MissionManager;
+import com.brs.mission.MissionBuilder;
 import com.brs.period.Period;
 
 public class Campaign { //+++++++++++change to Campaign
@@ -29,7 +29,7 @@ public class Campaign { //+++++++++++change to Campaign
 	private Period period; //current period represented
 	//=======================================months 1 - 4. after month 4, then move one period
 	//private Month month; //current month represented
-	private int turnNum;
+	private final int turnNum; //number of turns in campaign
 	private List<Turn>turns; 
 	
 	
@@ -42,11 +42,11 @@ public class Campaign { //+++++++++++change to Campaign
 	public Campaign(EventName eventName) {
 		event = new EventFactory().getEvent(eventName); //create event from EventFactory
 		name = "Campaign: " + event.getName(); //create campaign name
-		periods = event.getPeriods(); //set periods of history
-		periodsIterator = periods.listIterator(); //create iterator from periods
+		periods = event.getPeriods(); //set periods of history //???????????????
+		periodsIterator = event.getPeriods().listIterator(); //create iterator from periods //???????????????????
 		
 		//======================================
-		
+		turnNum = periods.size()*4; //???????????????????????
 		
 		//=======================================
 	}
@@ -107,9 +107,9 @@ public class Campaign { //+++++++++++change to Campaign
 		}
 		
 		//+++++++++++++++++++
-		//MissionManager.getMissions(new ArrayList<Player>(nameToPlayer.values()));
-		//MissionManager.getMissions(new ArrayList<String>(nameToPlayer.keySet()));
-		MissionManager test = new MissionManager();
+		//MissionBuilder.getMissions(new ArrayList<Player>(nameToPlayer.values()));
+		//MissionBuilder.getMissions(new ArrayList<String>(nameToPlayer.keySet()));
+		MissionBuilder test = new MissionBuilder(null);
 		test.setUnpairedPlayers(new ArrayList<String>(nameToPlayer.keySet()));
 		test.pairPlayers();
 	}

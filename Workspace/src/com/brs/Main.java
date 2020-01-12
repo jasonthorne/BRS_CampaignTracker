@@ -566,12 +566,12 @@ public class Main {
 		//System.out.println("eventTestAirForce1: " + eventTestAirForce2.getAvailableModels(new Period(Block.MID, Year.FORTY)));
 		
 		///======================================
-		Campaign campaignTEST = new Campaign(EventName.BATTLE_OF_BRITAIN);
+		Campaign campaign = new Campaign(EventName.BATTLE_OF_BRITAIN);
 		
-		System.out.println(campaignTEST.getName());
-		System.out.println(campaignTEST.getAirForceNames());
-		System.out.println(campaignTEST.getPeriods());
-		System.out.println("Created: " + campaignTEST.getDate());
+		System.out.println(campaign.getName());
+		System.out.println(campaign.getAirForceNames());
+		System.out.println(campaign.getPeriods());
+		System.out.println("Created: " + campaign.getDate());
 		
 		//System.out.println("current period: " + campaignTEST.getPeriodTEST());
 		//campaignTEST.changePeriod();
@@ -579,22 +579,22 @@ public class Main {
 		//campaignTEST.changePeriod();
 		//campaignTEST.changePeriod();
 		
-		campaignTEST.getPeriodTEST();
-		campaignTEST.getPeriodTEST();
-		campaignTEST.getPeriodTEST();
-		campaignTEST.getPeriodTEST();
+		campaign.getPeriodTEST();
+		campaign.getPeriodTEST();
+		campaign.getPeriodTEST();
+		campaign.getPeriodTEST();
 
 		
-		campaignTEST.setPlayer("A", AirForceName.RAF);
-		campaignTEST.setPlayer("B", AirForceName.RAF);
-		campaignTEST.setPlayer("C", AirForceName.RAF);
-		campaignTEST.setPlayer("D", AirForceName.RAF);
-		//campaignTEST.setPlayer("A", AirForceName.RAF);
-		campaignTEST.setPlayer("E", AirForceName.RAF);
-		campaignTEST.setPlayer("F", AirForceName.RAF);
-		//System.out.println(campaignTEST.nameToPlayer.get("Jammy").getPlayerStuff());
+		campaign.setPlayer("A", AirForceName.RAF);
+		campaign.setPlayer("B", AirForceName.RAF);
+		campaign.setPlayer("C", AirForceName.RAF);
+		campaign.setPlayer("D", AirForceName.RAF);
+		//campaign.setPlayer("A", AirForceName.RAF);
+		campaign.setPlayer("E", AirForceName.RAF);
+		campaign.setPlayer("F", AirForceName.RAF);
+		//System.out.println(campaign.nameToPlayer.get("Jammy").getPlayerStuff());
 		
-		campaignTEST.test();
+		campaign.test();
 		
 		
 	}

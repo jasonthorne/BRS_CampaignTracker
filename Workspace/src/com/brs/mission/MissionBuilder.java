@@ -10,12 +10,9 @@ import java.util.Random;
 import com.brs.player.Player;
 
 
-public class MissionManager {
+public class MissionBuilder {
 	
-	/*
-	 * take in all players
-	 * add to
-	 */
+	
 	
 	//---------
 	private Map<Mission, List<String>>missionToPlayers = new HashMap<Mission, List<String>>(); //map of current missions
@@ -32,6 +29,22 @@ public class MissionManager {
 		if(players.size()%2==1) { unpairedPlayers.add(BYE); } //if odd number of players, add a bye
 		Collections.shuffle(unpairedPlayers); //shuffle list
 	}
+	
+	
+	public MissionBuilder(List<String>players) {
+		
+		/*
+		unpairedPlayers.addAll(players); //add unpaired players to list
+		if(players.size()%2==1) { unpairedPlayers.add(BYE); } //if odd number of players, add a bye
+		Collections.shuffle(unpairedPlayers); //shuffle list
+		*/
+	}
+	
+	
+	
+	
+	
+	
 	
 	//===============ADD IMPLEMENTATION FOR IF A NEW PLAYER IS ADDED (see recommendations in pdf), or if a player leaves
 	
@@ -63,7 +76,7 @@ public class MissionManager {
 			}
 			
 			//mission = new Mission(pair);
-			missionToPlayers.put(new Mission(players), players);
+			//////////////////missionToPlayers.put(new Mission(players), players);
 			
 			
 		}
@@ -74,7 +87,7 @@ public class MissionManager {
 		
 		System.out.println(unpairedPlayers);
 		
-		System.out.println(missionToPlayers);
+		////////////System.out.println(missionToPlayers);
 		
 		
 		/*
