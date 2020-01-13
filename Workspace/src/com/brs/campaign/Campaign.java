@@ -78,7 +78,7 @@ public class Campaign { //+++++++++++change to Campaign
 	public void setOpponents(){
 		for (Entry<String, Player> entry : nameToPlayer.entrySet()) { //for each player in map:
 			List<String>opponents = new ArrayList<String>(nameToPlayer.keySet()); //create a list of opponents from player names
-			opponents.remove(entry.getKey()); //removing themselves from list
+			opponents.remove(entry.getKey()); //remove current player from list
 			entry.getValue().setOpponents(opponents); //set player's list of opponents
 		}
 	}
