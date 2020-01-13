@@ -2,6 +2,7 @@ package com.brs.player;
 
 import com.brs.squadron.Squadron;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ public class Player {
 	private final Squadron squadron; //player's squadron 
 	private int score; //current score 
 	//////////////private final MissionLog missionLog = new MissionLog(); //player's mission log
+	private List<String>unpairedOpponents = new ArrayList<String>(); //holds opponents to be played against
 	
 	
 	//mission log instance instead +++++

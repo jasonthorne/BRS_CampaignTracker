@@ -28,34 +28,29 @@ public class Campaign { //+++++++++++change to Campaign
 	private final String name; //name of campaign
 	private final String date = Date.getDate(); //date of creation
 	private final Event event; //historical event chosen
-	
-	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
-	//////////////////private final List<Period>periods; //periods of history covered
 	private Period period; //current period represented
 	private final ListIterator<Period>periodsIterator; //iterator for advancing period
-	///////////private static final int TURNS_PER_PERIOD = 4; //amount of turns played per period
+	
+	
+	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
+	
 	//=======================================months 1 - 4. after month 4, then move one period
 	//private Month month; //current month represented
+	private static final int TURNS_PER_PERIOD = 4; //amount of turns played per period
 	private int turnNum; //number of turns in campaign
-	private List<Turn>turns; 
-	
+	///////////private List<Turn>turns; 
+	private static final String BYE = "bye"; //bye entry for pairing odd number of players
 	
 	//=======================================
 	
 	
 /////////++++++++++++++++CURRENT mission: ++++++++++++++++++++++++
-	private Map<Mission, List<Player>>missionToPlayers = new HashMap<Mission, List<Player>>(); //map of current missions
+	////////////////////private Map<Mission, List<Player>>missionToPlayers = new HashMap<Mission, List<Player>>(); //map of current missions
 	
 	public Campaign(EventName eventName) {
 		event = new EventFactory().getEvent(eventName); //create event from EventFactory
 		name = "Campaign: " + event.getName(); //create campaign name
-		/////////////periods = event.getPeriods(); //set periods of history //???????????????
-		periodsIterator = event.getPeriods().listIterator(); //create iterator from periods //???????????????????
-		
-		//======================================
-		////////turnNum = periods.size()*4; //???????????????????????
-		
-		//=======================================
+		periodsIterator = event.getPeriods().listIterator(); //create iterator from periods
 	}
 	
 	//add a new player to map of players:
@@ -73,11 +68,28 @@ public class Campaign { //+++++++++++change to Campaign
 	Turn currTurn;
 	
 	
-	private static final String BYE = "bye"; //bye entry for pairing odd number of players
-
-	public void makeTurn() {
-		turnNum++; //add to turn num
-		currTurn = new Turn();	
+	/*
+	
+	public void beginTurns() {
+		turnNum = 1; //set turnNum
+		movePeriod(); //set period iterator to starting period
+		pairPlayers(); //pair players 
+		
+	}*/
+	
+	
+	//++++++++++++++++CAN ALSO BE USED FOR STARTING GAME! 
+	public void advanceTurn() {
+		//increment turnNum and check if period should be moved:
+		if(++turnNum>TURNS_PER_PERIOD) { 
+			turnNum = 1; //reset turnNum 
+			movePeriod(); //advance to next period
+		}
+		pairPlayers(); //pair players
+		//if() { //if all players have played all other players. THEN empty their "played buckets and reseed"
+			
+		//}
+		//////////////////currTurn = new Turn();	
 	}
 	
 	
@@ -112,8 +124,13 @@ public class Campaign { //+++++++++++change to Campaign
 			//mission = new Mission(pair);
 			////missionToPlayers.put(new Mission(players), players);
 			//MAKE NEW MISSION, ADDING THESE PLAYERS,
-			//SEND TO TURN???++++++++++++++++++++++++++++++++++++++++++++++++++
+			
 			//LIST OF NAME<played>
+			
+			//+++++++++BOTH PLAYERS MARK THAT THEY@VE BEEN PAIRED AGAINST EACH OTHER. 
+			//AND NEXT PAIRING SESSION HAVE EACH PLAYER CHECK THAT THEYVE NOT JUST PLAYED THIS PERSON +++++++++++++++++
+			
+			//HOLIDAYS: 17th - 24th. 
 			
 		}
 		
