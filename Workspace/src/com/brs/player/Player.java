@@ -21,7 +21,7 @@ public class Player {
 	private final Squadron squadron; //player's squadron 
 	private int score; //current score 
 	//////////////private final MissionLog missionLog = new MissionLog(); //player's mission log
-	private List<String>unpairedOpponents = new ArrayList<String>(); //holds opponents to be played against
+	private List<String>opponents = new ArrayList<String>(); //holds opponents to be paired against
 	
 	
 	//mission log instance instead +++++
@@ -40,7 +40,10 @@ public class Player {
 		
 	}
 	
-	
+	public void setOpponents(List<String>opponents) { ///////////look at making hard copy of this
+		this.opponents.addAll(opponents);
+		System.out.println(this.name + "'s opponents are: " + this.opponents);
+	}
 	
 	
 	//++++TEST PRINTING ++++++++++++++++++++++

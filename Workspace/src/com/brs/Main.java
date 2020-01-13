@@ -596,7 +596,7 @@ public class Main {
 		
 		campaign.test();
 		
-		
+		campaign.setOpponents();
 	}
 
 	

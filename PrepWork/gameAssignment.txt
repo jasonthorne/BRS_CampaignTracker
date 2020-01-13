@@ -1,4 +1,4 @@
-
+﻿
 odd players:
 
 randomise pairings: a b c
@@ -46,7 +46,13 @@ next seeding, make sure that the person who got the buy last time doesnt get it 
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
- number of missions in a turn
+
+<Period, TurnNum> <List<Mission>>
+
+<Period, TurnNum>ssss<List<name, name>>qqqq<mission>>
+
+
+number of missions in a turn
 4 Turns in a period
 THEN UPDATE PERIODS 
 Then update planes
@@ -59,8 +65,8 @@ Check if everyones now played 4 missions:
 if so move period, update planes, force players to change planes if their now unavailable.
 
  
- - reseed once each player has played everyone else (Including new players added before last reseed)
--Once everyone's played 4 missions: move periods, update planes, force players to change planes if their now unavailable.
+- reseed once each player has played everyone else (Including new players added before last reseed)
+- Once everyone's played 4 missions: move periods, update planes, force players to change planes if their now unavailable.
 
 
 

@@ -31,8 +31,7 @@ public class Campaign { //+++++++++++change to Campaign
 	private Period period; //current period represented
 	private final ListIterator<Period>periodsIterator; //iterator for advancing period
 	
-	
-	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
+	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved  ////+++++++MAYBE USE SET HERE INSTEAD OF HASHMAP - then use streams for playing about with it.
 	
 	//=======================================months 1 - 4. after month 4, then move one period
 	//private Month month; //current month represented
@@ -57,7 +56,7 @@ public class Campaign { //+++++++++++change to Campaign
 	public void setPlayer(String name, AirForceName airForceName) { 
 		//attempt to add player to map using their name as key. Warn user if unsuccessful (returned value other than null): 
 		if(!(nameToPlayer.putIfAbsent(name, new Player(name, event.getAirForce(airForceName), period))==null)){
-			System.out.println("Error: Player name already exists! "); 
+			System.out.println("Error: Player name already exists!"); 
 		}else { System.out.println("Player added."); }
 	}
 	
@@ -68,14 +67,29 @@ public class Campaign { //+++++++++++change to Campaign
 	Turn currTurn;
 	
 	
-	/*
-	
 	public void beginTurns() {
 		turnNum = 1; //set turnNum
 		movePeriod(); //set period iterator to starting period
+		setOpponents(); //set each player's opponents
 		pairPlayers(); //pair players 
 		
-	}*/
+	}
+	
+	public void setOpponents(){
+		for (Entry<String, Player> entry : nameToPlayer.entrySet()) { //for each player in map:
+			List<String>opponents = new ArrayList<String>(nameToPlayer.keySet()); //create a list of opponents from player names
+			opponents.remove(entry.getKey()); //removing themselves from list
+			entry.getValue().setOpponents(opponents); //set player's list of opponents
+		}
+	}
+	
+	
+	/*
+	(Arrays.asList(nameToPlayer.keySet().remove(entry.getKey())))
+	
+	//entry.getValue().setOpponents(nameToPlayer.keySet().remove(entry.getKey()));
+	*/
+	
 	
 	
 	//++++++++++++++++CAN ALSO BE USED FOR STARTING GAME! 
