@@ -107,7 +107,51 @@ public class Campaign { //+++++++++++change to Campaign
 	}
 	
 	
+	public void pairPlayers2() {
+		
+		//list of player's names to draw pairings from:
+		List<String>unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
+		
+		//if odd number of players, add a bye:
+		////////////////////if(nameToPlayer.size()%2==1) { unpairedPlayers.add(BYE); } +++++++++++++++GET BACK TO THIS!! (doh!)
+		
+		//while there are unpaired players:
+		while(!unpairedPlayers.isEmpty()) { 
+			
+			//------------------------------------------------
+			//pick a random player from unpairedPlayers:
+			
+			//pick a random pos to select an unpaired player from: 
+			int randP1Index = new Random().nextInt(unpairedPlayers.size());
+			
+			String p1 = unpairedPlayers.get(randP1Index);
+			//------------------------------------------------
+			//pick a random player from that player's opponents list
+			
+			
+			
+			//create a mission and add them to it. 
+			
+			//remove BOTH players from unPairedPlayers and EACHOTHERS opponents list.
+			
+			/*
+			List<String>pairedCouple = new ArrayList<String>(); //make list for holding 2 paired players
+			
+			while(pairedCouple.size()!=2) { //while a couple haven't been picked
 	
+				//pick a random pos to select an unpaired player from: 
+				int randomIndex = new Random().nextInt(unpairedPlayers.size());
+				
+				//add player at random pos to pairedCouple:
+				pairedCouple.add(unpairedPlayers.get(randomIndex));
+				
+				//remove paired player from list of unpaired players:
+				unpairedPlayers.remove(randomIndex);
+			}*/
+			
+		}
+		
+	}
 	
 	//Make x pairings (give each pairing a mission)
 	public void pairPlayers() { 
