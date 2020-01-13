@@ -42,7 +42,11 @@ public class Player {
 	
 	public void setOpponents(List<String>opponents) { ///////////look at making hard copy of this
 		this.opponents.addAll(opponents);
-		System.out.println(this.name + "'s opponents are: " + this.opponents);
+		///System.out.println(this.name + "'s opponents are: " + this.opponents);
+	}
+	
+	public List<String> getOpponents() { ///////////look at making hard copy of this
+		return opponents;
 	}
 	
 	

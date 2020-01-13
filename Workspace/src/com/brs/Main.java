@@ -597,6 +597,9 @@ public class Main {
 		campaign.test();
 		
 		campaign.setOpponents();
+		System.out.println("-----------------------");
+		
+		campaign.beginTurns();
 	}
 
 	

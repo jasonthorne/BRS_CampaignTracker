@@ -71,7 +71,8 @@ public class Campaign { //+++++++++++change to Campaign
 		turnNum = 1; //set turnNum
 		movePeriod(); //set period iterator to starting period
 		setOpponents(); //set each player's opponents
-		pairPlayers(); //pair players 
+		System.out.println();
+		pairPlayers2(); //pair players 
 		
 	}
 	
@@ -114,6 +115,8 @@ public class Campaign { //+++++++++++change to Campaign
 		
 		//if odd number of players, add a bye:
 		////////////////////if(nameToPlayer.size()%2==1) { unpairedPlayers.add(BYE); } +++++++++++++++GET BACK TO THIS!! (doh!)
+		System.out.println(unpairedPlayers);
+		
 		
 		//while there are unpaired players:
 		while(!unpairedPlayers.isEmpty()) { 
@@ -122,17 +125,29 @@ public class Campaign { //+++++++++++change to Campaign
 			//pick a random player from unpairedPlayers:
 			
 			//pick a random pos to select an unpaired player from: 
-			int randP1Index = new Random().nextInt(unpairedPlayers.size());
+			int player1Index = new Random().nextInt(unpairedPlayers.size());
 			
-			String p1 = unpairedPlayers.get(randP1Index);
+			String player1 = unpairedPlayers.get(player1Index);
+			
+			unpairedPlayers.remove(player1Index);
 			//------------------------------------------------
 			//pick a random player from that player's opponents list
 			
+			int player2Index = new Random().nextInt(unpairedPlayers.size());
+			
+			String player2 = nameToPlayer.get(player1).getOpponents().get(player2Index);
+			
+			unpairedPlayers.remove(player2);
 			
 			
 			//create a mission and add them to it. 
+			System.out.println("player1: " + player1 + " vs player2: " + player2);
 			
 			//remove BOTH players from unPairedPlayers and EACHOTHERS opponents list.
+			//unpairedPlayers.remove(player1);
+			nameToPlayer.get(player1).getOpponents().remove(player2);
+			nameToPlayer.get(player2).getOpponents().remove(player1);
+			
 			
 			/*
 			List<String>pairedCouple = new ArrayList<String>(); //make list for holding 2 paired players
@@ -150,6 +165,11 @@ public class Campaign { //+++++++++++change to Campaign
 			}*/
 			
 		}
+		
+
+		
+		
+		System.out.println(unpairedPlayers);
 		
 	}
 	
