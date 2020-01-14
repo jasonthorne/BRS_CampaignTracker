@@ -597,9 +597,13 @@ public class Main {
 		campaign.test();
 		
 		campaign.setOpponents();
-		System.out.println("-----------------------");
 		
-		campaign.beginTurns();
+		
+		///campaign.beginTurns();
+		
+		campaign.pairPlayers(); //pair players 
+		System.out.println("-----------------------");
+		campaign.pairPlayers2(); //pair players 
 	}
 
 	

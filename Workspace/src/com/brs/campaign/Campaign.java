@@ -71,7 +71,6 @@ public class Campaign { //+++++++++++change to Campaign
 		turnNum = 1; //set turnNum
 		movePeriod(); //set period iterator to starting period
 		setOpponents(); //set each player's opponents
-		System.out.println();
 		pairPlayers2(); //pair players 
 		
 	}
@@ -121,6 +120,61 @@ public class Campaign { //+++++++++++change to Campaign
 		//while there are unpaired players:
 		while(!unpairedPlayers.isEmpty()) { 
 			
+			
+			//===========================================================
+			List<String>pairedCouple = new ArrayList<String>(); //make list for holding 2 paired players
+			
+			while(pairedCouple.size()!=2) { //while a couple haven't been picked
+	
+				//------------------------------------------------------------------------
+				//pick a random pos to select an unpaired player from: 
+				int player1Index = new Random().nextInt(unpairedPlayers.size());
+				
+				String player1 = unpairedPlayers.get(player1Index);
+				
+				//add player at random pos to pairedCouple:
+				pairedCouple.add(player1);//(unpairedPlayers.get(player1Index));
+				
+				//remove paired player from list of unpaired players:
+				unpairedPlayers.remove(player1Index);
+				
+				//--------------------
+				
+				int player2Index = new Random().nextInt(nameToPlayer.get(player1).getOpponents().size());
+				
+				String player2 = nameToPlayer.get(player1).getOpponents().get(player2Index);
+				
+				 
+				////////////unpairedPlayers.remove(player2Index); ++++++++++++++BUG HERE!! CAnt seem to remove or target length in smae place as removing previously! look into iterator???
+				
+				pairedCouple.add(player2);//(unpairedPlayers.get(player1Index));
+				
+				
+				
+				
+				////System.out.println("player1Index is: " + player1Index);
+				//System.out.println("player1 is: " + player1);
+				/////System.out.println("unpairedPlayers is: " + unpairedPlayers);
+				//-------------------------------------------------------------------------
+				
+				
+				/*
+				//pick a random pos to select an unpaired player from: 
+				int randomIndex = new Random().nextInt(unpairedPlayers.size());
+				
+				//add player at random pos to pairedCouple:
+				pairedCouple.add(unpairedPlayers.get(randomIndex));
+				
+				//remove paired player from list of unpaired players:
+				unpairedPlayers.remove(randomIndex);
+				*/
+				
+			}
+			
+			System.out.println(pairedCouple);
+			
+			//=======================================================
+			/*
 			//------------------------------------------------
 			//pick a random player from unpairedPlayers:
 			
@@ -148,7 +202,10 @@ public class Campaign { //+++++++++++change to Campaign
 			nameToPlayer.get(player1).getOpponents().remove(player2);
 			nameToPlayer.get(player2).getOpponents().remove(player1);
 			
+			*/
 			
+			
+			//+++++++++++++++++++++++++++++++
 			/*
 			List<String>pairedCouple = new ArrayList<String>(); //make list for holding 2 paired players
 			
@@ -169,7 +226,7 @@ public class Campaign { //+++++++++++change to Campaign
 
 		
 		
-		System.out.println(unpairedPlayers);
+		System.out.println("yo" + unpairedPlayers);
 		
 	}
 	
@@ -199,6 +256,8 @@ public class Campaign { //+++++++++++change to Campaign
 				unpairedPlayers.remove(randomIndex);
 			}
 			
+			
+			System.out.println(pairedCouple);
 			//mission = new Mission(pair);
 			////missionToPlayers.put(new Mission(players), players);
 			//MAKE NEW MISSION, ADDING THESE PLAYERS,
