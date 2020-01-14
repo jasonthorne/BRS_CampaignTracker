@@ -61,7 +61,7 @@ public class Campaign { //+++++++++++change to Campaign
 		}else { System.out.println("Player added."); }
 	}
 	
-	
+	List<String>unpairedPlayers;
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
 	//Make a turn
@@ -81,6 +81,9 @@ public class Campaign { //+++++++++++change to Campaign
 			List<String>opponents = new ArrayList<String>(nameToPlayer.keySet()); //create a list of opponents from player names
 			opponents.remove(entry.getKey()); //remove current player from list
 			entry.getValue().setOpponents(opponents); //set player's list of opponents
+			
+			//list of player's names to draw pairings from:
+			unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
 		}
 	}
 	
@@ -108,20 +111,16 @@ public class Campaign { //+++++++++++change to Campaign
 	}
 	
 	
+			
+	
 	public void pairPlayers2() {
 		
-		//list of player's names to draw pairings from:
-		List<String>unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
 		
-		ListIterator<String>unpairedIterator = unpairedPlayers.listIterator(); //unpairedPlayers iterator
+		/////////////////////ListIterator<String>unpairedIterator = unpairedPlayers.listIterator(); //unpairedPlayers iterator
 		
 		//if odd number of players, add a bye:
 		////////////////////if(nameToPlayer.size()%2==1) { unpairedPlayers.add(BYE); } +++++++++++++++GET BACK TO THIS!! (doh!)
 		System.out.println(unpairedPlayers);
-		
-		//============
-		String player;
-		//==============
 		
 		//while there are unpaired players:
 		while(!unpairedPlayers.isEmpty()) { 
