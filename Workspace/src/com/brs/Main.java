@@ -604,6 +604,9 @@ public class Main {
 		campaign.pairPlayers(); //pair players 
 		System.out.println("-----------------------");
 		campaign.pairPlayers2(); //pair players 
+		
+		System.out.println("======================");
+		campaign.pairPlayers2(); //pair players 
 	}
 
 	

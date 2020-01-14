@@ -22,6 +22,7 @@ import com.brs.event.Event;
 import com.brs.mission.Mission;
 import com.brs.mission.MissionBuilder;
 import com.brs.period.Period;
+import com.brs.period.Year;
 
 public class Campaign { //+++++++++++change to Campaign
 	
@@ -112,16 +113,24 @@ public class Campaign { //+++++++++++change to Campaign
 		//list of player's names to draw pairings from:
 		List<String>unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
 		
+		ListIterator<String>unpairedIterator = unpairedPlayers.listIterator(); //unpairedPlayers iterator
+		
 		//if odd number of players, add a bye:
 		////////////////////if(nameToPlayer.size()%2==1) { unpairedPlayers.add(BYE); } +++++++++++++++GET BACK TO THIS!! (doh!)
 		System.out.println(unpairedPlayers);
 		
+		//============
+		String player;
+		//==============
 		
 		//while there are unpaired players:
 		while(!unpairedPlayers.isEmpty()) { 
-			
+		
+			//UNPAIRED PLAYERS KEEPS GEING REFILLED< MEANING DUPLICATES ARE ALLOWED. 
+			//SHOULD HAVE EACH LAYER DIP INTO EACH OTHER PLAYER's LIST OF OPPONENTS ONLY
 			
 			//===========================================================
+			//https://stackoverflow.com/questions/30041206/can-java-8-streams-operate-on-an-item-in-a-collection-and-then-remove-it
 			List<String>pairedCouple = new ArrayList<String>(); //make list for holding 2 paired players
 			
 			while(pairedCouple.size()!=2) { //while a couple haven't been picked
@@ -136,20 +145,28 @@ public class Campaign { //+++++++++++change to Campaign
 				pairedCouple.add(player1);//(unpairedPlayers.get(player1Index));
 				
 				//remove paired player from list of unpaired players:
-				unpairedPlayers.remove(player1Index);
+				unpairedPlayers.remove(player1);
 				
 				//--------------------
 				
-				int player2Index = new Random().nextInt(nameToPlayer.get(player1).getOpponents().size());
+				int player2Index = new Random().nextInt(unpairedPlayers.size());
 				
-				String player2 = nameToPlayer.get(player1).getOpponents().get(player2Index);
-				
-				 
-				////////////unpairedPlayers.remove(player2Index); ++++++++++++++BUG HERE!! CAnt seem to remove or target length in smae place as removing previously! look into iterator???
+				String player2 = unpairedPlayers.get(player2Index);//nameToPlayer.get(player1).getOpponents().get(player2Index);
 				
 				pairedCouple.add(player2);//(unpairedPlayers.get(player1Index));
 				
+				unpairedPlayers.remove(player2); 
 				
+				System.out.println(pairedCouple);
+				
+				//remove player 1 opponent:
+				nameToPlayer.get(player1).getOpponents().remove(player2);
+				
+				//remove player 2 opponent:
+				nameToPlayer.get(player2).getOpponents().remove(player1);
+				
+				System.out.println("player 1: " + player1 +  " opponents: " + nameToPlayer.get(player1).getOpponents());
+				System.out.println("player 2: " + player2 +  " opponents: " + nameToPlayer.get(player2).getOpponents());
 				
 				
 				////System.out.println("player1Index is: " + player1Index);
@@ -171,7 +188,7 @@ public class Campaign { //+++++++++++change to Campaign
 				
 			}
 			
-			System.out.println(pairedCouple);
+			
 			
 			//=======================================================
 			/*

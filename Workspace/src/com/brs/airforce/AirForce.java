@@ -33,7 +33,7 @@ public abstract class AirForce {
 			setPeriodToStatus(model); //(re)set periodToStatus with the current model's periods and their statuses
 			status = periodToStatus.getOrDefault(period, Status.NONE); //assign status returned with period key (or NONE if period not found) 
 			
-			if (!status.equals(Status.NONE)){ //if period key returned a value:
+			if(!status.equals(Status.NONE)){ //if period key returned a value:
 				//System.out.println("model: " + model.toString() + ". TEST MAP: " + periodToStatus); //++++++++++++++++++
 				modelToStatus.put(model, status); //add current model and it's status
 			}

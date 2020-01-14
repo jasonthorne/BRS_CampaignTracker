@@ -21,7 +21,17 @@ public class Player {
 	private final Squadron squadron; //player's squadron 
 	private int score; //current score 
 	//////////////private final MissionLog missionLog = new MissionLog(); //player's mission log
+	
+	//UNPLAYED OPPONENTS:
+	private List<String>uplayedOpps = new ArrayList<String>(); //holds opponents to be paired against
+	
+	//PLAYER OPPONENTS:
+	private List<String>playedOpps = new ArrayList<String>(); //holds previously played opponents previously paired against
+	
+	
 	private List<String>opponents = new ArrayList<String>(); //holds opponents to be paired against
+	
+	
 	
 	
 	//mission log instance instead +++++
