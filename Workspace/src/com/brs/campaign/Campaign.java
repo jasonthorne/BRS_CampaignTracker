@@ -149,20 +149,24 @@ public class Campaign { //+++++++++++change to Campaign
 				//--------------------
 				
 				int player2Index = new Random().nextInt(unpairedPlayers.size());
+				///////////int player2Index = new Random().nextInt(nameToPlayer.get(player1).getOpponents().size());
 				
 				String player2 = unpairedPlayers.get(player2Index);//nameToPlayer.get(player1).getOpponents().get(player2Index);
+				///////////////String player2 = nameToPlayer.get(player1).getOpponents().get(player2Index);
 				
 				pairedCouple.add(player2);//(unpairedPlayers.get(player1Index));
 				
 				unpairedPlayers.remove(player2); 
 				
-				System.out.println(pairedCouple);
+				
 				
 				//remove player 1 opponent:
 				nameToPlayer.get(player1).getOpponents().remove(player2);
 				
 				//remove player 2 opponent:
 				nameToPlayer.get(player2).getOpponents().remove(player1);
+				
+				System.out.println(pairedCouple);
 				
 				System.out.println("player 1: " + player1 +  " opponents: " + nameToPlayer.get(player1).getOpponents());
 				System.out.println("player 2: " + player2 +  " opponents: " + nameToPlayer.get(player2).getOpponents());
