@@ -61,7 +61,7 @@ public class Campaign { //+++++++++++change to Campaign
 		}else { System.out.println("Player added."); }
 	}
 	
-	List<String>unpairedPlayers;
+	//////////////List<String>unpairedPlayers;
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
 	//Make a turn
@@ -82,8 +82,8 @@ public class Campaign { //+++++++++++change to Campaign
 			opponents.remove(entry.getKey()); //remove current player from list
 			entry.getValue().setOpponents(opponents); //set player's list of opponents
 			
-			//list of player's names to draw pairings from:
-			unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
+			///////////list of player's names to draw pairings from:
+			//////////////////unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
 		}
 	}
 	
@@ -110,10 +110,90 @@ public class Campaign { //+++++++++++change to Campaign
 		//////////////////currTurn = new Turn();	
 	}
 	
+	public void pairPlayers3() {
+		
+		List<String>unpairedPlayers= new ArrayList<String>(nameToPlayer.keySet());
+		Collections.shuffle(unpairedPlayers);
+		ListIterator<String>unpairedIterator = unpairedPlayers.listIterator(); //unpairedPlayers iterator
+		
+		System.out.println(unpairedPlayers);
+		///////String player1;
+		
+		//while there are unpaired players:
+		//while(unpairedIterator.hasNext()) { 
+		while(!unpairedPlayers.isEmpty()) { 
 	
+			///////player1 = unpairedIterator.next();
+			
+			/////System.out.println("player1: " + player1);
+			
+			List<String>pairedCouple = new ArrayList<String>(); //make list for holding 2 paired players
+			
+			while(pairedCouple.size()!=2) { //while a couple haven't been picked
+				
+				String player1 = unpairedPlayers.get(0); //STRING 1 IS FIRST ELEMENT IN SHUFFLED LIST
+				
+				//pick a player2 from player1's list of opponents:
+				String player2 = nameToPlayer.get(player1).getOpponents().get(new Random().nextInt(nameToPlayer.get(player1).getOpponents().size()));
+				System.out.println("player2: " + player2);
+				
+				//System.out.println("player1 opps (B4 removal): " + nameToPlayer.get(player1).getOpponents());
+				
+				
+				//remove player2 from player1's list:
+				nameToPlayer.get(player1).getOpponents().remove(player2);
+				System.out.println("player1 opps: " + nameToPlayer.get(player1).getOpponents());
+				
+				
+				
+				//System.out.println("player2 opps (B4 removal): " + nameToPlayer.get(player2).getOpponents());
+				
+				//remove player1 from player2's list:
+				nameToPlayer.get(player2).getOpponents().remove(player1);
+				
+				System.out.println("player2 opps: " + nameToPlayer.get(player2).getOpponents());
+				
+				pairedCouple.add(player1);
+				pairedCouple.add(player2);
+				
+				//unpairedPlayers.remove(player2);
+				//unpairedIterator.remove(); //remove player 1.
+				//unpairedPlayers.remove(player2);
+				
+				//unpairedIterator.remove();
+				
+				/*
+				//add players to pairedCouple:
+				pairedCouple.add(player1);
+				pairedCouple.add(player2);
+				
+				//remove both players from unpairedPlayers:
+				unpairedPlayers.remove(player1);
+				unpairedPlayers.remove(player2);
+				*/
+				
+				/*
+				//pick a random pos to select an unpaired player from: 
+				int player1Index = new Random().nextInt(unpairedPlayers.size());
+				
+				String player1 = unpairedPlayers.get(player1Index);
+				
+				//add player at random pos to pairedCouple:
+				pairedCouple.add(player1);//(unpairedPlayers.get(player1Index));
+				
+				//remove paired player from list of unpaired players:
+				unpairedPlayers.remove(player1);
+				*/
+			}
+			
+		}
+		
+	}
 			
 	
 	public void pairPlayers2() {
+		
+		List<String>unpairedPlayers= new ArrayList<String>(nameToPlayer.keySet()); 
 		
 		
 		/////////////////////ListIterator<String>unpairedIterator = unpairedPlayers.listIterator(); //unpairedPlayers iterator
@@ -149,16 +229,18 @@ public class Campaign { //+++++++++++change to Campaign
 				//--------------------
 				
 				int player2Index = new Random().nextInt(unpairedPlayers.size());
-				///////////int player2Index = new Random().nextInt(nameToPlayer.get(player1).getOpponents().size());
+				//int player2Index = new Random().nextInt(nameToPlayer.get(player1).getOpponents().size());
 				
-				String player2 = unpairedPlayers.get(player2Index);//nameToPlayer.get(player1).getOpponents().get(player2Index);
-				///////////////String player2 = nameToPlayer.get(player1).getOpponents().get(player2Index);
+				/////////String player2 = unpairedPlayers.get(player2Index);//nameToPlayer.get(player1).getOpponents().get(player2Index);
+				String player2 = nameToPlayer.get(player1).getOpponents().get(player2Index);
 				
 				pairedCouple.add(player2);//(unpairedPlayers.get(player1Index));
 				
 				unpairedPlayers.remove(player2); 
 				
-				
+				//IMMEDIATELY REMOVE PLAYER ONE FROM PLAYER 2S LIST:
+				//nameToPlayer.get(player2).getOpponents().remove(player1);
+
 				
 				//remove player 1 opponent:
 				nameToPlayer.get(player1).getOpponents().remove(player2);
