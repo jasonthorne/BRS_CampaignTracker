@@ -601,18 +601,28 @@ public class Main {
 		
 		///campaign.beginTurns();
 		
-		campaign.pairPlayers(); //pair players 
-		System.out.println("-----------------------");
+		//campaign.pairPlayers(); //pair players 
+		//System.out.println("-----------------------");
 		///////////campaign.pairPlayers2(); //pair players 
 		
-		System.out.println("======================");
+		//System.out.println("======================");
 		///////campaign.pairPlayers2(); //pair players 
 		
 		//campaign.pairPlayers3(); //pair players 
 		
-		campaign.pairPlayers4(); //pair players 
+		//campaign.pairPlayers4(); //pair players 
+		//System.out.println("-------------------------");
+		//campaign.pairPlayers4(); //pair players 
+		
+		//campaign.ughhhh();
 		System.out.println("-------------------------");
-		campaign.pairPlayers4(); //pair players 
+		//campaign.ughhhh();
+		
+		//System.out.println("======================");
+		campaign.pairPlayers4(); //pair players
+		
+		System.out.println("======================");
+		campaign.pairPlayers4(); //pair players
 	}
 
 	
