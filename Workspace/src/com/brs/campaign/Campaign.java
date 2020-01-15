@@ -110,6 +110,54 @@ public class Campaign { //+++++++++++change to Campaign
 		//////////////////currTurn = new Turn();	
 	}
 	
+	public void pairPlayers4() {
+		
+		//list of player's names to draw pairings from:
+		List<String>unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
+		Collections.shuffle(unpairedPlayers);
+		
+		String player1 = "";
+		String player2 = "";
+		
+		//while there are unpaired players:
+		while(!unpairedPlayers.isEmpty()) { 
+			
+			List<String>pairedCouple = new ArrayList<String>(); //make list for holding 2 paired players
+			
+			while(pairedCouple.size()!=2) { //while a couple haven't been picked
+	
+				//pick player1:
+				int player1Index = new Random().nextInt(unpairedPlayers.size());
+				player1 = unpairedPlayers.get(player1Index);
+				
+				//pick player2:
+				int player2Index = new Random().nextInt(nameToPlayer.get(player1).getOpponents().size()); //random index taken from player1's opponents list size
+				player2 = nameToPlayer.get(player1).getOpponents().get(player2Index); //random player pulled from player1's list
+				
+				
+				//add players to pairedCouple:
+				pairedCouple.add(player1);
+				pairedCouple.add(player2);
+				
+				//remove paired players from list of unpaired players:
+				unpairedPlayers.remove(player1);
+				unpairedPlayers.remove(player2);
+				
+				
+				//remove players from eachother's list of opponents:
+				nameToPlayer.get(player1).getOpponents().remove(player2);
+				nameToPlayer.get(player2).getOpponents().remove(player1);
+			}
+			
+			
+			//System.out.println("unpairedPlayers: " + unpairedPlayers);
+			System.out.println("paired couple: " + pairedCouple);
+			//System.out.println("p1 opponents: " + nameToPlayer.get(player1).getOpponents());
+			//System.out.println("p2 opponents: " + nameToPlayer.get(player2).getOpponents());
+		}
+	}
+	
+	
 	public void pairPlayers3() {
 		
 		List<String>unpairedPlayers= new ArrayList<String>(nameToPlayer.keySet());
