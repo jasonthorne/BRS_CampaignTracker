@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -625,13 +626,21 @@ public class Main {
 		//System.out.println("======================");
 		campaign.pairPlayers4(); //pair players
 		
-		//System.out.println("======================");
+		
+		campaign.swapTEST();
+		System.out.println("==============SECOND PAIRING========");
 		//campaign.pairPlayers4(); //pair players
 		
+		campaign.pairPlayers4(); //pair players
 		
 		
+		/*
+		campaign.swapTEST();
+		System.out.println("========THIRD PAIRING==============");
+		//campaign.pairPlayers4(); //pair players
 		
-		
+		campaign.pairPlayers4(); //pair players
+		*/
 		
 		
 		

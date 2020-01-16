@@ -145,7 +145,11 @@ public class Campaign { //+++++++++++change to Campaign
 		
 	}
 	
-	
+	public void swapTEST() {
+		for (Entry<String, Player> entry : nameToPlayer.entrySet()) {
+			entry.getValue().swapListsTEST();
+		}
+	}
 	
 	
 	public void pairPlayers4() {
@@ -230,7 +234,7 @@ public class Campaign { //+++++++++++change to Campaign
 			
 			for (Entry<String, Player> entry : nameToPlayer.entrySet()) {
 				
-				if((entry.getKey() != player1) && (entry.getKey() !=player2)) {
+				if((!entry.getKey().equals(player1)) && (!entry.getKey().equals(player2))) {
 					entry.getValue().getCouldPlayNow().remove(player1);
 					entry.getValue().getCouldPlayNow().remove(player2);
 					

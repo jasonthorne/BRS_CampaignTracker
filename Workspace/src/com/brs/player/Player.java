@@ -3,6 +3,7 @@ package com.brs.player;
 import com.brs.squadron.Squadron;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +47,12 @@ public class Player {
 	
 	public void setCanPlayLater(String player) {
 		canPlayLater.add(player);
+	}
+	
+	public void swapListsTEST() {
+		couldPlayNow.clear();
+		couldPlayNow.addAll(canPlayLater);
+		canPlayLater.clear();
 	}
 	
 	//=======================================================
