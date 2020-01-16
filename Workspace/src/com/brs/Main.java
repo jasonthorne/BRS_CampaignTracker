@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.brs.airforce.AirForceName;
 import com.brs.airforce.Japan;
@@ -24,6 +27,7 @@ import com.brs.plane.Plane;
 //import com.brs.plane.Plane.Availability;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
+import com.brs.Pairing;
 
 import OldFiles.Pilot;
 import OldFiles.Player;
@@ -594,9 +598,9 @@ public class Main {
 		campaign.setPlayer("F", AirForceName.RAF);
 		//System.out.println(campaign.nameToPlayer.get("Jammy").getPlayerStuff());
 		
-		campaign.test();
+		///////////////campaign.test();
 		
-		campaign.setOpponents();
+		//////////campaign.setOpponents();
 		
 		
 		///campaign.beginTurns();
@@ -615,15 +619,44 @@ public class Main {
 		//campaign.pairPlayers4(); //pair players 
 		
 		//campaign.ughhhh();
-		System.out.println("-------------------------");
+		//System.out.println("-------------------------");
 		//campaign.ughhhh();
 		
 		//System.out.println("======================");
-		campaign.pairPlayers4(); //pair players
+		//campaign.pairPlayers4(); //pair players
 		
-		System.out.println("======================");
-		campaign.pairPlayers4(); //pair players
+		//System.out.println("======================");
+		//campaign.pairPlayers4(); //pair players
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		System.out.println();
+		/*
+		List<Pairing>pairings = Stream.generate(()->new Pairing("A", "B"))
+				.limit(3).collect(Collectors.toCollection(ArrayList::new));
+		*/
+		
+		//=========================================================
+		
+		List<String>testList = Arrays.asList("A", "B", "C", "D", "E", "F");
+		
+		List<Pairing>pairings = Stream.generate(()->
+				new Pairing(testList.get(new Random().nextInt(testList.size())), testList.get(new Random().nextInt(testList.size()))))
+				.distinct().limit(3).collect(Collectors.toCollection(ArrayList::new));
+		System.out.println(pairings);
+		
 	}
+	
+	
 
 	
 	
