@@ -586,7 +586,7 @@ public class Main {
 		campaign.getPeriodTEST();
 		campaign.getPeriodTEST();
 		campaign.getPeriodTEST();
-		campaign.getPeriodTEST();
+		//campaign.getPeriodTEST();
 
 		
 		campaign.setPlayer("A", AirForceName.RAF);
@@ -600,7 +600,7 @@ public class Main {
 		
 		///////////////campaign.test();
 		
-		//////////campaign.setOpponents();
+		campaign.setOpponents();
 		
 		
 		///campaign.beginTurns();
@@ -623,7 +623,7 @@ public class Main {
 		//campaign.ughhhh();
 		
 		//System.out.println("======================");
-		//campaign.pairPlayers4(); //pair players
+		campaign.pairPlayers4(); //pair players
 		
 		//System.out.println("======================");
 		//campaign.pairPlayers4(); //pair players
@@ -640,18 +640,15 @@ public class Main {
 		
 		
 		System.out.println();
-		/*
-		List<Pairing>pairings = Stream.generate(()->new Pairing("A", "B"))
-				.limit(3).collect(Collectors.toCollection(ArrayList::new));
-		*/
+		
 		
 		//=========================================================
-		
-		List<String>testList = Arrays.asList("A", "B", "C", "D", "E", "F");
+		List<String>list = Arrays.asList("A", "B", "C", "D", "E", "F");
 		
 		List<Pairing>pairings = Stream.generate(()->
-				new Pairing(testList.get(new Random().nextInt(testList.size())), testList.get(new Random().nextInt(testList.size()))))
+				new Pairing(list.get(new Random().nextInt(list.size())), list.get(new Random().nextInt(list.size()))))
 				.distinct().limit(3).collect(Collectors.toCollection(ArrayList::new));
+				
 		System.out.println(pairings);
 		
 	}

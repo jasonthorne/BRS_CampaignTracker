@@ -22,18 +22,33 @@ public class Player {
 	private int score; //current score 
 	//////////////private final MissionLog missionLog = new MissionLog(); //player's mission log
 	
-	//UNPLAYED OPPONENTS:
-	private List<String>uplayedOpps = new ArrayList<String>(); //holds opponents to be paired against
-	
-	//PLAYER OPPONENTS:
-	private List<String>playedOpps = new ArrayList<String>(); //holds previously played opponents previously paired against
-	
+	//POTENTIAL OPPONETS THIS ROUND (havent been picked by anyone yet this round) //POTENTIAL_OPPONENTS
+	private List<String>couldPlayNow = new ArrayList<String>(); //holds previously played opponents previously paired against
+		
+	//STILL TO BE PLAYED IN A FUTURE ROUND (already taken by someone else this round) //FUTURE_OPPONENTS
+	private List<String>canPlayLater = new ArrayList<String>(); //holds opponents to be paired against
 	
 	private List<String>opponents = new ArrayList<String>(); //holds opponents to be paired against
 	
 	
+	//===================================================
+	public List<String> getCouldPlayNow() {
+		return couldPlayNow;
+	}
 	
+	public void setCouldPlayNow(List<String>opponents) {
+		this.couldPlayNow.addAll(opponents);
+	}
 	
+	public List<String> getCanPlayLater() {
+		return canPlayLater;
+	}
+	
+	public void setCanPlayLater(String player) {
+		canPlayLater.add(player);
+	}
+	
+	//=======================================================
 	//mission log instance instead +++++
 	//++++have an update method here for mission log
 	///private Map<Period, Mission>periodToMission = new HashMap<Mission, List<Player>>(); //map of current missions

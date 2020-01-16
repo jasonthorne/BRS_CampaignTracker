@@ -82,8 +82,9 @@ public class Campaign { //+++++++++++change to Campaign
 			opponents.remove(entry.getKey()); //remove current player from list
 			entry.getValue().setOpponents(opponents); //set player's list of opponents
 			
-			///////////list of player's names to draw pairings from:
-			//////////////////unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
+			//=========================
+			entry.getValue().setCouldPlayNow(opponents); //set player's list of potential opponents
+			//==========================
 		}
 	}
 	
@@ -162,18 +163,24 @@ public class Campaign { //+++++++++++change to Campaign
 			
 			System.out.println("unpairedPlayers b4 removal: " + unpairedPlayers);
 			
+			
 			//pick player1:
 			int player1Index = new Random().nextInt(unpairedPlayers.size());
 			player1 = unpairedPlayers.get(player1Index);
 			System.out.println("p1: " + player1);
 			
-			
 			unpairedPlayers.remove(player1); //remove player 1 from unpairedPlayers
 			
 			//pick player2:
 			
-			int player2Index = new Random().nextInt(nameToPlayer.get(player1).getOpponents().size()); //random index taken from player1's opponents list size
-			player2 = nameToPlayer.get(player1).getOpponents().get(player2Index); //random player pulled from player1's list
+			
+			//int player2Index = new Random().nextInt(nameToPlayer.get(player1).getOpponents().size()); //random index taken from player1's opponents list size
+			//player2 = nameToPlayer.get(player1).getOpponents().get(player2Index); //random player pulled from player1's list
+			
+			//-------------------------
+			int player2Index = new Random().nextInt(nameToPlayer.get(player1).getCouldPlayNow().size());
+			player2 = nameToPlayer.get(player1).getCouldPlayNow().get(player2Index); //grab player from could play now list
+			//------------------------
 			System.out.println("p2: " +player2);
 			
 			unpairedPlayers.remove(player2);
@@ -188,7 +195,18 @@ public class Campaign { //+++++++++++change to Campaign
 			*/
 			
 			//------------------------
+			//remove player 2 from player 1 opps list:
+			System.out.println("p1 opps b4 removal: " + nameToPlayer.get(player1).getCouldPlayNow());
+			nameToPlayer.get(player1).getCouldPlayNow().remove(player2);
+			System.out.println("p1 opps after removal: " + nameToPlayer.get(player1).getCouldPlayNow());
 			
+			//remove player 1 from player 2 opps list:
+			System.out.println("p2 opps b4 removal: " + nameToPlayer.get(player2).getCouldPlayNow());
+			nameToPlayer.get(player2).getCouldPlayNow().remove(player1);
+			System.out.println("p2 opps after removal: " + nameToPlayer.get(player2).getCouldPlayNow());
+			
+			
+			/*
 			//remove player 2 from player 1 opps list:
 			System.out.println("p1 opps b4 removal: " + nameToPlayer.get(player1).getOpponents());
 			nameToPlayer.get(player1).getOpponents().remove(player2);
@@ -198,14 +216,34 @@ public class Campaign { //+++++++++++change to Campaign
 			System.out.println("p2 opps b4 removal: " + nameToPlayer.get(player2).getOpponents());
 			nameToPlayer.get(player2).getOpponents().remove(player1);
 			System.out.println("p2 opps after removal: " + nameToPlayer.get(player2).getOpponents());
-			
-			//--------------------------
+			*/
 			
 			/*
 			for (Entry<String, Player> entry : nameToPlayer.entrySet()) {
 				entry.getValue().getOpponents().remove(player1);
 				entry.getValue().getOpponents().remove(player2);
-			}*/
+			}
+			*/
+			
+			//--------------------------
+			
+			
+			for (Entry<String, Player> entry : nameToPlayer.entrySet()) {
+				
+				if((entry.getKey() != player1) && (entry.getKey() !=player2)) {
+					entry.getValue().getCouldPlayNow().remove(player1);
+					entry.getValue().getCouldPlayNow().remove(player2);
+					
+					entry.getValue().setCanPlayLater(player1);
+					entry.getValue().setCanPlayLater(player2);
+					
+					//---------------------------------------
+					System.out.println(entry.getKey() + " can play later: " + entry.getValue().getCanPlayLater());
+					
+					//----------------------------------------
+				}
+				
+			}
 			
 			
 			//remove players from unpairedPlayers;
