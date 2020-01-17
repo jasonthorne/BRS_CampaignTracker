@@ -668,7 +668,7 @@ public class Main {
 		
 		campaign.makePairings();
 		
-		
+		campaign.makeMissions();
 		
 		
 		

@@ -88,7 +88,20 @@ public class Campaign { //+++++++++++change to Campaign
 		}
 	}
 	
+	
+	public void makeMissions(){
+		
+		Map<String, String>playerToOpponent = new HashMap<String, String>(); //players and an opponent
+		
+		for (Entry<String, List<String>> entry : playerToOpponents.entrySet()) {
+			System.out.println(entry.getKey() + " - " + entry.getValue());
+		}
+		
+		
+	}
 	//++++++++++++THESE LISTS MAY NEED TO BE IN THE METHOD BELOW!! (or not :P)++++++++++++
+	//////////List<List<String>>pairings = new ArrayList<List<String>>();
+	
 	Map<String, List<String>>playerToOpponents = new HashMap<String, List<String>>(); //players and a list of their opponents
 	List<String>pairedPlayers = new ArrayList<String>(); //players assigned a list of their opponents
 	
@@ -111,9 +124,18 @@ public class Campaign { //+++++++++++change to Campaign
 			if(!opponents.isEmpty()) { playerToOpponents.put(player, opponents); } 
 			
 			System.out.println("opponents: " + opponents); //++++++++++++++++++++
+			
 		});
 		
 		System.out.println("playerToOpponentsTEST: " + playerToOpponents); //+++++++++++++++++++
+		
+		/*
+		 * randomly pick a key
+		 * then randomly pick a value
+		 * then remove all instances of keys an values
+		 */
+		
+		//System.out.println("pairings: " + pairings); //+++++++++++++++++++
 	}
 	
 	
