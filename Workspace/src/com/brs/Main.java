@@ -624,14 +624,14 @@ public class Main {
 		//campaign.ughhhh();
 		
 		//System.out.println("======================");
-		campaign.pairPlayers4(); //pair players
-		
-		
-		campaign.swapTEST();
-		System.out.println("==============SECOND PAIRING========");
 		//campaign.pairPlayers4(); //pair players
 		
-		campaign.pairPlayers4(); //pair players
+		
+		//campaign.swapTEST();
+		//System.out.println("==============SECOND PAIRING========");
+		//campaign.pairPlayers4(); //pair players
+		
+		//campaign.pairPlayers4(); //pair players
 		
 		
 		/*
@@ -659,11 +659,26 @@ public class Main {
 				.distinct().limit(3).collect(Collectors.toCollection(ArrayList::new));
 				
 		System.out.println(pairings);
+	
+		
+		
+		campaign.makePairings();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 	
 	
-
+	
 	
 	
 	
