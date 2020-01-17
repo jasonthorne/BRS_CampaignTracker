@@ -3,3 +3,24 @@ https://en.wikipedia.org/wiki/Axis_and_Soviet_air_operations_during_Operation_Ba
 
 
 ++++++++++ADD new plane with the relevent dates it's active and the level of asctivity (hashmap with key being date and value being status), DURING first hashmap creation.
+
+
+ab
+ac
+ad
+ae
+af
+
+bc
+bd
+be
+bf
+
+cd
+ce
+cf
+
+de
+df
+
+
