@@ -88,67 +88,32 @@ public class Campaign { //+++++++++++change to Campaign
 		}
 	}
 	
+	//++++++++++++THESE LISTS MAY NEED TO BE IN THE METHOD BELOW!! (or not :P)++++++++++++
+	Map<String, List<String>>playerToOpponents = new HashMap<String, List<String>>(); //players and a list of their opponents
+	List<String>pairedPlayers = new ArrayList<String>(); //players assigned a list of their opponents
 	
-	
-	
-	public void makePairings(){
+	//public void makePairings(String... players){ //++++++++++++++++++PASS IN THE LIST INSTEAD SO YOU CAN ADD A NEW PLAYER (with maybe a bye) AT A LATER POINT
+	public void makePairings(){ 
 		
-		
-		//------------------------------------
 		//list of player's names to draw pairings from:
 		List<String>unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
 		
 		//if odd number of players, add a bye:
-		if(nameToPlayer.size()%2==1) { unpairedPlayers.add(BYE); }
-		
-		List<String>removeablePlayersTEST = new ArrayList<String>(); //players already assigned a list of their opponents
-		Map<String, List<String>>playerToOpponentsTEST  = new HashMap<String, List<String>>(); //players and a list of their opponents
-		//-----------------------------------
+		if(unpairedPlayers.size()%2==1) { unpairedPlayers.add(BYE); }
 		
 		unpairedPlayers.forEach(player ->{
 			
 			List<String>opponents = new ArrayList<String>(unpairedPlayers); //create a list of opponents from player names
-			removeablePlayersTEST.add(player); //add current player to list for removal from current and future player's opponents lists
-			opponents.removeAll(removeablePlayersTEST); //remove removable players from current player's opponents list
+			pairedPlayers.add(player); //add current player to list for removal from current and future player's opponents lists
+			opponents.removeAll(pairedPlayers); //remove already paired players from current player's opponents list
 			
 			//if there are still opponents to allocate, add player and list of player's opponents to map:
-			if(!opponents.isEmpty()) { playerToOpponentsTEST.put(player, opponents); } 
+			if(!opponents.isEmpty()) { playerToOpponents.put(player, opponents); } 
 			
 			System.out.println("opponents: " + opponents); //++++++++++++++++++++
 		});
 		
-		
-		System.out.println("playerToOpponentsTEST: " + playerToOpponentsTEST); //+++++++++++++++++++
-		
-		/*
-		Map<String, List<String>>playerToOpponents  = new HashMap<String, List<String>>(); //players and a list of their opponents
-		List<String>removeablePlayers = new ArrayList<String>(); //players already assigned a list of their opponents
-		
-		for (Entry<String, Player> entry : nameToPlayer.entrySet()) { //for each player in map:
-			
-			List<String>opponents = new ArrayList<String>(nameToPlayer.keySet()); //create a list of opponents from player names
-			removeablePlayers.add(entry.getKey()); //add current player to list for removal from current and future player's opponents lists
-			opponents.removeAll(removeablePlayers); //remove removable players from current player's opponents list
-			
-			//if there are still opponents to allocate, add player and list of player's opponents to map:
-			if(!opponents.isEmpty()) { playerToOpponents.put(entry.getKey(), opponents); } 
-			
-			
-			
-			
-			System.out.println("opponents: " + opponents); //++++++++++++++++++++
-		}
-		
-		System.out.println("playerToOpponents: " + playerToOpponents); //+++++++++++++++++++
-		
-		for (Entry<String, List<String>> entry : playerToOpponents.entrySet()) { 
-			
-			
-			
-		}
-		 	*/
-		
-		
+		System.out.println("playerToOpponentsTEST: " + playerToOpponents); //+++++++++++++++++++
 	}
 	
 	

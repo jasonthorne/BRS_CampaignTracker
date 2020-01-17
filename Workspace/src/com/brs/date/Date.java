@@ -7,9 +7,7 @@ public interface Date {
 	
 	static String getDate() { //returns a string of current date
 		
-		LocalDate localDate = LocalDate.now(); //date
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //formatter
-		
-		return dateTimeFormatter.format(localDate); //return formatted date
+		return dateTimeFormatter.format(LocalDate.now()); //return current formatted date
 	}
 }

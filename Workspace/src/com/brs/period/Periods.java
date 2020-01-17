@@ -8,7 +8,7 @@ import java.util.ListIterator;
 public interface Periods {
 	
 	//creates and returns a list of a range of Periods, based upon the Periods provided to it:
-	public static List<Period>getPeriods(Period first, Period last){
+	public static List<Period>getPeriods(Period first, Period last) {
 		
 		List<Period>periods = new ArrayList<Period>(); //holds the range of periods
 		ListIterator<Year>yearsIterator = Arrays.asList(Year.values()).listIterator(); //years iterator
@@ -18,7 +18,7 @@ public interface Periods {
 		boolean canAdd = false; //flag for adding values
 		
 		outerWhile: 
-		while(yearsIterator.hasNext()){ //loop through years
+		while(yearsIterator.hasNext()) { //loop through years
 			
 			blocksIterator = Arrays.asList(Block.values()).listIterator(); //(re)set blocks iterator
 			currYear = yearsIterator.next(); //advance to next year
@@ -30,7 +30,7 @@ public interface Periods {
 				//if found start date, allow adding of values:
 				if(currBlock.equals(first.getBlock()) && currYear.equals(first.getYear())) { canAdd = true; }
 				
-				if(canAdd){ 
+				if(canAdd) { 
 					//create a Period with current values, and add to list of periods:
 					periods.add(new Period(currBlock, currYear)); 
 					//stop when final target Period is added:
