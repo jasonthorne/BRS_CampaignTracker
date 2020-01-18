@@ -24,14 +24,13 @@ import com.brs.mission.MissionBuilder;
 import com.brs.period.Period;
 import com.brs.period.Year;
 
-public class Campaign { //+++++++++++change to Campaign
+public class Campaign { 
 	
 	private final String name; //name of campaign
 	private final String date = Date.getDate(); //date of creation
 	private final Event event; //historical event chosen
 	private Period period; //current period represented
 	private final ListIterator<Period>periodsIterator; //iterator for advancing period
-	
 	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved  ////+++++++MAYBE USE SET HERE INSTEAD OF HASHMAP - then use streams for playing about with it.
 	
 	//=======================================months 1 - 4. after month 4, then move one period
@@ -42,9 +41,11 @@ public class Campaign { //+++++++++++change to Campaign
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
 	
 	//=======================================
+	private List<List<String>>pairings = new ArrayList<List<String>>(); //combinations of player pairings 
 	
+	/////////++++++++++++++++missions: ++++++++++++++++++++++++
+	private Map<Period, List<Mission>>periodToMission = new HashMap<Period, List<Mission>>(); 
 	
-/////////++++++++++++++++CURRENT mission: ++++++++++++++++++++++++
 	////////////////////private Map<Mission, List<Player>>missionToPlayers = new HashMap<Mission, List<Player>>(); //map of current missions
 	
 	public Campaign(EventName eventName) {
@@ -91,22 +92,63 @@ public class Campaign { //+++++++++++change to Campaign
 	
 	public void makeMissions(){
 		
-		Map<String, String>playerToOpponent = new HashMap<String, String>(); //players and an opponent
+		List<List<String>>pairings2 = new ArrayList<List<String>>(pairings); //combinations of player pairings 
 		
-		for (Entry<String, List<String>> entry : playerToOpponents.entrySet()) {
-			System.out.println(entry.getKey() + " - " + entry.getValue());
+		List<List<String>>usedPairings = new ArrayList<List<String>>();
+		
+		List<String>pairing;
+		
+		for(int i=0; i<(nameToPlayer.size()/2);i++) {
+			
+			pairing = pairings2.remove(new Random().nextInt(pairings2.size()));
+			
+			//make mission here, adding pairing ++++++++++++++++++++++++++++++++++
+			System.out.println("pairing: " + pairing + " left: "+ pairings2);
+			
+			usedPairings.add(pairing);
+			
+			pairing.forEach(player -> {
+				pairings2.removeIf(n -> (n.contains(player)));
+			});
+			
 		}
 		
+		System.out.println("usedPairings: " + usedPairings);
 		
-	}
-	//++++++++++++THESE LISTS MAY NEED TO BE IN THE METHOD BELOW!! (or not :P)++++++++++++
-	List<List<String>>pairings = new ArrayList<List<String>>();
 	
-	Map<String, List<String>>playerToOpponents = new HashMap<String, List<String>>(); //players and a list of their opponents
-	List<String>pairedPlayers = new ArrayList<String>(); //players assigned a list of their opponents
+		System.out.println("pairings2: "+ pairings2);
+		
+		
+		pairings.removeAll(usedPairings); //remove all used pairings from pairings
+		
+		System.out.println("pairings: " + pairings);
+		
+		//make playernum /2 missions
+		
+		//randomly grab a pairing, 
+		//removing allother instances of that pairing as names.
+		
+		
+	
+		
+		//////pairings.removeIf(n -> (n.contains("A"))); //BOOM!!! :)
+		
+		/* 
+		 * https://www.baeldung.com/java-remove-value-from-list
+		 */
+	}
+	
+	
+	
+
+	/////////////////Map<String, List<String>>playerToOpponents = new HashMap<String, List<String>>(); //players and a list of their opponents
+	
 	
 	//public void makePairings(String... players){ //++++++++++++++++++PASS IN THE LIST INSTEAD SO YOU CAN ADD A NEW PLAYER (with maybe a bye) AT A LATER POINT
 	public void makePairings(){ 
+		
+		//players assigned a list of their opponents:
+		List<String>pairedPlayers = new ArrayList<String>();
 		
 		//list of player's names to draw pairings from:
 		List<String>unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
@@ -117,13 +159,14 @@ public class Campaign { //+++++++++++change to Campaign
 		unpairedPlayers.forEach(player ->{
 			
 			List<String>opponents = new ArrayList<String>(unpairedPlayers); //create a list of opponents from player names
-			pairedPlayers.add(player); //add current player to list for removal from current and future player's opponents lists
+			pairedPlayers.add(player); //add current player to list, for removal from current (and future) player's opponents list
 			opponents.removeAll(pairedPlayers); //remove already paired players from current player's opponents list
 			
 			//if there are still opponents to allocate, add player and list of player's opponents to map:
 			if(!opponents.isEmpty()) { 
 				
-				playerToOpponents.put(player, opponents); 
+				///////////////////playerToOpponents.put(player, opponents); 
+			
 				
 				opponents.forEach(opponent ->{
 					pairings.add(new ArrayList<String>(Arrays.asList(player, opponent)));
@@ -135,7 +178,7 @@ public class Campaign { //+++++++++++change to Campaign
 			
 		});
 		
-		System.out.println("playerToOpponentsTEST: " + playerToOpponents); //+++++++++++++++++++
+		////////////////System.out.println("playerToOpponentsTEST: " + playerToOpponents); //+++++++++++++++++++
 		
 		/*
 		 * randomly pick a key
@@ -143,7 +186,10 @@ public class Campaign { //+++++++++++change to Campaign
 		 * then remove all instances of keys an values
 		 */
 		
-		System.out.println("pairings: " + pairings); //+++++++++++++++++++
+		
+		///////////////////pairings.removeIf(n -> (n.contains("A"))); //BOOM!!! :)
+		
+		System.out.println("pairings: " + pairings); //+++++++++++++++++++students.removeIf(n -> (n.charAt(0) == 'A')); 
 	}
 	
 	
