@@ -100,7 +100,7 @@ public class Campaign { //+++++++++++change to Campaign
 		
 	}
 	//++++++++++++THESE LISTS MAY NEED TO BE IN THE METHOD BELOW!! (or not :P)++++++++++++
-	//////////List<List<String>>pairings = new ArrayList<List<String>>();
+	List<List<String>>pairings = new ArrayList<List<String>>();
 	
 	Map<String, List<String>>playerToOpponents = new HashMap<String, List<String>>(); //players and a list of their opponents
 	List<String>pairedPlayers = new ArrayList<String>(); //players assigned a list of their opponents
@@ -121,9 +121,17 @@ public class Campaign { //+++++++++++change to Campaign
 			opponents.removeAll(pairedPlayers); //remove already paired players from current player's opponents list
 			
 			//if there are still opponents to allocate, add player and list of player's opponents to map:
-			if(!opponents.isEmpty()) { playerToOpponents.put(player, opponents); } 
+			if(!opponents.isEmpty()) { 
+				
+				playerToOpponents.put(player, opponents); 
+				
+				opponents.forEach(opponent ->{
+					pairings.add(new ArrayList<String>(Arrays.asList(player, opponent)));
+				});
+				
+			} 
 			
-			System.out.println("opponents: " + opponents); //++++++++++++++++++++
+			System.out.println("player: " + player + ". opponents: " + opponents); //++++++++++++++++++++
 			
 		});
 		
@@ -135,7 +143,7 @@ public class Campaign { //+++++++++++change to Campaign
 		 * then remove all instances of keys an values
 		 */
 		
-		//System.out.println("pairings: " + pairings); //+++++++++++++++++++
+		System.out.println("pairings: " + pairings); //+++++++++++++++++++
 	}
 	
 	
