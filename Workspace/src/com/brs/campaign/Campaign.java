@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
@@ -77,7 +78,36 @@ public class Campaign {
 		
 	}
 	
+	
+	Map<String, List<String>>playerToOpponents = new TreeMap<String, List<String>>(); //+++++++++++TEST FOR BELOW
+	
 	public void setOpponents(){
+		
+		
+		//List<String>keys = new ArrayList<String>(nameToPlayer.keySet());
+		//List<String>values = new ArrayList<String>(nameToPlayer.keySet().remove(arg0));
+		
+		List<String>players = new ArrayList<String>(nameToPlayer.keySet());
+		
+		//if odd number of players, add a bye:
+		if(players.size()%2==1) { players.add(BYE); }
+		
+		players.forEach(player ->{
+			
+			List<String>opps = new ArrayList<String>(players);
+			opps.remove(player);
+			
+			///System.out.println("opps are: " + opps);
+			playerToOpponents.put(player, opps);
+			
+		});
+		
+		
+		
+		//System.out.println("opps are: " + opps);
+		//(new ArrayList<String>(nameToPlayer.keySet()));
+		
+		
 		for (Entry<String, Player> entry : nameToPlayer.entrySet()) { //for each player in map:
 			List<String>opponents = new ArrayList<String>(nameToPlayer.keySet()); //create a list of opponents from player names
 			opponents.remove(entry.getKey()); //remove current player from list
@@ -86,52 +116,116 @@ public class Campaign {
 			//=========================
 			entry.getValue().setCouldPlayNow(opponents); //set player's list of potential opponents
 			//==========================
+			
+			//==========================================================================
+			/*
+			 * 	MAKE MAP, HERE OF PLAYER AND OPPONENTS.
+			 * MAKE PAIRING FROM RANDOM KEY AND A RANDOM ONE OF ITS VALUES,
+			 * REMOVE THAT ENTRY AND ITS VALUE ENTRY AND ALL INSTANCES OF BOTH KEY AND VAL FROM ALL OTHER MAPS
+			 * 
+			 * return the values to other key's hashmaps after picking though. 
+			 * RINSE AND REPEAT,PICKING RANDOM KEY, AND A RANDOM VAL FROM IT, UNTILL ALL KEYS HAVE HAD PAIRS MADE FROM THEM 
+			 * 
+			 * THIS ***SHOULD*** BE US SORTED!!!! HOPEFULLY :p
+			 * 
+			 */
+			//playerToOpponents.put(entry.getKey(), opponents);
+			
+			
+			
+		
+			//===========================================================================
 		}
+		
+		System.out.println("playerToOpponents: " + playerToOpponents);
+		
+		
 	}
 	
 	
 	public void makeMissions(){
 		
-		List<List<String>>pairings2 = new ArrayList<List<String>>(pairings); //combinations of player pairings 
+		List<List<String>>pairingsCOPY = new ArrayList<List<String>>(pairings); //combinations of player pairings 
+		//Collections.shuffle(pairings2);
+		System.out.println("pairingsCOPY: " + pairingsCOPY);
 		
 		List<List<String>>usedPairings = new ArrayList<List<String>>();
 		
 		List<String>pairing;
 		
-		for(int i=0; i<(nameToPlayer.size()/2);i++) {
+		/*
+		 * have duplicates of each set. (A,B) (B,A)
+		 * then go from A - F and randomly grab an A at either index 0 or 1, then delete all other A instances (from BOTH indexes)
+		 * then go rinse and repeat
+		 */
+		
+		//==============================================================================
+		
+		/*
+		List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //+++++++++++++++++
+		
+		//long randIndex = Arrays.asList(0,1);
+		
+		///players.forEach(player ->{
+		for(int i=0; i<players.size();i++) {
 			
-			pairing = pairings2.remove(new Random().nextInt(pairings2.size()));
+			//Collections.shuffle(pairings2);
+			//System.out.println("pairings2: " + pairings2);
+			
+			String player = players.get(i); //ughhhh!
+			
+			List<String>pairingpTEST = Arrays.asList(pairings2.get(p))	//((int)(Math.random()*1)));
+			//pairing = pairings2.remove(new Random().nextInt(pairings2.size()));
+			
+					
+		
+			
+			//pairing = pairings2.remove(new Random().nextInt(pairings2.size()));
 			
 			//make mission here, adding pairing ++++++++++++++++++++++++++++++++++
-			System.out.println("pairing: " + pairing + " left: "+ pairings2);
+			System.out.println("player is: " + player);
+			///////////System.out.println("pairingpTEST: " + pairingpTEST);
+			
+			//////////////usedPairings.add(pairingpTEST);
+			
+			pairing.forEach(pairedPlayer -> {
+				pairings2.removeIf(n -> (n.contains(pairedPlayer)));
+				/////////System.out.println("player is: " + player);
+			});
+	
+		}*/
+	
+		
+		
+		for(int i=0; i<(nameToPlayer.size()/2);i++) {
+			
+			pairing = pairingsCOPY.remove(new Random().nextInt(pairingsCOPY.size()));
+			
+			//make mission here, adding pairing ++++++++++++++++++++++++++++++++++
+			System.out.println("picked: " + pairing + " left: "+ pairingsCOPY);
 			
 			usedPairings.add(pairing);
 			
 			pairing.forEach(player -> {
-				pairings2.removeIf(n -> (n.contains(player)));
+				pairingsCOPY.removeIf(n -> (n.contains(player)));
+				/////////System.out.println("player is: " + player);
 			});
-			
+	
 		}
 		
-		System.out.println("usedPairings: " + usedPairings);
+		//=========================+++++++++++++++++
 		
-	
-		System.out.println("pairings2: "+ pairings2);
+		
+		System.out.println("usedPairings: " + usedPairings);
+		System.out.println("pairingsCOPY: "+ pairingsCOPY);
 		
 		
 		pairings.removeAll(usedPairings); //remove all used pairings from pairings
 		
 		System.out.println("pairings: " + pairings);
 		
-		//make playernum /2 missions
-		
-		//randomly grab a pairing, 
-		//removing allother instances of that pairing as names.
-		
 		
 	
-		
-		//////pairings.removeIf(n -> (n.contains("A"))); //BOOM!!! :)
 		
 		/* 
 		 * https://www.baeldung.com/java-remove-value-from-list
@@ -170,6 +264,7 @@ public class Campaign {
 				
 				opponents.forEach(opponent ->{
 					pairings.add(new ArrayList<String>(Arrays.asList(player, opponent)));
+					//pairings.add(new ArrayList<String>(Arrays.asList(opponent, player))); /////////////++++++++++add reversed list
 				});
 				
 			} 
@@ -189,7 +284,7 @@ public class Campaign {
 		
 		///////////////////pairings.removeIf(n -> (n.contains("A"))); //BOOM!!! :)
 		
-		System.out.println("pairings: " + pairings); //+++++++++++++++++++students.removeIf(n -> (n.charAt(0) == 'A')); 
+		/////////////////////////System.out.println("pairings: " + pairings); //+++++++++++++++++++students.removeIf(n -> (n.charAt(0) == 'A')); 
 	}
 	
 	

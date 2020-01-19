@@ -605,8 +605,8 @@ public class Main {
 		
 		///////////////campaign.test();
 		
-		campaign.setOpponents();
 		
+		//campaign.setOpponents();
 		
 		///campaign.beginTurns();
 		
@@ -654,7 +654,7 @@ public class Main {
 		
 		System.out.println();
 		
-		
+		/*
 		//=========================================================
 		List<String>list = Arrays.asList("A", "B", "C", "D", "E", "F");
 		
@@ -663,18 +663,22 @@ public class Main {
 				.distinct().limit(3).collect(Collectors.toCollection(ArrayList::new));
 				
 		System.out.println(pairings);
+	*/
+		
+		
+		/////campaign.makePairings();
+		
+		//////campaign.makeMissions();
+		
+		//campaign.makeMissions();
+		//campaign.makeMissions();
+		//campaign.makeMissions();
+		//campaign.makeMissions();
+		
+		
+		
 	
-		
-		
-		campaign.makePairings();
-		
-		campaign.makeMissions();
-		
-		
-		
-		
-		
-		
+		campaign.setOpponents();
 		
 		
 		

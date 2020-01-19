@@ -21,7 +21,7 @@ public class Soviet extends AirForce{
 	//Soviet models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.HURRICANE_II, Model.IL_2M3_STURMOVIK, Model.LAGG_3, Model.LAVOCHKIN_LA_5FN, Model.MIG_3,
-			Model.P_39_AIRCOBRA, Model.P_63_KINGCOBRA, Model.POLIKARPOV_I_15, Model.POLIKARPOV_I_16, Model.POLIKARPOV_I_153,
+			Model.P_39_AIRACOBRA, Model.P_63_KINGCOBRA, Model.POLIKARPOV_I_15, Model.POLIKARPOV_I_16, Model.POLIKARPOV_I_153,
 			Model.YAK_1, Model.YAK_3, Model.YAK_7B, Model.YAK_9D, Model.YAK_9U);
 	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
@@ -54,7 +54,7 @@ public class Soviet extends AirForce{
 			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.EARLY, Year.FORTY_TWO));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.LIMIT);
 			  break;
-		  case P_39_AIRCOBRA:
+		  case P_39_AIRACOBRA:
 			  periods = Periods.getPeriods(new Period(Block.LATE, Year.FORTY_TWO), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.AUTO, Status.LIMIT);

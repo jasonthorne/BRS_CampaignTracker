@@ -24,7 +24,7 @@ public class UnitedStates extends AirForce{
 	//UnitedStates models of plane:
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.F4F_WILDCAT, Model.F4U_CORSAIR, Model.F6F_HELLCAT, Model.P_38E_LIGHTNING, Model.P_38J_LIGHTNING, 
-			Model.P_39_AIRCOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
+			Model.P_39_AIRACOBRA, Model.P_40B_WARHAWK, Model.P_40E_TOMAHAWK, Model.P_40N_KITTYHAWK, Model.P_47C_THUNDERBOLT, 
 			Model.P_47D_THUNDERBOLT, Model.P_51B_MUSTANG, Model.P_51D_MUSTANG);
 
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
@@ -54,7 +54,7 @@ public class UnitedStates extends AirForce{
 			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_THREE), new Period(Block.MID, Year.FORTY_FIVE));
 			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO);
 			  break;
-		  case P_39_AIRCOBRA:
+		  case P_39_AIRACOBRA:
 			  periods = Periods.getPeriods(new Period(Block.MID, Year.FORTY_ONE), new Period(Block.LATE, Year.FORTY_FOUR));
 			  statuses = Arrays.asList(Status.LIMIT, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO, Status.AUTO,
 			  Status.AUTO, Status.AUTO, Status.AUTO, Status.LIMIT);

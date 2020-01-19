@@ -26,3 +26,65 @@ df
 ef
 
 
+[A, B], [A, C], [A, D], [A, E], [A, F], [B, C], [B, D], [B, E], [B, F], [C, D], [C, E], [C, F], [D, E], [D, F], [E, F]]
+[B, A], [C, A], [D, A], [E, A], [F, A], [C, B], [D, B], [E, B], [F, B], [D, C], [E, C], [F, C], [E, D], [F, D], [F, E]]
+
+//each letter picks a random letter associated with it. 
+
+A(ab,ac,ad,ae,af)
+B(ba,bc,bd,ae,af)
+C....
+
+
+
+A(ab,ac,ad,	ba,ca,da)
+B(ba,bc,bd,	ab,cb,db)
+C(ca,cb,cd,	ac,bc,dc)
+D(da,db,dc,	ad,bd,cd)
+
+
+A() index[0]: ab - 5 gone
+B()
+C(cd,	,dc)
+D(dc,	cd)
+
+
+//=================================
+
+
+
+randomly pick a key, randomly pick a val from that key.
+
+then remove that key and key of picked value, and each instance of those characters in every other values list.
+
+A=[B, C, D, E, F], B=[A, C, D, E, F], C=[A, B, D, E, F], D=[A, B, C, E, F], E=[A, B, C, D, F], F=[A, B, C, D, E]}
+
+
+AB CD EF
+
+THEN during repairing, replace the keys of both picked chars, but remove the picked characters from eachother's values list. ie: 
+
+picked AB:
+A=[B, C, D, E, F], B=[A, C, D, E, F]
+
+A & B value lists are now:
+
+A=[C, D, E, F], B=[C, D, E, F]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

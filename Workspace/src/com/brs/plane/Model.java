@@ -12,7 +12,7 @@ public enum Model {
 	KI_84_HAYATE("KI-84 Hayate"), KI_100_HIEN("KI-100 Hien"), LAGG_3("LaGG-3"), LAVOCHKIN_LA_5FN("Lavochkin La-5FN"), 
 	ME_262_A("Me 262 A"), ME_262_B("Me 262 B"), MIG_3("MiG-3"), MOSQUITO_II("Mosquito II"), 
 	MOSQUITO_VI("Mosquito VI"), N1K1_J_SHIDEN("N1K1-J Shiden"), N1K2_J_SHIDEN_KAI("N1K2-J Shiden-Kai"), P_38E_LIGHTNING("P-38E Lightning"), 
-	P_38J_LIGHTNING("P-38J Lightning"), P_39_AIRCOBRA("P-39 Aircobra"), P_40B_WARHAWK("P-40B Warhawk"), P_40E_TOMAHAWK("P-40E Tomahawk"), 
+	P_38J_LIGHTNING("P-38J Lightning"), P_39_AIRACOBRA("P-39 Airacobra"), P_40B_WARHAWK("P-40B Warhawk"), P_40E_TOMAHAWK("P-40E Tomahawk"), 
 	P_40N_KITTYHAWK("P-40N Kittyhawk"), P_47C_THUNDERBOLT("P-47C Thunderbolt"), P_47D_THUNDERBOLT("P-47D Thunderbolt"), P_51B_MUSTANG("P-51B Mustang"),
 	P_51D_MUSTANG("P-51D Mustang"), P_63_KINGCOBRA("P-63 Kingcobra"), POLIKARPOV_I_15("Polikarpov I-15"), POLIKARPOV_I_16("Polikarpov I-16"), 
 	POLIKARPOV_I_153("Polikarpov I-153"), SPITFIRE_II("Spitfire II"), SPITFIRE_V("Spitfire V"), SPITFIRE_IX("Spitfire IX"), 
