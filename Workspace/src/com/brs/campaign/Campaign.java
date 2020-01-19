@@ -84,9 +84,6 @@ public class Campaign {
 	public void setOpponents(){
 		
 		//----------------make map of players and their potential opponents
-		//List<String>keys = new ArrayList<String>(nameToPlayer.keySet());
-		//List<String>values = new ArrayList<String>(nameToPlayer.keySet().remove(arg0));
-		
 		List<String>players = new ArrayList<String>(nameToPlayer.keySet());
 		
 		//if odd number of players, add a bye:
@@ -94,49 +91,75 @@ public class Campaign {
 		
 		players.forEach(player ->{
 			
-			List<String>opps = new ArrayList<String>(players);
-			opps.remove(player);
+			List<String>opponents = new ArrayList<String>(players);
+			opponents.remove(player);
 			
 			///System.out.println("opps are: " + opps);
-			playerToOpponents.put(player, opps);
+			playerToOpponents.put(player, opponents);
 			
 		});
 		
 		
 		//===================================================================
-		List<String>keys = new ArrayList<String>(playerToOpponents.keySet());
+		//List<List<String>>pairingsNEW = new ArrayList<List<String>>(); //combinations of player pairings
+		//Map<String, String>pairingsNEW = new HashMap<String, String>(); //combinations of player pairings 
+		Map<String, List<String>>pairingsNEW = new HashMap<String, List<String>>(); //combinations of player pairings 
+		
+		
+		//list of player 1 options:
+		List<String>player1s = new ArrayList<String>(playerToOpponents.keySet());
+		
 		//List<String>vals = new ArrayList<String>();
+		//List<String>pair;
 		
 		//pairing test:
 		List<String>pairingsTEST = new ArrayList<String>();
 		
 		for(int i=0; i<(players.size()/2);i++) {
 			
-			String p1 = keys.get(new Random().nextInt(keys.size())); 
+			
+			String p1 = player1s.get(new Random().nextInt(player1s.size())); 
 			System.out.println("p1: " + p1);
 			
-			List<String>values = playerToOpponents.get(p1);
+			List<String>player2s = playerToOpponents.get(p1);
 			
-			String p2 = values.get(new Random().nextInt(values.size())); 
+			String p2 = player2s.get(new Random().nextInt(player2s.size())); 
+			//String p2 = playerToOpponents.get(p1).get(new Random().nextInt(player2s.size())); 
 			System.out.println("p2: " + p2);
 			
 			///-------------
+			//add pairings (in both combinations) to list of pairings:
+			//pairingsNEW.add(new ArrayList<String>(Arrays.asList(p1, p2)));
+			//pairingsNEW.add(new ArrayList<String>(Arrays.asList(p2, p1))); //reversed list#
+			//.................
+			//List<String>newP1 = new ArrayList<String>(pairingsNEW.get(p1));
+			//newP1.add(e)
+			//newP1.add(p2);
 			
+			//System.out.println("NEW p1: " + newP1);
+			
+			//List<String>newP2 = new ArrayList<String>(pairingsNEW.get(p2));
+			//newP2.add(p1);
+			//........................
+			//pairingsNEW.replace(p1, newP1); //////////////THESE MAPS NEED TO TAKE A LIST OF PERVIOUS OPPONENTS FOR REMOVING IN NEXT PAIRING. - this way it merely gets overriden, which means previous opps are available again
+			//pairingsNEW.replace(p2, newP2);
+			///////////pairingsNEW.put(p1, (Arrays.asList(p2))); 
+			//////////////pairingsNEW.put(p2, (Arrays.asList(p1)));
+			
+			
+			pairingsNEW.put(p1, (Arrays.asList(p2)));
+			pairingsNEW.put(p2, (Arrays.asList(p1)));
 			
 			//remove picked keys from keys:
-			keys.removeAll(Arrays.asList(p1, p2));
-			System.out.println("keys after removal: " + keys);
+			player1s.removeAll(Arrays.asList(p1, p2));
+			System.out.println("player1s after removal: " + player1s);
 			
 			//remove picked values from hashmap:
-			//playerToOpponents.replace(p1, keys);
-			//playerToOpponents.replace(p2, keys);
-			
 			List<String>newVals = new ArrayList<String>(playerToOpponents.keySet());
 			newVals.removeAll(Arrays.asList(p1, p2));
 			
-			
-			playerToOpponents.values().forEach(value ->{
-				value.removeAll(Arrays.asList(p1, p2));
+			playerToOpponents.values().forEach(oppsList ->{
+				oppsList.removeAll(Arrays.asList(p1, p2));
 			});
 			
 			///////playerToOpponents.replaceAll((key, oldVals) -> newVals);
@@ -149,16 +172,28 @@ public class Campaign {
 		
 		System.out.println("playerToOpponents: " + playerToOpponents);
 		
+		System.out.println("pairingsNEW: " + pairingsNEW);
+		
+		//===================================re-making playerToOpponents for next pairing:
+		
+		players.forEach(player ->{
+			
+			List<String>opponents = new ArrayList<String>(players);
+			opponents.remove(player);
+			
+			//-----------/
+			//opponents.remove(pairingsNEW.get(player)); //==========remove previously selected opponent
+			opponents.removeAll(pairingsNEW.get(player)); //==========remove previously selected opponent
+			
+			//----------------
+			///System.out.println("opps are: " + opps);
+			playerToOpponents.put(player, opponents);
+			
+		});
 		
 		
+		System.out.println("playerToOpponents: " + playerToOpponents);
 		
-		
-		
-		
-		
-		
-		//System.out.println("opps are: " + opps);
-		//(new ArrayList<String>(nameToPlayer.keySet()));
 		
 		
 		for (Entry<String, Player> entry : nameToPlayer.entrySet()) { //for each player in map:
@@ -314,7 +349,7 @@ public class Campaign {
 				
 				///////////////////playerToOpponents.put(player, opponents); 
 			
-				
+				//+++++++++++++++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 				opponents.forEach(opponent ->{
 					pairings.add(new ArrayList<String>(Arrays.asList(player, opponent)));
 					//pairings.add(new ArrayList<String>(Arrays.asList(opponent, player))); /////////////++++++++++add reversed list
