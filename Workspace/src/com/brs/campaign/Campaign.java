@@ -83,7 +83,7 @@ public class Campaign {
 	
 	public void setOpponents(){
 		
-		
+		//----------------make map of players and their potential opponents
 		//List<String>keys = new ArrayList<String>(nameToPlayer.keySet());
 		//List<String>values = new ArrayList<String>(nameToPlayer.keySet().remove(arg0));
 		
@@ -101,6 +101,59 @@ public class Campaign {
 			playerToOpponents.put(player, opps);
 			
 		});
+		
+		
+		//===================================================================
+		List<String>keys = new ArrayList<String>(playerToOpponents.keySet());
+		//List<String>vals = new ArrayList<String>();
+		
+		//pairing test:
+		List<String>pairingsTEST = new ArrayList<String>();
+		
+		for(int i=0; i<(players.size()/2);i++) {
+			
+			String p1 = keys.get(new Random().nextInt(keys.size())); 
+			System.out.println("p1: " + p1);
+			
+			List<String>values = playerToOpponents.get(p1);
+			
+			String p2 = values.get(new Random().nextInt(values.size())); 
+			System.out.println("p2: " + p2);
+			
+			///-------------
+			
+			
+			//remove picked keys from keys:
+			keys.removeAll(Arrays.asList(p1, p2));
+			System.out.println("keys after removal: " + keys);
+			
+			//remove picked values from hashmap:
+			//playerToOpponents.replace(p1, keys);
+			//playerToOpponents.replace(p2, keys);
+			
+			List<String>newVals = new ArrayList<String>(playerToOpponents.keySet());
+			newVals.removeAll(Arrays.asList(p1, p2));
+			
+			
+			playerToOpponents.values().forEach(value ->{
+				value.removeAll(Arrays.asList(p1, p2));
+			});
+			
+			///////playerToOpponents.replaceAll((key, oldVals) -> newVals);
+			
+			System.out.println("playerToOpponents after removal: " + playerToOpponents);
+					
+		}
+		
+
+		
+		System.out.println("playerToOpponents: " + playerToOpponents);
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -137,7 +190,7 @@ public class Campaign {
 			//===========================================================================
 		}
 		
-		System.out.println("playerToOpponents: " + playerToOpponents);
+		//System.out.println("playerToOpponents: " + playerToOpponents);
 		
 		
 	}
