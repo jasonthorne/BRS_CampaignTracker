@@ -675,12 +675,12 @@ public class Main {
 		//campaign.makeMissions();
 		//campaign.makeMissions();
 		
-		
+		campaign.testMakeUsedPairings();
 		
 	
 		campaign.setOpponents();
 		
-		campaign.setOpponents();
+		//campaign.setOpponents();
 		//campaign.setOpponents();
 		
 	}
