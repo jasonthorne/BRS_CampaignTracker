@@ -132,8 +132,13 @@ public class Campaign {
 			//pairingsNEW.add(new ArrayList<String>(Arrays.asList(p1, p2)));
 			//pairingsNEW.add(new ArrayList<String>(Arrays.asList(p2, p1))); //reversed list#
 			//.................
-			//List<String>newP1 = new ArrayList<String>(pairingsNEW.get(p1));
-			//newP1.add(e)
+			
+			pairingsNEW.put(p1, (Arrays.asList(p2))); /////////////map needs filled b4 it have other elements added to its list. +++++++++
+			pairingsNEW.put(p2, (Arrays.asList(p1)));
+			
+			List<String>newP1 = new ArrayList<String>();
+			
+			//////newP1.add(pair)
 			//newP1.add(p2);
 			
 			//System.out.println("NEW p1: " + newP1);
@@ -147,8 +152,7 @@ public class Campaign {
 			//////////////pairingsNEW.put(p2, (Arrays.asList(p1)));
 			
 			
-			pairingsNEW.put(p1, (Arrays.asList(p2)));
-			pairingsNEW.put(p2, (Arrays.asList(p1)));
+			
 			
 			//remove picked keys from keys:
 			player1s.removeAll(Arrays.asList(p1, p2));
