@@ -85,8 +85,10 @@ public class Campaign {
 	
 	public void testMakeUsedPairings() {
 		
+		List<String>emptyListTEST = new ArrayList<String>();
+		
 		for (Entry<String, Player> entry : nameToPlayer.entrySet()) { //for each player in map:
-			usedPairings.put(entry.getKey(), new ArrayList<String>(Arrays.asList(null)));
+			usedPairings.put(entry.getKey(), new ArrayList<String>(emptyListTEST));
 		}
 	}
 	
@@ -170,17 +172,23 @@ public class Campaign {
 			p1UsedPairings.add(p2); //add p2 to p1usedPairings
 			
 			List<String>p2UsedPairings = new ArrayList<String>(usedPairings.get(p2));
-			p1UsedPairings.add(p1); //add p1 to p1usedPairings
+			p2UsedPairings.add(p1); //add p1 to p1usedPairings
 			
-			usedPairings.put(p1, p1UsedPairings); 
+			usedPairings.put(p1, p1UsedPairings); //??????????????????????????????????????????????????????
 			usedPairings.put(p2, p2UsedPairings);
 			
-			System.out.println("p1UsedPairings " + p1UsedPairings);
+			System.out.println("usedPairings AFTER edit================== " + usedPairings);
+			////System.out.println("p1UsedPairings " + p1UsedPairings);
+			
+
+			
 			
 			////pairingsNEW.put(p1, (Arrays.asList(p2))); /////////////map needs filled b4 it have other elements added to its list. +++++++++
 			/////pairingsNEW.put(p2, (Arrays.asList(p1)));
 			////////////usedPairings.put(p1, (Arrays.asList(p2))); ============
 			////////////////usedPairings.put(p2, (Arrays.asList(p1))); =============
+			
+			
 			
 			//remove picked keys from keys:
 			player1s.removeAll(Arrays.asList(p1, p2));
@@ -213,19 +221,21 @@ public class Campaign {
 			opponents.remove(player);
 			
 			//----------------
-			//opponents.remove(pairingsNEW.get(player)); //==========remove previously selected opponent
+			System.out.println("USED PAIRINGS for player: " + player + "" + usedPairings.get(player));
 			opponents.removeAll(usedPairings.get(player)); //==========remove previously selected opponent
 			
 			//----------------
-			///System.out.println("opps are: " + opps);
+			System.out.println("opps are@@@@@@@@@@@@@@: " + opponents); //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@EACHPLAYER IS HAVING THIS ADDED!! 
 			playerToOpponents.put(player, opponents);
+			
+			System.out.println("playerToOpponents:###################### " + playerToOpponents);
 			
 		});
 		
 		
 		System.out.println("playerToOpponents: " + playerToOpponents);
 		
-		
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++IGNORE BELOW!! +++++++++++++++++++++++++
 		
 		for (Entry<String, Player> entry : nameToPlayer.entrySet()) { //for each player in map:
 			List<String>opponents = new ArrayList<String>(nameToPlayer.keySet()); //create a list of opponents from player names
