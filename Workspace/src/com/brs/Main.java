@@ -680,6 +680,7 @@ public class Main {
 	
 		campaign.setOpponents();
 		
+		
 		campaign.setOpponents();
 		//campaign.setOpponents();
 		

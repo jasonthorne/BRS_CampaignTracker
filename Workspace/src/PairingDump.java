@@ -1,3 +1,10 @@
+
+public class PairingDump {
+
+}
+
+
+/*
 package com.brs.campaign;
 
 import java.util.ArrayList;
@@ -81,21 +88,23 @@ public class Campaign {
 	
 	Map<String, List<String>>playerToOpponents = new TreeMap<String, List<String>>(); //+++++++++++TEST FOR BELOW
 	Map<String, List<String>>usedPairings = new HashMap<String, List<String>>(); //combinations of player pairings //+++++++++++++++++++++++++++++++++++++++++++++++
-	List<String>emptyListTEST = new ArrayList<String>();
+	
 	
 	public void testMakeUsedPairings() {
 		
-		
+		List<String>emptyListTEST = new ArrayList<String>();
 		
 		for (Entry<String, Player> entry : nameToPlayer.entrySet()) { //for each player in map:
 			usedPairings.put(entry.getKey(), new ArrayList<String>(emptyListTEST));
 		}
 	}
 	
-	List<String>player1s;
 	
 	public void setOpponents(){
+		
+		
 	
+		
 		//----------------make map of players and their potential opponents
 		List<String>players = new ArrayList<String>(nameToPlayer.keySet());
 		
@@ -107,7 +116,7 @@ public class Campaign {
 			List<String>opponents = new ArrayList<String>(players);
 			opponents.remove(player);
 			
-			System.out.println("opps are: " + opponents);
+			///System.out.println("opps are: " + opps);
 			playerToOpponents.put(player, opponents);
 			
 			//++++++++++++++++++++++++++++++++
@@ -124,27 +133,18 @@ public class Campaign {
 		
 		
 		//list of player 1 options:
-		//List<String>player1s = new ArrayList<String>(playerToOpponents.keySet());
-		player1s = new ArrayList<String>(playerToOpponents.keySet());
+		List<String>player1s = new ArrayList<String>(playerToOpponents.keySet());
+		
 		//List<String>vals = new ArrayList<String>();
 		//List<String>pair;
 		
 		//pairing test:
 		List<String>pairingsTEST = new ArrayList<String>();
 		
-		
-		
 		for(int i=0; i<(players.size()/2);i++) {
 			
 			String p1 = player1s.get(new Random().nextInt(player1s.size())); 
 			System.out.println("p1: " + p1);
-			
-			//--------------------------removing player 1 from player 2's opps list BEFORE player 2 is picked !!!!!!!!!!!
-			System.out.println("PLAYER1S: " + player1s);
-			
-			
-			//---------------------------
-			
 			
 			List<String>player2s = playerToOpponents.get(p1);
 			
@@ -196,7 +196,7 @@ public class Campaign {
 			////////////////usedPairings.put(p2, (Arrays.asList(p1))); =============
 			
 			
-			//??????????????????????????????++++++++++++++I THINK THIS IS IT!!! ?????????????????????????????player1cshould be removed BEFORE player 2 is picked from opps list
+			
 			//remove picked keys from keys:
 			player1s.removeAll(Arrays.asList(p1, p2));
 			System.out.println("player1s after removal: " + player1s);
@@ -271,6 +271,8 @@ public class Campaign {
 			
 		
 			//===========================================================================
+
+/*
 		}
 		
 		//System.out.println("playerToOpponents: " + playerToOpponents);
@@ -331,7 +333,7 @@ public class Campaign {
 	
 		}*/
 	
-		
+		/*
 		
 		for(int i=0; i<(nameToPlayer.size()/2);i++) {
 			
@@ -363,9 +365,9 @@ public class Campaign {
 		
 	
 		
-		/* 
-		 * https://www.baeldung.com/java-remove-value-from-list
-		 */
+		 
+		 //https://www.baeldung.com/java-remove-value-from-list
+		
 	}
 	
 	
@@ -421,6 +423,8 @@ public class Campaign {
 		///////////////////pairings.removeIf(n -> (n.contains("A"))); //BOOM!!! :)
 		
 		/////////////////////////System.out.println("pairings: " + pairings); //+++++++++++++++++++students.removeIf(n -> (n.charAt(0) == 'A')); 
+
+	/*
 	}
 	
 	
@@ -526,6 +530,7 @@ public class Campaign {
 			unpairedPlayers.remove(player2);
 			*/
 			
+/*
 			//------------------------
 			//remove player 2 from player 1 opps list:
 			System.out.println("p1 opps b4 removal: " + nameToPlayer.get(player1).getCouldPlayNow());
@@ -558,7 +563,7 @@ public class Campaign {
 			*/
 			
 			//--------------------------
-			
+/*			
 			
 			for (Entry<String, Player> entry : nameToPlayer.entrySet()) {
 				
@@ -667,8 +672,7 @@ public class Campaign {
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
-	
-	
+	/*
 	public String getName() { return name; } //get name of campaign
 	public String getDate() { return date; } //get date of creation
 	public List<AirForceName> getAirForceNames() { return event.getAirForceNames(); } //get air forces involved
@@ -723,41 +727,7 @@ public class Campaign {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	private void setMissions(){
 		
@@ -765,25 +735,7 @@ public class Campaign {
 		//create missions for each pairing, add to list of missions
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
 
 }
+
+*/

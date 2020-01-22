@@ -77,6 +77,53 @@ A=[C, D, E, F], B=[C, D, E, F]
 
 
 
+//--------------------------------------------------
+
+1 - create map of players and their potential opponents: 
+
+playerToOpponents {A=[B, C, D, E, F], B=[A, C, D, E, F], C=[A, B, D, E, F], D=[A, B, C, E, F], E=[A, B, C, D, F], F=[A, B, C, D, E]}
+
+==========
+2 - create map of players and their previously paired opponents (with initially empty lists):
+
+playerToPrevOpps {A=[], B=[], C=[], D=[], E=[], F=[]}
+
+==========
+3 - create a list of players from keys of playerToOpponents for selecting opponents from:
+
+playerOnes = new ArrayList<String>(playerToOpponents.keySet());
+
+==========
+4 - randomly select a playerOne from list of playerOnes:
+
+String playerOne = playerOnes.get(new Random().nextInt(playerOnes.size())); 
+
+==========
+5 - randomly select a playerTwo from playerOne's opponents list in playerToOpponents:
+
+List<String>playerTwos = playerToOpponents.get(playerOne);
+String playerTwo = playerTwos.get(new Random().nextInt(playerTwos.size()));
+
+==========++++++++++
+6 - remove playerOne & playerTwo from playerOnes (to prevent re-selection):
+
+playerOnes.removeAll(Arrays.asList(playerOne, playerTwo));
+
+==========
+7 - remove playerOne & playerTwo from all playerToOpponents values:
+
+==========
+8 - store playerOne & playerTwo as eachother's opponents in playerToPrevOpps:
+
+==========
+9 - remove playerOne & playerTwo from all playerToOpponents values (to prevent re-selection):
+
+==========
+10 - repeat 4 - 9 untill all round 1 pairings (# of players /2) are made 
+
+==========
+11 - repeat 4 - 9 untill all pairings (# of players /2) are made 
+
 
 
 
