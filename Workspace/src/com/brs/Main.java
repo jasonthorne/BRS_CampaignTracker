@@ -692,6 +692,13 @@ public class Main {
 		PairingTest pairingTest = new PairingTest();
 		pairingTest.setOpponents();
 		pairingTest.pairPlayers();
+		System.out.println();
+		pairingTest.updateOpponents();
+		pairingTest.pairPlayers();
+		//pairingTest.updateOpponents();
+		
+		
+		
 		
 	}
 	

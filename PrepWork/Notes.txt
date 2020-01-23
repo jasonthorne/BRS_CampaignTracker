@@ -128,10 +128,12 @@ playerOnes.removeAll(Arrays.asList(playerOne, playerTwo));
 
 
 
+A=[B, C, D, E, F], B=[A, C, D, E, F], C=[A, B, D, E, F], D=[A, B, C, E, F], E=[A, B, C, D, F], F=[A, B, C, D, E]}
 
 
+key checks the number of values left in all of its potential values.
+If one is higher than the rest, that one is NOT chosen
 
-
-
-
+foreach playerTNextOpps.values 
+	find the biggest, then use that as the partner, ELSE choose a random one.
 
