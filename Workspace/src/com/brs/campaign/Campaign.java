@@ -187,7 +187,7 @@ public class Campaign {
 			System.out.println("usedPairings AFTER edit================== " + usedPairings);
 			////System.out.println("p1UsedPairings " + p1UsedPairings);
 			
-
+			
 			
 			
 			////pairingsNEW.put(p1, (Arrays.asList(p2))); /////////////map needs filled b4 it have other elements added to its list. +++++++++

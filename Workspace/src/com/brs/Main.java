@@ -674,7 +674,8 @@ public class Main {
 		//campaign.makeMissions();
 		//campaign.makeMissions();
 		//campaign.makeMissions();
-		
+	
+		/*
 		campaign.testMakeUsedPairings();
 		
 	
@@ -683,6 +684,14 @@ public class Main {
 		
 		campaign.setOpponents();
 		//campaign.setOpponents();
+		
+		*/
+		
+		//################################################################
+		
+		PairingTest pairingTest = new PairingTest();
+		pairingTest.setOpponents();
+		pairingTest.pairPlayers();
 		
 	}
 	
