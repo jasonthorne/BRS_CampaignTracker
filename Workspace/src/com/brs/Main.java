@@ -689,16 +689,36 @@ public class Main {
 		
 		//################################################################
 		
+		
+		/*
+		 * +++++out off all possible options: if that guy has only one option left, then you pick him!! 
+		 * 
+		 * If one of youre options only has you as its available option, then pick that as your option. +++++++++++
+		 */
 		PairingTest pairingTest = new PairingTest();
+		System.out.println("--------------------------1st pairing--------------------------");
 		pairingTest.setOpponents();
 		pairingTest.pairPlayers();
+		
 		System.out.println();
+		System.out.println("--------------------------2nd pairing--------------------------");
 		pairingTest.updateOpponents();
 		pairingTest.pairPlayers();
-		//pairingTest.updateOpponents();
 		
+		System.out.println();
+		System.out.println("--------------------------3rd pairing--------------------------");
+		pairingTest.updateOpponents();
+		pairingTest.pairPlayers();
 		
+		System.out.println();
+		System.out.println("--------------------------4th pairing--------------------------");
+		pairingTest.updateOpponents();
+		pairingTest.pairPlayers();
 		
+		System.out.println();
+		System.out.println("--------------------------5th pairing--------------------------");
+		pairingTest.updateOpponents();
+		pairingTest.pairPlayers();
 		
 	}
 	

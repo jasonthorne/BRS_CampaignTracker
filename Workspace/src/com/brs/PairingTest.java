@@ -61,8 +61,12 @@ public class PairingTest {
 			//------------------------------------------------------------------------------
 			
 			
-			Map<String, Integer>playerToNumOfNextOpps = new HashMap<String, Integer>(); 
+			Map<String, Integer>playerToNumOfNextOpps = new TreeMap<String, Integer>(); 
 			//playerToNumOfNextOpps.putAll(playerTwos, );
+			
+			//if max has duplicates, ignore,
+			//else remove max from list
+		
 			
 			
 			playerTwos.forEach(val ->{
@@ -87,10 +91,23 @@ public class PairingTest {
 			
 			System.out.println("player2s before removal: " + playerTwos);
 			
-			//playerTwos.removeIf(playerTwo -> )(playerTwoWithMostOpps.get());
+			//list with player twos sorted by the amount of their own next opps 
+			List<String>sortedP = playerTwos.stream().sorted(playerToNextOppsComparator.reversed()).collect(Collectors.toList());
 			
+			if (sortedP.size() > 1) {
+				if (playerToNextOpps.get(sortedP.get(0)).size() > playerToNextOpps.get(sortedP.get(1)).size()) {
+					System.out.println("hi there!");
+					playerTwos.remove(sortedP.get(0));
+				}
+			}
+			
+			System.out.println("sortedP after removal: " + sortedP);
 			System.out.println("player2s after removal: " + playerTwos);
 			//==========================
+			
+			
+			
+			
 			
 			//----------------------------------------------------------------------------------
 			String playerTwo = playerTwos.get(new Random().nextInt(playerTwos.size()));
