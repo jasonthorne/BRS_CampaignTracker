@@ -3,11 +3,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class PairingTest {
 	
@@ -41,7 +44,7 @@ public class PairingTest {
 		//3. create a list of playerOnes for selecting opponents from:
 		List<String>playerOnes = new ArrayList<String>(players);
 		
-		System.out.println("playerOnes:" + playerOnes);
+		///System.out.println("playerOnes:" + playerOnes);
 		
 		int pairNum = players.size()/2;
 		
@@ -53,26 +56,43 @@ public class PairingTest {
 			//5 - randomly select a playerTwo from playerOne's opponents list in playerToOpponents:
 			List<String>playerTwos = playerToNextOpps.get(playerOne);
 			
-			System.out.println("playerOne+++: " + playerOne);
+			System.out.println("playerOne: " + playerOne);
 			
-			List<Integer>playerTwoVals = new ArrayList<Integer>();
+			//------------------------------------------------------------------------------
+			
 			
 			Map<String, Integer>playerToNumOfNextOpps = new HashMap<String, Integer>(); 
 			//playerToNumOfNextOpps.putAll(playerTwos, );
 			
 			
-			playerTwos.forEach(vals ->{
-				System.out.println("vals:" +vals);
-				playerTwoVals.add(playerToNextOpps.get(vals).size());
-				playerToNumOfNextOpps.put(vals, playerToNextOpps.get(vals).size());
+			playerTwos.forEach(val ->{
+				System.out.println("val:" +val);
+				playerToNumOfNextOpps.put(val, playerToNextOpps.get(val).size());
 			});
 			
 			//++++++++++++++++++now find the largest value in the hashmap and remove that from list.
 			//+++++++++++++++++++then you can still pick a random one from list (woohoo! )
 			
 			//////////System.out.println("playerTwoVals: " + playerTwoVals);
-			/////////////System.out.println("playerToNumOfNextOpps: " + playerToNumOfNextOpps);
+			System.out.println("playerToNumOfNextOpps: " + playerToNumOfNextOpps);
 			
+			//===========================
+			Comparator<String>playerToNextOppsComparator=(opp1, opp2)-> playerToNextOpps.get(opp1).size() - playerToNextOpps.get(opp2).size();
+			
+			Optional<String>playerTwoWithMostOpps = playerTwos.stream().collect(Collectors.maxBy(playerToNextOppsComparator));
+			String test =  "no max opps";
+			
+			System.out.println("player2 with the most opponents: " + playerTwoWithMostOpps.get()); //playerTwoWithMostOpps.get());
+			
+			
+			System.out.println("player2s before removal: " + playerTwos);
+			
+			//playerTwos.removeIf(playerTwo -> )(playerTwoWithMostOpps.get());
+			
+			System.out.println("player2s after removal: " + playerTwos);
+			//==========================
+			
+			//----------------------------------------------------------------------------------
 			String playerTwo = playerTwos.get(new Random().nextInt(playerTwos.size()));
 			
 			System.out.println("playerOne: " + playerOne + ". playerTwo: " + playerTwo);

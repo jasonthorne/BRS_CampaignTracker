@@ -135,5 +135,5 @@ key checks the number of values left in all of its potential values.
 If one is higher than the rest, that one is NOT chosen
 
 foreach playerTNextOpps.values 
-	find the biggest, then use that as the partner, ELSE choose a random one.
+	find the biggest, and discard that as the partner, ELSE choose a random one.
 
