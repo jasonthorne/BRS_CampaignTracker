@@ -27,7 +27,6 @@ public class PairingTest {
 	public void setOpponents() {
 		
 		players.forEach(player ->{
-			
 			List<String>opponents = new ArrayList<String>(players);
 			opponents.remove(player);
 			playerToOpponents.put(player, opponents);
@@ -39,26 +38,34 @@ public class PairingTest {
 		//System.out.println("playerToPrevOpps: " + playerToPrevOpps);
 	}
 	
+	
+	/**
+	 * If the value that I pick from my selected key causes any other value in the list to lose all of its values (when chosen as a key itself. ie is still in playerOnes list),
+	 *  then that value cant be picked.    
+	 */
+	
 	public void pairPlayers() {
+		
+		//sorts a player's opponents, in relation to the amount of their own opponents: 
+		Comparator<String>playerToNextOppsComparator=(opp1, opp2)-> playerToNextOpps.get(opp1).size() - playerToNextOpps.get(opp2).size();
 		
 		//3. create a list of playerOnes for selecting opponents from:
 		List<String>playerOnes = new ArrayList<String>(players);
 		
-		//System.out.println("playerOnes:" + playerOnes);
+		System.out.println("playerOnes:" + playerOnes);
 		
-		int pairNum = players.size()/2;
-		
-		for(int i=0; i<pairNum;i++) {
-			
+		for(int i=0, j=players.size()/2; i<j; i++) {
+	
 			//4 - randomly select a playerOne from list of playerOnes:
 			
 			//String playerOne = playerOnes.get(new Random().nextInt(playerOnes.size())); 
 			//String playerOne = null;
 			Random rand = new Random();
 			
+			//++++++++++++++++NOT FIXING PROBLEMS :P
 			//if(playerOnes.get(new Random().nextInt(playerOnes.size())) == null){
-			while(playerToNextOpps.get(playerOnes.get(rand.nextInt(playerOnes.size()))) == null){
-				System.out.println("REMOVED RAND ******************************");
+			while(playerToNextOpps.get(playerOnes.get(rand.nextInt(playerOnes.size()))).isEmpty()){
+				System.out.println("REMOVED RAND from: " + playerOnes.get(rand.nextInt(playerOnes.size())));
 				playerOnes.remove(rand.nextInt(playerOnes.size()));
 				rand = new Random();
 			}
@@ -66,34 +73,23 @@ public class PairingTest {
 			String playerOne = playerOnes.get(rand.nextInt(playerOnes.size()));
 			
 			//5 - randomly select a playerTwo from playerOne's opponents list in playerToOpponents:
-			List<String>playerTwos = playerToNextOpps.get(playerOne);
+			////////List<String>playerTwos = playerToNextOpps.get(playerOne);
+			List<String>playerTwos = playerToNextOpps.get(playerOne).stream()
+					.sorted(playerToNextOppsComparator.reversed())
+					.collect(Collectors.toList());
 			
 			System.out.println("playerOne: " + playerOne);
 			
 			//------------------------------------------------------------------------------
 			
 			
-			Map<String, Integer>playerToNumOfNextOpps = new TreeMap<String, Integer>(); 
-			//playerToNumOfNextOpps.putAll(playerTwos, );
-			
-			//if max has duplicates, ignore,
-			//else remove max from list
-		
-			
-			
+			//test print of player 2 vals:
 			playerTwos.forEach(val ->{
 				System.out.println("val:" +val);
-				playerToNumOfNextOpps.put(val, playerToNextOpps.get(val).size());
 			});
 			
-			//++++++++++++++++++now find the largest value in the hashmap and remove that from list.
-			//+++++++++++++++++++then you can still pick a random one from list (woohoo! )
-			
-			//////////System.out.println("playerTwoVals: " + playerTwoVals);
-			System.out.println("playerToNumOfNextOpps: " + playerToNumOfNextOpps);
-			
 			//===========================
-			Comparator<String>playerToNextOppsComparator=(opp1, opp2)-> playerToNextOpps.get(opp1).size() - playerToNextOpps.get(opp2).size();
+			
 			
 		
 			System.out.println("player2s before removal: " + playerTwos);
@@ -101,10 +97,13 @@ public class PairingTest {
 			//list with player twos sorted by the amount of their own next opps 
 			List<String>sortedPlayerTwos = playerTwos.stream().sorted(playerToNextOppsComparator.reversed()).collect(Collectors.toList());
 			
-			if (sortedPlayerTwos.size() > 1) {
-				if (playerToNextOpps.get(sortedPlayerTwos.get(0)).size() > playerToNextOpps.get(sortedPlayerTwos.get(1)).size()) {
+			//////////if (sortedPlayerTwos.size() > 1) {
+			if (playerTwos.size() > 1) {
+				///////////if (playerToNextOpps.get(sortedPlayerTwos.get(0)).size() > playerToNextOpps.get(sortedPlayerTwos.get(1)).size()) {
+				if (playerToNextOpps.get(playerTwos.get(0)).size() > playerToNextOpps.get(playerTwos.get(1)).size()) {
 					System.out.println("**********hi there!********");
-					playerTwos.remove(sortedPlayerTwos.get(0));
+					//////////playerTwos.remove(sortedPlayerTwos.get(0));
+					playerTwos.remove(0);
 				}
 			}
 			
