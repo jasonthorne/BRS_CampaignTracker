@@ -137,3 +137,14 @@ If one is higher than the rest, that one is NOT chosen
 foreach playerTNextOpps.values 
 	find the biggest, and discard that as the partner, ELSE choose a random one.
 
+
+
+-------------------
+
+
+https://stackoverflow.com/questions/26471421/round-robin-algorithm-implementation-java
+
+
+https://en.m.wikipedia.org/wiki/Round-robin_tournament
+
+

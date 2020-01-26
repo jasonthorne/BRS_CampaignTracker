@@ -46,8 +46,8 @@ public class PairingTest {
 	
 	public void pairPlayers() {
 		
-		//sorts a player's opponents, in relation to the amount of their own opponents: 
-		Comparator<String>playerToNextOppsComparator=(opp1, opp2)-> playerToNextOpps.get(opp1).size() - playerToNextOpps.get(opp2).size();
+		//for sorting a player's opponents, in relation to the amount of that entries' own opponents: 
+		Comparator<String>oppsComparator=(opp1, opp2)-> playerToNextOpps.get(opp1).size() - playerToNextOpps.get(opp2).size();
 		
 		//3. create a list of playerOnes for selecting opponents from:
 		List<String>playerOnes = new ArrayList<String>(players);
@@ -55,10 +55,15 @@ public class PairingTest {
 		System.out.println("playerOnes:" + playerOnes);
 		
 		for(int i=0, j=players.size()/2; i<j; i++) {
-	
+		//for(int i=0; i<playerOnes.size(); i++) {
 			//4 - randomly select a playerOne from list of playerOnes:
 			
-			//String playerOne = playerOnes.get(new Random().nextInt(playerOnes.size())); 
+			
+			
+			String playerOne = playerOnes.get(new Random().nextInt(playerOnes.size())); 
+			//String playerOne = playerOnes.get(k); 
+			
+			/*
 			//String playerOne = null;
 			Random rand = new Random();
 			
@@ -71,11 +76,12 @@ public class PairingTest {
 			}
 			
 			String playerOne = playerOnes.get(rand.nextInt(playerOnes.size()));
+			*/
 			
 			//5 - randomly select a playerTwo from playerOne's opponents list in playerToOpponents:
 			////////List<String>playerTwos = playerToNextOpps.get(playerOne);
-			List<String>playerTwos = playerToNextOpps.get(playerOne).stream()
-					.sorted(playerToNextOppsComparator.reversed())
+			List<String>playerTwos = playerToNextOpps.get(playerOne).stream() //get playerOne's opponents
+					.sorted(oppsComparator.reversed()) //sort by the amount of each entries' own opponents (from highest to lowest)
 					.collect(Collectors.toList());
 			
 			System.out.println("playerOne: " + playerOne);
@@ -95,7 +101,8 @@ public class PairingTest {
 			System.out.println("player2s before removal: " + playerTwos);
 			
 			//list with player twos sorted by the amount of their own next opps 
-			List<String>sortedPlayerTwos = playerTwos.stream().sorted(playerToNextOppsComparator.reversed()).collect(Collectors.toList());
+			//List<String>sortedPlayerTwos = playerTwos.stream().sorted(playerToNextOppsComparator.reversed()).collect(Collectors.toList());
+			
 			
 			//////////if (sortedPlayerTwos.size() > 1) {
 			if (playerTwos.size() > 1) {
@@ -106,6 +113,8 @@ public class PairingTest {
 					playerTwos.remove(0);
 				}
 			}
+			
+			
 			
 			//System.out.println("sortedP after removal: " + sortedPlayerTwos);
 			System.out.println("player2s after removal: " + playerTwos);
@@ -134,6 +143,8 @@ public class PairingTest {
 			});
 			
 			System.out.println("playerToNextOpps: " + playerToNextOpps);
+			
+			
 
 		}
 		
@@ -146,12 +157,10 @@ public class PairingTest {
 	public void updateOpponents() {
 		
 		players.forEach(player ->{
-			
 			List<String>opponents = new ArrayList<String>(players);
 			opponents.remove(player); //remove player 
 			opponents.removeAll(playerToPrevOpps.get(player)); //remove pervious opps
 			playerToNextOpps.put(player, opponents);
-			
 		});
 		
 		System.out.println("playerToNextOpps: " + playerToNextOpps);
