@@ -148,3 +148,90 @@ https://stackoverflow.com/questions/26471421/round-robin-algorithm-implementatio
 https://en.m.wikipedia.org/wiki/Round-robin_tournament
 
 
+----------------------
+[A, B], [A, C], [A, D], [A, E], [A, F], , [B, D], , [B, F], , [C, E], , , [D, F], ]
+, , , , , [C, B], , [E, B], , [D, C], , [F, C], [E, D], , [F, E]]
+
+Day:1
+B vs A [B, A]
+C vs F [C, F]
+D vs E [D, E]
+
+Day:2
+C vs A [C, A]
+D vs B [D, B]
+E vs F [E, F]
+
+Day:3
+D vs A [D, A]
+E vs C [E, C]
+F vs B [F, B]
+
+Day:4
+E vs A [E, A]
+F vs D [F, D]
+B vs C [B, C]
+
+Day:5
+F vs A [F, A]
+B vs E [B, E]
+C vs D [C, D]
+
+
+
+Day:6
+B vs A
+C vs F
+D vs E
+
+Day:7
+C vs A
+D vs B
+E vs F
+
+Day:8
+D vs A
+E vs C
+F vs B
+
+Day:9
+E vs A
+F vs D
+B vs C
+
+Day:10
+F vs A
+B vs E
+C vs D
+
+Day:11
+B vs A
+C vs F
+D vs E
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

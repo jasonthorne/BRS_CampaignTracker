@@ -1,3 +1,23 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.Random;
+import java.util.TreeMap;
+import java.util.Map.Entry;
+
+import com.brs.airforce.AirForceName;
+import com.brs.date.Date;
+import com.brs.event.Event;
+import com.brs.event.EventFactory;
+import com.brs.event.EventName;
+import com.brs.mission.Mission;
+import com.brs.mission.MissionBuilder;
+import com.brs.period.Period;
+import com.brs.player.Player;
+import com.brs.turn.Turn;
 
 public class PairingDump {
 
@@ -5,32 +25,6 @@ public class PairingDump {
 
 
 /*
-package com.brs.campaign;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-import java.util.Map.Entry;
-import java.util.TreeMap;
-
-import com.brs.player.Player;
-import com.brs.squadron.Squadron;
-import com.brs.turn.Turn;
-import com.brs.airforce.AirForceName;
-import com.brs.date.Date;
-import com.brs.event.EventFactory;
-import com.brs.event.EventName;
-import com.brs.event.Event;
-import com.brs.mission.Mission;
-import com.brs.mission.MissionBuilder;
-import com.brs.period.Period;
-import com.brs.period.Year;
 
 public class Campaign { 
 	
@@ -88,23 +82,21 @@ public class Campaign {
 	
 	Map<String, List<String>>playerToOpponents = new TreeMap<String, List<String>>(); //+++++++++++TEST FOR BELOW
 	Map<String, List<String>>usedPairings = new HashMap<String, List<String>>(); //combinations of player pairings //+++++++++++++++++++++++++++++++++++++++++++++++
-	
+	List<String>emptyListTEST = new ArrayList<String>();
 	
 	public void testMakeUsedPairings() {
 		
-		List<String>emptyListTEST = new ArrayList<String>();
+		
 		
 		for (Entry<String, Player> entry : nameToPlayer.entrySet()) { //for each player in map:
 			usedPairings.put(entry.getKey(), new ArrayList<String>(emptyListTEST));
 		}
 	}
 	
+	List<String>player1s;
 	
 	public void setOpponents(){
-		
-		
 	
-		
 		//----------------make map of players and their potential opponents
 		List<String>players = new ArrayList<String>(nameToPlayer.keySet());
 		
@@ -116,7 +108,7 @@ public class Campaign {
 			List<String>opponents = new ArrayList<String>(players);
 			opponents.remove(player);
 			
-			///System.out.println("opps are: " + opps);
+			System.out.println("opps are: " + opponents);
 			playerToOpponents.put(player, opponents);
 			
 			//++++++++++++++++++++++++++++++++
@@ -133,18 +125,27 @@ public class Campaign {
 		
 		
 		//list of player 1 options:
-		List<String>player1s = new ArrayList<String>(playerToOpponents.keySet());
-		
+		//List<String>player1s = new ArrayList<String>(playerToOpponents.keySet());
+		player1s = new ArrayList<String>(playerToOpponents.keySet());
 		//List<String>vals = new ArrayList<String>();
 		//List<String>pair;
 		
 		//pairing test:
 		List<String>pairingsTEST = new ArrayList<String>();
 		
+		
+		
 		for(int i=0; i<(players.size()/2);i++) {
 			
 			String p1 = player1s.get(new Random().nextInt(player1s.size())); 
 			System.out.println("p1: " + p1);
+			
+			//--------------------------removing player 1 from player 2's opps list BEFORE player 2 is picked !!!!!!!!!!!
+			System.out.println("PLAYER1S: " + player1s);
+			
+			
+			//---------------------------
+			
 			
 			List<String>player2s = playerToOpponents.get(p1);
 			
@@ -187,7 +188,7 @@ public class Campaign {
 			System.out.println("usedPairings AFTER edit================== " + usedPairings);
 			////System.out.println("p1UsedPairings " + p1UsedPairings);
 			
-
+			
 			
 			
 			////pairingsNEW.put(p1, (Arrays.asList(p2))); /////////////map needs filled b4 it have other elements added to its list. +++++++++
@@ -196,7 +197,7 @@ public class Campaign {
 			////////////////usedPairings.put(p2, (Arrays.asList(p1))); =============
 			
 			
-			
+			//??????????????????????????????++++++++++++++I THINK THIS IS IT!!! ?????????????????????????????player1cshould be removed BEFORE player 2 is picked from opps list
 			//remove picked keys from keys:
 			player1s.removeAll(Arrays.asList(p1, p2));
 			System.out.println("player1s after removal: " + player1s);
@@ -253,26 +254,9 @@ public class Campaign {
 			entry.getValue().setCouldPlayNow(opponents); //set player's list of potential opponents
 			//==========================
 			
-			//==========================================================================
-			/*
-			 * 	MAKE MAP, HERE OF PLAYER AND OPPONENTS.
-			 * MAKE PAIRING FROM RANDOM KEY AND A RANDOM ONE OF ITS VALUES,
-			 * REMOVE THAT ENTRY AND ITS VALUE ENTRY AND ALL INSTANCES OF BOTH KEY AND VAL FROM ALL OTHER MAPS
-			 * 
-			 * return the values to other key's hashmaps after picking though. 
-			 * RINSE AND REPEAT,PICKING RANDOM KEY, AND A RANDOM VAL FROM IT, UNTILL ALL KEYS HAVE HAD PAIRS MADE FROM THEM 
-			 * 
-			 * THIS ***SHOULD*** BE US SORTED!!!! HOPEFULLY :p
-			 * 
-			 */
-			//playerToOpponents.put(entry.getKey(), opponents);
-			
-			
 			
 		
 			//===========================================================================
-
-/*
 		}
 		
 		//System.out.println("playerToOpponents: " + playerToOpponents);
@@ -291,49 +275,12 @@ public class Campaign {
 		
 		List<String>pairing;
 		
-		/*
-		 * have duplicates of each set. (A,B) (B,A)
-		 * then go from A - F and randomly grab an A at either index 0 or 1, then delete all other A instances (from BOTH indexes)
-		 * then go rinse and repeat
-		 */
 		
 		//==============================================================================
 		
-		/*
-		List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //+++++++++++++++++
-		
-		//long randIndex = Arrays.asList(0,1);
-		
-		///players.forEach(player ->{
-		for(int i=0; i<players.size();i++) {
-			
-			//Collections.shuffle(pairings2);
-			//System.out.println("pairings2: " + pairings2);
-			
-			String player = players.get(i); //ughhhh!
-			
-			List<String>pairingpTEST = Arrays.asList(pairings2.get(p))	//((int)(Math.random()*1)));
-			//pairing = pairings2.remove(new Random().nextInt(pairings2.size()));
-			
-					
-		
-			
-			//pairing = pairings2.remove(new Random().nextInt(pairings2.size()));
-			
-			//make mission here, adding pairing ++++++++++++++++++++++++++++++++++
-			System.out.println("player is: " + player);
-			///////////System.out.println("pairingpTEST: " + pairingpTEST);
-			
-			//////////////usedPairings.add(pairingpTEST);
-			
-			pairing.forEach(pairedPlayer -> {
-				pairings2.removeIf(n -> (n.contains(pairedPlayer)));
-				/////////System.out.println("player is: " + player);
-			});
 	
-		}*/
 	
-		/*
+		
 		
 		for(int i=0; i<(nameToPlayer.size()/2);i++) {
 			
@@ -364,9 +311,6 @@ public class Campaign {
 		
 		
 	
-		
-		 
-		 //https://www.baeldung.com/java-remove-value-from-list
 		
 	}
 	
@@ -412,19 +356,10 @@ public class Campaign {
 		});
 		
 		////////////////System.out.println("playerToOpponentsTEST: " + playerToOpponents); //+++++++++++++++++++
-		
-		/*
-		 * randomly pick a key
-		 * then randomly pick a value
-		 * then remove all instances of keys an values
-		 */
-		
-		
+	
 		///////////////////pairings.removeIf(n -> (n.contains("A"))); //BOOM!!! :)
 		
 		/////////////////////////System.out.println("pairings: " + pairings); //+++++++++++++++++++students.removeIf(n -> (n.charAt(0) == 'A')); 
-
-	/*
 	}
 	
 	
@@ -522,15 +457,8 @@ public class Campaign {
 			unpairedPlayers.remove(player2);
 			
 			
-			/*
-			int player2Index = new Random().nextInt(unpairedPlayers.size());
-			player2 = unpairedPlayers.get(player2Index);
-			System.out.println("p2: " + player2);
 			
-			unpairedPlayers.remove(player2);
-			*/
 			
-/*
 			//------------------------
 			//remove player 2 from player 1 opps list:
 			System.out.println("p1 opps b4 removal: " + nameToPlayer.get(player1).getCouldPlayNow());
@@ -542,28 +470,9 @@ public class Campaign {
 			nameToPlayer.get(player2).getCouldPlayNow().remove(player1);
 			System.out.println("p2 opps after removal: " + nameToPlayer.get(player2).getCouldPlayNow());
 			
-			
-			/*
-			//remove player 2 from player 1 opps list:
-			System.out.println("p1 opps b4 removal: " + nameToPlayer.get(player1).getOpponents());
-			nameToPlayer.get(player1).getOpponents().remove(player2);
-			System.out.println("p1 opps after removal: " + nameToPlayer.get(player1).getOpponents());
-			
-			//remove player 1 from player 2 opps list:
-			System.out.println("p2 opps b4 removal: " + nameToPlayer.get(player2).getOpponents());
-			nameToPlayer.get(player2).getOpponents().remove(player1);
-			System.out.println("p2 opps after removal: " + nameToPlayer.get(player2).getOpponents());
-			*/
-			
-			/*
-			for (Entry<String, Player> entry : nameToPlayer.entrySet()) {
-				entry.getValue().getOpponents().remove(player1);
-				entry.getValue().getOpponents().remove(player2);
-			}
-			*/
-			
+	
 			//--------------------------
-/*			
+			
 			
 			for (Entry<String, Player> entry : nameToPlayer.entrySet()) {
 				
@@ -643,19 +552,18 @@ public class Campaign {
 	
 	
 	
-	/*
 	
 	-
-	- once everyones finished their missions: check if everyones now played everyone else:
-	 If so, reseed. 
-	Check if everyones now played 4 missions: 
-	if so move period, update planes, force players to change planes if their now unavailable.
+	//- once everyones finished their missions: check if everyones now played everyone else:
+	// If so, reseed. 
+	//Check if everyones now played 4 missions: 
+	//if so move period, update planes, force players to change planes if their now unavailable.
 
 	 
-	 - reseed once each player has played everyone else (Including new players added before last reseed)
-	-Once everyone's played 4 missions: move periods, update planes, force players to change planes if their now unavailable.
+	// - reseed once each player has played everyone else (Including new players added before last reseed)
+	//-Once everyone's played 4 missions: move periods, update planes, force players to change planes if their now unavailable.
 	
-	*/
+	
 	
 	
 	
@@ -672,7 +580,8 @@ public class Campaign {
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
-	/*
+	
+	
 	public String getName() { return name; } //get name of campaign
 	public String getDate() { return date; } //get date of creation
 	public List<AirForceName> getAirForceNames() { return event.getAirForceNames(); } //get air forces involved
@@ -727,7 +636,41 @@ public class Campaign {
 	}
 	
 	
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	private void setMissions(){
 		
@@ -735,7 +678,24 @@ public class Campaign {
 		//create missions for each pairing, add to list of missions
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-}
+
 
 */

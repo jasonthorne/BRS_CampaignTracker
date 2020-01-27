@@ -253,21 +253,6 @@ public class Campaign {
 			entry.getValue().setCouldPlayNow(opponents); //set player's list of potential opponents
 			//==========================
 			
-			//==========================================================================
-			/*
-			 * 	MAKE MAP, HERE OF PLAYER AND OPPONENTS.
-			 * MAKE PAIRING FROM RANDOM KEY AND A RANDOM ONE OF ITS VALUES,
-			 * REMOVE THAT ENTRY AND ITS VALUE ENTRY AND ALL INSTANCES OF BOTH KEY AND VAL FROM ALL OTHER MAPS
-			 * 
-			 * return the values to other key's hashmaps after picking though. 
-			 * RINSE AND REPEAT,PICKING RANDOM KEY, AND A RANDOM VAL FROM IT, UNTILL ALL KEYS HAVE HAD PAIRS MADE FROM THEM 
-			 * 
-			 * THIS ***SHOULD*** BE US SORTED!!!! HOPEFULLY :p
-			 * 
-			 */
-			//playerToOpponents.put(entry.getKey(), opponents);
-			
-			
 			
 		
 			//===========================================================================
@@ -289,47 +274,10 @@ public class Campaign {
 		
 		List<String>pairing;
 		
-		/*
-		 * have duplicates of each set. (A,B) (B,A)
-		 * then go from A - F and randomly grab an A at either index 0 or 1, then delete all other A instances (from BOTH indexes)
-		 * then go rinse and repeat
-		 */
 		
 		//==============================================================================
 		
-		/*
-		List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //+++++++++++++++++
-		
-		//long randIndex = Arrays.asList(0,1);
-		
-		///players.forEach(player ->{
-		for(int i=0; i<players.size();i++) {
-			
-			//Collections.shuffle(pairings2);
-			//System.out.println("pairings2: " + pairings2);
-			
-			String player = players.get(i); //ughhhh!
-			
-			List<String>pairingpTEST = Arrays.asList(pairings2.get(p))	//((int)(Math.random()*1)));
-			//pairing = pairings2.remove(new Random().nextInt(pairings2.size()));
-			
-					
-		
-			
-			//pairing = pairings2.remove(new Random().nextInt(pairings2.size()));
-			
-			//make mission here, adding pairing ++++++++++++++++++++++++++++++++++
-			System.out.println("player is: " + player);
-			///////////System.out.println("pairingpTEST: " + pairingpTEST);
-			
-			//////////////usedPairings.add(pairingpTEST);
-			
-			pairing.forEach(pairedPlayer -> {
-				pairings2.removeIf(n -> (n.contains(pairedPlayer)));
-				/////////System.out.println("player is: " + player);
-			});
 	
-		}*/
 	
 		
 		
@@ -363,9 +311,6 @@ public class Campaign {
 		
 	
 		
-		/* 
-		 * https://www.baeldung.com/java-remove-value-from-list
-		 */
 	}
 	
 	
@@ -410,14 +355,7 @@ public class Campaign {
 		});
 		
 		////////////////System.out.println("playerToOpponentsTEST: " + playerToOpponents); //+++++++++++++++++++
-		
-		/*
-		 * randomly pick a key
-		 * then randomly pick a value
-		 * then remove all instances of keys an values
-		 */
-		
-		
+	
 		///////////////////pairings.removeIf(n -> (n.contains("A"))); //BOOM!!! :)
 		
 		/////////////////////////System.out.println("pairings: " + pairings); //+++++++++++++++++++students.removeIf(n -> (n.charAt(0) == 'A')); 
@@ -518,13 +456,7 @@ public class Campaign {
 			unpairedPlayers.remove(player2);
 			
 			
-			/*
-			int player2Index = new Random().nextInt(unpairedPlayers.size());
-			player2 = unpairedPlayers.get(player2Index);
-			System.out.println("p2: " + player2);
 			
-			unpairedPlayers.remove(player2);
-			*/
 			
 			//------------------------
 			//remove player 2 from player 1 opps list:
@@ -537,26 +469,7 @@ public class Campaign {
 			nameToPlayer.get(player2).getCouldPlayNow().remove(player1);
 			System.out.println("p2 opps after removal: " + nameToPlayer.get(player2).getCouldPlayNow());
 			
-			
-			/*
-			//remove player 2 from player 1 opps list:
-			System.out.println("p1 opps b4 removal: " + nameToPlayer.get(player1).getOpponents());
-			nameToPlayer.get(player1).getOpponents().remove(player2);
-			System.out.println("p1 opps after removal: " + nameToPlayer.get(player1).getOpponents());
-			
-			//remove player 1 from player 2 opps list:
-			System.out.println("p2 opps b4 removal: " + nameToPlayer.get(player2).getOpponents());
-			nameToPlayer.get(player2).getOpponents().remove(player1);
-			System.out.println("p2 opps after removal: " + nameToPlayer.get(player2).getOpponents());
-			*/
-			
-			/*
-			for (Entry<String, Player> entry : nameToPlayer.entrySet()) {
-				entry.getValue().getOpponents().remove(player1);
-				entry.getValue().getOpponents().remove(player2);
-			}
-			*/
-			
+	
 			//--------------------------
 			
 			
@@ -638,19 +551,18 @@ public class Campaign {
 	
 	
 	
-	/*
 	
-	-
-	- once everyones finished their missions: check if everyones now played everyone else:
-	 If so, reseed. 
-	Check if everyones now played 4 missions: 
-	if so move period, update planes, force players to change planes if their now unavailable.
+	
+	//- once everyones finished their missions: check if everyones now played everyone else:
+	// If so, reseed. 
+	//Check if everyones now played 4 missions: 
+	//if so move period, update planes, force players to change planes if their now unavailable.
 
 	 
-	 - reseed once each player has played everyone else (Including new players added before last reseed)
-	-Once everyone's played 4 missions: move periods, update planes, force players to change planes if their now unavailable.
+	// - reseed once each player has played everyone else (Including new players added before last reseed)
+	//-Once everyone's played 4 missions: move periods, update planes, force players to change planes if their now unavailable.
 	
-	*/
+	
 	
 	
 	

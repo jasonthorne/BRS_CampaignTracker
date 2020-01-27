@@ -695,6 +695,8 @@ public class Main {
 		 * 
 		 * If one of youre options only has you as its available option, then pick that as your option. +++++++++++
 		 */
+		
+		/*
 		PairingTest pairingTest = new PairingTest();
 		System.out.println("--------------------------1st pairing--------------------------");
 		pairingTest.setOpponents();
@@ -719,6 +721,10 @@ public class Main {
 		System.out.println("--------------------------5th pairing--------------------------");
 		pairingTest.updateOpponents();
 		pairingTest.pairPlayers();
+		*/
+		
+		PairingTest pairingTest = new PairingTest();
+		pairingTest.testRR();
 		
 	}
 	

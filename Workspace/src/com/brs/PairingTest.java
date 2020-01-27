@@ -39,6 +39,53 @@ public class PairingTest {
 	}
 	
 	
+	
+	public void testRR() {
+		
+		//int numDays = (numTeams - 1); // Days needed to complete tournament
+	    //int halfSize = numTeams / 2;
+
+	    List<String> teams = new ArrayList<String>(players);
+
+	    //teams.AddRange(ListTeam); // Add teams to List and remove the first team
+	    
+	    String fixedPlayer = teams.remove(0); //player given a fixed position 
+	    
+	    
+	    System.out.println("teams: "+ teams);
+
+	
+	    int teamsSize = teams.size();
+
+	   
+	    for (int day = 0; day < teamsSize; day++) {
+	       
+	        System.out.println("\nDay:" + (day + 1));
+
+	        int teamIdx = day % teamsSize;
+
+	        //System.out.println(teams[teamIdx] + " vs " +  ListTeam[]);
+	        System.out.println(teams.get(teamIdx) + " vs " + fixedPlayer);	//players.get(0));
+
+	        for (int idx = 1; idx < 3; idx++) {               
+	            int firstTeam = (day + idx) % teamsSize;
+	            int secondTeam = (day  + teamsSize - idx) % teamsSize;
+	           // System.out.println(teams[firstTeam] + " vs " +  teams[secondTeam]);
+	            System.out.println(teams.get(firstTeam) + " vs " + teams.get(secondTeam));
+	        }
+	    }
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * If the value that I pick from my selected key causes any other value in the list to lose all of its values (when chosen as a key itself. ie is still in playerOnes list),
 	 *  then that value cant be picked.    
@@ -177,6 +224,8 @@ public class PairingTest {
 	
 	System.out.println("player2 with the most opponents: " + playerTwoWithMostOpps.get()); //playerTwoWithMostOpps.get());
 	*/
+	
+	
 	
 	
 	
