@@ -723,8 +723,12 @@ public class Main {
 		pairingTest.pairPlayers();
 		*/
 		
-		PairingTest pairingTest = new PairingTest();
-		pairingTest.testRR();
+		//PairingTest pairingTest = new PairingTest();
+		//pairingTest.testRR();
+		
+		
+		
+		campaign.setPairings();
 		
 	}
 	

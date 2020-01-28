@@ -73,296 +73,92 @@ public class Campaign {
 	public void beginTurns() {
 		turnNum = 1; //set turnNum
 		movePeriod(); //set period iterator to starting period
-		setOpponents(); //set each player's opponents
+		//setOpponents(); //set each player's opponents
 		//pairPlayers2(); //pair players 
 		
 	}
 	
 	
-	Map<String, List<String>>playerToOpponents = new TreeMap<String, List<String>>(); //+++++++++++TEST FOR BELOW
-	Map<String, List<String>>usedPairings = new HashMap<String, List<String>>(); //combinations of player pairings //+++++++++++++++++++++++++++++++++++++++++++++++
-	List<String>emptyListTEST = new ArrayList<String>();
-	
-	public void testMakeUsedPairings() {
+	public void setPairings() {
 		
+		/**
+		 * Round-robin 'circle method' scheduling algorithm: https://en.m.wikipedia.org/wiki/Round-robin_tournament
+		 * Code adapted from: https://stackoverflow.com/questions/26471421/round-robin-algorithm-implementation-java
+		 */
 		
-		
-		for (Entry<String, Player> entry : nameToPlayer.entrySet()) { //for each player in map:
-			usedPairings.put(entry.getKey(), new ArrayList<String>(emptyListTEST));
-		}
-	}
-	
-	List<String>player1s;
-	
-	public void setOpponents(){
-	
-		//----------------make map of players and their potential opponents
-		List<String>players = new ArrayList<String>(nameToPlayer.keySet());
+		List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
 		
 		//if odd number of players, add a bye:
 		if(players.size()%2==1) { players.add(BYE); }
 		
-		players.forEach(player ->{
-			
-			List<String>opponents = new ArrayList<String>(players);
-			opponents.remove(player);
-			
-			System.out.println("opps are: " + opponents);
-			playerToOpponents.put(player, opponents);
-			
-			//++++++++++++++++++++++++++++++++
-			///usedPairings.put(player, opponents);
-			//+++++++++++++++++++++++++++++++
-			
-		});
+		//Collections.shuffle(players); //randomise positions of players 
 		
-		System.out.println("******************* " + usedPairings);
-		//===================================================================
-		//List<List<String>>pairingsNEW = new ArrayList<List<String>>(); //combinations of player pairings
-		//Map<String, String>pairingsNEW = new HashMap<String, String>(); //combinations of player pairings 
+		String fixedPlayer = players.remove(0); //1st player is removed from list, in order to be given a fixed position
 		
+		System.out.println("players: "+ players);
 		
-		
-		//list of player 1 options:
-		//List<String>player1s = new ArrayList<String>(playerToOpponents.keySet());
-		player1s = new ArrayList<String>(playerToOpponents.keySet());
-		//List<String>vals = new ArrayList<String>();
-		//List<String>pair;
-		
-		//pairing test:
-		List<String>pairingsTEST = new ArrayList<String>();
-		
-		
-		
-		for(int i=0; i<(players.size()/2);i++) {
-			
-			String p1 = player1s.get(new Random().nextInt(player1s.size())); 
-			System.out.println("p1: " + p1);
-			
-			//--------------------------removing player 1 from player 2's opps list BEFORE player 2 is picked !!!!!!!!!!!
-			System.out.println("PLAYER1S: " + player1s);
-			
-			
-			//---------------------------
-			
-			
-			List<String>player2s = playerToOpponents.get(p1);
-			
-			String p2 = player2s.get(new Random().nextInt(player2s.size())); 
-			//String p2 = playerToOpponents.get(p1).get(new Random().nextInt(player2s.size())); 
-			System.out.println("p2: " + p2);
-			
-			///-------------
-			//add pairings (in both combinations) to list of pairings:
-			//pairingsNEW.add(new ArrayList<String>(Arrays.asList(p1, p2)));
-			//pairingsNEW.add(new ArrayList<String>(Arrays.asList(p2, p1))); //reversed list
-			//.................
-			
-			//List<String>newP1 = new ArrayList<String>(pairingsNEW.get(p2));
-			
-			//System.out.println("newP1 ======== " + newP1);
-			
-			//////newP1.add(pair)
-			//newP1.add(p2);
-			
-			//System.out.println("NEW p1: " + newP1);
-			
-			//List<String>newP2 = new ArrayList<String>(pairingsNEW.get(p2));
-			//newP2.add(p1);
-			//........................
-			//pairingsNEW.replace(p1, newP1); //////////////THESE MAPS NEED TO TAKE A LIST OF PERVIOUS OPPONENTS FOR REMOVING IN NEXT PAIRING. - this way it merely gets overriden, which means previous opps are available again
-			//pairingsNEW.replace(p2, newP2);
-			
-			System.out.println("usedPairings B4 edit ++++++++++ " + usedPairings);
-			
-			List<String>p1UsedPairings = new ArrayList<String>(usedPairings.get(p1));
-			p1UsedPairings.add(p2); //add p2 to p1usedPairings
-			
-			List<String>p2UsedPairings = new ArrayList<String>(usedPairings.get(p2));
-			p2UsedPairings.add(p1); //add p1 to p1usedPairings
-			
-			usedPairings.put(p1, p1UsedPairings); //??????????????????????????????????????????????????????
-			usedPairings.put(p2, p2UsedPairings);
-			
-			System.out.println("usedPairings AFTER edit================== " + usedPairings);
-			////System.out.println("p1UsedPairings " + p1UsedPairings);
-			
-			
-			
-			
-			////pairingsNEW.put(p1, (Arrays.asList(p2))); /////////////map needs filled b4 it have other elements added to its list. +++++++++
-			/////pairingsNEW.put(p2, (Arrays.asList(p1)));
-			////////////usedPairings.put(p1, (Arrays.asList(p2))); ============
-			////////////////usedPairings.put(p2, (Arrays.asList(p1))); =============
-			
-			
-			//??????????????????????????????++++++++++++++I THINK THIS IS IT!!! ?????????????????????????????player1cshould be removed BEFORE player 2 is picked from opps list
-			//remove picked keys from keys:
-			player1s.removeAll(Arrays.asList(p1, p2));
-			System.out.println("player1s after removal: " + player1s);
-			
-			//remove picked values from hashmap:
-			List<String>newVals = new ArrayList<String>(playerToOpponents.keySet());
-			newVals.removeAll(Arrays.asList(p1, p2));
-			
-			playerToOpponents.values().forEach(oppsList ->{
-				oppsList.removeAll(Arrays.asList(p1, p2));
-			});
-			
-			///////playerToOpponents.replaceAll((key, oldVals) -> newVals);
-			
-			System.out.println("playerToOpponents after removal: " + playerToOpponents);
-			
-		}
-		
+		//loop through the number of turns (with unique pairings) available:
+	    for (int turn=0, turns=players.size(); turn<turns; turn++) {
+	       
+	        System.out.println("\nTurn:" + (turn + 1));
 
+	        int playerPos = turn % turns; //pos of player in players (equal to 0
+	        System.out.println("playerPos: " + playerPos);
+	        
+	        //each round, pair each player in the list (at the index pos of that round) against the first player:
+	        System.out.println(players.get(playerPos) + " vs " + fixedPlayer); 
+	        System.out.println("pos: " + playerPos + " (" + players.get(playerPos) + ") vs " + "fixedPlayer: (" + fixedPlayer + ")");
+
+	        for (int idx = 1; idx < players.size()/2; idx++) {               
+	            int firstTeam = (turn + idx) % turns;
+	            int secondTeam = (turn  + turns - idx) % turns;
+	            System.out.println(players.get(firstTeam) + " vs " + players.get(secondTeam));
+	        }
+	    }
+		 
 		
-		System.out.println("playerToOpponents: " + playerToOpponents);
-		System.out.println("usedPairings: " + usedPairings);
+		/*
+		 * 
+	
+	public void testRR() {
 		
-		//===================================re-making playerToOpponents for next pairing:
-		
-		players.forEach(player ->{
-			
-			List<String>opponents = new ArrayList<String>(players);
-			opponents.remove(player);
-			
-			//----------------
-			System.out.println("USED PAIRINGS for player: " + player + "" + usedPairings.get(player));
-			opponents.removeAll(usedPairings.get(player)); //==========remove previously selected opponent
-			
-			//----------------
-			System.out.println("opps are@@@@@@@@@@@@@@: " + opponents); //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@EACHPLAYER IS HAVING THIS ADDED!! 
-			playerToOpponents.put(player, opponents);
-			
-			System.out.println("playerToOpponents:###################### " + playerToOpponents);
-			
-		});
-		
-		
-		System.out.println("playerToOpponents: " + playerToOpponents);
-		
-		//+++++++++++++++++++++++++++++++++++++++++++++++++++++IGNORE BELOW!! +++++++++++++++++++++++++
-		
-		for (Entry<String, Player> entry : nameToPlayer.entrySet()) { //for each player in map:
-			List<String>opponents = new ArrayList<String>(nameToPlayer.keySet()); //create a list of opponents from player names
-			opponents.remove(entry.getKey()); //remove current player from list
-			entry.getValue().setOpponents(opponents); //set player's list of opponents
-			
-			//=========================
-			entry.getValue().setCouldPlayNow(opponents); //set player's list of potential opponents
-			//==========================
-			
-			
-		
-			//===========================================================================
-		}
-		
-		//System.out.println("playerToOpponents: " + playerToOpponents);
-		
+		//int numDays = (numTeams - 1); // Days needed to complete tournament
+	    //int halfSize = numTeams / 2;
+
+	    List<String> teams = new ArrayList<String>(players);
+
+	    //teams.AddRange(ListTeam); // Add teams to List and remove the first team
+	    
+	    
+	    
+	    
+	    System.out.println("teams: "+ teams);
+
+	    int teamsSize = teams.size();
+
+	    //loop through number of unique pairings available in relation to number of players available:
+	    for (int day = 0; day < teamsSize; day++) {
+	       
+	        System.out.println("\nDay:" + (day + 1));
+
+	        int teamIdx = day % teamsSize; //remainder of team / number of days
+	        System.out.println("teamIdx: " + teamIdx);
+	        
+	        //each round, pair each player in the list (at the index pos of that round) against the first player:
+	        System.out.println(teams.get(teamIdx) + " vs " + fixedPlayer); 
+	        System.out.println("pos: " + teamIdx + " (" + teams.get(teamIdx) + ") vs " + "fixedPlayer: (" + fixedPlayer + ")");
+
+	        for (int idx = 1; idx < players.size()/2; idx++) {               
+	            int firstTeam = (day + idx) % teamsSize;
+	            int secondTeam = (day  + teamsSize - idx) % teamsSize;
+	            System.out.println(teams.get(firstTeam) + " vs " + teams.get(secondTeam));
+	        }
+	    }
+		 */
 		
 	}
-	
-	
-	public void makeMissions(){
-		
-		List<List<String>>pairingsCOPY = new ArrayList<List<String>>(pairings); //combinations of player pairings 
-		//Collections.shuffle(pairings2);
-		System.out.println("pairingsCOPY: " + pairingsCOPY);
-		
-		List<List<String>>usedPairings = new ArrayList<List<String>>();
-		
-		List<String>pairing;
 		
 		
-		//==============================================================================
-		
-	
-	
-		
-		
-		for(int i=0; i<(nameToPlayer.size()/2);i++) {
-			
-			pairing = pairingsCOPY.remove(new Random().nextInt(pairingsCOPY.size()));
-			
-			//make mission here, adding pairing ++++++++++++++++++++++++++++++++++
-			System.out.println("picked: " + pairing + " left: "+ pairingsCOPY);
-			
-			usedPairings.add(pairing);
-			
-			pairing.forEach(player -> {
-				pairingsCOPY.removeIf(n -> (n.contains(player)));
-				/////////System.out.println("player is: " + player);
-			});
-	
-		}
-		
-		//=========================+++++++++++++++++
-		
-		
-		System.out.println("usedPairings: " + usedPairings);
-		System.out.println("pairingsCOPY: "+ pairingsCOPY);
-		
-		
-		pairings.removeAll(usedPairings); //remove all used pairings from pairings
-		
-		System.out.println("pairings: " + pairings);
-		
-		
-	
-		
-	}
-	
-	
-	
-
-	/////////////////Map<String, List<String>>playerToOpponents = new HashMap<String, List<String>>(); //players and a list of their opponents
-	
-	
-	//public void makePairings(String... players){ //++++++++++++++++++PASS IN THE LIST INSTEAD SO YOU CAN ADD A NEW PLAYER (with maybe a bye) AT A LATER POINT
-	public void makePairings(){ 
-		
-		//players assigned a list of their opponents:
-		List<String>pairedPlayers = new ArrayList<String>();
-		
-		//list of player's names to draw pairings from:
-		List<String>unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
-		
-		//if odd number of players, add a bye:
-		if(unpairedPlayers.size()%2==1) { unpairedPlayers.add(BYE); }
-		
-		unpairedPlayers.forEach(player ->{
-			
-			List<String>opponents = new ArrayList<String>(unpairedPlayers); //create a list of opponents from player names
-			pairedPlayers.add(player); //add current player to list, for removal from current (and future) player's opponents list
-			opponents.removeAll(pairedPlayers); //remove already paired players from current player's opponents list
-			
-			//if there are still opponents to allocate, add player and list of player's opponents to map:
-			if(!opponents.isEmpty()) { 
-				
-				///////////////////playerToOpponents.put(player, opponents); 
-			
-				//+++++++++++++++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				opponents.forEach(opponent ->{
-					pairings.add(new ArrayList<String>(Arrays.asList(player, opponent)));
-					//pairings.add(new ArrayList<String>(Arrays.asList(opponent, player))); /////////////++++++++++add reversed list
-				});
-				
-			} 
-			
-			System.out.println("player: " + player + ". opponents: " + opponents); //++++++++++++++++++++
-			
-		});
-		
-		////////////////System.out.println("playerToOpponentsTEST: " + playerToOpponents); //+++++++++++++++++++
-	
-		///////////////////pairings.removeIf(n -> (n.contains("A"))); //BOOM!!! :)
-		
-		/////////////////////////System.out.println("pairings: " + pairings); //+++++++++++++++++++students.removeIf(n -> (n.charAt(0) == 'A')); 
-	}
-	
-	
-
 	//++++++++++++++++CAN ALSO BE USED FOR STARTING GAME! 
 	public void advanceTurn() {
 		//increment turnNum and check if period should be moved:
@@ -370,183 +166,21 @@ public class Campaign {
 			turnNum = 1; //reset turnNum 
 			movePeriod(); //advance to next period
 		}
-		pairPlayers(); //pair players
-		//if() { //if all players have played all other players. THEN empty their "played buckets and reseed"
-			
-		//}
-		//////////////////currTurn = new Turn();	
-	}
-	
-	
-	public void ughhhh() {
-		List<String>unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
-		//Collections.shuffle(unpairedPlayers);
-		System.out.println("unpairedPlayers: " + unpairedPlayers);
-		
-		//pick player1:
-		int player1Index = new Random().nextInt(unpairedPlayers.size());
-		String player1 = unpairedPlayers.get(player1Index);
-		System.out.println("p1: " + player1);
-		
-		//pick player2:
-		int player2Index = new Random().nextInt(nameToPlayer.get(player1).getOpponents().size()); //random index taken from player1's opponents list size
-		String player2 = nameToPlayer.get(player1).getOpponents().get(player2Index); //random player pulled from player1's list
-		System.out.println("p2: " +player2);
-		
-		//remove player 2 from player 1 opps list:
-		System.out.println("p1 opps b4 removal: " + nameToPlayer.get(player1).getOpponents());
-		nameToPlayer.get(player1).getOpponents().remove(player2);
-		System.out.println("p1 opps after removal: " + nameToPlayer.get(player1).getOpponents());
-		
-		//remove player 1 from player 2 opps list:
-		System.out.println("p2 opps b4 removal: " + nameToPlayer.get(player2).getOpponents());
-		nameToPlayer.get(player2).getOpponents().remove(player1);
-		System.out.println("p2 opps after removal: " + nameToPlayer.get(player2).getOpponents());
-		
-		//remove players from unpairedPlayers;
-		System.out.println("unpairedPlayers b4 removal: " + unpairedPlayers);
-		unpairedPlayers.remove(player1);
-		unpairedPlayers.remove(player2);
-		System.out.println("unpairedPlayers after removal: " + unpairedPlayers);
+		//pairPlayers(); //pair players
 		
 	}
 	
-	public void swapTEST() {
-		for (Entry<String, Player> entry : nameToPlayer.entrySet()) {
-			entry.getValue().swapListsTEST();
-		}
-	}
 	
 	
-	public void pairPlayers4() {
-		
-		List<String>unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
-		//Collections.shuffle(unpairedPlayers);
-		System.out.println("unpairedPlayers: " + unpairedPlayers);
-		
-		String player1 = "";
-		String player2 = "";
-		
-		//while there are unpaired players:
-		while(!unpairedPlayers.isEmpty()) { 
-			
-			
-			System.out.println("unpairedPlayers b4 removal: " + unpairedPlayers);
-			
-			
-			//pick player1:
-			int player1Index = new Random().nextInt(unpairedPlayers.size());
-			player1 = unpairedPlayers.get(player1Index);
-			System.out.println("p1: " + player1);
-			
-			unpairedPlayers.remove(player1); //remove player 1 from unpairedPlayers
-			
-			//pick player2:
-			
-			
-			//int player2Index = new Random().nextInt(nameToPlayer.get(player1).getOpponents().size()); //random index taken from player1's opponents list size
-			//player2 = nameToPlayer.get(player1).getOpponents().get(player2Index); //random player pulled from player1's list
-			
-			//-------------------------
-			int player2Index = new Random().nextInt(nameToPlayer.get(player1).getCouldPlayNow().size());
-			player2 = nameToPlayer.get(player1).getCouldPlayNow().get(player2Index); //grab player from could play now list
-			//------------------------
-			System.out.println("p2: " +player2);
-			
-			unpairedPlayers.remove(player2);
-			
-			
-			
-			
-			//------------------------
-			//remove player 2 from player 1 opps list:
-			System.out.println("p1 opps b4 removal: " + nameToPlayer.get(player1).getCouldPlayNow());
-			nameToPlayer.get(player1).getCouldPlayNow().remove(player2);
-			System.out.println("p1 opps after removal: " + nameToPlayer.get(player1).getCouldPlayNow());
-			
-			//remove player 1 from player 2 opps list:
-			System.out.println("p2 opps b4 removal: " + nameToPlayer.get(player2).getCouldPlayNow());
-			nameToPlayer.get(player2).getCouldPlayNow().remove(player1);
-			System.out.println("p2 opps after removal: " + nameToPlayer.get(player2).getCouldPlayNow());
-			
 	
-			//--------------------------
-			
-			
-			for (Entry<String, Player> entry : nameToPlayer.entrySet()) {
-				
-				if((!entry.getKey().equals(player1)) && (!entry.getKey().equals(player2))) {
-					entry.getValue().getCouldPlayNow().remove(player1);
-					entry.getValue().getCouldPlayNow().remove(player2);
-					
-					entry.getValue().setCanPlayLater(player1);
-					entry.getValue().setCanPlayLater(player2);
-					
-					//---------------------------------------
-					System.out.println(entry.getKey() + " can play later: " + entry.getValue().getCanPlayLater());
-					
-					//----------------------------------------
-				}
-				
-			}
-			
-			
-			//remove players from unpairedPlayers;
-			//System.out.println("unpairedPlayers b4 removal: " + unpairedPlayers);
-			//unpairedPlayers.remove(player1);
-			//unpairedPlayers.remove(player2);
-			System.out.println("unpairedPlayers after removal: " + unpairedPlayers);
-		}
-		
-		System.out.println("empty unpairedPlayers: " + unpairedPlayers);
-		
-	}
+	
 	
 
 	
-	//Make x pairings (give each pairing a mission)
-	public void pairPlayers() { 
-		
-		//list of player's names to draw pairings from:
-		List<String>unpairedPlayers = new ArrayList<String>(nameToPlayer.keySet()); 
-		
-		//if odd number of players, add a bye:
-		if(nameToPlayer.size()%2==1) { unpairedPlayers.add(BYE); }
-		
-		//while there are unpaired players:
-		while(!unpairedPlayers.isEmpty()) { 
-			
-			List<String>pairedCouple = new ArrayList<String>(); //make list for holding 2 paired players
-			
-			while(pairedCouple.size()!=2) { //while a couple haven't been picked
 	
-				//pick a random pos to select an unpaired player from: 
-				int randomIndex = new Random().nextInt(unpairedPlayers.size());
-				
-				//add player at random pos to pairedCouple:
-				pairedCouple.add(unpairedPlayers.get(randomIndex));
-				
-				//remove paired player from list of unpaired players:
-				unpairedPlayers.remove(randomIndex);
-			}
-			
-			
-			System.out.println(pairedCouple);
-			//mission = new Mission(pair);
-			////missionToPlayers.put(new Mission(players), players);
-			//MAKE NEW MISSION, ADDING THESE PLAYERS,
-			
-			//LIST OF NAME<played>
-			
-			//+++++++++BOTH PLAYERS MARK THAT THEY@VE BEEN PAIRED AGAINST EACH OTHER. 
-			//AND NEXT PAIRING SESSION HAVE EACH PLAYER CHECK THAT THEYVE NOT JUST PLAYED THIS PERSON +++++++++++++++++
-			
-			//HOLIDAYS: 17th - 24th. 
-			
-		}
 		
 		
-	}
+
 	
 	
 	
@@ -634,42 +268,8 @@ public class Campaign {
 		test.pairPlayers();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
 	
 	private void setMissions(){
 		

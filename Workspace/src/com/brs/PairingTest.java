@@ -39,6 +39,8 @@ public class PairingTest {
 	}
 	
 	
+	//'circle method' scheduling algorithm: https://en.m.wikipedia.org/wiki/Round-robin_tournament
+	//Code adapted from: https://stackoverflow.com/questions/26471421/round-robin-algorithm-implementation-java
 	
 	public void testRR() {
 		
@@ -49,28 +51,28 @@ public class PairingTest {
 
 	    //teams.AddRange(ListTeam); // Add teams to List and remove the first team
 	    
-	    String fixedPlayer = teams.remove(0); //player given a fixed position 
+	    String fixedPlayer = teams.remove(0); //player given a fixed position and removed from list
 	    
 	    
 	    System.out.println("teams: "+ teams);
 
-	
 	    int teamsSize = teams.size();
 
-	   
+	    //loop through number of unique pairings available in relation to number of players available:
 	    for (int day = 0; day < teamsSize; day++) {
 	       
 	        System.out.println("\nDay:" + (day + 1));
 
-	        int teamIdx = day % teamsSize;
+	        int teamIdx = day % teamsSize; //remainder of team / number of days
+	        System.out.println("teamIdx: " + teamIdx);
+	        
+	        //each round, pair each player in the list (at the index pos of that round) against the first player:
+	        System.out.println(teams.get(teamIdx) + " vs " + fixedPlayer); 
+	        System.out.println("pos: " + teamIdx + " (" + teams.get(teamIdx) + ") vs " + "fixedPlayer: (" + fixedPlayer + ")");
 
-	        //System.out.println(teams[teamIdx] + " vs " +  ListTeam[]);
-	        System.out.println(teams.get(teamIdx) + " vs " + fixedPlayer);	//players.get(0));
-
-	        for (int idx = 1; idx < 3; idx++) {               
+	        for (int idx = 1; idx < players.size()/2; idx++) {               
 	            int firstTeam = (day + idx) % teamsSize;
 	            int secondTeam = (day  + teamsSize - idx) % teamsSize;
-	           // System.out.println(teams[firstTeam] + " vs " +  teams[secondTeam]);
 	            System.out.println(teams.get(firstTeam) + " vs " + teams.get(secondTeam));
 	        }
 	    }
