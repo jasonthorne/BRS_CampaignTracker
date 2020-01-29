@@ -730,6 +730,10 @@ public class Main {
 		
 		campaign.setPairings();
 		
+		System.out.println("+++++++++++");
+		
+		//campaign.testRR();
+		
 	}
 	
 	

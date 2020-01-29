@@ -97,39 +97,50 @@ public class Campaign {
 		
 		System.out.println("players: "+ players);
 		
-		//loop through the number of turns (with unique pairings) available:
+		//loop through the number of turns (with unique pairings) available: 
 	    for (int turn=0, turns=players.size(); turn<turns; turn++) {
 	       
-	        System.out.println("\nTurn:" + (turn + 1));
-
-	        int playerPos = turn % turns; //pos of player in players (equal to 0
-	        System.out.println("playerPos: " + playerPos);
+	        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
 	        
-	        //each round, pair each player in the list (at the index pos of that round) against the first player:
-	        System.out.println(players.get(playerPos) + " vs " + fixedPlayer); 
-	        System.out.println("pos: " + playerPos + " (" + players.get(playerPos) + ") vs " + "fixedPlayer: (" + fixedPlayer + ")");
+	        /*
+	        int playerPos = turn % turns; //pos of player in players (in relation to turns)
+	        System.out.println("turn: " + (turn) + " of "+ turns); //++++++++++++++++
+	        System.out.println("playerPos: " + playerPos); //++++++
+	        */
+	        
+	        //each turn, pair a player in players (at the index pos of that turn) against the first player:
+	        System.out.println("fixed player pairing: " + players.get(turn) + " vs " + fixedPlayer); 
+	       // System.out.println(players.get(playerPos) + " vs " + fixedPlayer); 
+	        
+	       // System.out.println("pos: " + playerPos + " (" + players.get(playerPos) + ") vs " + "fixedPlayer: (" + fixedPlayer + ")");
+	        //System.out.println("pos: " + playerPos + " (" + players.get(playerPos) + ") vs " + "fixedPlayer: (" + fixedPlayer + ")");
 
-	        for (int idx = 1; idx < players.size()/2; idx++) {               
-	            int firstTeam = (turn + idx) % turns;
-	            int secondTeam = (turn  + turns - idx) % turns;
-	            System.out.println(players.get(firstTeam) + " vs " + players.get(secondTeam));
+	        //each turn, create 2 
+	        for (int pos=1, endPos=(players.size()+1)/2; pos<endPos; pos++) {   
+	            int player1Pos = (turn + pos) % turns;
+	            int player2Pos = (turn  + turns - pos) % turns;
+	            
+	            System.out.println("endPos: " + endPos);
+	           
+	            System.out.println("player1Pos: " + player1Pos + " vs " + "player2Pos: " + player2Pos);
+	            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos));
 	        }
 	    }
 		 
+	}
 		
-		/*
-		 * 
 	
+	/*
 	public void testRR() {
 		
 		//int numDays = (numTeams - 1); // Days needed to complete tournament
 	    //int halfSize = numTeams / 2;
 
-	    List<String> teams = new ArrayList<String>(players);
+	    List<String> teams = new ArrayList<String>(nameToPlayer.keySet());
 
 	    //teams.AddRange(ListTeam); // Add teams to List and remove the first team
 	    
-	    
+	    String fixedPlayer = teams.remove(0); 
 	    
 	    
 	    System.out.println("teams: "+ teams);
@@ -148,15 +159,15 @@ public class Campaign {
 	        System.out.println(teams.get(teamIdx) + " vs " + fixedPlayer); 
 	        System.out.println("pos: " + teamIdx + " (" + teams.get(teamIdx) + ") vs " + "fixedPlayer: (" + fixedPlayer + ")");
 
-	        for (int idx = 1; idx < players.size()/2; idx++) {               
+	        for (int idx =1, j=nameToPlayer.keySet().size()/2; idx<j; idx++) {               
 	            int firstTeam = (day + idx) % teamsSize;
 	            int secondTeam = (day  + teamsSize - idx) % teamsSize;
 	            System.out.println(teams.get(firstTeam) + " vs " + teams.get(secondTeam));
 	        }
 	    }
-		 */
+		 
 		
-	}
+	}*/
 		
 		
 	//++++++++++++++++CAN ALSO BE USED FOR STARTING GAME! 
