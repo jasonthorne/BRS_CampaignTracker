@@ -44,6 +44,9 @@ public class Campaign {
 	//=======================================
 	private List<List<String>>pairings = new ArrayList<List<String>>(); //combinations of player pairings 
 	
+	
+	private Map<Integer,List<List<String>>>turnToPairings = new TreeMap<Integer,List<List<String>>>(); 
+	
 	/////////++++++++++++++++missions: ++++++++++++++++++++++++
 	private Map<Period, List<Mission>>periodToMission = new HashMap<Period, List<Mission>>(); 
 	
@@ -97,35 +100,46 @@ public class Campaign {
 		
 		System.out.println("players: "+ players);
 		
+		List<List<String>>testList = new ArrayList<List<String>>(); //===============================================================================
+		
+		int turn=0;
+		
 		//loop through the number of turns (with unique pairings) available: 
-	    for (int turn=0, turns=players.size(); turn<turns; turn++) {
+	    for (int turns=players.size(); turn<turns; turn++) {
 	       
 	        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
 	        
-	        /*
-	        int playerPos = turn % turns; //pos of player in players (in relation to turns)
-	        System.out.println("turn: " + (turn) + " of "+ turns); //++++++++++++++++
-	        System.out.println("playerPos: " + playerPos); //++++++
-	        */
-	        
 	        //each turn, pair a player in players (at the index pos of that turn) against the first player:
-	        System.out.println("fixed player pairing: " + players.get(turn) + " vs " + fixedPlayer); 
-	       // System.out.println(players.get(playerPos) + " vs " + fixedPlayer); 
+	        System.out.println(players.get(turn) + " vs " + fixedPlayer); 
 	        
-	       // System.out.println("pos: " + playerPos + " (" + players.get(playerPos) + ") vs " + "fixedPlayer: (" + fixedPlayer + ")");
-	        //System.out.println("pos: " + playerPos + " (" + players.get(playerPos) + ") vs " + "fixedPlayer: (" + fixedPlayer + ")");
-
-	        //each turn, create 2 
-	        for (int pos=1, endPos=(players.size()+1)/2; pos<endPos; pos++) {   
-	            int player1Pos = (turn + pos) % turns;
-	            int player2Pos = (turn  + turns - pos) % turns;
+	        //-------------------------------------------------
+	        pairings.add(Arrays.asList(players.get(turn), fixedPlayer)); //======================adding to list
+	        
+	        testList.add(Arrays.asList(players.get(turn), fixedPlayer));
+	        
+	        //-------------------------------------------------
+	        
+	        //endPos is at players.size()+1 to replace the removed fixedPlayer's index. 
+	        for (int pairPos=1, endPos=(players.size()+1)/2; pairPos<endPos; pairPos++) {  //pairPos starts at 1 to ignore first 
+	            int player1Pos = (turn + pairPos) % turns; //turn number + pairingPos (set at 1 to ignore )
+	            int player2Pos = (turn  + turns - pairPos) % turns;
 	            
-	            System.out.println("endPos: " + endPos);
-	           
-	            System.out.println("player1Pos: " + player1Pos + " vs " + "player2Pos: " + player2Pos);
+	            //System.out.println("player1Pos: " + player1Pos + " vs " + "player2Pos: " + player2Pos);
 	            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos));
+	            
+	            pairings.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos))); //======================adding to list
+	            
+	            testList.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos))); //======================adding to list
+	            
 	        }
+	        
+	        //turnToPairings.put((turn+1), testList);
 	    }
+	    
+	   
+	    System.out.println("testList are: " + testList);
+	    System.out.println("pairings are: " + pairings);
+	    System.out.println("turnToPairings is: " + turnToPairings);
 		 
 	}
 		
