@@ -100,7 +100,7 @@ public class Campaign {
 		
 		System.out.println("players: "+ players);
 		
-		List<List<String>>testList; // = new ArrayList<List<String>>(); //===============================================================================
+		List<List<String>>pairings; // = new ArrayList<List<String>>(); //===============================================================================
 		
 		int turn=0;
 		
@@ -108,14 +108,14 @@ public class Campaign {
 	    for (int turns=players.size(); turn<turns; turn++) {
 	       
 	        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
-	        testList = new ArrayList<List<String>>();
+	        pairings = new ArrayList<List<String>>(); //create a new list of pairings
 	        
 	        //each turn, pair a player in players (at the index pos of that turn) against the first player:
 	        System.out.println(players.get(turn) + " vs " + fixedPlayer); 
 	        
 	        //-------------------------------------------------
-	        pairings.add(Arrays.asList(players.get(turn), fixedPlayer)); //======================adding to list
-	        testList.add(Arrays.asList(players.get(turn), fixedPlayer));
+	        //pairings.add(Arrays.asList(players.get(turn), fixedPlayer)); //======================adding to list
+	        pairings.add(Arrays.asList(players.get(turn), fixedPlayer));
 	        
 	        //-------------------------------------------------
 	        
@@ -127,17 +127,17 @@ public class Campaign {
 	            //System.out.println("player1Pos: " + player1Pos + " vs " + "player2Pos: " + player2Pos);
 	            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos));
 	            
+	            //pairings.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos))); //======================adding to list
 	            pairings.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos))); //======================adding to list
-	            testList.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos))); //======================adding to list
 	            
 	        }
 	        
-	        turnToPairings.put((turn+1), testList);
+	        turnToPairings.put((turn+1), pairings); ///////CHANGE turn+1 to turnNum
 	    }
 	    
 	   
 	   // System.out.println("testList are: " + testList);
-	    System.out.println("pairings are: " + pairings);
+	   // System.out.println("pairings are: " + pairings);
 	    System.out.println("turnToPairings is: " + turnToPairings);
 		 
 	}
