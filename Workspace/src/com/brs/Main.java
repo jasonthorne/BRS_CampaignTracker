@@ -598,7 +598,7 @@ public class Main {
 		//campaign.setPlayer("A", AirForceName.RAF);
 		campaign.setPlayer("E", AirForceName.RAF);
 		campaign.setPlayer("F", AirForceName.RAF);
-		//campaign.setPlayer("G", AirForceName.RAF);
+		campaign.setPlayer("G", AirForceName.RAF);
 		//campaign.setPlayer("H", AirForceName.RAF);
 		//campaign.setPlayer("I", AirForceName.RAF);
 		//campaign.setPlayer("J", AirForceName.RAF);

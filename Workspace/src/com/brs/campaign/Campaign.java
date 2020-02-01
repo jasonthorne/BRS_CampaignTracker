@@ -94,7 +94,7 @@ public class Campaign {
 		//if odd number of players, add a bye:
 		if(players.size()%2==1) { players.add(BYE); }
 		
-		//Collections.shuffle(players); //randomise positions of players 
+		Collections.shuffle(players); //randomise positions of players 
 		
 		String fixedPlayer = players.remove(0); //1st player is removed from list, in order to be given a fixed position
 		
@@ -102,7 +102,7 @@ public class Campaign {
 		
 		List<List<String>>pairings; // = new ArrayList<List<String>>(); //===============================================================================
 		
-		int turn=0;
+		int turn=0; //============================================
 		
 		//loop through the number of turns (with unique pairings) available: 
 	    for (int turns=players.size(); turn<turns; turn++) {
