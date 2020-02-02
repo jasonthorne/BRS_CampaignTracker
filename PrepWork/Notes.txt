@@ -1,4 +1,6 @@
 
+check that all pairings are unique
+
 //++++++++++look at typewriter font for GUI
 
 
