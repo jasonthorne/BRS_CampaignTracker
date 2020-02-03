@@ -32,12 +32,13 @@ public class Campaign {
 	private final Event event; //historical event chosen
 	private Period period; //current period represented
 	private final ListIterator<Period>periodsIterator; //iterator for advancing period
-	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved  ////+++++++MAYBE USE SET HERE INSTEAD OF HASHMAP - then use streams for playing about with it.
+	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
 	
 	//=======================================months 1 - 4. after month 4, then move one period
 	//private Month month; //current month represented
 	private static final int TURNS_PER_PERIOD = 4; //amount of turns played per period
 	private int turnNum; //number of turns in campaign
+	//int maxTurns = 
 	///////////private List<Turn>turns; 
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
 	
@@ -96,11 +97,11 @@ public class Campaign {
 		
 		Collections.shuffle(players); //randomise positions of players 
 		
-		String fixedPlayer = players.remove(0); //1st player is removed from list, in order to be given a fixed position
+		String fixedPlayer = players.remove(0); //1st player is removed from list, in order to be given a fixed position for pairing
 		
 		System.out.println("players: "+ players);
 		
-		List<List<String>>pairings; // = new ArrayList<List<String>>(); //===============================================================================
+		List<List<String>>pairings; //===============================================================================
 		
 		int turn=0; //============================================
 		
@@ -110,11 +111,10 @@ public class Campaign {
 	        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
 	        pairings = new ArrayList<List<String>>(); //create a new list of pairings
 	        
-	        //each turn, pair a player in players (at the index pos of that turn) against the first player:
 	        System.out.println(players.get(turn) + " vs " + fixedPlayer); 
 	        
 	        //-------------------------------------------------
-	        //pairings.add(Arrays.asList(players.get(turn), fixedPlayer)); //======================adding to list
+	        //each turn, pair the fixed player against a player in players (at the index pos of that turn):
 	        pairings.add(Arrays.asList(players.get(turn), fixedPlayer));
 	        
 	        //-------------------------------------------------
@@ -124,22 +124,16 @@ public class Campaign {
 	            int player1Pos = (turn + pairPos) % turns; //turn number + pairingPos (set at 1 to ignore )
 	            int player2Pos = (turn  + turns - pairPos) % turns;
 	            
-	            //System.out.println("player1Pos: " + player1Pos + " vs " + "player2Pos: " + player2Pos);
 	            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos));
 	            
-	            //pairings.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos))); //======================adding to list
-	            pairings.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos))); //======================adding to list
+	            pairings.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos))); 
 	            
 	        }
 	        
 	        turnToPairings.put((turn+1), pairings); ///////CHANGE turn+1 to turnNum
 	    }
 	    
-	   
-	   // System.out.println("testList are: " + testList);
-	   // System.out.println("pairings are: " + pairings);
 	    System.out.println("turnToPairings is: " + turnToPairings);
-		 
 	}
 		
 	
