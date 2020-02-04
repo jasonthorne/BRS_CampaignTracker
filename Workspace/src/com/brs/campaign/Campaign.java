@@ -32,21 +32,18 @@ public class Campaign {
 	private final Event event; //historical event chosen
 	private Period period; //current period represented
 	private final ListIterator<Period>periodsIterator; //iterator for advancing period
+	private static final int TURNS_PER_PERIOD = 4; //amount of turns played per period
 	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
 	
-	//=======================================months 1 - 4. after month 4, then move one period
-	//private Month month; //current month represented
-	private static final int TURNS_PER_PERIOD = 4; //amount of turns played per period
 	private int turnNum; //number of turns in campaign
 	//int maxTurns = 
 	///////////private List<Turn>turns; 
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
 	
-	//=======================================
 	private List<List<String>>pairings = new ArrayList<List<String>>(); //combinations of player pairings 
 	
 	
-	private Map<Integer,List<List<String>>>turnToPairings = new TreeMap<Integer,List<List<String>>>(); 
+	private Map<Integer,List<List<String>>>turnToPairings = new TreeMap<Integer,List<List<String>>>(); //combinations of player pairings for each turn
 	
 	/////////++++++++++++++++missions: ++++++++++++++++++++++++
 	private Map<Period, List<Mission>>periodToMission = new HashMap<Period, List<Mission>>(); 
@@ -62,13 +59,11 @@ public class Campaign {
 	//add a new player to map of players:
 	public void setPlayer(String name, AirForceName airForceName) { 
 		//attempt to add player to map using their name as key. Warn user if unsuccessful (returned value other than null): 
-		if(!(nameToPlayer.putIfAbsent(name, new Player(name, event.getAirForce(airForceName), period))==null)){
+		if(!(nameToPlayer.putIfAbsent(name, new Player(name, event.getAirForce(airForceName), period))==null)) {
 			System.out.println("Error: Player name already exists!"); 
-		}else { System.out.println("Player added."); }
+		} else { System.out.println("Player added."); }
 	}
 	
-	//////////////List<String>unpairedPlayers;
-	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
 	//Make a turn
 	Turn currTurn;
@@ -84,29 +79,21 @@ public class Campaign {
 	
 	
 	public void setPairings() {
-		
 		/**
 		 * Round-robin 'circle method' scheduling algorithm: https://en.m.wikipedia.org/wiki/Round-robin_tournament
 		 * Code adapted from: https://stackoverflow.com/questions/26471421/round-robin-algorithm-implementation-java
 		 */
-		
 		List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
-		
-		//if odd number of players, add a bye:
-		if(players.size()%2==1) { players.add(BYE); }
-		
-		Collections.shuffle(players); //randomise positions of players 
-		
-		String fixedPlayer = players.remove(0); //1st player is removed from list, in order to be given a fixed position for pairing
+		if(players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
+		Collections.shuffle(players); //shuffle positions of players 
+		String fixedPlayer = players.remove(0); //1st player is removed from list (in order to be given a fixed position for pairing)
 		
 		System.out.println("players: "+ players);
 		
 		List<List<String>>pairings; //===============================================================================
 		
-		int turn=0; //============================================
-		
 		//loop through the number of turns (with unique pairings) available: 
-	    for (int turns=players.size(); turn<turns; turn++) {
+	    for (int turn=0, turns=players.size(); turn<turns; turn++) {
 	       
 	        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
 	        pairings = new ArrayList<List<String>>(); //create a new list of pairings
@@ -137,46 +124,7 @@ public class Campaign {
 	}
 		
 	
-	/*
-	public void testRR() {
-		
-		//int numDays = (numTeams - 1); // Days needed to complete tournament
-	    //int halfSize = numTeams / 2;
 
-	    List<String> teams = new ArrayList<String>(nameToPlayer.keySet());
-
-	    //teams.AddRange(ListTeam); // Add teams to List and remove the first team
-	    
-	    String fixedPlayer = teams.remove(0); 
-	    
-	    
-	    System.out.println("teams: "+ teams);
-
-	    int teamsSize = teams.size();
-
-	    //loop through number of unique pairings available in relation to number of players available:
-	    for (int day = 0; day < teamsSize; day++) {
-	       
-	        System.out.println("\nDay:" + (day + 1));
-
-	        int teamIdx = day % teamsSize; //remainder of team / number of days
-	        System.out.println("teamIdx: " + teamIdx);
-	        
-	        //each round, pair each player in the list (at the index pos of that round) against the first player:
-	        System.out.println(teams.get(teamIdx) + " vs " + fixedPlayer); 
-	        System.out.println("pos: " + teamIdx + " (" + teams.get(teamIdx) + ") vs " + "fixedPlayer: (" + fixedPlayer + ")");
-
-	        for (int idx =1, j=nameToPlayer.keySet().size()/2; idx<j; idx++) {               
-	            int firstTeam = (day + idx) % teamsSize;
-	            int secondTeam = (day  + teamsSize - idx) % teamsSize;
-	            System.out.println(teams.get(firstTeam) + " vs " + teams.get(secondTeam));
-	        }
-	    }
-		 
-		
-	}*/
-		
-		
 	//++++++++++++++++CAN ALSO BE USED FOR STARTING GAME! 
 	public void advanceTurn() {
 		//increment turnNum and check if period should be moved:
@@ -185,7 +133,7 @@ public class Campaign {
 			movePeriod(); //advance to next period
 		}
 		//pairPlayers(); //pair players
-		
+		setPairings();
 	}
 	
 	
@@ -230,8 +178,6 @@ public class Campaign {
 	
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	
-	
 	
 	public String getName() { return name; } //get name of campaign
 	public String getDate() { return date; } //get date of creation

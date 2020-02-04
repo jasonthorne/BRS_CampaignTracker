@@ -96,7 +96,7 @@ public class MissionBuilder { //++++++++++++++CHECK PRIVACY LEVEL OF EVERYTHING
 			}
 			
 			//mission = new Mission(pair);
-			missionToPlayers.put(new Mission(players), players);
+			//missionToPlayers.put(new Mission(players), players);
 			
 			
 		}
