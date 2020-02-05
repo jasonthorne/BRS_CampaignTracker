@@ -154,15 +154,24 @@ public class Campaign {
 		turnToPairings.get(turnNum).forEach(pairing -> {
 			currentMissions.add(new Mission(pairing, period));
 		});
-		*/
-		
-		pairingsTEST.forEach(pairing -> {
-			currentMissions.add(new Mission(pairing, period));
-		});
 		
 		turnToPairings.remove(turnNum);
+		
 		System.out.println("currentMissions: " + currentMissions);
 		System.out.println("turnToPairings: " + turnToPairings);
+		*/
+		
+		System.out.println("PAIRINGS_TEST: " + pairingsTEST);
+		
+		
+		/*
+		pairingsTEST.get(0).forEach(pairing -> {
+			currentMissions.add(new Mission(pairing, period));
+		});
+		pairingsTEST.remove(0);
+		*/
+		System.out.println("currentMissions: " + currentMissions);
+		System.out.println("pairingsTEST: " + pairingsTEST);
 	}
 	
 
