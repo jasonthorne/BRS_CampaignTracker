@@ -9,14 +9,15 @@ public class Mission {
 	
 	private final List<String>players; //players involved
 	private final Period period; //period represented
-	private final String date; //date played
+	//private final String date; //date played
 	//private Results resutls; ??????????????????
 	
 	
-	public Mission(List<String>players, Period period, String date) {
+	////////public Mission(List<String>players, Period period, String date) {
+	public Mission(List<String>players, Period period) {
 		this.players = players; //set list of players
 		this.period = period; //set period
-		this.date = date; //set date played
+		///////////this.date = date; //set date played
 	}
 	
 	/*
@@ -29,10 +30,13 @@ public class Mission {
 		System.out.println(players);
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Mission";
+		return "Mission [players=" + players + ", period=" + period  + "]";
 	}
+
+	
 	
 	
 

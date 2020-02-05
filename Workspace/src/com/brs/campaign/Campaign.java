@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import java.util.TreeMap;
 
 import com.brs.player.Player;
@@ -36,17 +37,24 @@ public class Campaign {
 	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
 	
 	private int turnNum; //number of turns in campaign
+	
+	////////////private int turnNum = 1; //number of turns in campaign
 	//int maxTurns = 
 	///////////private List<Turn>turns; 
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
 	
-	private List<List<String>>pairings = new ArrayList<List<String>>(); //combinations of player pairings 
-	
-	
+	private List<List<String>>pairingsTEST = new ArrayList<List<String>>(); //combinations of player pairings 
+
 	private Map<Integer,List<List<String>>>turnToPairings = new TreeMap<Integer,List<List<String>>>(); //combinations of player pairings for each turn
 	
 	/////////++++++++++++++++missions: ++++++++++++++++++++++++
 	private Map<Period, List<Mission>>periodToMission = new HashMap<Period, List<Mission>>(); 
+	
+	//+++MAYBE JUST MISSIONS LIST (OR STACK THAT GETS REMOVED AS MISSIONS ARE COMPLETED)
+	private List<Mission>currentMissions = new ArrayList<Mission>(); //+++++++++++++++++++++++++++++++++++++
+	
+	//=======================================================================================
+	private Map<Integer,List<Mission>>turnToMissions = new TreeMap<Integer,List<Mission>>(); 
 	
 	////////////////////private Map<Mission, List<Player>>missionToPlayers = new HashMap<Mission, List<Player>>(); //map of current missions
 	
@@ -71,7 +79,10 @@ public class Campaign {
 	
 	public void beginTurns() {
 		turnNum = 1; //set turnNum
+		System.out.println("TURN NUM: " + turnNum);
 		movePeriod(); //set period iterator to starting period
+		setPairings();
+		setCurrMissions();
 		//setOpponents(); //set each player's opponents
 		//pairPlayers2(); //pair players 
 		
@@ -90,19 +101,26 @@ public class Campaign {
 		
 		System.out.println("players: "+ players);
 		
-		List<List<String>>pairings; //===============================================================================
+		//===============================================================================
 		
 		//loop through the number of turns (with unique pairings) available: 
 	    for (int turn=0, turns=players.size(); turn<turns; turn++) {
 	       
 	        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
-	        pairings = new ArrayList<List<String>>(); //create a new list of pairings
+	        List<List<String>>pairings = new ArrayList<List<String>>(); //create a new list of pairings
 	        
 	        System.out.println(players.get(turn) + " vs " + fixedPlayer); 
 	        
 	        //-------------------------------------------------
 	        //each turn, pair the fixed player against a player in players (at the index pos of that turn):
 	        pairings.add(Arrays.asList(players.get(turn), fixedPlayer));
+	        
+	        //=============================
+	        List<Mission>missionsTEST = new ArrayList<Mission>(); //++++++++++++++LIST OF MISSIONS
+	        //public Mission(List<String>players, Period period, String date) {
+	       //currentMissions.add(new Mission(Arrays.asList(players.get(turn), fixedPlayer), period));
+	       ////////////////// missionsTEST.add(new Mission(Arrays.asList(players.get(turn), fixedPlayer), period)); //+++++++++++++add to list of missions
+	        //=============================
 	        
 	        //-------------------------------------------------
 	        
@@ -114,26 +132,62 @@ public class Campaign {
 	            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos));
 	            
 	            pairings.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos))); 
-	            
+	            missionsTEST.add(new Mission(Arrays.asList(players.get(player1Pos), players.get(player2Pos)), period)); //+++++++++++++add to list of missions
 	        }
 	        
 	        turnToPairings.put((turn+1), pairings); ///////CHANGE turn+1 to turnNum
+	       /////////// turnToMissions.put((turn+1), missionsTEST); //+++++++++++++++++++++++add to map of turns to missions???????????????????
+	       pairingsTEST.addAll(pairings);
 	    }
 	    
 	    System.out.println("turnToPairings is: " + turnToPairings);
+	    //System.out.println("currentMissions: " + currentMissions);
+	    //System.out.println("turnToMissions: " + turnToMissions);
 	}
 		
+	
+	public void setCurrMissions() {
+		
+		currentMissions.clear();
+		
+		/*
+		turnToPairings.get(turnNum).forEach(pairing -> {
+			currentMissions.add(new Mission(pairing, period));
+		});
+		*/
+		
+		pairingsTEST.forEach(pairing -> {
+			currentMissions.add(new Mission(pairing, period));
+		});
+		
+		turnToPairings.remove(turnNum);
+		System.out.println("currentMissions: " + currentMissions);
+		System.out.println("turnToPairings: " + turnToPairings);
+	}
 	
 
 	//++++++++++++++++CAN ALSO BE USED FOR STARTING GAME! 
 	public void advanceTurn() {
+		
+	
+		
 		//increment turnNum and check if period should be moved:
 		if(++turnNum>TURNS_PER_PERIOD) { 
+			System.out.println("YOOHOO!!");
 			turnNum = 1; //reset turnNum 
 			movePeriod(); //advance to next period
+			System.out.println("period is: " + period);
+			
+			
 		}
-		//pairPlayers(); //pair players
-		setPairings();
+		
+		System.out.println("TURN NUM: " + turnNum);
+		
+		if(turnToPairings.isEmpty()) {
+			setPairings();
+		}
+		 ////////////////////////////+this should be done only at 
+		setCurrMissions();
 	}
 	
 	
@@ -208,6 +262,7 @@ public class Campaign {
 	
 	//advance period to following period of history
 	private void movePeriod() {
+		
 		
 		if(periodsIterator.hasNext()) {
 			period = periodsIterator.next();

@@ -585,9 +585,9 @@ public class Main {
 		//campaignTEST.changePeriod();
 		//campaignTEST.changePeriod();
 		
-		campaign.getPeriodTEST();
-		campaign.getPeriodTEST();
-		campaign.getPeriodTEST();
+		///////////campaign.getPeriodTEST();
+		/////////////campaign.getPeriodTEST();
+		////////////////campaign.getPeriodTEST();
 		//campaign.getPeriodTEST();
 
 		
@@ -729,11 +729,21 @@ public class Main {
 		
 		
 		
-		campaign.setPairings();
+		//campaign.setPairings();
 		
 		System.out.println("+++++++++++");
+		campaign.beginTurns();
 		
-		//campaign.testRR();
+		//campaign.setCurrMissions();
+		
+		
+		campaign.advanceTurn();
+		campaign.advanceTurn();
+		campaign.advanceTurn();
+		campaign.advanceTurn();
+		campaign.advanceTurn();
+		campaign.advanceTurn();
+		campaign.advanceTurn();
 		
 	}
 	
