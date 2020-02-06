@@ -1,6 +1,7 @@
 package com.brs.mission;
 
 import java.util.List;
+import java.util.Set;
 
 import com.brs.period.Period;
 import com.brs.player.Player;
@@ -14,6 +15,7 @@ public class Mission {
 	
 	
 	////////public Mission(List<String>players, Period period, String date) {
+	///////////////public Mission(List<String>players, Period period) {
 	public Mission(List<String>players, Period period) {
 		this.players = players; //set list of players
 		this.period = period; //set period

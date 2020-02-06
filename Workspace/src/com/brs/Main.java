@@ -595,9 +595,11 @@ public class Main {
 		campaign.setPlayer("B", AirForceName.RAF);
 		campaign.setPlayer("C", AirForceName.RAF);
 		campaign.setPlayer("D", AirForceName.RAF);
-		//campaign.setPlayer("A", AirForceName.RAF);
+		/////////////campaign.setPlayer("A", AirForceName.RAF);
 		campaign.setPlayer("E", AirForceName.RAF);
 		campaign.setPlayer("F", AirForceName.RAF);
+		
+		
 		//campaign.setPlayer("G", AirForceName.RAF);
 		//campaign.setPlayer("H", AirForceName.RAF);
 		//campaign.setPlayer("I", AirForceName.RAF);
@@ -744,6 +746,20 @@ public class Main {
 		campaign.advanceTurn();
 		campaign.advanceTurn();
 		campaign.advanceTurn();
+
+		campaign.advanceTurn();
+		campaign.advanceTurn();
+		campaign.advanceTurn();
+		campaign.advanceTurn();
+		
+		campaign.advanceTurn();
+		
+		/*
+		campaign.advanceTurn();
+		
+		campaign.advanceTurn();
+		campaign.advanceTurn();
+		*/
 		
 	}
 	
