@@ -734,7 +734,7 @@ public class Main {
 		//campaign.setPairings();
 		
 		System.out.println("+++++++++++");
-		campaign.beginTurns();
+		//campaign.beginTurns();
 		
 		//campaign.setCurrMissions();
 		
@@ -753,7 +753,7 @@ public class Main {
 		campaign.advanceTurn();
 		
 		campaign.advanceTurn();
-		
+		campaign.advanceTurn();
 		/*
 		campaign.advanceTurn();
 		

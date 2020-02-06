@@ -36,11 +36,11 @@ public class Campaign {
 	private Period period; //current period represented
 	private final ListIterator<Period>periodsIterator; //iterator for advancing period
 	private static final int TURNS_PER_PERIOD = 4; //amount of turns played per period
-	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
-	private int turnNum; //number of turns in campaign
+	private final Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
+	private int turnNum = TURNS_PER_PERIOD; //current turn this period ?????????????should really be 1!! :P
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
-	private Deque<List<List<String>>>pairings = new LinkedList<List<List<String>>>(); //combinations of player pairings, for each turn of each period in the campaign
-	private List<Mission>currMissions = new ArrayList<Mission>(); //current missions assigned to players
+	private final Deque<List<List<String>>>pairings = new LinkedList<List<List<String>>>(); //combinations of player pairings, for each turn of each period in the campaign
+	private final List<Mission>currMissions = new ArrayList<Mission>(); //current missions assigned to players
 	
 	public Campaign(EventName eventName) {
 		event = new EventFactory().getEvent(eventName); //create event from EventFactory
@@ -70,7 +70,7 @@ public class Campaign {
 		 * Code adapted from: https://stackoverflow.com/questions/26471421/round-robin-algorithm-implementation-java
 		 */
 		List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
-		if(players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
+		if (players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
 		Collections.shuffle(players); //shuffle positions of players 
 		String fixedPlayer = players.remove(0); //1st player is removed from list (in order to be given a fixed position for pairing)
 		
@@ -107,7 +107,9 @@ public class Campaign {
 		System.out.println("pairings: " + pairings); //++++++++++++++++++++
 		
 		//retrieve and remove the first collection of pairings, and for each of those parings create new missions: 	
-		pairings.poll().forEach(pairing -> { currMissions.add(new Mission(pairing, period)); });													
+		pairings.poll().forEach(pairing -> { 
+			currMissions.add(new Mission(pairing, period)); 
+		});													
 			
 		System.out.println("currMissions: " + currMissions); //++++++++++++++++++++
 		System.out.println("pairings: " + pairings); //+++++++++++++++++++
@@ -126,7 +128,12 @@ public class Campaign {
 		
 		System.out.println("TURN NUM: " + turnNum); ///+++++++++++++++++++
 		
-		if(pairings.isEmpty()) {setPairings();} //If all potential pairings have been allocated, create new ones
+		//If all potential pairings have been allocated, create new ones:
+		if(pairings.isEmpty()) {
+			setPairings();
+		} 
+		
+		
 		setMissions(); //create new missions for this turn
 		
 	}
