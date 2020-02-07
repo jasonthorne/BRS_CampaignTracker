@@ -61,7 +61,7 @@ public class Campaign {
 		System.out.println("TURN NUM: " + turnNum);
 		movePeriod(); //set period iterator to starting period
 		setPairings();
-		setMissions();
+		setCurrMissions();
 	}
 	
 	public void setPairings() {
@@ -100,7 +100,7 @@ public class Campaign {
 	}
 		
 	
-	public void setMissions() {
+	public void setCurrMissions() {
 		
 		currMissions.clear(); //ALL MISSIONS HAVE BEEN COMPLETED - put this elewhere! After all people have clicked submit for their results for example! 
 		
@@ -133,14 +133,20 @@ public class Campaign {
 			setPairings();
 		} 
 		
-		
-		setMissions(); //create new missions for this turn
-		
+		setCurrMissions(); //create new missions for this turn
 	}
 	
 	
 	
-	
+	//advance period to following period of history
+	private void movePeriod() {
+		if(periodsIterator.hasNext()) {
+			period = periodsIterator.next(); 
+		}
+		else {  
+			System.out.println("+++++ end of periods - game is over +++++"); 
+		}
+	}
 	
 	
 
@@ -185,17 +191,7 @@ public class Campaign {
 	
 	//+++++++++++++++++++++++++++++++++++++++++++++++
 	
-	//advance period to following period of history
-	private void movePeriod() {
-		
-		if(periodsIterator.hasNext()) {
-			period = periodsIterator.next();
-			System.out.println(period); //++++++++++++++
-		}
-		else {  
-			System.out.println("++++++++++++ end of periods - game is over ++++++++++++"); //++++++++++++++
-		}
-	}
+	
 		
 	
 	public void test() {
