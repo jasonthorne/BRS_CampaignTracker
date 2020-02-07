@@ -10,15 +10,18 @@ public class Mission {
 	
 	private final List<String>players; //players involved
 	private final Period period; //period represented
+	private final int turnNum;
 	//private final String date; //date played
 	//private Results resutls; ??????????????????
 	
+	////A mission contains 2 mission logs (player 1 & p2). when they're both filled out, then the mission logs arer saved to the players 
 	
 	////////public Mission(List<String>players, Period period, String date) {
 	///////////////public Mission(List<String>players, Period period) {
-	public Mission(List<String>players, Period period) {
+	public Mission(List<String>players, Period period, int turnNum) { //add turn num too for mission log creation
 		this.players = players; //set list of players
 		this.period = period; //set period
+		this.turnNum = turnNum;
 		///////////this.date = date; //set date played
 	}
 	

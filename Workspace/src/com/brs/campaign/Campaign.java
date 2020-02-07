@@ -108,7 +108,7 @@ public class Campaign {
 		
 		//retrieve and remove the first collection of pairings, and for each of those parings create new missions: 	
 		pairings.poll().forEach(pairing -> { 
-			currMissions.add(new Mission(pairing, period)); 
+			currMissions.add(new Mission(pairing, period, turnNum)); 
 		});													
 			
 		System.out.println("currMissions: " + currMissions); //++++++++++++++++++++
@@ -136,8 +136,7 @@ public class Campaign {
 		setCurrMissions(); //create new missions for this turn
 	}
 	
-	
-	
+
 	//advance period to following period of history
 	private void movePeriod() {
 		if(periodsIterator.hasNext()) {
@@ -190,10 +189,7 @@ public class Campaign {
 	}
 	
 	//+++++++++++++++++++++++++++++++++++++++++++++++
-	
-	
-		
-	
+
 	public void test() {
 		for (Entry<String, Player> entry : nameToPlayer.entrySet()) {
 			System.out.println(entry.getKey() + " - " + entry.getValue());
@@ -206,52 +202,6 @@ public class Campaign {
 		test.setUnpairedPlayers();
 		test.pairPlayers();
 	}
-	
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//- once everyones finished their missions: check if everyones now played everyone else:
-		// If so, reseed. 
-		//Check if everyones now played 4 missions: 
-		//if so move period, update planes, force players to change planes if their now unavailable.
-
-		 
-		// - reseed once each player has played everyone else (Including new players added before last reseed)
-		//-Once everyone's played 4 missions: move periods, update planes, force players to change planes if their now unavailable.
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	
 	
 
