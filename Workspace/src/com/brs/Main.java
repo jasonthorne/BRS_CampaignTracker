@@ -24,13 +24,15 @@ import com.brs.event.EventName;
 import com.brs.period.Period;
 import com.brs.period.Block;
 import com.brs.period.Year;
+import com.brs.pilot.PilotSkill;
 import com.brs.plane.Plane;
 //import com.brs.plane.Plane.Availability;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
 import com.brs.Pairing;
+import com.brs.pilot.PilotSkill;
+import com.brs.pilot.Pilot;
 
-import OldFiles.Pilot;
 import OldFiles.Player;
 import OldFiles.Squadron;
 //import OldFiles.Campaign.CampaignBuilder;
@@ -760,6 +762,18 @@ public class Main {
 		campaign.advanceTurn();
 		campaign.advanceTurn();
 		*/
+		
+		Pilot rookie = new Pilot(PilotSkill.ROOKIE);
+		System.out.println(rookie.exp);
+		
+		Pilot avg = new Pilot(PilotSkill.AVERAGE);
+		System.out.println(avg.exp);
+		
+		Pilot vet = new Pilot(PilotSkill.VETERAN);
+		System.out.println(vet.exp);
+		
+		Pilot ace = new Pilot(PilotSkill.ACE);
+		System.out.println(ace.exp);
 		
 	}
 	
