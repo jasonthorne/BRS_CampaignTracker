@@ -775,6 +775,8 @@ public class Main {
 		Pilot ace = new Pilot(PilotSkill.ACE);
 		System.out.println(ace.exp);
 		
+		ace.getShotDownResult();
+		
 	}
 	
 	

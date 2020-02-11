@@ -79,7 +79,7 @@ public class RoyalAirForce extends AirForce{
 			  break;
 		}
 		 //add periods and statuses to HashMap:
-		for (int i=0; i<periods.size(); i++) { periodToStatus.put(periods.get(i), statuses.get(i)); }
+		for (int i=0, j=periods.size(); i<j; i++) { periodToStatus.put(periods.get(i), statuses.get(i)); }
 	}
 	
 	@Override
