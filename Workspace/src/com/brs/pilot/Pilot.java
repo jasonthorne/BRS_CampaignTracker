@@ -21,13 +21,11 @@ public class Pilot {
 	private PilotSkill pilotSkill;
 	public int exp;
 	private int kills;
-	private int status;
+	private String status;
 	private Plane plane;
 	
 	//imitates D6 roll by providing random number from 1-6:
 	private static final Supplier<Integer>D6=()->new Random().nextInt(6)+1; 
-	
-	
 	
 	public Pilot(PilotSkill pilotSkill) {
 		this.pilotSkill = pilotSkill;
