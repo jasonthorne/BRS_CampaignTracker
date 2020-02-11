@@ -42,7 +42,7 @@ public class Mission {
 	}
 
 	
-	
+	//trigger the post mission stuff once BOTH players have added all their input.
 	
 
 }

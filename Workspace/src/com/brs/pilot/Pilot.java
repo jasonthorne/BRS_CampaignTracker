@@ -55,7 +55,7 @@ public class Pilot {
 		
 	}
 	
-	
+	//post mission stuff: 
 	public void getShotDownResult() {
 		
 		switch(D6.get()) {
