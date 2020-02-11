@@ -1,8 +1,11 @@
 package com.brs.pilot;
 
 import com.brs.plane.Plane;
+import com.brs.player.Player;
 
+import java.util.Map;
 import java.util.Random;
+import java.util.TreeMap;
 import java.util.function.Supplier;
 
 import com.brs.pilot.PilotSkill;
@@ -18,6 +21,8 @@ public class Pilot {
 	private int kills;
 	private int status;
 	private Plane plane;
+	
+	private final Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved +++++++++
 	
 	public Pilot(PilotSkill pilotSkill) {
 		this.pilotSkill = pilotSkill;

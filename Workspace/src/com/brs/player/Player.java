@@ -33,7 +33,7 @@ public class Player {
 		this.name = name; //assign name
 		this.airForce = airForce; //assign reference to chosen air force
 		//create a squadron, giving it a map of the models available to it:
-		squadron = new Squadron(airForce.getAvailableModels(period)); 
+		squadron = new Squadron(airForce.getAvailableModels(period)); //passing period in here is messy!! TRY CHANGE THIS!  ++++++++++++++++++++++++++
 	}
 	
 	
