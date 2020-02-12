@@ -24,11 +24,6 @@ public class Soviet extends AirForce{
 			Model.P_39_AIRACOBRA, Model.P_63_KINGCOBRA, Model.POLIKARPOV_I_15, Model.POLIKARPOV_I_16, Model.POLIKARPOV_I_153,
 			Model.YAK_1, Model.YAK_3, Model.YAK_7B, Model.YAK_9D, Model.YAK_9U);
 	
-	private enum test {
-		//Model. //+++++++++https://www.codeproject.com/Tips/425428/Using-enum-to-define-a-new-enum
-		//HURRICANE_II = Model.HURRICANE_II; //https://www.baeldung.com/a-guide-to-java-enums
-	}
-	
 	//creates a HashMap of periods and their statuses for the model of plane passed to it: 
 	@Override 
 	protected void setPeriodToStatus(Model model) {

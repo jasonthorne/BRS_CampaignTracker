@@ -3,17 +3,24 @@ package com.brs.pilot;
 import com.brs.plane.Plane;
 import com.brs.player.Player;
 
+import java.io.FileReader;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 import java.util.function.Supplier;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import com.brs.FileReadingTEST;
 import com.brs.date.Date;
 import com.brs.pilot.PilotSkill;
 
 
-public class Pilot {
+public class Pilot implements FileReadingTEST{
 	
 	private int id;
 	private String name;
@@ -51,7 +58,72 @@ public class Pilot {
 	}
 	
 	
-	private void addExp() {
+	public void test() { //https://stackoverflow.com/questions/25346512/read-multiple-objects-json-with-java
+		
+		//getText(this.getClass());
+	
+		System.out.println(this.getClass().getName());
+		System.out.println(this.getClass().getPackage().getName().replace(".", "/") + "/whateverIWant.json");
+		System.out.println(this.getClass().getName().replace(".", "/").toLowerCase()+".json");
+		
+		String filePath = this.getClass().getName().replace(".", "/").toLowerCase()+".json";
+		
+		try (FileReader reader = new FileReader(ClassLoader.getSystemResource(filePath).getFile())) {
+            // read the json file
+ 
+ 
+	        JSONParser jsonParser = new JSONParser();
+	        JSONObject jo = (JSONObject) jsonParser.parse(reader);
+	      
+	        // getting firstName and lastName 
+	        String firstName = (String) jo.get("firstName"); 
+	        String lastName = (String) jo.get("lastName"); 
+	          
+	        System.out.println(firstName); 
+	        System.out.println(lastName); 
+	          
+	        // getting age 
+	        long age = (long) jo.get("age"); 
+	        System.out.println(age); 
+	          
+	        // getting address 
+	        Map address = ((Map)jo.get("address")); 
+	          
+	        // iterating address Map 
+	        Iterator<Map.Entry> itr1 = address.entrySet().iterator(); 
+	        while (itr1.hasNext()) { 
+	            Map.Entry pair = itr1.next(); 
+	            System.out.println(pair.getKey() + " : " + pair.getValue()); 
+	        } 
+	          
+	        // getting phoneNumbers 
+	        JSONArray ja = (JSONArray) jo.get("phoneNumbers"); 
+	          
+	        // iterating phoneNumbers 
+	        Iterator itr2 = ja.iterator(); 
+	          
+	        while (itr2.hasNext())  
+	        { 
+	            itr1 = ((Map) itr2.next()).entrySet().iterator(); 
+	            while (itr1.hasNext()) { 
+	                Map.Entry pair = itr1.next(); 
+	                System.out.println(pair.getKey() + " : " + pair.getValue()); 
+	            } 
+	            
+	        
+	        } 
+
+
+	} catch (Exception ex) {
+          ex.printStackTrace();
+    }
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 	
@@ -60,7 +132,7 @@ public class Pilot {
 		
 		switch(D6.get()) {
 		 case 6: case 5: 
-			 System.out.println("forced landing"); 
+			 System.out.println("Forced landing"); 
 			 break;
 		 case 4: case 3: 
 			 System.out.println("Bail out");

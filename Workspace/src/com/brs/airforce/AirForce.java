@@ -22,7 +22,7 @@ public abstract class AirForce {
 	protected abstract void setPeriodToStatus(Model model); //extended class sets periodToStatus
 	
 	//map for holding a collection of models and their status in relation to a given period:
-	private static Map<Model, Status>modelToStatus; 
+	private static Map<Model, Status>modelToStatus;
 	private static Status status; //holds a status value for insertion into modelToStatus
 	
 	//returns a map of models available to a given period:
