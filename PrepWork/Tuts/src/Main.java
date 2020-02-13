@@ -100,6 +100,11 @@ public class Main {
 			
 			System.out.println(parentClass.testChild.getTestChildString());
 			
+			TestChild testChild2 = new TestChild();
+			testChild2 = parentClass.testChild;
+			
+			System.out.println(testChild2.getTestChildString());
+			
 		}catch(Exception e) {
 			System.out.println("Exception is: " + e);
 		}
