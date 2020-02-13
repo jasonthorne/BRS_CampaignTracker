@@ -5,7 +5,7 @@ import java.io.ObjectOutputStream;
 public class Serialize {
 	
 	//serialize the java object and save it to a file:
-	public static void SerializeStuff(Object obj, String filePath) throws IOException{
+	public static void serializeStuff(Object obj, String filePath) throws IOException{
 		
 		FileOutputStream fileToWrite = new FileOutputStream(filePath);  //stream to write file (passing it the file path)
 		

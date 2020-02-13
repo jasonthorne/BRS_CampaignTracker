@@ -1,10 +1,10 @@
 import java.io.Serializable;
 
-public class ClassToSerialize implements Serializable{
+public class myObject implements Serializable{
 	
 	private String myString;
 	private int myInt;
-	private transient int myTransInt;
+	private transient String myTransInt;
 	
 
 	//getters & setters:
@@ -20,18 +20,19 @@ public class ClassToSerialize implements Serializable{
 	public void setMyInt(int myInt) {
 		this.myInt = myInt;
 	}
-	public int getMyTransInt() {
+	public String getMyTransInt() {
 		return myTransInt;
 	}
-	public void setMyTransInt(int myTransInt) {
+	public void setMyTransInt(String myTransInt) {
 		this.myTransInt = myTransInt;
 	}
 	
 	
 	@Override
 	public String toString() {
-		return "ClassToSerialize [myString=" + myString + ", myInt=" + myInt + ", myTransInt=" + myTransInt + "]";
+		return "myObject [myString=" + myString + ", myInt=" + myInt + ", myTransInt=" + myTransInt + "]";
 	}
+	
 	
 	
 }
