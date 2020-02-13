@@ -98,6 +98,8 @@ public class Main {
 			
 			System.out.println(parentClass); //print new child toString
 			
+			System.out.println(parentClass.testChild.getTestChildString());
+			
 		}catch(Exception e) {
 			System.out.println("Exception is: " + e);
 		}

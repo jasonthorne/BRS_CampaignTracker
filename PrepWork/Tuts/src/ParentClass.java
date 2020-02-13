@@ -6,6 +6,11 @@ public class ParentClass implements Serializable{
 	private String parentString;
 	private int parentInt;
 	
+	//----------
+	TestChild testChild = new TestChild(); //inner class (made with parent during serialization)
+	
+	//---------
+	
 	//getters & setters:
 	public String getParentString() {
 		return parentString;
@@ -22,7 +27,7 @@ public class ParentClass implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "ParentClass [parentString=" + parentString + ", parentInt=" + parentInt + "]";
+		return "ParentClass [parentString=" + parentString + ", parentInt=" + parentInt + "getPtestChildString() " + testChild.getTestChildString() + "]";
 	}
 	
 }
