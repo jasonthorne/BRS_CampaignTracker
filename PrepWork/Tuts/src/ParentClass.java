@@ -1,4 +1,6 @@
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 //public class ParentClass { //note, parent does NOT implement Serializable +++++++++++++++
 public class ParentClass implements Serializable{
@@ -7,7 +9,10 @@ public class ParentClass implements Serializable{
 	private int parentInt;
 	
 	//----------
-	TestChild testChild = new TestChild(); //inner class (made with parent during serialization)
+	TestChild testChild = new TestChild("yo"); //inner class (made with parent during serialization)
+	
+	List<TestChild>testChildList = new ArrayList<TestChild>();
+	
 	
 	//---------
 	
@@ -25,9 +30,18 @@ public class ParentClass implements Serializable{
 		this.parentInt = parentInt;
 	}
 	
+	
+	//-------
+	
+	public void addChild(String testChildString) {
+		testChildList.add(new TestChild(testChildString));
+	}
+	//-------
+	
 	@Override
 	public String toString() {
-		return "ParentClass [parentString=" + parentString + ", parentInt=" + parentInt + "getPtestChildString() " + testChild.getTestChildString() + "]";
+		return "ParentClass [parentString=" + parentString + ", parentInt=" + parentInt + "getPtestChildString() "
+				+ testChild.getTestChildString() + "testChildList: " + testChildList.get(0).getTestChildString() + "]";
 	}
 	
 }

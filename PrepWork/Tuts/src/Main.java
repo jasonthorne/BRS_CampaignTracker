@@ -88,8 +88,10 @@ public class Main {
 		
 		//=============================================================================
 		
-		
+		//OBJECT TO FILE:
 		ParentClass parentClass = new ParentClass();
+		
+		parentClass.addChild("bum");
 		
 		String fileName3 = "parentClass.txt";
 		
@@ -98,18 +100,41 @@ public class Main {
 			
 			System.out.println(parentClass); //print new child toString
 			
+			/*
 			System.out.println(parentClass.testChild.getTestChildString());
 			
-			TestChild testChild2 = new TestChild();
+			TestChild testChild2 = new TestChild("dawg");
 			testChild2 = parentClass.testChild;
 			
 			System.out.println(testChild2.getTestChildString());
+			*/
+			//----------
+			
+			//adding child to list 
 			
 		}catch(Exception e) {
 			System.out.println("Exception is: " + e);
 		}
 		
-
+		
+		//================================================================================
+		//FILE TO OBJECT:
+		
+		ParentClass parentClassFromFile = null;
+		
+		try {
+			parentClassFromFile = (ParentClass) Deserialize.deSerializeStuff(fileName3);
+			
+			System.out.println(parentClassFromFile); //print new child toString
+			
+		}catch(Exception e) {
+			System.out.println("Exception is: " + e);
+		}
+		
+		System.out.println(parentClassFromFile.testChild.getTestChildString());
+		System.out.println(parentClassFromFile.testChildList.get(0).getTestChildString());
+		
 	}
 
+	
 }
