@@ -782,6 +782,7 @@ public class Main  implements FileReadingTEST{
 		campaign.advanceTurn();
 		*/
 		
+		//--
 		Pilot rookie = new Pilot(PilotSkill.ROOKIE);
 		System.out.println(rookie.exp);
 		
