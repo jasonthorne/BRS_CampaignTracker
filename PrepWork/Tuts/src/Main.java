@@ -5,6 +5,10 @@ public class Main {
 	 * 
 	 *Serialization tutorial from: https://www.techbeamers.com/java-serialization-tutorial/
 	 *
+	 *
+	 *
+	 *link to sql push: http://www.java2s.com/Code/Java/Database-SQL-JDBC/HowtoserializedeserializeaJavaobjecttotheMySQLdatabase.htm
+	 *
 	 */
 
 	public static void main(String[] args) {
@@ -91,7 +95,7 @@ public class Main {
 		//OBJECT TO FILE:
 		ParentClass parentClass = new ParentClass();
 		
-		parentClass.addChild("bum");
+		parentClass.addChild("bob");
 		
 		String fileName3 = "parentClass.txt";
 		
