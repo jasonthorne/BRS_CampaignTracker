@@ -17,10 +17,11 @@ import org.json.simple.parser.JSONParser;
 
 import com.brs.FileReadingTEST;
 import com.brs.date.Date;
+import com.brs.die.Die;
 import com.brs.pilot.PilotSkill;
 
 
-public class Pilot implements FileReadingTEST{
+public class Pilot implements Die, FileReadingTEST{
 	
 	private int id;
 	private String name;
@@ -30,9 +31,6 @@ public class Pilot implements FileReadingTEST{
 	private int kills;
 	private String status;
 	private Plane plane;
-	
-	//imitates D6 roll by providing random number from 1-6:
-	private static final Supplier<Integer>D6=()->new Random().nextInt(6)+1; 
 	
 	public Pilot(PilotSkill pilotSkill) {
 		this.pilotSkill = pilotSkill;

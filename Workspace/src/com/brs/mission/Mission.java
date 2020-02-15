@@ -1,12 +1,47 @@
 package com.brs.mission;
 
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
+import java.util.function.Supplier;
 
+import com.brs.die.Die;
 import com.brs.period.Period;
 import com.brs.player.Player;
 
-public class Mission {
+
+//---------------------------
+
+/*
+ * 
+ * logbook contains logs
+
+----------------------
+log has: period and month
+
+player faced
+
+reults to squad
+-----------------------
+
+
+
+
+mission creates the logs:
+make a player log (containing opponent, date and results )
+
+
+mission saves the logs to player's mission books. 
+
+after conflict: 
+
+
+ * 
+ * 
+ */
+//---------------------
+
+public class Mission implements Die{
 	
 	private final List<String>players; //players involved
 	private final Period period; //period represented
@@ -32,6 +67,93 @@ public class Mission {
 	}*/
 	
 	//+++++++++++++++++++https://www.geeksforgeeks.org/parse-json-java/
+	
+	//imitates D6 roll by providing random number from 1-6:
+	//private static final Supplier<Integer>D6=()->new Random().nextInt(6)+1; //MOVE THIS TO IT's OWN INTERFACE!! 
+	
+	
+	
+	//post mission stuff: 
+	public void getShotDown() {
+		
+		switch(D6.get()) {
+		 case 6: case 5: 
+			 System.out.println("Forced landing"); 
+			 break;
+		 case 4: case 3: 
+			 System.out.println("Bail out");
+			 getBailOut(); //get bailout result
+			 break;
+		 case 2: case 1: 
+			 System.out.println("KIA"); 
+			 break;
+		}
+	}
+	
+	
+	public void getBailOut() {
+		
+		switch(D6.get()) {
+		 case 6: case 5: case 4:
+			 System.out.println("OK"); 
+			 break;
+		 case 3: case 2: 
+			 System.out.println("Bad landing");
+			 getInjury();
+			  break;
+		 case 1: 
+			 System.out.println("Chute failure"); 
+			 break;
+		}
+	}
+	
+	
+	public void getInjury() {
+		
+		switch(D6.get()) {
+		 case 6: case 5: 
+			 System.out.println("Just a scratch"); 
+			 break;
+		 case 4: case 3: 
+			 System.out.println("Down but not out");
+			 break;
+		 case 2: 
+			 System.out.println("Major Injury");
+			 break;
+		 case 1: 
+			 System.out.println("Crippling injury"); 
+			 break;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public void getPlayersTEST() {
