@@ -17,7 +17,7 @@ import com.brs.player.Player;
  * logbook contains logs
 
 ----------------------
-log has: period and month
+log has: period and turn (2 keys)
 
 player faced
 
