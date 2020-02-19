@@ -25,9 +25,7 @@ public class Player {
 	
 	
 	
-	//mission log instance instead +++++
-	//++++have an update method here for mission log
-	///private Map<Period, Mission>periodToMission = new HashMap<Mission, List<Player>>(); //map of current missions
+	//private Map<Period, MissionLog>periodTurnToMissionLog = new HashMap<Mission, List<Player>>(); //map of current missions
 	
 	public Player(String name, AirForce airForce, Period period) { //++++++++++++change privacy!
 		this.name = name; //assign name

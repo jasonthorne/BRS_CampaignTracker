@@ -7,6 +7,36 @@ import com.brs.period.Period;
 
 public class MissionLog {
 	
+	
+	//period and turn (key!)
+	Period period;
+	int turn;
+	String opponent;
+	
+	//squadron (pilots):
+	
+	
+	
+	
+
+	/*
+	exp points gained
+	casualties suffered
+	planes lost
+	*/
+	
+	public MissionLog() {
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
 	private Mission mission; //player's current mission
 	private final Map<Period, Mission>periodToMission = new TreeMap<Period, Mission>(); //map of player's previous missions
 	
@@ -29,7 +59,7 @@ public class MissionLog {
 	
 	public void saveMission(Period period){ periodToMission.put(period, mission); }
 		
-	
+	*/
 	
 	
 
