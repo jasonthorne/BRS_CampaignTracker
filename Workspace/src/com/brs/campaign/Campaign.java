@@ -29,10 +29,10 @@ import com.brs.mission.MissionBuilder;
 import com.brs.period.Period;
 import com.brs.period.Year;
 
-public class Campaign { 
+public class Campaign implements Date { 
 	
 	private final String name; //name of campaign
-	private final String date = Date.getDate(); //date of creation
+	private final String date = DATE.get(); //date of creation
 	private final Event event; //historical event chosen
 	private Period period; //current period represented
 	private final ListIterator<Period>periodsIterator; //iterator for advancing period
@@ -116,6 +116,11 @@ public class Campaign {
 		
 		//retrieve and remove the first collection of pairings, and for each of those parings create new missions: 	
 		pairings.poll().forEach(pairing -> { 
+			
+			pairing.forEach(player -> { //PROBABKLY PUT MISSION LOGS IN SQUADRON!! 
+				
+			});
+			
 			currMissions.add(new Mission(pairing, period, turnNum)); 
 		});													
 			
@@ -149,6 +154,7 @@ public class Campaign {
 	private void movePeriod() {
 		if(periodsIterator.hasNext()) {
 			period = periodsIterator.next(); 
+			//////////////++++++++++++++++++++++++++++++++UPDATE MODELS AVAILABLE HERE!! 
 		}
 		else {  
 			System.out.println("+++++ end of periods - game is over +++++"); 

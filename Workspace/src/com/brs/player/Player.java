@@ -14,13 +14,13 @@ import com.brs.mission.Mission;
 import com.brs.mission.MissionLog;
 import com.brs.period.Period;
 
-public class Player {
+public class Player implements Date{
 	
 	private final String name; //player name
-	private final String date = Date.getDate(); //date of creation
+	private final String date = DATE.get(); //date of creation
 	private final AirForce airForce; //chosen air force
 	private final Squadron squadron; //player's squadron 
-	private int score; //current score 
+	////////private int score; //current score 
 	//////////////private final MissionLog missionLog = new MissionLog(); //player's mission log
 	
 	

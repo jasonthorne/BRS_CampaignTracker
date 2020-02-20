@@ -7,12 +7,13 @@ import com.brs.period.Period;
 
 public class MissionLog {
 	
+	//date played 
 	
 	//period and turn (key!)
 	Period period;
 	int turn;
 	String opponent;
-	
+	String date; //+++++++++++++++++this should be created when log is marked as complete!! 
 	//squadron (pilots):
 	
 	

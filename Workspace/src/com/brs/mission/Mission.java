@@ -43,9 +43,10 @@ after conflict:
 
 public class Mission implements Die{
 	
-	private final List<String>players; //players involved
-	private final Period period; //period represented
-	private final int turnNum;
+	//+++++++++++ADD FINALS TO THESE LATER!! 
+	private List<String>players; //players involved
+	private Period period; //period represented
+	private int turnNum;
 	//private final String date; //date played
 	//private Results resutls; ??????????????????
 	
@@ -60,11 +61,13 @@ public class Mission implements Die{
 		///////////this.date = date; //set date played
 	}
 	
-	/*
-	public Mission(List<String>players) {
-		this.players = players; //set list of players
+	List<MissionLog>missionLogs;
+	
+	
+	public Mission(List<MissionLog>missionLogs) {
+		this.missionLogs = missionLogs;
 		
-	}*/
+	}
 	
 	//+++++++++++++++++++https://www.geeksforgeeks.org/parse-json-java/
 	

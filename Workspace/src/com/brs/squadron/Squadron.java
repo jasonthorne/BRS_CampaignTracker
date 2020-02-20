@@ -29,7 +29,7 @@ public class Squadron {
 	//private List<Pilot>pilots = new ArrayList<Pilot>();
 	
 	//private static int pilotNum = 0; //?????????????needed. just count size of list every time you want to add to it, and after removal :P 
-	
+	 
 
 	/*
 	private List<Pilot>pilots = new ArrayList<Pilot>();

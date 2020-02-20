@@ -1,31 +1,16 @@
 package com.brs.pilot;
 
 import com.brs.plane.Plane;
-import com.brs.player.Player;
-
-import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Random;
-import java.util.TreeMap;
-import java.util.function.Supplier;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import com.brs.FileReadingTEST;
 import com.brs.date.Date;
 import com.brs.die.Die;
 import com.brs.pilot.PilotSkill;
 
 
-public class Pilot implements Die, FileReadingTEST{
+public class Pilot implements Die, Date {
 	
 	private int id;
 	private String name;
-	private final String date = Date.getDate(); //date of creation
+	private final String date = DATE.get(); //date of creation
 	private PilotSkill pilotSkill;
 	public int exp;
 	private int kills;

@@ -2,13 +2,11 @@ package com.brs.date;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.function.Supplier;
 
-//returns a string of current date:
 public interface Date {
 	
-	static String getDate() { 
-		
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //formatter
-		return dateTimeFormatter.format(LocalDate.now()); //return current formatted date
-	}
+	//return a string of current date:
+	static final Supplier<String>DATE=()->DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDate.now());
 }
+
