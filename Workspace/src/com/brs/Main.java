@@ -808,7 +808,7 @@ public class Main  implements FileReadingTEST{ //remove fileReadingTest ++++++
 		 System.out.println("=================================");
 		 Pilot test = new Pilot(PilotSkill.ROOKIE);
 		
-		 
+		 test.test();
 		
 			
 		//---------------------------

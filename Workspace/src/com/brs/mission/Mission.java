@@ -78,7 +78,7 @@ public class Mission implements Die{
 	
 	//post mission stuff: 
 	
-	public void shotDownRoll() {
+	public void shotDown() {
 		
 		switch(D6.get()) {
 		 case 6: case 5: 
@@ -86,7 +86,7 @@ public class Mission implements Die{
 			 break;
 		 case 4: case 3: 
 			 System.out.println("Bail out");
-			 bailOutRoll(); //get bailout result
+			 bailOut(); //get bailout result
 			 break;
 		 case 2: case 1: 
 			 System.out.println("KIA"); 
@@ -95,7 +95,7 @@ public class Mission implements Die{
 	}
 	
 	
-	public void bailOutRoll() {
+	public void bailOut() {
 		
 		switch(D6.get()) {
 		 case 6: case 5: case 4:
@@ -103,7 +103,7 @@ public class Mission implements Die{
 			 break;
 		 case 3: case 2: 
 			 System.out.println("Bad landing");
-			 injuryRoll();
+			 injury();
 			  break;
 		 case 1: 
 			 System.out.println("Chute failure"); 
@@ -112,7 +112,7 @@ public class Mission implements Die{
 	}
 	
 	
-	public void injuryRoll() {
+	public void injury() {
 		
 		switch(D6.get()) {
 		 case 6: case 5: 
@@ -131,7 +131,7 @@ public class Mission implements Die{
 	}
 	
 	
-	public void damagedPlaneRoll() {
+	public void damagedAircraft() {
 		
 		switch(D6.get()) {
 		 case 6: case 5: case 4:
@@ -142,7 +142,7 @@ public class Mission implements Die{
 			 break;
 		  case 1:
 			 System.out.println("Bail out");
-			 bailOutRoll(); //get bailout result
+			 bailOut(); //get bailout result
 			 break;
 		}
 	}

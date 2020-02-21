@@ -25,6 +25,19 @@ public class BattleOfBritain extends Event{
 	//BattleOfBritain air forces:
 	private static final List<AirForceName>AIR_FORCE_NAMES = Arrays.asList(
 			AirForceName.RAF, AirForceName.LUFTWAFFE);
+	
+	//=============================?????????????????
+	//air forces involved and 
+	private static final Map<AirForceName, Boolean>AIR_FORCE_NAME_TO_HOME_ADVANTAGE = new HashMap<AirForceName, Boolean>(){{
+		put(AirForceName.RAF, true);
+		put(AirForceName.LUFTWAFFE, false);	
+	}};
+	
+	//OR:
+	
+	private static final List<AirForceName>HOME_ADVANTAGES = Arrays.asList(AirForceName.RAF);
+		
+	//===========================
 			
 	//BattleOfBritain periods:
 	private static final List<Period>PERIODS = Periods.getPeriods(

@@ -1,4 +1,11 @@
 
+sort out home advantage statuses for airforces #++++++++++++++++++++
+
+hasHomeAdv
+
+https://docs.google.com/spreadsheets/d/13BOivo6qYY5Z0UN122T1nR2zRUx1owXWwVQ0TOOm_-o/edit?fbclid=IwAR3f5qry0HBJ4uMBaxxDdJG_vXYXz3X9Dg57JtlE8bhmam0ZP8isR_ztm8A#gid=301156516
+
+
 check that all pairings are unique
 
 //++++++++++look at typewriter font for GUI
