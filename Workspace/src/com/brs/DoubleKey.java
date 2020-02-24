@@ -6,13 +6,19 @@ package com.brs;
 
 public class DoubleKey {
 	
+	/*
 	private final Enum<?> key1;
     private final Enum<?> key2;
+	*/
+    private final Object key1;
+    private final Object key2;
 	
-	
-	public DoubleKey(Enum<?> key1, Enum<?> key2) {
+   // public DoubleKey(Enum<?> key1, Enum<?> key2) {
+	public DoubleKey(Object key1, Object key2) {
         this.key1 = key1;
         this.key2 = key2;
+        
+        System.out.println(key1 + " " + key2); //------test print
     }
 	
 	

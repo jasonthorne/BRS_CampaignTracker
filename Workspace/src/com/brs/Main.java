@@ -36,7 +36,7 @@ import com.brs.Pairing;
 import com.brs.pilot.PilotSkill;
 import com.brs.pilot.Pilot;
 
-import OldFiles.Player;
+import com.brs.player.Player;
 import OldFiles.Squadron;
 //import OldFiles.Campaign.CampaignBuilder;
 //import OldFiles.Pilot.PilotBuilder;
@@ -813,7 +813,9 @@ public class Main  implements FileReadingTEST{ //remove fileReadingTest ++++++
 			
 		//---------------------------
 		
+		 Player testPlayer = new Player();
 		 
+		 testPlayer.test();
 		 
 		 
 		 

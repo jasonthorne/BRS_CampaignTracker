@@ -11,8 +11,9 @@ public interface Die {
 	
 	//imitates a manoeuvre test:
 	static final Predicate<Integer>MANOEUVRE=(d6s)-> {
-		for(int i=0; i<d6s; i++) //for number of D6s rolls
+		for(int i=0; i<d6s; i++) { //for number of D6s rolls
 			if(D6.get().equals(6)) { return true; } //return true if any roll a 6 
+		}
 		return false; //else test has failed
 	};
 }

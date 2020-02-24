@@ -27,7 +27,18 @@ public class MissionLog {
 	*/
 	
 	public MissionLog() {
+		System.out.println("MissionLog");
 		
+		turn = 3;
+	}
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "MissionLog [turn=" + turn + "]";
 	}
 	
 	

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.brs.DoubleKey;
 import com.brs.airforce.AirForce;
 import com.brs.date.Date;
 import com.brs.mission.Mission;
@@ -23,9 +24,7 @@ public class Player implements Date{
 	////////private int score; //current score 
 	//////////////private final MissionLog missionLog = new MissionLog(); //player's mission log
 	
-	
-	
-	//private Map<Period, MissionLog>periodTurnToMissionLog = new HashMap<Mission, List<Player>>(); //map of current missions
+	private Map<DoubleKey, MissionLog>periodTurnToMissionLog = new HashMap<DoubleKey, MissionLog>(); //map of current missions
 	
 	public Player(String name, AirForce airForce, Period period) { //++++++++++++change privacy!
 		this.name = name; //assign name
@@ -34,10 +33,17 @@ public class Player implements Date{
 		squadron = new Squadron(airForce.getAvailableModels(period)); //passing period in here is messy!! TRY CHANGE THIS!  ++++++++++++++++++++++++++
 	}
 	
-	
-	public void updateMissons() {
-		
+	private void updateMissons() {
+		System.out.println("woohoo!");
 	}
+	
+	//+++++++++++++++++++++TEST CONSTRUVTOR
+	public Player() {
+		this.name = null;
+		this.airForce = null;
+		squadron = null;
+	}
+	//+++++++++++++++++++++TEST CONSTRUVTOR
 	
 	//++++TEST PRINTING ++++++++++++++++++++++
 	public String getPlayerStuff() { 
@@ -45,6 +51,33 @@ public class Player implements Date{
 		//return"name is: " + name;
 	}
 
+	public void test() {
+		periodTurnToMissionLog.put(new DoubleKey("Yo", "dawg"), new MissionLog());
+		
+		System.out.println(periodTurnToMissionLog.get(new DoubleKey("Yo", "dawg")));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

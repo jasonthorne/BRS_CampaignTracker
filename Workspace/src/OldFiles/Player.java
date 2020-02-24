@@ -13,7 +13,7 @@ public class Player{
 	
 
 	//constructor:
-	private Player(){
+	public Player(){
 		System.out.println("Player constructed");
 	}
 
