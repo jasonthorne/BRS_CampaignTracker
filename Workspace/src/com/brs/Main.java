@@ -755,7 +755,7 @@ public class Main  implements FileReadingTEST{ //remove fileReadingTest ++++++
 		//campaign.setPairings();
 		
 		System.out.println("+++++++++++");
-		//campaign.beginTurns();
+		campaign.beginTurns();
 		
 		//campaign.setCurrMissions();
 		
@@ -808,16 +808,16 @@ public class Main  implements FileReadingTEST{ //remove fileReadingTest ++++++
 		 System.out.println("=================================");
 		 Pilot test = new Pilot(PilotSkill.ROOKIE);
 		
-		 test.test();
+		test.testManoeuvre();
 		
 			
 		//---------------------------
 		
 		 Player testPlayer = new Player();
 		 
-		 testPlayer.test();
+		// testPlayer.test();
 		 
-		 
+		 testPlayer.test2();
 		 
 	
 	}

@@ -9,37 +9,37 @@ import com.brs.die.Die;
 import com.brs.period.Period;
 import com.brs.player.Player;
 
-
-//---------------------------
-
-/*
- * 
- * logbook contains logs
-
-----------------------
-log has: period and turn (2 keys)
-
-player faced
-
-reults to squad
------------------------
-
-
-
-
-mission creates the logs:
-make a player log (containing opponent, date and results )
-
-
-mission saves the logs to player's mission books. 
-
-after conflict: 
-
-
- * 
- * 
- */
-//---------------------
+	
+	//---------------------------
+	
+	/*
+	 * 
+	 * logbook contains logs
+	
+	----------------------
+	log has: period and turn (2 keys)
+	
+	player faced
+	
+	reults to squad
+	-----------------------
+	
+	
+	
+	
+	mission creates the logs:
+	make a player log (containing opponent, date and results )
+	
+	
+	mission saves the logs to player's mission books. 
+	
+	after conflict: 
+	
+	
+	 * 
+	 * 
+	 */
+	//---------------------
 
 public class Mission implements Die{
 	

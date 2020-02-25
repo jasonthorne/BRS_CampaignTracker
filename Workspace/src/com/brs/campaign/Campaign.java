@@ -38,11 +38,11 @@ public class Campaign implements Date {
 	private final ListIterator<Period>periodsIterator; //iterator for advancing period
 	private static final int TURNS_PER_PERIOD = 4; //amount of turns played per period
 	private final Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
-	private int turnNum = TURNS_PER_PERIOD; //current turn this period ?????????????should really be 1!! :P
+	private int turnNum; // = TURNS_PER_PERIOD; //current turn this period ?????????????should really be 1!! :P
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
 	private final Deque<List<List<String>>>pairings = new LinkedList<List<List<String>>>(); //combinations of player pairings, for each turn of each period in the campaign
 	////////////////private final Deque<List<Set<String>>>pairings2 = new LinkedList<List<Set<String>>>();
-	private final List<Mission>currMissions = new ArrayList<Mission>(); //current missions assigned to players
+	private final List<Mission>missions = new ArrayList<Mission>(); //missions assigned to players
 	
 	public Campaign(EventName eventName) {
 		event = new EventFactory().getEvent(eventName); //create event from EventFactory
@@ -63,7 +63,7 @@ public class Campaign implements Date {
 		System.out.println("TURN NUM: " + turnNum);
 		movePeriod(); //set period iterator to starting period
 		setPairings();
-		setCurrMissions();
+		setMissions();
 	}
 	
 	public void setPairings() {
@@ -108,23 +108,23 @@ public class Campaign implements Date {
 	}
 		
 	
-	public void setCurrMissions() {
+	public void setMissions() {
 		
-		currMissions.clear(); //ALL MISSIONS HAVE BEEN COMPLETED - put this elewhere! After all people have clicked submit for their results for example! 
+		missions.clear(); //ALL MISSIONS HAVE BEEN COMPLETED - put this elewhere! After all people have clicked submit for their results for example! (a thread firing)
 		
 		System.out.println("pairings: " + pairings); //++++++++++++++++++++
 		
 		//retrieve and remove the first collection of pairings, and for each of those parings create new missions: 	
 		pairings.poll().forEach(pairing -> { 
 			
-			pairing.forEach(player -> { //PROBABKLY PUT MISSION LOGS IN SQUADRON!! 
-				
+			pairing.forEach(player -> { //PROBABLY PUT MISSION LOGS IN SQUADRON!! 
+				System.out.println("player is: " + player); //+++++++++++++++
 			});
 			
-			currMissions.add(new Mission(pairing, period, turnNum)); 
+			missions.add(new Mission(pairing, period, turnNum)); 
 		});													
 			
-		System.out.println("currMissions: " + currMissions); //++++++++++++++++++++
+		System.out.println("currMissions: " + missions); //++++++++++++++++++++
 		System.out.println("pairings: " + pairings); //+++++++++++++++++++
 	}
 	
@@ -142,11 +142,9 @@ public class Campaign implements Date {
 		System.out.println("TURN NUM: " + turnNum); ///+++++++++++++++++++
 		
 		//If all potential pairings have been allocated, create new ones:
-		if(pairings.isEmpty()) {
-			setPairings();
-		} 
-		
-		setCurrMissions(); //create new missions for this turn
+		if(pairings.isEmpty()) { setPairings(); } 
+			
+		setMissions(); //create new missions for this turn
 	}
 	
 

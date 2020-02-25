@@ -9,11 +9,15 @@ import java.util.List;
 import java.util.Map;
 
 import com.brs.DoubleKey;
+import com.brs.PeriodTurn;
 import com.brs.airforce.AirForce;
 import com.brs.date.Date;
 import com.brs.mission.Mission;
 import com.brs.mission.MissionLog;
+import com.brs.month.Month;
+import com.brs.period.Block;
 import com.brs.period.Period;
+import com.brs.period.Year;
 
 public class Player implements Date{
 	
@@ -25,6 +29,11 @@ public class Player implements Date{
 	//////////////private final MissionLog missionLog = new MissionLog(); //player's mission log
 	
 	private Map<DoubleKey, MissionLog>periodTurnToMissionLog = new HashMap<DoubleKey, MissionLog>(); //map of current missions
+	
+	//--------
+	
+	private Map<PeriodTurn, MissionLog>testMap = new HashMap<PeriodTurn, MissionLog>(); 
+	//---------
 	
 	public Player(String name, AirForce airForce, Period period) { //++++++++++++change privacy!
 		this.name = name; //assign name
@@ -58,7 +67,11 @@ public class Player implements Date{
 	}
 	
 	
-	
+	public void test2() {
+		testMap.put(new PeriodTurn(new Period(Block.EARLY, Year.FORTY_ONE), Month.THIRD), new MissionLog());
+		
+		System.out.println(testMap.get(new PeriodTurn(new Period(Block.EARLY, Year.FORTY_ONE), Month.THIRD)));
+	}
 	
 	
 	

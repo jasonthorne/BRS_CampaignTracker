@@ -41,8 +41,8 @@ public class Pilot implements Die, Date {
 	}
 	
 	
-	public void test() {
-		System.out.println(MANOEUVRE.test(1));
+	public void testManoeuvre() {
+		System.out.println(MANOEUVRE.test(3));
 	}
 	
 
