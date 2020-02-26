@@ -19,6 +19,7 @@ import java.util.TreeMap;
 import com.brs.player.Player;
 import com.brs.squadron.Squadron;
 import com.brs.turn.Turn;
+import com.brs.PeriodTurn;
 import com.brs.airforce.AirForceName;
 import com.brs.date.Date;
 import com.brs.event.EventFactory;
@@ -28,6 +29,9 @@ import com.brs.mission.Mission;
 import com.brs.mission.MissionBuilder;
 import com.brs.period.Period;
 import com.brs.period.Year;
+import com.brs.mission.MissionLog;
+import com.brs.month.Month;
+
 
 public class Campaign implements Date { 
 	
@@ -112,13 +116,20 @@ public class Campaign implements Date {
 		
 		missions.clear(); //ALL MISSIONS HAVE BEEN COMPLETED - put this elewhere! After all people have clicked submit for their results for example! (a thread firing)
 		
+		
 		System.out.println("pairings: " + pairings); //++++++++++++++++++++
 		
 		//retrieve and remove the first collection of pairings, and for each of those parings create new missions: 	
 		pairings.poll().forEach(pairing -> { 
 			
+			Set<MissionLog>missionLogs = new HashSet<MissionLog>();
+			
 			pairing.forEach(player -> { //PROBABLY PUT MISSION LOGS IN SQUADRON!! 
 				System.out.println("player is: " + player); //+++++++++++++++
+				
+				//////Player tempPlayer = nameToPlayer.get(player);
+				
+				missionLogs.add(nameToPlayer.get(player).getLogTest(new PeriodTurn(period, Month.FIRST)));//////////?????????needs set first!
 			});
 			
 			missions.add(new Mission(pairing, period, turnNum)); 

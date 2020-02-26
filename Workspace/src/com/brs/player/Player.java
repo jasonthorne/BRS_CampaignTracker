@@ -74,7 +74,9 @@ public class Player implements Date{
 	}
 	
 	
-	
+	public MissionLog getLogTest(PeriodTurn periodTurn) {
+		return testMap.get(periodTurn); //should be COPY!! 
+	}
 	
 	
 	
