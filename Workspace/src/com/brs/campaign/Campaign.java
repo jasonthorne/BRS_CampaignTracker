@@ -116,7 +116,6 @@ public class Campaign implements Date {
 		
 		missions.clear(); //ALL MISSIONS HAVE BEEN COMPLETED - put this elewhere! After all people have clicked submit for their results for example! (a thread firing)
 		
-		
 		System.out.println("pairings: " + pairings); //++++++++++++++++++++
 		
 		//retrieve and remove the first collection of pairings, and for each of those parings create new missions: 	
