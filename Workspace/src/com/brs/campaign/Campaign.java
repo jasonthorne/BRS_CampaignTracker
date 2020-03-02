@@ -124,10 +124,9 @@ public class Campaign implements Date {
 		//retrieve and remove the first collection of pairings, and for each of those parings create new missions: 	
 		pairings.poll().forEach(pairing -> { 
 			
-			
 			Set<MissionLog>missionLogs = new HashSet<MissionLog>();
 			
-			Queue<Player>players = new LinkedList<Player>();
+			Set<Player>players = new HashSet<Player>();
 			
 			pairing.forEach(player -> { //PROBABLY PUT MISSION LOGS IN SQUADRON!! 
 				System.out.println("player is: " + player); //+++++++++++++++
@@ -142,7 +141,10 @@ public class Campaign implements Date {
 			
 			//missions.add(new Mission(pairing, period, turnNum)); 
 			
-			missions.add(new Mission(players, period, turnNum)); 
+			//////missions.add(new Mission(players, period, turnNum)); 
+			
+			missions.add(new Mission(players, period, turnNum)); //NOT PASSING IN PLAYERS ++++++
+			
 		});													
 			
 		System.out.println("currMissions: " + missions); //++++++++++++++++++++

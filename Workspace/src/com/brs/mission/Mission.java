@@ -3,9 +3,11 @@ package com.brs.mission;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.function.Supplier;
 
 import com.brs.die.Die;
@@ -53,6 +55,8 @@ public class Mission implements Die{
 	private Player player1; 
 	private Player player2;
 	
+	private final Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
+	
 
 	private Period period; //period represented
 	private int turnNum;
@@ -68,7 +72,7 @@ public class Mission implements Die{
 		
 		
 		
-	public Mission(Queue<Player>players, Period period, int turnNum) { //add turn num too for mission log creation
+	public Mission(Set<Player>players, Period period, int turnNum) { //add turn num too for mission log creation
 		//this.players = players; //set list of players
 		this.period = period; //set period
 		this.turnNum = turnNum;
@@ -76,16 +80,27 @@ public class Mission implements Die{
 		
 		//--------mission creates logs:
 		players.forEach(player ->{
+			
+			nameToPlayer.put(player.getName(), player); //add player to map
+			
 			missionLogs.add(new MissionLog());
 		});
 		
-		Iterator<Player>playersIterator = players.iterator();
 		
 		
+		//System.out.println(players);
 		
-		//missionLogs.add(nameToPlayer.get(player).getLogTest(new PeriodTurn(period, Month.FIRST)));//
+		//player1 = players.poll();
+		//player2 = players.poll();
+		
+		//System.out.println("after poll: " + players);
+		
+		//missionLogs.add(nameToPlayer.get(player).getLogTest(new PeriodTurn(period, Month.FIRST)));
 		
 		//missionLogs.add(nameToPlayer.get(player).setLogTest(new PeriodTurn(period, Month.FIRST)));
+		
+		
+		
 		
 	}
 	
