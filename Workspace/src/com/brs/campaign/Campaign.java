@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -13,6 +14,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Queue;
 import java.util.stream.Collectors;
 import java.util.TreeMap;
 
@@ -39,12 +41,12 @@ public class Campaign implements Date {
 	private final String date = DATE.get(); //date of creation
 	private final Event event; //historical event chosen
 	private Period period; //current period represented
-	private final ListIterator<Period>periodsIterator; //iterator for advancing period
+	private final Iterator<Period>periodsIterator; //iterator for advancing period
 	private static final int TURNS_PER_PERIOD = 4; //amount of turns played per period
 	private final Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
 	private int turnNum; // = TURNS_PER_PERIOD; //current turn this period ?????????????should really be 1!! :P
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
-	private final Deque<List<List<String>>>pairings = new LinkedList<List<List<String>>>(); //combinations of player pairings, for each turn of each period in the campaign
+	private final Queue<List<List<String>>>pairings = new LinkedList<List<List<String>>>(); //combinations of player pairings, for each turn of each period in the campaign
 	////////////////private final Deque<List<Set<String>>>pairings2 = new LinkedList<List<Set<String>>>();
 	private final List<Mission>missions = new ArrayList<Mission>(); //missions assigned to players
 	
@@ -84,13 +86,14 @@ public class Campaign implements Date {
 	    for (int turn=0, turns=players.size(); turn<turns; turn++) {
 	        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
 	        List<List<String>>pairing = new ArrayList<List<String>>(); //list to hold new pairing
-	        /////////////////List<Set<String>> pairing2 = new ArrayList<Set<String>>();
+	        //Set<String> pairing = new HashSet<String>();
 
 	        System.out.println(players.get(turn) + " vs " + fixedPlayer); //++++++++++++++++++
 	        
 	        //each turn, pair the fixed player against a player in players (at the index pos of that turn):
-	        pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
+	        //+++++++++++++++pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
 	       //////////////////pairing2.add(players.get(turn), fixedPlayer);
+	        pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
 	       
 	      /////// System.out.println("PAIRING2: " + pairing2);
 	        
@@ -105,8 +108,8 @@ public class Campaign implements Date {
 	            //pairing2.addAll(players.get(player1Pos), players.get(player2Pos));  //add players to pairing
 	        }
 	        
-	       pairings.add(pairing); //add pairing to pairings
-	        //////////////////pairings.add(pairing);
+	      // pairings.add(Arrays.asList(pairing)); //add pairing to pairings
+	        pairings.add(pairing);
 	    }
 	    
 	}
@@ -121,17 +124,25 @@ public class Campaign implements Date {
 		//retrieve and remove the first collection of pairings, and for each of those parings create new missions: 	
 		pairings.poll().forEach(pairing -> { 
 			
+			
 			Set<MissionLog>missionLogs = new HashSet<MissionLog>();
+			
+			Queue<Player>players = new LinkedList<Player>();
 			
 			pairing.forEach(player -> { //PROBABLY PUT MISSION LOGS IN SQUADRON!! 
 				System.out.println("player is: " + player); //+++++++++++++++
 				
+				players.add(nameToPlayer.get(player));
+				
 				//////Player tempPlayer = nameToPlayer.get(player);
 				
-				missionLogs.add(nameToPlayer.get(player).getLogTest(new PeriodTurn(period, Month.FIRST)));//////////?????????needs set first!
+				//missionLogs.add(nameToPlayer.get(player).getLogTest(new PeriodTurn(period, Month.FIRST)));//////////?????????needs set first!
 			});
 			
-			missions.add(new Mission(pairing, period, turnNum)); 
+			
+			//missions.add(new Mission(pairing, period, turnNum)); 
+			
+			missions.add(new Mission(players, period, turnNum)); 
 		});													
 			
 		System.out.println("currMissions: " + missions); //++++++++++++++++++++
@@ -175,7 +186,7 @@ public class Campaign implements Date {
 	
 		
 		
-
+	
 	
 	
 	

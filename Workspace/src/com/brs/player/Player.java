@@ -28,11 +28,11 @@ public class Player implements Date{
 	////////private int score; //current score 
 	//////////////private final MissionLog missionLog = new MissionLog(); //player's mission log
 	
-	private Map<DoubleKey, MissionLog>periodTurnToMissionLog = new HashMap<DoubleKey, MissionLog>(); //map of current missions
+	//private Map<DoubleKey, MissionLog>periodTurnToMissionLog = new HashMap<DoubleKey, MissionLog>(); //map of current missions
 	
 	//--------
 	
-	private Map<PeriodTurn, MissionLog>testMap = new HashMap<PeriodTurn, MissionLog>(); 
+	private Map<PeriodTurn, MissionLog>periodTurnToMissionLog = new HashMap<PeriodTurn, MissionLog>(); 
 	//---------
 	
 	public Player(String name, AirForce airForce, Period period) { //++++++++++++change privacy!
@@ -61,21 +61,21 @@ public class Player implements Date{
 	}
 
 	public void test() {
-		periodTurnToMissionLog.put(new DoubleKey("Yo", "dawg"), new MissionLog());
+		///periodTurnToMissionLog.put(new DoubleKey("Yo", "dawg"), new MissionLog());
 		
-		System.out.println(periodTurnToMissionLog.get(new DoubleKey("Yo", "dawg")));
+		////System.out.println(periodTurnToMissionLog.get(new DoubleKey("Yo", "dawg")));
 	}
 	
 	
 	public void test2() {
-		testMap.put(new PeriodTurn(new Period(Block.EARLY, Year.FORTY_ONE), Month.THIRD), new MissionLog());
+		periodTurnToMissionLog.put(new PeriodTurn(new Period(Block.EARLY, Year.FORTY_ONE), Month.THIRD), new MissionLog());
 		
-		System.out.println(testMap.get(new PeriodTurn(new Period(Block.EARLY, Year.FORTY_ONE), Month.THIRD)));
+		System.out.println(periodTurnToMissionLog.get(new PeriodTurn(new Period(Block.EARLY, Year.FORTY_ONE), Month.THIRD)));
 	}
 	
 	
 	public MissionLog getLogTest(PeriodTurn periodTurn) {
-		return testMap.get(periodTurn); //should be COPY!! 
+		return periodTurnToMissionLog.get(periodTurn); //should be COPY!! 
 	}
 	
 	

@@ -29,7 +29,12 @@ public class MissionLog {
 		turn = 3;
 	}
 
-
+	
+	public MissionLog(Period period, int turn, String opponent) {
+		System.out.println("MissionLog");
+		
+		
+	}
 
 
 

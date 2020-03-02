@@ -1,6 +1,9 @@
 package com.brs.mission;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Supplier;
@@ -44,29 +47,52 @@ import com.brs.player.Player;
 public class Mission implements Die{
 	
 	//+++++++++++ADD FINALS TO THESE LATER!! 
-	private List<String>players; //players involved
+	private Set<String>players; //players involved
+	//private final String player1; 
+	
+	private Player player1; 
+	private Player player2;
+	
+
 	private Period period; //period represented
 	private int turnNum;
 	//private final String date; //date played
 	//private Results resutls; ??????????????????
+	List<MissionLog>missionLogs = new ArrayList<MissionLog>();
 	
 	////A mission contains 2 mission logs (player 1 & p2). when they're both filled out, then the mission logs arer saved to the players 
 	
 	////////public Mission(List<String>players, Period period, String date) {
 	///////////////public Mission(List<String>players, Period period) {
-	public Mission(List<String>players, Period period, int turnNum) { //add turn num too for mission log creation
-		this.players = players; //set list of players
+	////public Mission(List<String>players, Period period, int turnNum) { //add turn num too for mission log creation
+		
+		
+		
+	public Mission(Queue<Player>players, Period period, int turnNum) { //add turn num too for mission log creation
+		//this.players = players; //set list of players
 		this.period = period; //set period
 		this.turnNum = turnNum;
 		///////////this.date = date; //set date played
+		
+		//--------mission creates logs:
+		players.forEach(player ->{
+			missionLogs.add(new MissionLog());
+		});
+		
+		Iterator<Player>playersIterator = players.iterator();
+		
+		
+		
+		//missionLogs.add(nameToPlayer.get(player).getLogTest(new PeriodTurn(period, Month.FIRST)));//
+		
+		//missionLogs.add(nameToPlayer.get(player).setLogTest(new PeriodTurn(period, Month.FIRST)));
+		
 	}
 	
-	List<MissionLog>missionLogs;
 	
 	
 	public Mission(List<MissionLog>missionLogs) {
 		this.missionLogs = missionLogs;
-		
 	}
 	
 	//+++++++++++++++++++https://www.geeksforgeeks.org/parse-json-java/
