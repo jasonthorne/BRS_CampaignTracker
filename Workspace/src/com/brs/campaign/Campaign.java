@@ -17,6 +17,7 @@ import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.stream.Collectors;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import com.brs.player.Player;
 import com.brs.squadron.Squadron;
@@ -44,7 +45,7 @@ public class Campaign implements Date {
 	private final Iterator<Period>periodsIterator; //iterator for advancing period
 	private static final int TURNS_PER_PERIOD = 4; //amount of turns played per period
 	private final Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
-	private int turnNum; // = TURNS_PER_PERIOD; //current turn this period ?????????????should really be 1!! :P
+	private int turnNum; //current turn this period
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
 	private final Queue<List<List<String>>>pairings = new LinkedList<List<List<String>>>(); //combinations of player pairings, for each turn of each period in the campaign
 	////////////////private final Deque<List<Set<String>>>pairings2 = new LinkedList<List<Set<String>>>();
@@ -92,10 +93,10 @@ public class Campaign implements Date {
 	        
 	        //each turn, pair the fixed player against a player in players (at the index pos of that turn):
 	        //+++++++++++++++pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
-	       //////////////////pairing2.add(players.get(turn), fixedPlayer);
+	        //////////////////pairing2.add(players.get(turn), fixedPlayer);
 	        pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
 	       
-	      /////// System.out.println("PAIRING2: " + pairing2);
+	        /////// System.out.println("PAIRING2: " + pairing2);
 	        
 	        //endPos is at players.size()+1 to replace the removed fixedPlayer's index. 
 	        for (int pairPos=1, endPos=(players.size()+1)/2; pairPos<endPos; pairPos++) {  //pairPos starts at 1 to ignore first 
@@ -104,7 +105,7 @@ public class Campaign implements Date {
 	            
 	            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos)); //+++++++++++++++++
 	            
-	           pairing.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
+	            pairing.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
 	            //pairing2.addAll(players.get(player1Pos), players.get(player2Pos));  //add players to pairing
 	        }
 	        
@@ -118,7 +119,6 @@ public class Campaign implements Date {
 	public void setMissions() {
 		
 		missions.clear(); //ALL MISSIONS HAVE BEEN COMPLETED - put this elewhere! After all people have clicked submit for their results for example! (a thread firing)
-		
 		System.out.println("pairings: " + pairings); //++++++++++++++++++++
 		
 		//retrieve and remove the first collection of pairings, and for each of those parings create new missions: 	
@@ -128,6 +128,7 @@ public class Campaign implements Date {
 			
 			Set<Player>players = new HashSet<Player>();
 			
+			/*
 			pairing.forEach(player -> { //PROBABLY PUT MISSION LOGS IN SQUADRON!! 
 				System.out.println("player is: " + player); //+++++++++++++++
 				
@@ -137,16 +138,12 @@ public class Campaign implements Date {
 				
 				//missionLogs.add(nameToPlayer.get(player).getLogTest(new PeriodTurn(period, Month.FIRST)));//////////?????????needs set first!
 			});
+			*/
 			
-			
-			//missions.add(new Mission(pairing, period, turnNum)); 
-			
-			//////missions.add(new Mission(players, period, turnNum)); 
-			
-			missions.add(new Mission(players, period, turnNum)); //NOT PASSING IN PLAYERS ++++++
-			
+			///////++++++++++++++++++++4.6 ex7. +++++++++++++++++++++++++
+			missions.add(new Mission(pairing.stream().collect(Collectors.toMap(name->name, name->nameToPlayer.get(name))), period, turnNum)); //NOT PASSING IN PLAYERS ++++++
 		});													
-			
+		
 		System.out.println("currMissions: " + missions); //++++++++++++++++++++
 		System.out.println("pairings: " + pairings); //+++++++++++++++++++
 	}

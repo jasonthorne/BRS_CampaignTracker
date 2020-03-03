@@ -1,4 +1,9 @@
 
+
+JDBC: 
+https://www.udemy.com/course/how-to-connect-java-jdbc-to-mysql/
+
+
 sort out home advantage statuses for airforces #++++++++++++++++++++
 
 hasHomeAdv

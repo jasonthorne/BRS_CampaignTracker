@@ -5,8 +5,8 @@ import com.brs.period.Period;
 
 public class PeriodTurn {
 	
-	 private final Period period;
-	 private final Month month;
+	private final Period period;
+	private final Month month;
 	 
 	public PeriodTurn(Period period, Month month) {
 		this.period = period;
@@ -46,10 +46,5 @@ public class PeriodTurn {
 		return "PeriodTurn [period=" + period + ", month=" + month + "]";
 	}
 
-	
-	
-	 
-	
-	
 
 }

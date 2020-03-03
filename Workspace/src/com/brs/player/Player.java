@@ -87,13 +87,13 @@ public class Player implements Date{
 	
 	
 	//++++++++++++++++++++TEST TO STRING
-	/*
+	
 	@Override
 	public String toString() {
-		return "Player [name=" + name + ", date=" + date + ", airForce=" + airForce + ", squadron=" + squadron
+		return "Player [name=" + name + ", date=" + date + ", airForce=" + airForce.getName() + ", squadron=" + squadron
 				+ ", periodTurnToMissionLog=" + periodTurnToMissionLog + "]";
 	}
-	*/
+	
 	
 	
 	

@@ -68,29 +68,33 @@ public class Mission implements Die{
 	
 	////////public Mission(List<String>players, Period period, String date) {
 	///////////////public Mission(List<String>players, Period period) {
-	////public Mission(List<String>players, Period period, int turnNum) { //add turn num too for mission log creation
+	//public Mission(List<Player>players, Period period, int turnNum) { //add turn num too for mission log creation
 		
+	//public Mission(Set<Player>players, Period period, int turnNum) { //add turn num too for mission log creation
 		
+	//public Mission(Map<String, Player>nameToPlayer, Period period, int turnNum) { 	
 		
-	public Mission(Set<Player>players, Period period, int turnNum) { //add turn num too for mission log creation
+	public Mission(Map<String, Player>nameToPlayer, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
+		
 		//this.players = players; //set list of players
 		this.period = period; //set period
 		this.turnNum = turnNum;
 		///////////this.date = date; //set date played
 		
+		/*
 		//--------mission creates logs:
 		players.forEach(player ->{
 			
-			nameToPlayer.put(player.getName(), player); //add player to map
+			//nameToPlayer.put(player.getName(), player); //add player to map
 			
 			missionLogs.add(new MissionLog());
 		});
+		*/
 		
 		
+		System.out.println("woow!: " + nameToPlayer);
 		
-		//System.out.println(players);
-		
-		//player1 = players.poll();
+		//player1 = players.
 		//player2 = players.poll();
 		
 		//System.out.println("after poll: " + players);
