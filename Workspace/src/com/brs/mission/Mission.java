@@ -1,6 +1,7 @@
 package com.brs.mission;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import com.brs.die.Die;
 import com.brs.period.Period;
@@ -48,16 +50,10 @@ import com.brs.player.Player;
 
 public class Mission implements Die{
 	
-	//+++++++++++ADD FINALS TO THESE LATER!! 
-	private Set<String>players; //players involved
-	//private final String player1; 
+	private static int playerNum; //counter for making 'numToPlayer' key
+	private final Map<Integer, Player>numToPlayer = new HashMap<Integer, Player>(); //map of players involved
 	
-	private Player player1; 
-	private Player player2;
 	
-	private final Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map of players involved 
-	
-
 	private Period period; //period represented
 	private int turnNum;
 	//private final String date; //date played
@@ -74,7 +70,9 @@ public class Mission implements Die{
 		
 	//public Mission(Map<String, Player>nameToPlayer, Period period, int turnNum) { 	
 		
-	public Mission(Map<String, Player>nameToPlayer, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
+	////////////public Mission(Map<String, Player>nameToPlayer, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
+		
+	public Mission(Set<Player>players, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
 		
 		//this.players = players; //set list of players
 		this.period = period; //set period
@@ -91,10 +89,16 @@ public class Mission implements Die{
 		});
 		*/
 		
+		//missions.add(new Mission(pairing.stream().collect(Collectors.toMap(name->name, name->nameToPlayer.get(name))), period, turnNum)); //NOT PASSING IN PLAYERS ++++++
 		
-		System.out.println("woow!: " + nameToPlayer);
 		
-		//player1 = players.
+		////nameToPlayer = players.stream().collect(Collectors.toMap(name->name, player->name)));
+		
+		
+		//System.out.println("woow!: " + nameToPlayer);
+		
+		
+		//player1 = players
 		//player2 = players.poll();
 		
 		//System.out.println("after poll: " + players);
@@ -104,8 +108,18 @@ public class Mission implements Die{
 		//missionLogs.add(nameToPlayer.get(player).setLogTest(new PeriodTurn(period, Month.FIRST)));
 		
 		
+		//pass in map. keys are named during map creation. ++++++++++++++++++++''''''''''''''''''''''''''''' and op can be grabbed by referencing i -1 
+		setNumToPlayer(players);
+	}
+	
+	
+	private void setNumToPlayer(Set<Player>players){
+		playerNum=0; //(re)set playerNum
+		players.forEach(player ->{
+			numToPlayer.put(++playerNum, player); //add player i to map
+		});
 		
-		
+		System.out.println("nameToPlayer: " + numToPlayer);
 	}
 	
 	
@@ -219,15 +233,6 @@ public class Mission implements Die{
 	
 	
 	
-	public void getPlayersTEST() {
-		System.out.println(players);
-	}
-
-	
-	@Override
-	public String toString() {
-		return "Mission [players=" + players + ", period=" + period  + "]";
-	}
 
 	
 	//trigger the post mission stuff once BOTH players have added all their input.

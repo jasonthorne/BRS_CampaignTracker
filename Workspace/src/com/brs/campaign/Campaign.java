@@ -16,6 +16,7 @@ import java.util.Set;
 import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -115,18 +116,17 @@ public class Campaign implements Date {
 	    
 	}
 		
-	
+	////////////private static int playerIndex;
 	public void setMissions() {
 		
-		missions.clear(); //ALL MISSIONS HAVE BEEN COMPLETED - put this elewhere! After all people have clicked submit for their results for example! (a thread firing)
+		
+		
+		
+		missions.clear(); //ALL MISSIONS HAVE BEEN COMPLETED - put this elsewhere! After all people have clicked submit for their results for example! (a thread firing)
 		System.out.println("pairings: " + pairings); //++++++++++++++++++++
 		
 		//retrieve and remove the first collection of pairings, and for each of those parings create new missions: 	
 		pairings.poll().forEach(pairing -> { 
-			
-			Set<MissionLog>missionLogs = new HashSet<MissionLog>();
-			
-			Set<Player>players = new HashSet<Player>();
 			
 			/*
 			pairing.forEach(player -> { //PROBABLY PUT MISSION LOGS IN SQUADRON!! 
@@ -139,9 +139,19 @@ public class Campaign implements Date {
 				//missionLogs.add(nameToPlayer.get(player).getLogTest(new PeriodTurn(period, Month.FIRST)));//////////?????????needs set first!
 			});
 			*/
-			
+			//////////////playerIndex = 0;
 			///////++++++++++++++++++++4.6 ex7. +++++++++++++++++++++++++
-			missions.add(new Mission(pairing.stream().collect(Collectors.toMap(name->name, name->nameToPlayer.get(name))), period, turnNum)); //NOT PASSING IN PLAYERS ++++++
+			
+			//missions.add(new Mission(pairing.stream().collect(Collectors.toMap(name->name, name->nameToPlayer.get(name))), period, turnNum)); //NOT PASSING IN PLAYERS ++++++
+			
+			///////////missions.add(new Mission(pairing.stream().collect(Collectors.toMap(name ->"player" + ++playerIndex, name->nameToPlayer.get(name))), period, turnNum)); //NOT PASSING IN PLAYERS ++++++
+			
+			
+			missions.add(new Mission(pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toSet()), period, turnNum));
+			
+			
+		
+		
 		});													
 		
 		System.out.println("currMissions: " + missions); //++++++++++++++++++++
