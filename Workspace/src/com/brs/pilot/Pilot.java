@@ -2,11 +2,11 @@ package com.brs.pilot;
 
 import com.brs.plane.Plane;
 import com.brs.date.Date;
-import com.brs.die.Die;
+import com.brs.dice.Dice;
 import com.brs.pilot.PilotSkill;
 
 
-public class Pilot implements Die, Date {
+public class Pilot implements Dice, Date {
 	
 	private int id;
 	private String name;
@@ -41,8 +41,8 @@ public class Pilot implements Die, Date {
 	}
 	
 	
-	public void testManoeuvre() {
-		System.out.println(MANOEUVRE.test(3));
+	public void testManoeuvre() { //+++++++++++++++++++++++++++++++++++
+		System.out.println(MANOEUVRE.test(pilotSkill.getValue()));
 	}
 	
 

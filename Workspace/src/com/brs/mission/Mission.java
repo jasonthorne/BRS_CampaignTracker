@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
@@ -12,7 +13,7 @@ import java.util.TreeMap;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import com.brs.die.Die;
+import com.brs.dice.Dice;
 import com.brs.period.Period;
 import com.brs.player.Player;
 
@@ -48,7 +49,7 @@ import com.brs.player.Player;
 	 */
 	//---------------------
 
-public class Mission implements Die{
+public class Mission implements Dice{
 	
 	private static int playerNum; //counter for making 'numToPlayer' key
 	private final Map<Integer, Player>numToPlayer = new HashMap<Integer, Player>(); //map of players involved
@@ -72,12 +73,90 @@ public class Mission implements Die{
 		
 	////////////public Mission(Map<String, Player>nameToPlayer, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
 		
-	public Mission(Set<Player>players, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
+	
+	static int i; 
+	public Mission(List<Player>players, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
+		
+	//public Mission(List<Player>players, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
 		
 		//this.players = players; //set list of players
 		this.period = period; //set period
 		this.turnNum = turnNum;
 		///////////this.date = date; //set date played
+		i = 0;
+		players.forEach(player ->{
+			i++;
+			System.out.println();
+			//nameToPlayer.put(player.getName(), player); //add player to map
+			
+			missionLogs.add(new MissionLog());
+		});
+		
+		
+		
+		//============================
+		
+		//Player testP1=players.get(0);
+		//Player testP2= players.get(1);
+		
+		//System.out.println(i + "++++++++++++++++++++++: " + testP1 + " " +  testP2);
+		
+		/*
+		for(int i=0,j=players.size();i<j;i++) {
+			//System.out.println(i + "++++++++++++++++++++++: " + players.get(i));
+			
+			testP1 = players.get(i);
+			testP2 = players.get(i+1);
+			
+			System.out.println(i + "++++++++++++++++++++++: " + testP1 + " " +  testP2);
+			
+		}
+		
+		*/
+		
+		
+		//==========================
+		
+		ListIterator<Player>iterator = players.listIterator(); 
+		
+		Player testP1;
+		Player testP2;
+		int index = 0;
+		
+		if (iterator.hasNext()) { 
+			
+			testP1 = iterator.next();
+			System.out.println("TESTP1: " + testP1);
+			
+			if (iterator.hasNext()) {
+				index = iterator.nextIndex();
+				System.out.println("index: " + index);
+				testP2 = players.get(index);
+				System.out.println("testP2: " + testP2);
+			}
+			
+	
+		} else {
+			index = iterator.previousIndex();
+			System.out.println("PPPPPPPPPPPPPPPPPPPPPP : " + index);
+		}
+		
+		
+		/*
+		 * make a mission log for player1, passing in player 2 as opponent
+		 * 
+		 * make a mission log for player 2 passing in player1 as the opponent
+		 * 
+		 * 
+		 */
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		/*
 		//--------mission creates logs:
@@ -109,17 +188,14 @@ public class Mission implements Die{
 		
 		
 		//pass in map. keys are named during map creation. ++++++++++++++++++++''''''''''''''''''''''''''''' and op can be grabbed by referencing i -1 
-		setNumToPlayer(players);
+		//setNumToPlayer(players);
+		System.out.println("nameToPlayer: " + numToPlayer);
 	}
 	
 	
 	private void setNumToPlayer(Set<Player>players){
 		playerNum=0; //(re)set playerNum
-		players.forEach(player ->{
-			numToPlayer.put(++playerNum, player); //add player i to map
-		});
-		
-		System.out.println("nameToPlayer: " + numToPlayer);
+		players.forEach(player -> numToPlayer.put(++playerNum, player)); //add players to map
 	}
 	
 	
