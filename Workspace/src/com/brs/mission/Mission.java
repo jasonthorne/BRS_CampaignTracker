@@ -54,7 +54,6 @@ public class Mission implements Dice{
 	private static int playerNum; //counter for making 'numToPlayer' key
 	private final Map<Integer, Player>numToPlayer = new HashMap<Integer, Player>(); //map of players involved
 	
-	
 	private Period period; //period represented
 	private int turnNum;
 	//private final String date; //date played
@@ -120,26 +119,10 @@ public class Mission implements Dice{
 		ListIterator<Player>iterator = players.listIterator(); 
 		
 		Player testP1;
-		Player testP2;
-		int index = 0;
+		Player testP1Opp;
 		
-		if (iterator.hasNext()) { 
-			
-			testP1 = iterator.next();
-			System.out.println("TESTP1: " + testP1);
-			
-			if (iterator.hasNext()) {
-				index = iterator.nextIndex();
-				System.out.println("index: " + index);
-				testP2 = players.get(index);
-				System.out.println("testP2: " + testP2);
-			}
-			
-	
-		} else {
-			index = iterator.previousIndex();
-			System.out.println("PPPPPPPPPPPPPPPPPPPPPP : " + index);
-		}
+		Player testP2;
+		Player testP2Opp;
 		
 		
 		/*
@@ -149,6 +132,26 @@ public class Mission implements Dice{
 		 * 
 		 * 
 		 */
+		
+		
+		
+		if (iterator.hasNext()) { 
+			
+			testP1 = iterator.next(); //grab player 1
+			System.out.println("TESTP1: " + testP1);
+			
+			testP1Opp = players.get(iterator.nextIndex()); //grab player 1 opp
+			System.out.println("TESTP1OPP: " + testP1Opp);
+			
+			testP2 = players.get(iterator.nextIndex()); //grab player 2
+			System.out.println("TESTP2: " + testP2);
+			
+			testP2Opp = testP1; //grab player 2 opp 
+			System.out.println("TESTP2OPP: " + testP2Opp);
+			
+		}
+		
+		
 		
 		
 		
@@ -213,7 +216,7 @@ public class Mission implements Dice{
 	
 	//post mission stuff: 
 	
-	public void shotDown() {
+	protected static void shotDown() {
 		
 		switch(D6.get()) {
 		 case 6: case 5: 
@@ -230,7 +233,7 @@ public class Mission implements Dice{
 	}
 	
 	
-	public void bailOut() {
+	public static void bailOut() {
 		
 		switch(D6.get()) {
 		 case 6: case 5: case 4:
@@ -247,7 +250,7 @@ public class Mission implements Dice{
 	}
 	
 	
-	public void injury() {
+	public static void injury() {
 		
 		switch(D6.get()) {
 		 case 6: case 5: 
@@ -266,7 +269,7 @@ public class Mission implements Dice{
 	}
 	
 	
-	public void damagedAircraft() {
+	public static void damagedAircraft() {
 		
 		switch(D6.get()) {
 		 case 6: case 5: case 4:

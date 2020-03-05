@@ -51,6 +51,7 @@ public class Campaign implements Date {
 	private final Queue<List<List<String>>>pairings = new LinkedList<List<List<String>>>(); //combinations of player pairings, for each turn of each period in the campaign
 	////////////////private final Deque<List<Set<String>>>pairings2 = new LinkedList<List<Set<String>>>();
 	private final List<Mission>missions = new ArrayList<Mission>(); //missions assigned to players
+	/////////////private final Map<Mission>missions = new ArrayList<Mission>(); //missions assigned to players ???????????????? instead of list, for removal of players
 	
 	public Campaign(EventName eventName) {
 		event = new EventFactory().getEvent(eventName); //create event from EventFactory

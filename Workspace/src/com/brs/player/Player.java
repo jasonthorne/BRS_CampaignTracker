@@ -31,8 +31,7 @@ public class Player implements Date{
 	//private Map<DoubleKey, MissionLog>periodTurnToMissionLog = new HashMap<DoubleKey, MissionLog>(); //map of current missions
 	
 	//--------
-	
-	private Map<PeriodTurn, MissionLog>periodTurnToMissionLog = new HashMap<PeriodTurn, MissionLog>(); 
+	private Map<PeriodTurn, MissionLog>periodTurnToMissionLog = new HashMap<PeriodTurn, MissionLog>(); //player's mission logs
 	//---------
 	
 	public Player(String name, AirForce airForce, Period period) { //++++++++++++change privacy!
