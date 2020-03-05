@@ -126,27 +126,7 @@ public class Campaign implements Date {
 		//retrieve and remove the first collection of pairings, and for each of those parings create new missions: 	
 		pairings.poll().forEach(pairing -> { 
 			
-			/*
-			pairing.forEach(player -> { //PROBABLY PUT MISSION LOGS IN SQUADRON!! 
-				System.out.println("player is: " + player); //+++++++++++++++
-				
-				players.add(nameToPlayer.get(player));
-				
-				//////Player tempPlayer = nameToPlayer.get(player);
-				
-				//missionLogs.add(nameToPlayer.get(player).getLogTest(new PeriodTurn(period, Month.FIRST)));//////////?????????needs set first!
-			});
-			*/
-			//////////////playerIndex = 0;
-			///////++++++++++++++++++++4.6 ex7. +++++++++++++++++++++++++
-			
-			//missions.add(new Mission(pairing.stream().collect(Collectors.toMap(name->name, name->nameToPlayer.get(name))), period, turnNum)); //NOT PASSING IN PLAYERS ++++++
-			
-			///////////missions.add(new Mission(pairing.stream().collect(Collectors.toMap(name ->"player" + ++playerIndex, name->nameToPlayer.get(name))), period, turnNum)); //NOT PASSING IN PLAYERS ++++++
-			
-			
-			//missions.add(new Mission(pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toSet()), period, turnNum));
-			
+			//create a mission for pairing, using current period and turn:
 			missions.add(new Mission(pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toList()), period, turnNum));
 		});													
 		

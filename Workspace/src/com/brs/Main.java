@@ -817,7 +817,7 @@ public class Main  implements FileReadingTEST{ //remove fileReadingTest ++++++
 		 
 		// testPlayer.test();
 		 
-		 testPlayer.test2();
+		// testPlayer.test2();
 		 
 	
 	}

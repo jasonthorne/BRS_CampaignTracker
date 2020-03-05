@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 import com.brs.period.Period;
 
-public class MissionLog{ //////////////////////// extends Mission {
+public class MissionLog { //extends Mission {
 	
 	//date played 
 	
@@ -24,6 +24,7 @@ public class MissionLog{ //////////////////////// extends Mission {
 	*/
 	
 	public MissionLog() {
+		
 		System.out.println("MissionLog");
 		
 		turn = 3;

@@ -13,6 +13,7 @@ import java.util.TreeMap;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import com.brs.PeriodTurn;
 import com.brs.dice.Dice;
 import com.brs.period.Period;
 import com.brs.player.Player;
@@ -32,9 +33,6 @@ import com.brs.player.Player;
 	reults to squad
 	-----------------------
 	
-	
-	
-	
 	mission creates the logs:
 	make a player log (containing opponent, date and results )
 	
@@ -48,6 +46,17 @@ import com.brs.player.Player;
 	 * 
 	 */
 	//---------------------
+
+
+//]]]]]]]]]]]]]]]-------
+
+/*
+PeriodTurn
+	Pairings
+		mission
+		
+*/
+//]]]]]]]]]]]]]]--------
 
 public class Mission implements Dice{
 	
@@ -118,12 +127,10 @@ public class Mission implements Dice{
 		
 		ListIterator<Player>iterator = players.listIterator(); 
 		
-		Player testP1;
-		Player testP1Opp;
+		Player player1;
+		Player player2;
 		
-		Player testP2;
-		Player testP2Opp;
-		
+	
 		
 		/*
 		 * make a mission log for player1, passing in player 2 as opponent
@@ -133,23 +140,17 @@ public class Mission implements Dice{
 		 * 
 		 */
 		
+		player1 = iterator.next(); //grab player 1
+		System.out.println("player1: " + player1);
+		
+		player1.setMissionLog(new MissionLog()); ///////////change this!! 
+		
+		player2 = players.get(iterator.nextIndex()); //grab player 2
+		System.out.println("player2: " + player2);
 		
 		
-		if (iterator.hasNext()) { 
+		
 			
-			testP1 = iterator.next(); //grab player 1
-			System.out.println("TESTP1: " + testP1);
-			
-			testP1Opp = players.get(iterator.nextIndex()); //grab player 1 opp
-			System.out.println("TESTP1OPP: " + testP1Opp);
-			
-			testP2 = players.get(iterator.nextIndex()); //grab player 2
-			System.out.println("TESTP2: " + testP2);
-			
-			testP2Opp = testP1; //grab player 2 opp 
-			System.out.println("TESTP2OPP: " + testP2Opp);
-			
-		}
 		
 		
 		
@@ -233,7 +234,7 @@ public class Mission implements Dice{
 	}
 	
 	
-	public static void bailOut() {
+	protected static void bailOut() {
 		
 		switch(D6.get()) {
 		 case 6: case 5: case 4:
@@ -250,7 +251,7 @@ public class Mission implements Dice{
 	}
 	
 	
-	public static void injury() {
+	protected static void injury() {
 		
 		switch(D6.get()) {
 		 case 6: case 5: 
@@ -269,7 +270,7 @@ public class Mission implements Dice{
 	}
 	
 	
-	public static void damagedAircraft() {
+	protected static void damagedAircraft() {
 		
 		switch(D6.get()) {
 		 case 6: case 5: case 4:

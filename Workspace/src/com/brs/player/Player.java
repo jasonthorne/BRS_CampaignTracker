@@ -65,12 +65,12 @@ public class Player implements Date{
 		////System.out.println(periodTurnToMissionLog.get(new DoubleKey("Yo", "dawg")));
 	}
 	
-	
+	/*
 	public void test2() {
 		periodTurnToMissionLog.put(new PeriodTurn(new Period(Block.EARLY, Year.FORTY_ONE), Month.THIRD), new MissionLog());
 		
 		System.out.println(periodTurnToMissionLog.get(new PeriodTurn(new Period(Block.EARLY, Year.FORTY_ONE), Month.THIRD)));
-	}
+	}*/
 	
 	
 	public MissionLog getLogTest(PeriodTurn periodTurn) {
@@ -78,9 +78,16 @@ public class Player implements Date{
 	}
 	
 	
+	public MissionLog getMissionLog(PeriodTurn periodTurn){
+		return periodTurnToMissionLog.get(periodTurn); //should be COPY!! 
+	}
 	
-	
-	
+	public void setMissionLog(MissionLog missionLog) {
+		//++HAVE CHECKS HERE (does period turn record exist already? does player currently HAS a mission?)
+		
+		//take periodTurn from MissionLog to use as key!! 
+		//////periodTurnToMissionLog.put(periodTurn, missionLog);
+	}
 	
 	
 	
