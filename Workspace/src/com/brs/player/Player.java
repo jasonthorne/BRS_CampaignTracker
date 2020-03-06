@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import com.brs.DoubleKey;
 import com.brs.PeriodTurn;
@@ -30,7 +31,7 @@ public class Player implements Date{
 	
 	//private Map<DoubleKey, MissionLog>periodTurnToMissionLog = new HashMap<DoubleKey, MissionLog>(); //map of current missions
 	
-	//--------
+	//--------TRY MAKE THIS NITO A TREEMAP! 
 	private Map<PeriodTurn, MissionLog>periodTurnToMissionLog = new HashMap<PeriodTurn, MissionLog>(); //player's mission logs
 	//---------
 	
@@ -99,7 +100,6 @@ public class Player implements Date{
 		
 		//take periodTurn from MissionLog to use as key!! 
 		periodTurnToMissionLog.put(new PeriodTurn(missionLog.getPeriod(), missionLog.getTurn()), missionLog);
-		
 		
 	}
 	

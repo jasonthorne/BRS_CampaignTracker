@@ -133,10 +133,13 @@ public class Campaign implements Date {
 			//missions.add(new Mission(pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toList()), period, turnNum));
 			
 			//=========================
-			//List<Player>players = pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toList());
+			List<Player>players = pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toList());
+			
+			pairingToMission.put(new Pairing(pairing), new Mission(players, period, turnNum));
 			
 			
-			pairingToMission.put(new Pairing(pairing), new Mission(pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toList()), period, turnNum));
+			//pairingToMission.put(new Pairing(pairing), new Mission(pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toList()), period, turnNum));
+			
 			
 			//=========================
 		});													
