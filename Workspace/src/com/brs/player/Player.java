@@ -39,6 +39,7 @@ public class Player implements Date{
 		this.airForce = airForce; //assign reference to chosen air force
 		//create a squadron, giving it a map of the models available to it:
 		squadron = new Squadron(airForce.getAvailableModels(period)); //passing period in here is messy!! TRY CHANGE THIS!  ++++++++++++++++++++++++++
+		testYr = Year.FORTY; ///////////////////++++++++++++++TEST
 	}
 	
 	private void updateMissons() {
@@ -46,11 +47,22 @@ public class Player implements Date{
 	}
 	
 	//+++++++++++++++++++++TEST CONSTRUVTOR
+	
+	private Year testYr;
+
 	public Player() {
 		this.name = null;
 		this.airForce = null;
 		squadron = null;
+		testYr = Year.FORTY;
 	}
+	
+	
+	public Year getTestYr(){
+		return testYr;
+	}
+	
+	
 	//+++++++++++++++++++++TEST CONSTRUVTOR
 	
 	//++++TEST PRINTING ++++++++++++++++++++++
@@ -86,7 +98,9 @@ public class Player implements Date{
 		//++HAVE CHECKS HERE (does period turn record exist already? does player currently HAS a mission?)
 		
 		//take periodTurn from MissionLog to use as key!! 
-		//////periodTurnToMissionLog.put(periodTurn, missionLog);
+		periodTurnToMissionLog.put(new PeriodTurn(missionLog.getPeriod(), missionLog.getTurn()), missionLog);
+		
+		
 	}
 	
 	

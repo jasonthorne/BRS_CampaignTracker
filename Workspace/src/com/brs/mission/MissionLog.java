@@ -33,8 +33,6 @@ public class MissionLog { //extends Mission {
 	
 	public MissionLog(Period period, int turn, String opponent) {
 		System.out.println("MissionLog");
-		
-		
 	}
 
 
@@ -45,9 +43,11 @@ public class MissionLog { //extends Mission {
 	}
 	
 	
+	public Period getPeriod() { return period; } //THis MIGHT not return a copy! (along with others) +++++++++++++
+	public int getTurn() { return turn; }	
 	
 	
-	
+	//////////periodTurn<Missions[Opponents<mission>]>
 	
 	
 	

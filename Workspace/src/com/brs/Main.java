@@ -32,7 +32,7 @@ import com.brs.plane.Plane;
 //import com.brs.plane.Plane.Availability;
 import com.brs.plane.Model;
 import com.brs.plane.Status;
-import com.brs.Pairing;
+
 import com.brs.pilot.PilotSkill;
 import com.brs.pilot.Pilot;
 
@@ -810,7 +810,7 @@ public class Main  implements FileReadingTEST{ //remove fileReadingTest ++++++
 		
 		test.testManoeuvre();
 		
-			
+	
 		//---------------------------
 		
 		 Player testPlayer = new Player();
@@ -818,6 +818,14 @@ public class Main  implements FileReadingTEST{ //remove fileReadingTest ++++++
 		// testPlayer.test();
 		 
 		// testPlayer.test2();
+		 System.out.println(testPlayer.getTestYr());
+		 
+		 Year testYear2 = testPlayer.getTestYr();
+		 System.out.println(testYear2);
+		 
+		 testYear2 = Year.FORTY_THREE;
+		 System.out.println(testYear2);
+		 System.out.println(testPlayer.getTestYr());
 		 
 	
 	}

@@ -125,7 +125,7 @@ public class Mission implements Dice{
 		
 		//==========================
 		
-		ListIterator<Player>iterator = players.listIterator(); 
+		ListIterator<Player>playersIterator = players.listIterator(); 
 		
 		Player player1;
 		Player player2;
@@ -140,13 +140,16 @@ public class Mission implements Dice{
 		 * 
 		 */
 		
-		player1 = iterator.next(); //grab player 1
+		
+		
+		player1 = playersIterator.next(); //grab player 1
 		System.out.println("player1: " + player1);
 		
-		player1.setMissionLog(new MissionLog()); ///////////change this!! 
-		
-		player2 = players.get(iterator.nextIndex()); //grab player 2
+		player2 = players.get(playersIterator.nextIndex()); //grab player 2
 		System.out.println("player2: " + player2);
+		
+		player1.setMissionLog(new MissionLog(period, turnNum, player2.getName())); 
+		player2.setMissionLog(new MissionLog(period, turnNum, player1.getName())); 
 		
 		
 		

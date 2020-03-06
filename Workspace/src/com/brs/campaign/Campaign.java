@@ -34,6 +34,7 @@ import com.brs.mission.MissionBuilder;
 import com.brs.period.Period;
 import com.brs.period.Year;
 import com.brs.mission.MissionLog;
+import com.brs.mission.Pairing;
 import com.brs.month.Month;
 
 
@@ -51,7 +52,7 @@ public class Campaign implements Date {
 	private final Queue<List<List<String>>>pairings = new LinkedList<List<List<String>>>(); //combinations of player pairings, for each turn of each period in the campaign
 	////////////////private final Deque<List<Set<String>>>pairings2 = new LinkedList<List<Set<String>>>();
 	private final List<Mission>missions = new ArrayList<Mission>(); //missions assigned to players
-	/////////////private final Map<Mission>missions = new ArrayList<Mission>(); //missions assigned to players ???????????????? instead of list, for removal of players
+	private final Map<Pairing, Mission>pairingToMission = new HashMap<Pairing,Mission>(); //missions assigned to players ???????????????? instead of list, for removal of players
 	
 	public Campaign(EventName eventName) {
 		event = new EventFactory().getEvent(eventName); //create event from EventFactory
@@ -120,6 +121,8 @@ public class Campaign implements Date {
 	////////////private static int playerIndex;
 	public void setMissions() {
 		
+		pairingToMission.clear(); ////================TEST
+		
 		missions.clear(); //ALL MISSIONS HAVE BEEN COMPLETED - put this elsewhere! After all people have clicked submit for their results for example! (a thread firing)
 		System.out.println("pairings: " + pairings); //++++++++++++++++++++
 		
@@ -127,11 +130,20 @@ public class Campaign implements Date {
 		pairings.poll().forEach(pairing -> { 
 			
 			//create a mission for pairing, using current period and turn:
-			missions.add(new Mission(pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toList()), period, turnNum));
+			//missions.add(new Mission(pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toList()), period, turnNum));
+			
+			//=========================
+			//List<Player>players = pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toList());
+			
+			
+			pairingToMission.put(new Pairing(pairing), new Mission(pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toList()), period, turnNum));
+			
+			//=========================
 		});													
 		
 		System.out.println("currMissions: " + missions); //++++++++++++++++++++
 		System.out.println("pairings: " + pairings); //+++++++++++++++++++
+		System.out.println("+++++++++pairingToMission: " + pairingToMission);
 	}
 	
 
