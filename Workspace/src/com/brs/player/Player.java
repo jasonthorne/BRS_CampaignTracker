@@ -27,10 +27,7 @@ public class Player implements Date{
 	private final AirForce airForce; //chosen air force
 	private final Squadron squadron; //player's squadron 
 	////////private int score; //current score 
-	//////////////private final MissionLog missionLog = new MissionLog(); //player's mission log
-	
-	//private Map<DoubleKey, MissionLog>periodTurnToMissionLog = new HashMap<DoubleKey, MissionLog>(); //map of current missions
-	
+
 	//--------TRY MAKE THIS NITO A TREEMAP! 
 	private Map<PeriodTurn, MissionLog>periodTurnToMissionLog = new HashMap<PeriodTurn, MissionLog>(); //player's mission logs
 	//---------
@@ -40,7 +37,6 @@ public class Player implements Date{
 		this.airForce = airForce; //assign reference to chosen air force
 		//create a squadron, giving it a map of the models available to it:
 		squadron = new Squadron(airForce.getAvailableModels(period)); //passing period in here is messy!! TRY CHANGE THIS!  ++++++++++++++++++++++++++
-		testYr = Year.FORTY; ///////////////////++++++++++++++TEST
 	}
 	
 	private void updateMissons() {
@@ -48,22 +44,12 @@ public class Player implements Date{
 	}
 	
 	//+++++++++++++++++++++TEST CONSTRUVTOR
-	
-	private Year testYr;
-
 	public Player() {
 		this.name = null;
 		this.airForce = null;
 		squadron = null;
-		testYr = Year.FORTY;
+	
 	}
-	
-	
-	public Year getTestYr(){
-		return testYr;
-	}
-	
-	
 	//+++++++++++++++++++++TEST CONSTRUVTOR
 	
 	//++++TEST PRINTING ++++++++++++++++++++++
@@ -72,24 +58,6 @@ public class Player implements Date{
 		//return"name is: " + name;
 	}
 
-	public void test() {
-		///periodTurnToMissionLog.put(new DoubleKey("Yo", "dawg"), new MissionLog());
-		
-		////System.out.println(periodTurnToMissionLog.get(new DoubleKey("Yo", "dawg")));
-	}
-	
-	/*
-	public void test2() {
-		periodTurnToMissionLog.put(new PeriodTurn(new Period(Block.EARLY, Year.FORTY_ONE), Month.THIRD), new MissionLog());
-		
-		System.out.println(periodTurnToMissionLog.get(new PeriodTurn(new Period(Block.EARLY, Year.FORTY_ONE), Month.THIRD)));
-	}*/
-	
-	
-	public MissionLog getLogTest(PeriodTurn periodTurn) {
-		return periodTurnToMissionLog.get(periodTurn); //should be COPY!! 
-	}
-	
 	
 	public MissionLog getMissionLog(PeriodTurn periodTurn){
 		return periodTurnToMissionLog.get(periodTurn); //should be COPY!! 
@@ -97,13 +65,9 @@ public class Player implements Date{
 	
 	public void setMissionLog(MissionLog missionLog) {
 		//++HAVE CHECKS HERE (does period turn record exist already? does player currently HAS a mission?)
-		
-		//take periodTurn from MissionLog to use as key!! 
+	
 		periodTurnToMissionLog.put(new PeriodTurn(missionLog.getPeriod(), missionLog.getTurn()), missionLog);
-		
 	}
-	
-	
 	
 	
 	//++++++++++++++++++++TEST TO STRING
@@ -115,12 +79,9 @@ public class Player implements Date{
 	}
 	
 	
+	public String getName() { return name; }
+		
 	
-	
-	
-	public String getName() {
-		return this.name;
-	}
 	
 	
 	

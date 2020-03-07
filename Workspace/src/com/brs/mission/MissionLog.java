@@ -3,7 +3,9 @@ package com.brs.mission;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.brs.PeriodTurn;
 import com.brs.period.Period;
+import com.brs.squadron.Squadron;
 
 public class MissionLog { //extends Mission {
 	
@@ -15,6 +17,9 @@ public class MissionLog { //extends Mission {
 	String opponent;
 	String date; //+++++++++++++++++this should be created when log is marked as complete!! 
 	//squadron (pilots):
+	
+	Squadron squadron;
+	
 	
 	
 	/*
@@ -28,6 +33,10 @@ public class MissionLog { //extends Mission {
 		System.out.println("MissionLog");
 		
 		turn = 3;
+	}
+	
+	public MissionLog(PeriodTurn periodTurn, String opponent) {
+		System.out.println("MissionLog");
 	}
 
 	

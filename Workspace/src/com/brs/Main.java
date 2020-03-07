@@ -818,14 +818,7 @@ public class Main  implements FileReadingTEST{ //remove fileReadingTest ++++++
 		// testPlayer.test();
 		 
 		// testPlayer.test2();
-		 System.out.println(testPlayer.getTestYr());
-		 
-		 Year testYear2 = testPlayer.getTestYr();
-		 System.out.println(testYear2);
-		 
-		 testYear2 = Year.FORTY_THREE;
-		 System.out.println(testYear2);
-		 System.out.println(testPlayer.getTestYr());
+		
 		 
 	
 	}
