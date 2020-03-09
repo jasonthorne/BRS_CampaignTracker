@@ -81,7 +81,9 @@ public class Player implements Date{
 	
 	public String getName() { return name; }
 		
-	
+	public Squadron getSquadron() {
+		return squadron; ////////////////+++++++++++++HAVE this be COPY of Squadron
+	}
 	
 	
 	

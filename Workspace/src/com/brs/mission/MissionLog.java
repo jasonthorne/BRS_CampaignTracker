@@ -35,12 +35,18 @@ public class MissionLog { //extends Mission {
 		turn = 3;
 	}
 	
+	/*
 	public MissionLog(PeriodTurn periodTurn, String opponent) {
 		System.out.println("MissionLog");
-	}
+	}*/
 
 	
-	public MissionLog(Period period, int turn, String opponent) {
+	public MissionLog(Period period, int turn, String opponent, Squadron squadron) {
+		
+		this.period = period;
+		this.turn = turn;
+		this.squadron = squadron;
+		
 		System.out.println("MissionLog");
 	}
 

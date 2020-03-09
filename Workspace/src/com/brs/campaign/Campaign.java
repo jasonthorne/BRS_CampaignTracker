@@ -135,10 +135,9 @@ public class Campaign implements Date {
 			//=========================
 			List<Player>players = pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toList());
 			
-			//pairingToMission.put(new Pairing(pairing), new Mission(players, period, turnNum));
+			pairingToMission.put(new Pairing(pairing), new Mission(players, period, turnNum));
 			
-			pairingToMission.put(new Pairing(pairing), new Mission(new PeriodTurn(period, turnNum), players));
-			
+			//pairingToMission.put(new Pairing(pairing), new Mission(new PeriodTurn(period, turnNum), players));
 			
 			//pairingToMission.put(new Pairing(pairing), new Mission(pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toList()), period, turnNum));
 			

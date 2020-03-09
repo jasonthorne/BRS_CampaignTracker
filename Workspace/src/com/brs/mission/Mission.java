@@ -83,9 +83,9 @@ public class Mission implements Dice{
 		
 	
 	static int i; 
-	public Mission(PeriodTurn periodTurn, List<Player>players) { 	//++MAKE A SET INSTEAD!! +++++++++
+	//public Mission(PeriodTurn periodTurn, List<Player>players) { 	//++MAKE A SET INSTEAD!! +++++++++
 		
-	//public Mission(List<Player>players, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
+	public Mission(List<Player>players, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
 		
 	//public Mission(List<Player>players, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
 		
@@ -151,17 +151,24 @@ public class Mission implements Dice{
 		System.out.println("player2: " + player2);
 		
 		
+		/*
 		player1.setMissionLog(new MissionLog(periodTurn, player2.getName())); 
 		player2.setMissionLog(new MissionLog(periodTurn, player1.getName())); 
-		
+		*/
 		
 		/*
 		player1.setMissionLog(period, turnNum, player2.getName())); 
 		player2.setMissionLog(period, turnNum, player1.getName())); 
 		*/
 		
+		player1.setMissionLog(new MissionLog(period, turnNum, player2.getName(), player1.getSquadron())); 
+		player2.setMissionLog(new MissionLog(period, turnNum, player1.getName(), player1.getSquadron())); 
 		
-			
+		
+		
+		
+		
+		
 		
 		
 		
