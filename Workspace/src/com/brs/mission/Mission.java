@@ -60,14 +60,16 @@ PeriodTurn
 
 public class Mission implements Dice{
 	
-	private static int playerNum; //counter for making 'numToPlayer' key
-	private final Map<Integer, Player>numToPlayer = new HashMap<Integer, Player>(); //map of players involved
+	Boolean isActive = true;
 	
-	private Period period; //period represented
-	private int turnNum;
+	/////////////private static int playerNum; //counter for making 'numToPlayer' key
+	///////////private final Map<Integer, Player>numToPlayer = new HashMap<Integer, Player>(); //map of players involved
+	
+	/////////private Period period; //period represented
+	///////////////private int turnNum;
 	//private final String date; //date played
 	//private Results resutls; ??????????????????
-	List<MissionLog>missionLogs = new ArrayList<MissionLog>();
+	////////////List<MissionLog>missionLogs = new ArrayList<MissionLog>();
 	
 	////A mission contains 2 mission logs (player 1 & p2). when they're both filled out, then the mission logs arer saved to the players 
 	
@@ -81,18 +83,22 @@ public class Mission implements Dice{
 		
 	////////////public Mission(Map<String, Player>nameToPlayer, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
 		
-	
+	////////
 	static int i; 
-	//public Mission(PeriodTurn periodTurn, List<Player>players) { 	//++MAKE A SET INSTEAD!! +++++++++
+	//public Mission(PeriodTurn periodTurn, List<Player>players) { 
 		
-	public Mission(List<Player>players, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
+	public Mission(List<Player>players, Period period, int turnNum) { 
 		
-	//public Mission(List<Player>players, Period period, int turnNum) { 	//++MAKE A SET INSTEAD!! +++++++++
+	//public Mission(List<Player>players, Period period, int turnNum) { 
 		
-		//this.players = players; //set list of players
-		this.period = period; //set period
-		this.turnNum = turnNum;
+		///this.players = players; //set list of players
+		////this.period = period; //set period
+		////this.turnNum = turnNum;
+		
+		
 		///////////this.date = date; //set date played
+		
+		/*
 		i = 0;
 		players.forEach(player ->{
 			i++;
@@ -101,7 +107,7 @@ public class Mission implements Dice{
 			
 			missionLogs.add(new MissionLog());
 		});
-		
+		*/
 		
 		
 		//============================
@@ -138,7 +144,6 @@ public class Mission implements Dice{
 		 * make a mission log for player1, passing in player 2 as opponent
 		 * 
 		 * make a mission log for player 2 passing in player1 as the opponent
-		 * 
 		 * 
 		 */
 		
@@ -211,10 +216,11 @@ public class Mission implements Dice{
 		
 		//pass in map. keys are named during map creation. ++++++++++++++++++++''''''''''''''''''''''''''''' and op can be grabbed by referencing i -1 
 		//setNumToPlayer(players);
-		System.out.println("nameToPlayer: " + numToPlayer);
+		//System.out.println("nameToPlayer: " + numToPlayer);
 	}
 	
 	
+	/*
 	private void setNumToPlayer(Set<Player>players){
 		playerNum=0; //(re)set playerNum
 		players.forEach(player -> numToPlayer.put(++playerNum, player)); //add players to map
@@ -225,7 +231,7 @@ public class Mission implements Dice{
 	public Mission(List<MissionLog>missionLogs) {
 		this.missionLogs = missionLogs;
 	}
-	
+	*/
 	//+++++++++++++++++++https://www.geeksforgeeks.org/parse-json-java/
 	
 	//imitates D6 roll by providing random number from 1-6:
