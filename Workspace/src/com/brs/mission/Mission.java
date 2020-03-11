@@ -60,7 +60,7 @@ PeriodTurn
 
 public class Mission implements Dice{
 	
-	Boolean isActive = true;
+	Boolean isActive = true; //???????????????
 	
 	/////////////private static int playerNum; //counter for making 'numToPlayer' key
 	///////////private final Map<Integer, Player>numToPlayer = new HashMap<Integer, Player>(); //map of players involved
@@ -139,14 +139,12 @@ public class Mission implements Dice{
 		Player player2;
 		
 	
-		
 		/*
 		 * make a mission log for player1, passing in player 2 as opponent
 		 * 
-		 * make a mission log for player 2 passing in player1 as the opponent
+		 * make a mission log for player 2, passing in player1 as the opponent
 		 * 
 		 */
-		
 		
 		
 		player1 = playersIterator.next(); //grab player 1
@@ -172,15 +170,7 @@ public class Mission implements Dice{
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		//==============
 		
 		
 		

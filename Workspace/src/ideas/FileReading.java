@@ -41,7 +41,6 @@ public interface FileReading {
 		return text; //return text
 	}    
 	
-	
 	//	System.out.println("PRINTING DESCRIPTION*: "+ getText(FileIdentifier.DESCRIPTION));
 }
 

@@ -20,8 +20,6 @@ public class MissionLog { //extends Mission {
 	
 	Squadron squadron;
 	
-	
-	
 	/*
 	exp points gained
 	casualties suffered
@@ -31,7 +29,6 @@ public class MissionLog { //extends Mission {
 	public MissionLog() {
 		
 		System.out.println("MissionLog");
-		
 		turn = 3;
 	}
 	
@@ -51,20 +48,17 @@ public class MissionLog { //extends Mission {
 	}
 
 
-
 	@Override
 	public String toString() {
 		return "MissionLog [turn=" + turn + "]";
 	}
 	
 	
-	public Period getPeriod() { return period; } //THis MIGHT not return a copy! (along with others) +++++++++++++
+	public Period getPeriod() { return period; } //This MIGHT not return a copy! (along with others) +++++++++++++
 	public int getTurn() { return turn; }	
 	
 	
 	//////////periodTurn<Missions[Opponents<mission>]>
-	
-	
 	
 	/*
 	private Mission mission; //player's current mission
@@ -73,10 +67,7 @@ public class MissionLog { //extends Mission {
 	//set current mission:
 	public void setCurrentMission(Mission mission){ this.mission = mission; }
 	
-	
-	
-	
-		
+
 	public Map<Period, Mission> getMissions() {
 		
 		//return string and period instead (maybe!!)

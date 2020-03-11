@@ -53,12 +53,9 @@ public class Squadron {
 	}
 	
 	
-	
-
 	private void updateModelToStatus(Map<Model, Status>modelToStatus){
 		this.modelToStatus = new TreeMap<Model, Status>(modelToStatus); //update models available
 	}
-	
 	
 	
 	public void getModelToStatus(){
