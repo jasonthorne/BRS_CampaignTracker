@@ -95,7 +95,7 @@ public class Campaign implements Date {
 	        System.out.println(players.get(turn) + " vs " + fixedPlayer); //++++++++++++++++++
 	        
 	        //each turn, pair the fixed player against a player in players (at the index pos of that turn):
-	        //+++++++++++++++pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
+	        //++++++++++++++++++++++++pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
 	        //////////////////pairing2.add(players.get(turn), fixedPlayer);
 	        pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
 	       

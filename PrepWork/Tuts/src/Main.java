@@ -48,10 +48,8 @@ public class Main {
 		//print objectToSerialze:
 		System.out.println(objToSerialize);
 		
-		
 		//=============================================================================
 		//2.2- Advance Java Serialization With Inheritance.
-		
 		
 		String fileName2 = "childClass.txt";
 		
