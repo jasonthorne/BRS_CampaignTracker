@@ -1,4 +1,4 @@
-Airforce
+Airforce (airforces involved)
 
 AirForceID | Name 
 1,           RAF    
@@ -6,36 +6,37 @@ AirForceID | Name
 
 ---------
 
-Plane 
+Plane (planes involved)
 
 PlaneID | Name 	   
-1, 	  Spitfire I
-2, 	  Hurricane
+1, 	  Spitfire II
+2, 	  Hurricane I
 3, 	  Sturmovik
 
-------
+----------
 
-AirforcePlane
+AirforcePlane (planes assigned to their respective airforces)
 
 AirforcePlaneID | AirForceID | PlaneID 
-1, 		  1 (RAF),     1 (Spitfire I) 
-2, 		  1 (RAF),     2 (Hurricane)
-3, 		  2 (Soviet),  2 (Hurricane)
+1, 		  1 (RAF),     1 (Spitfire II) 
+2, 		  1 (RAF),     2 (Hurricane I)
+3, 		  2 (Soviet),  2 (Hurricane I)
 4, 		  2 (Soviet),  3 (Sturmovik)
 
 ----------
 
-Period
+Period (periods of history covered)
 
-PeriodID | Block | Year  +++++++++++++++++++17 individual tables!!???
+PeriodID | Block | Year 
 1,   	   early, 1940 
 2,         mid,   1940
 3,         late,  1940
-4,         early, 1941..
+4,         early, 1941 
 
+etc...17 times total
 -----------
 
-Status
+Status (status values of planes)
 
 StatusID | Status
 1,   	   Limit
@@ -44,43 +45,34 @@ StatusID | Status
 
 -----------
 
-PeriodStatus /////////????????????
+PeriodStatus (each potential status for each period)
 
-PeriodStatusID | PeriodID 	| StatusID
-1,		 1 (early 1940) , 1 (Limit)
-2, 		 1 (early 1940) , 2 (Auto)
-3, 		 1 (early 1940) , 3 (None)
-4, 		 2 (mid 1940)   , 1 (Limit)
-5, 		 2 (mid 1940)   , 2 (Auto)
+PeriodStatusID |    PeriodID 	| StatusID
+1,		 1 (early 1940),  1 (Limit)
+2, 		 1 (early 1940),  2 (Auto)
+3, 		 1 (early 1940),  3 (None)
+4, 		 2 (mid 1940)  ,  1 (Limit)
+5, 		 2 (mid 1940)  ,  2 (Auto)
+6, 		 2 (mid 1940)  ,  3 (None)
+7, 		 3 (late 1940) ,  1 (Limit)
+8, 		 3 (late 1940) ,  2 (Auto)
 
-...52 times total!!! :(
-
------------
-+++++++++++++++++OR:
-
-Early1940Status 
-
-Early1940StatusID | StatusID
-1,		     1 (Limit)
-2, 		     2 (Auto)
-3, 	             3 (None)
-
-==========
-
-Mid1940Status 
-
-Mid1940StatusID | StatusID
-1,		     1 (Limit)
-2, 		     2 (Auto)
-3, 	             3 (None)
-
+etc...51 times total!!
 
 -----------
 
-PlaneAvailiability
+PlaneAvailiability (availability of each airforcePlane for each period of history)
 
-PlaneAvailiabilityID | AirforcePlaneID   | PeriodStatusID_Early_1940 | Mid_1940 | late_1940 | Early_1941 | Mid_1941 | late_1941 | .....etc
-1,		       1 (RAF Spitfire),   1 (limit),    2(auto),  2(auto), etc....         
+PlaneAvailiabilityID | AirforcePlaneID      | PeriodStatusID_Early_1940 | PeriodStatusID_Mid_1940 | PeriodStatusID_late_1940 | etc...19 times total
+1,		       1 (RAF Spitfire II),   	  3 (None),    		      4(Limit),  		8(auto), 	       etc...19 times total        
+
+
+
+
+
+
+
+
 
 
 

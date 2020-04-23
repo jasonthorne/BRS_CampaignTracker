@@ -20,7 +20,7 @@ public class RoyalAirForce extends AirForce{ /////////https://stackoverflow.com/
 	//RoyalAirForce name:
 	private static final AirForceName NAME = AirForceName.RAF; 
 	
-	//RoyalAirForce models of plane:
+	//RoyalAirForce models of plane:		//////////////////////Airforce model obj instead with name, periods and statuses
 	private static final List<Model>MODELS = Arrays.asList(
 			Model.HURRICANE_I, Model.HURRICANE_II, Model.MOSQUITO_II, Model.MOSQUITO_VI, Model.SPITFIRE_II,
 			Model.SPITFIRE_V, Model.SPITFIRE_IX, Model.SPITFIRE_XIV, Model.TEMPEST_V, Model.TYPHOON_IB);
