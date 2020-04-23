@@ -27,7 +27,7 @@ AirforcePlaneID | AirForceID | PlaneID
 
 Period
 
-PeriodID | Block | Year ////////////????? have block and year be its own table too!!!?? +++++++++++++++++++
+PeriodID | Block | Year  +++++++++++++++++++17 individual tables!!???
 1,   	   early, 1940 
 2,         mid,   1940
 3,         late,  1940
@@ -47,19 +47,39 @@ StatusID | Status
 PeriodStatus /////////????????????
 
 PeriodStatusID | PeriodID 	| StatusID
-1,		 1 (early 1940) | 1 (Limit)
-2, 		 1 (early 1940) | 2 (Auto)
-3, 		 1 (early 1940) | 3 (None)
-4, 		 2 (mid 1940)   | 1 (Limit)
-5, 		 2 (mid 1940)   | 2 (Auto)
+1,		 1 (early 1940) , 1 (Limit)
+2, 		 1 (early 1940) , 2 (Auto)
+3, 		 1 (early 1940) , 3 (None)
+4, 		 2 (mid 1940)   , 1 (Limit)
+5, 		 2 (mid 1940)   , 2 (Auto)
 
 ...52 times total!!! :(
+
+-----------
++++++++++++++++++OR:
+
+Early1940Status 
+
+Early1940StatusID | StatusID
+1,		     1 (Limit)
+2, 		     2 (Auto)
+3, 	             3 (None)
+
+==========
+
+Mid1940Status 
+
+Mid1940StatusID | StatusID
+1,		     1 (Limit)
+2, 		     2 (Auto)
+3, 	             3 (None)
+
 
 -----------
 
 PlaneAvailiability
 
-PlaneAvailiabilityID | AirforcePlaneID   | Early_1940 | Mid_1940 | late_1940 | Early_1941 | Mid_1941 | late_1941 | .....etc
+PlaneAvailiabilityID | AirforcePlaneID   | PeriodStatusID_Early_1940 | Mid_1940 | late_1940 | Early_1941 | Mid_1941 | late_1941 | .....etc
 1,		       1 (RAF Spitfire),   1 (limit),    2(auto),  2(auto), etc....         
 
 
