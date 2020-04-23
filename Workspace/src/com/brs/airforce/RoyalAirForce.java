@@ -15,7 +15,7 @@ import com.brs.plane.Model;
 import com.brs.plane.Status;
 
 
-public class RoyalAirForce extends AirForce{
+public class RoyalAirForce extends AirForce{ /////////https://stackoverflow.com/questions/4176205/creating-a-list-in-mysql
 	
 	//RoyalAirForce name:
 	private static final AirForceName NAME = AirForceName.RAF; 

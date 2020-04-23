@@ -1,0 +1,75 @@
+Airforce
+
+AirForceID | Name 
+1,           RAF    
+2,   	     Soviet
+
+---------
+
+Plane 
+
+PlaneID | Name 	   
+1, 	  Spitfire I
+2, 	  Hurricane
+3, 	  Sturmovik
+
+------
+
+AirforcePlane
+
+AirforcePlaneID | AirForceID | PlaneID 
+1, 		  1 (RAF),     1 (Spitfire I) 
+2, 		  1 (RAF),     2 (Hurricane)
+3, 		  2 (Soviet),  2 (Hurricane)
+4, 		  2 (Soviet),  3 (Sturmovik)
+
+----------
+
+Period
+
+PeriodID | Block | Year ////////////????? have block and year be its own table too!!!?? +++++++++++++++++++
+1,   	   early, 1940 
+2,         mid,   1940
+3,         late,  1940
+4,         early, 1941..
+
+-----------
+
+Status
+
+StatusID | Status
+1,   	   Limit
+2,         Auto
+3,         None
+
+-----------
+
+PeriodStatus /////////????????????
+
+PeriodStatusID | PeriodID 	| StatusID
+1,		 1 (early 1940) | 1 (Limit)
+2, 		 1 (early 1940) | 2 (Auto)
+3, 		 1 (early 1940) | 3 (None)
+4, 		 2 (mid 1940)   | 1 (Limit)
+5, 		 2 (mid 1940)   | 2 (Auto)
+
+...52 times total!!! :(
+
+-----------
+
+PlaneAvailiability
+
+PlaneAvailiabilityID | AirforcePlaneID   | Early_1940 | Mid_1940 | late_1940 | Early_1941 | Mid_1941 | late_1941 | .....etc
+1,		       1 (RAF Spitfire),   1 (limit),    2(auto),  2(auto), etc....         
+
+
+
+
+
+PlaneAvailiabilityID | AirforcePlaneID   | PeriodID_1   | PeriodID_2 | ....PeriodID_17 ++++++++++++++++fuck!! :(
+1,		       1 (RAF Spitfire),   1 (early 1940),     4 (early 1941)
+
+
+////////////figure out how to add availability values!!!! :P ( SHIT :D )
+
+https://www.quora.com/Can-a-table-in-SQL-have-multiple-columns-as-foreign-keys-that-refer-only-to-one-primary-key-of-another-table
