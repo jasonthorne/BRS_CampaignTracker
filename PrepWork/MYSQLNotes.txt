@@ -68,6 +68,18 @@ PlaneAvailiabilityID | AirforcePlaneID      | PeriodStatusID_Early_1940 | Period
 
 
 
+//=======================
+
+RAF_Planes
+
+RAF_PlanesID | PlaneID         | AirforceID  | PeriodStatusID_Early_1940 | PeriodStatusID_Mid_1940 | PeriodStatusID_late_1940 | etc...
+1,	      1 (Spitfire II),	  1 (RAF),   	  3 (None),    		      4(Limit),  		8(Auto), 	       etc...       
+2, 	      2 (Hurricane I),	  1 (RAF),  	  2(Auto),                    5(Auto),                  8(Auto),	       etc...   
+
+
+
+//========================
+
 
 
 
@@ -85,3 +97,89 @@ PlaneAvailiabilityID | AirforcePlaneID   | PeriodID_1   | PeriodID_2 | ....Perio
 ////////////figure out how to add availability values!!!! :P ( SHIT :D )
 
 https://www.quora.com/Can-a-table-in-SQL-have-multiple-columns-as-foreign-keys-that-refer-only-to-one-primary-key-of-another-table
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////
+
+
+Airforce (airforces involved)
+
+AirForceID | Name 
+1,           RAF    
+2,   	       Soviet
+etc...
+
+---------
+
+Plane (planes involved)
+
+PlaneID | Name 	   
+1, 	      Spitfire II
+2, 	      Hurricane I
+3, 	      Sturmovik
+etc...
+
+----------
+
+Year (years involved)
+
+YearID | Name
+1,			 1940
+2,			 1941
+3, 			 1942
+4, 			 1943
+5, 			 1944
+6, 			 1945
+
+----------
+
+Block (blocks of a year)
+
+BlockID | Name 
+1,   	   	early
+2,        mid
+3,        late
+
+-----------
+
+Status (status values of planes)
+
+StatusID | Status
+1,   	     Limit
+2,         Auto
+3,         None
+
+-----------
+
+PeriodStatus (each potential status for each period of history covered)
+
+PeriodStatusID |   BlockID 	|  YearID  |  StatusID
+1,		 						1 (early), 	1 (1940),   1 (Limit)
+2, 		 						1 (early),	1 (1940),   2 (Auto)
+3, 							  1 (early),	1 (1940),   3 (None)
+4, 		 						2 (mid),    1 (1940),   1 (Limit)
+5, 		 						2 (mid),    1 (1940),   2 (Auto)
+6, 							  2 (mid),    1 (1940),   3 (None)
+7, 							  3 (late),   1 (1940),   1 (Limit)
+8, 		 						3 (late),   1 (1940),   2 (Auto)
+
+etc...51 times total!!
+
+-----------
+
+RAF_Planes
+
+RAF_PlanesID | PlaneID         | AirforceID  | PeriodStatusID_Early-1940 | PeriodStatusID_Mid-1940 | PeriodStatusID_late-1940 | etc...
+1,	      		1 (Spitfire II),	  1 (RAF),   	  			3 (None),    		     			 4 (Limit),  									8 (Auto), 	      etc...       
+2, 	      		2 (Hurricane I),	  1 (RAF),  	  			2 (Auto),                  5 (Auto),                  	8 (Auto),	       	etc...   
+
+-----------
