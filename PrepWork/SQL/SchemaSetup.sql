@@ -131,15 +131,62 @@ CREATE TABLE period_status2 (
 
 
 /* Early, 1940, None */
+
 INSERT INTO period_status2 (periodID, statusID) VALUES (
-	(SELECT periodID FROM periods INNER JOIN blocks ON periods WHERE periods.blockID = 'Early'),
+	(SELECT periodID FROM periods 
+	JOIN blocks ON blocks.blockID = periods.periodID
+	JOIN years ON years.yearID = periods.yearID 
+	WHERE blocks.name = 'Early'
+	AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'None'));
 
 
+INSERT INTO period_status2 (periodID, statusID) VALUES (
+	(
+		SELECT periodID FROM periods 
+		JOIN blocks ON blocks.blockID = periods.periodID
+		JOIN years ON years.yearID = periods.yearID 
+		WHERE blocks.name = 'Mid' AND years.name = '1940'
+	),
+	(SELECT statusID FROM status WHERE status.name = 'None'));
+
+/* --------------------*/
+INSERT INTO period_status2 (periodID, statusID) VALUES (
+	(
+		SELECT periodID FROM periods 
+		JOIN blocks ON blocks.blockID = periods.periodID
+		JOIN years ON years.yearID = periods.yearID 
+		WHERE blocks.name = 'Mid' AND years.name = '1940'
+	),
+	(SELECT statusID FROM status WHERE status.name = 'None'));
+	
+/* --------------------*/
+/*
+INSERT INTO public_holidays (user_id, department_id,designation_id,date_cur,clock_in,clock_out)
+SELECT cl.user_id, des.department_id , us.designation_id, cl.date,cl.clock_in, cl.clock_out 
+
+FROM clock cl 
+
+INNER JOIN holidays AS hol ON hol.date = cl.date
+
+INNER JOIN users AS us ON cl.user_id = us.id
+
+INNER JOIN designations AS des ON des.id = us.designation_id
+
+WHERE date(cl.created_at) = '2016-06-13'
+
+AND TIMESTAMPDIFF(second,cl.clock_in, cl.clock_out) = 28800;
+*/
 
 
+/* Early, 1940, None */
+/*
+INSERT INTO period_status2 (periodID, statusID) VALUES (
+	(SELECT periodID FROM periods JOIN blocks ON blocks.blockID WHERE blocks.name = 'Early' JOIN years ON years.yearID WHERE years.name = '1940'),
+	(SELECT statusID FROM status WHERE status.name = 'None'));
+*/
 
-
+/*(SELECT periodID FROM periods JOIN blocks ON blocks.name = 'Early' JOIN years ON years.name = '1940'),*/
 
 
 
