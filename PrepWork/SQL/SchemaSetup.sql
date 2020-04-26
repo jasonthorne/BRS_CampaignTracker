@@ -11,29 +11,27 @@ USE blood_red_skies_db;
 CREATE TABLE airforces( 
   airforceID int NOT NULL AUTO_INCREMENT,
   name varchar(64) DEFAULT NULL,
-  description varchar(64) DEFAULT NULL,
   PRIMARY KEY (airforceID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-INSERT INTO airforces (name, description) VALUES ('RAF','RAF description');
-INSERT INTO airforces (name, description) VALUES ('Luftwaffe','Luftwaffe description');
-INSERT INTO airforces (name, description) VALUES ('USAAF','USAAF description');
-INSERT INTO airforces (name, description) VALUES ('VVS','VVS description');
-INSERT INTO airforces (name, description) VALUES ('IJAAF','IJAAF description');
+INSERT INTO airforces (name) VALUES ('RAF');
+INSERT INTO airforces (name) VALUES ('Luftwaffe');
+INSERT INTO airforces (name) VALUES ('USAAF');
+INSERT INTO airforces (name) VALUES ('VVS');
+INSERT INTO airforces (name) VALUES ('IJAAF');
 
 
-/* planes involved */
-CREATE TABLE planes (
-  planeID int NOT NULL AUTO_INCREMENT,
+/* models of plane involved */
+CREATE TABLE models (
+  modelID int NOT NULL AUTO_INCREMENT,
   name varchar(64) DEFAULT NULL,
-  description varchar(64) DEFAULT NULL,
-  PRIMARY KEY (planeID)
+  PRIMARY KEY (modelID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-INSERT INTO planes (name, description) VALUES ('Spitfire II','Spitfire II description');
-INSERT INTO planes (name, description) VALUES ('Hurricane I','Hurricane I description');
-INSERT INTO planes (name, description) VALUES ('Bf109 E','Bf109 E description');
-INSERT INTO planes (name, description) VALUES ('Bf110 C','Bf110 C description');
+INSERT INTO models (name) VALUES ('Spitfire II');
+INSERT INTO models (name) VALUES ('Hurricane I');
+INSERT INTO models (name) VALUES ('Bf109 E');
+INSERT INTO models (name) VALUES ('Bf110 C');
 
 
 /* years covered */
@@ -154,30 +152,55 @@ INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT statusID FROM status WHERE status.name = 'Auto'));
 
 
-/* RAF planes */
-CREATE TABLE raf_planes (
-	raf_planeID int NOT NULL AUTO_INCREMENT,
-	planeID int,
+/* planes */
+CREATE TABLE planes (
+	planeID int NOT NULL AUTO_INCREMENT,
+	modelID int,
 	airforceID int,
-	period_statusID_early_1940 int,	/* 1940 */
-	period_statusID_mid_1940 int,
-	period_statusID_late_1940 int,
-	period_statusID_early_1941 int, /* 1941 */
-	period_statusID_mid_1941 int,
-	period_statusID_late_1941 int,
-	period_statusID_early_1942 int, /* 1942 */
-	period_statusID_mid_1942 int,
-	period_statusID_late_1942 int,
-	period_statusID_early_1943 int, /* 1943 */
-	period_statusID_mid_1943 int,
-	period_statusID_late_1943 int,
-	period_statusID_early_1944 int, /* 1944 */
-	period_statusID_mid_1944 int,
-	period_statusID_late_1944 int,
-	period_statusID_early_1945 int, /* 1945 */
-	period_statusID_mid_1945 int,
-	PRIMARY KEY (raf_planeID),
-	FOREIGN KEY (planeID) REFERENCES planes(planeID),
-	FOREIGN KEY (statusID) REFERENCES status(statusID)
+	period_statusID_early_1940 int, period_statusID_mid_1940 int, period_statusID_late_1940 int,
+	period_statusID_early_1941 int, period_statusID_mid_1941 int, period_statusID_late_1941 int,
+	period_statusID_early_1942 int, period_statusID_mid_1942 int, period_statusID_late_1942 int,
+	period_statusID_early_1943 int, period_statusID_mid_1943 int, period_statusID_late_1943 int,
+	period_statusID_early_1944 int, period_statusID_mid_1944 int, period_statusID_late_1944 int,
+	period_statusID_early_1945 int, period_statusID_mid_1945 int,
+	PRIMARY KEY (planeID),
+	FOREIGN KEY (modelID) REFERENCES models(modelID),
+	FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
+	FOREIGN KEY (period_statusID_early_1940) REFERENCES period_status(period_statusID),	/* 1940 */
+	FOREIGN KEY (period_statusID_mid_1940) REFERENCES period_status(period_statusID),
+	FOREIGN KEY (period_statusID_late_1940) REFERENCES period_status(period_statusID),
+	FOREIGN KEY (period_statusID_early_1941) REFERENCES period_status(period_statusID),	/* 1941 */
+	FOREIGN KEY (period_statusID_mid_1941) REFERENCES period_status(period_statusID),
+	FOREIGN KEY (period_statusID_late_1941) REFERENCES period_status(period_statusID),
+	FOREIGN KEY (period_statusID_early_1942) REFERENCES period_status(period_statusID),	/* 1942 */
+	FOREIGN KEY (period_statusID_mid_1942) REFERENCES period_status(period_statusID),
+	FOREIGN KEY (period_statusID_late_1942) REFERENCES period_status(period_statusID),
+	FOREIGN KEY (period_statusID_early_1943) REFERENCES period_status(period_statusID),
+	FOREIGN KEY (period_statusID_mid_1943) REFERENCES period_status(period_statusID),
+	FOREIGN KEY (period_statusID_late_1943) REFERENCES period_status(period_statusID),
+	FOREIGN KEY (period_statusID_early_1944) REFERENCES period_status(period_statusID),	
+	FOREIGN KEY (period_statusID_mid_1944) REFERENCES period_status(period_statusID),
+	FOREIGN KEY (period_statusID_late_1944) REFERENCES period_status(period_statusID),
+	FOREIGN KEY (period_statusID_early_1945) REFERENCES period_status(period_statusID),
+	FOREIGN KEY (period_statusID_mid_1945) REFERENCES period_status(period_statusID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+/*
+INSERT INTO raf_planes (
+	planeID, 
+	airforceID,
+	period_statusID_early_1940, period_statusID_mid_1940, period_statusID_late_1940,
+	period_statusID_early_1941, period_statusID_mid_1941, period_statusID_late_1941,
+	period_statusID_early_1942,	period_statusID_mid_1942, period_statusID_late_1942,
+	period_statusID_early_1943,	period_statusID_mid_1943, period_statusID_late_1943,
+	period_statusID_early_1944, period_statusID_mid_1944, period_statusID_late_1944,
+	period_statusID_early_1945,	period_statusID_mid_1945
+	) VALUES (
+	(SELECT periodID FROM periods 
+		INNER JOIN blocks ON blocks.blockID = periods.blockID
+		INNER JOIN years ON years.yearID = periods.yearID 
+		WHERE blocks.name = 'Mid' AND years.name = '1941'),
+	(SELECT statusID FROM status WHERE status.name = 'Auto'));
+*/
 
