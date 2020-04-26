@@ -83,110 +83,40 @@ CREATE TABLE period_status (
   FOREIGN KEY (statusID) REFERENCES status(statusID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-/* works but should be without SET
-INSERT INTO period_status SET 
-	blockID = (SELECT blockID FROM blocks WHERE name = 'Early'),
-	yearID = (SELECT yearID FROM years WHERE name = '1940'),
-	statusID = (SELECT statusID FROM status WHERE name = 'None');
+
+/* 
+INSERT INTO period_status (blockID, yearID, statusID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
+	(SELECT yearID FROM years WHERE years.name = '1940'),
+	(SELECT statusID FROM status WHERE status.name = 'None'));
+
+INSERT INTO period_status (blockID, yearID, statusID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
+	(SELECT yearID FROM years WHERE years.name = '1940'),
+	(SELECT statusID FROM status WHERE status.name = 'Limit'));
+
+INSERT INTO period_status (blockID, yearID, statusID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
+	(SELECT yearID FROM years WHERE years.name = '1940'),
+	(SELECT statusID FROM status WHERE status.name = 'Auto'));
+
+
+INSERT INTO period_status (blockID, yearID, statusID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = 'Mid'),
+	(SELECT yearID FROM years WHERE years.name = '1940'),
+	(SELECT statusID FROM status WHERE status.name = 'None'));
+
+INSERT INTO period_status (blockID, yearID, statusID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = 'Mid'),
+	(SELECT yearID FROM years WHERE years.name = '1940'),
+	(SELECT statusID FROM status WHERE status.name = 'Limit'));
+
+INSERT INTO period_status (blockID, yearID, statusID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = 'Mid'),
+	(SELECT yearID FROM years WHERE years.name = '1940'),
+	(SELECT statusID FROM status WHERE status.name = 'Auto'));
+
 */
-
-/*
-INSERT INTO period_status (blockID, yearID, statusID)
-	SELECT blockID FROM blocks WHERE name = 'Early',
-	yearID FROM years WHERE name = '1940',
-	statusID FROM status WHERE name = 'None';
-*/
-
-/*
-INSERT INTO period_status (blockID, yearID, statusID)
-	SELECT blockID, yearID, statusID FROM blocks, years, status 
-	WHERE blocks.name = 'Early'
-	AND WHERE years.name = '1940'
-	AND WHERE status.name = 'None';
-*/
-	
-
-/* Early 1940 */
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
-	(SELECT yearID FROM years WHERE years.name = '1940'),
-	(SELECT statusID FROM status WHERE status.name = 'None'));
-
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
-	(SELECT yearID FROM years WHERE years.name = '1940'),
-	(SELECT statusID FROM status WHERE status.name = 'Limit'));
-
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
-	(SELECT yearID FROM years WHERE years.name = '1940'),
-	(SELECT statusID FROM status WHERE status.name = 'Auto'));
-
-/* Mid 1940 */
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Mid'),
-	(SELECT yearID FROM years WHERE years.name = '1940'),
-	(SELECT statusID FROM status WHERE status.name = 'None'));
-
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Mid'),
-	(SELECT yearID FROM years WHERE years.name = '1940'),
-	(SELECT statusID FROM status WHERE status.name = 'Limit'));
-
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Mid'),
-	(SELECT yearID FROM years WHERE years.name = '1940'),
-	(SELECT statusID FROM status WHERE status.name = 'Auto'));
-
-/* Late 1940 */
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Late'),
-	(SELECT yearID FROM years WHERE years.name = '1940'),
-	(SELECT statusID FROM status WHERE status.name = 'None'));
-
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Late'),
-	(SELECT yearID FROM years WHERE years.name = '1940'),
-	(SELECT statusID FROM status WHERE status.name = 'Limit'));
-
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Late'),
-	(SELECT yearID FROM years WHERE years.name = '1940'),
-	(SELECT statusID FROM status WHERE status.name = 'Auto'));
-
-/*----------------*/
-
-/* Early 1941 */
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
-	(SELECT yearID FROM years WHERE years.name = '1941'),
-	(SELECT statusID FROM status WHERE status.name = 'None'));
-
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
-	(SELECT yearID FROM years WHERE years.name = '1941'),
-	(SELECT statusID FROM status WHERE status.name = 'Limit'));
-
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
-	(SELECT yearID FROM years WHERE years.name = '1941'),
-	(SELECT statusID FROM status WHERE status.name = 'Auto'));
-
-/* Mid 1941 */
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Mid'),
-	(SELECT yearID FROM years WHERE years.name = '1941'),
-	(SELECT statusID FROM status WHERE status.name = 'None'));
-
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Mid'),
-	(SELECT yearID FROM years WHERE years.name = '1941'),
-	(SELECT statusID FROM status WHERE status.name = 'Limit'));
-
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Mid'),
-	(SELECT yearID FROM years WHERE years.name = '1941'),
-	(SELECT statusID FROM status WHERE status.name = 'Auto'));
 
 
 
