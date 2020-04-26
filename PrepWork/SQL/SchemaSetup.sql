@@ -11,12 +11,11 @@ CREATE TABLE airforces(
   PRIMARY KEY (airforceID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-
-/*
-INSERT INTO airforces (name, description) VALUES ('RAF','sss');
-INSERT INTO airforces (name, description) VALUES ('Soviet','ssqqsss');
-INSERT INTO airforces (name, description) VALUES ('USAAF','asadade');
-*/
+INSERT INTO airforces (name, description) VALUES ('RAF','RAF description');
+INSERT INTO airforces (name, description) VALUES ('Luftwaffe','Luftwaffe description');
+INSERT INTO airforces (name, description) VALUES ('USAAF','USAAF description');
+INSERT INTO airforces (name, description) VALUES ('VVS','VVS description');
+INSERT INTO airforces (name, description) VALUES ('IJAAF','IJAAF description');
 
 /* planes involved */
 drop table if exists planes;
@@ -27,6 +26,10 @@ CREATE TABLE planes (
   PRIMARY KEY (planeID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+INSERT INTO planes (name, description) VALUES ('Spitfire II','Spitfire II description');
+INSERT INTO planes (name, description) VALUES ('Hurricane I','Hurricane I description');
+INSERT INTO planes (name, description) VALUES ('Bf109 E','Bf109 E description');
+INSERT INTO planes (name, description) VALUES ('Bf110 C','Bf110 C description');
 
 /* years covered */
 drop table if exists years;
@@ -83,8 +86,7 @@ CREATE TABLE period_status (
   FOREIGN KEY (statusID) REFERENCES status(statusID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-
-/* 
+/* Early 1940 */
 INSERT INTO period_status (blockID, yearID, statusID) VALUES (
 	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
 	(SELECT yearID FROM years WHERE years.name = '1940'),
@@ -100,7 +102,7 @@ INSERT INTO period_status (blockID, yearID, statusID) VALUES (
 	(SELECT yearID FROM years WHERE years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Auto'));
 
-
+/* Mid 1940 */
 INSERT INTO period_status (blockID, yearID, statusID) VALUES (
 	(SELECT blockID FROM blocks WHERE blocks.name = 'Mid'),
 	(SELECT yearID FROM years WHERE years.name = '1940'),
@@ -116,7 +118,28 @@ INSERT INTO period_status (blockID, yearID, statusID) VALUES (
 	(SELECT yearID FROM years WHERE years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Auto'));
 
-*/
+/* Late 1940 */
+INSERT INTO period_status (blockID, yearID, statusID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = 'Late'),
+	(SELECT yearID FROM years WHERE years.name = '1940'),
+	(SELECT statusID FROM status WHERE status.name = 'None'));
+
+INSERT INTO period_status (blockID, yearID, statusID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = 'Late'),
+	(SELECT yearID FROM years WHERE years.name = '1940'),
+	(SELECT statusID FROM status WHERE status.name = 'Limit'));
+
+INSERT INTO period_status (blockID, yearID, statusID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = 'Late'),
+	(SELECT yearID FROM years WHERE years.name = '1940'),
+	(SELECT statusID FROM status WHERE status.name = 'Auto'));
+
+/*----------------*/
+
+
+
+
+
 
 
 
