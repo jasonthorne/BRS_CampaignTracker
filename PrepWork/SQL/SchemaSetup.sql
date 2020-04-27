@@ -7,6 +7,26 @@ CREATE DATABASE blood_red_skies_db;
 
 USE blood_red_skies_db;
 
+/* campaigns being played */
+
+/* ?????????????????
+CREATE TABLE campaigns( 
+  campaignID int NOT NULL AUTO_INCREMENT,
+  campaign BLOB NOT NULL,
+  eventID_event_name int, 
+  start_date date,	
+  players BLOB NOT NULL, 
+  periodID_current_period int
+  PRIMARY KEY (campaignID)
+  FOREIGN KEY (periodID) REFERENCES periods(periodID),
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+*/
+
+
+
+
+
+
 /* airforces involved */
 CREATE TABLE airforces( 
   airforceID int NOT NULL AUTO_INCREMENT,
@@ -245,52 +265,95 @@ CREATE TABLE planes (
 https://codeshare.io/Gq0M6j?fbclid=IwAR3QkBGNZf9qPfRy4g4Frv84m0qUiSZxQTQ9Bwrmgo2urceTHIUBVxWD-70
 */
 
-/*
+
 INSERT INTO planes (
 	modelID, 
 	airforceID,
-	period_statusID_early_1940
+	period_statusID_early_1940/*, period_statusID_mid_1940, period_statusID_late_1940,
+	period_statusID_early_1941, period_statusID_mid_1941, period_statusID_late_1941,
+	period_statusID_early_1942,	period_statusID_mid_1942, period_statusID_late_1942,
+	period_statusID_early_1943,	period_statusID_mid_1943, period_statusID_late_1943,
+	period_statusID_early_1944, period_statusID_mid_1944, period_statusID_late_1944,
+	period_statusID_early_1945,	period_statusID_mid_1945*/
 	) VALUES (
 	(SELECT modelID FROM models WHERE models.name = 'Spitfire II'),
 	(SELECT airforceID FROM airforces WHERE airforces.name = 'RAF'),
-	
-	
 	(SELECT period_statusID FROM period_status
-		WHERE period_statusID IN 
-		SELECT periodID FROM periods 
-		INNER JOIN blocks ON blocks.blockID = periods.blockID
-		INNER JOIN years ON years.yearID = periods.yearID 
-		WHERE blocks.name = 'Late' AND years.name = '1940')
-	);
-	*/
-	
-	/*
-	(SELECT period_statusID FROM period_status
-		INNER JOIN blocks ON blocks.blockID = periods.blockID
-		INNER JOIN years ON years.yearID = periods.yearID 
-		WHERE blocks.name = 'Early' AND years.name = '1940')
-	
-	);*/
+		INNER JOIN periods ON period_status.periodID = periods.periodID
+		INNER JOIN blocks ON periods.blockID = blocks.blockID 
+        INNER JOIN years ON periods.yearID = years.yearID
+        INNER JOIN status ON period_status.statusID = status.statusID
+		WHERE blocks.name = 'Early' AND years.name = '1940' AND status.name = 'None'));
+
+
+
+/* airforces involed in an event 
+
+https://www.w3schools.com/sql/sql_alter.asp
+*/
+
+/* names of historical events */
+CREATE TABLE event_names( 
+  event_nameID int NOT NULL AUTO_INCREMENT,
+  name varchar(64) DEFAULT NULL,
+  PRIMARY KEY (event_nameID)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+INSERT INTO event_names (name) VALUES ('Battle of Britain');
+INSERT INTO event_names (name) VALUES ('Stalingrad');
+
+
+/* historical events */
+CREATE TABLE events( 
+  eventID int NOT NULL AUTO_INCREMENT,
+  event_nameID int,
+  periodID_start_period int,
+  periodID_end_period int,
+  PRIMARY KEY (eventID),
+  FOREIGN KEY (event_nameID) REFERENCES event_names(event_nameID),
+  FOREIGN KEY (periodID_start_period) REFERENCES periods(periodID),
+  FOREIGN KEY (periodID_end_period) REFERENCES periods(periodID)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 	
 
 
 /*
-INSERT INTO period_status (periodID, statusID) VALUES (
+this
+------
+thisID
+eventID fk
+
+oneof these made for each airforce
+then add airforces to this during event building
+then myabe link this to events????
+
+
+OR
+
+
+event_airforces
+thisID, eventId, 
+
+
+*/
+
+
+
+
+INSERT INTO events (event_nameID, periodID_start_period, periodID_end_period) VALUES (
+	(SELECT event_nameID FROM event_names WHERE event_names.name = 'Battle of Britain'),
 	(SELECT periodID FROM periods 
-		INNER JOIN blocks ON blocks.blockID = periods.blockID
-		INNER JOIN years ON years.yearID = periods.yearID 
+		INNER JOIN blocks ON periods.blockID = blocks.blockID
+		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Late' AND years.name = '1940'),
-	(SELECT statusID FROM status WHERE status.name = 'Auto'));
+	(SELECT periodID FROM periods 
+		INNER JOIN blocks ON periods.blockID = blocks.blockID
+		INNER JOIN years ON periods.yearID  = years.yearID
+		WHERE blocks.name = 'Mid' AND years.name = '1941'));
 
-*/
-
-/*
-INSERT INTO period_status (blockID, yearID, statusID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
-	(SELECT yearID FROM years WHERE years.name = '1940'),
-	(SELECT statusID FROM status WHERE status.name = 'None'));
-*/
-
+	/* add airforces */ 
+	/* add home advantage airforces */
 
 /* +++++++++++++++++woohoo!!
 SELECT period_statusID FROM period_status
