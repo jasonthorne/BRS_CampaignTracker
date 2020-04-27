@@ -96,7 +96,6 @@ INSERT INTO periods (blockID, yearID) VALUES (
 	(SELECT blockID FROM blocks WHERE blocks.name = 'Late'),
 	(SELECT yearID FROM years WHERE years.name = '1941'));
 	
-	
 INSERT INTO periods (blockID, yearID) VALUES (
 	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
 	(SELECT yearID FROM years WHERE years.name = '1942'));
@@ -138,48 +137,48 @@ CREATE TABLE period_status (
 /* Early, 1940, None */
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
-		INNER JOIN blocks ON blocks.blockID = periods.blockID
-		INNER JOIN years ON years.yearID = periods.yearID 
+		INNER JOIN blocks ON periods.blockID = blocks.blockID /* join periods with blocks by blockIDs */
+		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Early' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'None'));
 	
 /* Early, 1940, Limit */
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
-		INNER JOIN blocks ON blocks.blockID = periods.blockID
-		INNER JOIN years ON years.yearID = periods.yearID 
+		INNER JOIN blocks ON periods.blockID = blocks.blockID
+		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Early' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Limit'));
 
 /* Early, 1940, Auto */
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
-		INNER JOIN blocks ON blocks.blockID = periods.blockID
-		INNER JOIN years ON years.yearID = periods.yearID 
+		INNER JOIN blocks ON periods.blockID = blocks.blockID
+		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Early' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Auto'));
 	
 /* Mid, 1940, None */
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
-		INNER JOIN blocks ON blocks.blockID = periods.blockID
-		INNER JOIN years ON years.yearID = periods.yearID 
+		INNER JOIN blocks ON periods.blockID = blocks.blockID
+		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Mid' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'None'));
 	
 /* Mid, 1940, Limit */
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
-		INNER JOIN blocks ON blocks.blockID = periods.blockID
-		INNER JOIN years ON years.yearID = periods.yearID 
+		INNER JOIN blocks ON periods.blockID = blocks.blockID
+		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Mid' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Limit'));
 
 /* Mid, 1940, Auto */
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
-		INNER JOIN blocks ON blocks.blockID = periods.blockID
-		INNER JOIN years ON years.yearID = periods.yearID 
+		INNER JOIN blocks ON periods.blockID = blocks.blockID
+		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Mid' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Auto'));
 
@@ -187,24 +186,24 @@ INSERT INTO period_status (periodID, statusID) VALUES (
 /* Late, 1940, None */
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
-		INNER JOIN blocks ON blocks.blockID = periods.blockID
-		INNER JOIN years ON years.yearID = periods.yearID 
+		INNER JOIN blocks ON periods.blockID = blocks.blockID
+		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Late' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'None'));
 	
 /* Late, 1940, Limit */
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
-		INNER JOIN blocks ON blocks.blockID = periods.blockID
-		INNER JOIN years ON years.yearID = periods.yearID 
+		INNER JOIN blocks ON periods.blockID = blocks.blockID
+		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Late' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Limit'));
 
 /* Late, 1940, Auto */
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
-		INNER JOIN blocks ON blocks.blockID = periods.blockID
-		INNER JOIN years ON years.yearID = periods.yearID 
+		INNER JOIN blocks ON periods.blockID = blocks.blockID
+		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Late' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Auto'));
 
@@ -245,25 +244,33 @@ CREATE TABLE planes (
 /*
 https://codeshare.io/Gq0M6j?fbclid=IwAR3QkBGNZf9qPfRy4g4Frv84m0qUiSZxQTQ9Bwrmgo2urceTHIUBVxWD-70
 */
+
+/*
 INSERT INTO planes (
 	modelID, 
 	airforceID,
-	period_statusID_early_1940	/*, period_statusID_mid_1940, period_statusID_late_1940,
-	period_statusID_early_1941, period_statusID_mid_1941, period_statusID_late_1941,
-	period_statusID_early_1942,	period_statusID_mid_1942, period_statusID_late_1942,
-	period_statusID_early_1943,	period_statusID_mid_1943, period_statusID_late_1943,
-	period_statusID_early_1944, period_statusID_mid_1944, period_statusID_late_1944,
-	period_statusID_early_1945,	period_statusID_mid_1945*/
+	period_statusID_early_1940
 	) VALUES (
 	(SELECT modelID FROM models WHERE models.name = 'Spitfire II'),
 	(SELECT airforceID FROM airforces WHERE airforces.name = 'RAF'),
 	
+	
+	(SELECT period_statusID FROM period_status
+		WHERE period_statusID IN 
+		SELECT periodID FROM periods 
+		INNER JOIN blocks ON blocks.blockID = periods.blockID
+		INNER JOIN years ON years.yearID = periods.yearID 
+		WHERE blocks.name = 'Late' AND years.name = '1940')
+	);
+	*/
+	
+	/*
 	(SELECT period_statusID FROM period_status
 		INNER JOIN blocks ON blocks.blockID = periods.blockID
 		INNER JOIN years ON years.yearID = periods.yearID 
 		WHERE blocks.name = 'Early' AND years.name = '1940')
 	
-	);
+	);*/
 	
 
 
@@ -282,4 +289,15 @@ INSERT INTO period_status (blockID, yearID, statusID) VALUES (
 	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
 	(SELECT yearID FROM years WHERE years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'None'));
+*/
+
+
+/* +++++++++++++++++woohoo!!
+SELECT period_statusID FROM period_status
+		INNER JOIN periods ON period_status.periodID = periods.periodID
+		INNER JOIN blocks ON periods.blockID = blocks.blockID 
+        INNER JOIN years ON periods.yearID = years.yearID
+        INNER JOIN status ON period_status.statusID = status.statusID
+		WHERE blocks.name = 'Early' AND years.name = '1940'
+        AND status.name = 'None';
 */
