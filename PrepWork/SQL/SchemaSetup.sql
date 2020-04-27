@@ -228,7 +228,7 @@ CREATE TABLE planes (
 	FOREIGN KEY (period_statusID_late_1940) REFERENCES period_status(period_statusID),
 	FOREIGN KEY (period_statusID_early_1941) REFERENCES period_status(period_statusID),	/* 1941 */
 	FOREIGN KEY (period_statusID_mid_1941) REFERENCES period_status(period_statusID),
-	FOREIGN KEY (period_statusID_late_1941) REFERENCES period_status(period_statusID),
+	FOREIGN KEY (period_statusID_late_1941) REFERENCES period_status(period_statusID), 
 	FOREIGN KEY (period_statusID_early_1942) REFERENCES period_status(period_statusID),	/* 1942 */
 	FOREIGN KEY (period_statusID_mid_1942) REFERENCES period_status(period_statusID),
 	FOREIGN KEY (period_statusID_late_1942) REFERENCES period_status(period_statusID),
@@ -242,22 +242,44 @@ CREATE TABLE planes (
 	FOREIGN KEY (period_statusID_mid_1945) REFERENCES period_status(period_statusID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-
-
+/*
+https://codeshare.io/Gq0M6j?fbclid=IwAR3QkBGNZf9qPfRy4g4Frv84m0qUiSZxQTQ9Bwrmgo2urceTHIUBVxWD-70
+*/
 INSERT INTO planes (
 	modelID, 
 	airforceID,
-	period_statusID_early_1940, period_statusID_mid_1940, period_statusID_late_1940,
-	/*period_statusID_early_1941, period_statusID_mid_1941, period_statusID_late_1941,
+	period_statusID_early_1940	/*, period_statusID_mid_1940, period_statusID_late_1940,
+	period_statusID_early_1941, period_statusID_mid_1941, period_statusID_late_1941,
 	period_statusID_early_1942,	period_statusID_mid_1942, period_statusID_late_1942,
 	period_statusID_early_1943,	period_statusID_mid_1943, period_statusID_late_1943,
 	period_statusID_early_1944, period_statusID_mid_1944, period_statusID_late_1944,
 	period_statusID_early_1945,	period_statusID_mid_1945*/
 	) VALUES (
+	(SELECT modelID FROM models WHERE models.name = 'Spitfire II'),
+	(SELECT airforceID FROM airforces WHERE airforces.name = 'RAF'),
+	
+	(SELECT period_statusID FROM period_status
+		INNER JOIN blocks ON blocks.blockID = periods.blockID
+		INNER JOIN years ON years.yearID = periods.yearID 
+		WHERE blocks.name = 'Early' AND years.name = '1940')
+	
+	);
+	
+
+
+/*
+INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
 		INNER JOIN blocks ON blocks.blockID = periods.blockID
 		INNER JOIN years ON years.yearID = periods.yearID 
-		WHERE blocks.name = 'Mid' AND years.name = '1941'),
+		WHERE blocks.name = 'Late' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Auto'));
 
+*/
 
+/*
+INSERT INTO period_status (blockID, yearID, statusID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
+	(SELECT yearID FROM years WHERE years.name = '1940'),
+	(SELECT statusID FROM status WHERE status.name = 'None'));
+*/
