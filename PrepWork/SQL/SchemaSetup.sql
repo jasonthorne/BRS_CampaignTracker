@@ -319,6 +319,17 @@ CREATE TABLE events(
 
 
 /*
+ALTER TABLE events
+ADD test int,
+ADD FOREIGN KEY (test) REFERENCES airforces(airforceID);
+
+
+INSERT INTO events (test) VALUES (
+	(SELECT airforceID FROM airforces WHERE airforces.name ='USAAF'));
+*/
+
+
+/*
 this
 ------
 thisID
