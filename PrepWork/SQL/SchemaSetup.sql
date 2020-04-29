@@ -24,7 +24,11 @@ CREATE TABLE campaigns(
 
 
 
+/*
 
+lookup enums & sets. set for possible opponents list!!
+https://dev.mysql.com/doc/refman/5.6/en/set.html
+*/
 
 
 /* airforces involved */
@@ -34,12 +38,13 @@ CREATE TABLE airforces(
   PRIMARY KEY (airforceID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+/*
 INSERT INTO airforces (name) VALUES ('RAF');
 INSERT INTO airforces (name) VALUES ('Luftwaffe');
 INSERT INTO airforces (name) VALUES ('USAAF');
 INSERT INTO airforces (name) VALUES ('VVS');
 INSERT INTO airforces (name) VALUES ('IJAAF');
-
+*/
 
 /* models of plane involved */
 CREATE TABLE models (
@@ -48,11 +53,12 @@ CREATE TABLE models (
   PRIMARY KEY (modelID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+/*
 INSERT INTO models (name) VALUES ('Spitfire II');
 INSERT INTO models (name) VALUES ('Hurricane I');
 INSERT INTO models (name) VALUES ('Bf109 E');
 INSERT INTO models (name) VALUES ('Bf110 C');
-
+*/
 
 /* years covered */
 CREATE TABLE years (
@@ -61,24 +67,29 @@ CREATE TABLE years (
   PRIMARY KEY (yearID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+/*
 INSERT INTO years (name) VALUES ('1940');
 INSERT INTO years (name) VALUES ('1941');
 INSERT INTO years (name) VALUES ('1942');
 INSERT INTO years (name) VALUES ('1943');
 INSERT INTO years (name) VALUES ('1944');
 INSERT INTO years (name) VALUES ('1945');
-
+*/
 
 /* blocks of a year (early, mid, late) */
+
+/* look up enus for this!! https://stackoverflow.com/questions/22168972/how-can-i-add-list-of-items-in-single-column-in-mysql */ 
 CREATE TABLE blocks (
   blockID int NOT NULL AUTO_INCREMENT,
   name varchar(5) DEFAULT NULL, 
   PRIMARY KEY (blockID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+/*
 INSERT INTO blocks (name) VALUES ('Early');
 INSERT INTO blocks (name) VALUES ('Mid');
 INSERT INTO blocks (name) VALUES ('Late');
+*/
 
 /* historical periods (eg: early 1940) */
 CREATE TABLE periods (
@@ -91,6 +102,7 @@ CREATE TABLE periods (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 /* =========================== */
+/*
 INSERT INTO periods (blockID, yearID) VALUES (
 	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
 	(SELECT yearID FROM years WHERE years.name = '1940'));
@@ -127,21 +139,23 @@ INSERT INTO periods (blockID, yearID) VALUES (
 INSERT INTO periods (blockID, yearID) VALUES (
 	(SELECT blockID FROM blocks WHERE blocks.name = 'Late'),
 	(SELECT yearID FROM years WHERE years.name = '1942'));
+	*/
 	
-/* =========================== */	
+/* ============================ */	
 	
 
-/* status values of a plane (none, limit, auto) */
+/* status values of a plane (none, limit, auto) https://stackoverflow.com/questions/22168972/how-can-i-add-list-of-items-in-single-column-in-mysql*/
 CREATE TABLE status (
   statusID int NOT NULL AUTO_INCREMENT,
   name varchar(5) DEFAULT NULL,
   PRIMARY KEY (statusID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+/*
 INSERT INTO status (name) VALUES ('None');
 INSERT INTO status (name) VALUES ('Limit');
 INSERT INTO status (name) VALUES ('Auto');
-
+*/
 
 /* each potential status for each period of history covered (eg: early, 1940, limit) */
 CREATE TABLE period_status (
@@ -155,46 +169,53 @@ CREATE TABLE period_status (
 
 
 /* Early, 1940, None */
+/*
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
-		INNER JOIN blocks ON periods.blockID = blocks.blockID /* join periods with blocks by blockIDs */
+		INNER JOIN blocks ON periods.blockID = blocks.blockID 
 		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Early' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'None'));
-	
+
+*/
 /* Early, 1940, Limit */
+/*
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
 		INNER JOIN blocks ON periods.blockID = blocks.blockID
 		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Early' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Limit'));
-
+*/
 /* Early, 1940, Auto */
+/*
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
 		INNER JOIN blocks ON periods.blockID = blocks.blockID
 		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Early' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Auto'));
-	
+	*/
 /* Mid, 1940, None */
+/*
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
 		INNER JOIN blocks ON periods.blockID = blocks.blockID
 		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Mid' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'None'));
-	
+	*/
 /* Mid, 1940, Limit */
+/*
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
 		INNER JOIN blocks ON periods.blockID = blocks.blockID
 		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Mid' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Limit'));
-
+/*
 /* Mid, 1940, Auto */
+/*
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
 		INNER JOIN blocks ON periods.blockID = blocks.blockID
@@ -202,24 +223,27 @@ INSERT INTO period_status (periodID, statusID) VALUES (
 		WHERE blocks.name = 'Mid' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Auto'));
 
-
+*/
 /* Late, 1940, None */
+/*
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
 		INNER JOIN blocks ON periods.blockID = blocks.blockID
 		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Late' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'None'));
-	
+	*/
 /* Late, 1940, Limit */
+/*
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
 		INNER JOIN blocks ON periods.blockID = blocks.blockID
 		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Late' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Limit'));
-
+*/
 /* Late, 1940, Auto */
+/*
 INSERT INTO period_status (periodID, statusID) VALUES (
 	(SELECT periodID FROM periods 
 		INNER JOIN blocks ON periods.blockID = blocks.blockID
@@ -227,7 +251,7 @@ INSERT INTO period_status (periodID, statusID) VALUES (
 		WHERE blocks.name = 'Late' AND years.name = '1940'),
 	(SELECT statusID FROM status WHERE status.name = 'Auto'));
 
-
+*/
 /* planes */
 CREATE TABLE planes (
 	planeID int NOT NULL AUTO_INCREMENT,
@@ -265,16 +289,16 @@ CREATE TABLE planes (
 https://codeshare.io/Gq0M6j?fbclid=IwAR3QkBGNZf9qPfRy4g4Frv84m0qUiSZxQTQ9Bwrmgo2urceTHIUBVxWD-70
 */
 
-
+/*
 INSERT INTO planes (
 	modelID, 
 	airforceID,
-	period_statusID_early_1940/*, period_statusID_mid_1940, period_statusID_late_1940,
+	period_statusID_early_1940*//*, period_statusID_mid_1940, period_statusID_late_1940,
 	period_statusID_early_1941, period_statusID_mid_1941, period_statusID_late_1941,
 	period_statusID_early_1942,	period_statusID_mid_1942, period_statusID_late_1942,
 	period_statusID_early_1943,	period_statusID_mid_1943, period_statusID_late_1943,
 	period_statusID_early_1944, period_statusID_mid_1944, period_statusID_late_1944,
-	period_statusID_early_1945,	period_statusID_mid_1945*/
+	period_statusID_early_1945,	period_statusID_mid_1945*//*
 	) VALUES (
 	(SELECT modelID FROM models WHERE models.name = 'Spitfire II'),
 	(SELECT airforceID FROM airforces WHERE airforces.name = 'RAF'),
@@ -285,7 +309,7 @@ INSERT INTO planes (
         INNER JOIN status ON period_status.statusID = status.statusID
 		WHERE blocks.name = 'Early' AND years.name = '1940' AND status.name = 'None'));
 
-
+*/
 
 /* airforces involed in an event 
 
@@ -299,10 +323,10 @@ CREATE TABLE event_names(
   PRIMARY KEY (event_nameID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-
+/*
 INSERT INTO event_names (name) VALUES ('Battle of Britain');
 INSERT INTO event_names (name) VALUES ('Stalingrad');
-
+*/
 
 /* historical events */
 CREATE TABLE events( 
@@ -351,7 +375,7 @@ thisID, eventId,
 
 
 
-
+/*
 INSERT INTO events (event_nameID, periodID_start_period, periodID_end_period) VALUES (
 	(SELECT event_nameID FROM event_names WHERE event_names.name = 'Battle of Britain'),
 	(SELECT periodID FROM periods 
@@ -362,7 +386,7 @@ INSERT INTO events (event_nameID, periodID_start_period, periodID_end_period) VA
 		INNER JOIN blocks ON periods.blockID = blocks.blockID
 		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE blocks.name = 'Mid' AND years.name = '1941'));
-
+*/
 	/* add airforces */ 
 	/* add home advantage airforces */
 
