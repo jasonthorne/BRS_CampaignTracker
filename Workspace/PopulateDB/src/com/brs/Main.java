@@ -1,5 +1,8 @@
 package com.brs;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -8,39 +11,16 @@ public class Main {
 		
 		
 		
-		//load data 
 		
-		/*
-		 * 
-		 * campaigns X 
-		 * 
-		 * dates 
-		 * 
-		 * Events Y
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * Airforces Y 
-		 * 
-		 * players
-		 * 
-		 * 
-		 *------
-		 *
-		 *event 
-		 *- name
-		 *-airforces (plus home adv airforces)
-		  -periods
-		  	-from 
-		  	-to
-		  
-		  
-		 *
-		 */
+		PeriodStatus ps1 = new PeriodStatus(new Period(Block.EARLY, Year.FORTY), Status.AUTO);
 		
-		System.out.println("bum");
+		System.out.println(ps1);
+		
+		Plane plane1 = new Plane(Model.SPITFIRE_II, AirForce.RAF, Arrays.asList(
+				new PeriodStatus(new Period(Block.EARLY, Year.FORTY), Status.NONE),
+				new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT)));
+		
+		System.out.println(plane1);
 
 	}
 

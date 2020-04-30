@@ -15,6 +15,20 @@ import com.brs.plane.Status;
 
 public class Japan extends AirForce{
 	
+	
+	
+	/*
+	 * 
+	 * List of PERIOD STATUS's for each plane
+	 * 
+	 * plane
+	 * model
+	 * airforce
+	 * list of period statuses - add just the ones that are limit or auto. HAVe db set others as none by default. 
+	 * 
+	 * 
+	 */
+	
 	//Japan name:
 	private static final AirForceName NAME = AirForceName.IJAAF; 
 	

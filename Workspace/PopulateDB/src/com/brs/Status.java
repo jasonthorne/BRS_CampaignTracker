@@ -1,4 +1,4 @@
-package com.brs.plane;
+package com.brs;
 
 //status values of a plane:
 public enum Status {

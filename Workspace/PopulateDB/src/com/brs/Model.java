@@ -1,6 +1,6 @@
-package com.brs.plane;
+package com.brs;
 
-//Plane models:
+//models of plane involved:
 public enum Model {
 	
 	//56 models, in 14 rows of 4:
