@@ -12,3 +12,4 @@ CREATE TABLE airforces(
   name varchar(64) DEFAULT NULL,
   PRIMARY KEY (airforceID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+

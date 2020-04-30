@@ -1,9 +1,8 @@
 package com.brs;
 
-//status values of a plane:
+//availability status of a plane:
 public enum Status {
 	
-	NONE("None"), 
 	LIMIT("Limit"), 
 	AUTO("Auto");
 	

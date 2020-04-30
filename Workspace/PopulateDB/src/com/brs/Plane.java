@@ -8,12 +8,12 @@ public class Plane {
 	
 	private final Model model; //model of plane
 	private final AirForce airforce; //air force flown for
-	private final List<PeriodStatus>periodStatuses;	//periods available, and their corresponding status
+	private final List<PeriodStatus>periodStatuses;	//periods plane is available, and their corresponding statuses
 	
-	public Plane(Model model, AirForce airforce, List<PeriodStatus>periodStatuses) {
+	public Plane(Model model, AirForce airforce, List<PeriodStatus>periodStatus) {
 		this.model = model; //set model
 		this.airforce = airforce;
-		this.periodStatuses = new ArrayList<PeriodStatus>(periodStatuses);
+		this.periodStatuses = new ArrayList<PeriodStatus>(periodStatus);
 	}
 	
 	//getter:
