@@ -1,9 +1,8 @@
 
-DROP DATABASE if not exist sblood_red_skies_db;
+DROP DATABASE if exists blood_red_skies_db;
 CREATE DATABASE blood_red_skies_db;
 
 USE blood_red_skies_db;
-
 
 
 /* airforces involved */
@@ -13,3 +12,8 @@ CREATE TABLE airforces(
   PRIMARY KEY (airforceID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+INSERT INTO airforces (name) VALUES ('RAF');
+INSERT INTO airforces (name) VALUES ('Luftwaffe');
+INSERT INTO airforces (name) VALUES ('USAAF');
+INSERT INTO airforces (name) VALUES ('VVS');
+INSERT INTO airforces (name) VALUES ('IJAAF');

@@ -3,6 +3,7 @@ package com.brs;
 //availability status of a plane:
 public enum Status {
 	
+	NONE("Unavailable"),
 	LIMIT("Limit"), 
 	AUTO("Auto");
 	
