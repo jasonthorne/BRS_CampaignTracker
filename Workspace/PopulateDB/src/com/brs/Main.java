@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -13,18 +12,18 @@ import java.util.Properties;
 public class Main {
 	
 	private static Connection connection = null;
-	static {
+	static {//possibly deserialise properties file. then ask user to input password and username and IF same as loaded versions, then login.
 		
 		try {
 			
 			//load properties file:
 			Properties properties = new Properties();
 			properties.load(new FileInputStream("DB_login.properties"));
-			String dburl = properties.getProperty("dburl"); 
+			String db_url = properties.getProperty("dburl"); 
 			
 			//get connection to DB using properties:
-			connection = DriverManager.getConnection(dburl, properties.getProperty("user"), properties.getProperty("password"));
-			System.out.println("Connected to Database: " + dburl + "\n");
+			connection = DriverManager.getConnection(db_url, properties.getProperty("user"), properties.getProperty("password"));
+			System.out.println("Connected to Database: " + db_url + "\n");
 			
 		}catch(Exception e) { e.printStackTrace(); }
 	}
@@ -60,18 +59,21 @@ public class Main {
 			//---------------------------------------------------
 			//4 - test connection:
 			
+			
 			//prepare statement:
 			statement = connection.createStatement(); //create a statement using connection
-			String sql = "select * from airforces";
-			resultSet = statement.executeQuery(sql); //execute statement, storing results in resultSet
+			String sql = "INSERT INTO years (name) VALUES ('1940')"; 
+			statement.executeUpdate(sql);
+			
+			resultSet = statement.executeQuery("SELECT * FROM years"); //execute statement, storing results in resultSet
 			
 			while(resultSet.next()) {
-				System.out.println(resultSet.getString("airforceID") + " " + resultSet.getString("name"));
+				System.out.println(resultSet.getString("yearID") + " " + resultSet.getString("name"));
 			}
 			
 			
 		}catch(Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		
