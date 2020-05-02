@@ -13,7 +13,7 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public class Main implements InsertYear {
-	
+	/*
 	private static Connection connection = null;
 	static {	//connect to DB using properties file:
 		
@@ -29,7 +29,7 @@ public class Main implements InsertYear {
 			
 		}catch(Exception e) { e.printStackTrace(); }
 	}
-
+	 */
 
 	public static void main(String[] args) {
 		
@@ -56,28 +56,23 @@ public class Main implements InsertYear {
 		insertString(Call.INSERT_YEAR, Year.FORTY_ONE);
 		insertString(Call.INSERT_YEAR, Year.FORTY_TWO);
 		insertString(Call.INSERT_YEAR, Year.FORTY_FIVE);
+		
+		https://www.baeldung.com/java-connection-pooling
 		*/
 		
 		
-		
-		insertYear.accept(connection, Year.FORTY_TWO);
+		/*
+		insertYear.accept(connection, Year.FORTY_TWO); //should just be passing in yearS (list of all years) here into PREDICATE instead, and letting insertYear esatblish the connection
 		insertYear.accept(connection, Year.FORTY_THREE);
+		*/
+		
+		insertYear.accept(Year.FORTY_ONE);
+		insertYear.accept(Year.FORTY_FOUR);
 		
 		//InsertYear.insertYear(connection, Year.FORTY_ONE);
 		
 		
 	}
 	
-	private static <T extends Enum<T>> void insertString(Call call, Enum<T> data) {
-		
-		try {
-			CallableStatement callableStatement = connection.prepareCall(call.toString());
-			callableStatement.setString(1, data.toString());
-			callableStatement.registerOutParameter(1, Types.VARCHAR); 
-			callableStatement.execute();
-			System.out.println("Inserted: " + callableStatement.getString(1));
-			
-		}catch(Exception e) { System.out.println("ERROR: " + e.getMessage()); }
-	}
 
 }
