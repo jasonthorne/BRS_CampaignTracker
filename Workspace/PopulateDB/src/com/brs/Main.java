@@ -1,10 +1,10 @@
 package com.brs;
 
 import java.io.FileInputStream;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.Types;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -50,34 +50,40 @@ public class Main {
 						new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT)))
 		);
 		
-		//Connection connection = null;
-		Statement statement = null;
-		ResultSet resultSet = null;
+		insertString("insert_year(?)", "3333");
 		
-		try {
+		/*
+		try { //put al this in a method!!! +++++++++++++
 			
-			//---------------------------------------------------
-			//4 - test connection:
+			CallableStatement callableStatement = connection.prepareCall("{call insert_year(?)}"); //change string with param
+			callableStatement.setString(1, "9867");
+			callableStatement.registerOutParameter(1, Types.VARCHAR); 
 			
+			callableStatement.execute();
 			
-			//prepare statement:
-			statement = connection.createStatement(); //create a statement using connection
-			String sql = "INSERT INTO years (name) VALUES ('1940')"; 
-			statement.executeUpdate(sql);
-			
-			resultSet = statement.executeQuery("SELECT * FROM years"); //execute statement, storing results in resultSet
-			
-			while(resultSet.next()) {
-				System.out.println(resultSet.getString("yearID") + " " + resultSet.getString("name"));
-			}
+			System.out.println("inserted: " + callableStatement.getString(1));
 			
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+		}*/
+		
+	}
+	
+	private static void insertString(String procedureCall, String data) {
+		
+		try { 
+			
+			CallableStatement callableStatement = connection.prepareCall("{call "+ procedureCall + "}");
+			callableStatement.setString(1, data);
+			callableStatement.registerOutParameter(1, Types.VARCHAR); 
+			callableStatement.execute();
+			System.out.println("inserted: " + callableStatement.getString(1));
+			
+		}catch(Exception e) {
+			e.printStackTrace(); 
 		}
 		
-		
-
 	}
 
 }

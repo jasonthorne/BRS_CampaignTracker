@@ -8,37 +8,21 @@ USE blood_red_skies_db;
 /* years covered */
 CREATE TABLE years (
   yearID int NOT NULL AUTO_INCREMENT,
-  name varchar(4) DEFAULT NULL, 
-  PRIMARY KEY (yearID)
+  name varchar(4) DEFAULT NULL,
+  PRIMARY KEY (yearID),
+  UNIQUE (name)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
-CREATE PROCEDURE setYears (IN year VARCHAR(4))
+CREATE PROCEDURE insert_year (INOUT year VARCHAR(4))
 BEGIN
 	INSERT INTO years (name) VALUES (year); 
 END $$
 DELIMITER ;
 
-/*
-ROCEDURE `get_count_for_department`(IN the_department VARCHAR(64), OUT the_count INT)
-BEGIN
-	
-	SELECT COUNT(*) INTO the_count FROM employees where department=the_department;
-
-END$$
 
 
-DELIMITER $$
-DROP PROCEDURE IF EXISTS `get_count_for_department`$$
 
-CREATE DEFINER=`student`@`localhost` PROCEDURE `get_count_for_department`(IN the_department VARCHAR(64), OUT the_count INT)
-BEGIN
-	
-	SELECT COUNT(*) INTO the_count FROM employees where department=the_department;
-
-END$$
-DELIMITER ;
-*/
 /* airforces involved */
 /*
 CREATE TABLE airforces( 
