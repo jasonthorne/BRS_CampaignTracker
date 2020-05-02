@@ -4,30 +4,32 @@ import java.io.FileInputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
+import java.util.function.Supplier;
 
-public class Main {
+public class Main implements InsertYear {
 	
 	private static Connection connection = null;
-	static {//possibly deserialise properties file. then ask user to input password and username and IF same as loaded versions, then login.
+	static {	//connect to DB using properties file:
 		
 		try {
-			
-			//load properties file:
-			Properties properties = new Properties();
+			//load properties:
+			Properties properties = new Properties();	
 			properties.load(new FileInputStream("DB_login.properties"));
 			String db_url = properties.getProperty("db_url"); 
 			
-			//get connection to DB using properties:
+			//get connection using properties:
 			connection = DriverManager.getConnection(db_url, properties.getProperty("user"), properties.getProperty("password"));
-			System.out.println("Connected to: " + db_url + "\n");
+			System.out.println("Connected to: " + db_url + "\n");	//inform user of connection
 			
 		}catch(Exception e) { e.printStackTrace(); }
 	}
-	
+
 
 	public static void main(String[] args) {
 		
@@ -50,25 +52,19 @@ public class Main {
 						new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT)))
 		);
 		
+		/*
 		insertString(Call.INSERT_YEAR, Year.FORTY_ONE);
 		insertString(Call.INSERT_YEAR, Year.FORTY_TWO);
 		insertString(Call.INSERT_YEAR, Year.FORTY_FIVE);
+		*/
 		
-		/*
-		try { //put al this in a method!!! +++++++++++++
-			
-			CallableStatement callableStatement = connection.prepareCall("{call insert_year(?)}"); //change string with param
-			callableStatement.setString(1, "9867");
-			callableStatement.registerOutParameter(1, Types.VARCHAR); 
-			
-			callableStatement.execute();
-			
-			System.out.println("inserted: " + callableStatement.getString(1));
-			
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}*/
+		
+		
+		insertYear.accept(connection, Year.FORTY_TWO);
+		insertYear.accept(connection, Year.FORTY_THREE);
+		
+		//InsertYear.insertYear(connection, Year.FORTY_ONE);
+		
 		
 	}
 	
