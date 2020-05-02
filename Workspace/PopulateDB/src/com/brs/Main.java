@@ -12,7 +12,7 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class Main implements InsertYear {
+public class Main implements InsertYears {
 	/*
 	private static Connection connection = null;
 	static {	//connect to DB using properties file:
@@ -66,10 +66,10 @@ public class Main implements InsertYear {
 		insertYear.accept(connection, Year.FORTY_THREE);
 		*/
 		
-		insertYear.accept(Year.FORTY_ONE);
-		insertYear.accept(Year.FORTY_FOUR);
+		insertYears.accept(Arrays.asList(Year.values()));
+	
 		
-		//InsertYear.insertYear(connection, Year.FORTY_ONE);
+		//InsertYears.insertYear(connection, Year.FORTY_ONE);
 		
 		
 	}
