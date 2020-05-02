@@ -1,4 +1,4 @@
-package com.brs;
+package com.brs.years;
 
 //years covered:
 public enum Year {

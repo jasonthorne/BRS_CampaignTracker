@@ -12,7 +12,12 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class Main implements InsertYears {
+import com.brs.blocks.Block;
+import com.brs.blocks.InsertBlocks;
+import com.brs.years.InsertYears;
+import com.brs.years.Year;
+
+public class Main implements InsertBlocks, InsertYears {
 	/*
 	private static Connection connection = null;
 	static {	//connect to DB using properties file:
@@ -52,12 +57,9 @@ public class Main implements InsertYears {
 						new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT)))
 		);
 		
-		/*
-		insertString(Call.INSERT_YEAR, Year.FORTY_ONE);
-		insertString(Call.INSERT_YEAR, Year.FORTY_TWO);
-		insertString(Call.INSERT_YEAR, Year.FORTY_FIVE);
 		
-		https://www.baeldung.com/java-connection-pooling
+		/*
+		 * https://www.baeldung.com/java-connection-pooling
 		*/
 		
 		
@@ -65,9 +67,17 @@ public class Main implements InsertYears {
 		insertYear.accept(connection, Year.FORTY_TWO); //should just be passing in yearS (list of all years) here into PREDICATE instead, and letting insertYear esatblish the connection
 		insertYear.accept(connection, Year.FORTY_THREE);
 		*/
+		System.out.println("==================");
+		System.out.println(" INSERTING DATA:");
 		
+		//add blocks to DB:
+		insertBlocks.accept(Arrays.asList(Block.values()));
+		
+		//add years to DB:
 		insertYears.accept(Arrays.asList(Year.values()));
 	
+		//add periods to DB:
+		
 		
 		//InsertYears.insertYear(connection, Year.FORTY_ONE);
 		

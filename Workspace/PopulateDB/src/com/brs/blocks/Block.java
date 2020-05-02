@@ -1,4 +1,4 @@
-package com.brs;
+package com.brs.blocks;
 
 //blocks of a year:
 public enum Block {

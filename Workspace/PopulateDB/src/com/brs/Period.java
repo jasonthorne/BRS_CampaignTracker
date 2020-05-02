@@ -1,7 +1,7 @@
 package com.brs;
 
-import com.brs.Block;
-import com.brs.Year;
+import com.brs.blocks.Block;
+import com.brs.years.Year;
 
 public class Period {
 	

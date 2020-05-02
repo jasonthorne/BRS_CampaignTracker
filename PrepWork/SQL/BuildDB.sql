@@ -4,8 +4,9 @@ CREATE DATABASE blood_red_skies_db;
 
 USE blood_red_skies_db;
 
-
+/* =============================================*/
 /* years covered */
+
 CREATE TABLE years (
   yearID int NOT NULL AUTO_INCREMENT,
   name varchar(4) DEFAULT NULL,
@@ -20,7 +21,22 @@ BEGIN
 END $$
 DELIMITER ;
 
+/* =============================================*/
 
+/* blocks of a year (early, mid, late) */
+CREATE TABLE blocks (
+  blockID int NOT NULL AUTO_INCREMENT,
+  name varchar(64) DEFAULT NULL, 
+  PRIMARY KEY (blockID),
+  UNIQUE (name)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_block (INOUT block VARCHAR(64))
+BEGIN
+	INSERT INTO blocks (name) VALUES (block); 
+END $$
+DELIMITER ;
 
 
 /* airforces involved */

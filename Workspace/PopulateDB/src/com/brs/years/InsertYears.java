@@ -1,12 +1,13 @@
-package com.brs;
+package com.brs.years;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+
+import com.brs.ConnectDB;
 
  public interface InsertYears {
 	 
@@ -17,8 +18,8 @@ import java.util.function.Consumer;
 			CallableStatement callableStatement = connection.prepareCall("{call insert_year(?)}");	//create statement
 			callableStatement.registerOutParameter(1, Types.VARCHAR); //register out param
 			
-			System.out.println("\n------------------");
-			System.out.println("Inserting Years:\n"); 
+			System.out.println("------------------");
+			System.out.println("Years:\n"); 
 			
 			years.forEach((year)->{ //forEach year in list of years:
 				try {
