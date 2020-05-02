@@ -50,7 +50,9 @@ public class Main {
 						new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT)))
 		);
 		
-		insertString("insert_year(?)", "3333");
+		insertString(Procedure.INSERT_YEAR, Year.FORTY_ONE);
+		insertString(Procedure.INSERT_YEAR, Year.FORTY_TWO);
+		insertString(Procedure.INSERT_YEAR, Year.FORTY_FIVE);
 		
 		/*
 		try { //put al this in a method!!! +++++++++++++
@@ -70,18 +72,18 @@ public class Main {
 		
 	}
 	
-	private static void insertString(String procedureCall, String data) {
+	private static <T extends Enum<T>> void insertString(Procedure procedure, Enum<T> data) {
 		
 		try { 
 			
-			CallableStatement callableStatement = connection.prepareCall("{call "+ procedureCall + "}");
-			callableStatement.setString(1, data);
+			CallableStatement callableStatement = connection.prepareCall("{call "+procedure.toString()+"}");
+			callableStatement.setString(1, data.toString());
 			callableStatement.registerOutParameter(1, Types.VARCHAR); 
 			callableStatement.execute();
-			System.out.println("inserted: " + callableStatement.getString(1));
+			System.out.println("Inserted: " + callableStatement.getString(1));
 			
 		}catch(Exception e) {
-			e.printStackTrace(); 
+			System.out.println("ERROR: " + e.getMessage());
 		}
 		
 	}
