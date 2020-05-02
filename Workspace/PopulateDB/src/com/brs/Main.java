@@ -19,11 +19,11 @@ public class Main {
 			//load properties file:
 			Properties properties = new Properties();
 			properties.load(new FileInputStream("DB_login.properties"));
-			String db_url = properties.getProperty("dburl"); 
+			String db_url = properties.getProperty("db_url"); 
 			
 			//get connection to DB using properties:
 			connection = DriverManager.getConnection(db_url, properties.getProperty("user"), properties.getProperty("password"));
-			System.out.println("Connected to Database: " + db_url + "\n");
+			System.out.println("Connected to: " + db_url + "\n");
 			
 		}catch(Exception e) { e.printStackTrace(); }
 	}
@@ -50,9 +50,9 @@ public class Main {
 						new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT)))
 		);
 		
-		insertString(Procedure.INSERT_YEAR, Year.FORTY_ONE);
-		insertString(Procedure.INSERT_YEAR, Year.FORTY_TWO);
-		insertString(Procedure.INSERT_YEAR, Year.FORTY_FIVE);
+		insertString(Call.INSERT_YEAR, Year.FORTY_ONE);
+		insertString(Call.INSERT_YEAR, Year.FORTY_TWO);
+		insertString(Call.INSERT_YEAR, Year.FORTY_FIVE);
 		
 		/*
 		try { //put al this in a method!!! +++++++++++++
@@ -72,20 +72,16 @@ public class Main {
 		
 	}
 	
-	private static <T extends Enum<T>> void insertString(Procedure procedure, Enum<T> data) {
+	private static <T extends Enum<T>> void insertString(Call call, Enum<T> data) {
 		
-		try { 
-			
-			CallableStatement callableStatement = connection.prepareCall("{call "+procedure.toString()+"}");
+		try {
+			CallableStatement callableStatement = connection.prepareCall(call.toString());
 			callableStatement.setString(1, data.toString());
 			callableStatement.registerOutParameter(1, Types.VARCHAR); 
 			callableStatement.execute();
 			System.out.println("Inserted: " + callableStatement.getString(1));
 			
-		}catch(Exception e) {
-			System.out.println("ERROR: " + e.getMessage());
-		}
-		
+		}catch(Exception e) { System.out.println("ERROR: " + e.getMessage()); }
 	}
 
 }
