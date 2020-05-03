@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.brs.blocks.Block;
 import com.brs.blocks.InsertBlocks;
+import com.brs.periods.InsertPeriods;
 import com.brs.years.InsertYears;
 import com.brs.years.Year;
 
@@ -44,14 +45,13 @@ public class Main {
 		System.out.println(" INSERTING DATA:");
 		
 		//add blocks to DB:
-		InsertBlocks.insert();
+		//InsertBlocks.insert();
 		
 		//add years to DB:
-		InsertYears.insert();
+		//InsertYears.insert();
 		
-	
 		//add periods to DB:
-		//get_employees_for_department +++++++++++
+		InsertPeriods.insert();
 		//InsertYears.insertYear(connection, Year.FORTY_ONE);
 		
 		
