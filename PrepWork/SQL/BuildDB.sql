@@ -51,12 +51,22 @@ CREATE TABLE periods (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
-CREATE PROCEDURE select_periods (INOUT year VARCHAR(4))
+/*CREATE PROCEDURE insert_period (INOUT block VARCHAR(64), INOUT year VARCHAR(4))*/
+CREATE PROCEDURE insert_period (IN block VARCHAR(64), IN year VARCHAR(4), OUT block_name VARCHAR(64), OUT year_name VARCHAR(64))
 BEGIN
-	INSERT INTO years (name) VALUES (year); 
+	INSERT INTO periods (blockID, yearID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = block),
+	(SELECT yearID FROM years WHERE years.name = year));
+    
+    /*NEED  TO DO JOINS HERE !! */
 END $$
 DELIMITER ;
 
+/*
+INSERT INTO periods (blockID, yearID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
+	(SELECT yearID FROM years WHERE years.name = '1940'));
+*/
 /* airforces involved */
 /*
 CREATE TABLE airforces( 
