@@ -16,11 +16,12 @@ public class ConnectDB {
 			//load properties:
 			Properties properties = new Properties();	
 			properties.load(new FileInputStream("DB_login.properties"));
-			String db_url = properties.getProperty("db_url"); 
-			
+		
 			//get connection using properties:
-			this.connection = DriverManager.getConnection(db_url, properties.getProperty("user"), properties.getProperty("password"));
-			//System.out.println("Connected to: " + db_url);	//inform user of connection
+			this.connection = DriverManager.getConnection(
+					properties.getProperty("db_url"),
+					properties.getProperty("user"), 	
+					properties.getProperty("password"));
 			
 		}catch(Exception e) { e.printStackTrace(); }
 	}

@@ -74,12 +74,13 @@ public class Main implements InsertBlocks, InsertYears {
 		insertBlocks.accept(Arrays.asList(Block.values()));
 		
 		//add years to DB:
-		insertYears.accept(Arrays.asList(Year.values()));
+		//insertYears.accept(Arrays.asList(Year.values()));
+		InsertYears.insertYears();
 	
 		//add periods to DB:
-		
-		
+		//get_employees_for_department +++++++++++
 		//InsertYears.insertYear(connection, Year.FORTY_ONE);
+		
 		
 		
 	}

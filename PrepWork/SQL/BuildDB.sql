@@ -4,7 +4,24 @@ CREATE DATABASE blood_red_skies_db;
 
 USE blood_red_skies_db;
 
-/* =============================================*/
+/*----------------------------------------------------*/
+/* blocks of a year (early, mid, late) */
+
+CREATE TABLE blocks (
+  blockID int NOT NULL AUTO_INCREMENT,
+  name varchar(64) DEFAULT NULL, 
+  PRIMARY KEY (blockID),
+  UNIQUE (name)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_block (INOUT block VARCHAR(64))
+BEGIN
+	INSERT INTO blocks (name) VALUES (block); 
+END $$
+DELIMITER ;
+
+/*----------------------------------------------------*/
 /* years covered */
 
 CREATE TABLE years (
@@ -21,23 +38,24 @@ BEGIN
 END $$
 DELIMITER ;
 
-/* =============================================*/
+/*----------------------------------------------------*/
+/* historical periods (eg: early 1940) */
 
-/* blocks of a year (early, mid, late) */
-CREATE TABLE blocks (
-  blockID int NOT NULL AUTO_INCREMENT,
-  name varchar(64) DEFAULT NULL, 
-  PRIMARY KEY (blockID),
-  UNIQUE (name)
+CREATE TABLE periods (
+  periodID int NOT NULL AUTO_INCREMENT,
+  blockID int,
+  yearID int,
+  PRIMARY KEY (periodID),
+  FOREIGN KEY (blockID) REFERENCES blocks(blockID),
+  FOREIGN KEY (yearID) REFERENCES years(yearID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
-CREATE PROCEDURE insert_block (INOUT block VARCHAR(64))
+CREATE PROCEDURE select_periods (INOUT year VARCHAR(4))
 BEGIN
-	INSERT INTO blocks (name) VALUES (block); 
+	INSERT INTO years (name) VALUES (year); 
 END $$
 DELIMITER ;
-
 
 /* airforces involved */
 /*
