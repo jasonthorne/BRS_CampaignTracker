@@ -7,10 +7,10 @@ import com.brs.Model;
 public class Plane {
 	
 	private final Model model; //model of plane
-	private final AirForce airforce; //air force flown for
+	private final AirForceName airforce; //air force flown for
 	private final List<PeriodStatus>periodStatuses;	//periods plane is available, and their corresponding statuses
 	
-	public Plane(Model model, AirForce airforce, List<PeriodStatus>periodStatus) {
+	public Plane(Model model, AirForceName airforce, List<PeriodStatus>periodStatus) {
 		this.model = model; //set model
 		this.airforce = airforce;
 		this.periodStatuses = new ArrayList<PeriodStatus>(periodStatus);

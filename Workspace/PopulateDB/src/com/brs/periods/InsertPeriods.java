@@ -33,15 +33,13 @@ public interface InsertPeriods {
 			System.out.println("Periods:\n"); 
 			
 			while(yearsIterator.hasNext()) { //iterate through years
-				
 				year = yearsIterator.next(); //advance to next year
 				blocksIterator = Arrays.asList(Block.values()).iterator(); //(re)set blocks iterator
 				
 				while(blocksIterator.hasNext()) { //iterate through blocks
-					
 					block = blocksIterator.next(); //advance to next block
 					System.out.println(block + " " + year);
-					
+		
 				}
 			}
 			/*
