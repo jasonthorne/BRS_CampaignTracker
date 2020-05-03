@@ -5,15 +5,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 import com.brs.ConnectDB;
 
  public interface InsertYears {
-	 static void insertYears() {
-	// static final Consumer<List<Year>>insertYears = (years)->{
+	 
+	 static void insert() {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB
@@ -22,8 +19,8 @@ import com.brs.ConnectDB;
 			
 			System.out.println("------------------");
 			System.out.println("Years:\n"); 
+			
 			Arrays.asList(Year.values()).forEach((year)->{ //forEach year in list of years:
-		    //years.forEach((year)->{ //forEach year in list of years: +++++++++++++++++++++
 				try {
 					callableStatement.setString(1, year.toString()); //set input param
 					callableStatement.execute(); //execute statement

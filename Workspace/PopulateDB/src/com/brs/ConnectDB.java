@@ -26,6 +26,7 @@ public class ConnectDB {
 		}catch(Exception e) { e.printStackTrace(); }
 	}
 	
-	public static Connection getConnection() { return new ConnectDB().connection; } //instantiate class, and return it's connection
-		
+	//return a new instance of an established connection:
+	public static Connection getConnection() { return new ConnectDB().connection; } 
+	
 }

@@ -4,14 +4,13 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.List;
-import java.util.function.Consumer;
+import java.util.Arrays;
 
 import com.brs.ConnectDB;
 
 public interface InsertBlocks {
 	
-	 static final Consumer<List<Block>>insertBlocks = (blocks)->{
+	static void insert() {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB
@@ -21,7 +20,7 @@ public interface InsertBlocks {
 			System.out.println("------------------");
 			System.out.println("Blocks:\n"); 
 			
-			blocks.forEach((block)->{ //forEach block in list of blocks:
+			Arrays.asList(Block.values()).forEach((block)->{ //forEach block in list of blocks:
 				try {
 					callableStatement.setString(1, block.toString()); //set input param
 					callableStatement.execute(); //execute statement

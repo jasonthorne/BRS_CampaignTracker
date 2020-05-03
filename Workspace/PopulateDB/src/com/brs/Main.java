@@ -1,46 +1,19 @@
 package com.brs;
 
-import java.io.FileInputStream;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Types;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
-import java.util.Random;
-import java.util.function.Supplier;
 
 import com.brs.blocks.Block;
 import com.brs.blocks.InsertBlocks;
 import com.brs.years.InsertYears;
 import com.brs.years.Year;
 
-public class Main implements InsertBlocks, InsertYears {
-	/*
-	private static Connection connection = null;
-	static {	//connect to DB using properties file:
-		
-		try {
-			//load properties:
-			Properties properties = new Properties();	
-			properties.load(new FileInputStream("DB_login.properties"));
-			String db_url = properties.getProperty("db_url"); 
-			
-			//get connection using properties:
-			connection = DriverManager.getConnection(db_url, properties.getProperty("user"), properties.getProperty("password"));
-			System.out.println("Connected to: " + db_url + "\n");	//inform user of connection
-			
-		}catch(Exception e) { e.printStackTrace(); }
-	}
-	 */
-
+public class Main {
+	
 	public static void main(String[] args) {
 		
 		
-		
-		
+	
 		// each county has its own class,. with - airforce name, planes, events (if home adv or not)
 		
 		/*
@@ -71,16 +44,15 @@ public class Main implements InsertBlocks, InsertYears {
 		System.out.println(" INSERTING DATA:");
 		
 		//add blocks to DB:
-		insertBlocks.accept(Arrays.asList(Block.values()));
+		InsertBlocks.insert();
 		
 		//add years to DB:
-		//insertYears.accept(Arrays.asList(Year.values()));
-		InsertYears.insertYears();
+		InsertYears.insert();
+		
 	
 		//add periods to DB:
 		//get_employees_for_department +++++++++++
 		//InsertYears.insertYear(connection, Year.FORTY_ONE);
-		
 		
 		
 	}
