@@ -1,4 +1,4 @@
-package com.brs;
+package com.brs.events;
 
 //events covered:
 public enum Event {

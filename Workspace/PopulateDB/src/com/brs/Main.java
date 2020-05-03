@@ -8,7 +8,7 @@ import com.brs.blocks.InsertBlocks;
 import com.brs.periods.InsertPeriods;
 import com.brs.years.InsertYears;
 import com.brs.years.Year;
-import com.brs.AirForceName;
+import com.brs.AirForce;
 
 public class Main {
 	
@@ -24,10 +24,10 @@ public class Main {
 				new PeriodStatus(new Period(Block.LATE, Year.FORTY), Status.AUTO)));*/
 		
 		List<Plane>planes = Arrays.asList(
-				new Plane(Model.SPITFIRE_II, AirForceName.RAF, Arrays.asList(
+				new Plane(Model.SPITFIRE_II, AirForce.RAF, Arrays.asList(
 						new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT),
 						new PeriodStatus(new Period(Block.LATE, Year.FORTY), Status.AUTO))),
-				new Plane(Model.HURRICANE_I, AirForceName.RAF, Arrays.asList(
+				new Plane(Model.HURRICANE_I, AirForce.RAF, Arrays.asList(
 						new PeriodStatus(new Period(Block.EARLY, Year.FORTY), Status.AUTO),
 						new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT)))
 		);
