@@ -59,7 +59,7 @@ public class Main {
 		
 		//new Events().test();
 		
-		System.out.println(new Events().getPeriodRange());
+		System.out.println(Events.getPeriods());
 	}
 	
 
