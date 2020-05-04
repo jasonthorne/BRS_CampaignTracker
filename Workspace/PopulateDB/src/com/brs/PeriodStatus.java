@@ -1,5 +1,7 @@
 package com.brs;
 
+import com.brs.periods.Period;
+
 public class PeriodStatus {
 	
 	private final Period period; //eg: 'Early 1940' 

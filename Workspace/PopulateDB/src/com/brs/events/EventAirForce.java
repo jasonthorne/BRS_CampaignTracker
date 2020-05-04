@@ -21,6 +21,4 @@ public class EventAirForce {
 		return "EventAirForce [airForce=" + airForce + ", hasHomeAdvantage=" + hasHomeAdvantage + "]";
 	}
 	
-	
-
 }

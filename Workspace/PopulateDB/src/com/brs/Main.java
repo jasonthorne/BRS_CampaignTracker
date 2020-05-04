@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.brs.blocks.Block;
 import com.brs.blocks.InsertBlocks;
+import com.brs.events.Events;
 import com.brs.periods.InsertPeriods;
+import com.brs.periods.Period;
 import com.brs.years.InsertYears;
 import com.brs.years.Year;
 import com.brs.AirForce;
@@ -52,8 +54,10 @@ public class Main {
 		//InsertYears.insert();
 		
 		//add periods to DB:
-		InsertPeriods.insert();
+		//InsertPeriods.insert();
 		//InsertYears.insertYear(connection, Year.FORTY_ONE);
+		
+		new Events().test();
 		
 		
 	}
