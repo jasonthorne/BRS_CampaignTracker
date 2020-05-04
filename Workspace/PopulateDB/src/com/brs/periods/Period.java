@@ -43,5 +43,4 @@ public class Period implements Comparable <Period> {
 		return 0; //same periods
 	}
 	
-	
 }

@@ -57,9 +57,9 @@ public class Main {
 		//InsertPeriods.insert();
 		//InsertYears.insertYear(connection, Year.FORTY_ONE);
 		
-		new Events().test();
+		//new Events().test();
 		
-		
+		System.out.println(new Events().getPeriodRange());
 	}
 	
 

@@ -17,7 +17,7 @@ public interface InsertPeriods {
 	loops thjrough both lists with loopy deely thinggbob
 	and inserts according to that!! good luck :P */
 	
-	static void insert() {
+	static void insert(Period startPeriod, Period endPeriod) {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB

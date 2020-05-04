@@ -1,5 +1,6 @@
 package com.brs.events;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,9 +19,6 @@ import com.brs.years.Year;
 
 public class Events {
 	
-	private static Period earliestPeriod; //?????????
-	private static Period latestPeriod; //?????????
-	
 	private static final List<Event>EVENTS = Arrays.asList(
 			new BattleOfBritain(),
 			new Stalingrad());
@@ -30,23 +28,29 @@ public class Events {
 		EVENTS.forEach((event)->{
 			
 			//find earliest and latest period, then invoke insert periods (using that range)
-			earliestPeriod = event.getTest();
+			//earliestPeriod = event.getTest();
 		});
 	}
 	
-	public List<Period> test2() {
+	public static Deque<Period> getPeriodRange() {
 		
+		Set<Period>sortedPeriods = new TreeSet<Period>(); 
+	
 		EVENTS.forEach((event)->{
-			
-			//find earliest and latest period, then invoke insert periods (using that range)
-			earliestPeriod = event.getTest();
+			sortedPeriods.addAll(event.getPeriods());
 		});
-		return null;
+	
+		Deque<Period> deque = new ArrayDeque<Period>(sortedPeriods);  
+		
+		System.out.println("deque: " + deque);
+
+		//return new HashSet<Period>(Arrays.asList(deque.pollFirst(), deque.pollLast()));
+		return new ArrayDeque<Period>(Arrays.asList(deque.pollFirst(), deque.pollLast()));
 	}
 	
 
 	public void test() {
-		System.out.println(earliestPeriod);
+		
 	
 		//===========================================
 		
