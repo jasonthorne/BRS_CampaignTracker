@@ -54,12 +54,12 @@ public class Main {
 		//InsertYears.insert();
 		
 		//add periods to DB:
-		//InsertPeriods.insert();
+		InsertPeriods.insert();
 		//InsertYears.insertYear(connection, Year.FORTY_ONE);
 		
 		//new Events().test();
 		
-		System.out.println(Events.getPeriods());
+		//System.out.println(Events.getPeriods());
 	}
 	
 

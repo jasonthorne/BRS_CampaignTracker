@@ -13,16 +13,13 @@ import com.brs.years.Year;
 
 public interface InsertPeriods {
 	
-	/*hava a bipred here that takes in both lists, and then 
-	loops thjrough both lists with loopy deely thinggbob
-	and inserts according to that!! good luck :P */
-	
-	static void insert(Period start, Period end) {
+	static void insert() {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB
-			CallableStatement callableStatement = connection.prepareCall("{call insert_period(?)(?)}");	//create statement
-			callableStatement.registerOutParameter(1, Types.VARCHAR); //register out param
+			CallableStatement callableStatement = connection.prepareCall("{call insert_period(?,?)}");	//create statement
+			callableStatement.registerOutParameter(1, Types.VARCHAR); //register block out param
+			callableStatement.registerOutParameter(2, Types.VARCHAR); //register year out param
 			
 			Iterator<Year>yearsIterator = Arrays.asList(Year.values()).iterator(); //years iterator
 			Iterator<Block>blocksIterator; //blocks iterator
@@ -38,20 +35,16 @@ public interface InsertPeriods {
 				
 				while(blocksIterator.hasNext()) { //iterate through blocks
 					block = blocksIterator.next(); //advance to next block
-					System.out.println(block + " " + year);
-		
+					
+					try {
+						callableStatement.setString(1, block.toString()); //set block input
+						callableStatement.setString(2, year.toString()); //set year input
+						callableStatement.execute(); //execute statement
+						//print response:
+						System.out.println(callableStatement.getString(1) + " " + callableStatement.getString(2)); 
+					}catch(Exception e) { e.printStackTrace(); }
 				}
 			}
-			
-			/*
-			Arrays.asList(Year.values()).forEach((year)->{ //forEach year in list of years:
-				try {
-					callableStatement.setString(1, year.toString()); //set input param
-					callableStatement.execute(); //execute statement
-					System.out.println("Inserted: " + callableStatement.getString(1)); //confirm insertion
-				}catch(Exception e) { e.printStackTrace(); }
-				
-			});*/
 				
 		}catch(Exception e) { e.printStackTrace(); }
 		 finally {

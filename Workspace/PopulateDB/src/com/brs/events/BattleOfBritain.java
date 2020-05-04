@@ -11,22 +11,32 @@ import com.brs.years.Year;
 
 public class BattleOfBritain implements Event {
 	
+	//DONT HAVE THIS!!
+	/*
+	 * 
+	 * mimick the tabnlesexactly. 
+	 * 
+	 * event airforces class
+	 * 
+	 * map with event > List airforces
+	 */
+	
 	//name of event:
-	private static final EventName NAME = EventName.BATTLE_OF_BRITAIN;
+	private final EventName name = EventName.BATTLE_OF_BRITAIN;
 	
 	//air forces involved, and their home advantage status:
-	private static final List<EventAirForce>AIRFORCES = Arrays.asList(
+	private final List<EventAirForce>airForces = Arrays.asList(
 			new EventAirForce(AirForce.RAF, true),
 			new EventAirForce(AirForce.LUFTWAFFE, false));
 	
 	//periods of history covered:
-	private static final Period START_PERIOD = new Period(Block.EARLY, Year.FORTY); ////////not real!!
-	private static final Period END_PERIOD = new Period(Block.EARLY, Year.FORTY_ONE); //////////
+	private final Period startPeriod = new Period(Block.EARLY, Year.FORTY); ////////not real!!
+	private final Period endPeriod = new Period(Block.EARLY, Year.FORTY_ONE); //////////
 	
 	
 	@Override
 	public List<Period> getPeriods() {	//get copy of periods covered:
-		return new ArrayList<Period>(Arrays.asList(START_PERIOD, END_PERIOD)); 
+		return new ArrayList<Period>(Arrays.asList(startPeriod, endPeriod)); 
 	}
 	
 	

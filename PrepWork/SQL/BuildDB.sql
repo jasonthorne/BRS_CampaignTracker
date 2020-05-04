@@ -47,12 +47,12 @@ CREATE TABLE periods (
   yearID int,
   PRIMARY KEY (periodID),
   FOREIGN KEY (blockID) REFERENCES blocks(blockID),
-  FOREIGN KEY (yearID) REFERENCES years(yearID)
+  FOREIGN KEY (yearID) REFERENCES years(yearID),
+  CONSTRAINT blockID_yearID UNIQUE (blockID, yearID)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
 CREATE PROCEDURE insert_period (INOUT block VARCHAR(64), INOUT year VARCHAR(4))
-/*CREATE PROCEDURE insert_period (IN block VARCHAR(64), IN year VARCHAR(4), OUT block_name VARCHAR(64), OUT year_name VARCHAR(64))*/
 BEGIN
 	INSERT INTO periods (blockID, yearID) VALUES (
 	(SELECT blockID FROM blocks WHERE blocks.name = block),
@@ -60,11 +60,14 @@ BEGIN
 END $$
 DELIMITER ;
 
+
+
 /*
 INSERT INTO periods (blockID, yearID) VALUES (
 	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
 	(SELECT yearID FROM years WHERE years.name = '1940'));
 */
+
 /* airforces involved */
 /*
 CREATE TABLE airforces( 

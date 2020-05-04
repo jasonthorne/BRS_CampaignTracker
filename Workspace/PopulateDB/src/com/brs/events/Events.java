@@ -39,7 +39,19 @@ public class Events { //change to insertEvents?? (prob!!!)
 	}
 	
 
+	//======================
+	private final List<Event>events;
 	
+	public Events() {
+		
+		events = Arrays.asList( 
+				new BattleOfBritain(),
+				new Stalingrad());
+	}
+	
+	
+	
+	//======================
 		
 	
 	/*

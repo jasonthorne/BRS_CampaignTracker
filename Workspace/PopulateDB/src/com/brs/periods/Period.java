@@ -24,7 +24,7 @@ public class Period implements Comparable <Period> {
 	}
 
 	@Override	
-	public int compareTo(Period period2) {	//compare periods
+	public int compareTo(Period period2) {	//compare periods ==================MIGHT NOT BE NEEDED!!
 		
 		//ordinal values of years: 
 		Integer year1 = this.getYear().ordinal(); 
