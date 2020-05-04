@@ -24,7 +24,7 @@ public interface InsertBlocks {
 				try {
 					callableStatement.setString(1, block.toString()); //set input param
 					callableStatement.execute(); //execute statement
-					System.out.println("Inserted: " + callableStatement.getString(1)); //confirm insertion
+					System.out.println("Inserted: " + callableStatement.getString(1)); //print response
 				}catch(Exception e) { e.printStackTrace(); }
 			});
 				

@@ -8,6 +8,7 @@ import com.brs.blocks.InsertBlocks;
 import com.brs.events.Events;
 import com.brs.periods.InsertPeriods;
 import com.brs.periods.Period;
+import com.brs.plane_statuses.PlaneStatus;
 import com.brs.years.InsertYears;
 import com.brs.years.Year;
 import com.brs.AirForce;
@@ -22,16 +23,16 @@ public class Main {
 		
 		/*
 		Plane plane1 = new Plane(Model.SPITFIRE_II, AirForce.RAF, Arrays.asList(
-				new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT),
-				new PeriodStatus(new Period(Block.LATE, Year.FORTY), Status.AUTO)));*/
+				new PeriodStatus(new Period(Block.MID, Year.FORTY), PlaneStatus.LIMIT),
+				new PeriodStatus(new Period(Block.LATE, Year.FORTY), PlaneStatus.AUTO)));*/
 		
 		List<Plane>planes = Arrays.asList(
 				new Plane(Model.SPITFIRE_II, AirForce.RAF, Arrays.asList(
-						new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT),
-						new PeriodStatus(new Period(Block.LATE, Year.FORTY), Status.AUTO))),
+						new PeriodStatus(new Period(Block.MID, Year.FORTY), PlaneStatus.LIMIT),
+						new PeriodStatus(new Period(Block.LATE, Year.FORTY), PlaneStatus.AUTO))),
 				new Plane(Model.HURRICANE_I, AirForce.RAF, Arrays.asList(
-						new PeriodStatus(new Period(Block.EARLY, Year.FORTY), Status.AUTO),
-						new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT)))
+						new PeriodStatus(new Period(Block.EARLY, Year.FORTY), PlaneStatus.AUTO),
+						new PeriodStatus(new Period(Block.MID, Year.FORTY), PlaneStatus.LIMIT)))
 		);
 		
 		
@@ -48,14 +49,14 @@ public class Main {
 		System.out.println(" INSERTING DATA:");
 		
 		//add blocks to DB:
-		//InsertBlocks.insert();
+		InsertBlocks.insert();
 		
 		//add years to DB:
-		//InsertYears.insert();
+		InsertYears.insert();
 		
 		//add periods to DB:
 		InsertPeriods.insert();
-		//InsertYears.insertYear(connection, Year.FORTY_ONE);
+		
 		
 		//new Events().test();
 		

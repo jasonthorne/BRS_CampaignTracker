@@ -1,26 +1,27 @@
 package com.brs;
 
 import com.brs.periods.Period;
+import com.brs.plane_statuses.PlaneStatus;
 
 public class PeriodStatus {
 	
 	private final Period period; //eg: 'Early 1940' 
-	private final Status status; //eg: 'Limit' 
+	private final PlaneStatus planeStatus; //eg: 'Limit' 
 	
 	//constructor:
-	public PeriodStatus(Period period, Status status){ 
+	public PeriodStatus(Period period, PlaneStatus planeStatus){ 
 		this.period = period;
-		this.status = status;
+		this.planeStatus = planeStatus;
 	}
 	
 	//getter:
 	public PeriodStatus getPeriodStatus() {
-		return new PeriodStatus(this.period, this.status); 
+		return new PeriodStatus(this.period, this.planeStatus); 
 	}
 
 	@Override
 	public String toString() {
-		return "PeriodStatus [period=" + period + ", status=" + status + "]";
+		return "PeriodStatus [period=" + period + ", planeStatus=" + planeStatus + "]";
 	}
 
 	
