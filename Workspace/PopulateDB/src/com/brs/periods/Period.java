@@ -3,7 +3,7 @@ package com.brs.periods;
 import com.brs.blocks.Block;
 import com.brs.years.Year;
 
-public class Period implements Comparable <Period> {
+public class Period implements Comparable <Period> {	//++++++++++++THIS WHOLE CLASS MIGHT NOT BE NEEDED!! :P
 	
 	private final Block block; //early, mid, late
 	private final Year year; //1940 - 1945

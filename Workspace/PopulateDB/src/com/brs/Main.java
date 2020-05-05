@@ -8,12 +8,14 @@ import com.brs.blocks.InsertBlocks;
 import com.brs.events.Events;
 import com.brs.periods.InsertPeriods;
 import com.brs.periods.Period;
+import com.brs.periods.InsertPeriods;
+import com.brs.statuses.InsertStatuses;
 import com.brs.statuses.Status;
 import com.brs.years.InsertYears;
 import com.brs.years.Year;
 import com.brs.AirForce;
 
-public class Main {
+public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertStatuses{
 	
 	public static void main(String[] args) {
 		
@@ -49,14 +51,16 @@ public class Main {
 		System.out.println(" INSERTING DATA:");
 		
 		//add blocks to DB:
-		InsertBlocks.insert();
+		INSERT_BLOCKS.insert();
 		
 		//add years to DB:
-		InsertYears.insert();
+		INSERT_YEARS.insert();
 		
 		//add periods to DB:
-		InsertPeriods.insert();
+		INSERT_PERIODS.insert();
 		
+		
+		//INSERT_STATUSES.insert(); //++++++++++++++
 		
 		//new Events().test();
 		

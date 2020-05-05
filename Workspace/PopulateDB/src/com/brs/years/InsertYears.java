@@ -7,14 +7,15 @@ import java.sql.Types;
 import java.util.Arrays;
 
 import com.brs.ConnectDB;
+import com.brs.Insert;
 
- public interface InsertYears {
+public interface InsertYears { //https://www.geeksforgeeks.org/functional-interfaces-java/ ++++++++++REMOVE :P
 	 
-	 static void insert() {
+	static final Insert INSERT_YEARS =()-> {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB
-			CallableStatement callableStatement = connection.prepareCall("{call insert_year(?)}");	//create statement
+			CallableStatement callableStatement = connection.prepareCall("{CALL insert_year(?)}");	//create statement
 			callableStatement.registerOutParameter(1, Types.VARCHAR); //register out param
 			
 			System.out.println("------------------");
@@ -28,7 +29,7 @@ import com.brs.ConnectDB;
 				}catch(Exception e) { e.printStackTrace(); }
 			});
 				
-		}catch(Exception e) { e.printStackTrace(); }
+		 }catch(Exception e) { e.printStackTrace(); }
 		 finally {	
 			 if (connection != null) {	//finally, try close connection:
 				 try {
@@ -36,5 +37,5 @@ import com.brs.ConnectDB;
 				 } catch (SQLException e) { e.printStackTrace(); } 
 			 }
 		 }
-	 };
+	};
 }

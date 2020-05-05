@@ -2,23 +2,23 @@ package com.brs.periods;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Arrays;
 import java.util.Iterator;
 
 import com.brs.ConnectDB;
+import com.brs.Insert;
 import com.brs.blocks.Block;
 import com.brs.years.Year;
 
 public interface InsertPeriods {
 	
-	static void insert() {
+	static final Insert INSERT_PERIODS =()-> {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB
-			CallableStatement callableStatement = connection.prepareCall("{call insert_period(?,?)}");	//create statement
+			CallableStatement callableStatement = connection.prepareCall("{CALL insert_period(?,?)}");	//create statement
 			callableStatement.registerOutParameter(1, Types.VARCHAR); //register block out param
 			callableStatement.registerOutParameter(2, Types.VARCHAR); //register year out param
 			
@@ -42,19 +42,18 @@ public interface InsertPeriods {
 						callableStatement.setString(2, year.toString()); //set year input
 						callableStatement.execute(); //execute statement
 						//print response:
-						System.out.println(callableStatement.getString(1) + " " + callableStatement.getString(2)); 
+						System.out.println("Inserted: "+callableStatement.getString(1)+" "+callableStatement.getString(2)); 
 					}catch(Exception e) { e.printStackTrace(); }
 				}
 			}
 				
-		}catch(Exception e) { e.printStackTrace(); }
+		 }catch(Exception e) { e.printStackTrace(); }
 		 finally {
 			 if (connection != null) {	//finally, try close connection:
 				 try {
 					 connection.close(); 
 				 } catch (SQLException e) { e.printStackTrace(); } 
 			 }
-		}
+		 }
 	};
-
 }
