@@ -11,13 +11,15 @@ import com.brs.events.Events__OLD;
 import com.brs.events.InsertEvents;
 import com.brs.periods.InsertPeriods;
 import com.brs.periods.Period;
+import com.brs.planes.InsertPlanes;
+import com.brs.planes.Plane;
 import com.brs.periods.InsertPeriods;
 import com.brs.statuses.InsertStatuses;
 import com.brs.statuses.Status;
 import com.brs.years.InsertYears;
 import com.brs.years.Year;
 
-public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEvents, InsertAirForces, InsertStatuses {
+public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEvents, InsertAirForces, InsertPlanes, InsertStatuses {
 	
 	public static void main(String[] args) {
 		
@@ -26,15 +28,15 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		// each county has its own class,. with - airforce name, planes, events (if home adv or not)
 		
 		/*
-		Plane plane1 = new Plane(Model.SPITFIRE_II, AirForce.RAF, Arrays.asList(
+		Plane_OLD plane1 = new Plane_OLD(Plane.SPITFIRE_II, AirForce.RAF, Arrays.asList(
 				new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT),
 				new PeriodStatus(new Period(Block.LATE, Year.FORTY), Status.AUTO)));*/
 		
-		List<Plane>planes = Arrays.asList(
-				new Plane(Model.SPITFIRE_II, AirForce.RAF, Arrays.asList(
+		List<Plane_OLD>plane_OLDs = Arrays.asList(
+				new Plane_OLD(Plane.SPITFIRE_II, AirForce.RAF, Arrays.asList(
 						new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT),
 						new PeriodStatus(new Period(Block.LATE, Year.FORTY), Status.AUTO))),
-				new Plane(Model.HURRICANE_I, AirForce.RAF, Arrays.asList(
+				new Plane_OLD(Plane.HURRICANE_I, AirForce.RAF, Arrays.asList(
 						new PeriodStatus(new Period(Block.EARLY, Year.FORTY), Status.AUTO),
 						new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT)))
 		);
@@ -65,7 +67,10 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//INSERT_EVENTS.insert(); 
 		
 		//add air forces to DB:
-		INSERT_AIRFORCES.insert();
+		//INSERT_AIRFORCES.insert();
+		
+		//add planes to DB:
+		INSERT_PLANES.insert();
 		
 		//add statuses to DB:
 		//INSERT_STATUSES.insert(); 

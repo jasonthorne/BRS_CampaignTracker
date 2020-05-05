@@ -1,9 +1,9 @@
-package com.brs;
+package com.brs.planes;
 
-//models of plane involved:
-public enum Model {
+//planes available:
+public enum Plane {
 	
-	//56 models, in 14 rows of 4:
+	//56 planes, in 14 rows of 4:
 	A6_M2_ZERO("A6-M2 Zero"), A6_M5_ZERO("A6-M5 Zero"), BF109_E("Bf109 E"), BF109_F("Bf109 F"), 
 	BF109_G("Bf109 G"), BF109_K("Bf109 K"), BF110_C("Bf110 C"), BF110_G("Bf110 G"), 
 	F4F_WILDCAT("F4F Wildcat"), F4U_CORSAIR("F4U Corsair"), F6F_HELLCAT("F6F Hellcat"), FW190_A("Fw190 A"), 
@@ -19,9 +19,9 @@ public enum Model {
 	SPITFIRE_XIV("Spitfire XIV"), TEMPEST_V("Tempest V"), TYPHOON_IB("Typhoon Ib"), YAK_1("Yak-1"), 
 	YAK_3("Yak-3"), YAK_7B("Yak-7B"), YAK_9D("Yak-9D"), YAK_9U("Yak-9U");
 	
-	private final String model; //name of model
-	private Model(String model) {this.model = model;} //constructor sets name of model
-	@Override 
-	public String toString() {return model;} //return model
+	private final String plane; //name of plane
+	private Plane(String plane) {this.plane = plane;} //constructor sets name of plane
+	@Override
+	public String toString() {return plane;} //return plane
 	
 }

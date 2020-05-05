@@ -97,6 +97,19 @@ DELIMITER ;
 /*----------------------------------------------------*/
 /* planes available */
 
+CREATE TABLE planes( 
+  planeID int NOT NULL AUTO_INCREMENT,
+  name varchar(64) DEFAULT NULL,
+  PRIMARY KEY (planeID),
+  UNIQUE (name)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_plane (INOUT plane VARCHAR(64))
+BEGIN
+	INSERT INTO planes (name) VALUES (plane); 
+END $$
+DELIMITER ;
 
 /*----------------------------------------------------*/
 /* availability status of a plane */
