@@ -8,7 +8,7 @@ import com.brs.blocks.Block;
 import com.brs.periods.Period;
 import com.brs.years.Year;
 
-public class Stalingrad implements Event{
+public class Stalingrad implements Event__OLD{
 
 	
 	//periods of history covered:

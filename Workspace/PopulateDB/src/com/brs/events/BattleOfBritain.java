@@ -9,7 +9,7 @@ import com.brs.blocks.Block;
 import com.brs.periods.Period;
 import com.brs.years.Year;
 
-public class BattleOfBritain implements Event {
+public class BattleOfBritain implements Event__OLD {
 	
 	//DONT HAVE THIS!!
 	/*
@@ -22,7 +22,7 @@ public class BattleOfBritain implements Event {
 	 */
 	
 	//name of event:
-	private final EventName name = EventName.BATTLE_OF_BRITAIN;
+	private final Event name = Event.BATTLE_OF_BRITAIN;
 	
 	//air forces involved, and their home advantage status:
 	private final List<EventAirForce>airForces = Arrays.asList(

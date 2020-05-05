@@ -60,6 +60,41 @@ BEGIN
 END $$
 DELIMITER ;
 
+/*----------------------------------------------------*/
+/* availability status of a plane */
+
+CREATE TABLE statuses (
+  statusID int NOT NULL AUTO_INCREMENT,
+  name varchar(11) DEFAULT NULL,
+  PRIMARY KEY (statusID),
+  UNIQUE (name)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_status (INOUT status VARCHAR(11))
+BEGIN
+	INSERT INTO statuses (name) VALUES (status); 
+END $$
+DELIMITER ;
+
+/*----------------------------------------------------*/
+/* historical events */
+
+CREATE TABLE events( 
+  eventID int NOT NULL AUTO_INCREMENT,
+  name varchar(64) DEFAULT NULL,
+  PRIMARY KEY (eventID),
+  UNIQUE (name)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_event (INOUT event VARCHAR(64))
+BEGIN
+	INSERT INTO events (name) VALUES (event); 
+END $$
+DELIMITER ;
+
+/*----------------------------------------------------*/
 
 
 /*

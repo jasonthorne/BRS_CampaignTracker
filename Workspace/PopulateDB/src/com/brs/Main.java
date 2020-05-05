@@ -5,7 +5,8 @@ import java.util.List;
 
 import com.brs.blocks.Block;
 import com.brs.blocks.InsertBlocks;
-import com.brs.events.Events;
+import com.brs.events.Events__OLD;
+import com.brs.events.InsertEvents;
 import com.brs.periods.InsertPeriods;
 import com.brs.periods.Period;
 import com.brs.periods.InsertPeriods;
@@ -15,7 +16,7 @@ import com.brs.years.InsertYears;
 import com.brs.years.Year;
 import com.brs.AirForce;
 
-public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertStatuses{
+public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertStatuses, InsertEvents {
 	
 	public static void main(String[] args) {
 		
@@ -51,20 +52,23 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertSta
 		System.out.println(" INSERTING DATA:");
 		
 		//add blocks to DB:
-		INSERT_BLOCKS.insert();
+		//INSERT_BLOCKS.insert();
 		
 		//add years to DB:
-		INSERT_YEARS.insert();
+		//INSERT_YEARS.insert();
 		
 		//add periods to DB:
-		INSERT_PERIODS.insert();
+		//INSERT_PERIODS.insert();
 		
+		//add statuses to DB:
+		//INSERT_STATUSES.insert(); 
 		
-		//INSERT_STATUSES.insert(); //++++++++++++++
+		//add statuses to DB:
+		INSERT_EVENTS.insert(); 
 		
-		//new Events().test();
+		//new Events__OLD().test();
 		
-		//System.out.println(Events.getPeriods());
+		//System.out.println(Events__OLD.getPeriods());
 	}
 	
 
