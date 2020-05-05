@@ -70,7 +70,7 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//INSERT_AIRFORCES.insert();
 		
 		//add planes to DB:
-		INSERT_PLANES.insert();
+		//INSERT_PLANES.insert();
 		
 		//add statuses to DB:
 		//INSERT_STATUSES.insert(); 
