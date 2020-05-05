@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.brs.AirForce;
+import com.brs.airforces.AirForce;
 import com.brs.blocks.Block;
 import com.brs.periods.Period;
 import com.brs.years.Year;

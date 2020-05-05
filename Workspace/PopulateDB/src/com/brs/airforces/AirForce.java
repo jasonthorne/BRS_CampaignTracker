@@ -1,4 +1,4 @@
-package com.brs;
+package com.brs.airforces;
 
 //air forces involved:
 public enum AirForce {

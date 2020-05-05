@@ -3,6 +3,8 @@ package com.brs;
 import java.util.Arrays;
 import java.util.List;
 
+import com.brs.airforces.AirForce;
+import com.brs.airforces.InsertAirForces;
 import com.brs.blocks.Block;
 import com.brs.blocks.InsertBlocks;
 import com.brs.events.Events__OLD;
@@ -14,9 +16,8 @@ import com.brs.statuses.InsertStatuses;
 import com.brs.statuses.Status;
 import com.brs.years.InsertYears;
 import com.brs.years.Year;
-import com.brs.AirForce;
 
-public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertStatuses, InsertEvents {
+public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEvents, InsertAirForces, InsertStatuses {
 	
 	public static void main(String[] args) {
 		
@@ -60,11 +61,14 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertSta
 		//add periods to DB:
 		//INSERT_PERIODS.insert();
 		
-		//add statuses to DB:
-		//INSERT_STATUSES.insert(); 
+		//add events to DB:
+		//INSERT_EVENTS.insert(); 
+		
+		//add air forces to DB:
+		INSERT_AIRFORCES.insert();
 		
 		//add statuses to DB:
-		INSERT_EVENTS.insert(); 
+		//INSERT_STATUSES.insert(); 
 		
 		//new Events__OLD().test();
 		

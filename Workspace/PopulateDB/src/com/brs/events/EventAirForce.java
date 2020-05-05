@@ -1,6 +1,6 @@
 package com.brs.events;
 
-import com.brs.AirForce;
+import com.brs.airforces.AirForce;
 
 public class EventAirForce {
 	

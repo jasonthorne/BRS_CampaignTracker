@@ -61,23 +61,6 @@ END $$
 DELIMITER ;
 
 /*----------------------------------------------------*/
-/* availability status of a plane */
-
-CREATE TABLE statuses (
-  statusID int NOT NULL AUTO_INCREMENT,
-  name varchar(11) DEFAULT NULL,
-  PRIMARY KEY (statusID),
-  UNIQUE (name)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-
-DELIMITER $$
-CREATE PROCEDURE insert_status (INOUT status VARCHAR(11))
-BEGIN
-	INSERT INTO statuses (name) VALUES (status); 
-END $$
-DELIMITER ;
-
-/*----------------------------------------------------*/
 /* historical events */
 
 CREATE TABLE events( 
@@ -95,8 +78,44 @@ END $$
 DELIMITER ;
 
 /*----------------------------------------------------*/
+/* airforces involved */
+
+CREATE TABLE airforces( 
+  airforceID int NOT NULL AUTO_INCREMENT,
+  name varchar(64) DEFAULT NULL,
+  PRIMARY KEY (airforceID),
+  UNIQUE (name)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_airforce (INOUT airforce VARCHAR(64))
+BEGIN
+	INSERT INTO airforces (name) VALUES (airforce); 
+END $$
+DELIMITER ;
+
+/*----------------------------------------------------*/
+/* planes available */
 
 
+/*----------------------------------------------------*/
+/* availability status of a plane */
+
+CREATE TABLE statuses (
+  statusID int NOT NULL AUTO_INCREMENT,
+  name varchar(11) DEFAULT NULL,
+  PRIMARY KEY (statusID),
+  UNIQUE (name)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_status (INOUT status VARCHAR(11))
+BEGIN
+	INSERT INTO statuses (name) VALUES (status); 
+END $$
+DELIMITER ;
+
+/*----------------------------------------------------*/
 /*
 INSERT INTO periods (blockID, yearID) VALUES (
 	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
