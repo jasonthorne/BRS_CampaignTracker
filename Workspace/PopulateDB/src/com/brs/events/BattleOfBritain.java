@@ -10,21 +10,7 @@ import com.brs.blocks.Block;
 import com.brs.periods.Period;
 import com.brs.years.Year;
 
-public abstract class BattleOfBritain extends EventAirForces {
-	
-	//DONT HAVE THIS!!
-	/*
-	 * 
-	 * mimick the tabnlesexactly. 
-	 * 
-	 * event airforces class
-	 * 
-	 * map with event > List airforces
-	 */
-	{
-		//event_to_airForces.put(Event.BATTLE_OF_BRITAIN, Arrays.asList(AirForce.RAF, AirForce.LUFTWAFFE));
-	}
-	
+public class BattleOfBritain extends EventData {
 	
 	//name of event:
 	private final Event name = Event.BATTLE_OF_BRITAIN;
@@ -38,12 +24,30 @@ public abstract class BattleOfBritain extends EventAirForces {
 	private final Period startPeriod = new Period(Block.EARLY, Year.FORTY); ////////not real!!
 	private final Period endPeriod = new Period(Block.EARLY, Year.FORTY_ONE); //////////
 	
+	
+
+	/*
+	private BattleOfBritain(Event name) { //, List<EventAirForce>airForces, Period start, Period end) {
+		this.name = Event.BATTLE_OF_BRITAIN;
+	}
+	
+	protected BattleOfBritain() {
+		new BattleOfBritain(this.getName());
+	}
+	 */
+	
+	
+	
+	//@Override 
+	//protected Event getName() { return this.name; }
+	
 	/*
 	@Override
 	public List<Period> getPeriods() {	//get copy of periods covered:
-		return new ArrayList<Period>(Arrays.asList(startPeriod, endPeriod)); 
-	}
-	*/
+		return new ArrayList<Period>(Arrays.asList(START_PERIOD, END_PERIOD)); 
+	}*/
+	
+	
 	
 }
 

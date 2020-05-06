@@ -7,7 +7,7 @@ import com.brs.airforces.AirForce;
 import com.brs.airforces.InsertAirForces;
 import com.brs.blocks.Block;
 import com.brs.blocks.InsertBlocks;
-import com.brs.events.Events__OLD;
+import com.brs.events.Events;
 import com.brs.events.InsertEvents;
 import com.brs.periods.InsertPeriods;
 import com.brs.periods.Period;
@@ -46,6 +46,8 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		 * https://www.baeldung.com/java-connection-pooling
 		*/
 		
+		//https://www.geeksforgeeks.org/functional-interfaces-java/ ++++++++++REMOVE :P
+		
 		
 		/*
 		insertYear.accept(connection, Year.FORTY_TWO); //should just be passing in yearS (list of all years) here into PREDICATE instead, and letting insertYear esatblish the connection
@@ -75,9 +77,9 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//add statuses to DB:
 		//INSERT_STATUSES.insert(); 
 		
-		//new Events__OLD().test();
+		new Events();
 		
-		//System.out.println(Events__OLD.getPeriods());
+		//System.out.println(Events.getPeriods());
 	}
 	
 

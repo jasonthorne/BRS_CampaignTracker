@@ -9,7 +9,7 @@ import java.util.Arrays;
 import com.brs.ConnectDB;
 import com.brs.Insert;
 
-public interface InsertYears { //https://www.geeksforgeeks.org/functional-interfaces-java/ ++++++++++REMOVE :P
+public interface InsertYears {
 	 
 	static final Insert INSERT_YEARS =()-> {
 		 Connection connection = null;

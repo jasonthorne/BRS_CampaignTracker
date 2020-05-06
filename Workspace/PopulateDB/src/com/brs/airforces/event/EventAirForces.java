@@ -22,4 +22,5 @@ public abstract class EventAirForces {
 }
 
 
-//samne for Event periods
+//samne for Event periods ++++++++++++https://www.baeldung.com/java-properties
+//https://www.javatpoint.com/properties-class-in-java

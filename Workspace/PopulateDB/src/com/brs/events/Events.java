@@ -17,12 +17,42 @@ import com.brs.blocks.Block;
 import com.brs.periods.Period;
 import com.brs.years.Year;
 
-public class Events__OLD { //change to insertEvents?? (prob!!!)
+public class Events { 
 	
-	//available event__OLDs:
-	private static final List<Event__OLD>EVENTS = Arrays.asList( //can be called in constructor????
-			//new BattleOfBritain(),
-			new Stalingrad());
+	private List<EventData>events = Arrays.asList(
+			new BattleOfBritain());
+	
+	
+	
+
+	public Events(){
+		//System.out.println(new BattleOfBritain().getName());
+	}
+	
+	
+	public List<EventData>getEvents(){
+		return events;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	//available eventDatas:
+	private static final List<EventData>EVENTS = Arrays.asList( //can be called in constructor????
+			new BattleOfBritain());
 	
 	
 	public static Deque<Period> getPeriods() {	//+++++++++++++++prob should be list!! 
@@ -40,26 +70,17 @@ public class Events__OLD { //change to insertEvents?? (prob!!!)
 	
 
 	//======================
-	private final List<Event__OLD>event__OLDs;
+	private final List<EventData>eventDatas;
 	
-	public Events__OLD() {
-		
-		event__OLDs = Arrays.asList( 
-				//new BattleOfBritain(),
-				new Stalingrad());
+	public Events() {
+		eventDatas = Arrays.asList( 
+				new BattleOfBritain()
+				);
 	}
-	
-	
 	
 	//======================
 		
 	
-	/*
-	 * getPeriods: for each start and end period in list of event__OLDs, find the LOWEST period, and the HIGHEST period,
-	 * 
-	 * add them to Periods class, to be used for insertion to DB
-	 */
-	//////static getPeriods
-	
+	*/
 	
 }
