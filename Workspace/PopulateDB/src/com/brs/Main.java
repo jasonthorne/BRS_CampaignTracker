@@ -8,6 +8,7 @@ import com.brs.airforces.InsertAirForces;
 import com.brs.blocks.Block;
 import com.brs.blocks.InsertBlocks;
 import com.brs.events.Events;
+import com.brs.events.InsertEventData;
 import com.brs.events.InsertEvents;
 import com.brs.periods.InsertPeriods;
 import com.brs.periods.Period;
@@ -19,7 +20,7 @@ import com.brs.statuses.Status;
 import com.brs.years.InsertYears;
 import com.brs.years.Year;
 
-public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEvents, InsertAirForces, InsertPlanes, InsertStatuses {
+public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEvents, InsertAirForces, InsertPlanes, InsertStatuses, InsertEventData {
 	
 	public static void main(String[] args) {
 		
@@ -77,7 +78,9 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//add statuses to DB:
 		//INSERT_STATUSES.insert(); 
 		
-		new Events();
+		//new Events();
+		
+		INSERT_EVENT_DATA.insert();
 		
 		//System.out.println(Events.getPeriods());
 	}

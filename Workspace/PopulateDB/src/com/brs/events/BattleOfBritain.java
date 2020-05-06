@@ -10,10 +10,11 @@ import com.brs.blocks.Block;
 import com.brs.periods.Period;
 import com.brs.years.Year;
 
+//public class BattleOfBritain implements EventData {
 public class BattleOfBritain extends EventData {
 	
 	//name of event:
-	private final Event name = Event.BATTLE_OF_BRITAIN;
+	//private Event name = Event.BATTLE_OF_BRITAIN;
 	
 	//air forces involved, and their home advantage status:
 	private final List<EventAirForce>airForces = Arrays.asList(
@@ -25,19 +26,22 @@ public class BattleOfBritain extends EventData {
 	private final Period endPeriod = new Period(Block.EARLY, Year.FORTY_ONE); //////////
 	
 	
-
-	/*
-	private BattleOfBritain(Event name) { //, List<EventAirForce>airForces, Period start, Period end) {
+	
+	protected BattleOfBritain() { //, List<EventAirForce>airForces, Period start, Period end) {
 		this.name = Event.BATTLE_OF_BRITAIN;
 	}
 	
+	/*
 	protected BattleOfBritain() {
 		new BattleOfBritain(this.getName());
 	}
 	 */
-	
-	
-	
+	/*
+	@Override
+	public void test() {
+		System.out.println(this.name);
+	}
+	*/
 	//@Override 
 	//protected Event getName() { return this.name; }
 	
