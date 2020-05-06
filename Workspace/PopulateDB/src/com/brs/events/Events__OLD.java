@@ -21,7 +21,7 @@ public class Events__OLD { //change to insertEvents?? (prob!!!)
 	
 	//available event__OLDs:
 	private static final List<Event__OLD>EVENTS = Arrays.asList( //can be called in constructor????
-			new BattleOfBritain(),
+			//new BattleOfBritain(),
 			new Stalingrad());
 	
 	
@@ -45,7 +45,7 @@ public class Events__OLD { //change to insertEvents?? (prob!!!)
 	public Events__OLD() {
 		
 		event__OLDs = Arrays.asList( 
-				new BattleOfBritain(),
+				//new BattleOfBritain(),
 				new Stalingrad());
 	}
 	
