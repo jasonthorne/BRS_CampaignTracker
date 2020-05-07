@@ -9,7 +9,7 @@ import java.util.Arrays;
 import com.brs.ConnectDB;
 import com.brs.Insert;
 
-public interface InsertYears extends Test{
+public interface InsertYears extends Test{ 
 	 
 	//static final Insert INSERT_YEARS =()-> { //https://www.tutorialspoint.com/can-we-overload-methods-of-an-interface-in-java
 	/*@Override
@@ -23,7 +23,7 @@ public interface InsertYears extends Test{
 			callableStatement.registerOutParameter(1, Types.VARCHAR); //register out param
 			
 			System.out.println("------------------");
-			System.out.println("Years:\n"); 
+			System.out.println("Years:\n");
 			
 			Arrays.asList(Year.values()).forEach((year)->{ //forEach year in list of years:
 				try {

@@ -66,7 +66,9 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		
 		InsertYears.insert();
 		
-	
+		//return boolean of successfull insertion as out param, and then do select * query to prove and print to screen.
+		//This means these wstatic methods can be predicates instead!! wooHoo!!
+		//https://docs.microsoft.com/en-us/sql/connect/jdbc/using-a-stored-procedure-with-a-return-status?view=sql-server-ver15
 		
 		//add periods to DB:
 		//INSERT_PERIODS.insert();
@@ -85,7 +87,8 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		
 		//new Events();
 		
-		INSERT_EVENT_DATA.insert();
+		//INSERT_EVENT_DATA.insert();
+		
 		
 		//System.out.println(Events.getPeriods());
 	}
