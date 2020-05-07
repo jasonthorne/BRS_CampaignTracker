@@ -1,9 +1,5 @@
 package com.brs.events;
 
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
 import com.brs.Insert;
 
 public interface InsertEventData extends InsertEventAirforces{
@@ -14,7 +10,7 @@ public interface InsertEventData extends InsertEventAirforces{
 			//event.test();
 			System.out.println(event.getName());
 			System.out.println(event.name);
-			INSERT_EVENT_AIRFORCES.insert();//???????
+			INSERT_EVENT_AIRFORCES.insert();//??????? HAVE INSERT BE NON FUNCTIONAL, andwith overloaded insert methods!! so you can pass eventname and airforce list into this.
 		});
 	};
 	

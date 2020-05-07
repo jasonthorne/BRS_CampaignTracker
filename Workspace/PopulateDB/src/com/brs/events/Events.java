@@ -19,7 +19,7 @@ import com.brs.years.Year;
 
 public class Events { 
 	
-	private List<EventData>events = Arrays.asList(
+	private final List<EventData>events = Arrays.asList(
 			new BattleOfBritain());
 	
 	

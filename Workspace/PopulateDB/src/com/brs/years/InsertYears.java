@@ -9,9 +9,13 @@ import java.util.Arrays;
 import com.brs.ConnectDB;
 import com.brs.Insert;
 
-public interface InsertYears {
+public interface InsertYears extends Test{
 	 
-	static final Insert INSERT_YEARS =()-> {
+	//static final Insert INSERT_YEARS =()-> { //https://www.tutorialspoint.com/can-we-overload-methods-of-an-interface-in-java
+	/*@Override
+	public default void insertYears() { //maybe have this overloaded as per the link above!! ++++++++++++++*/
+
+	static void insert() {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB

@@ -62,6 +62,11 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		
 		//add years to DB:
 		//INSERT_YEARS.insert();
+	
+		
+		InsertYears.insert();
+		
+	
 		
 		//add periods to DB:
 		//INSERT_PERIODS.insert();
