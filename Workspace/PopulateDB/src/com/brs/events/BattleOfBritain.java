@@ -5,16 +5,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.brs.airforces.AirForce;
+import com.brs.airforces.InsertAirForces;
 import com.brs.airforces.event.EventAirForces;
 import com.brs.blocks.Block;
 import com.brs.periods.Period;
 import com.brs.years.Year;
 
 //public class BattleOfBritain implements EventData {
-public class BattleOfBritain extends EventData {
+public class BattleOfBritain extends EventData implements InsertEventAirforces{
 	
 	//name of event:
-	//private Event name = Event.BATTLE_OF_BRITAIN;
+	private Event name = Event.BATTLE_OF_BRITAIN;
 	
 	//air forces involved, and their home advantage status:
 	private final List<EventAirForce>airForces = Arrays.asList(
@@ -28,8 +29,16 @@ public class BattleOfBritain extends EventData {
 	
 	
 	protected BattleOfBritain() { //, List<EventAirForce>airForces, Period start, Period end) {
-		this.name = Event.BATTLE_OF_BRITAIN;
+		
 	}
+
+	@Override
+	protected void setName() {
+		//super.
+		
+	}
+
+	
 	
 	/*
 	protected BattleOfBritain() {

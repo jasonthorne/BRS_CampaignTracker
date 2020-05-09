@@ -9,12 +9,12 @@ import java.util.Arrays;
 import com.brs.ConnectDB;
 import com.brs.Insert;
 
-public interface InsertYears extends Test{ 
+public interface InsertYears extends Test{ ////////+++++++maybe these are concrete classes, which all impelemtn the same abstract class, with a conection for example 
 	 
 	//static final Insert INSERT_YEARS =()-> { //https://www.tutorialspoint.com/can-we-overload-methods-of-an-interface-in-java
 	/*@Override
 	public default void insertYears() { //maybe have this overloaded as per the link above!! ++++++++++++++*/
-
+	
 	static void insert() {
 		 Connection connection = null;
 		 try {

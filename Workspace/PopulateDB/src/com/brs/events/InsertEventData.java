@@ -9,8 +9,9 @@ public interface InsertEventData extends InsertEventAirforces{
 		new Events().getEvents().forEach((event)->{
 			//event.test();
 			System.out.println(event.getName());
-			System.out.println(event.name);
-			INSERT_EVENT_AIRFORCES.insert();//??????? HAVE INSERT BE NON FUNCTIONAL, andwith overloaded insert methods!! so you can pass eventname and airforce list into this.
+			//System.out.println(event.name);
+			//.insert(this.getName) //this should be in the abstract class constructor 
+			INSERT_EVENT_AIRFORCES.insert();//??????? HAVE INSERT BE NON FUNCTIONAL, and with overloaded insert methods!! so you can pass eventname and airforce list into this.
 		});
 	};
 	
