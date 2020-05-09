@@ -11,7 +11,7 @@ import com.brs.Insert;
 
 public interface InsertEvents {
 	
-	static final Insert INSERT_EVENTS =()-> {
+	static void insert() {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB

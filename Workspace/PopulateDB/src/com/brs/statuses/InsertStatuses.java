@@ -11,7 +11,7 @@ import com.brs.Insert;
 
 public interface InsertStatuses {
 	
-	static final Insert INSERT_STATUSES =()-> {
+	static void insert() {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB

@@ -11,7 +11,7 @@ import com.brs.Insert;
 
 public interface InsertAirForces {
 	
-	static final Insert INSERT_AIRFORCES =()-> {
+	static void insert() {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB

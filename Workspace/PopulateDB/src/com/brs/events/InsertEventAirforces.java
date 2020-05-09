@@ -1,10 +1,10 @@
 package com.brs.events;
 
-import com.brs.Insert;
+import java.util.List;
 
 public interface InsertEventAirforces {
 	
-	static final Insert INSERT_EVENT_AIRFORCES =()-> { //this should be a consumer, as it needs passed somevalues. OR A BIConsumer!!
+	static void insert(Event event, List<EventAirForce>airForces) { 
 			
 			System.out.println("INSERT_EVENT_AIRFORCES be here!");
 			//System.out.println(this.getNameTEST());

@@ -11,7 +11,7 @@ import com.brs.Insert;
 
 public interface InsertBlocks {
 	
-	static final Insert INSERT_BLOCKS =()-> {
+	static void insert() {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB

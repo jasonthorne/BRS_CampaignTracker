@@ -11,7 +11,7 @@ import com.brs.Insert;
 
 public interface InsertPlanes {
 	
-	static final Insert INSERT_PLANES =()-> {
+	static void insert() {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB

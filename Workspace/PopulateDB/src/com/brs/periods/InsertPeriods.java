@@ -14,7 +14,7 @@ import com.brs.years.Year;
 
 public interface InsertPeriods {
 	
-	static final Insert INSERT_PERIODS =()-> {
+	static void insert() {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB
@@ -55,5 +55,5 @@ public interface InsertPeriods {
 				 } catch (SQLException e) { e.printStackTrace(); } 
 			 }
 		 }
-	};
+	}
 }
