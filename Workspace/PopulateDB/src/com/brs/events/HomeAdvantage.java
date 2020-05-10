@@ -9,5 +9,6 @@ public enum HomeAdvantage {
 	private final boolean hasHomeAdvantage; //hasHomeAdvantage boolean
 	private HomeAdvantage(boolean hasHomeAdvantage) {this.hasHomeAdvantage = hasHomeAdvantage;} //constructor sets boolean
 	@Override 
-	public String toString() {return Boolean.toString(hasHomeAdvantage);} //return boolean value
+	public String toString() {return Boolean.toString(hasHomeAdvantage);} //return string of boolean value
+	protected boolean getBoolean() {return hasHomeAdvantage;} //return boolean value
 }
