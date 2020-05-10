@@ -7,7 +7,6 @@ import java.sql.Types;
 import java.util.Arrays;
 
 import com.brs.ConnectDB;
-import com.brs.Insert;
 
 public interface InsertPlanes {
 	
@@ -37,5 +36,5 @@ public interface InsertPlanes {
 				 } catch (SQLException e) { e.printStackTrace(); } 
 			 }
 		 }
-	};
+	}
 }
