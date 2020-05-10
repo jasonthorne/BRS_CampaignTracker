@@ -129,6 +129,29 @@ END $$
 DELIMITER ;
 
 /*----------------------------------------------------*/
+/* airforces available to events */
+
+CREATE TABLE event_airforces (
+  event_airforceID int NOT NULL AUTO_INCREMENT,
+  eventID int,
+  airforceID int,
+  has_home_advantage boolean DEFAULT FALSE,
+  PRIMARY KEY (event_airforceID),
+  FOREIGN KEY (eventID) REFERENCES events(eventID),
+  FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
+  CONSTRAINT eventID_airforceID UNIQUE (eventID, airforceID)	/* make combined columns unique */
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_event_airforce (INOUT event VARCHAR(64), INOUT airforce VARCHAR(64), INOUT has_home_advantage BOOLEAN(64))
+BEGIN
+	INSERT INTO periods (blockID, yearID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = block),
+	(SELECT yearID FROM years WHERE years.name = year));
+END $$
+DELIMITER ;
+
+/*----------------------------------------------------*/
 /*
 INSERT INTO periods (blockID, yearID) VALUES (
 	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
