@@ -24,14 +24,14 @@ public class Events {
 	
 	
 	
-
+	/*
 	public Events(){
 		//System.out.println(new BattleOfBritain().getName());
-	}
+	}*/
 	
 	
-	public List<EventData>getEvents(){
-		return events;
+	protected List<EventData>getEvents(){
+		return new ArrayList<EventData>(events);
 	}
 	
 	

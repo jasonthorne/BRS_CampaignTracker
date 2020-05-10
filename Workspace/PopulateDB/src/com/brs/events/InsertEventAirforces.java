@@ -7,7 +7,8 @@ public interface InsertEventAirforces {
 	static void insert(Event event, List<EventAirForce>airForces) { 
 			
 			System.out.println("INSERT_EVENT_AIRFORCES be here!");
-			//System.out.println(this.getNameTEST());
+			System.out.println(event);
+			System.out.println(airForces);
 	};
 
 }

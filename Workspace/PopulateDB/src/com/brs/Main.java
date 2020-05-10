@@ -65,7 +65,7 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//INSERT_YEARS.insert();
 	
 		
-		InsertYears.insert();
+		//InsertYears.insert();
 		
 		//return boolean of successfull insertion as out param, and then do select * query to prove and print to screen.
 		//This means these wstatic methods can be predicates instead!! wooHoo!!
@@ -89,7 +89,7 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//new Events();
 		
 		//INSERT_EVENT_DATA.insert();
-		
+		InsertEventData.insert();
 		
 		//System.out.println(Events.getPeriods());
 	}

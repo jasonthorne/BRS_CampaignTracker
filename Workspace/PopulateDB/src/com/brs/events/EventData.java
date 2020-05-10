@@ -20,7 +20,7 @@ public abstract class EventData {
 	protected Period getStartPeriod() { return new Period(this.startPeriod.getBlock(), this.startPeriod.getYear()); }
 	protected Period getEndPeriod() { return new Period(this.endPeriod.getBlock(), this.endPeriod.getYear()); }
 	
-	//constructor sets values:
+	//constructor:
 	EventData(Event name, List<EventAirForce>airForces, Period startPeriod, Period endPeriod){
 		this.name = name;
 		this.airForces = new ArrayList<EventAirForce>(airForces);
