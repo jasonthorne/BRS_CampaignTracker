@@ -87,6 +87,9 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//INSERT_STATUSES.insert(); 
 		
 		//new Events();
+		InsertEvents.insert();
+		
+		InsertAirForces.insert();
 		
 		//INSERT_EVENT_DATA.insert();
 		InsertEventData.insert();

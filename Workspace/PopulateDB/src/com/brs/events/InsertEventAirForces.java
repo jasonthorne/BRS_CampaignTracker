@@ -28,10 +28,10 @@ public interface InsertEventAirForces {
 					callableStatement.setString(2, airForce.getAirForce().toString()); //set air force input
 					callableStatement.setBoolean(3, airForce.getHomeAdvantage().getBoolean()); //set home advantage input
 					callableStatement.execute(); //execute statement
-					System.out.println("Inserted: "	//print response
-							+ callableStatement.getString(1) + " " 
-							+ callableStatement.getString(2) + " "
-							+ callableStatement.getBoolean(3)); 
+					System.out.println("Inserted: ["	//print response
+							+ callableStatement.getString(1) + ", " 
+							+ callableStatement.getString(2) + ", "
+							+ callableStatement.getBoolean(3) + "]");
 				}catch(Exception e) { e.printStackTrace(); }
 			});
 				

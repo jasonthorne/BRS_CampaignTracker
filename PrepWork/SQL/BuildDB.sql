@@ -143,11 +143,12 @@ CREATE TABLE event_airforces (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
-CREATE PROCEDURE insert_event_airforce (INOUT event VARCHAR(64), INOUT airforce VARCHAR(64), INOUT has_home_advantage BOOLEAN(64))
+CREATE PROCEDURE insert_event_airforce (INOUT event VARCHAR(64), INOUT airforce VARCHAR(64), INOUT has_home_advantage BOOLEAN)
 BEGIN
-	INSERT INTO periods (blockID, yearID) VALUES (
-	(SELECT blockID FROM blocks WHERE blocks.name = block),
-	(SELECT yearID FROM years WHERE years.name = year));
+	INSERT INTO event_airforces (eventID, airforceID, has_home_advantage) VALUES (
+	(SELECT eventID FROM events WHERE events.name = event),
+	(SELECT airforceID FROM airforces WHERE airforces.name = airforce),
+	has_home_advantage);
 END $$
 DELIMITER ;
 
