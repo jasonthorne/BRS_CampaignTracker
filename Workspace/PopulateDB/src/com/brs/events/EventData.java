@@ -7,6 +7,7 @@ import com.brs.periods.Period;
 
 public abstract class EventData {
 	
+	/*
 	private Event name;	//name of event
 	private List<EventAirForce>airForces; //air forces involved
 	private Period startPeriod;	//starting period of history
@@ -25,5 +26,12 @@ public abstract class EventData {
 		this.startPeriod = new Period(startPeriod.getBlock(), startPeriod.getYear());
 		this.endPeriod = new Period(endPeriod.getBlock(), endPeriod.getYear());
 	}
-
+	*/
+	
+	//getters:
+	protected abstract Event getName();
+	protected abstract List<EventAirForce> getAirForces();
+	protected abstract Period getStartPeriod();
+	protected abstract Period getEndPeriod();
+	
 }

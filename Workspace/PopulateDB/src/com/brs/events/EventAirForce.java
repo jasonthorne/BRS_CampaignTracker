@@ -5,11 +5,11 @@ import com.brs.airforces.AirForce;
 public class EventAirForce {
 	
 	private final AirForce airForce; //air force
-	private final boolean hasHomeAdvantage; //home advantage status
+	private final HomeAdvantage homeAdvantage; //home advantage status
 	
-	protected EventAirForce(AirForce airForce, boolean hasHomeAdvantage) {
+	protected EventAirForce(AirForce airForce, HomeAdvantage homeAdvantage) {
 		this.airForce = airForce;
-		this.hasHomeAdvantage = hasHomeAdvantage;
+		this.homeAdvantage = homeAdvantage;
 	}
 
 	
@@ -18,7 +18,7 @@ public class EventAirForce {
 	
 	@Override
 	public String toString() {
-		return "EventAirForce [airForce=" + airForce + ", hasHomeAdvantage=" + hasHomeAdvantage + "]";
+		return "EventAirForce [airForce=" + airForce + ", homeAdvantage=" + homeAdvantage + "]";
 	}
 	
 }
