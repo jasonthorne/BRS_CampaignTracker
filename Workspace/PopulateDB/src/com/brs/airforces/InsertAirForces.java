@@ -37,5 +37,5 @@ public interface InsertAirForces {
 				 } catch (SQLException e) { e.printStackTrace(); } 
 			 }
 		 }
-	};
+	}
 }

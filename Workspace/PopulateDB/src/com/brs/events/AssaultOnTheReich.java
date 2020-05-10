@@ -9,19 +9,20 @@ import com.brs.blocks.Block;
 import com.brs.periods.Period;
 import com.brs.years.Year;
 
-public class Stalingrad extends EventData {
+public class AssaultOnTheReich extends EventData {
 	
 	//name of event:
-	private static final Event NAME = Event.STALINGRAD;
+	private static final Event NAME = Event.ASSAULT_ON_THE_REICH;
 	
 	//air forces involved, and their home advantage status:
 	private static final List<EventAirForce>AIR_FORCES = Arrays.asList(
-			new EventAirForce(AirForce.VVS, HomeAdvantage.TRUE),
-			new EventAirForce(AirForce.LUFTWAFFE, HomeAdvantage.FALSE));
+			new EventAirForce(AirForce.RAF, HomeAdvantage.FALSE),
+			new EventAirForce(AirForce.USAAF, HomeAdvantage.FALSE),
+			new EventAirForce(AirForce.LUFTWAFFE, HomeAdvantage.TRUE));
 	
 	//periods of history covered:
-	private static final Period START_PERIOD = new Period(Block.LATE, Year.FORTY_TWO); 
-	private static final Period END_PERIOD = new Period(Block.EARLY, Year.FORTY_THREE);
+	private static final Period START_PERIOD = new Period(Block.MID, Year.FORTY_THREE); 
+	private static final Period END_PERIOD = new Period(Block.EARLY, Year.FORTY_FIVE);
 	
 	@Override
 	protected Event getName() {return NAME;} //return name of event

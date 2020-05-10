@@ -1,26 +1,21 @@
 package com.brs.events;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Deque;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-import java.util.Set;
-import java.util.TreeSet;
-
-import com.brs.blocks.Block;
-import com.brs.periods.Period;
-import com.brs.years.Year;
 
 public class Events { 
 	
+	//list of every event, and it's pertaining data: 
 	private final List<EventData>events = Arrays.asList(
-			new BattleOfBritain());
+			new BattleOfBritain(),
+			new OperationBarbarossa(),
+			new Guadalcanal(),
+			new Stalingrad(),
+			new AssaultOnTheReich(),
+			new TheItalianCampaign(),
+			new DefenceOfTheHomeIslands()
+	);
 	
 	
 	
