@@ -17,14 +17,11 @@ public interface InsertYears {
 			CallableStatement callableStatement = connection.prepareCall("{CALL insert_year(?)}");	//create statement
 			callableStatement.registerOutParameter(1, Types.VARCHAR); //register out param
 			
-			System.out.println("------------------");
-			System.out.println("Years:\n");
-			
 			Arrays.asList(Year.values()).forEach((year)->{ //forEach year in list of years:
 				try {
 					callableStatement.setString(1, year.toString()); //set input param
 					callableStatement.execute(); //execute statement
-					System.out.println("Inserted: " + callableStatement.getString(1)); //print response
+					System.out.println(callableStatement.getString(1)); //print response
 				}catch(Exception e) { e.printStackTrace(); }
 			});
 				

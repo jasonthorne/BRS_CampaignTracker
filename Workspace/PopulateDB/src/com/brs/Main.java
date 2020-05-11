@@ -58,11 +58,16 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		System.out.println("==================");
 		System.out.println(" INSERTING DATA:");
 		
+	
 		//add blocks to DB:
-		//INSERT_BLOCKS.insert();
+		System.out.println("------------------");
+		System.out.println("Blocks:\n"); 
+		InsertBlocks.insert();
 		
 		//add years to DB:
-		//INSERT_YEARS.insert();
+		System.out.println("------------------");
+		System.out.println("Years:\n");
+		InsertYears.insert();
 	
 		
 		//InsertYears.insert();
@@ -72,7 +77,10 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//https://docs.microsoft.com/en-us/sql/connect/jdbc/using-a-stored-procedure-with-a-return-status?view=sql-server-ver15
 		
 		//add periods to DB:
-		//INSERT_PERIODS.insert();
+		System.out.println("------------------");
+		System.out.println("Periods:\n"); 
+		InsertPeriods.insert();
+		
 		
 		//add events to DB:
 		//INSERT_EVENTS.insert(); 
@@ -100,6 +108,16 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		
 		
 		//System.out.println(Events.getPeriods());
+		
+		/*
+		 * json:
+		 * 
+		 * https://howtodoinjava.com/library/json-simple-read-write-json-examples/
+		 * 
+		 * https://www.geeksforgeeks.org/parse-json-java/
+		 * 
+		 * https://www.google.com/search?q=reading+json+file+in+java&rlz=1C1CHBF_enIE863IE863&oq=reading+json+&aqs=chrome.5.0j69i57j0l6.6442j0j7&sourceid=chrome&ie=UTF-8
+		 */
 	}
 
 	

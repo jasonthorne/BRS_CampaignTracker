@@ -26,9 +26,6 @@ public interface InsertPeriods {
 			Year year; //current year
 			Block block; //current block
 			
-			System.out.println("------------------");
-			System.out.println("Periods:\n"); 
-			
 			while(yearsIterator.hasNext()) { //iterate through years
 				year = yearsIterator.next(); //advance to next year
 				blocksIterator = Arrays.asList(Block.values()).iterator(); //(re)set blocks iterator
@@ -41,7 +38,7 @@ public interface InsertPeriods {
 						callableStatement.setString(2, year.toString()); //set year input
 						callableStatement.execute(); //execute statement
 						//print response:
-						System.out.println("Inserted: "+callableStatement.getString(1)+" "+callableStatement.getString(2)); 
+						System.out.println(callableStatement.getString(1)+" "+callableStatement.getString(2)); 
 					}catch(Exception e) { e.printStackTrace(); }
 				}
 			}

@@ -18,14 +18,11 @@ public interface InsertBlocks {
 			CallableStatement callableStatement = connection.prepareCall("{CALL insert_block(?)}");	//create statement
 			callableStatement.registerOutParameter(1, Types.VARCHAR); //register out param
 			
-			System.out.println("------------------");
-			System.out.println("Blocks:\n"); 
-			
 			Arrays.asList(Block.values()).forEach((block)->{ //forEach block in list of blocks:
 				try {
 					callableStatement.setString(1, block.toString()); //set input param
 					callableStatement.execute(); //execute statement
-					System.out.println("Inserted: " + callableStatement.getString(1)); //print response
+					System.out.println(callableStatement.getString(1)); //print response
 				}catch(Exception e) { e.printStackTrace(); }
 			});
 				

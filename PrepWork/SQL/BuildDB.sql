@@ -41,7 +41,7 @@ DELIMITER ;
 /*----------------------------------------------------*/
 /* historical periods (eg: early 1940) */
 
-CREATE TABLE periods (
+CREATE TABLE periods ( /* ++++++++++++++++++++++++++++This can probvably be made automatically, once years and blocks are constructed +++++++++*/
   periodID int NOT NULL AUTO_INCREMENT,
   blockID int,
   yearID int,
@@ -149,6 +149,38 @@ BEGIN
 	(SELECT eventID FROM events WHERE events.name = event),
 	(SELECT airforceID FROM airforces WHERE airforces.name = airforce),
 	has_home_advantage);
+END $$
+DELIMITER ;
+
+/*----------------------------------------------------*/
+/* periods available to events */
+
+CREATE TABLE event_periods (
+  event_periodID int NOT NULL AUTO_INCREMENT,
+  eventID int,
+  periodID_start int,
+  periodID_end int,
+  PRIMARY KEY (event_periodID),
+  FOREIGN KEY (periodID_start) REFERENCES periods(periodID),
+  FOREIGN KEY (periodID_end) REFERENCES periods(periodID),
+  UNIQUE (eventID)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_event_period (INOUT event VARCHAR(64), 
+INOUT block_start VARCHAR(64), INOUT year_start VARCHAR(4), INOUT block_end VARCHAR(64), INOUT year_end VARCHAR(4))
+
+BEGIN
+	INSERT INTO event_periods (eventID, periodID_start, periodID_end) VALUES (
+	(SELECT eventID FROM events WHERE events.name = event),
+	(SELECT periodID FROM periods 
+		INNER JOIN blocks ON periods.blockID = blocks.blockID
+		INNER JOIN years ON periods.yearID  = years.yearID
+		WHERE blocks.name = block_start AND years.name = year_start),
+	(SELECT periodID FROM periods 
+		INNER JOIN blocks ON periods.blockID = blocks.blockID
+		INNER JOIN years ON periods.yearID  = years.yearID
+		WHERE blocks.name = block_end AND years.name = year_end));
 END $$
 DELIMITER ;
 
