@@ -7,21 +7,18 @@ import com.brs.airforces.AirForce;
 import com.brs.airforces.InsertAirForces;
 import com.brs.blocks.Block;
 import com.brs.blocks.InsertBlocks;
-import com.brs.events.Event;
 import com.brs.events.Events;
-import com.brs.events.InsertEventData;
 import com.brs.events.InsertEvents;
 import com.brs.periods.InsertPeriods;
 import com.brs.periods.Period;
 import com.brs.planes.InsertPlanes;
 import com.brs.planes.Plane;
-import com.brs.periods.InsertPeriods;
 import com.brs.statuses.InsertStatuses;
 import com.brs.statuses.Status;
 import com.brs.years.InsertYears;
 import com.brs.years.Year;
 
-public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEvents, InsertAirForces, InsertPlanes, InsertStatuses, InsertEventData {
+public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEvents, InsertAirForces, InsertPlanes, InsertStatuses {
 	
 	public static void main(String[] args) {
 		
@@ -104,7 +101,8 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		
 		System.out.println("------------------");
 		System.out.println("Event data:\n");
-		InsertEventData.insert();
+		Events.insertEventData();
+		//InsertEventData.insert();
 		
 		
 		//System.out.println(Events.getPeriods());
