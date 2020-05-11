@@ -7,7 +7,6 @@ import java.sql.Types;
 import java.util.Arrays;
 
 import com.brs.ConnectDB;
-import com.brs.Insert;
 
 public interface InsertEvents {
 	
@@ -34,5 +33,5 @@ public interface InsertEvents {
 				 } catch (SQLException e) { e.printStackTrace(); } 
 			 }
 		 }
-	};
+	}
 }

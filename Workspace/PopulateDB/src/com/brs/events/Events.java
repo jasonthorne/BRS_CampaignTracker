@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Events { 
+public class Events { //+++++++++++++maybe have this be abstract, with a public static method for firing off insertEventData - maybe name this insertEventData??
 	
 	//list of every event, and it's pertaining data: 
 	private final List<EventData>events = Arrays.asList(
@@ -14,10 +14,24 @@ public class Events {
 			new Stalingrad(),
 			new AssaultOnTheReich(),
 			new TheItalianCampaign(),
-			new DefenceOfTheHomeIslands()
-	);
+			new DefenceOfTheHomeIslands());
 	
+	protected List<EventData>getEvents() { return new ArrayList<EventData>(events); }
 	
+	/*
+	 * static insert method here, which loops through all events in list and fires off necessary inserts +++++++++++ :) 
+	 */
+	
+	/* ????????????????????????????
+	protected static void insertEventData() {
+		
+		new Events().events.forEach((event)-> { //forEach event:
+			
+			InsertEventAirForces.insert(event.getName(), event.getAirForces()); //populate 'event_airforces'
+			//populate 'event_periods':
+			
+		});
+	}*/
 	
 	/*
 	public Events(){
@@ -25,9 +39,8 @@ public class Events {
 	}*/
 	
 	
-	protected List<EventData>getEvents(){
-		return new ArrayList<EventData>(events);
-	}
+		
+	
 	
 	
 	
