@@ -30,20 +30,42 @@ public interface SelectAirForces_TEST {
 			
 			int columnCount = resultSetMetaData.getColumnCount();
 			
+			
+			//String columnName = null;
+			//int columnWidth = 0;
+			//String format = null;
+			
 			for (int i=1;i<=columnCount;i++) {
-				System.out.print(resultSetMetaData.getColumnName(i) + " | ");
+				String columnName = resultSetMetaData.getColumnName(i);
+				//columnWidth = columnName.length();
+				//System.out.println("bum: " + columnName);
+				String format = "%-" + columnName.length() + "s";
+				//System.out.print(resultSetMetaData.getColumnName(i) + " | ");
+				System.out.printf(format, columnName + "|");
 			}
 			
 			System.out.println();
 			
+			int columnCount2 = resultSetMetaData.getColumnCount();
+		
 			while(resultSet.next()) {
-				for (int i=1;i<=columnCount;i++) {
-					System.out.print(resultSet.getString(i) + " | ");
+				for (int i=1;i<=columnCount2;i++) {
+					String columnName = resultSetMetaData.getColumnName(i);
+					//System.out.println("yo: " + columnName);
+					String format = "%-" + columnName.length() + "s";
+					//System.out.print(resultSet.getString(i) + " | ");
+					//System.out.printf(format2, resultSet.getString(i) + " | ");
+					/////////System.out.printf(format, resultSet.getString(i));
+					centerText(resultSet.getString(i), columnName.length());
 				}
 				System.out.println();
 			}
 			
-		
+			/*
+			void centerText(char *text, int fieldWidth) {
+			    int padlen = (fieldWidth - strlen(text)) / 2;
+			    printf(%*s%s%*s\n", padLen, "", text, padlen, "");
+			}*/
 		
 			
 			//System.out.println(callableStatement.getString(1)); //print response
@@ -58,6 +80,18 @@ public interface SelectAirForces_TEST {
 				 } catch (SQLException e) { e.printStackTrace(); } 
 			 }
 		 }
+	}
+	
+	//https://stackoverflow.com/questions/2461667/centering-strings-with-printf
+	
+	
+	//+++++++++++++++Have to CHECK WHICH IS LONGER - column name or contents!! 
+	static void centerText(String text, int width) {
+		int padding = (width - text.length())/2;
+		//System.out.printf("%s%s%s\n", padding, "", text, padding, "");
+		System.out.printf("%" + padding + "s", "");
+		System.out.printf("%" + text.length() + "s", text);
+		System.out.printf("%" + padding + "s", "");
 	}
 
 }
