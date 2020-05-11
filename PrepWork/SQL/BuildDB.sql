@@ -87,10 +87,22 @@ CREATE TABLE airforces(
   UNIQUE (name)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+/* insert airforce */
+
 DELIMITER $$
 CREATE PROCEDURE insert_airforce (INOUT airforce VARCHAR(64))
 BEGIN
 	INSERT INTO airforces (name) VALUES (airforce); 
+END $$
+DELIMITER ;
+
+/* select all airforces */
+
+DELIMITER $$
+CREATE PROCEDURE select_airforces ()
+BEGIN
+	SELECT * FROM airforces 
+	ORDER BY airforceID ASC;
 END $$
 DELIMITER ;
 

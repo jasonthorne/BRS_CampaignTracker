@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.brs.airforces.AirForce;
 import com.brs.airforces.InsertAirForces;
+import com.brs.airforces.SelectAirForces_TEST;
 import com.brs.blocks.Block;
 import com.brs.blocks.InsertBlocks;
 import com.brs.events.Events;
@@ -18,7 +19,7 @@ import com.brs.statuses.Status;
 import com.brs.years.InsertYears;
 import com.brs.years.Year;
 
-public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEvents, InsertAirForces, InsertPlanes, InsertStatuses {
+public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEvents, InsertAirForces, InsertPlanes, InsertStatuses, SelectAirForces_TEST {
 	
 	public static void main(String[] args) {
 		
@@ -52,6 +53,7 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		insertYear.accept(connection, Year.FORTY_TWO); //should just be passing in yearS (list of all years) here into PREDICATE instead, and letting insertYear esatblish the connection
 		insertYear.accept(connection, Year.FORTY_THREE);
 		*/
+		
 		System.out.println("==================");
 		System.out.println(" INSERTING DATA:");
 		
@@ -59,15 +61,13 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//add blocks to DB:
 		System.out.println("------------------");
 		System.out.println("Blocks:\n"); 
-		InsertBlocks.insert();
+		//////InsertBlocks.insert();
 		
 		//add years to DB:
 		System.out.println("------------------");
 		System.out.println("Years:\n");
-		InsertYears.insert();
+		///////InsertYears.insert();
 	
-		
-		//InsertYears.insert();
 		
 		//return boolean of successfull insertion as out param, and then do select * query to prove and print to screen.
 		//This means these wstatic methods can be predicates instead!! wooHoo!!
@@ -76,14 +76,20 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//add periods to DB:
 		System.out.println("------------------");
 		System.out.println("Periods:\n"); 
-		InsertPeriods.insert();
-		
+		////////InsertPeriods.insert();
 		
 		//add events to DB:
-		//INSERT_EVENTS.insert(); 
+		System.out.println("------------------");
+		System.out.println("Events:\n"); 
+		///////InsertEvents.insert();
 		
 		//add air forces to DB:
-		//INSERT_AIRFORCES.insert();
+		System.out.println("------------------");
+		System.out.println("Air Forces:\n");
+		InsertAirForces.insert();
+		
+		//????????????????????????????????????
+		SelectAirForces_TEST.select();
 		
 		//add planes to DB:
 		//INSERT_PLANES.insert();
@@ -91,18 +97,11 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//add statuses to DB:
 		//INSERT_STATUSES.insert(); 
 		
-		System.out.println("------------------");
-		System.out.println("Events:\n"); 
-		InsertEvents.insert();
-		
-		System.out.println("------------------");
-		System.out.println("Air Forces:\n");
-		InsertAirForces.insert();
 		
 		System.out.println("------------------");
 		System.out.println("Event data:\n");
-		Events.insertEventData();
-		//InsertEventData.insert();
+		/////Events.insertEventData();
+		
 		
 		
 		//System.out.println(Events.getPeriods());
