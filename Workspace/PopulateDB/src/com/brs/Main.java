@@ -86,13 +86,18 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//add statuses to DB:
 		//INSERT_STATUSES.insert(); 
 		
-		//new Events();
+		System.out.println("------------------");
+		System.out.println("Events:\n"); 
 		InsertEvents.insert();
 		
+		System.out.println("------------------");
+		System.out.println("Air Forces:\n");
 		InsertAirForces.insert();
 		
-		//INSERT_EVENT_DATA.insert();
+		System.out.println("------------------");
+		System.out.println("Event data:\n");
 		InsertEventData.insert();
+		
 		
 		//System.out.println(Events.getPeriods());
 	}

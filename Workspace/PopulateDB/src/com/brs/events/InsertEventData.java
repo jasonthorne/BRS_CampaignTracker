@@ -7,8 +7,6 @@ public interface InsertEventData {
 			
 			InsertEventAirForces.insert(event.getName(), event.getAirForces()); //populate 'event_airforces'
 			//populate 'event_periods':
-			//System.out.println(event.getName());
-			//System.out.println(event.getAirForces());
 			
 		});
 	}

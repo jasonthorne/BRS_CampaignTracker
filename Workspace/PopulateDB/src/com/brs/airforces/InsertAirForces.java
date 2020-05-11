@@ -18,14 +18,11 @@ public interface InsertAirForces {
 			CallableStatement callableStatement = connection.prepareCall("{CALL insert_airforce(?)}"); //create statement
 			callableStatement.registerOutParameter(1, Types.VARCHAR); //register out param
 			
-			System.out.println("------------------");
-			System.out.println("Air Forces:\n"); 
-			
 			Arrays.asList(AirForce.values()).forEach((airForce)->{ //forEach air force in list of air forces:
 				try {
 					callableStatement.setString(1, airForce.toString()); //set input param
 					callableStatement.execute(); //execute statement
-					System.out.println("Inserted: " + callableStatement.getString(1)); //print response
+					System.out.println(callableStatement.getString(1)); //print response
 				}catch(Exception e) { e.printStackTrace(); }
 			});
 				

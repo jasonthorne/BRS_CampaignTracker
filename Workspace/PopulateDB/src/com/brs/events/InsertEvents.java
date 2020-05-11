@@ -18,14 +18,11 @@ public interface InsertEvents {
 			CallableStatement callableStatement = connection.prepareCall("{CALL insert_event(?)}"); //create statement
 			callableStatement.registerOutParameter(1, Types.VARCHAR); //register out param
 			
-			System.out.println("------------------");
-			System.out.println("Events:\n"); 
-			
 			Arrays.asList(Event.values()).forEach((event)->{ //forEach event in list of events:
 				try {
 					callableStatement.setString(1, event.toString()); //set input param
 					callableStatement.execute(); //execute statement
-					System.out.println("Inserted: " + callableStatement.getString(1)); //print response
+					System.out.println(callableStatement.getString(1)); //print response
 				}catch(Exception e) { e.printStackTrace(); }
 			});
 				

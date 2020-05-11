@@ -19,16 +19,13 @@ public interface InsertEventAirForces {
 			callableStatement.registerOutParameter(2, Types.VARCHAR); //register air force out param
 			callableStatement.registerOutParameter(3, Types.BOOLEAN); //register home advantage out param
 			
-			System.out.println("------------------");
-			System.out.println("EventAirforces:\n");
-			
 			eventAirForces.forEach((airForce)->{ //forEach air force in eventAirForces:
 				try {
 					callableStatement.setString(1, event.toString()); //set event input
 					callableStatement.setString(2, airForce.getAirForce().toString()); //set air force input
 					callableStatement.setBoolean(3, airForce.getHomeAdvantage().getBoolean()); //set home advantage input
 					callableStatement.execute(); //execute statement
-					System.out.println("Inserted: ["	//print response
+					System.out.println("EventAirforce: ["	//print response
 							+ callableStatement.getString(1) + ", " 
 							+ callableStatement.getString(2) + ", "
 							+ callableStatement.getBoolean(3) + "]");
