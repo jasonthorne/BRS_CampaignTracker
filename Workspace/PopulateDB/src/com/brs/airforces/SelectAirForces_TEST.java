@@ -19,7 +19,7 @@ public interface SelectAirForces_TEST {
 			ResultSet resultSet = callableStatement.getResultSet(); //get result set 
 			ResultSetMetaData resultSetMetaData = resultSet.getMetaData(); //get meta data
 			
-			System.out.println(resultSetMetaData.getTableName(1) + ":\n"); //print table name using PK column
+			System.out.println(resultSetMetaData.getTableName(1) + ":\n"); //print table name using pk column
 			
 			//print column data from result set:
 			while(resultSet.next()) {

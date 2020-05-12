@@ -1,5 +1,7 @@
 package com.brs.airforces;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -16,38 +18,45 @@ import org.json.simple.parser.JSONParser;
 import com.brs.ConnectDB;
 import com.brs.Insert;
 
-public abstract class InsertAirForces {
+public interface InsertAirForces {
 	
-	public static void insert() {
+	static void insert() {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB
-			CallableStatement callableStatement = connection.prepareCall("{CALL insert_airforce(?)}"); //create statement
+			CallableStatement callableStatement = connection.prepareCall("{CALL insert_airforce(?,?)}"); //create statement
 			///callableStatement.registerOutParameter(1, Types.VARCHAR); //register out param
 			
 	        try {
-	        	String filePath = "com/brs/json/airforces.json"; //path to airforces.json
-	        	//parse read file to object, using class loader and json parser: 
-	            Object object = new JSONParser().parse(new FileReader(ClassLoader.getSystemResource(filePath).getFile()));
+	        	//read json file to object, using json parser: 
+	            Object object = new JSONParser().parse(new FileReader("json/airforces/airforces.json"));
+	            JSONArray airForces = (JSONArray) object; //cast object to json array of airForces
+	            Iterator<JSONObject> iterator = airForces.iterator(); //iterate through airForces
 	            
-	            //cast object to json array of airForces:
-	            JSONArray airForces = (JSONArray) object;
-	           ///////////////// System.out.println(airForces); ++++++++++++DELTE
-	            
-	            //iterate through airForces:
-	            Iterator<JSONObject> iterator = airForces.iterator();
-				while (iterator.hasNext()) { 
+				while (iterator.hasNext()) {
+					JSONObject airForce = (JSONObject) iterator.next().get("airForce"); //get airForce from iterator
 					
-					//get airForce from iterator.next():
-					JSONObject airForce = (JSONObject) iterator.next().get("airForce");
-					
-					//get name from airForce:
-			        String name = (String) airForce.get("name");    
-			        System.out.println(name);
-			         
-			        //get img from airForce:
-			        String imagePath = (String) airForce.get("imagePath");  
+			        String name = (String) airForce.get("name");  //get name of airForce
+			        callableStatement.setString(1, name); //set statement input with name
+			        
+			     
+			        String imagePath = (String) airForce.get("imagePath");  //get image path from airForce
 			        System.out.println(imagePath);
+			        
+			      //  //File file = new File("img/airforces/testPic.png"); //file object holding path to file
+					//FileInputStream fileInputStream = new FileInputStream(file); //add file obj to new FileInputStream obj
+					
+				//	callableStatement.setBinaryStream(2, fileInputStream); //add input stream to preparedStatement's binaryStream
+			        
+					
+			        
+			       // callableStatement.setString(2, (String) airForce.get("name")); //set image input
+			        //System.out.println(name);
+			         
+			       
+			        
+			        
+					////////////callableStatement.execute(); //execute statement
 					
 				}
 	            
@@ -72,7 +81,9 @@ public abstract class InsertAirForces {
 	            
 	            
 	            
-	            
+				 
+		           ///////////////// System.out.println(airForces); ++++++++++++DELTE https://crunchify.com/how-to-read-json-object-from-file-in-java/
+		            
 	            
 	            
 	            
