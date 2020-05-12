@@ -86,9 +86,9 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//add air forces to DB:
 		System.out.println("------------------");
 		//System.out.println("Air Forces:\n");
-		////////////InsertAirForces.insert();
+		InsertAirForces.insert();
 		//????????????????????????????????????
-		SelectAirForces_TEST.select();
+		////////SelectAirForces_TEST.select();
 		
 		//add planes to DB:
 		//INSERT_PLANES.insert();
@@ -107,6 +107,8 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		
 		/*
 		 * json:
+		 * 
+		 * https://code.google.com/archive/p/json-simple/
 		 * 
 		 * https://howtodoinjava.com/library/json-simple-read-write-json-examples/
 		 * 

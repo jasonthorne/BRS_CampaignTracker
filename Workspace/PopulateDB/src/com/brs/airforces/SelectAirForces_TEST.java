@@ -23,7 +23,7 @@ public interface SelectAirForces_TEST {
 			
 			//print column data from result set:
 			while(resultSet.next()) {
-				for (int i=1,j=resultSetMetaData.getColumnCount();i<=j;i++) {
+				for(int i=1,j=resultSetMetaData.getColumnCount();i<=j;i++) {
 					System.out.print("|" + resultSet.getString(i));
 				}
 				System.out.print("\n");
@@ -42,15 +42,6 @@ public interface SelectAirForces_TEST {
 	//https://stackoverflow.com/questions/2461667/centering-strings-with-printf
 	
 	
-	//+++++++++++++++Have to CHECK WHICH IS LONGER - column name or contents!! 
-	static void centerText(String text, int width) {
-		int padding = (width - text.length())/2;
-		String l = String.valueOf(text.length());
-		System.out.printf("%*s%" + text.length() + "s%*s", padding, text, padding);
-		//System.out.printf("%" + padding + "s", "");
-		//System.out.printf("%" + l + "s", text);
-		//System.out.printf("%" + padding + "s", "");
-	}
 	
 	
 	//int columnCount = resultSetMetaData.getColumnCount();
@@ -63,6 +54,18 @@ public interface SelectAirForces_TEST {
 	
 	
 	/* MAYBE return to this. Maybe!! 
+	 * 
+	 
+	//+++++++++++++++Have to CHECK WHICH IS LONGER - column name or contents!! 
+	static void centerText(String text, int width) {
+		int padding = (width - text.length())/2;
+		String l = String.valueOf(text.length());
+		System.out.printf("%*s%" + text.length() + "s%*s", padding, text, padding);
+		//System.out.printf("%" + padding + "s", "");
+		//System.out.printf("%" + l + "s", text);
+		//System.out.printf("%" + padding + "s", "");
+	}
+	
 	for (int i=1;i<=columnCount;i++) { //////////////look a tcomapreTos to copare both these lengths to find biggest for layout width sizing
 		String columnName = resultSetMetaData.getColumnName(i); ////////////////////SIZE OF COLUMN NAME
 		int columnNameSizeTEST = resultSetMetaData.getColumnName(i).length(); ////////////////////SIZE OF COLUMN NAME
