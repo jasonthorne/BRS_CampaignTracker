@@ -16,9 +16,9 @@ import org.json.simple.parser.JSONParser;
 import com.brs.ConnectDB;
 import com.brs.Insert;
 
-public interface InsertAirForces {
+public abstract class InsertAirForces {
 	
-	static void insert() {
+	public static void insert() {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB
@@ -26,10 +26,10 @@ public interface InsertAirForces {
 			///callableStatement.registerOutParameter(1, Types.VARCHAR); //register out param
 			
 	        try {
-	        	String filePath = "com/brs/airforces/airforces.json"; //path to airforces.json
+	        	String filePath = "com/brs/json/airforces.json"; //path to airforces.json
 	        	//parse read file to object, using class loader and json parser: 
 	            Object object = new JSONParser().parse(new FileReader(ClassLoader.getSystemResource(filePath).getFile()));
-	 
+	            
 	            //cast object to json array of airForces:
 	            JSONArray airForces = (JSONArray) object;
 	           ///////////////// System.out.println(airForces); ++++++++++++DELTE
@@ -38,7 +38,7 @@ public interface InsertAirForces {
 	            Iterator<JSONObject> iterator = airForces.iterator();
 				while (iterator.hasNext()) { 
 					
-					//get airForce from iterator:
+					//get airForce from iterator.next():
 					JSONObject airForce = (JSONObject) iterator.next().get("airForce");
 					
 					//get name from airForce:
@@ -46,8 +46,8 @@ public interface InsertAirForces {
 			        System.out.println(name);
 			         
 			        //get img from airForce:
-			        String img = (String) airForce.get("img");  
-			        System.out.println(img);
+			        String imagePath = (String) airForce.get("imagePath");  
+			        System.out.println(imagePath);
 					
 				}
 	            

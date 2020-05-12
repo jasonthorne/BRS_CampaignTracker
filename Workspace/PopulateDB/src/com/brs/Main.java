@@ -19,7 +19,7 @@ import com.brs.statuses.Status;
 import com.brs.years.InsertYears;
 import com.brs.years.Year;
 
-public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEvents, InsertAirForces, InsertPlanes, InsertStatuses, SelectAirForces_TEST {
+public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEvents, /*InsertAirForces,*/ InsertPlanes, InsertStatuses, SelectAirForces_TEST {
 	
 	public static void main(String[] args) {
 		

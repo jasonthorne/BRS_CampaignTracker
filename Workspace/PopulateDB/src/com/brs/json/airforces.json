@@ -2,31 +2,31 @@
 	{
 		"airForce": {
 			"name": "RAF",
-			"img": "link to logo img"
+			"imagePath": "link to logo img"
 		}
 	},
 	{
 		"airForce": {
 			"name": "Luftwaffe",
-			"img": "link to logo imh"
+			"imagePath": "link to logo imh"
 		}
 	},
 	{
 		"airForce": {
 			"name": "USAAF",
-			"img": "link to logo img"
+			"imagePath": "link to logo img"
 		}
 	},
 	{
 		"airForce": {
 			"name": "Soviet",
-			"img": "link to logo img"
+			"imagePath": "link to logo img"
 		}
 	},
 	{
 		"airForce": {
 			"name": "Japan",
-			"img": "link to logo img"
+			"imagePath": "link to logo img"
 		}
 	}
 	
