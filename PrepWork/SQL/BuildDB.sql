@@ -79,10 +79,19 @@ DELIMITER ;
 
 /*----------------------------------------------------*/
 /* airforces involved */
+/*
+CREATE TABLE airforces( 
+  airforceID int NOT NULL AUTO_INCREMENT,
+  name varchar(64) DEFAULT NULL,
+  PRIMARY KEY (airforceID),
+  UNIQUE (name)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+*/
 
 CREATE TABLE airforces( 
   airforceID int NOT NULL AUTO_INCREMENT,
   name varchar(64) DEFAULT NULL,
+  image BLOB,
   PRIMARY KEY (airforceID),
   UNIQUE (name)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -90,11 +99,20 @@ CREATE TABLE airforces(
 /* insert airforce */
 
 DELIMITER $$
+CREATE PROCEDURE insert_airforce (IN airforce VARCHAR(64), IN airforce_image BLOB)
+BEGIN
+	INSERT INTO airforces (name, image) VALUES (airforce, airforce_image); 
+END $$
+DELIMITER ;
+
+/*
+DELIMITER $$
 CREATE PROCEDURE insert_airforce (INOUT airforce VARCHAR(64))
 BEGIN
 	INSERT INTO airforces (name) VALUES (airforce); 
 END $$
 DELIMITER ;
+*/
 
 /* select all airforces */
 

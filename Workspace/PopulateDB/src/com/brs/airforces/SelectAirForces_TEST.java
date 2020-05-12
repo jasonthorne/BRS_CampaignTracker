@@ -24,7 +24,8 @@ public interface SelectAirForces_TEST {
 			//print column data from result set:
 			while(resultSet.next()) {
 				for(int i=1,j=resultSetMetaData.getColumnCount();i<=j;i++) {
-					System.out.print("|" + resultSet.getString(i));
+					//System.out.print("|" + resultSet.getString(i).toString());
+					System.out.println("|");
 				}
 				System.out.print("\n");
 			}
