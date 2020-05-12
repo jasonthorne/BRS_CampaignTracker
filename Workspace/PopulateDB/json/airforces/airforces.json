@@ -1,32 +1,32 @@
 [
 	{
-		"airForce": {
+		"airforce": {
 			"name": "RAF",
-			"imagePath": "img/airforces/RAF.png"
+			"image_path": "img/airforces/RAF.png"
 		}
 	},
 	{
-		"airForce": {
+		"airforce": {
 			"name": "Luftwaffe",
-			"imagePath": "img/airforces/RAF.png"
+			"image_path": "img/airforces/RAF.png"
 		}
 	},
 	{
-		"airForce": {
+		"airforce": {
 			"name": "USAAF",
-			"imagePath": "img/airforces/RAF.png"
+			"image_path": "img/airforces/RAF.png"
 		}
 	},
 	{
-		"airForce": {
+		"airforce": {
 			"name": "Soviet",
-			"imagePath": "img/airforces/RAF.png"
+			"image_path": "img/airforces/RAF.png"
 		}
 	},
 	{
-		"airForce": {
+		"airforce": {
 			"name": "Japan",
-			"imagePath": "img/airforces/RAF.png"
+			"image_path": "img/airforces/RAF.png"
 		}
 	}
 	

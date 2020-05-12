@@ -34,29 +34,24 @@ public interface InsertAirForces {
 	            Iterator<JSONObject> iterator = airForces.iterator(); //iterate through airForces
 	            
 				while (iterator.hasNext()) {
-					JSONObject airForce = (JSONObject) iterator.next().get("airForce"); //get airForce from iterator
+					JSONObject airForce = (JSONObject) iterator.next().get("airforce"); //get airForce from iterator
 					
 			        String name = (String) airForce.get("name");  //get name of airForce
-			        callableStatement.setString(1, name); //set statement input with name
+			        callableStatement.setString(1, name); //set input with name
 			        
-			     
-			        String imagePath = (String) airForce.get("imagePath");  //get image path from airForce
-			        System.out.println(imagePath);
-			        
-			      //  //File file = new File("img/airforces/testPic.png"); //file object holding path to file
-					//FileInputStream fileInputStream = new FileInputStream(file); //add file obj to new FileInputStream obj
-					
-				//	callableStatement.setBinaryStream(2, fileInputStream); //add input stream to preparedStatement's binaryStream
+			        String imagePath = (String) airForce.get("image_path");  //get path of airForce image
+			        callableStatement.setBinaryStream(2, new FileInputStream(new File(imagePath))); //set input with binary stream of image
 			        
 					
 			        
 			       // callableStatement.setString(2, (String) airForce.get("name")); //set image input
 			        //System.out.println(name);
-			         
+					System.out.println(imagePath);
 			       
+					//FileInputStream fileInputStream = new FileInputStream(new File(imagePath)); //add file with image path to input stream
+					
 			        
-			        
-					////////////callableStatement.execute(); //execute statement
+					callableStatement.execute(); //execute statement
 					
 				}
 	            
