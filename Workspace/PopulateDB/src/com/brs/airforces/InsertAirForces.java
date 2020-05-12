@@ -45,8 +45,8 @@ public interface InsertAirForces {
 					
 			        
 			       // callableStatement.setString(2, (String) airForce.get("name")); //set image input
-			        //System.out.println(name);
-					System.out.println(imagePath);
+			        /////System.out.println(name);
+					////System.out.println(imagePath);
 			       
 					//FileInputStream fileInputStream = new FileInputStream(new File(imagePath)); //add file with image path to input stream
 					
