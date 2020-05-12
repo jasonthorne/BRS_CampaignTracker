@@ -85,9 +85,8 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		
 		//add air forces to DB:
 		System.out.println("------------------");
-		System.out.println("Air Forces:\n");
-		InsertAirForces.insert();
-		
+		//System.out.println("Air Forces:\n");
+		////////////InsertAirForces.insert();
 		//????????????????????????????????????
 		SelectAirForces_TEST.select();
 		
