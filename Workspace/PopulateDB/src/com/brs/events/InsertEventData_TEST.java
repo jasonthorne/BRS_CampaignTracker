@@ -56,7 +56,16 @@ public interface InsertEventData_TEST {
 				    
 				    boolean homeAdvantage = Boolean.parseBoolean((String) airForce.get("has_home_advantage")); //get home adv status
 				    System.out.println(airForceName + ": " + homeAdvantage); //++++++++++++++
+				    callableStatement = connection.prepareCall("{CALL insert_event_airforce(?,?,?)}"); //create statement
+			        callableStatement.setString(1, eventName); //set input with event name
+			        callableStatement.setString(2, airForceName); //set input with air force name
+			        callableStatement.setBoolean(3, homeAdvantage); //set input with home advantage status
+			        try {
+				    	callableStatement.execute(); //execute statement
+					}catch(Exception e) { e.printStackTrace(); }
 				}
+				//-------------------------------------------------
+			    //add air force name to 'airforces':
 		      
 			}
 			
