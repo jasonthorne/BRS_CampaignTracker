@@ -91,9 +91,10 @@ CREATE TABLE airforces(
 CREATE TABLE airforces( 
   airforceID int NOT NULL AUTO_INCREMENT,
   name varchar(64) DEFAULT NULL,
-  image_path varchar(64) DEFAULT NULL, /* +++++++++++++++++++++Make this unique too!! +++++++++++++++++++++++*/
+  image_path varchar(64) DEFAULT NULL,
   PRIMARY KEY (airforceID),
-  UNIQUE (name)
+  UNIQUE (name),
+  UNIQUE (image_path)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 /* insert airforce */
