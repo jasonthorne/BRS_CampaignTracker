@@ -17,12 +17,16 @@
 				}
 			],
 			"start_period": {
-				"block": "mid",
-				"year": "1940"
+				"period": {
+					"block": "Mid",
+					"year": "1940"
+				}
 			},
 			"end_period": {
-				"block": "early",
-				"year": "1941"
+				"period": {
+					"block": "Early",
+					"year": "1941"
+				}
 			}
 		}
 	},
@@ -44,38 +48,17 @@
 				}
 			],
 			"start_period": {
-				"block": "mid",
-				"year": "1941"
+				"period": {
+					"block": "Mid",
+					"year": "1941"
+				}
 			},
 			"end_period": {
-				"block": "late",
-				"year": "1941"
+				"period": {
+					"block": "Late",
+					"year": "1941"
+				}
 			}
-		}
-	},
-	{
-		"event": {
-			"name": "Guadalcanal"
-		}
-	},
-	{
-		"event": {
-			"name": "Stalingrad"
-		}
-	},
-	{
-		"event": {
-			"name": "Assault on the Reich"
-		}
-	},
-	{
-		"event": {
-			"name": "The Italian Campaign"
-		}
-	},
-	{
-		"event": {
-			"name": "Defence of the home islands"
 		}
 	}
 ]

@@ -2,32 +2,101 @@
 	{
 		"airforce": {
 			"name": "RAF",
-			"image_path": "img/airforces/RAF.png"
+			"image_path": "img/airforces/RAF.png",
+			"planes": [
+				{
+					"plane": {
+						"name": "Spitfire II",
+						"period_statuses": [
+							{
+								"period": {
+									"block": "Mid",
+									"year": "1940"
+								},
+								"status": "Limit"
+							},
+							{
+								"period": {
+									"block": "Late",
+									"year": "1940"
+								},
+								"status": "Auto"
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Hurricane I",
+						"period_statuses": [
+							{
+								"period": {
+									"block": "Early",
+									"year": "1940"
+								},
+								"status": "Auto"
+							},
+							{
+								"period": {
+									"block": "Mid",
+									"year": "1940"
+								},
+								"status": "Auto"
+							}
+						]
+					}
+				}	
+			]
 		}
 	},
 	{
 		"airforce": {
 			"name": "Luftwaffe",
-			"image_path": "img/airforces/Luftwaffe.png"
-		}
-	},
-	{
-		"airforce": {
-			"name": "USAAF",
-			"image_path": "img/airforces/USAAF.png"
-		}
-	},
-	{
-		"airforce": {
-			"name": "Soviet",
-			"image_path": "img/airforces/Soviet.png"
-		}
-	},
-	{
-		"airforce": {
-			"name": "Japan",
-			"image_path": "img/airforces/Japan.png"
+			"image_path": "img/airforces/Luftwaffe.png",
+			"planes": [
+				{
+					"plane": {
+						"name": "Bf109 E",
+						"period_statuses": [
+							{
+								"period": {
+									"block": "Early",
+									"year": "1940"
+								},
+								"status": "Auto"
+							},
+							{
+								"period": {
+									"block": "Mid",
+									"year": "1940"
+								},
+								"status": "Auto"
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Bf110 C",
+						"period_statuses": [
+							{
+								"period": {
+									"block": "Early",
+									"year": "1940"
+								},
+								"status": "Auto"
+							},
+							{
+								"period": {
+									"block": "Mid",
+									"year": "1940"
+								},
+								"status": "Auto"
+							}
+						]
+					}
+				}	
+			]
 		}
 	}
-	
 ]

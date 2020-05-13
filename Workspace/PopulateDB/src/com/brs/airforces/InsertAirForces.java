@@ -28,9 +28,11 @@ public interface InsertAirForces {	 ///////////////// System.out.println(airForc
 			while (iterator.hasNext()) {
 				JSONObject airForce = (JSONObject) iterator.next().get("airforce"); //get airForce from iterator
 				
+				//name:
 		        String name = (String) airForce.get("name");  //get name of airForce
 		        callableStatement.setString(1, name); //set input with name
 		        
+		        //image_path:
 		        String imagePath = (String) airForce.get("image_path");  //get path of airForce image
 		        callableStatement.setString(2, imagePath); //set input with path
 		        
