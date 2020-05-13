@@ -1,3 +1,5 @@
+https://crunchify.com/how-to-read-json-object-from-file-in-java/
+
 //----------------------------------------
 event_data.json
 

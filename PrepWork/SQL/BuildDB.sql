@@ -73,7 +73,7 @@ CREATE TABLE events(
 DELIMITER $$
 CREATE PROCEDURE insert_event (IN event VARCHAR(64))
 BEGIN
-	INSERT IGNORE INTO events (name) VALUES (event); 
+	INSERT IGNORE INTO events (name) VALUES (event);  /* ++++++++++++++++++++++++++++ADD THIS WHERE NEEDED ELSEWHERE!!! ++++++++++++++++*/
 END $$
 DELIMITER ;
 
@@ -91,18 +91,18 @@ CREATE TABLE airforces(
 CREATE TABLE airforces( 
   airforceID int NOT NULL AUTO_INCREMENT,
   name varchar(64) DEFAULT NULL,
-  image_path varchar(64) DEFAULT NULL,
+  /*image_path varchar(64) DEFAULT NULL,++++++++++++++++++++HAVE A SEPERATE TABLWE FOR IMAGES airforce_images HOLDING MULTIPLE IMAGES*/
   PRIMARY KEY (airforceID),
-  UNIQUE (name),
-  UNIQUE (image_path)
+  UNIQUE (name) /* prevent duplicate inserts */
+  /*UNIQUE (image_path)*/
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 /* insert airforce */
 
 DELIMITER $$
-CREATE PROCEDURE insert_airforce (IN airforce VARCHAR(64), IN image VARCHAR(64))
+CREATE PROCEDURE insert_airforce (IN airforce VARCHAR(64)) /*, IN image VARCHAR(64))*/
 BEGIN
-	INSERT INTO airforces (name, image_path) VALUES (airforce, image); 
+	INSERT IGNORE INTO airforces (name) VALUES (airforce); /*, image_path) VALUES (airforce, image); */
 END $$
 DELIMITER ;
 
