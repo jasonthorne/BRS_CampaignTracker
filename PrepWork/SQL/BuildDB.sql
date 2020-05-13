@@ -11,13 +11,13 @@ CREATE TABLE blocks (
   blockID int NOT NULL AUTO_INCREMENT,
   name varchar(64) DEFAULT NULL, 
   PRIMARY KEY (blockID),
-  UNIQUE (name)
+  UNIQUE (name) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
 CREATE PROCEDURE insert_block (INOUT block VARCHAR(64))
 BEGIN
-	INSERT INTO blocks (name) VALUES (block); 
+	INSERT IGNORE INTO blocks (name) VALUES (block); 
 END $$
 DELIMITER ;
 
@@ -28,13 +28,13 @@ CREATE TABLE years (
   yearID int NOT NULL AUTO_INCREMENT,
   name varchar(4) DEFAULT NULL,
   PRIMARY KEY (yearID),
-  UNIQUE (name)
+  UNIQUE (name) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
 CREATE PROCEDURE insert_year (INOUT year VARCHAR(4))
 BEGIN
-	INSERT INTO years (name) VALUES (year); 
+	INSERT IGNORE INTO years (name) VALUES (year); 
 END $$
 DELIMITER ;
 
@@ -54,7 +54,7 @@ CREATE TABLE periods ( /* ++++++++++++++++++++++++++++This can probvably be made
 DELIMITER $$
 CREATE PROCEDURE insert_period (INOUT block VARCHAR(64), INOUT year VARCHAR(4))
 BEGIN
-	INSERT INTO periods (blockID, yearID) VALUES (
+	INSERT IGNORE INTO periods (blockID, yearID) VALUES (
 	(SELECT blockID FROM blocks WHERE blocks.name = block),
 	(SELECT yearID FROM years WHERE years.name = year));
 END $$

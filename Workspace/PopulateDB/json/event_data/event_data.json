@@ -17,16 +17,12 @@
 				}
 			],
 			"start_period": {
-				"period": {
-					"block": "Mid",
-					"year": "1940"
-				}
+				"block": "Mid",
+				"year": "1940"
 			},
 			"end_period": {
-				"period": {
-					"block": "Early",
-					"year": "1941"
-				}
+				"block": "Early",
+				"year": "1941"
 			}
 		}
 	},
@@ -48,16 +44,12 @@
 				}
 			],
 			"start_period": {
-				"period": {
-					"block": "Mid",
-					"year": "1941"
-				}
+				"block": "Mid",
+				"year": "1941"
 			},
 			"end_period": {
-				"period": {
-					"block": "Late",
-					"year": "1941"
-				}
+				"block": "Late",
+				"year": "1941"
 			}
 		}
 	}
