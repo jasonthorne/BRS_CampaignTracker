@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.brs.airforces.AirForce;
 import com.brs.airforces.InsertAirForces;
-import com.brs.airforces.SelectAirForces_TEST;
+import com.brs.airforces.SelectAll;
 import com.brs.blocks.Block;
 import com.brs.blocks.InsertBlocks;
 import com.brs.events.Events;
@@ -19,7 +19,7 @@ import com.brs.statuses.Status;
 import com.brs.years.InsertYears;
 import com.brs.years.Year;
 
-public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEvents, /*InsertAirForces,*/ InsertPlanes, InsertStatuses, SelectAirForces_TEST {
+public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEvents, /*InsertAirForces,*/ InsertPlanes, InsertStatuses, SelectAll {
 	
 	public static void main(String[] args) {
 		
@@ -88,7 +88,7 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//System.out.println("Air Forces:\n");
 		///////////InsertAirForces.insert();
 		//????????????????????????????????????
-		SelectAirForces_TEST.select();
+		SelectAll.select(Call.SELECT_AIR_FORCES);
 		
 		//add planes to DB:
 		//INSERT_PLANES.insert();
