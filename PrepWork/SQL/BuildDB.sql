@@ -67,13 +67,13 @@ CREATE TABLE events(
   eventID int NOT NULL AUTO_INCREMENT,
   name varchar(64) DEFAULT NULL,
   PRIMARY KEY (eventID),
-  UNIQUE (name)
+  UNIQUE (name) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
-CREATE PROCEDURE insert_event (INOUT event VARCHAR(64))
+CREATE PROCEDURE insert_event (IN event VARCHAR(64))
 BEGIN
-	INSERT INTO events (name) VALUES (event); 
+	INSERT IGNORE INTO events (name) VALUES (event); 
 END $$
 DELIMITER ;
 

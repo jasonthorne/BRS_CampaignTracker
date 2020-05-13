@@ -9,6 +9,7 @@ import com.brs.airforces.SelectAll;
 import com.brs.blocks.Block;
 import com.brs.blocks.InsertBlocks;
 import com.brs.events.Events;
+import com.brs.events.InsertEventData_TEST;
 import com.brs.events.InsertEvents;
 import com.brs.periods.InsertPeriods;
 import com.brs.periods.Period;
@@ -88,7 +89,7 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		//System.out.println("Air Forces:\n");
 		///////////InsertAirForces.insert();
 		//????????????????????????????????????
-		SelectAll.select(Call.SELECT_AIR_FORCES);
+		///SelectAll.select(Call.SELECT_AIR_FORCES);
 		
 		//add planes to DB:
 		//INSERT_PLANES.insert();
@@ -100,6 +101,9 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		System.out.println("------------------");
 		System.out.println("Event data:\n");
 		/////Events.insertEventData();
+		
+		InsertEventData_TEST.insert();
+		
 		
 		
 		
