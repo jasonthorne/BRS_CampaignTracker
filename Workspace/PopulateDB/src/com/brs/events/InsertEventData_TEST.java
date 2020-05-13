@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.json.simple.JSONArray;
@@ -21,8 +20,7 @@ public interface InsertEventData_TEST {
 		CallableStatement callableStatement = null;
 		try {
 			connection = ConnectDB.getConnection();	//connect to DB
-			//CallableStatement callableStatement = connection.prepareCall("{CALL insert_airforce(?,?)}"); //create statement
-			
+	
 			//read json file to object, using json parser: 
 	        Object object = new JSONParser().parse(new FileReader("json/event_data/event_data.json"));
 	        JSONArray events = (JSONArray) object; //cast object to json array of events
@@ -30,36 +28,34 @@ public interface InsertEventData_TEST {
 	       
 			while (eventsIterator.hasNext()) {
 				JSONObject event = (JSONObject) eventsIterator.next().get("event"); //get event from iterator.next()
-				
 				//-------------------------------------------------
-				//add event name to 'events' table:
+				//add event name to 'events':
 				
 				String eventName = (String) event.get("name");  //get name of event
-				System.out.println("event: " + eventName);
 		        callableStatement = connection.prepareCall("{CALL insert_event(?)}"); //create statement
 		        callableStatement.setString(1, eventName); //set input with name
 			    try {
 			    	callableStatement.execute(); //execute statement
 				}catch(Exception e) { e.printStackTrace(); }
-				
 			    //-------------------------------------------------
-			    //add air force name to 'airforces' table:
+			    //add air force name to 'airforces':
 			    
 			    JSONArray airForces = (JSONArray) event.get("airforces"); //get array of air forces
-			    //////////////////////System.out.println("airforces:" + airForces);
-			    
 				Iterator<JSONObject> airForcesIterator = airForces.iterator(); //iterate through airForces
 				while (airForcesIterator.hasNext()) {
 					JSONObject airForce = (JSONObject) airForcesIterator.next().get("airforce"); //get airForce from iterator.next()
 					
 					String airForceName = (String) airForce.get("name");  //get name of event
-					System.out.println("airForceName: " + airForceName);
 					callableStatement = connection.prepareCall("{CALL insert_airforce(?)}"); //create statement
 			        callableStatement.setString(1, airForceName); //set input with name
 				    try {
 				    	callableStatement.execute(); //execute statement
 					}catch(Exception e) { e.printStackTrace(); }
-					
+					//-------------------------------------------------
+					//add event name, air force name & home advantage status to 'event_airforces':
+				    
+				    boolean homeAdvantage = Boolean.parseBoolean((String) airForce.get("has_home_advantage")); //get home adv status
+				    System.out.println(airForceName + ": " + homeAdvantage); //++++++++++++++
 				}
 		      
 			}

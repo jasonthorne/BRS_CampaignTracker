@@ -100,9 +100,9 @@ CREATE TABLE airforces(
 /* insert airforce */
 
 DELIMITER $$
-CREATE PROCEDURE insert_airforce (IN airforce VARCHAR(64)) /*, IN image VARCHAR(64))*/
+CREATE PROCEDURE insert_airforce (IN airforce VARCHAR(64))
 BEGIN
-	INSERT IGNORE INTO airforces (name) VALUES (airforce); /*, image_path) VALUES (airforce, image); */
+	INSERT IGNORE INTO airforces (name) VALUES (airforce);
 END $$
 DELIMITER ;
 
@@ -174,9 +174,10 @@ CREATE TABLE event_airforces (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
-CREATE PROCEDURE insert_event_airforce (INOUT event VARCHAR(64), INOUT airforce VARCHAR(64), INOUT has_home_advantage BOOLEAN)
+/*CREATE PROCEDURE insert_event_airforce (INOUT event VARCHAR(64), INOUT airforce VARCHAR(64), INOUT has_home_advantage BOOLEAN)*/
+CREATE PROCEDURE insert_event_airforce (IN event VARCHAR(64), IN airforce VARCHAR(64), IN has_home_advantage BOOLEAN)
 BEGIN
-	INSERT INTO event_airforces (eventID, airforceID, has_home_advantage) VALUES (
+	INSERT IGNORE INTO event_airforces (eventID, airforceID, has_home_advantage) VALUES (
 	(SELECT eventID FROM events WHERE events.name = event),
 	(SELECT airforceID FROM airforces WHERE airforces.name = airforce),
 	has_home_advantage);
