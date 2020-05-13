@@ -8,25 +8,25 @@
 	{
 		"airforce": {
 			"name": "Luftwaffe",
-			"image_path": "img/airforces/RAF.png"
+			"image_path": "img/airforces/Luftwaffe.png"
 		}
 	},
 	{
 		"airforce": {
 			"name": "USAAF",
-			"image_path": "img/airforces/RAF.png"
+			"image_path": "img/airforces/USAAF.png"
 		}
 	},
 	{
 		"airforce": {
 			"name": "Soviet",
-			"image_path": "img/airforces/RAF.png"
+			"image_path": "img/airforces/Soviet.png"
 		}
 	},
 	{
 		"airforce": {
 			"name": "Japan",
-			"image_path": "img/airforces/RAF.png"
+			"image_path": "img/airforces/Japan.png"
 		}
 	}
 	

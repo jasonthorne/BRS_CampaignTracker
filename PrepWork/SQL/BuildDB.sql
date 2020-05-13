@@ -91,7 +91,7 @@ CREATE TABLE airforces(
 CREATE TABLE airforces( 
   airforceID int NOT NULL AUTO_INCREMENT,
   name varchar(64) DEFAULT NULL,
-  image BLOB,
+  image_path varchar(64) DEFAULT NULL, /* +++++++++++++++++++++Make this unique too!! +++++++++++++++++++++++*/
   PRIMARY KEY (airforceID),
   UNIQUE (name)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -99,9 +99,9 @@ CREATE TABLE airforces(
 /* insert airforce */
 
 DELIMITER $$
-CREATE PROCEDURE insert_airforce (IN airforce VARCHAR(64), IN airforce_image BLOB)
+CREATE PROCEDURE insert_airforce (IN airforce VARCHAR(64), IN image VARCHAR(64))
 BEGIN
-	INSERT INTO airforces (name, image) VALUES (airforce, airforce_image); 
+	INSERT INTO airforces (name, image_path) VALUES (airforce, image); 
 END $$
 DELIMITER ;
 
