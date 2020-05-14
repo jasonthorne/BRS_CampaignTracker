@@ -14,7 +14,7 @@ import com.brs.ConnectDB;
 
 public interface InsertEventData_TEST {
 	
-	static void insert() {
+	static void insert() { //do airforces first, to ensure all airforces and periods are added to tables! 
 		
 		Connection connection = null;
 		CallableStatement callableStatement = null;
@@ -24,10 +24,10 @@ public interface InsertEventData_TEST {
 			//read json file to object reference, using json parser: 
 	        Object object = new JSONParser().parse(new FileReader("json/event_data/event_data.json"));
 	        JSONArray events = (JSONArray) object; //cast object to json array of events
-	        Iterator<JSONObject> eventsIterator = events.iterator(); //iterate through events
+	        Iterator<JSONObject> eventIterator = events.iterator(); //iterate through events
 	       
-			while (eventsIterator.hasNext()) {
-				JSONObject event = (JSONObject) eventsIterator.next().get("event"); //get event from iterator.next()
+			while (eventIterator.hasNext()) {
+				JSONObject event = (JSONObject) eventIterator.next().get("event"); //get event from iterator.next()
 				//-------------------------------------------------
 				//add event to 'events':
 				
@@ -38,12 +38,12 @@ public interface InsertEventData_TEST {
 			    	//////////////callableStatement.execute(); //execute statement
 				}catch(Exception e) { e.printStackTrace(); }
 			    //-------------------------------------------------
-			    //add air force to 'airforces':
+			    //add air force to 'airforces': //+++++++++++++++instead of this, just grab airforce, for adding to event_airforce below
 			    
 			    JSONArray airForces = (JSONArray) event.get("airforces"); //get array of air forces
-				Iterator<JSONObject> airForcesIterator = airForces.iterator(); //iterate through airForces
-				while (airForcesIterator.hasNext()) {
-					JSONObject airForce = (JSONObject) airForcesIterator.next().get("airforce"); //get airForce from iterator.next()
+				Iterator<JSONObject> airForceIterator = airForces.iterator(); //iterate through airForces
+				while (airForceIterator.hasNext()) {
+					JSONObject airForce = (JSONObject) airForceIterator.next().get("airforce"); //get airForce from iterator.next()
 					
 					String airForceName = (String) airForce.get("name");  //get name of event
 					callableStatement = connection.prepareCall("{CALL insert_airforce(?)}"); //create statement

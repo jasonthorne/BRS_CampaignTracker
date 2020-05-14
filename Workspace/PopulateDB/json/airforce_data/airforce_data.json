@@ -2,7 +2,14 @@
 	{
 		"airforce": {
 			"name": "RAF",
-			"image_path": "img/airforces/RAF.png",
+			"images": [
+				{
+					"image": {
+						"name": "Logo",
+						"path": "img/airforces/RAF.png"
+					}
+				}
+			],
 			"planes": [
 				{
 					"plane": {
@@ -52,7 +59,14 @@
 	{
 		"airforce": {
 			"name": "Luftwaffe",
-			"image_path": "img/airforces/Luftwaffe.png",
+			"images": [
+				{
+					"image": {
+						"name": "Logo",
+						"path": "img/airforces/Luftwaffe.png"
+					}
+				}
+			],
 			"planes": [
 				{
 					"plane": {

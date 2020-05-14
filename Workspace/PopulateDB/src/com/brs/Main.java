@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.brs.airforces.AirForce;
+import com.brs.airforces.InsertAirForceData_TEST;
 import com.brs.airforces.InsertAirForces;
 import com.brs.airforces.SelectAll;
 import com.brs.blocks.Block;
@@ -25,22 +26,8 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 	public static void main(String[] args) {
 		
 		
-	
 		// each county has its own class,. with - airforce name, planes, events (if home adv or not)
 		
-		/*
-		Plane_OLD plane1 = new Plane_OLD(Plane.SPITFIRE_II, AirForce.RAF, Arrays.asList(
-				new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT),
-				new PeriodStatus(new Period(Block.LATE, Year.FORTY), Status.AUTO)));*/
-		
-		List<Plane_OLD>plane_OLDs = Arrays.asList(
-				new Plane_OLD(Plane.SPITFIRE_II, AirForce.RAF, Arrays.asList(
-						new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT),
-						new PeriodStatus(new Period(Block.LATE, Year.FORTY), Status.AUTO))),
-				new Plane_OLD(Plane.HURRICANE_I, AirForce.RAF, Arrays.asList(
-						new PeriodStatus(new Period(Block.EARLY, Year.FORTY), Status.AUTO),
-						new PeriodStatus(new Period(Block.MID, Year.FORTY), Status.LIMIT)))
-		);
 		
 		
 		/*
@@ -58,7 +45,10 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		System.out.println("==================");
 		System.out.println(" INSERTING DATA:");
 		
+		//InsertEventData_TEST.insert();
+		InsertAirForceData_TEST.insert();
 	
+		/*
 		//add blocks to DB:
 		System.out.println("------------------");
 		System.out.println("Blocks:\n"); 
@@ -102,7 +92,8 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		System.out.println("Event data:\n");
 		/////Events.insertEventData();
 		
-		InsertEventData_TEST.insert();
+		*/
+		
 		
 		
 		

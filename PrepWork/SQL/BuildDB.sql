@@ -5,6 +5,24 @@ CREATE DATABASE blood_red_skies_db;
 USE blood_red_skies_db;
 
 /*----------------------------------------------------*/
+/* images */
+
+CREATE TABLE images (
+  imageID int NOT NULL AUTO_INCREMENT,
+  name varchar(64) DEFAULT NULL,
+  path varchar(64) DEFAULT NULL,
+  PRIMARY KEY (imageID),
+  CONSTRAINT name_path UNIQUE (name, path)	/* make combined columns unique */
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_image (IN image VARCHAR(64), IN image_path VARCHAR(64))
+BEGIN
+	INSERT IGNORE INTO images (name, path) VALUES (image, image_path); 
+END $$
+DELIMITER ;
+
+/*----------------------------------------------------*/
 /* blocks of a year (early, mid, late) */
 
 CREATE TABLE blocks (
@@ -79,14 +97,6 @@ DELIMITER ;
 
 /*----------------------------------------------------*/
 /* airforces involved */
-/*
-CREATE TABLE airforces( 
-  airforceID int NOT NULL AUTO_INCREMENT,
-  name varchar(64) DEFAULT NULL,
-  PRIMARY KEY (airforceID),
-  UNIQUE (name)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-*/
 
 CREATE TABLE airforces( 
   airforceID int NOT NULL AUTO_INCREMENT,
@@ -105,15 +115,6 @@ BEGIN
 	INSERT IGNORE INTO airforces (name) VALUES (airforce);
 END $$
 DELIMITER ;
-
-/*
-DELIMITER $$
-CREATE PROCEDURE insert_airforce (INOUT airforce VARCHAR(64))
-BEGIN
-	INSERT INTO airforces (name) VALUES (airforce); 
-END $$
-DELIMITER ;
-*/
 
 /* select all airforces */
 
