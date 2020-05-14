@@ -65,14 +65,14 @@ BEGIN
 	WHERE images.name = image_name AND images.path = image_path;
 	
 	IF images_imageID = 0 THEN	/* if id isnt there: */
-	
 		CALL insert_image(image_name, image_path); /* insert image in images */
 		
-		/* insert airforceID and imageID into airforce_images */
-		INSERT IGNORE INTO airforce_images (airforceID, imageID) VALUES (
-		(SELECT airforceID FROM airforces WHERE airforceID.name = airforce_name),
-		(SELECT imageID FROM images WHERE imageID.name = image_name));
+	/* insert airforceID and imageID into airforce_images */
+	INSERT IGNORE INTO airforce_images (airforceID, imageID) VALUES (
+	(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
+	(SELECT imageID FROM images WHERE images.name = image_name));
 	END IF;
+	
 END $$
 DELIMITER ;
 

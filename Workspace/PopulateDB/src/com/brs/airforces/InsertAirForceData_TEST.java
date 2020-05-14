@@ -31,22 +31,34 @@ public interface InsertAirForceData_TEST {
 			    //-------------------------------------------------
 			    //add air force to 'airforces':
 			    
-				String airForceName = (String) airForce.get("name");  //get name of event
+				String airForceName = (String) airForce.get("name");  //get name of air force
 				callableStatement = connection.prepareCall("{CALL insert_airforce(?)}"); //create statement
 		        callableStatement.setString(1, airForceName); //set input with name
 			    try {
 			    	callableStatement.execute(); //execute statement
 				}catch(Exception e) { e.printStackTrace(); }
-			    ////////System.out.println(airForceName);
 			    //-------------------------------------------------
 				//add images to 'airforce_images':
-			    
-			    
-			    
+			   
+			    JSONArray images = (JSONArray) airForce.get("images"); //get array of images
+				Iterator<JSONObject> imageIterator = images.iterator(); //iterate through images
+				while (imageIterator.hasNext()) {
+					JSONObject image = (JSONObject) imageIterator.next().get("image"); //get image from imageIterator.next()
+					
+					String imageName = (String) image.get("name");  //get name of image
+					String imagePath = (String) image.get("path");  //get path of image
+					callableStatement = connection.prepareCall("{CALL insert_airforce_image(?,?,?)}"); //create statement
+			        callableStatement.setString(1, airForceName); //set input with name
+			        callableStatement.setString(2, imageName); //set input with image
+			        callableStatement.setString(3, imagePath); //set input with path
+			        System.out.println(airForceName);
+			        try {
+				    	callableStatement.execute(); //execute statement
+					}catch(Exception e) { e.printStackTrace(); }
 				//-------------------------------------------------
 				//add planes to 'airforce_planes':
 			    
-			    
+				}
 			
 			}
 			
