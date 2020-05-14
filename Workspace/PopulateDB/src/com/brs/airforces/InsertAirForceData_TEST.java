@@ -40,7 +40,9 @@ public interface InsertAirForceData_TEST {
 			    ////////System.out.println(airForceName);
 			    //-------------------------------------------------
 				//add images to 'airforce_images':
-			    //+++++++++++figure this out :P +++++++++++++++++++++
+			    
+			    
+			    
 				//-------------------------------------------------
 				//add planes to 'airforce_planes':
 			    

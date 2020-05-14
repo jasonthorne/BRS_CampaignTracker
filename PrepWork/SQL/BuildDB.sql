@@ -16,9 +16,9 @@ CREATE TABLE images (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
-CREATE PROCEDURE insert_image (IN image VARCHAR(64), IN image_path VARCHAR(64))
+CREATE PROCEDURE insert_image (IN image_name VARCHAR(64), IN image_path VARCHAR(64))
 BEGIN
-	INSERT IGNORE INTO images (name, path) VALUES (image, image_path); 
+	INSERT IGNORE INTO images (name, path) VALUES (image_name, image_path); 
 END $$
 DELIMITER ;
 
@@ -116,16 +116,6 @@ BEGIN
 END $$
 DELIMITER ;
 
-/* select all airforces */
-
-DELIMITER $$
-CREATE PROCEDURE select_airforces ()
-BEGIN
-	SELECT * FROM airforces 
-	ORDER BY airforceID ASC;
-END $$
-DELIMITER ;
-
 /*----------------------------------------------------*/
 /* planes available */
 
@@ -217,7 +207,63 @@ BEGIN
 END $$
 DELIMITER ;
 
+/* ================================================ */
+CREATE TABLE airforce_images (
+  airforce_imageID int NOT NULL AUTO_INCREMENT,
+  airforceID,
+  imageID,
+  PRIMARY KEY (airforce_imageID),
+  FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
+  FOREIGN KEY (imageID) REFERENCES images(imageID)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+/*
+DELIMITER $$
+CREATE PROCEDURE insert_airforce_image (IN airforce_name VARCHAR(64), IN image_name VARCHAR(64), IN image_path VARCHAR(64))
+BEGIN
+	/* try find existing id for image in images:
+	int images_imageID;
+	SELECT imageID INTO images_imageID FROM images 
+	WHERE images.name = image_name AND images.path = image_path;
+	
+	/* if id isnt there (images_imageID is null): 
+	if (images_imageID is NULL){
+	
+		/* insert image in images 
+		CALL insert_image(image_name, image_path); 
+		
+		/* get newly created id 
+		SELECT imageID 
+		INTO images_imageID 
+		FROM images 
+		WHERE images.name = image_name;
+		
+		
+		/* insert id and airforce_name into airforce_images
+		/*
+		INSERT IGNORE INTO airforce_images (name, path) VALUES (image, image_path);
+		
+		INSERT IGNORE INTO periods (blockID, yearID) VALUES (
+		(SELECT blockID FROM blocks WHERE blocks.name = block),
+		(SELECT yearID FROM years WHERE years.name = year));
+	
+	
+END $$
+DELIMITER ;
+}*/
+/* ================================================ */
 /*----------------------------------------------------*/
+	/* GENERIC PROCEDURES */
+/*----------------------------------------------------*/
+/* select all entries */
+
+DELIMITER $$
+CREATE PROCEDURE select_all(in table_name VARCHAR(64))
+BEGIN
+	SELECT * FROM table_name 
+	/*ORDER BY airforceID ASC; ++++++++++++++++FIGURE THIS OUT :P */ 
+END $$
+DELIMITER ;
+
 /*
 INSERT INTO periods (blockID, yearID) VALUES (
 	(SELECT blockID FROM blocks WHERE blocks.name = 'Early'),
