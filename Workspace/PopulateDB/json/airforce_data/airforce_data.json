@@ -8,8 +8,14 @@
 						"name": "Logo",
 						"path": "img/airforces/RAF.png"
 					}
+				},
+				{
+					"image": {
+						"name": "Logo",
+						"path": "img/airforces/RAF.png"
+					}
 				}
-			],
+		 	],
 			"planes": [
 				{
 					"plane": {
@@ -63,6 +69,12 @@
 				{
 					"image": {
 						"name": "Logo",
+						"path": "img/airforces/Luftwaffe.png"
+					}
+				},
+				{
+					"image": {
+						"name": "Yo dawg!",
 						"path": "img/airforces/Luftwaffe.png"
 					}
 				}
