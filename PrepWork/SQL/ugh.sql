@@ -11,14 +11,12 @@ CREATE TABLE images (
   name varchar(64) DEFAULT NULL,
   path varchar(64) DEFAULT NULL,
   PRIMARY KEY (imageID),
-  /*CONSTRAINT name_path UNIQUE (name, path)	/* make combined columns unique */
-  UNIQUE (path)
+  UNIQUE (path) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
 CREATE PROCEDURE insert_image (IN image_name VARCHAR(64), IN image_path VARCHAR(64))
 BEGIN
-	/*INSERT IGNORE INTO images (name, path) VALUES (image_name, image_path); */
 	INSERT IGNORE INTO images (name, path) VALUES (image_name, image_path); 
 END $$
 DELIMITER ;
@@ -52,8 +50,7 @@ CREATE TABLE airforce_images (
   PRIMARY KEY (airforce_imageID),
   FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
   FOREIGN KEY (imageID) REFERENCES images(imageID),
-  CONSTRAINT airforceID_imageID UNIQUE (airforceID, imageID)	/* make combined columns unique */
-  /*UNIQUE (imageID) /* prevent duplicate inserts */
+  UNIQUE (imageID) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 /* insert airforce images */
@@ -61,34 +58,21 @@ CREATE TABLE airforce_images (
 DELIMITER $$
 CREATE PROCEDURE insert_airforce_image (IN airforce_name VARCHAR(64), IN image_name VARCHAR(64), IN image_path VARCHAR(64))
 BEGIN
-	/* try find existing id for image in images: */
+	/* check for existing id relating to image_path: */
 	DECLARE images_imageID INT DEFAULT 0;
 	SELECT imageID
 	INTO images_imageID
 	FROM images
-	WHERE images.name = image_name AND images.path = image_path;
-	/*WHERE images.path = image_path;*/
+	WHERE images.path = image_path;
 	
-	/*IF images_imageID = 0 THEN	/* if id isnt there: */
-		/*CALL insert_image(image_name, image_path); /* insert image in images */
+	IF images_imageID = 0 THEN	/* if id isn't there: */
+		CALL insert_image(image_name, image_path); /* insert image in images */
 		
-	/* insert airforceID and imageID into airforce_images */
-	/*INSERT IGNORE INTO airforce_images (airforceID, imageID) VALUES (*/
-	/*
-	INSERT IGNORE INTO airforce_images (airforceID, imageID) VALUES (
-	(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
-	(SELECT imageID FROM images WHERE images.name = image_name));
-	
-
+		/* insert airforceID and imageID into airforce_images */
+		INSERT IGNORE INTO airforce_images (airforceID, imageID) VALUES (
+		(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
+		(SELECT imageID FROM images WHERE images.name = image_name AND images.path = image_path));
 	END IF;
-	*/
-	INSERT IGNORE INTO images (name, path) VALUES (image_name, image_path);
-	
-	
-	INSERT IGNORE INTO airforce_images (airforceID, imageID) VALUES (
-	(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
-	(SELECT imageID FROM images WHERE images.name = image_name AND images.path = image_path));
-	
 END $$
 DELIMITER ;
 
