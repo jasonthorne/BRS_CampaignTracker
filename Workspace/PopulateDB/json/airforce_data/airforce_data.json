@@ -22,18 +22,22 @@
 						"name": "Spitfire II",
 						"period_statuses": [
 							{
-								"period": {
-									"block": "Mid",
-									"year": "1940"
-								},
-								"status": "Limit"
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
 							},
 							{
-								"period": {
-									"block": "Late",
-									"year": "1940"
-								},
-								"status": "Auto"
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
 							}
 						]
 					}
@@ -43,18 +47,22 @@
 						"name": "Spitfire II",
 						"period_statuses": [
 							{
-								"period": {
-									"block": "Early",
-									"year": "1940"
-								},
-								"status": "Auto"
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
 							},
 							{
-								"period": {
-									"block": "Mid",
-									"year": "1940"
-								},
-								"status": "Auto"
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
 							}
 						]
 					}
@@ -85,18 +93,22 @@
 						"name": "Bf109 E",
 						"period_statuses": [
 							{
-								"period": {
-									"block": "Early",
-									"year": "1940"
-								},
-								"status": "Auto"
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
 							},
 							{
-								"period": {
-									"block": "Mid",
-									"year": "1940"
-								},
-								"status": "Auto"
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
 							}
 						]
 					}
@@ -106,18 +118,22 @@
 						"name": "Spitfire II",
 						"period_statuses": [
 							{
-								"period": {
-									"block": "Early",
-									"year": "1940"
-								},
-								"status": "Auto"
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
 							},
 							{
-								"period": {
-									"block": "Mid",
-									"year": "1940"
-								},
-								"status": "Auto"
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
 							}
 						]
 					}

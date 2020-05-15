@@ -35,7 +35,7 @@ public interface InsertAirForceData_TEST {
 				callableStatement = connection.prepareCall("{CALL insert_airforce(?)}"); //create statement
 		        callableStatement.setString(1, airForceName); //set input with name
 			    try {
-			    	callableStatement.execute(); //execute statement
+			    	///////////callableStatement.execute(); //execute statement
 				}catch(Exception e) { e.printStackTrace(); }
 			    //-------------------------------------------------
 				//add images to 'airforce_images':
@@ -52,7 +52,7 @@ public interface InsertAirForceData_TEST {
 			        callableStatement.setString(2, imageName); //set input with image
 			        callableStatement.setString(3, imagePath); //set input with path
 			        try {
-				    	callableStatement.execute(); //execute statement
+				    	///////////callableStatement.execute(); //execute statement
 					}catch(Exception e) { e.printStackTrace(); }
 				}
 				//-------------------------------------------------
@@ -68,12 +68,25 @@ public interface InsertAirForceData_TEST {
 			        callableStatement.setString(1, airForceName); //set input with air force
 			        callableStatement.setString(2, planeName); //set input with plane
 			        try {
-				    	callableStatement.execute(); //execute statement
+				    	///////////////callableStatement.execute(); //execute statement
 					}catch(Exception e) { e.printStackTrace(); }
-					System.out.println(planeName);
-				}
-			
-			}
+					//-------------------------------------------------
+					//add periods and statuses to 'airforce_plane_period_statuses':
+					
+					JSONArray periodStatuses = (JSONArray) plane.get("period_statuses"); //get array of period statuses
+					Iterator<JSONObject> periodStatusesIterator = periodStatuses.iterator(); //iterate through periodStatuses
+					while (periodStatusesIterator.hasNext()) {
+						//get period_status from planeIterator.next():
+						JSONObject periodStatus = (JSONObject) periodStatusesIterator.next().get("period_status");
+						
+						System.out.println("periodStatus: " + periodStatus);
+						
+					}
+					
+					
+				} //planeIterator
+				
+			} //airForceIterator
 			
 		}catch(Exception e) { e.printStackTrace(); }
 		finally {

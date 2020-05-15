@@ -14,7 +14,7 @@ import com.brs.ConnectDB;
 
 public interface InsertEventData_TEST {
 	
-	static void insert() { //do airforces first, to ensure all airforces and periods are added to tables! 
+	static void insert() {
 		
 		Connection connection = null;
 		CallableStatement callableStatement = null;
