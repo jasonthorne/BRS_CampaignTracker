@@ -34,9 +34,9 @@ CREATE TABLE airforces(
 /* insert airforce */
 
 DELIMITER $$
-CREATE PROCEDURE insert_airforce (IN airforce VARCHAR(64))
+CREATE PROCEDURE insert_airforce (IN airforce_name VARCHAR(64))
 BEGIN
-	INSERT IGNORE INTO airforces (name) VALUES (airforce);
+	INSERT IGNORE INTO airforces (name) VALUES (airforce_name);
 END $$
 DELIMITER ;
 
@@ -58,7 +58,7 @@ CREATE TABLE airforce_images (
 DELIMITER $$
 CREATE PROCEDURE insert_airforce_image (IN airforce_name VARCHAR(64), IN image_name VARCHAR(64), IN image_path VARCHAR(64))
 BEGIN
-	/* check for existing id relating to image_path: */
+	/* check for existing id relating to path: */
 	DECLARE images_imageID INT DEFAULT 0;
 	SELECT imageID
 	INTO images_imageID
@@ -76,5 +76,45 @@ BEGIN
 END $$
 DELIMITER ;
 
+/*----------------------------------------------------*/
+/* planes available */
 
+CREATE TABLE planes( 
+  planeID int NOT NULL AUTO_INCREMENT,
+  name varchar(64) DEFAULT NULL,
+  PRIMARY KEY (planeID),
+  UNIQUE (name)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_plane (IN plane_name VARCHAR(64))
+BEGIN
+	INSERT IGNORE INTO planes (name) VALUES (plane_name); 
+END $$
+DELIMITER ;
+
+/*----------------------------------------------------*/
+/* planes available to each airforce */
+
+CREATE TABLE airforce_planes( 
+  airforce_planeID int NOT NULL AUTO_INCREMENT,
+  airforceID int,
+  planeID int,
+  PRIMARY KEY (airforce_planeID),
+  FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
+  FOREIGN KEY (planeID) REFERENCES planes(planeID),
+  CONSTRAINT airforceID_planeID UNIQUE (airforceID, planeID)	/* make combined columns unique */
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_airforce_plane (IN airforce_name VARCHAR(64), IN plane_name VARCHAR(64))
+BEGIN
+	/* insert plane_name to planes if not present */
+	CALL insert_plane (plane_name);
+
+	INSERT IGNORE INTO airforce_planes (airforceID, planeID) VALUES (
+	(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
+	(SELECT planeID FROM planes WHERE planes.name = plane_name));	
+END $$
+DELIMITER ;
 

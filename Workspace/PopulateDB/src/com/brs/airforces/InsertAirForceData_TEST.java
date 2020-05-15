@@ -51,13 +51,26 @@ public interface InsertAirForceData_TEST {
 			        callableStatement.setString(1, airForceName); //set input with name
 			        callableStatement.setString(2, imageName); //set input with image
 			        callableStatement.setString(3, imagePath); //set input with path
-			        System.out.println(airForceName);
 			        try {
 				    	callableStatement.execute(); //execute statement
 					}catch(Exception e) { e.printStackTrace(); }
+				}
 				//-------------------------------------------------
 				//add planes to 'airforce_planes':
 			    
+				JSONArray planes = (JSONArray) airForce.get("planes"); //get array of planes
+				Iterator<JSONObject> planeIterator = planes.iterator(); //iterate through planes
+				while (planeIterator.hasNext()) {
+					JSONObject plane = (JSONObject) planeIterator.next().get("plane"); //get plane from planeIterator.next()
+					
+					String planeName = (String) plane.get("name");  //get name of plane
+					callableStatement = connection.prepareCall("{CALL insert_airforce_plane(?,?)}"); //create statement
+			        callableStatement.setString(1, airForceName); //set input with air force
+			        callableStatement.setString(2, planeName); //set input with plane
+			        try {
+				    	callableStatement.execute(); //execute statement
+					}catch(Exception e) { e.printStackTrace(); }
+					System.out.println(planeName);
 				}
 			
 			}

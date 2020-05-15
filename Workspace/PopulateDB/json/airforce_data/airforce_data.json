@@ -40,7 +40,7 @@
 				},
 				{
 					"plane": {
-						"name": "Hurricane I",
+						"name": "Spitfire II",
 						"period_statuses": [
 							{
 								"period": {
@@ -103,7 +103,7 @@
 				},
 				{
 					"plane": {
-						"name": "Bf110 C",
+						"name": "Spitfire II",
 						"period_statuses": [
 							{
 								"period": {
