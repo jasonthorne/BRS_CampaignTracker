@@ -76,18 +76,23 @@ public interface InsertAirForceData_TEST {
 					JSONArray periodStatuses = (JSONArray) plane.get("period_statuses"); //get array of period statuses
 					Iterator<JSONObject> periodStatusesIterator = periodStatuses.iterator(); //iterate through periodStatuses
 					while (periodStatusesIterator.hasNext()) {
-						//get period_status from planeIterator.next():
+						//get period_status from planeIterator.next()
 						JSONObject periodStatus = (JSONObject) periodStatusesIterator.next().get("period_status");
 						
-						System.out.println("periodStatus: " + periodStatus);
-						
+						JSONObject period = (JSONObject) periodStatus.get("period"); //get period object from periodStatus
+						String block = (String) period.get("block"); //get block from period
+						String year = (String) period.get("year"); //get year from period
+						String status = (String) periodStatus.get("status"); //get status from periodStatus
+						callableStatement = connection.prepareCall("{CALL insert_airforce_plane_period_status(?,?,?,?,?)}"); //create statement
+						callableStatement.setString(1, airForceName); //set input with air force
+				        callableStatement.setString(2, planeName); //set input with plane
+				        callableStatement.setString(3, block); //set input with block
+				        callableStatement.setString(4, year); //set input with year
+				        callableStatement.setString(5, status); //set input with status
+						System.out.println("test: " + block + " " + year + " " + status); //+++++++++++++++++++++
 					}
-					
-					
 				} //planeIterator
-				
 			} //airForceIterator
-			
 		}catch(Exception e) { e.printStackTrace(); }
 		finally {
 			if (connection != null) {	//finally, try close connection:
@@ -97,5 +102,4 @@ public interface InsertAirForceData_TEST {
 			}
 		}
 	}
-	
 }
