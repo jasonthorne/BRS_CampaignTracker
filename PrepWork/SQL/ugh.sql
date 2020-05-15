@@ -4,6 +4,74 @@ CREATE DATABASE blood_red_skies_db;
 USE blood_red_skies_db;
 
 /*----------------------------------------------------*/
+/* blocks of a year (early, mid, late) */
+ /* https://www.mysqltutorial.org/mysql-enum/ +++++++++++++*/ 
+ /*name varchar(64) DEFAULT NULL, */
+ /*
+CREATE TABLE blocks (
+  blockID int NOT NULL AUTO_INCREMENT,
+  name ENUM ('Early', 'Mid', 'Late') DEFAULT NULL,
+  PRIMARY KEY (blockID),
+  UNIQUE (name) /* prevent duplicate inserts 
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+INSERT IGNORE INTO blocks (name) VALUES ('Early');
+INSERT IGNORE INTO blocks (name) VALUES ('Mid');
+INSERT IGNORE INTO blocks (name) VALUES ('Late');
+*/
+/*----------------------------------------------------*/
+/* years covered */
+
+CREATE TABLE years (
+  yearID int NOT NULL AUTO_INCREMENT,
+  name varchar(4) DEFAULT NULL,
+  PRIMARY KEY (yearID),
+  UNIQUE (name) /* prevent duplicate inserts */
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_year (INOUT year VARCHAR(4))
+BEGIN
+	INSERT IGNORE INTO years (name) VALUES (year); 
+END $$
+DELIMITER ;
+
+/*----------------------------------------------------*/
+/* historical periods (eg: early 1940) */
+
+CREATE TABLE periods ( 
+  periodID int NOT NULL AUTO_INCREMENT,
+  /*blockID int,*/
+  block ENUM ('Early','Mid','Late') DEFAULT NULL,
+  yearID int,
+  PRIMARY KEY (periodID),
+  /*FOREIGN KEY (blockID) REFERENCES blocks(blockID),*/
+  FOREIGN KEY (yearID) REFERENCES years(yearID),
+  /*CONSTRAINT blockID_yearID UNIQUE (blockID, yearID)	/* make combined columns unique */
+  CONSTRAINT block_yearID UNIQUE (block, yearID) /* make combined columns unique */
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_period (IN block_value VARCHAR(5), IN year_name VARCHAR(4))
+BEGIN
+	INSERT IGNORE INTO periods (block, yearID) VALUES (
+	block_value,
+	(SELECT yearID FROM years WHERE years.name = year_name));
+END $$
+DELIMITER ;
+
+/*
+DELIMITER $$
+CREATE PROCEDURE insert_period (IN block VARCHAR(64), IN year VARCHAR(4))
+BEGIN
+	INSERT IGNORE INTO periods (blockID, yearID) VALUES (
+	(SELECT blockID FROM blocks WHERE blocks.name = block),
+	(SELECT yearID FROM years WHERE years.name = year));
+END $$
+DELIMITER ;
+*/
+
+/*----------------------------------------------------*/
 /* images */
 
 CREATE TABLE images (
