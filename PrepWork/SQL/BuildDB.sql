@@ -204,7 +204,7 @@ CREATE TABLE airforce_plane_period_statuses(
   PRIMARY KEY (airforce_plane_period_statusID),
   FOREIGN KEY (airforce_planeID) REFERENCES airforce_planes(airforce_planeID),
   FOREIGN KEY (periodID) REFERENCES periods(periodID),
-  CONSTRAINT airforce_planeID_periodID UNIQUE (airforce_planeID, periodID)	/* make combined columns unique */
+  CONSTRAINT airforce_planeID_periodID_status UNIQUE (airforce_planeID, periodID, status)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -225,6 +225,11 @@ BEGIN
 		INNER JOIN years ON periods.yearID = years.yearID
 		WHERE block = block_value AND years.name = year_name),
 	status_value);
+	
+	/*
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	make a sperate table for plane_statuses then check if given status is valid, and if not, then throw exception 
+	*/
 	
 END $$
 DELIMITER ;
