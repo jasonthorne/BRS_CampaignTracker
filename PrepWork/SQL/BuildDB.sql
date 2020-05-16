@@ -3,6 +3,9 @@ CREATE DATABASE blood_red_skies_db;
 
 USE blood_red_skies_db;
 
+SET GLOBAL sql_mode = 'STRICT_TRANS_TABLES';
+SET SESSION sql_mode = 'STRICT_TRANS_TABLES';
+
 /*----------------------------------------------------*/
 /* blocks of a year (early, mid, late) */
  /* https://www.mysqltutorial.org/mysql-enum/ +++++++++++++*/ 
@@ -56,21 +59,26 @@ CREATE TABLE periods (
 DELIMITER $$
 CREATE PROCEDURE insert_period (IN block_name VARCHAR(5), IN year_name VARCHAR(4))
 BEGIN
-	DECLARE periodID_check INT DEFAULT 0;
+	/*DECLARE periodID_check INT DEFAULT 0;*/
 	
 	/* insert year_name to years if not present */
 	CALL insert_year (year_name);
 	
 	/* check for existing id relating to block_name & year_name: */
+	/*
 	SELECT periodID INTO periodID_check FROM periods
 		INNER JOIN years ON periods.yearID = years.yearID
-		WHERE periods.block = block_name AND years.name = year_name;
+		WHERE periods.block = block_name AND years.name = year_name;*/
 	
-	IF periods_periodID = 0 THEN /* if id isn't there: */
+	/*IF periods_periodID = 0 THEN /* if id isn't there: */
 		/*no IGNORE here as exception should be thrown if block_value doesnt match enum options */ 
-		INSERT INTO periods (block, yearID) VALUES (
+		/*INSERT INTO periods (block, yearID) VALUES (
+			block_name,(SELECT yearID FROM years WHERE years.name = year_name));*/
+			
+	INSERT INTO periods (block, yearID) VALUES (
 			block_name,(SELECT yearID FROM years WHERE years.name = year_name));
-	END IF;
+			
+	/*END IF;*/
 END $$
 DELIMITER ;
 
@@ -141,10 +149,11 @@ CREATE PROCEDURE insert_airforce_image (IN airforce_name VARCHAR(64), IN image_n
 BEGIN
 	/* check for existing id relating to path: */
 	DECLARE imageID_check INT DEFAULT 0;
-	SELECT imageID INTO images_imageID FROM images
+	SELECT imageID INTO imageID_check 
+	FROM images
 	WHERE images.path = image_path;
 	
-	IF images_imageID = 0 THEN	/* if id isn't there: */
+	IF imageID_check = 0 THEN	/* if id isn't there: */
 		CALL insert_image(image_name, image_path); /* insert image in images */
 		
 		/* insert airforceID and imageID into airforce_images */
