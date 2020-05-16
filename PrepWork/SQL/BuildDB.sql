@@ -3,7 +3,7 @@ CREATE DATABASE blood_red_skies_db;
 
 USE blood_red_skies_db;
 
-/* strict mode enabled to throw errors for illegal enum inserts */
+/* enabled to throw errors for invalid enum inserts: */
 SET GLOBAL sql_mode = 'STRICT_ALL_TABLES';
 SET SESSION sql_mode = 'STRICT_ALL_TABLES';
 
@@ -11,10 +11,10 @@ SET SESSION sql_mode = 'STRICT_ALL_TABLES';
 /* years covered */
 
 CREATE TABLE years (
-  yearID INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(4) DEFAULT NULL,
-  PRIMARY KEY (yearID),
-  UNIQUE (name) /* prevent duplicate inserts */
+	yearID INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(4) DEFAULT NULL,
+	PRIMARY KEY (yearID),
+	UNIQUE (name) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -29,32 +29,32 @@ DELIMITER ;
 /* historical periods (eg: early 1940) */
 
 CREATE TABLE periods ( 
-  periodID INT NOT NULL AUTO_INCREMENT,
-  block ENUM ('Early','Mid','Late') NOT NULL,
-  yearID INT,
-  PRIMARY KEY (periodID),
-  FOREIGN KEY (yearID) REFERENCES years(yearID),
-  CONSTRAINT block_yearID UNIQUE (block, yearID)	/* make combined columns unique */
+	periodID INT NOT NULL AUTO_INCREMENT,
+	block ENUM ('Early','Mid','Late') NOT NULL,
+	yearID INT,
+	PRIMARY KEY (periodID),
+	FOREIGN KEY (yearID) REFERENCES years(yearID),
+	CONSTRAINT block_yearID UNIQUE (block, yearID)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
-CREATE PROCEDURE insert_period (IN block_name VARCHAR(5), IN year_name VARCHAR(4))
+CREATE PROCEDURE insert_period (IN block_option VARCHAR(5), IN year_name VARCHAR(4))
 BEGIN
 	DECLARE periodID_check INT DEFAULT 0;
 	
 	/* insert year_name to years if not present */
 	CALL insert_year (year_name);
 	
-	/* check for existing id relating to block_name & year_name: */
+	/* check for existing id relating to block_option & year_name: */
 	SELECT periodID INTO periodID_check FROM periods
 		INNER JOIN years ON periods.yearID = years.yearID
-		WHERE periods.block = block_name AND years.name = year_name;
+		WHERE periods.block = block_option AND years.name = year_name;
 	
 	IF periodID_check = 0 THEN /* if id isn't there: */
-		/*no IGNORE here as exception should be thrown if block_value doesnt match enum options */ 
+		/*no IGNORE here as exception should be thrown if block_option doesnt match enum options */ 
 		INSERT INTO periods (block, yearID) VALUES (
-			block_name,(SELECT yearID FROM years WHERE years.name = year_name));
+			block_option,(SELECT yearID FROM years WHERE years.name = year_name));
 	END IF;
 END $$
 DELIMITER ;
@@ -63,11 +63,11 @@ DELIMITER ;
 /* images */
 
 CREATE TABLE images (
-  imageID INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(64) DEFAULT NULL,
-  path VARCHAR(64) DEFAULT NULL,
-  PRIMARY KEY (imageID),
-  UNIQUE (path) /* prevent duplicate inserts */
+	imageID INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(64) DEFAULT NULL,
+	path VARCHAR(64) DEFAULT NULL,
+	PRIMARY KEY (imageID),
+	UNIQUE (path) /* prevent duplicate inserts */
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -82,10 +82,10 @@ DELIMITER ;
 /* airforces involved */
 
 CREATE TABLE airforces( 
-  airforceID INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(64) DEFAULT NULL,
-  PRIMARY KEY (airforceID),
-  UNIQUE (name) /* prevent duplicate inserts */
+	airforceID INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(64) DEFAULT NULL,
+	PRIMARY KEY (airforceID),
+	UNIQUE (name) /* prevent duplicate inserts */
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -189,15 +189,14 @@ CREATE TABLE airforce_plane_period_statuses(
 
 DELIMITER $$
 CREATE PROCEDURE insert_airforce_plane_period_status (IN airforce_name VARCHAR(64), IN plane_name VARCHAR(64), 
-IN block_name VARCHAR(64), IN year_name VARCHAR(4), IN status_name VARCHAR(64))
+IN block_option VARCHAR(64), IN year_name VARCHAR(4), IN status_option VARCHAR(64))
 BEGIN
 	/* insert period to periods if not present */
-	CALL insert_period (block_name, year_name);
+	CALL insert_period (block_option, year_name);
 	
-	/*
-	no IGNORE here as exception should be thrown if status_name doesnt match enum options, 
-	or on an attempt to insert identical periods for the same plane 
-	*/ 
+	/* no IGNORE here as exception should be thrown if status_option doesnt match enum options, 
+	or on an attempt to insert identical periods for the same airforce_plane: */
+	
 	INSERT INTO airforce_plane_period_statuses (airforce_planeID, periodID, status) VALUES ( 
 	(SELECT airforce_planeID FROM airforce_planes
 		INNER JOIN airforces ON airforce_planes.airforceID = airforces.airforceID
@@ -205,8 +204,8 @@ BEGIN
 		WHERE airforces.name = airforce_name AND planes.name = plane_name),
 	(SELECT periodID FROM periods
 		INNER JOIN years ON periods.yearID = years.yearID
-		WHERE block = block_name AND years.name = year_name),
-	status_name);
+		WHERE block = block_option AND years.name = year_name),
+		status_option);
 END $$
 DELIMITER ;
 
