@@ -3,6 +3,9 @@ CREATE DATABASE blood_red_skies_db;
 
 USE blood_red_skies_db;
 
+/*SET SESSION sql_mode='STRICT_TRANS_TABLES';*/
+SET GLOBAL sql_mode = 'STRICT_ALL_TABLES';
+
 /*----------------------------------------------------*/
 /* blocks of a year (early, mid, late) */
  /* https://www.mysqltutorial.org/mysql-enum/ +++++++++++++*/ 
@@ -43,7 +46,7 @@ DELIMITER ;
 CREATE TABLE periods ( 
   periodID int NOT NULL AUTO_INCREMENT,
   /*blockID int,*/
-  block enum ('Early','Mid','Late') NOT NULL,
+  block ENUM ('Early','Mid','Late') NOT NULL,
   yearID int,
   PRIMARY KEY (periodID),
   /*FOREIGN KEY (blockID) REFERENCES blocks(blockID),*/
@@ -60,7 +63,7 @@ BEGIN
 	CALL insert_year (year_name);
 	
 	/*no IGNORE here as exception should be thrown if block_value doesnt match enum options */ /* this now doesnt ignore duplicate periods! DOH!! */
-	INSERT INTO periods (block, yearID) VALUES (
+	INSERT IGNORE INTO periods (block, yearID) VALUES (
 	block_name,
 	/*(SELECT blockID FROM blocks WHERE blocks.name = block_name),*/
 	(SELECT yearID FROM years WHERE years.name = year_name));
@@ -217,14 +220,14 @@ CREATE TABLE airforce_plane_period_statuses(
   airforce_plane_period_statusID int NOT NULL AUTO_INCREMENT,
   airforce_planeID int,
   periodID int,
-  status enum ('Unavailable','Limit','Auto') NOT NULL DEFAULT 'Unavailable',
+  status ENUM ('Unavailable','Limit','Auto') NOT NULL DEFAULT 'Unavailable',
   /*plane_statusID int,*/
   PRIMARY KEY (airforce_plane_period_statusID),
   FOREIGN KEY (airforce_planeID) REFERENCES airforce_planes(airforce_planeID),
   FOREIGN KEY (periodID) REFERENCES periods(periodID),
   /*FOREIGN KEY (plane_statusID) REFERENCES plane_statuses(plane_statusID),*/
-  /*CONSTRAINT airforce_planeID_periodID UNIQUE (airforce_planeID, periodID)	/* make combined columns unique */
-  CONSTRAINT airforce_planeID_periodID_status UNIQUE (airforce_planeID, periodID, status)	/* make combined columns unique */
+  CONSTRAINT airforce_planeID_periodID UNIQUE (airforce_planeID, periodID)	/* make combined columns unique */
+  /*CONSTRAINT airforce_planeID_periodID_status UNIQUE (airforce_planeID, periodID, status)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 

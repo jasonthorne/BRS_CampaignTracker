@@ -10,9 +10,13 @@ accepting junk into block BUT NOT STATUS!!!
 
 
 
+String url = "jdbc:mysql://localhost/test?user=sqluser&password=sqluserpw&sessionVariables=sql_mode='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,PIPES_AS_CONCAT'";
+Class.forName("com.mysql.jdbc.Driver");
+Connection c = DriverManager.getConnection(url);
 
+&sessionVariables=sql_mode='STRICT_TRANS_TABLES'
 
-
+Stringurl = "jdbc:mysql://localhost:3306/blood_red_skies_db?user=student&password=student&sessionVariables=sql_mode='STRICT_TRANS_TABLES'";
 
 
 https://crunchify.com/how-to-read-json-object-from-file-in-java/
