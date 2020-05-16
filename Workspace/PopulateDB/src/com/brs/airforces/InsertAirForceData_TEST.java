@@ -35,7 +35,7 @@ public interface InsertAirForceData_TEST {
 				callableStatement = connection.prepareCall("{CALL insert_airforce(?)}"); //create statement
 		        callableStatement.setString(1, airForceName); //set input with name
 			    try {
-			    	///////////callableStatement.execute(); //execute statement
+			    	callableStatement.execute(); //execute statement //++++++++++++++++++++++++++++++++++
 				}catch(Exception e) { e.printStackTrace(); }
 			    //-------------------------------------------------
 				//add images to 'airforce_images':
@@ -52,7 +52,7 @@ public interface InsertAirForceData_TEST {
 			        callableStatement.setString(2, imageName); //set input with image
 			        callableStatement.setString(3, imagePath); //set input with path
 			        try {
-				    	///////////callableStatement.execute(); //execute statement
+				    	callableStatement.execute(); //execute statement //++++++++++++++++++++++++++++++++++
 					}catch(Exception e) { e.printStackTrace(); }
 				}
 				//-------------------------------------------------
@@ -68,7 +68,7 @@ public interface InsertAirForceData_TEST {
 			        callableStatement.setString(1, airForceName); //set input with air force
 			        callableStatement.setString(2, planeName); //set input with plane
 			        try {
-				    	///////////////callableStatement.execute(); //execute statement
+				    	callableStatement.execute(); //execute statement //++++++++++++++++++++++++++++++++++
 					}catch(Exception e) { e.printStackTrace(); }
 					//-------------------------------------------------
 					//add periods and statuses to 'airforce_plane_period_statuses':
@@ -89,7 +89,10 @@ public interface InsertAirForceData_TEST {
 				        callableStatement.setString(3, block); //set input with block
 				        callableStatement.setString(4, year); //set input with year
 				        callableStatement.setString(5, status); //set input with status
-						System.out.println("test: " + block + " " + year + " " + status); //+++++++++++++++++++++
+				        try {
+					    	callableStatement.execute(); //execute statement
+				        }catch(Exception e) { e.printStackTrace(); }
+				    	System.out.println("test: " + planeName + " " + block + " " + year + " " + status); //+++++++++++++++++++++
 					}
 				} //planeIterator
 			} //airForceIterator
