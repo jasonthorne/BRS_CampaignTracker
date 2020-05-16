@@ -3,9 +3,6 @@ CREATE DATABASE blood_red_skies_db;
 
 USE blood_red_skies_db;
 
-/*SET SESSION sql_mode='STRICT_TRANS_TABLES';*/
-SET GLOBAL sql_mode = 'STRICT_ALL_TABLES';
-
 /*----------------------------------------------------*/
 /* blocks of a year (early, mid, late) */
  /* https://www.mysqltutorial.org/mysql-enum/ +++++++++++++*/ 
@@ -59,14 +56,21 @@ CREATE TABLE periods (
 DELIMITER $$
 CREATE PROCEDURE insert_period (IN block_name VARCHAR(5), IN year_name VARCHAR(4))
 BEGIN
+	DECLARE periodID_check INT DEFAULT 0;
+	
 	/* insert year_name to years if not present */
 	CALL insert_year (year_name);
 	
-	/*no IGNORE here as exception should be thrown if block_value doesnt match enum options */ /* this now doesnt ignore duplicate periods! DOH!! */
-	INSERT IGNORE INTO periods (block, yearID) VALUES (
-	block_name,
-	/*(SELECT blockID FROM blocks WHERE blocks.name = block_name),*/
-	(SELECT yearID FROM years WHERE years.name = year_name));
+	/* check for existing id relating to block_name & year_name: */
+	SELECT periodID INTO periodID_check FROM periods
+		INNER JOIN years ON periods.yearID = years.yearID
+		WHERE periods.block = block_name AND years.name = year_name;
+	
+	IF periods_periodID = 0 THEN /* if id isn't there: */
+		/*no IGNORE here as exception should be thrown if block_value doesnt match enum options */ 
+		INSERT INTO periods (block, yearID) VALUES (
+			block_name,(SELECT yearID FROM years WHERE years.name = year_name));
+	END IF;
 END $$
 DELIMITER ;
 
@@ -90,7 +94,7 @@ CREATE TABLE images (
   path varchar(64) DEFAULT NULL,
   PRIMARY KEY (imageID),
   UNIQUE (path) /* prevent duplicate inserts */
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
@@ -108,7 +112,7 @@ CREATE TABLE airforces(
   name varchar(64) DEFAULT NULL,
   PRIMARY KEY (airforceID),
   UNIQUE (name) /* prevent duplicate inserts */
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
@@ -122,24 +126,22 @@ DELIMITER ;
 /* airforce images */
 
 CREATE TABLE airforce_images (
-  airforce_imageID int NOT NULL AUTO_INCREMENT,
-  airforceID int,
-  imageID int,
-  PRIMARY KEY (airforce_imageID),
-  FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
-  FOREIGN KEY (imageID) REFERENCES images(imageID),
-  UNIQUE (imageID) /* prevent duplicate inserts */
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+	airforce_imageID int NOT NULL AUTO_INCREMENT,
+	airforceID int,
+	imageID int,
+	PRIMARY KEY (airforce_imageID),
+	FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
+	FOREIGN KEY (imageID) REFERENCES images(imageID),
+	UNIQUE (imageID) /* prevent duplicate inserts */
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
 CREATE PROCEDURE insert_airforce_image (IN airforce_name VARCHAR(64), IN image_name VARCHAR(64), IN image_path VARCHAR(64))
 BEGIN
 	/* check for existing id relating to path: */
-	DECLARE images_imageID INT DEFAULT 0;
-	SELECT imageID
-	INTO images_imageID
-	FROM images
+	DECLARE imageID_check INT DEFAULT 0;
+	SELECT imageID INTO images_imageID FROM images
 	WHERE images.path = image_path;
 	
 	IF images_imageID = 0 THEN	/* if id isn't there: */
@@ -147,8 +149,8 @@ BEGIN
 		
 		/* insert airforceID and imageID into airforce_images */
 		INSERT IGNORE INTO airforce_images (airforceID, imageID) VALUES (
-		(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
-		(SELECT imageID FROM images WHERE images.name = image_name AND images.path = image_path));
+			(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
+			(SELECT imageID FROM images WHERE images.name = image_name AND images.path = image_path));
 	END IF;
 END $$
 DELIMITER ;
@@ -156,12 +158,12 @@ DELIMITER ;
 /*----------------------------------------------------*/
 /* planes available */
 
-CREATE TABLE planes( 
-  planeID int NOT NULL AUTO_INCREMENT,
-  name varchar(64) DEFAULT NULL,
-  PRIMARY KEY (planeID),
-  UNIQUE (name)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+CREATE TABLE planes(
+	planeID int NOT NULL AUTO_INCREMENT,
+	name varchar(64) DEFAULT NULL,
+	PRIMARY KEY (planeID),
+	UNIQUE (name)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
@@ -174,15 +176,15 @@ DELIMITER ;
 /*----------------------------------------------------*/
 /* planes available to each airforce */
 
-CREATE TABLE airforce_planes( 
-  airforce_planeID int NOT NULL AUTO_INCREMENT,
-  airforceID int,
-  planeID int,
-  PRIMARY KEY (airforce_planeID),
-  FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
-  FOREIGN KEY (planeID) REFERENCES planes(planeID),
-  CONSTRAINT airforceID_planeID UNIQUE (airforceID, planeID)	/* make combined columns unique */
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+CREATE TABLE airforce_planes(
+	airforce_planeID int NOT NULL AUTO_INCREMENT,
+	airforceID int,
+	planeID int,
+	PRIMARY KEY (airforce_planeID),
+	FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
+	FOREIGN KEY (planeID) REFERENCES planes(planeID),
+	CONSTRAINT airforceID_planeID UNIQUE (airforceID, planeID)	/* make combined columns unique */
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
@@ -192,8 +194,8 @@ BEGIN
 	CALL insert_plane (plane_name);
 
 	INSERT IGNORE INTO airforce_planes (airforceID, planeID) VALUES (
-	(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
-	(SELECT planeID FROM planes WHERE planes.name = plane_name));	
+		(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
+		(SELECT planeID FROM planes WHERE planes.name = plane_name));	
 END $$
 DELIMITER ;
 
@@ -217,37 +219,27 @@ INSERT INTO plane_statuses (name) VALUES ('Auto');
 /* availability statuses of air force planes in relation to historical periods */
 
 CREATE TABLE airforce_plane_period_statuses(
-  airforce_plane_period_statusID int NOT NULL AUTO_INCREMENT,
-  airforce_planeID int,
-  periodID int,
-  status ENUM ('Unavailable','Limit','Auto') NOT NULL DEFAULT 'Unavailable',
-  /*plane_statusID int,*/
-  PRIMARY KEY (airforce_plane_period_statusID),
-  FOREIGN KEY (airforce_planeID) REFERENCES airforce_planes(airforce_planeID),
-  FOREIGN KEY (periodID) REFERENCES periods(periodID),
-  /*FOREIGN KEY (plane_statusID) REFERENCES plane_statuses(plane_statusID),*/
-  CONSTRAINT airforce_planeID_periodID UNIQUE (airforce_planeID, periodID)	/* make combined columns unique */
-  /*CONSTRAINT airforce_planeID_periodID_status UNIQUE (airforce_planeID, periodID, status)	/* make combined columns unique */
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+	airforce_plane_period_statusID int NOT NULL AUTO_INCREMENT,
+	airforce_planeID int,
+	periodID int,
+	status ENUM ('Unavailable','Limit','Auto') NOT NULL DEFAULT 'Unavailable',
+	/*plane_statusID int,*/
+	PRIMARY KEY (airforce_plane_period_statusID),
+	FOREIGN KEY (airforce_planeID) REFERENCES airforce_planes(airforce_planeID),
+	FOREIGN KEY (periodID) REFERENCES periods(periodID),
+	/*FOREIGN KEY (plane_statusID) REFERENCES plane_statuses(plane_statusID),*/
+	CONSTRAINT airforce_planeID_periodID UNIQUE (airforce_planeID, periodID)	/* make combined columns unique */
+	/*CONSTRAINT airforce_planeID_periodID_status UNIQUE (airforce_planeID, periodID, status)	/* make combined columns unique */
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
 CREATE PROCEDURE insert_airforce_plane_period_status (IN airforce_name VARCHAR(64), IN plane_name VARCHAR(64), 
 IN block_name VARCHAR(64), IN year_name VARCHAR(4), IN status_name VARCHAR(64))
 BEGIN
-	
-	/*
-	DECLARE EXIT HANDLER FOR SQLEXCEPTION
-	BEGIN
-    ROLLBACK;
-    SELECT 'An error has occurred, operation rollbacked and the stored procedure was terminated';
-	END;
-	*/
-
 	/* insert period to periods if not present */
 	CALL insert_period (block_name, year_name);
 	
-	/* change this along with periods +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 	/*no IGNORE here as exception should be thrown if status_value doesnt match enum options */ 
 	INSERT INTO airforce_plane_period_statuses (airforce_planeID, periodID, status) VALUES ( 
 	(SELECT airforce_planeID FROM airforce_planes
@@ -260,13 +252,6 @@ BEGIN
 		/*WHERE blocks.name = block_name AND years.name = year_name),*/
 		WHERE block = block_name AND years.name = year_name),
 	status_name);
-	/*(SELECT plane_statusID FROM plane_statuses WHERE plane_statuses.name = status_name));*/
-	
-	/*
-	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	make a sperate table for plane_statuses then check if given status is valid, and if not, then throw exception 
-	*/
-	
 END $$
 DELIMITER ;
 
