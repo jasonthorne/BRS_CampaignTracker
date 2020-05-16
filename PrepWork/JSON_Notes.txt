@@ -1,7 +1,14 @@
 
-periods id 7 - accepting blank
+status needs to be valid - done
+block needs to be valid - done
 
-af_p_ps id 1 - accepting blank
+only of each period should be insertted into periods -done
+
+A plane cant have duplicate period in 2 period statuses - done
+A plane cant have duplicate period_status in period_statuses - done
+
+
+
 
 planes can have multiple periods with different statuses
 
