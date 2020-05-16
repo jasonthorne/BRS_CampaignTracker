@@ -1,3 +1,20 @@
+
+periods id 7 - accepting blank
+
+af_p_ps id 1 - accepting blank
+
+planes can have multiple periods with different statuses
+
+accepting junk into block BUT NOT STATUS!!!
+
+
+
+
+
+
+
+
+
 https://crunchify.com/how-to-read-json-object-from-file-in-java/
 
 //----------------------------------------

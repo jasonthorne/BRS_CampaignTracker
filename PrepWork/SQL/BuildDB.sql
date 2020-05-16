@@ -7,18 +7,18 @@ USE blood_red_skies_db;
 /* blocks of a year (early, mid, late) */
  /* https://www.mysqltutorial.org/mysql-enum/ +++++++++++++*/ 
  /*name varchar(64) DEFAULT NULL, */
-
+/*
 CREATE TABLE blocks (
   blockID int NOT NULL AUTO_INCREMENT,
   name varchar(64) DEFAULT NULL,
   PRIMARY KEY (blockID),
-  UNIQUE (name) /* prevent duplicate inserts */
+  UNIQUE (name)  /* prevent duplicate inserts 
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 INSERT INTO blocks (name) VALUES ('Early');
 INSERT INTO blocks (name) VALUES ('Mid');
 INSERT INTO blocks (name) VALUES ('Late');
-
+*/
 /*----------------------------------------------------*/
 /* years covered */
 
@@ -42,14 +42,14 @@ DELIMITER ;
 
 CREATE TABLE periods ( 
   periodID int NOT NULL AUTO_INCREMENT,
-  blockID int,
-  /*block enum ('Early','Mid','Late') NOT NULL,*/
+  /*blockID int,*/
+  block enum ('Early','Mid','Late') NOT NULL,
   yearID int,
   PRIMARY KEY (periodID),
-  FOREIGN KEY (blockID) REFERENCES blocks(blockID),
+  /*FOREIGN KEY (blockID) REFERENCES blocks(blockID),*/
   FOREIGN KEY (yearID) REFERENCES years(yearID),
-  CONSTRAINT blockID_yearID UNIQUE (blockID, yearID)	/* make combined columns unique */
-  /*CONSTRAINT block_yearID UNIQUE (block, yearID) /* make combined columns unique */
+  /*CONSTRAINT blockID_yearID UNIQUE (blockID, yearID)	/* make combined columns unique */
+  CONSTRAINT block_yearID UNIQUE (block, yearID) /* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -60,9 +60,9 @@ BEGIN
 	CALL insert_year (year_name);
 	
 	/*no IGNORE here as exception should be thrown if block_value doesnt match enum options */ /* this now doesnt ignore duplicate periods! DOH!! */
-	INSERT IGNORE INTO periods (blockID, yearID) VALUES (
-	/*block_value,*/
-	(SELECT blockID FROM blocks WHERE blocks.name = block_name),
+	INSERT INTO periods (block, yearID) VALUES (
+	block_name,
+	/*(SELECT blockID FROM blocks WHERE blocks.name = block_name),*/
 	(SELECT yearID FROM years WHERE years.name = year_name));
 END $$
 DELIMITER ;
@@ -196,10 +196,10 @@ DELIMITER ;
 
 /*----------------------------------------------------*/
 /* status values of a plane */
-
+/*
 CREATE TABLE plane_statuses (
   plane_statusID int NOT NULL AUTO_INCREMENT,
-  /*name varchar(5) DEFAULT NULL,*/
+  /*name varchar(5) DEFAULT NULL,
   name enum ('Unavailable','Limit','Auto') NOT NULL DEFAULT 'Unavailable',
   PRIMARY KEY (plane_statusID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -208,7 +208,7 @@ CREATE TABLE plane_statuses (
 INSERT INTO plane_statuses (name) VALUES ('Unavailable');
 INSERT INTO plane_statuses (name) VALUES ('Limit');
 INSERT INTO plane_statuses (name) VALUES ('Auto');
-
+*/
 
 /*----------------------------------------------------*/
 /* availability statuses of air force planes in relation to historical periods */
@@ -217,13 +217,14 @@ CREATE TABLE airforce_plane_period_statuses(
   airforce_plane_period_statusID int NOT NULL AUTO_INCREMENT,
   airforce_planeID int,
   periodID int,
-  /*status enum ('Unavailable','Limit','Auto') NOT NULL DEFAULT 'Unavailable',*/
-  plane_statusID int,
+  status enum ('Unavailable','Limit','Auto') NOT NULL DEFAULT 'Unavailable',
+  /*plane_statusID int,*/
   PRIMARY KEY (airforce_plane_period_statusID),
   FOREIGN KEY (airforce_planeID) REFERENCES airforce_planes(airforce_planeID),
   FOREIGN KEY (periodID) REFERENCES periods(periodID),
-  FOREIGN KEY (plane_statusID) REFERENCES plane_statuses(plane_statusID),
-  CONSTRAINT airforce_planeID_periodID UNIQUE (airforce_planeID, periodID),	/* make combined columns unique */
+  /*FOREIGN KEY (plane_statusID) REFERENCES plane_statuses(plane_statusID),*/
+  /*CONSTRAINT airforce_planeID_periodID UNIQUE (airforce_planeID, periodID)	/* make combined columns unique */
+  CONSTRAINT airforce_planeID_periodID_status UNIQUE (airforce_planeID, periodID, status)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -231,21 +232,32 @@ DELIMITER $$
 CREATE PROCEDURE insert_airforce_plane_period_status (IN airforce_name VARCHAR(64), IN plane_name VARCHAR(64), 
 IN block_name VARCHAR(64), IN year_name VARCHAR(4), IN status_name VARCHAR(64))
 BEGIN
+	
+	/*
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	BEGIN
+    ROLLBACK;
+    SELECT 'An error has occurred, operation rollbacked and the stored procedure was terminated';
+	END;
+	*/
+
 	/* insert period to periods if not present */
 	CALL insert_period (block_name, year_name);
+	
 	/* change this along with periods +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 	/*no IGNORE here as exception should be thrown if status_value doesnt match enum options */ 
-	INSERT INTO airforce_plane_period_statuses (airforce_planeID, periodID, plane_statusID) VALUES ( 
+	INSERT INTO airforce_plane_period_statuses (airforce_planeID, periodID, status) VALUES ( 
 	(SELECT airforce_planeID FROM airforce_planes
 		INNER JOIN airforces ON airforce_planes.airforceID = airforces.airforceID
 		INNER JOIN planes ON airforce_planes.planeID = planes.planeID
 		WHERE airforces.name = airforce_name AND planes.name = plane_name),
 	(SELECT periodID FROM periods
-		INNER JOIN blocks ON periods.blockID = blocks.blockID
+		/*INNER JOIN blocks ON periods.blockID = blocks.blockID*/
 		INNER JOIN years ON periods.yearID = years.yearID
-		WHERE blocks.name = block_name AND years.name = year_name),
-	/*status_value);*/
-	(SELECT plane_statusID FROM plane_statuses WHERE plane_statuses.name = status_name));
+		/*WHERE blocks.name = block_name AND years.name = year_name),*/
+		WHERE block = block_name AND years.name = year_name),
+	status_name);
+	/*(SELECT plane_statusID FROM plane_statuses WHERE plane_statuses.name = status_name));*/
 	
 	/*
 	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
