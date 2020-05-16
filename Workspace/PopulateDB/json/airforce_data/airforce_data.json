@@ -34,7 +34,7 @@
 								"period_status":{
 									"period": {
 										"block": "Mid",
-										"year": "1940"
+										"year": "1943"
 									},
 									"status": "Limit"
 								}
@@ -49,7 +49,7 @@
 							{
 								"period_status":{
 									"period": {
-										"block": "Mid",
+										"block": "Late",
 										"year": "1943"
 									},
 									"status": "Limit"
@@ -107,7 +107,7 @@
 										"block": "Early",
 										"year": "1945"
 									},
-									"status": "Auto"
+									"status": "qqqqqqqqqqq"
 								}
 							}
 						]
