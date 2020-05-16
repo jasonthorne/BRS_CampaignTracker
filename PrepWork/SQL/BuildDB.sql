@@ -68,7 +68,7 @@ CREATE TABLE images (
 	path VARCHAR(64) DEFAULT NULL,
 	PRIMARY KEY (imageID),
 	UNIQUE (path) /* prevent duplicate inserts */
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
@@ -86,7 +86,7 @@ CREATE TABLE airforces(
 	name VARCHAR(64) DEFAULT NULL,
 	PRIMARY KEY (airforceID),
 	UNIQUE (name) /* prevent duplicate inserts */
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
@@ -107,7 +107,7 @@ CREATE TABLE airforce_images (
 	FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
 	FOREIGN KEY (imageID) REFERENCES images(imageID),
 	UNIQUE (imageID) /* prevent duplicate inserts */
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
@@ -136,7 +136,7 @@ CREATE TABLE planes(
 	name VARCHAR(64) DEFAULT NULL,
 	PRIMARY KEY (planeID),
 	UNIQUE (name)
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
@@ -157,7 +157,7 @@ CREATE TABLE airforce_planes(
 	FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
 	FOREIGN KEY (planeID) REFERENCES planes(planeID),
 	CONSTRAINT airforceID_planeID UNIQUE (airforceID, planeID)	/* make combined columns unique */
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
@@ -184,7 +184,7 @@ CREATE TABLE airforce_plane_period_statuses(
 	FOREIGN KEY (airforce_planeID) REFERENCES airforce_planes(airforce_planeID),
 	FOREIGN KEY (periodID) REFERENCES periods(periodID),
 	CONSTRAINT airforce_planeID_periodID UNIQUE (airforce_planeID, periodID)	/* make combined columns unique */
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
@@ -209,10 +209,50 @@ BEGIN
 END $$
 DELIMITER ;
 
+/* ====================EVENT DATA=================================================*/
 
-	
+/*----------------------------------------------------*/
+/* historical events */
 
+CREATE TABLE events( 
+	eventID INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(64) DEFAULT NULL,
+	PRIMARY KEY (eventID),
+	UNIQUE (name) /* prevent duplicate inserts */
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+DELIMITER $$
+CREATE PROCEDURE insert_event (IN event VARCHAR(64))
+BEGIN
+	INSERT IGNORE INTO events (name) VALUES (event); /* ??????????????????????Should this not give errors?????????(remove ignore??) */
+END $$
+DELIMITER ;
+
+/*----------------------------------------------------*/
+/* airforces available to events */
+
+CREATE TABLE event_airforces (
+	event_airforceID INT NOT NULL AUTO_INCREMENT,
+	eventID INT,
+	airforceID INT,
+	has_home_advantage BOOLEAN DEFAULT FALSE,
+	PRIMARY KEY (event_airforceID),
+	FOREIGN KEY (eventID) REFERENCES events(eventID),
+	FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
+	CONSTRAINT eventID_airforceID UNIQUE (eventID, airforceID)	/* make combined columns unique */
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DELIMITER $$
+CREATE PROCEDURE insert_event_airforce (IN event VARCHAR(64), IN airforce VARCHAR(64), IN has_home_advantage BOOLEAN)
+BEGIN
+	INSERT IGNORE INTO event_airforces (eventID, airforceID, has_home_advantage) VALUES (
+	(SELECT eventID FROM events WHERE events.name = event),
+	(SELECT airforceID FROM airforces WHERE airforces.name = airforce),
+	has_home_advantage);
+END $$
+DELIMITER ;
+
+/*----------------------------------------------------*/
 
 
 

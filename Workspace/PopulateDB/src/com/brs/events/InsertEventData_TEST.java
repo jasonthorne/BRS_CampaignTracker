@@ -35,46 +35,38 @@ public interface InsertEventData_TEST {
 		        callableStatement = connection.prepareCall("{CALL insert_event(?)}"); //create statement
 		        callableStatement.setString(1, eventName); //set input with name
 			    try {
-			    	//////////////callableStatement.execute(); //execute statement
+			    	callableStatement.execute(); //execute statement //+++++++++++++++++++++++++++++
 				}catch(Exception e) { e.printStackTrace(); }
 			    //-------------------------------------------------
-			    //add air force to 'airforces': //+++++++++++++++instead of this, just grab airforce, for adding to event_airforce below
+			    //add event, air force & home advantage status to 'event_airforces':
 			    
 			    JSONArray airForces = (JSONArray) event.get("airforces"); //get array of air forces
 				Iterator<JSONObject> airForceIterator = airForces.iterator(); //iterate through airForces
 				while (airForceIterator.hasNext()) {
 					JSONObject airForce = (JSONObject) airForceIterator.next().get("airforce"); //get airForce from iterator.next()
 					
-					String airForceName = (String) airForce.get("name");  //get name of event
-					callableStatement = connection.prepareCall("{CALL insert_airforce(?)}"); //create statement
-			        callableStatement.setString(1, airForceName); //set input with name
-				    try {
-				    	///////////////callableStatement.execute(); //execute statement
-					}catch(Exception e) { e.printStackTrace(); }
-					//-------------------------------------------------
-					//add event, air force & home advantage status to 'event_airforces':
-				    
+					String airForceName = (String) airForce.get("name");  //get name of airForce
 				    boolean homeAdvantage = Boolean.parseBoolean((String) airForce.get("has_home_advantage")); //get home adv status
 				    callableStatement = connection.prepareCall("{CALL insert_event_airforce(?,?,?)}"); //create statement
 			        callableStatement.setString(1, eventName); //set input with event name
 			        callableStatement.setString(2, airForceName); //set input with air force name
 			        callableStatement.setBoolean(3, homeAdvantage); //set input with home advantage status
 			        try {
-				    	//////////////callableStatement.execute(); //execute statement
+				    	callableStatement.execute(); //execute statement //+++++++++++++++++++++++++++++
 					}catch(Exception e) { e.printStackTrace(); }
+			        System.out.println(airForce);
 				}
 				//-------------------------------------------------
 			    //??????????????
 				
 				JSONObject startPeriod = (JSONObject) event.get("start_period");  //get event start period
-				System.out.println(startPeriod); //+++++++++++++
+				//System.out.println(startPeriod); //+++++++++++++
 				
 				
 				
 				
 		      
-			}
-			
+			}//eventIterator
 		}catch(Exception e) { e.printStackTrace(); }
 		finally {
 			if (connection != null) {	//finally, try close connection:

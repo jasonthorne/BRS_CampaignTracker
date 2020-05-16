@@ -34,7 +34,7 @@
 								"period_status":{
 									"period": {
 										"block": "Early",
-										"year": "1940"
+										"year": "1941"
 									},
 									"status": "Auto"
 								}
@@ -72,7 +72,7 @@
 	},
 	{
 		"airforce": {
-			"name": "C",
+			"name": "Luftwaffe",
 			"images": [
 				{
 					"image": {
@@ -90,7 +90,7 @@
 			"planes": [
 				{
 					"plane": {
-						"name": "D",
+						"name": "C",
 						"period_statuses": [
 							{
 								"period_status":{
@@ -115,13 +115,13 @@
 				},
 				{
 					"plane": {
-						"name": "E",
+						"name": "D",
 						"period_statuses": [
 							{
 								"period_status":{
 									"period": {
 										"block": "Mid",
-										"year": "1942"
+										"year": "1941"
 									},
 									"status": "Limit"
 								}
@@ -130,7 +130,7 @@
 								"period_status":{
 									"period": {
 										"block": "Late",
-										"year": "1945"
+										"year": "1941"
 									},
 									"status": "Auto"
 								}
