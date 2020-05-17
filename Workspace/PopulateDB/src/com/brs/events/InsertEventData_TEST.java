@@ -54,18 +54,26 @@ public interface InsertEventData_TEST {
 			        try {
 				    	callableStatement.execute(); //execute statement //+++++++++++++++++++++++++++++
 					}catch(Exception e) { e.printStackTrace(); }
-			        System.out.println(airForce);
 				}
 				//-------------------------------------------------
-			    //??????????????
+			    //add event start & end periods to 'event_periods':
 				
-				JSONObject startPeriod = (JSONObject) event.get("start_period");  //get event start period
-				//System.out.println(startPeriod); //+++++++++++++
-				
-				
-				
-				
-		      
+				JSONObject startPeriod = (JSONObject) event.get("start_period");  //get event starting period
+				String startBlock = (String) startPeriod.get("block");  //get block from starting period
+				String startYear = (String) startPeriod.get("year"); //get year from starting period
+				JSONObject endPeriod = (JSONObject) event.get("end_period"); //get event ending period
+				String endBlock = (String) endPeriod.get("block");  //get block from ending period
+				String endYear = (String) endPeriod.get("year"); //get year from end period
+				callableStatement = connection.prepareCall("{CALL insert_event_period(?,?,?,?,?)}"); //create statement
+				callableStatement.setString(1, eventName); //set input with event name
+		        callableStatement.setString(2, startBlock); //set input with starting block
+		        callableStatement.setString(3, startYear); //set input with starting year
+		        callableStatement.setString(4, endBlock); //set input with ending block
+		        callableStatement.setString(5, endYear); //set input with ending year
+		        try {
+		        	callableStatement.execute(); //execute statement //+++++++++++++++++++++++++++++
+				}catch(Exception e) { e.printStackTrace(); }
+		        
 			}//eventIterator
 		}catch(Exception e) { e.printStackTrace(); }
 		finally {

@@ -19,9 +19,9 @@ CREATE TABLE years (
 
 
 DELIMITER $$
-CREATE PROCEDURE insert_year (IN year VARCHAR(4))
+CREATE PROCEDURE insert_year (IN year_name VARCHAR(4))
 BEGIN
-	INSERT IGNORE INTO years (name) VALUES (year); 
+	INSERT IGNORE INTO years (name) VALUES (year_name); 
 END $$
 DELIMITER ;
 
@@ -92,7 +92,7 @@ CREATE TABLE airforces(
 DELIMITER $$
 CREATE PROCEDURE insert_airforce (IN airforce_name VARCHAR(64))
 BEGIN
-	INSERT IGNORE INTO airforces (name) VALUES (airforce_name);
+	INSERT IGNORE INTO airforces (name) VALUES (airforce_name); /*???????????????????????give error?????????*/
 END $$
 DELIMITER ;
 
@@ -166,7 +166,7 @@ BEGIN
 	/* insert plane_name to planes if not present */
 	CALL insert_plane (plane_name);
 
-	INSERT IGNORE INTO airforce_planes (airforceID, planeID) VALUES (
+	INSERT IGNORE INTO airforce_planes (airforceID, planeID) VALUES ( /*???????????????????????????should give error????*/
 		(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
 		(SELECT planeID FROM planes WHERE planes.name = plane_name));	
 END $$
@@ -221,10 +221,11 @@ CREATE TABLE events(
 	UNIQUE (name) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+
 DELIMITER $$
-CREATE PROCEDURE insert_event (IN event VARCHAR(64))
+CREATE PROCEDURE insert_event (IN event_name VARCHAR(64))
 BEGIN
-	INSERT IGNORE INTO events (name) VALUES (event); /* ??????????????????????Should this not give errors?????????(remove ignore??) */
+	INSERT IGNORE INTO events (name) VALUES (event_name); /* ??????????????????????Should this not give errors?????????(remove ignore??) */
 END $$
 DELIMITER ;
 
@@ -242,17 +243,44 @@ CREATE TABLE event_airforces (
 	CONSTRAINT eventID_airforceID UNIQUE (eventID, airforceID)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+
 DELIMITER $$
-CREATE PROCEDURE insert_event_airforce (IN event VARCHAR(64), IN airforce VARCHAR(64), IN has_home_advantage BOOLEAN)
+CREATE PROCEDURE insert_event_airforce (IN event_name VARCHAR(64), IN airforce_name VARCHAR(64), IN home_advantage_value BOOLEAN)
 BEGIN
-	INSERT IGNORE INTO event_airforces (eventID, airforceID, has_home_advantage) VALUES (
-	(SELECT eventID FROM events WHERE events.name = event),
-	(SELECT airforceID FROM airforces WHERE airforces.name = airforce),
-	has_home_advantage);
+	INSERT IGNORE INTO event_airforces (eventID, airforceID, has_home_advantage) VALUES ( /*???????????????????????give error?????????*/
+	(SELECT eventID FROM events WHERE events.name = event_name),
+	(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
+	home_advantage_value);
 END $$
 DELIMITER ;
 
 /*----------------------------------------------------*/
+/* periods available to events */
+
+CREATE TABLE event_periods (
+	event_periodID INT NOT NULL AUTO_INCREMENT,
+	eventID INT,
+	periodID_start INT,
+	periodID_end INT,
+	PRIMARY KEY (event_periodID),
+	FOREIGN KEY (periodID_start) REFERENCES periods(periodID),
+	FOREIGN KEY (periodID_end) REFERENCES periods(periodID),
+	UNIQUE (eventID)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
+DELIMITER $$
+CREATE PROCEDURE insert_event_period (IN event_name VARCHAR(64), IN block_start VARCHAR(64), 
+IN year_start VARCHAR(4), IN block_end VARCHAR(64), IN year_end VARCHAR(4))
+BEGIN
+	INSERT INTO event_periods (eventID, periodID_start, periodID_end) VALUES (
+	(SELECT eventID FROM events WHERE events.name = event_name),
+	(SELECT periodID FROM periods 
+		INNER JOIN years ON periods.yearID  = years.yearID
+		WHERE periods.block = block_start AND years.name = year_start),
+	(SELECT periodID FROM periods 
+		INNER JOIN years ON periods.yearID  = years.yearID
+		WHERE periods.block = block_end AND years.name = year_end));
+END $$
+DELIMITER ;
 
