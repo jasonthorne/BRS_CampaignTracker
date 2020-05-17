@@ -6,13 +6,19 @@
 				{
 					"image": {
 						"name": "Logo",
-						"path": "img/airforces/RAF.png"
+						"path": "img/airforces/RAF1.png"
 					}
 				},
 				{
 					"image": {
-						"name": "Logo2",
-						"path": "img/airforces/RAF.png"
+						"name": "Logo",
+						"path": "img/airforces/RAF3.png"
+					}
+				},
+				{
+					"image": {
+						"name": "Logo",
+						"path": "img/airforces/RAF2.png"
 					}
 				}
 		 	],
@@ -76,14 +82,14 @@
 			"images": [
 				{
 					"image": {
-						"name": "Logo33",
-						"path": "img/airforces/Luftwaffe.png"
+						"name": "Logo3",
+						"path": "img/airforces/Luftwaffe1.png"
 					}
 				},
 				{
 					"image": {
-						"name": "Yo dawg!",
-						"path": "img/airforces/Luftwaffe.png"
+						"name": "Logo4",
+						"path": "img/airforces/Luftwaffe2.png"
 					}
 				}
 			],

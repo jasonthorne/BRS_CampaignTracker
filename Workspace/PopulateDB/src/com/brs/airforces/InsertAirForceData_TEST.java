@@ -90,9 +90,8 @@ public interface InsertAirForceData_TEST {
 				        callableStatement.setString(4, year); //set input with year
 				        callableStatement.setString(5, status); //set input with status
 				        try {
-					    	callableStatement.execute(); //execute statement
+					    	callableStatement.execute(); //execute statement //++++++++++++++++++++++++++++++++++
 				        }catch(Exception e) { e.printStackTrace(); }
-				    	System.out.println("test: " + planeName + " " + block + " " + year + " " + status); //+++++++++++++++++++++
 					}
 				} //planeIterator
 			} //airForceIterator

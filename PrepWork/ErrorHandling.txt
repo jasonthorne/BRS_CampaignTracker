@@ -1,0 +1,19 @@
+SQL:
+
+status value fron json needs to be valid enum option - done
+block value fron json needs to be valid enum option - done
+
+only of each period should be inserted into periods -done
+
+A plane cant have duplicate period in 2 or more period_status - done
+A plane cant have duplicate period_status in period_statuses - done
+
+
+No duplicates of event - done
+No duplicates of airforce - done
+No duplicates of ariforce_plane - done
+No duplicates of event_airforce - done
+
+images should allow same name but disallow same paths. ([name: logo, path: RAF_path], [name: logo, path: Japan_path]) - done
+
+no duplicates of airforce_images - 

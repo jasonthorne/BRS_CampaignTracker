@@ -46,14 +46,14 @@ BEGIN
 	/* insert year_name to years if not present */
 	CALL insert_year (year_name);
 	
-	/* check for existing id relating to block_option & year_name: */
+	/* check for periodID relating to block_option & year_name: */
 	SELECT periodID INTO periodID_check FROM periods
 		INNER JOIN years ON periods.yearID = years.yearID
 		WHERE periods.block = block_option AND years.name = year_name;
 	
-	IF periodID_check = 0 THEN /* if id isn't there: */
-		/*no IGNORE here as exception should be thrown if block_option doesnt match enum options */ 
-		INSERT INTO periods (block, yearID) VALUES (
+	IF periodID_check = 0 THEN /* insert entry if periodID not found: */
+		/* error thrown here if block_option doesnt match enum options: */ 
+		INSERT INTO periods (block, yearID) VALUES ( 
 			block_option,(SELECT yearID FROM years WHERE years.name = year_name));
 	END IF;
 END $$
@@ -74,7 +74,7 @@ CREATE TABLE images (
 DELIMITER $$
 CREATE PROCEDURE insert_image (IN image_name VARCHAR(64), IN image_path VARCHAR(64))
 BEGIN
-	INSERT IGNORE INTO images (name, path) VALUES (image_name, image_path); 
+	INSERT INTO images (name, path) VALUES (image_name, image_path); /* error thrown here on duplicate image_path insert */ 
 END $$
 DELIMITER ;
 
@@ -92,7 +92,8 @@ CREATE TABLE airforces(
 DELIMITER $$
 CREATE PROCEDURE insert_airforce (IN airforce_name VARCHAR(64))
 BEGIN
-	INSERT IGNORE INTO airforces (name) VALUES (airforce_name); /*???????????????????????give error?????????*/
+	/* error thrown here on duplicate airforce_name insert: */ 
+	INSERT INTO airforces (name) VALUES (airforce_name); 
 END $$
 DELIMITER ;
 
@@ -106,7 +107,8 @@ CREATE TABLE airforce_images (
 	PRIMARY KEY (airforce_imageID),
 	FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
 	FOREIGN KEY (imageID) REFERENCES images(imageID),
-	UNIQUE (imageID) /* prevent duplicate inserts */
+	/*UNIQUE (imageID) /* prevent duplicate inserts */
+	CONSTRAINT airforceID_imageID UNIQUE (airforceID, imageID)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -116,15 +118,23 @@ BEGIN
 	/* check for existing id relating to path: */
 	DECLARE imageID_check INT DEFAULT 0;
 	SELECT imageID INTO imageID_check FROM images WHERE images.path = image_path;
-		
+	
 	IF imageID_check = 0 THEN	/* if id isn't there: */
 		CALL insert_image(image_name, image_path); /* insert image in images */
 		
-		/* insert airforceID and imageID into airforce_images */
-		INSERT IGNORE INTO airforce_images (airforceID, imageID) VALUES (
+		/* insert airforceID and imageID into airforce_images */	/********************this should prob just have an insert to throw error if path isd reentered. */
+		INSERT INTO airforce_images (airforceID, imageID) VALUES (
 			(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
 			(SELECT imageID FROM images WHERE images.name = image_name AND images.path = image_path));
 	END IF;
+	
+	 /* insert image to images */
+	/*ALL insert_image(image_name, image_path);
+	
+	INSERT INTO airforce_images (airforceID, imageID) VALUES (
+			(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
+			(SELECT imageID FROM images WHERE images.name = image_name AND images.path = image_path));*/
+			
 END $$
 DELIMITER ;
 
@@ -165,10 +175,11 @@ CREATE PROCEDURE insert_airforce_plane (IN airforce_name VARCHAR(64), IN plane_n
 BEGIN
 	/* insert plane_name to planes if not present */
 	CALL insert_plane (plane_name);
-
-	INSERT IGNORE INTO airforce_planes (airforceID, planeID) VALUES ( /*???????????????????????????should give error????*/
+	
+	/* error thrown here on duplicate airforce_plane insert: */ 
+	INSERT INTO airforce_planes (airforceID, planeID) VALUES ( 
 		(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
-		(SELECT planeID FROM planes WHERE planes.name = plane_name));	
+		(SELECT planeID FROM planes WHERE planes.name = plane_name));
 END $$
 DELIMITER ;
 
@@ -194,7 +205,7 @@ BEGIN
 	/* insert period to periods if not present */
 	CALL insert_period (block_option, year_name);
 	
-	/* no IGNORE here as exception should be thrown if status_option doesnt match enum options, 
+	/* error thrown here if status_option doesnt match enum options, 
 	or on an attempt to insert identical periods for the same airforce_plane: */
 	
 	INSERT INTO airforce_plane_period_statuses (airforce_planeID, periodID, status) VALUES ( 
@@ -225,7 +236,8 @@ CREATE TABLE events(
 DELIMITER $$
 CREATE PROCEDURE insert_event (IN event_name VARCHAR(64))
 BEGIN
-	INSERT IGNORE INTO events (name) VALUES (event_name); /* ??????????????????????Should this not give errors?????????(remove ignore??) */
+	/* error thrown here on duplicate event_name insert: */ 
+	INSERT INTO events (name) VALUES (event_name);
 END $$
 DELIMITER ;
 
@@ -247,7 +259,8 @@ CREATE TABLE event_airforces (
 DELIMITER $$
 CREATE PROCEDURE insert_event_airforce (IN event_name VARCHAR(64), IN airforce_name VARCHAR(64), IN home_advantage_value BOOLEAN)
 BEGIN
-	INSERT IGNORE INTO event_airforces (eventID, airforceID, has_home_advantage) VALUES ( /*???????????????????????give error?????????*/
+	/* error thrown here on duplicate airforce_plane insert: */
+	INSERT INTO event_airforces (eventID, airforceID, has_home_advantage) VALUES ( 
 	(SELECT eventID FROM events WHERE events.name = event_name),
 	(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
 	home_advantage_value);
@@ -273,7 +286,7 @@ DELIMITER $$
 CREATE PROCEDURE insert_event_period (IN event_name VARCHAR(64), IN block_start VARCHAR(64), 
 IN year_start VARCHAR(4), IN block_end VARCHAR(64), IN year_end VARCHAR(4))
 BEGIN
-	INSERT INTO event_periods (eventID, periodID_start, periodID_end) VALUES (
+	INSERT IGNORE INTO event_periods (eventID, periodID_start, periodID_end) VALUES ( /*???????????????????????give error?????????*/
 	(SELECT eventID FROM events WHERE events.name = event_name),
 	(SELECT periodID FROM periods 
 		INNER JOIN years ON periods.yearID  = years.yearID
