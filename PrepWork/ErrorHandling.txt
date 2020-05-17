@@ -14,6 +14,9 @@ No duplicates of airforce - done
 No duplicates of ariforce_plane - done
 No duplicates of event_airforce - done
 
-images should allow same name but disallow same paths. ([name: logo, path: RAF_path], [name: logo, path: Japan_path]) - done
 
-no duplicates of airforce_images - 
+No duplicate image paths in images - done
+
+no duplicates of airforce_images - done
+
+

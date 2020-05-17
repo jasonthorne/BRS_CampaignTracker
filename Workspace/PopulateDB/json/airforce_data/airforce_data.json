@@ -11,13 +11,7 @@
 				},
 				{
 					"image": {
-						"name": "Logo",
-						"path": "img/airforces/RAF3.png"
-					}
-				},
-				{
-					"image": {
-						"name": "Logo",
+						"name": "Logo2",
 						"path": "img/airforces/RAF2.png"
 					}
 				}
@@ -82,7 +76,7 @@
 			"images": [
 				{
 					"image": {
-						"name": "Logo3",
+						"name": "Logo",
 						"path": "img/airforces/Luftwaffe1.png"
 					}
 				},

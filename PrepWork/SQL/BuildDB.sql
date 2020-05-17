@@ -43,7 +43,7 @@ CREATE PROCEDURE insert_period (IN block_option VARCHAR(5), IN year_name VARCHAR
 BEGIN
 	DECLARE periodID_check INT DEFAULT 0;
 	
-	/* insert year_name to years if not present */
+	/* insert year_name to years if not present; */
 	CALL insert_year (year_name);
 	
 	/* check for periodID relating to block_option & year_name: */
@@ -64,7 +64,6 @@ DELIMITER ;
 
 CREATE TABLE images (
 	imageID INT NOT NULL AUTO_INCREMENT,
-	name VARCHAR(64) DEFAULT NULL,
 	path VARCHAR(64) DEFAULT NULL,
 	PRIMARY KEY (imageID),
 	UNIQUE (path) /* prevent duplicate inserts */
@@ -72,9 +71,10 @@ CREATE TABLE images (
 
 
 DELIMITER $$
-CREATE PROCEDURE insert_image (IN image_name VARCHAR(64), IN image_path VARCHAR(64))
+CREATE PROCEDURE insert_image (IN image_path VARCHAR(64))
 BEGIN
-	INSERT INTO images (name, path) VALUES (image_name, image_path); /* error thrown here on duplicate image_path insert */ 
+	/* error thrown here on duplicate image_path insert: */ 
+	INSERT INTO images (path) VALUES (image_path); 
 END $$
 DELIMITER ;
 
@@ -102,39 +102,27 @@ DELIMITER ;
 
 CREATE TABLE airforce_images (
 	airforce_imageID INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(64) DEFAULT NULL,
 	airforceID INT,
 	imageID INT,
 	PRIMARY KEY (airforce_imageID),
 	FOREIGN KEY (airforceID) REFERENCES airforces(airforceID),
 	FOREIGN KEY (imageID) REFERENCES images(imageID),
-	/*UNIQUE (imageID) /* prevent duplicate inserts */
-	CONSTRAINT airforceID_imageID UNIQUE (airforceID, imageID)	/* make combined columns unique */
+	CONSTRAINT airforceID_name UNIQUE (airforceID, name)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
 CREATE PROCEDURE insert_airforce_image (IN airforce_name VARCHAR(64), IN image_name VARCHAR(64), IN image_path VARCHAR(64))
 BEGIN
-	/* check for existing id relating to path: */
-	DECLARE imageID_check INT DEFAULT 0;
-	SELECT imageID INTO imageID_check FROM images WHERE images.path = image_path;
+	 /* insert image_path to images: */
+	CALL insert_image(image_path);
 	
-	IF imageID_check = 0 THEN	/* if id isn't there: */
-		CALL insert_image(image_name, image_path); /* insert image in images */
-		
-		/* insert airforceID and imageID into airforce_images */	/********************this should prob just have an insert to throw error if path isd reentered. */
-		INSERT INTO airforce_images (airforceID, imageID) VALUES (
+	/* error thrown here on duplicate airforce_image insert: */ 
+	INSERT INTO airforce_images (name, airforceID, imageID) VALUES (
+			image_name,
 			(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
-			(SELECT imageID FROM images WHERE images.name = image_name AND images.path = image_path));
-	END IF;
-	
-	 /* insert image to images */
-	/*ALL insert_image(image_name, image_path);
-	
-	INSERT INTO airforce_images (airforceID, imageID) VALUES (
-			(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
-			(SELECT imageID FROM images WHERE images.name = image_name AND images.path = image_path));*/
-			
+			(SELECT imageID FROM images WHERE images.path = image_path));
 END $$
 DELIMITER ;
 
