@@ -9,7 +9,7 @@ SET SESSION sql_mode = 'STRICT_ALL_TABLES';
 
 /*----------------------------------------------------*/
 /* years covered */
-
+DROP TABLE IF EXISTS years; /* ++++++++++++++++++++++++++++++++++++++++++ */
 CREATE TABLE years (
 	yearID INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(4) DEFAULT NULL,
@@ -120,9 +120,9 @@ BEGIN
 	
 	/* error thrown here on duplicate airforce_image insert: */ 
 	INSERT INTO airforce_images (name, airforceID, imageID) VALUES (
-			image_name,
-			(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
-			(SELECT imageID FROM images WHERE images.path = image_path));
+		image_name,
+		(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
+		(SELECT imageID FROM images WHERE images.path = image_path));
 END $$
 DELIMITER ;
 
