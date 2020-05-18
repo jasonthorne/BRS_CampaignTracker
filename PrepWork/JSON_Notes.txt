@@ -14,16 +14,20 @@ planes can have multiple periods with different statuses
 accepting junk into block BUT NOT STATUS!!!
 
 //+++++++++++++++++++
-https://docs.oracle.com/cd/E17952_01/mysql-5.0-en/sql-mode.html#sqlmode_strict_trans_tables
+
+//-------names for scripts:
+AirForceDataTables
+EventDataTables
+CampaignSquadronTables
+//--------
+
+Pilot missions
+________________
+SquadronPilotID 
+MissionID
 
 
-String url = "jdbc:mysql://localhost/test?user=sqluser&password=sqluserpw&sessionVariables=sql_mode='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,PIPES_AS_CONCAT'";
-Class.forName("com.mysql.jdbc.Driver");
-Connection c = DriverManager.getConnection(url);
-
-&sessionVariables=sql_mode='STRICT_TRANS_TABLES'
-
-Stringurl = "jdbc:mysql://localhost:3306/blood_red_skies_db?user=student&password=student&sessionVariables=sql_mode='STRICT_TRANS_TABLES'";
+Squadron or campaign player should have an airforce. Probably squadron!
 
 
 https://crunchify.com/how-to-read-json-object-from-file-in-java/

@@ -3,13 +3,16 @@ CREATE DATABASE blood_red_skies_db;
 
 USE blood_red_skies_db;
 
+/*DROP TABLE IF EXISTS years; /* ++++++++++++++++++++++++++++++++++++++++++ */
+
+
 /* enabled to throw errors for invalid enum inserts: */
 SET GLOBAL sql_mode = 'STRICT_ALL_TABLES';
 SET SESSION sql_mode = 'STRICT_ALL_TABLES';
 
 /*----------------------------------------------------*/
 /* years covered */
-DROP TABLE IF EXISTS years; /* ++++++++++++++++++++++++++++++++++++++++++ */
+
 CREATE TABLE years (
 	yearID INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(4) DEFAULT NULL,
@@ -267,9 +270,6 @@ CREATE TABLE event_periods (
 	FOREIGN KEY (periodID_start) REFERENCES periods(periodID),
 	FOREIGN KEY (periodID_end) REFERENCES periods(periodID),
 	UNIQUE (eventID)
-	/*UNIQUE (periodID_start),
-	UNIQUE (periodID_end)*/
-	/*CONSTRAINT start_end UNIQUE (eventID, periodID_start, periodID_end)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -277,7 +277,10 @@ DELIMITER $$
 CREATE PROCEDURE insert_event_period (IN event_name VARCHAR(64), IN block_start VARCHAR(64), 
 IN year_start VARCHAR(4), IN block_end VARCHAR(64), IN year_end VARCHAR(4))
 BEGIN
-	INSERT INTO event_periods (eventID, periodID_start, periodID_end) VALUES ( /*?????THIS NEEDS TO FAIL WHEN START AND END ARE THE SAME????give error?????????*/
+	
+	/*++++++++++++++THIS NEEDS TO FAIL IF START AND END PERIODS ARE THE SAME, OR IF END DATE COMES BEFORE START DATE+++++++++++++++++*/
+	
+	INSERT INTO event_periods (eventID, periodID_start, periodID_end) VALUES ( 
 	(SELECT eventID FROM events WHERE events.name = event_name),
 	(SELECT periodID FROM periods 
 		INNER JOIN years ON periods.yearID  = years.yearID
@@ -287,4 +290,15 @@ BEGIN
 		WHERE periods.block = block_end AND years.name = year_end));
 END $$
 DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
 
