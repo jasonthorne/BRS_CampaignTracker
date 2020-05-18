@@ -267,6 +267,9 @@ CREATE TABLE event_periods (
 	FOREIGN KEY (periodID_start) REFERENCES periods(periodID),
 	FOREIGN KEY (periodID_end) REFERENCES periods(periodID),
 	UNIQUE (eventID)
+	/*UNIQUE (periodID_start),
+	UNIQUE (periodID_end)*/
+	/*CONSTRAINT start_end UNIQUE (eventID, periodID_start, periodID_end)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -274,7 +277,7 @@ DELIMITER $$
 CREATE PROCEDURE insert_event_period (IN event_name VARCHAR(64), IN block_start VARCHAR(64), 
 IN year_start VARCHAR(4), IN block_end VARCHAR(64), IN year_end VARCHAR(4))
 BEGIN
-	INSERT IGNORE INTO event_periods (eventID, periodID_start, periodID_end) VALUES ( /*???????????????????????give error?????????*/
+	INSERT INTO event_periods (eventID, periodID_start, periodID_end) VALUES ( /*?????THIS NEEDS TO FAIL WHEN START AND END ARE THE SAME????give error?????????*/
 	(SELECT eventID FROM events WHERE events.name = event_name),
 	(SELECT periodID FROM periods 
 		INNER JOIN years ON periods.yearID  = years.yearID
