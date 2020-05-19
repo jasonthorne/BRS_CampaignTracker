@@ -20,3 +20,5 @@ No duplicate image paths in images - done
 no duplicates of airforce_images - done
 
 
+insert_event_period: THIS NEEDS TO FAIL IF START AND END PERIODS ARE THE SAME, OR IF END DATE COMES BEFORE START DATE
+

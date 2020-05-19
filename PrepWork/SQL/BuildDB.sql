@@ -191,7 +191,7 @@ CREATE TABLE airforce_plane_period_statuses(
 
 DELIMITER $$
 CREATE PROCEDURE insert_airforce_plane_period_status (IN airforce_name VARCHAR(64), IN plane_name VARCHAR(64), 
-IN block_option VARCHAR(64), IN year_name VARCHAR(4), IN status_option VARCHAR(64))
+IN block_option VARCHAR(5), IN year_name VARCHAR(4), IN status_option VARCHAR(11))
 BEGIN
 	/* insert period to periods if not present */
 	CALL insert_period (block_option, year_name);
@@ -274,8 +274,8 @@ CREATE TABLE event_periods (
 
 
 DELIMITER $$
-CREATE PROCEDURE insert_event_period (IN event_name VARCHAR(64), IN block_start VARCHAR(64), 
-IN year_start VARCHAR(4), IN block_end VARCHAR(64), IN year_end VARCHAR(4))
+CREATE PROCEDURE insert_event_period (IN event_name VARCHAR(64), IN block_start VARCHAR(5), 
+IN year_start VARCHAR(4), IN block_end VARCHAR(5), IN year_end VARCHAR(4))
 BEGIN
 	
 	/*++++++++++++++THIS NEEDS TO FAIL IF START AND END PERIODS ARE THE SAME, OR IF END DATE COMES BEFORE START DATE+++++++++++++++++*/
