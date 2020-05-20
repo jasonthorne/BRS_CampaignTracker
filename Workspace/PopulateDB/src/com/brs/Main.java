@@ -46,8 +46,8 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		System.out.println(" INSERTING DATA:");
 		
 		
-		InsertAirForceData_TEST.insert();
-		InsertEventData_TEST.insert();
+		////////////////InsertAirForceData_TEST.insert();
+		///////////////////InsertEventData_TEST.insert();
 	
 		/*
 		//add blocks to DB:
