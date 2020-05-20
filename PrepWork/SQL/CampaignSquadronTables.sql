@@ -3,6 +3,7 @@ USE blood_red_skies_db;
 
 /*----------------------------------------------------*/
 /* campaigns being played */
+DROP TABLE IF EXISTS squadrons; 
 DROP TABLE IF EXISTS campaign_players; 
 DROP TABLE IF EXISTS campaigns; 
 
@@ -47,7 +48,7 @@ CREATE TABLE campaign_players (
 /*----------------------------------------------------*/
 /* squadrons */
 
-DROP TABLE IF EXISTS squadrons; 
+/*DROP TABLE IF EXISTS squadrons; */
 
 CREATE TABLE squadrons (
 	squadronID INT NOT NULL AUTO_INCREMENT,
@@ -58,6 +59,42 @@ CREATE TABLE squadrons (
 	FOREIGN KEY (campaign_playerID) REFERENCES campaign_players(campaign_playerID),
 	FOREIGN KEY (airforceID) REFERENCES airforces(airforceID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+/*----------------------------------------------------*/
+/* pilots */
+
+DROP TABLE IF EXISTS pilots; 
+
+CREATE TABLE pilots (
+	pilotID INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(64) DEFAULT NULL,
+	airforce_planeID INT,
+	pilot_skill ENUM ('Rookie','Average','Veteran','Ace','Named Ace') NOT NULL DEFAULT 'Rookie',
+	experience_points INT DEFAULT 0,
+	join_date DATE,
+	kills INT DEFAULT 0,
+	status ENUM ('OK','Injury','Major Injury','Crippling Injury','KIA') NOT NULL DEFAULT 'OK',
+	PRIMARY KEY (pilotID),
+	FOREIGN KEY (airforce_planeID) REFERENCES airforce_planes(airforce_planeID)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+/*----------------------------------------------------*/
+/* squadron pilots */
+
+DROP TABLE IF EXISTS squadron_pilots; 
+
+CREATE TABLE squadron_pilots (
+	squadron_pilotID INT NOT NULL AUTO_INCREMENT,
+	squadronID INT,
+	pilotID INT,
+	PRIMARY KEY (squadron_pilotID),
+	FOREIGN KEY (squadronID) REFERENCES squadrons(squadronID),
+	FOREIGN KEY (pilotID) REFERENCES pilots(pilotID)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
 
 
 
