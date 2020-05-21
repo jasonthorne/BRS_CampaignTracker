@@ -114,8 +114,8 @@ DROP PROCEDURE IF EXISTS select_all;
 DELIMITER $$
 CREATE PROCEDURE select_all (IN table_name VARCHAR(64))
 BEGIN
-	/* create sql select using table_name: */
-	SET @sql := CONCAT('SELECT * FROM ', table_name, ';'); 
+	/* create sql query string: */
+	SET @sql = CONCAT('SELECT * FROM ', table_name, ';'); 
 	
     /* prepare and execute sql statement: */
 	PREPARE statement FROM @sql;
