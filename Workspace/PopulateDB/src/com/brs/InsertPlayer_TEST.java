@@ -6,13 +6,13 @@ import java.sql.SQLException;
 
 public interface InsertPlayer_TEST {
 	
-	static void insert() {
+	static void insert(String name, String password) {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB
 			
-			String name = "Bob";
-			String password = "password";
+			//String name = "Bob";
+			//String password = "password";
 			CallableStatement callableStatement = connection.prepareCall("{CALL insert_player(?,?)}"); //create statement
 	        callableStatement.setString(1, name); 
 	        callableStatement.setString(2, password); 

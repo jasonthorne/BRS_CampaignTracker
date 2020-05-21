@@ -48,7 +48,13 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		
 		////////////////InsertAirForceData_TEST.insert();
 		///////////////////InsertEventData_TEST.insert();
-		InsertPlayer_TEST.insert();
+		
+		
+		InsertPlayer_TEST.insert("Bob", "1234");
+		InsertPlayer_TEST.insert("Ben", "1234");
+		InsertPlayer_TEST.insert("Bob", "password");
+		
+		
 		SelectAll.select("players");
 	
 		/*
