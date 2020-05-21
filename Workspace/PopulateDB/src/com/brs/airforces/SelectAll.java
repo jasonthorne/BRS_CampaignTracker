@@ -10,6 +10,9 @@ import com.brs.ConnectDB;
 
 public interface SelectAll {
 	
+	/*
+	 * 
+	 * NONSENSE :P 
 	//stored procedure call options:
 	enum Call{
 		SELECT_BLOCKS("{CALL select_blocks()}"),
@@ -19,18 +22,20 @@ public interface SelectAll {
 		private Call(String call) { this.call = call; } //set call
 		@Override 
 		public String toString() { return call; } //return call
-	}
+	}*/
 	
-	static void select(Call call) {
+	static void select(String tableName) {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB
-			CallableStatement callableStatement = connection.prepareCall(call.toString()); //create statement
+			CallableStatement callableStatement = connection.prepareCall("{CALL select_all(?)}"); //create statement
+			System.out.println(tableName);
+			callableStatement.setString(1, tableName); //set input with table name
 			callableStatement.execute(); //execute statement
 			ResultSet resultSet = callableStatement.getResultSet(); //get result set 
 			ResultSetMetaData resultSetMetaData = resultSet.getMetaData(); //get meta data
 			
-			System.out.println(resultSetMetaData.getTableName(1) + ":\n"); //print table name using pk column
+			//System.out.println(resultSetMetaData.getTableName(1) + ":\n"); //print table name using pk column
 			
 			//print column data from result set:
 			while(resultSet.next()) {

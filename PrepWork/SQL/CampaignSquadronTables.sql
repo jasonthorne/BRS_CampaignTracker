@@ -26,8 +26,19 @@ DROP TABLE IF EXISTS players;
 CREATE TABLE players (
 	playerID INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(64) DEFAULT NULL,
-	PRIMARY KEY (playerID)
+	password VARCHAR(255) DEFAULT NULL,
+	PRIMARY KEY (playerID),
+	CONSTRAINT name_password UNIQUE (name, password)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DROP PROCEDURE IF EXISTS insert_player; 
+
+DELIMITER $$
+CREATE PROCEDURE insert_player (IN player_name VARCHAR(64), IN password_string VARCHAR(64))
+BEGIN
+	INSERT INTO players (name, password) VALUES (player_name, SHA2(password_string, 512));
+END $$
+DELIMITER ;
 
 /*----------------------------------------------------*/
 /* players involded in campaigns*/
@@ -61,7 +72,6 @@ CREATE TABLE squadrons (
 	FOREIGN KEY (airforceID) REFERENCES airforces(airforceID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-
 /*----------------------------------------------------*/
 /* pilots */
 
@@ -80,7 +90,6 @@ CREATE TABLE pilots (
 	FOREIGN KEY (airforce_planeID) REFERENCES airforce_planes(airforce_planeID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-
 /*----------------------------------------------------*/
 /* squadron pilots */
 
@@ -97,7 +106,24 @@ CREATE TABLE squadron_pilots (
 
 
 
+/*===============================================================*/
+/* select all entries */
 
+DROP PROCEDURE IF EXISTS select_all; 
 
+DELIMITER $$
+CREATE PROCEDURE select_all (IN table_name VARCHAR(64))
+BEGIN
+	/* create sql select using table_name: */
+	SET @sql := CONCAT('SELECT * FROM ', table_name, ';'); 
+	
+    /* prepare and execute sql statement: */
+	PREPARE statement FROM @sql;
+	EXECUTE statement;
+	DEALLOCATE PREPARE statement;
+END $$
+DELIMITER ;
 
+/* https://stackoverflow.com/questions/27542617/dynamic-table-name-at-sql-statement */
+/*===============================================================*/
 

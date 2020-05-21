@@ -257,7 +257,7 @@ DELIMITER ;
 /* select all entries */
 
 DELIMITER $$
-CREATE PROCEDURE select_all(in table_name VARCHAR(64))
+CREATE PROCEDURE select_all(IN table_name VARCHAR(64))
 BEGIN
 	SELECT * FROM table_name 
 	/*ORDER BY airforceID ASC; ++++++++++++++++FIGURE THIS OUT :P */ 
