@@ -3,6 +3,7 @@ USE blood_red_skies_db;
 
 /*----------------------------------------------------*/
 /* campaigns being played */
+DROP TABLE IF EXISTS squadron_pilots; 
 DROP TABLE IF EXISTS squadrons; 
 DROP TABLE IF EXISTS campaign_players; 
 DROP TABLE IF EXISTS campaigns; 
@@ -39,7 +40,7 @@ CREATE TABLE campaign_players (
 	playerID INT,
 	score INT DEFAULT 0,
 	is_active BOOLEAN DEFAULT TRUE,
-	created DATE,
+	created DATE, /* +++++++++++++++++++++++++++++++++needed?????????? */
 	PRIMARY KEY (campaign_playerID),
 	FOREIGN KEY (campaignID) REFERENCES campaigns(campaignID),
 	FOREIGN KEY (playerID) REFERENCES players(playerID)
@@ -74,7 +75,7 @@ CREATE TABLE pilots (
 	experience_points INT DEFAULT 0,
 	join_date DATE,
 	kills INT DEFAULT 0,
-	status ENUM ('OK','Injury','Major Injury','Crippling Injury','KIA') NOT NULL DEFAULT 'OK',
+	status ENUM ('OK','Injury','Major Injury','Crippling Injury','KIA','MIA') NOT NULL DEFAULT 'OK',
 	PRIMARY KEY (pilotID),
 	FOREIGN KEY (airforce_planeID) REFERENCES airforce_planes(airforce_planeID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -83,7 +84,7 @@ CREATE TABLE pilots (
 /*----------------------------------------------------*/
 /* squadron pilots */
 
-DROP TABLE IF EXISTS squadron_pilots; 
+/*DROP TABLE IF EXISTS squadron_pilots; */
 
 CREATE TABLE squadron_pilots (
 	squadron_pilotID INT NOT NULL AUTO_INCREMENT,
