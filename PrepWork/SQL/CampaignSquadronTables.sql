@@ -105,6 +105,19 @@ CREATE TABLE squadron_pilots (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 /*----------------------------------------------------*/
+/* missions */
+
+DROP TABLE IF EXISTS missions; 
+
+CREATE TABLE misions (
+	missionID INT NOT NULL AUTO_INCREMENT,
+	periodID INT,
+	is_active BOOLEAN DEFAULT TRUE,
+	PRIMARY KEY (missionID),
+	FOREIGN KEY (periodID) REFERENCES periods(periodID)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+/*----------------------------------------------------*/
 /* logs */
 
 DROP TABLE IF EXISTS logs; 
@@ -117,7 +130,6 @@ CREATE TABLE logs (
 	FOREIGN KEY (squadronID) REFERENCES squadrons(squadronID),
 	FOREIGN KEY (pilotID) REFERENCES pilots(pilotID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-
 
 /*===============================================================*/
 /* select all entries */
