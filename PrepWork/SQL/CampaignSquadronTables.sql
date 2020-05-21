@@ -104,6 +104,19 @@ CREATE TABLE squadron_pilots (
 	FOREIGN KEY (pilotID) REFERENCES pilots(pilotID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+/*----------------------------------------------------*/
+/* logs */
+
+DROP TABLE IF EXISTS logs; 
+
+CREATE TABLE logs (
+	logID INT NOT NULL AUTO_INCREMENT,
+	squadronID INT,
+	pilotID INT,
+	PRIMARY KEY (squadron_pilotID),
+	FOREIGN KEY (squadronID) REFERENCES squadrons(squadronID),
+	FOREIGN KEY (pilotID) REFERENCES pilots(pilotID)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 /*===============================================================*/
@@ -114,11 +127,11 @@ DROP PROCEDURE IF EXISTS select_all;
 DELIMITER $$
 CREATE PROCEDURE select_all (IN table_name VARCHAR(64))
 BEGIN
-	/* create sql query string: */
-	SET @sql = CONCAT('SELECT * FROM ', table_name, ';'); 
+	/* create query string: */
+	SET @query = CONCAT('SELECT * FROM ', table_name, ';'); 
 	
-    /* prepare and execute sql statement: */
-	PREPARE statement FROM @sql;
+    /* prepare and execute statement: */
+	PREPARE statement FROM @query;
 	EXECUTE statement;
 	DEALLOCATE PREPARE statement;
 END $$

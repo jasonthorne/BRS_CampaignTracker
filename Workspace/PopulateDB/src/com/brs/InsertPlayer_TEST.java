@@ -10,14 +10,11 @@ public interface InsertPlayer_TEST {
 		 Connection connection = null;
 		 try {
 			connection = ConnectDB.getConnection();	//connect to DB
-			
-			//String name = "Bob";
-			//String password = "password";
 			CallableStatement callableStatement = connection.prepareCall("{CALL insert_player(?,?)}"); //create statement
-	        callableStatement.setString(1, name); 
-	        callableStatement.setString(2, password); 
+	        callableStatement.setString(1, name); //set input with name
+	        callableStatement.setString(2, password); //set input with password
 	        try {
-		    	callableStatement.execute(); //execute statement //++++++++++++++++++++++++++++++++++
+		    	callableStatement.execute(); //execute statement
 			}catch(Exception e) { e.printStackTrace(); }
 	
 		 }catch(Exception e) { e.printStackTrace(); }
@@ -29,5 +26,4 @@ public interface InsertPlayer_TEST {
 			 }
 		 }
 	}
-
 }
