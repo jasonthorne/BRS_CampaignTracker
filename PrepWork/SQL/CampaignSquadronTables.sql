@@ -84,7 +84,7 @@ CREATE TABLE pilots (
 	pilot_skill ENUM ('Rookie','Average','Veteran','Ace','Named Ace') NOT NULL DEFAULT 'Rookie',
 	experience_points INT DEFAULT 0,
 	join_date DATE,
-	kills INT DEFAULT 0,
+	shot_downs INT DEFAULT 0,
 	status ENUM ('OK','Injury','Major Injury','Crippling Injury','KIA','MIA') NOT NULL DEFAULT 'OK',
 	PRIMARY KEY (pilotID),
 	FOREIGN KEY (airforce_planeID) REFERENCES airforce_planes(airforce_planeID)
@@ -109,7 +109,7 @@ CREATE TABLE squadron_pilots (
 
 DROP TABLE IF EXISTS missions; 
 
-CREATE TABLE misions (
+CREATE TABLE missions (
 	missionID INT NOT NULL AUTO_INCREMENT,
 	periodID INT,
 	is_active BOOLEAN DEFAULT TRUE,
@@ -124,12 +124,35 @@ DROP TABLE IF EXISTS logs;
 
 CREATE TABLE logs (
 	logID INT NOT NULL AUTO_INCREMENT,
-	squadronID INT,
-	pilotID INT,
-	PRIMARY KEY (squadron_pilotID),
-	FOREIGN KEY (squadronID) REFERENCES squadrons(squadronID),
-	FOREIGN KEY (pilotID) REFERENCES pilots(pilotID)
+	squadron_pilotID INT,
+	missionID INT,
+	has_survived BOOLEAN DEFAULT TRUE,
+	has_inflicted_boom_chit BOOLEAN DEFAULT FALSE,
+	has_received_boom_chit BOOLEAN DEFAULT FALSE,
+	was_shot_down BOOLEAN DEFAULT FALSE,
+	hits INT DEFAULT 0,
+	shot_downs INT DEFAULT 0,
+	PRIMARY KEY (logID),
+	FOREIGN KEY (squadron_pilotID) REFERENCES squadron_pilots(squadron_pilotID),
+	FOREIGN KEY (missionID) REFERENCES missions(missionID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+/*----------------------------------------------------*/
+/* mission results */
+
+DROP TABLE IF EXISTS mission_results; 
+
+CREATE TABLE mission_results (
+	mission_resultID INT NOT NULL AUTO_INCREMENT,
+	missionID INT,
+	campaign_playerID INT,
+	result ENUM ('Defeat','Victory') NOT NULL DEFAULT 'Defeat',
+	PRIMARY KEY (mission_resultID),
+	FOREIGN KEY (missionID) REFERENCES missions(missionID),
+	FOREIGN KEY (campaign_playerID) REFERENCES campaign_players(campaign_playerID)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
 
 /*===============================================================*/
 /* select all entries */
