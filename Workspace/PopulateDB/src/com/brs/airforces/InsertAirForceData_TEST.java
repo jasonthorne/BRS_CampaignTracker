@@ -71,7 +71,7 @@ public interface InsertAirForceData_TEST {
 				    	callableStatement.execute(); //execute statement //++++++++++++++++++++++++++++++++++
 					}catch(Exception e) { e.printStackTrace(); }
 					//-------------------------------------------------
-					//add periods and statuses to 'airforce_plane_period_statuses':
+					//add plane's periods and statuses to 'plane_availabilities':
 					
 					JSONArray periodStatuses = (JSONArray) plane.get("period_statuses"); //get array of period statuses
 					Iterator<JSONObject> periodStatusesIterator = periodStatuses.iterator(); //iterate through periodStatuses
@@ -83,7 +83,7 @@ public interface InsertAirForceData_TEST {
 						String block = (String) period.get("block"); //get block from period
 						String year = (String) period.get("year"); //get year from period
 						String status = (String) periodStatus.get("status"); //get status from periodStatus
-						callableStatement = connection.prepareCall("{CALL insert_airforce_plane_period_status(?,?,?,?,?)}"); //create statement
+						callableStatement = connection.prepareCall("{CALL insert_plane_availability(?,?,?,?,?)}"); //create statement
 						callableStatement.setString(1, airForceName); //set input with air force
 				        callableStatement.setString(2, planeName); //set input with plane
 				        callableStatement.setString(3, block); //set input with block

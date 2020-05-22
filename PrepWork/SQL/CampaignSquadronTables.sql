@@ -1,12 +1,18 @@
 
 USE blood_red_skies_db;
 
-/*----------------------------------------------------*/
-/* campaigns being played */
+DROP TABLE IF EXISTS logs; 
+DROP TABLE IF EXISTS mission_results; 
+DROP TABLE IF EXISTS missions; 
 DROP TABLE IF EXISTS squadron_pilots; 
 DROP TABLE IF EXISTS squadrons; 
 DROP TABLE IF EXISTS campaign_players; 
-DROP TABLE IF EXISTS campaigns; 
+DROP TABLE IF EXISTS campaigns;
+
+/*----------------------------------------------------*/
+/* campaigns being played */
+
+/*DROP TABLE IF EXISTS campaigns; */
 
 CREATE TABLE campaigns (
 	campaignID INT NOT NULL AUTO_INCREMENT,
@@ -28,7 +34,9 @@ CREATE TABLE players (
 	name VARCHAR(64) DEFAULT NULL,
 	password VARCHAR(255) DEFAULT NULL,
 	PRIMARY KEY (playerID),
-	CONSTRAINT name_password UNIQUE (name, password)	/* make combined columns unique */
+	/*CONSTRAINT name_password UNIQUE (name, password)	/* make combined columns unique */
+	UNIQUE (name), /* prevent duplicate inserts */
+	UNIQUE (password) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP PROCEDURE IF EXISTS insert_player; 
@@ -107,20 +115,22 @@ CREATE TABLE squadron_pilots (
 /*----------------------------------------------------*/
 /* missions */
 
-DROP TABLE IF EXISTS missions; 
+/*DROP TABLE IF EXISTS missions; */
 
 CREATE TABLE missions (
 	missionID INT NOT NULL AUTO_INCREMENT,
+	campaignID INT,
 	periodID INT,
 	is_active BOOLEAN DEFAULT TRUE,
 	PRIMARY KEY (missionID),
+	FOREIGN KEY (campaignID) REFERENCES campaigns(campaignID),
 	FOREIGN KEY (periodID) REFERENCES periods(periodID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 /*----------------------------------------------------*/
 /* logs */
 
-DROP TABLE IF EXISTS logs; 
+/*DROP TABLE IF EXISTS logs; */
 
 CREATE TABLE logs (
 	logID INT NOT NULL AUTO_INCREMENT,
@@ -140,7 +150,7 @@ CREATE TABLE logs (
 /*----------------------------------------------------*/
 /* mission results */
 
-DROP TABLE IF EXISTS mission_results; 
+/*DROP TABLE IF EXISTS mission_results; */
 
 CREATE TABLE mission_results (
 	mission_resultID INT NOT NULL AUTO_INCREMENT,

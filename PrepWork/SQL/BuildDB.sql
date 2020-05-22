@@ -136,7 +136,7 @@ CREATE TABLE planes(
 	planeID INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(64) DEFAULT NULL,
 	PRIMARY KEY (planeID),
-	UNIQUE (name)
+	UNIQUE (name) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -177,12 +177,12 @@ DELIMITER ;
 /*----------------------------------------------------*/
 /* availability statuses of air force planes in relation to historical periods */
 
-CREATE TABLE airforce_plane_period_statuses(
-	airforce_plane_period_statusID INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE plane_availabilities(
+	plane_availabilityID INT NOT NULL AUTO_INCREMENT,
 	airforce_planeID INT,
 	periodID INT,
 	status ENUM ('Unavailable','Limit','Auto') NOT NULL DEFAULT 'Unavailable',
-	PRIMARY KEY (airforce_plane_period_statusID),
+	PRIMARY KEY (plane_availabilityID),
 	FOREIGN KEY (airforce_planeID) REFERENCES airforce_planes(airforce_planeID),
 	FOREIGN KEY (periodID) REFERENCES periods(periodID),
 	CONSTRAINT airforce_planeID_periodID UNIQUE (airforce_planeID, periodID)	/* make combined columns unique */
@@ -190,7 +190,7 @@ CREATE TABLE airforce_plane_period_statuses(
 
 
 DELIMITER $$
-CREATE PROCEDURE insert_airforce_plane_period_status (IN airforce_name VARCHAR(64), IN plane_name VARCHAR(64), 
+CREATE PROCEDURE insert_plane_availability (IN airforce_name VARCHAR(64), IN plane_name VARCHAR(64), 
 IN block_option VARCHAR(5), IN year_name VARCHAR(4), IN status_option VARCHAR(11))
 BEGIN
 	/* insert period to periods if not present */
@@ -199,7 +199,7 @@ BEGIN
 	/* error thrown here if status_option doesnt match enum options, 
 	or on an attempt to insert identical periods for the same airforce_plane: */
 	
-	INSERT INTO airforce_plane_period_statuses (airforce_planeID, periodID, status) VALUES ( 
+	INSERT INTO plane_availabilities (airforce_planeID, periodID, status) VALUES ( 
 	(SELECT airforce_planeID FROM airforce_planes
 		INNER JOIN airforces ON airforce_planes.airforceID = airforces.airforceID
 		INNER JOIN planes ON airforce_planes.planeID = planes.planeID
@@ -269,7 +269,7 @@ CREATE TABLE event_periods (
 	PRIMARY KEY (event_periodID),
 	FOREIGN KEY (periodID_start) REFERENCES periods(periodID),
 	FOREIGN KEY (periodID_end) REFERENCES periods(periodID),
-	UNIQUE (eventID)
+	UNIQUE (eventID) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
