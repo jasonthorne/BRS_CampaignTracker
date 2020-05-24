@@ -183,3 +183,36 @@ RAF_PlanesID | PlaneID         | AirforceID  | PeriodStatusID_Early-1940 | Perio
 2, 	      		2 (Hurricane I),	  1 (RAF),  	  			2 (Auto),                  5 (Auto),                  	8 (Auto),	       	etc...   
 
 -----------
+
+
+
+//----------------------------------------
+event_data.json
+
+https://stackoverflow.com/questions/1361340/how-to-insert-if-not-exists-in-mysql
+
+event:
+//add 'name' to events if not there
+//forEach airforce in airforces:
+	//add 'name' to airforces if not there
+	//THEN add event 'name' & 'airforce' & 'has_home_advantage' to event_airforces
+
+start_period:
+//add block to blocks if not there
+//add year to years if not there
+THEN add year and block to periods
+
+end_period:
+//add block to blocks if not there
+//add year to years if not there
+THEN add year and block to periods
+
+THEN add event 'name' & start_period & end_period to event_periods
+
+
+//---------------------------------------
+airforce_data.json
+
+name
+pic
+planes
