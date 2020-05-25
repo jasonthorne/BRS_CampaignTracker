@@ -1,4 +1,4 @@
-DROP DATABASE if exists blood_red_skies_db;
+DROP DATABASE IF EXISTS blood_red_skies_db;
 CREATE DATABASE blood_red_skies_db;
 
 USE blood_red_skies_db;
