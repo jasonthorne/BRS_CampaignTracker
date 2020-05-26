@@ -58,6 +58,7 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		
 		SelectAll.select("players");
 	
+		
 		/*
 		//add blocks to DB:
 		System.out.println("------------------");
