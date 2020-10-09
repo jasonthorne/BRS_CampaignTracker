@@ -1,3 +1,16 @@
+
+=======
+Name: Battle Of Britian
+Created:
+Progress:
+Creator:
+Joined: 
+=========
+
+++++++++++++have a 'logged on users' list on top of project which is where user's id is stored +++++++++++++++++++!!
+++++++++++and add their ip to a db table ready for making a socket connection for messaging ++++++++++
+
+
 NATIONAL ARCHIVES:
 https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/royal-air-force-squadron/
 
