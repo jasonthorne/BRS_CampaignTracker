@@ -38,28 +38,25 @@ public class FrameController {
     	//set btn actions:
     	headerBtmBackBtn.setOnAction(event -> moveBkwrd());
     	headerBtmFwrdBtn.setOnAction(event -> moveFwrd());
+    	addRootToBody(loginCtrlr.getRoot()); //add login.fxml to body
     }
     
     private final Stage stage = new Stage(); //stage
     private Scene scene; //scene
     
-    private LoginController loginCtrlr;
+    private final LoginController loginCtrlr; //login.fxml controller
     
-  	//stacks holding moves taken:
+  	//user traversal of bodyAP root controllers:
   	private Stack<Traversable>fwrdMoves = new Stack<Traversable>(); 
   	private Stack<Traversable>bkwrdMoves = new Stack<Traversable>();
-  	private Traversable currntPos; //current position:
+  	private Traversable currntCtrlr; //current controller of bodyAP root
   	
     //constructor:
     public FrameController(){
-    
          loginCtrlr = new LoginController(this);  //create login controller
-         fwrdMoves.push(loginCtrlr); //add logged controller as first element
+        
+         //fwrdMoves.push(Campaigns); //add logged controller as first element
          
-         /*
-        setCurrPos(loginCtrlr);
-        */
-    	
         //load the fxml file:
         try {
         	//create loader:
