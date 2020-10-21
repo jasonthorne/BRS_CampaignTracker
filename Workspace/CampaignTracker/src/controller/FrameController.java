@@ -5,15 +5,18 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Stack;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class FrameController extends Traverse{
+public class FrameController {
 
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -32,20 +35,31 @@ public class FrameController extends Traverse{
     
     @FXML
     void initialize() {
-    	//set traverse buttons:
-    	setTraverseBtns(headerBtmBackBtn, headerBtmFwrdBtn);
-    	
+    	//set btn actions:
+    	headerBtmBackBtn.setOnAction(event -> moveBkwrd());
+    	headerBtmFwrdBtn.setOnAction(event -> moveFwrd());
     }
     
-    private final Stage stage;
-    private Scene scene;
+    private final Stage stage = new Stage(); //stage
+    private Scene scene; //scene
     
+    private LoginController loginCtrlr;
+    
+  	//stacks holding moves taken:
+  	private Stack<Traversable>fwrdMoves = new Stack<Traversable>(); 
+  	private Stack<Traversable>bkwrdMoves = new Stack<Traversable>();
+  	private Traversable currntPos; //current position:
+  	
     //constructor:
     public FrameController(){
+    
+         loginCtrlr = new LoginController(this);  //create login controller
+         fwrdMoves.push(loginCtrlr); //add logged controller as first element
+         
+         /*
+        setCurrPos(loginCtrlr);
+        */
     	
-    	//create stage:
-        stage = new Stage(); 
-        
         //load the fxml file:
         try {
         	//create loader:
@@ -59,7 +73,25 @@ public class FrameController extends Traverse{
     //show stage:
     public void showStage() { stage.showAndWait(); }
     
-    
+    //add root to body AnchorPane:
+  	void addRootToBody(Parent root){
+  		//clears the children of this element & replaces with root:
+  		bodyAP.getChildren().setAll(root);
+  	}
+  	
+  	void moveFwrd(Traversable targetPos) {
+  		System.out.println("moveFwrd(Traversable)");
+	}
+	
+	private void moveFwrd() {
+		System.out.println("moveFwrd");
+	}
+	
+	private void moveBkwrd() {
+		System.out.println("moveBkwrd");
+		
+	}
+  	
     
     
 }

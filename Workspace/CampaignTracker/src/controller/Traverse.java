@@ -5,21 +5,25 @@ import java.util.Stack;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
 public abstract class Traverse {
 	
-	//buttons for traversing :
+	//buttons for traversal:
 	@FXML private JFXButton backBtn;
 	@FXML private JFXButton fwrdBtn;
+	
+	//label to show current position:
+	@FXML private Label currPosLbl;
+	
+	//current position:
+	private Traversable currPos; 
 	
 	//stacks holding moves taken:
 	private Stack<Traversable>fwrdMoves = new Stack<Traversable>(); 
 	private Stack<Traversable>bkwrdMoves = new Stack<Traversable>(); 
-	
-	//current position
-	private Traversable currPos; 
-	
-	//set traversal buttons:
+
+	//set buttons:
 	void setTraverseBtns(JFXButton backBtn, JFXButton fwrdBtn) {
 		this.backBtn = backBtn; 
 		this.fwrdBtn = fwrdBtn;
@@ -32,6 +36,16 @@ public abstract class Traverse {
 		///////backBtn.setDisable(true);
 		///////fwrdBtn.setDisable(true);
 	}
+	
+	/** UNSAFE SETTER???? */
+	void setCurrPos(Traversable currPos) { this.currPos = currPos; }
+		
+	
+	
+	void setFrwdMoves(Traversable t){
+		
+	}
+	
 	
 	void moveFwrd(Traversable targetPos) {
 		
