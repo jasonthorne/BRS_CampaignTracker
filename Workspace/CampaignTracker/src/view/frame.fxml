@@ -1,21 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="rootBP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
-      <AnchorPane prefHeight="30.0" prefWidth="600.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="footerAP" prefHeight="40.0" prefWidth="640.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <AnchorPane prefHeight="280.0" prefWidth="600.0" style="-fx-background-color: yellow;" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane layoutY="-1.0" prefHeight="30.0" prefWidth="600.0" style="-fx-background-color: blue;" />
-         </children>
-      </AnchorPane>
+      <AnchorPane fx:id="bodyAP" prefHeight="320.0" prefWidth="640.0" style="-fx-background-color: yellow;" BorderPane.alignment="CENTER" />
    </center>
    <top>
-      <AnchorPane prefHeight="60.0" prefWidth="600.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER" />
+      <BorderPane fx:id="headerBP" prefHeight="120.0" prefWidth="640.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+         <top>
+            <AnchorPane fx:id="headerTopAP" prefHeight="80.0" prefWidth="640.0" style="-fx-background-color: blue;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="headerTopLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="201.0" layoutY="20.0" text="Campaign Tracker" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>zs
+                  </Label>
+               </children>
+            </AnchorPane>
+         </top>
+         <bottom>
+            <AnchorPane fx:id="headerBtmAP" prefHeight="40.0" prefWidth="640.0" style="-fx-background-color: pink;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="headerBtmLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="5.0" prefHeight="27.0" prefWidth="380.0" text="View Title" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="headerBtmBackBtn" alignment="CENTER" layoutX="14.0" layoutY="4.0" text="Back" textAlignment="CENTER">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="headerBtmFwrdBtn" alignment="CENTER" layoutX="577.0" layoutY="6.0" text="Fwrd" textAlignment="CENTER">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </bottom>
+      </BorderPane>
    </top>
 </BorderPane>
