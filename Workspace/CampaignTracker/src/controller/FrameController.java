@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import view.ViewPath;
 
 public class FrameController implements Rootable{
 
@@ -65,7 +66,7 @@ public class FrameController implements Rootable{
     public FrameController(){
     	
     	//create scene with fxml root:
-    	scene = new Scene(loadRoot.apply(this, "/view/frame.fxml"));
+    	scene = new Scene(loadRoot.apply(this, ViewPath.FRAME_FXML));
     	stage.setScene(scene); //add scene to stage
     }	
     

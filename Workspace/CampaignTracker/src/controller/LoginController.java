@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import view.ViewPath;
 
 public class LoginController implements Rootable {
 	
@@ -36,21 +37,7 @@ public class LoginController implements Rootable {
     private static final String TITLE = "Login"; //???????????????
     
     //root element for this controller:
-  	//private final Parent root = loadRoot.apply(
-  			//this, new FXMLLoader(getClass().getResource("/view/login.fxml")));
-    
-    {
-    	/*
-    	try {
-	    	//load properties:
-			Properties properties = new Properties();	
-			properties.load(new FileInputStream("configs/fxml/fxml_paths.properties"));
-			System.out.println(properties.getProperty("login"));
-	    }catch(Exception e) { e.printStackTrace(); }
-    	*/
-    }
-
-  	private final Parent root = loadRoot.apply(this, "/view/login.fxml");
+  	private final Parent root = loadRoot.apply(this, ViewPath.LOGIN_FXML);
   			
 	//controllers:
 	private final FrameController frameC;
