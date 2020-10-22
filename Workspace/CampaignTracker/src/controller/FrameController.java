@@ -38,46 +38,56 @@ public class FrameController {
     	//set btn actions:
     	headerBtmBackBtn.setOnAction(event -> moveBkwrd());
     	headerBtmFwrdBtn.setOnAction(event -> moveFwrd());
-    	addRootToBody(loginCtrlr.getRoot()); //add login.fxml to body
+    	//add login.fxml to body:
+    	addRootToBody(loginCtrlr.getRoot()); 
     }
     
     private final Stage stage = new Stage(); //stage
     private Scene scene; //scene
     
-    private final LoginController loginCtrlr; //login.fxml controller
+    //login.fxml controller:
+    private final LoginController loginCtrlr = new LoginController(this);
     
   	//user traversal of bodyAP root controllers:
-  	private Stack<Traversable>fwrdMoves = new Stack<Traversable>(); 
-  	private Stack<Traversable>bkwrdMoves = new Stack<Traversable>();
+  	private final Stack<Traversable>fwrdMoves = new Stack<Traversable>(); 
+  	private final Stack<Traversable>bkwrdMoves = new Stack<Traversable>();
   	private Traversable currntCtrlr; //current controller of bodyAP root
   	
     //constructor:
     public FrameController(){
-         loginCtrlr = new LoginController(this);  //create login controller
-        
-         //fwrdMoves.push(Campaigns); //add logged controller as first element
-         
-        //load the fxml file:
-        try {
-        	//create loader:
-        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/frame.fxml")); 
-        	loader.setController(this);//set this class as the controller
-        	scene = new Scene(loader.load()); //load fxml into scene
-        	stage.setScene(scene); //add scene to stage
+    	
+    	//create loader:
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/frame.fxml")); 
+    	loader.setController(this);//set this class as the controller
+    	try {
+    		scene = new Scene(loader.load()); //load fxml into scene
+    		stage.setScene(scene); //add scene to stage
         }catch (IOException e) { e.printStackTrace(); }
-    }
+    }	
     
     //show stage:
     public void showStage() { stage.showAndWait(); }
     
     //add root to body AnchorPane:
-  	void addRootToBody(Parent root){
+  	private void addRootToBody(Parent root){
   		//clears the children of this element & replaces with root:
   		bodyAP.getChildren().setAll(root);
   	}
   	
-  	void moveFwrd(Traversable targetPos) {
+  	
+  	void moveFwrd(Traversable currntCtrlr) {
   		System.out.println("moveFwrd(Traversable)");
+  		
+  		//turn on back button:
+    	if(headerBtmBackBtn.isDisabled()) { 
+    		headerBtmBackBtn.setDisable(false); 
+    	} 
+    	
+    	this.currntCtrlr = currntCtrlr; //currController now points to target
+    	
+    	//to move to currController: 
+    	fwrdMoves.push(currntCtrlr);
+    	addRootToBody(currntCtrlr.getRoot());
 	}
 	
 	private void moveFwrd() {
