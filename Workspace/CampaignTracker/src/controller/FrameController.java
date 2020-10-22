@@ -16,28 +16,33 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class FrameController {
+public class FrameController implements Rootable{
 
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
     
     //root fxml element & children:
     @FXML private BorderPane rootBP;
-    	@FXML private BorderPane headerBP;
-    		@FXML private AnchorPane headerTopAP;
-    			@FXML private Label headerTopLbl;
-    		@FXML private AnchorPane headerBtmAP;
-    			@FXML private Label headerBtmLbl;
-    			@FXML private JFXButton headerBtmBackBtn;
-    			@FXML private JFXButton headerBtmFwrdBtn;
-    	@FXML private AnchorPane bodyAP;
-    	@FXML private AnchorPane footerAP;
+	@FXML private BorderPane headerBP;
+	@FXML private AnchorPane headerTopAP;
+	@FXML private Label appLbl;
+	@FXML private AnchorPane headerBtmAP;
+	@FXML private Label pageLbl;
+	@FXML private JFXButton backBtn;
+	@FXML private JFXButton fwrdBtn;
+	@FXML private AnchorPane bodyAP;
+	@FXML private AnchorPane footerAP;
     
     @FXML
     void initialize() {
-    	//set btn actions:
-    	headerBtmBackBtn.setOnAction(event -> moveBkwrd());
-    	headerBtmFwrdBtn.setOnAction(event -> moveFwrd());
+    	//set button actions:
+    	backBtn.setOnAction(event -> moveBkwrd());
+    	fwrdBtn.setOnAction(event -> moveFwrd());
+    	
+    	//initially disable btns:
+		backBtn.setDisable(true);
+    	fwrdBtn.setDisable(true);
+    	
     	//add login.fxml to body:
     	addRootToBody(loginCtrlr.getRoot()); 
     }
@@ -48,21 +53,20 @@ public class FrameController {
     //login.fxml controller:
     private final LoginController loginCtrlr = new LoginController(this);
     
-  	//user traversal of bodyAP root controllers:
-  	private final Stack<Traversable>fwrdMoves = new Stack<Traversable>(); 
+    //Stacks of parent nodes. One for forward moves, one for backward moves:
+  	private final Stack<Parent>fwrdMoves = new Stack<Parent>(); 
+  	private final Stack<Parent>bkwrdMoves = new Stack<Parent>();
+  	/*
+	private final Stack<Traversable>fwrdMoves = new Stack<Traversable>(); 
   	private final Stack<Traversable>bkwrdMoves = new Stack<Traversable>();
   	private Traversable currntCtrlr; //current controller of bodyAP root
-  	
+  	*/
     //constructor:
     public FrameController(){
     	
-    	//create loader:
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/frame.fxml")); 
-    	loader.setController(this);//set this class as the controller
-    	try {
-    		scene = new Scene(loader.load()); //load fxml into scene
-    		stage.setScene(scene); //add scene to stage
-        }catch (IOException e) { e.printStackTrace(); }
+    	//create scene with fxml root:
+    	scene = new Scene(loadRoot.apply(this, "/view/frame.fxml"));
+    	stage.setScene(scene); //add scene to stage
     }	
     
     //show stage:
@@ -74,31 +78,32 @@ public class FrameController {
   		bodyAP.getChildren().setAll(root);
   	}
   	
-  	
-  	void moveFwrd(Traversable currntCtrlr) {
-  		System.out.println("moveFwrd(Traversable)");
+  	//move forward to new view:
+  	void moveFwrd(Parent root) {
   		
-  		//turn on back button:
-    	if(headerBtmBackBtn.isDisabled()) { 
-    		headerBtmBackBtn.setDisable(false); 
-    	} 
+  		//if there are stored bkwrdMoves:
+    	if(!bkwrdMoves.isEmpty()) {
+    		//turn on back button if disabled:
+        	if(backBtn.isDisabled()) { backBtn.setDisable(false); } /** +++++++++++++++++++++++ */
+    		bkwrdMoves.pop(); //remove obsolete element (as traversing a new path)
+        	//turn off fwrd buttons if all bkwrdMoves are removed:
+        	if(bkwrdMoves.isEmpty()) { fwrdBtn.setDisable(true); } /** +++++++++++++++++++++++ */
+    	}
     	
-    	this.currntCtrlr = currntCtrlr; //currController now points to target
-    	
-    	//to move to currController: 
-    	fwrdMoves.push(currntCtrlr);
-    	addRootToBody(currntCtrlr.getRoot());
+    	fwrdMoves.push(root); //mark root as fwrd move
+    	addRootToBody(root); //add root to bodyAP
 	}
 	
+  	//move forward to previous view:
 	private void moveFwrd() {
 		System.out.println("moveFwrd");
 	}
 	
+	//move backwards to previous view:
 	private void moveBkwrd() {
 		System.out.println("moveBkwrd");
 		
 	}
   	
-    
     
 }

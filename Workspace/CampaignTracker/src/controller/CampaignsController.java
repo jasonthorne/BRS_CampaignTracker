@@ -1,34 +1,57 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
+
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
-public class CampaignsController implements Traversable{
+public class CampaignsController implements Rootable{
 	
+	@FXML
+    private ResourceBundle resources;
+    @FXML
+    private URL location;
+    
+    @FXML
+    private AnchorPane rootAP;
+    @FXML
+    private Label testLbl;
+    @FXML
+    private JFXButton btnTest;
+    
+    @FXML
+    void initialize() {
+    	btnTest.setOnAction(event -> test());
+    	
+    }
 	
-	private final Parent root;
+    //root element for this controller:
+	private final Parent root = loadRoot.apply(this, "/view/campaigns.fxml");
 	
 	//controllers:
-	private final FrameController frameCtrlr;
+	private final FrameController fc;
 	
-	CampaignsController(FrameController frameCtrlr) {
-		this.frameCtrlr = frameCtrlr; //assign frame controller
-		
-		//create loader:
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/campaigns.fxml"));
-		loader.setController(this); //set this class as the controller
-		try {
-			loader.load(); //load fxml tree
-		} catch (IOException e) { e.printStackTrace(); }
-		this.root = loader.getRoot(); //set root element
+	CampaignsController(FrameController fc) {
+		this.fc = fc; //assign frame controller
 	}
 
-	@Override
-	public Parent getRoot() { return root; }
 	
-		
+	public Parent getRoot() { return this.root; } //get root
 	
-
+	
+	
+	int counter = 0;
+	
+	void test() {
+		counter++;
+		testLbl.setText("yo: " + counter);
+	}
+	
 }
