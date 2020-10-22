@@ -37,14 +37,14 @@ public class CampaignsController implements Rootable{
 	private final Parent root = loadRoot.apply(this, ViewPath.CAMPAIGNS_FXML);
 	
 	//controllers:
-	private final FrameController fc;
+	private final FrameController frameCtrlr;
 	
-	CampaignsController(FrameController fc) {
-		this.fc = fc; //assign frame controller
+	CampaignsController(FrameController frameCtrlr) {
+		this.frameCtrlr = frameCtrlr; //assign frame controller
 	}
 
 	
-	public Parent getRoot() { return this.root; } //get root
+	Parent getRoot() { return this.root; } //get root
 	
 	
 	

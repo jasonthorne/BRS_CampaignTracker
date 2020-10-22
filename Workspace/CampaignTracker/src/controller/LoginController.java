@@ -1,10 +1,6 @@
 package controller;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.DriverManager;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -12,7 +8,6 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import view.ViewPath;
@@ -34,39 +29,28 @@ public class LoginController implements Rootable {
 		loginBtn.setOnAction(event -> loginUsr());
     }
 	
-    private static final String TITLE = "Login"; //???????????????
-    
     //root element for this controller:
   	private final Parent root = loadRoot.apply(this, ViewPath.LOGIN_FXML);
   			
 	//controllers:
-	private final FrameController frameC;
-	private final CampaignsController cc;
+	private final FrameController frameCtrlr;
+	private final CampaignsController campignsCtrlr;
 	
-	LoginController(FrameController frameC){
-		this.frameC = frameC;  //assign frame controller
-		this.cc = new CampaignsController(frameC);  //create campaigns controller
-		
-		/*
-		//create loader:
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
-		loader.setController(this); //set this class as the controller
-		try {
-			loader.load(); //load fxml tree
-		} catch (IOException e) { e.printStackTrace(); }
-		this.root = loader.getRoot(); //get root element
-		*/
+	//constructor:
+	LoginController(FrameController frameCtrlr) {
+		this.frameCtrlr = frameCtrlr;  //assign frame controller
+		this.campignsCtrlr = new CampaignsController(frameCtrlr);  //create campaigns controller
 	}
 	
 	private void loginUsr(){
 		System.out.println("login clicked");
-		frameC.moveFwrd(cc.getRoot());
+		frameCtrlr.moveFwrd(campignsCtrlr.getRoot());
 	}
 	
-	public Parent getRoot() { return this.root; }
+	Parent getRoot() { return this.root; }
 	
-	
-	
+	 
+
 	
 	
 	
