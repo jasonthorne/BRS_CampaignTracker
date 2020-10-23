@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,18 +16,13 @@ import view.FxmlPath;
 
 public class CampaignsController implements Rootable{
 	
-	@FXML
-    private ResourceBundle resources;
-    @FXML
-    private URL location;
+	@FXML private ResourceBundle resources;
+    @FXML private URL location;
     
-    @FXML
-    private AnchorPane rootAP;
-    @FXML
-    private Label testLbl;
-    @FXML
-    private JFXButton btnTest;
-    
+    @FXML private AnchorPane rootAP;
+    @FXML private JFXButton btnTest; /** ===================== */
+    @FXML private JFXListView<?> campaignsLV;
+   
     @FXML
     void initialize() {
     	btnTest.setOnAction(event -> goToA1());
@@ -45,15 +41,10 @@ public class CampaignsController implements Rootable{
 		this.a1 = new A1(frameCtrlr);
 	}
 
-	
 	Parent getRoot() { return this.root; } //get root
 	
-	
-	
-	int counter = 0;
-	
-	void goToA1() {
-		frameCtrlr.moveFwrd(a1.getRoot());
-	}
+	/** ======================================= */
+	void goToA1() { frameCtrlr.moveFwrd(a1.getRoot()); }
+	/** ======================================= */
 	
 }

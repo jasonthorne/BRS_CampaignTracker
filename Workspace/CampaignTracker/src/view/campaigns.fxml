@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Label?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="rootAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="640.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" layoutX="196.0" layoutY="108.0" prefHeight="104.0" prefWidth="248.0" text="Campaigns" textFill="WHITE">
-         <font>
-            <Font size="29.0" />
-         </font></Label>
-      <Label fx:id="testLbl" layoutX="228.0" layoutY="63.0" prefHeight="61.0" prefWidth="185.0" text="Label" textFill="WHITE" />
-      <JFXButton fx:id="btnTest" layoutX="309.0" layoutY="225.0" style="-fx-background-color: yellow;" text="press me!" />
+      <JFXButton fx:id="btnTest" layoutX="287.0" layoutY="14.0" style="-fx-background-color: yellow;" text="press me!" />
+      <JFXListView fx:id="campaignsLV" layoutX="195.0" layoutY="60.0" prefHeight="200.0" prefWidth="250.0" />
    </children>
 </AnchorPane>

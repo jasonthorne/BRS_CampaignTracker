@@ -22,15 +22,3 @@ public interface Rootable {
 		return loader.getRoot(); //return root element
 	};
 }
-
-
-/*
-try {
-	//load properties:
-	Properties properties = new Properties();	
-	properties.load(new FileInputStream("configs/fxml/fxml_paths.properties"));
-	System.out.println(properties.getProperty("login"));
-}catch(Exception e) { e.printStackTrace(); }
-*/
-
-

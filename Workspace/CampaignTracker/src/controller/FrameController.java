@@ -106,9 +106,7 @@ public class FrameController implements Rootable{
 		
 		//turn on back button:
     	if(backBtn.isDisabled()) { backBtn.setDisable(false); } 
-    	
     	fwrdMoves.push(bkwrdMoves.pop()); //return previous view to fwrdMoves
-    	
     	//disable fwrd btn if you've reached end of traversed path:
     	if(bkwrdMoves.isEmpty()) { fwrdBtn.setDisable(true); } 
     	
@@ -120,10 +118,8 @@ public class FrameController implements Rootable{
 		
 		//turn on fwrd button:
     	if(fwrdBtn.isDisabled()) { fwrdBtn.setDisable(false); }
-    	
     	//move current fwrd move to bkwrdMoves:
     	bkwrdMoves.push(fwrdMoves.pop()); 
-    	
     	//disable back btn if now at last element in stack:
     	if(fwrdMoves.size() == 1) { backBtn.setDisable(true); }
     		

@@ -48,7 +48,6 @@ public class LoginController implements Rootable {
 	
 	Parent getRoot() { return this.root; }
 	
-	 
 	
 	
 	
