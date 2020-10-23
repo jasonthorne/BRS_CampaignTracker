@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import view.ViewPath;
+import view.FxmlPath;
 
 public class CampaignsController implements Rootable{
 	
@@ -34,7 +34,7 @@ public class CampaignsController implements Rootable{
     }
 	
     //root element for this controller:
-	private final Parent root = loadRoot.apply(this, ViewPath.CAMPAIGNS_FXML);
+	private final Parent root = loadRoot.apply(this, FxmlPath.CAMPAIGNS_FXML);
 	
 	//controllers:
 	private final FrameController frameCtrlr;

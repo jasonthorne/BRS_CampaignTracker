@@ -5,13 +5,13 @@ import java.util.function.BiFunction;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import view.ViewPath;
+import view.FxmlPath;
 
 /** serves controller classes in need of fxml root elements */
 
 public interface Rootable {
-
-	BiFunction<Rootable, ViewPath, Parent> loadRoot = (rootable, path) -> {
+	
+	BiFunction<Rootable, FxmlPath, Parent> loadRoot = (rootable, path) -> {
 		//create loader:
 		FXMLLoader loader = new FXMLLoader(rootable.getClass().getResource(path.toString())); 
 		loader.setController(rootable); //set this class as the controller
@@ -32,3 +32,5 @@ try {
 	System.out.println(properties.getProperty("login"));
 }catch(Exception e) { e.printStackTrace(); }
 */
+
+

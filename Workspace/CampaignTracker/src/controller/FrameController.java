@@ -2,8 +2,10 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
@@ -15,7 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import view.ViewPath;
+import view.FxmlPath;
 
 public class FrameController implements Rootable{
 
@@ -54,19 +56,14 @@ public class FrameController implements Rootable{
     //login.fxml controller:
     private final LoginController loginCtrlr = new LoginController(this);
     
-    //Stacks of parent nodes. One for forward moves, one for backward moves:
+    //stacks of parent nodes. One for forward moves, one for backward moves:
   	private final Stack<Parent>fwrdMoves = new Stack<Parent>(); 
   	private final Stack<Parent>bkwrdMoves = new Stack<Parent>();
-  	/*
-	private final Stack<Traversable>fwrdMoves = new Stack<Traversable>(); 
-  	private final Stack<Traversable>bkwrdMoves = new Stack<Traversable>();
-  	private Traversable currntCtrlr; //current controller of bodyAP root
-  	*/
+  	
     //constructor:
     public FrameController(){
-    	
     	//create scene with fxml root:
-    	scene = new Scene(loadRoot.apply(this, ViewPath.FRAME_FXML));
+    	scene = new Scene(loadRoot.apply(this, FxmlPath.FRAME_FXML));
     	stage.setScene(scene); //add scene to stage
     }	
     
@@ -79,7 +76,8 @@ public class FrameController implements Rootable{
   		bodyAP.getChildren().setAll(root);
   	}
   	
-  	void loginTest(Parent root) {
+  	//move to first logged in view:
+  	void loginMove(Parent root) {
   		fwrdMoves.push(root); //mark root as fwrd move
     	addRootToBody(root); //add root to bodyAP
   	}
@@ -87,17 +85,16 @@ public class FrameController implements Rootable{
   	//move forward to new view:
   	void moveFwrd(Parent root) {
   		
-  		// ++++++++++++++++++++++++++++++++++++++++++++++0000000000000000000000000
-  		if(backBtn.isDisabled()) { backBtn.setDisable(false); } /** ++++++++++++++++++++++++++++*/
-  		// ++++++++++++++++++++++++++++++++++++++++++++++0000000000000000000000000
+  		//turn on back button:
+  		if(backBtn.isDisabled()) { backBtn.setDisable(false); }
   		
   		//if there are stored bkwrdMoves:
     	if(!bkwrdMoves.isEmpty()) {
     		//turn on back button if disabled:
-        	if(backBtn.isDisabled()) { backBtn.setDisable(false); } /** +++++++++++++++++++++++ */
+        	if(backBtn.isDisabled()) { backBtn.setDisable(false); } 
     		bkwrdMoves.pop(); //remove obsolete element (as traversing a new path)
         	//turn off fwrd buttons if all bkwrdMoves are removed:
-        	if(bkwrdMoves.isEmpty()) { fwrdBtn.setDisable(true); } /** +++++++++++++++++++++++ */
+        	if(bkwrdMoves.isEmpty()) { fwrdBtn.setDisable(true); }
     	}
     	
     	fwrdMoves.push(root); //mark root as fwrd move
@@ -106,49 +103,30 @@ public class FrameController implements Rootable{
 	
   	//move forward to previous view:
 	private void moveFwrd() {
-		System.out.println("moveFwrd");
 		
 		//turn on back button:
-    	if(backBtn.isDisabled()) { backBtn.setDisable(false); } /** ++++++++++++++++++++++++++++*/
+    	if(backBtn.isDisabled()) { backBtn.setDisable(false); } 
     	
-    	//we need to grab the new forwrd controller from the backsStack:
-    	fwrdMoves.push(bkwrdMoves.pop());
-    	///////////////++++++++++++currController = forwardMoves.peek();//change cc to point to new top of frwrdMoves
+    	fwrdMoves.push(bkwrdMoves.pop()); //return previous view to fwrdMoves
     	
+    	//disable fwrd btn if you've reached end of traversed path:
+    	if(bkwrdMoves.isEmpty()) { fwrdBtn.setDisable(true); } 
     	
-    	//disable fwrd btn as you've reached end of traversed path:
-    	if(bkwrdMoves.isEmpty()) { fwrdBtn.setDisable(true); } /** ++++++++++++++++++++++++++++*/
-    	
-    	//show currController:
-    	/** addRootToScene(currController.getRoot()); //add root to scene  this MIGHT still be needed later!*/
-    	/////////+++++++++++addRootToBody(currController.getRoot()); //add root to frame
     	addRootToBody(fwrdMoves.peek()); //add root to frame
-		
 	}
 	
 	//move backwards to previous view:
 	private void moveBkwrd() {
-		System.out.println("moveBkwrd");
 		
-		//turn on frwrd btn:
-    	if(fwrdBtn.isDisabled()) { fwrdBtn.setDisable(false); } /** ++++++++++++++++++++++++++++*/
+		//turn on fwrd button:
+    	if(fwrdBtn.isDisabled()) { fwrdBtn.setDisable(false); }
     	
-    	//grab currentController & move it to the backwards pile:
-    	bkwrdMoves.push(fwrdMoves.pop());
-    	//////////////++++++++++++++++++currController = forwardMoves.peek(); //change cc to point to new top of frwrdMoves
+    	//move current fwrd move to bkwrdMoves:
+    	bkwrdMoves.push(fwrdMoves.pop()); 
     	
-    	//disable back btn if currController is now last element in stack:
-    	if (fwrdMoves.size() == 1){ backBtn.setDisable(true); } /** ++++++++++++++++++++++++++++*/
+    	//disable back btn if now at last element in stack:
+    	if(fwrdMoves.size() == 1) { backBtn.setDisable(true); }
     		
-    	/*System.out.println("current controller is:" + currController);
-    	System.out.println("forwardMoves:" + forwardMoves);
-    	System.out.println("backwardMoves:" + backwardMoves);*/
-    	
-    	//show currController:
-    	/** addRootToScene(currController.getRoot()); //add root to scene  this MIGHT still be needed later!*/
-		////////////////++++++++++++++++addRootToInnerFrame(currController.getRoot()); //add root to frame
     	addRootToBody(fwrdMoves.peek()); //add root to frame
 	}
-  	
-    
 }

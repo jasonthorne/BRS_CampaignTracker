@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import view.ViewPath;
+import view.FxmlPath;
 
 public class B implements Rootable {
 
@@ -24,7 +24,7 @@ public class B implements Rootable {
     }
     
     //root element for this controller:
-  	private final Parent root = loadRoot.apply(this, ViewPath.b);
+  	private final Parent root = loadRoot.apply(this, FxmlPath.b);
     
   	
   	Parent getRoot() { return this.root; }

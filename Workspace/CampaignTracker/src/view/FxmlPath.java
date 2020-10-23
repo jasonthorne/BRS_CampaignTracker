@@ -1,6 +1,6 @@
 package view;
 
-public enum ViewPath {
+public enum FxmlPath {
 	
 	FRAME_FXML("frame.fxml"),
 	LOGIN_FXML("login.fxml"),
@@ -13,7 +13,7 @@ public enum ViewPath {
 	private String path = "/view/"; 
 	
 	//constructor appends path:
-	private ViewPath(String fileName) { 
+	private FxmlPath(String fileName) { 
 		path = path.concat(fileName); //add file to path
 	}
 	@Override 

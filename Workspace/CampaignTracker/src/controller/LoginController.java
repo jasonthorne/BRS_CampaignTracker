@@ -10,7 +10,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import view.ViewPath;
+import view.FxmlPath;
 
 public class LoginController implements Rootable {
 	
@@ -30,8 +30,8 @@ public class LoginController implements Rootable {
     }
 	
     //root element for this controller:
-  	private final Parent root = loadRoot.apply(this, ViewPath.LOGIN_FXML);
-  			
+  	private final Parent root = loadRoot.apply(this, FxmlPath.LOGIN_FXML);
+  
 	//controllers:
 	private final FrameController frameCtrlr;
 	private final CampaignsController campignsCtrlr;
@@ -43,9 +43,7 @@ public class LoginController implements Rootable {
 	}
 	
 	private void loginUsr(){
-		System.out.println("login clicked");
-		//frameCtrlr.moveFwrd(campignsCtrlr.getRoot());
-		frameCtrlr.loginTest(campignsCtrlr.getRoot());
+		frameCtrlr.loginMove(campignsCtrlr.getRoot());
 	}
 	
 	Parent getRoot() { return this.root; }
