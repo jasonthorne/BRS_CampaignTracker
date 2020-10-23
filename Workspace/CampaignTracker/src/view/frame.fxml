@@ -34,12 +34,12 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="backBtn" alignment="CENTER" layoutX="14.0" layoutY="4.0" text="Back" textAlignment="CENTER">
+                  <JFXButton fx:id="backBtn" alignment="CENTER" layoutX="14.0" layoutY="4.0" style="-fx-background-color: red;" text="Back" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="fwrdBtn" alignment="CENTER" layoutX="577.0" layoutY="6.0" text="Fwrd" textAlignment="CENTER">
+                  <JFXButton fx:id="fwrdBtn" alignment="CENTER" layoutX="577.0" layoutY="6.0" style="-fx-background-color: lime green;" text="Fwrd" textAlignment="CENTER">
                      <font>
                         <Font size="13.0" />
                      </font>

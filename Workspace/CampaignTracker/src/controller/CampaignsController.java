@@ -29,7 +29,7 @@ public class CampaignsController implements Rootable{
     
     @FXML
     void initialize() {
-    	btnTest.setOnAction(event -> test());
+    	btnTest.setOnAction(event -> goToA1());
     	
     }
 	
@@ -38,9 +38,11 @@ public class CampaignsController implements Rootable{
 	
 	//controllers:
 	private final FrameController frameCtrlr;
+	private final A1 a1;
 	
 	CampaignsController(FrameController frameCtrlr) {
 		this.frameCtrlr = frameCtrlr; //assign frame controller
+		this.a1 = new A1(frameCtrlr);
 	}
 
 	
@@ -50,9 +52,8 @@ public class CampaignsController implements Rootable{
 	
 	int counter = 0;
 	
-	void test() {
-		counter++;
-		testLbl.setText("yo: " + counter);
+	void goToA1() {
+		frameCtrlr.moveFwrd(a1.getRoot());
 	}
 	
 }

@@ -44,13 +44,14 @@ public class LoginController implements Rootable {
 	
 	private void loginUsr(){
 		System.out.println("login clicked");
-		frameCtrlr.moveFwrd(campignsCtrlr.getRoot());
+		//frameCtrlr.moveFwrd(campignsCtrlr.getRoot());
+		frameCtrlr.loginTest(campignsCtrlr.getRoot());
 	}
 	
 	Parent getRoot() { return this.root; }
 	
 	 
-
+	
 	
 	
 	
