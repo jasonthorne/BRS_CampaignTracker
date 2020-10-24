@@ -32,7 +32,7 @@ public class A1 implements Rootable {
     }
     
   //root element for this controller:
-  	private final Parent root = loadRoot.apply(this, FxmlPath.a1);
+  	private final Parent root = Rootable.getRoot(this, FxmlPath.a1);
     
     FrameController frameCtrlr;
     A2 a2 = new A2();

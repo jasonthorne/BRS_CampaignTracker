@@ -11,7 +11,7 @@ import view.FxmlPath;
 
 public interface Rootable {
 	
-	BiFunction<Rootable, FxmlPath, Parent> loadRoot = (rootable, path) -> {
+	static Parent getRoot(Rootable rootable, FxmlPath path) {
 		//create loader:
 		FXMLLoader loader = new FXMLLoader(rootable.getClass().getResource(path.toString())); 
 		loader.setController(rootable); //set this class as the controller
@@ -20,5 +20,5 @@ public interface Rootable {
 		} catch (IOException e) { e.printStackTrace(); }
 		
 		return loader.getRoot(); //return root element
-	};
+	}
 }

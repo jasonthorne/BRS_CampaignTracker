@@ -24,7 +24,7 @@ public class A2 implements Rootable {
     }
     
     //root element for this controller:
-    private final Parent root = loadRoot.apply(this, FxmlPath.a2);
+    private final Parent root = Rootable.getRoot(this, FxmlPath.a2);
     
     A2(){
     	

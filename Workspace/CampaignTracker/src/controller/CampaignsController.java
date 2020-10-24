@@ -24,16 +24,15 @@ public class CampaignsController implements Rootable{
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
     
+    //root fxml element & children:
     @FXML private AnchorPane rootAP;
     @FXML private JFXButton btnTest; /** ===================== */
     @FXML private JFXListView<Campaign> campaignsLV;
    
     @FXML
     void initialize() {
-    	System.out.println("innit"); 
-    	populateList();
+    	setCampaigns(); //populate campaigns
     	btnTest.setOnAction(event -> goToA1());
-    	
     }
     
     //observable list of campaigns:
@@ -44,7 +43,7 @@ public class CampaignsController implements Rootable{
    	/**=======================================================================*/
 	
     //root element for this controller:
-	private final Parent root = loadRoot.apply(this, FxmlPath.CAMPAIGNS_FXML);
+	private final Parent root = Rootable.getRoot(this, FxmlPath.CAMPAIGNS);
 	
 	//controllers:
 	private final FrameController frameCtrlr;
@@ -62,25 +61,28 @@ public class CampaignsController implements Rootable{
 	void goToA1() { frameCtrlr.moveFwrd(a1.getRoot()); }
 	/** ======================================= */
 	
-	private void populateList() {
+	//populates campaigns with campaigns from db:
+	private void setCampaigns() { /** ======= remember, this is pulling from db so may need called again for some reason =========*/
 		
 		/** ================== pull from db here instead! =========*/
 		//populate imaginary db data:
     	cellItemsDB.add(new Campaign("campaign 1"));
     	cellItemsDB.add(new Campaign("campaign 2"));
     	cellItemsDB.add(new Campaign("campaign 3"));
+    	cellItemsDB.add(new Campaign("campaign 4"));
+    	cellItemsDB.add(new Campaign("campaign 5"));
+    	cellItemsDB.add(new Campaign("campaign 6"));
+    	cellItemsDB.add(new Campaign("campaign 7"));
+    	cellItemsDB.add(new Campaign("campaign 8"));
     	
 		//add campaigns from db to campaigns:
 		campaigns.addAll(cellItemsDB);
 		
 		/** ========================================================*/
-		//add campaigns to list view:
+		//add campaigns to listView:
 		campaignsLV.setItems(campaigns); 
-		System.out.println(campaigns);
-		System.out.println(campaignsLV);
-		//set list view cellFactory to create CampaignCellController CellItems:
+		//set listView cellFactory to create CampaignCellControllers:
 		campaignsLV.setCellFactory(CampaignCellController -> new CampaignCellController(this));
-		
 	}
 	
 }

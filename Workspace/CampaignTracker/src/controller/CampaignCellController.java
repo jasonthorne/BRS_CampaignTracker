@@ -13,11 +13,12 @@ import javafx.scene.layout.AnchorPane;
 import model.Campaign;
 import view.FxmlPath;
 
-public class CampaignCellController extends JFXListCell<Campaign> implements Rootable{
+public class CampaignCellController extends JFXListCell<Campaign> implements Rootable {
 
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
     
+    //root fxml element & children:
     @FXML private AnchorPane rootAP;
     @FXML private Label nameLbl;
     @FXML private JFXButton showCampaignBtn;
@@ -28,7 +29,7 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
     }
     
     //root element for this controller:
-  	private final Parent root = loadRoot.apply(this, FxmlPath.CAMPAIGN_CELL_FXML);
+  	private final Parent root = Rootable.getRoot(this, FxmlPath.CAMPAIGN_CELL);
 	
 	private CampaignsController campaignsCtrlr;
 	
@@ -37,8 +38,8 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
 		this.campaignsCtrlr = campaignsCtrlr; //assign campaigns controller
 	}
 	
-	//update this cell item:
-	@Override
+	//update cell with campaign data:
+	@Override 
 	protected void updateItem(Campaign campaign, boolean isEmpty) {
         super.updateItem(campaign, isEmpty);
         

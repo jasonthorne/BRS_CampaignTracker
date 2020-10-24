@@ -30,8 +30,8 @@ public class LoginController implements Rootable {
     }
 	
     //root element for this controller:
-  	private final Parent root = loadRoot.apply(this, FxmlPath.LOGIN_FXML);
-  
+  	private final Parent root = Rootable.getRoot(this, FxmlPath.LOGIN);
+	
 	//controllers:
 	private final FrameController frameCtrlr;
 	private final CampaignsController campignsCtrlr;

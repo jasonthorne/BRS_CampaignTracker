@@ -19,7 +19,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.FxmlPath;
 
-public class FrameController implements Rootable{
+public class FrameController implements Rootable {
 
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -63,7 +63,7 @@ public class FrameController implements Rootable{
     //constructor:
     public FrameController(){
     	//create scene with fxml root:
-    	scene = new Scene(loadRoot.apply(this, FxmlPath.FRAME_FXML));
+    	scene = new Scene(Rootable.getRoot(this, FxmlPath.FRAME));
     	stage.setScene(scene); //add scene to stage
     }	
     

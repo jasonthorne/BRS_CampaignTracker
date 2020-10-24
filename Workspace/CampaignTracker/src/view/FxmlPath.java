@@ -2,11 +2,12 @@ package view;
 
 public enum FxmlPath {
 	
-	FRAME_FXML("frame.fxml"),
-	LOGIN_FXML("login.fxml"),
-	CAMPAIGN_FXML("campaign.fxml"),
-	CAMPAIGN_CELL_FXML("campaignCell.fxml"),
-	CAMPAIGNS_FXML("campaigns.fxml"),
+	//filenames:
+	FRAME("frame.fxml"),
+	LOGIN("login.fxml"),
+	CAMPAIGN("campaign.fxml"),
+	CAMPAIGN_CELL("campaignCell.fxml"),
+	CAMPAIGNS("campaigns.fxml"),
 	a1("a1.fxml"),
 	a2("a2.fxml"),
 	b("b.fxml");
