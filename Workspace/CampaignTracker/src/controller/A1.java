@@ -1,6 +1,10 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+
+import animation.Fadeable;
+import animation.Fadeable.FadeOption;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -45,11 +49,13 @@ public class A1 implements Rootable {
     
     
     void goToA2(){
+    	Fadeable.fadeNode(root, FadeOption.FADE_OUT);
     	frameCtrlr.moveFwrd(a2.getRoot());
     }
     
     
     void goToB(){
+    	Fadeable.fadeNode(root, FadeOption.FADE_OUT);
     	frameCtrlr.moveFwrd(b.getRoot());
     }
     

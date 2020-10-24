@@ -9,6 +9,9 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 
+import animation.Fadeable;
+import animation.Fadeable.FadeOption;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,10 +19,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import model.Campaign;
 import view.FxmlPath;
 
-public class CampaignsController implements Rootable{
+public class CampaignsController implements Rootable, Fadeable{
 	
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -55,10 +59,13 @@ public class CampaignsController implements Rootable{
 		this.a1 = new A1(frameCtrlr);
 	}
 
-	Parent getRoot() { return this.root; } //get root
+	Parent getRoot() { return root; } //get root
 	
 	/** ==============delete laterz======================== */
-	void goToA1() { frameCtrlr.moveFwrd(a1.getRoot()); }
+	void goToA1() {
+		Fadeable.fadeNode(root, FadeOption.FADE_OUT);
+		frameCtrlr.moveFwrd(a1.getRoot());
+	}
 	/** ======================================= */
 	
 	//populates campaigns with campaigns from db:

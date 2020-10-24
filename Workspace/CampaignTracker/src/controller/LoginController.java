@@ -7,12 +7,13 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import animation.Fadeable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import view.FxmlPath;
 
-public class LoginController implements Rootable {
+public class LoginController implements Rootable, Fadeable {
 	
 	@FXML private ResourceBundle resources;
 	@FXML private URL location;

@@ -11,7 +11,7 @@
       <AnchorPane fx:id="footerAP" prefHeight="40.0" prefWidth="640.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <AnchorPane fx:id="bodyAP" prefHeight="320.0" prefWidth="640.0" style="-fx-background-color: yellow;" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="bodyAP" prefHeight="320.0" prefWidth="640.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
    </center>
    <top>
       <BorderPane fx:id="headerBP" prefHeight="120.0" prefWidth="640.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">

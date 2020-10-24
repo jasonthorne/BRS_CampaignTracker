@@ -2,6 +2,9 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 
+import animation.Fadeable;
+import animation.Fadeable.FadeOption;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -9,6 +12,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,9 +21,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import view.FxmlPath;
 
-public class FrameController implements Rootable {
+public class FrameController implements Rootable, Fadeable {
 
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -72,8 +77,11 @@ public class FrameController implements Rootable {
     
     //add root to body AnchorPane:
   	private void addRootToBody(Parent root){
-  		//clears the children of this element & replaces with root:
-  		bodyAP.getChildren().setAll(root);
+  		root.setOpacity(0.0); //hide root from view
+  		//replace bodyAP's children with root:
+  		bodyAP.getChildren().setAll(root); 
+  		//Fadeable.fadeIn(root); //fade in root
+  		Fadeable.fadeNode(root, FadeOption.FADE_IN);
   	}
   	
   	//move to first logged in view:
