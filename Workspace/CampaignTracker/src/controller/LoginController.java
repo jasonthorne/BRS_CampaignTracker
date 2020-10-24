@@ -42,16 +42,11 @@ public class LoginController implements Rootable {
 		this.campignsCtrlr = new CampaignsController(frameCtrlr);  //create campaigns controller
 	}
 	
-	private void loginUsr(){
+	private void loginUsr() {
 		frameCtrlr.loginMove(campignsCtrlr.getRoot());
 	}
 	
 	Parent getRoot() { return this.root; }
-	
-	
-	
-	
-	
 	
 	
 	

@@ -7,6 +7,6 @@
 <AnchorPane fx:id="rootAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="640.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <JFXButton fx:id="btnTest" layoutX="287.0" layoutY="14.0" style="-fx-background-color: yellow;" text="press me!" />
-      <JFXListView fx:id="campaignsLV" layoutX="195.0" layoutY="60.0" prefHeight="200.0" prefWidth="250.0" />
+      <JFXListView fx:id="campaignsLV" layoutX="149.0" layoutY="60.0" prefHeight="200.0" prefWidth="342.0" />
    </children>
 </AnchorPane>
