@@ -11,8 +11,8 @@ public interface Fadeable {
 	enum FadeOption {
 		
 		//fade options:
-		FADE_IN (0.0, 1.0),
-		FADE_OUT (1.0, 0.0);
+		FADE_IN(0.0, 1.0),
+		FADE_OUT(1.0, 0.0);
 		
 		//opacity transition values:
 		private double fromVal;
@@ -27,7 +27,7 @@ public interface Fadeable {
 	
 	static void fade(Node node, FadeOption fadeOption) {
 		//add node to fade transition of 300ms:
-		FadeTransition ft = new FadeTransition(Duration.millis(300),node);
+		FadeTransition ft = new FadeTransition(Duration.millis(300), node);
 		ft.setFromValue(fadeOption.fromVal); //set starting opacity value
 		ft.setToValue(fadeOption.toVal); //set end opacity value
 		ft.setCycleCount(1); //how many times the animation should happen (cycle)

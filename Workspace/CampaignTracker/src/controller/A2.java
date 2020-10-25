@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import view.FxmlPath;
 
-public class A2 implements Rootable {
+public class A2 extends FrameContent implements Rootable {
 
     @FXML
     private ResourceBundle resources;
@@ -31,4 +31,10 @@ public class A2 implements Rootable {
     }
     
     Parent getRoot() { return this.root; }
+
+	@Override
+	void setRoot() {
+		// TODO Auto-generated method stub
+		
+	}
 }

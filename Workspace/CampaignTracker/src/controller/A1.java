@@ -12,7 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import view.FxmlPath;
 
-public class A1  extends FrameChild implements Rootable {
+public class A1  extends FrameContent implements Rootable {
 
     @FXML
     private ResourceBundle resources;
@@ -42,28 +42,27 @@ public class A1  extends FrameChild implements Rootable {
     A2 a2 = new A2();
     B b = new B();
     
-    //constructor:
-    A1(FrameController frameCtrlr){
-    	this.frameCtrlr = frameCtrlr;
-    	System.out.println("FC3: " + getFrameController());
-    }
-    
     
     void goToA2(){
-    	Fadeable.fade(root, FadeOption.FADE_OUT);
-    	frameCtrlr.moveFwrd(a2.getRoot());
+    	super.changeView(root, new A2().getRoot()); /** +++++++++++++++ prob not, as db pulls will happen each time you renav to a page! ++++++++++ */
     }
     
     
     void goToB(){
-    	Fadeable.fade(root, FadeOption.FADE_OUT);
-    	frameCtrlr.moveFwrd(b.getRoot());
+    	super.changeView(root, b.getRoot());
     }
     
     
     
     
     Parent getRoot() { return this.root; }
+
+
+	@Override
+	void setRoot() {
+		// TODO Auto-generated method stub
+		
+	}
     
     
     

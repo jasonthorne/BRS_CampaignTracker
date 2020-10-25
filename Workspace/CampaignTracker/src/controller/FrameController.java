@@ -58,7 +58,6 @@ public class FrameController implements Rootable, Fadeable {
     private final Stage stage = new Stage(); //stage
     private Scene scene; //scene
     
-    /** +++++++++instead of adding this to loginCtrlr below, have frame controller added to FrameChild */
     //login.fxml controller:
     private final LoginController loginCtrlr = new LoginController(this);
    
@@ -71,7 +70,6 @@ public class FrameController implements Rootable, Fadeable {
     	//create scene with fxml root:
     	scene = new Scene(Rootable.getRoot(this, FxmlPath.FRAME));
     	stage.setScene(scene); //add scene to stage
-    	//FrameChild.setFrameController(this);//=============================
     }	
     
     //show stage:

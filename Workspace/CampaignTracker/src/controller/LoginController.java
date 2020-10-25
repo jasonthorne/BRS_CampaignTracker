@@ -14,7 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import view.FxmlPath;
 
-public class LoginController extends FrameChild implements Rootable, Fadeable {
+public class LoginController extends FrameContent implements Rootable, Fadeable {
 	
 	@FXML private ResourceBundle resources;
 	@FXML private URL location;
@@ -31,28 +31,29 @@ public class LoginController extends FrameChild implements Rootable, Fadeable {
 		loginBtn.setOnAction(event -> loginUsr());
     }
 	
-    //root element for this controller:
-  	private final Parent root = Rootable.getRoot(this, FxmlPath.LOGIN);
+	//fxml root element:
+  	private Parent root; 
 	
 	//controllers:
 	private final FrameController frameCtrlr;
-	private final CampaignsController campignsCtrlr;
+	private final CampaignsController campaignsCtrlr;
 	
 	//constructor:
 	LoginController(FrameController frameCtrlr) {
-		this.frameCtrlr = frameCtrlr;  //assign frame controller
-		setFrameController(frameCtrlr); //====================
-		this.campignsCtrlr = new CampaignsController(frameCtrlr);  //create campaigns controller
-		System.out.println("FC1: " + getFrameController()); //======================
+		setRoot(); //set the fxml root element for this controller
+		this.frameCtrlr = frameCtrlr; //assign frame controller (for loginUsr)
+		this.campaignsCtrlr = new CampaignsController(); //create campaigns controller
+		super.setFrameController(frameCtrlr); //store frame controller in super
 	}
 	
 	private void loginUsr() {
 		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out root
-		frameCtrlr.loginMove(campignsCtrlr.getRoot()); //move to campaigns
+		frameCtrlr.loginMove(campaignsCtrlr.getRoot()); //move to campaigns
 	}
 	
-	Parent getRoot() { return this.root; }
-	
-	
+	@Override
+	void setRoot() { root = Rootable.getRoot(this, FxmlPath.LOGIN); } //set root
+	@Override
+	Parent getRoot() { return root; } //get root
 	
 }

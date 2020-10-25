@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,20 +9,15 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 
 import animation.Fadeable;
-import animation.Fadeable.FadeOption;
-import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 import model.Campaign;
 import view.FxmlPath;
 
-public class CampaignsController extends FrameChild implements Rootable, Fadeable{
+public class CampaignsController extends FrameContent implements Rootable, Fadeable {
 	
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -46,28 +40,22 @@ public class CampaignsController extends FrameChild implements Rootable, Fadeabl
     public static List<Campaign>cellItemsDB = new ArrayList<Campaign>();
    	/**=======================================================================*/
 	
-    //root element for this controller:
-	private final Parent root = Rootable.getRoot(this, FxmlPath.CAMPAIGNS);
+    //fxml root element:
+	private Parent root; 
 	
 	//controllers:
-	private final FrameController frameCtrlr;
 	private final A1 a1;
 	
 	//constructor:
-	CampaignsController(FrameController frameCtrlr) {
-		this.frameCtrlr = frameCtrlr; //assign frame controller
-		////setFrameController(frameCtrlr);
-		this.a1 = new A1(frameCtrlr);
-		//setFrameController(frameCtrlr); //=======================================
-		System.out.println("FC2: " + getFrameController()); //============================
+	CampaignsController() {
+		setRoot();
+		this.a1 = new A1();
 	}
 
-	Parent getRoot() { return root; } //get root
 	
 	/** ==============delete laterz======================== */
 	void goToA1() {
-		Fadeable.fade(root, FadeOption.FADE_OUT);
-		frameCtrlr.moveFwrd(a1.getRoot());
+		super.changeView(root, a1.getRoot());
 	}
 	/** ======================================= */
 	
@@ -94,5 +82,10 @@ public class CampaignsController extends FrameChild implements Rootable, Fadeabl
 		//set listView cellFactory to create CampaignCellControllers:
 		campaignsLV.setCellFactory(CampaignCellController -> new CampaignCellController(this));
 	}
+	
+	@Override
+	void setRoot() { root = Rootable.getRoot(this, FxmlPath.CAMPAIGNS); } //set root
+	@Override
+	Parent getRoot() { return root; } //get root
 	
 }
