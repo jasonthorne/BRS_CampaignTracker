@@ -14,7 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import view.FxmlPath;
 
-public class LoginController implements Rootable, Fadeable {
+public class LoginController extends FrameChild implements Rootable, Fadeable {
 	
 	@FXML private ResourceBundle resources;
 	@FXML private URL location;
@@ -41,7 +41,9 @@ public class LoginController implements Rootable, Fadeable {
 	//constructor:
 	LoginController(FrameController frameCtrlr) {
 		this.frameCtrlr = frameCtrlr;  //assign frame controller
+		setFrameController(frameCtrlr); //====================
 		this.campignsCtrlr = new CampaignsController(frameCtrlr);  //create campaigns controller
+		System.out.println("FC1: " + getFrameController()); //======================
 	}
 	
 	private void loginUsr() {

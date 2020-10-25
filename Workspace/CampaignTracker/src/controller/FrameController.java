@@ -61,7 +61,7 @@ public class FrameController implements Rootable, Fadeable {
     /** +++++++++instead of adding this to loginCtrlr below, have frame controller added to FrameChild */
     //login.fxml controller:
     private final LoginController loginCtrlr = new LoginController(this);
-    
+   
     //stacks of parent nodes. One for forward moves, one for backward moves:
   	private final Stack<Parent>fwrdMoves = new Stack<Parent>(); 
   	private final Stack<Parent>bkwrdMoves = new Stack<Parent>();
@@ -71,6 +71,7 @@ public class FrameController implements Rootable, Fadeable {
     	//create scene with fxml root:
     	scene = new Scene(Rootable.getRoot(this, FxmlPath.FRAME));
     	stage.setScene(scene); //add scene to stage
+    	//FrameChild.setFrameController(this);//=============================
     }	
     
     //show stage:

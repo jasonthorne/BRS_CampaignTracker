@@ -12,7 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import view.FxmlPath;
 
-public class A1 implements Rootable {
+public class A1  extends FrameChild implements Rootable {
 
     @FXML
     private ResourceBundle resources;
@@ -45,6 +45,7 @@ public class A1 implements Rootable {
     //constructor:
     A1(FrameController frameCtrlr){
     	this.frameCtrlr = frameCtrlr;
+    	System.out.println("FC3: " + getFrameController());
     }
     
     

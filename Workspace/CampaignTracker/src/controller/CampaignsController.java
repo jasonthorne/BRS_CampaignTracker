@@ -23,7 +23,7 @@ import javafx.util.Duration;
 import model.Campaign;
 import view.FxmlPath;
 
-public class CampaignsController implements Rootable, Fadeable{
+public class CampaignsController extends FrameChild implements Rootable, Fadeable{
 	
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -56,7 +56,10 @@ public class CampaignsController implements Rootable, Fadeable{
 	//constructor:
 	CampaignsController(FrameController frameCtrlr) {
 		this.frameCtrlr = frameCtrlr; //assign frame controller
+		////setFrameController(frameCtrlr);
 		this.a1 = new A1(frameCtrlr);
+		//setFrameController(frameCtrlr); //=======================================
+		System.out.println("FC2: " + getFrameController()); //============================
 	}
 
 	Parent getRoot() { return root; } //get root

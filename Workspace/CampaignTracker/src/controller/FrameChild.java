@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 public abstract class FrameChild {
 	
 	//frame controller:
-	private FrameController frameCtrlr;
+	private static FrameController frameCtrlr;
 	
 	//change to another view:
 	void changeView(Parent thisRoot, Parent nextRoot) {
@@ -17,16 +17,43 @@ public abstract class FrameChild {
 	
 	//set frame controller:
 	void setFrameController(FrameController frameCtrlr) {
-		this.frameCtrlr = frameCtrlr;
+		FrameChild.frameCtrlr = frameCtrlr;
 	}
 	
 	//get frame controller:
 	FrameController getFrameController() {
-		return this.frameCtrlr;
+		return FrameChild.frameCtrlr;
 	}
 	
 	//force root getter/setter:
-	abstract void setRoot(); 
-	abstract Parent getRoot();
+	//abstract void setRoot(); 
+	///abstract Parent getRoot();
+	
+	
+	
+	//------------------
+	
+	
+	
+	private static String str;
+	
+	
+	public void setString(String s) {
+		str = s;
+	}
+	
+	public String getString() {
+		return this.str;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
