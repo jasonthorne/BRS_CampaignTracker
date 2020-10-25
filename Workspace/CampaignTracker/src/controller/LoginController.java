@@ -31,7 +31,7 @@ public class LoginController extends FrameContent implements Rootable, Fadeable 
 		loginBtn.setOnAction(event -> loginUsr());
     }
 	
-	//fxml root element:
+	//fxml root node:
   	private Parent root; 
 	
 	//controllers:
@@ -40,7 +40,7 @@ public class LoginController extends FrameContent implements Rootable, Fadeable 
 	
 	//constructor:
 	LoginController(FrameController frameCtrlr) {
-		setRoot(); //set the fxml root element for this controller
+		setRoot(); //set root node
 		this.frameCtrlr = frameCtrlr; //assign frame controller (for loginUsr)
 		this.campaignsCtrlr = new CampaignsController(); //create campaigns controller
 		super.setFrameController(frameCtrlr); //store frame controller in super

@@ -1,10 +1,9 @@
 package controller;
 
 import animation.Fadeable;
-import animation.Fadeable.FadeOption;
 import javafx.scene.Parent;
 
-public abstract class FrameContent {
+public abstract class FrameContent implements Fadeable {
 	
 	//frame.fxml controller:
 	private static FrameController frameCtrlr;
