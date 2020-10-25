@@ -58,6 +58,7 @@ public class FrameController implements Rootable, Fadeable {
     private final Stage stage = new Stage(); //stage
     private Scene scene; //scene
     
+    /** +++++++++instead of adding this to loginCtrlr below, have frame controller added to FrameChild */
     //login.fxml controller:
     private final LoginController loginCtrlr = new LoginController(this);
     
@@ -80,8 +81,7 @@ public class FrameController implements Rootable, Fadeable {
   		root.setOpacity(0.0); //hide root from view
   		//replace bodyAP's children with root:
   		bodyAP.getChildren().setAll(root); 
-  		//Fadeable.fadeIn(root); //fade in root
-  		Fadeable.fadeNode(root, FadeOption.FADE_IN);
+  		Fadeable.fade(root, FadeOption.FADE_IN); //fade in root
   	}
   	
   	//move to first logged in view:

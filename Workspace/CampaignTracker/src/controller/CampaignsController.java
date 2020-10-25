@@ -63,7 +63,7 @@ public class CampaignsController implements Rootable, Fadeable{
 	
 	/** ==============delete laterz======================== */
 	void goToA1() {
-		Fadeable.fadeNode(root, FadeOption.FADE_OUT);
+		Fadeable.fade(root, FadeOption.FADE_OUT);
 		frameCtrlr.moveFwrd(a1.getRoot());
 	}
 	/** ======================================= */

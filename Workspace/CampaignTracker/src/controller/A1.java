@@ -49,13 +49,13 @@ public class A1 implements Rootable {
     
     
     void goToA2(){
-    	Fadeable.fadeNode(root, FadeOption.FADE_OUT);
+    	Fadeable.fade(root, FadeOption.FADE_OUT);
     	frameCtrlr.moveFwrd(a2.getRoot());
     }
     
     
     void goToB(){
-    	Fadeable.fadeNode(root, FadeOption.FADE_OUT);
+    	Fadeable.fade(root, FadeOption.FADE_OUT);
     	frameCtrlr.moveFwrd(b.getRoot());
     }
     

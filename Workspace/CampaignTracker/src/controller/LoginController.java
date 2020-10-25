@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import animation.Fadeable;
+import animation.Fadeable.FadeOption;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
@@ -44,7 +45,8 @@ public class LoginController implements Rootable, Fadeable {
 	}
 	
 	private void loginUsr() {
-		frameCtrlr.loginMove(campignsCtrlr.getRoot());
+		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out root
+		frameCtrlr.loginMove(campignsCtrlr.getRoot()); //move to campaigns
 	}
 	
 	Parent getRoot() { return this.root; }

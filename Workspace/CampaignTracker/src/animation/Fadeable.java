@@ -4,6 +4,8 @@ import javafx.animation.FadeTransition;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
+/** fades nodes in/out of view */
+
 public interface Fadeable {
 	
 	enum FadeOption {
@@ -23,8 +25,8 @@ public interface Fadeable {
 		}
 	}
 	
-	static void fadeNode(Node node, FadeOption fadeOption) {
-		//add node to fade transition:
+	static void fade(Node node, FadeOption fadeOption) {
+		//add node to fade transition of 300ms:
 		FadeTransition ft = new FadeTransition(Duration.millis(300),node);
 		ft.setFromValue(fadeOption.fromVal); //set starting opacity value
 		ft.setToValue(fadeOption.toVal); //set end opacity value
@@ -32,29 +34,4 @@ public interface Fadeable {
 		ft.setAutoReverse(false); //whether animation reverses on alternating cycles
 		ft.play(); //play transition
 	}
-	
-	
-	/*
-	//fade an element from view:
-	static void fadeOut(Node node) {
-		FadeTransition ft = new FadeTransition(Duration.millis(300),node);
-		ft.setFromValue(1.0); //set starting opacity value
-		ft.setToValue(0.0); //set end opacity value
-		ft.setCycleCount(1); //how many times the animation should happen (cycle)
-		ft.setAutoReverse(false); //whether animation reverses on alternating cycles
-		ft.play();
-	}
-	
-	//fade an element into view:
-	static void fadeIn(Node node) {
-		FadeTransition ft = new FadeTransition(Duration.millis(300),node);
-		ft.setFromValue(0.0); //set starting opacity value
-		ft.setToValue(1.0);	//set end opacity value
-		ft.setCycleCount(1); //how many times the animation should happen (cycle)
-		ft.setAutoReverse(false); //whether animation reverses on alternating cycles
-		ft.play();
-	}
-	*/
-	
-
 }
