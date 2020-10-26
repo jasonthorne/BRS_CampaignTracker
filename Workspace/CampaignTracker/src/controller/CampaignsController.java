@@ -125,9 +125,11 @@ public class CampaignsController extends FrameContent implements Rootable {
 	
 	@Override
 	void setRoot() { root = Rootable.getRoot(this, FxmlPath.CAMPAIGNS); } //set root
+	
 	@Override
 	Parent getRoot() { return root; } //get root
-	
+
+
 	/////////https://stackoverflow.com/questions/28448851/how-to-use-javafx-filteredlist-in-a-listview
 	
 	//accordian: 

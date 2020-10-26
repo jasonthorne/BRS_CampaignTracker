@@ -67,11 +67,23 @@ public class FrameController implements Rootable, Fadeable {
   	private final Stack<Parent>fwrdMoves = new Stack<Parent>(); 
   	private final Stack<Parent>bkwrdMoves = new Stack<Parent>();
   	
+  	//----------------------------
+  	private final Stack<FrameContent>test1 = new Stack<FrameContent>();
+  	
+  	
+  	//------------------------------
+  	
     //constructor:
     public FrameController(){
     	//create scene with fxml root:
     	scene = new Scene(Rootable.getRoot(this, FxmlPath.FRAME));
     	stage.setScene(scene); //add scene to stage
+    	
+    	//---------------
+    	test1.push(loginCtrlr);
+    	System.out.println("child root: " + test1.peek().getChildRoot());
+    	
+    	//-----------------
     }	
     
     //show stage:

@@ -63,9 +63,12 @@ public class LoginController extends FrameContent implements Rootable, Fadeable 
 	
 	@Override
 	void setRoot() { root = Rootable.getRoot(this, FxmlPath.LOGIN); } //set root
+	
 	@Override
 	Parent getRoot() { return root; } //get root
 	
 	public static int getPlayerId() { return playerId; } //get playerId
+
+	
 	
 }

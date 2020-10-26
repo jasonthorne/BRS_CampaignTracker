@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.function.BiFunction;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

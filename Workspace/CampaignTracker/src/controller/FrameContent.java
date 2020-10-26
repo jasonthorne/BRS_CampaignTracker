@@ -27,5 +27,11 @@ public abstract class FrameContent implements Fadeable {
 		
 	//force root getter/setter:
 	abstract void setRoot(); 
+	
+	//abstract void setRoot(Parent root); 
 	abstract Parent getRoot();
+	
+	Parent getChildRoot() { return getRoot(); } //get root
+		
+	
 }
