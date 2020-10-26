@@ -15,4 +15,13 @@ public class Campaign {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	//================delete
+	@Override
+	public String toString() {
+		
+		return name;
+	}
+	//=================
+	
 }

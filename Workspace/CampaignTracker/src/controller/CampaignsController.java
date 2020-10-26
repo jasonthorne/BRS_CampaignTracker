@@ -4,16 +4,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXRadioButton;
 
 import animation.Fadeable;
+import animation.Fadeable.FadeOption;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -30,6 +33,8 @@ public class CampaignsController extends FrameContent implements Rootable {
 	 private JFXRadioButton testRadioBtn1;
 	 @FXML
 	 private JFXRadioButton testRadioBtn2;
+	 @FXML
+	 private JFXRadioButton testRadioBtn3;
 	 @FXML
 	 private ToggleGroup myToggleGroup;
 	 
@@ -48,53 +53,11 @@ public class CampaignsController extends FrameContent implements Rootable {
     @FXML
     void initialize() {
     	setCampaigns(); //populate campaigns
+    	setToggleListener(); //add change listener to toggle group
     	btnTest.setOnAction(event -> goToA1()); /** ==============delete laterz=========== */
     	btnTest.setOnAction(event -> 
     		super.changeView(root, SelectCampaignCtrlr.getRoot())
 		);
-    	
-    	
-    	//============toggle testing===================
-    	// add a change listener 
-        myToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-        	@Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldVal, Toggle newVal) {
-            	
-       
-        		JFXRadioButton selected = (JFXRadioButton)newVal.getToggleGroup().getSelectedToggle(); 
-               //////// System.out.println("Selected Radio Button - "+chk.getText());
-        		/*
-            	JFXRadioButton rb = (JFXRadioButton)myToggleGroup.getSelectedToggle(); 
-            	
-                if (rb != null) { 
-                    String s = rb.getText(); 
-                */
-        		
-        		test(selected.getText());
-        		
-        		/*
-        		String s = selected.getText(); 
-                    // change the label 
-                    testLbl.setText(s + " selected"); 
-                    
-                    if(s.equals("1")) {
-                    	System.out.println("found 1");
-                    }
-                    if(s.equals("2")) {
-                    	System.out.println("found 2");
-                    }*/
-        		
-                //} 
-            } 
-        }); 
-    	
-      //=======================================================
-    	
-    	
-    	
-    	
-    	
-    	
     }
     
     //observable list of campaigns:
@@ -139,6 +102,7 @@ public class CampaignsController extends FrameContent implements Rootable {
     	cellItemsDB.add(new Campaign("2"));
     	cellItemsDB.add(new Campaign("2"));
     	
+    	
 		//add campaigns from db to campaigns:
 		campaigns.addAll(cellItemsDB);
 		
@@ -160,12 +124,38 @@ public class CampaignsController extends FrameContent implements Rootable {
 	//===================================================================
 	//TOGGLE TESTING! 
 	
-	 void test(String selected) {
-		 System.out.println(selected + "was selected");
+	 FilteredList<Campaign> filteredData = new FilteredList<>(campaigns, str -> true);
+	
+	 //adds change listener to toggle group:
+	 private void setToggleListener() {
+		 
+		 // add change listener to toggle group:
+		 myToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+		 	 @Override //override changeListener's changed method: 
+		 	 public void changed(ObservableValue<? extends Toggle> observable, Toggle oldVal, Toggle newVal) {
+		 	 	 
+		 	 	 //get changed value from toggle group, cast to radioBtn:
+		 	 	 JFXRadioButton selected = (JFXRadioButton) newVal.getToggleGroup().getSelectedToggle();
+		 	 	 filterListView(selected.getText()); //filter listView according to selected radioBtn
+	 		 } 
+        }); 
+	 	 
 	 }
-	
 
-	
+	private void filterListView(String selection) {
+		
+		//Fadeable.fade(campaignsLV, FadeOption.FADE_OUT);
+	 	 if(selection.equals(testRadioBtn1.getText())) {
+	 		filteredData.setPredicate(str -> str.getName().contains(testRadioBtn1.getText()));
+	 		campaignsLV.setItems(filteredData); 
+	 	 }else if(selection.equals(testRadioBtn2.getText())) {
+	 		 filteredData.setPredicate(str -> str.getName().contains(testRadioBtn2.getText()));
+	 		 campaignsLV.setItems(filteredData); 
+ 	 	 }else if(selection.equals(testRadioBtn3.getText())) {
+ 	 		campaignsLV.setItems(campaigns); //use unfiltered campaigns list 
+ 	 	 }
+	 	//Fadeable.fade(campaignsLV, FadeOption.FADE_IN);
+	}
 	
 	
 	

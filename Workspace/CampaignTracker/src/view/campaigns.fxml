@@ -16,7 +16,8 @@
             <ToggleGroup fx:id="myToggleGroup" />
          </toggleGroup>
       </JFXRadioButton>
-      <JFXRadioButton fx:id="testRadioBtn2" layoutX="148.0" layoutY="254.0" text="2" toggleGroup="$myToggleGroup" />
+      <JFXRadioButton fx:id="testRadioBtn2" layoutX="114.0" layoutY="254.0" text="2" toggleGroup="$myToggleGroup" />
       <Label fx:id="testLbl" layoutX="67.0" layoutY="14.0" prefHeight="17.0" prefWidth="162.0" text="yo!" />
+      <JFXRadioButton fx:id="testRadioBtn3" layoutX="167.0" layoutY="254.0" text="All" toggleGroup="$myToggleGroup" />
    </children>
 </AnchorPane>

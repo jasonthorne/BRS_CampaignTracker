@@ -31,7 +31,7 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
     //root element for this controller:
   	private final Parent root = Rootable.getRoot(this, FxmlPath.CAMPAIGN_CELL);
 	
-	private CampaignsController campaignsCtrlr;
+	private CampaignsController campaignsCtrlr; //??????????????????????????? needed???
 	
 	//constructor:
 	CampaignCellController(CampaignsController campaignsCtrlr){
