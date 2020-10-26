@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Player;
 import view.FxmlPath;
 
 public class FrameController implements Rootable, Fadeable {
@@ -33,9 +34,10 @@ public class FrameController implements Rootable, Fadeable {
     @FXML private BorderPane rootBP;
 	@FXML private BorderPane headerBP;
 	@FXML private AnchorPane headerTopAP;
+	@FXML private Label playerNameLbl;
 	@FXML private Label appLbl;
 	@FXML private AnchorPane headerBtmAP;
-	@FXML private Label pageLbl;
+	@FXML private Label viewLbl;
 	@FXML private JFXButton backBtn;
 	@FXML private JFXButton fwrdBtn;
 	@FXML private AnchorPane bodyAP;
@@ -122,7 +124,7 @@ public class FrameController implements Rootable, Fadeable {
 	
 	//move backwards to previous view:
 	private void moveBkwrd() {
-		
+
 		//turn on fwrd button:
     	if(fwrdBtn.isDisabled()) { fwrdBtn.setDisable(false); }
     	//move current fwrd move to bkwrdMoves:
@@ -131,5 +133,19 @@ public class FrameController implements Rootable, Fadeable {
     	if(fwrdMoves.size() == 1) { backBtn.setDisable(true); }
     		
     	addRootToBody(fwrdMoves.peek()); //add root to frame
+	}
+	
+	//set player name label:
+	void setPlayerNameLbl(String playerName) {
+		Fadeable.fade(playerNameLbl, FadeOption.FADE_OUT); //fade out label
+		playerNameLbl.setText(playerName); //change label text
+		Fadeable.fade(playerNameLbl, FadeOption.FADE_IN); //fade in label
+	}
+	
+	//set view label:
+	void setViewLbl(String viewTitle) {
+		Fadeable.fade(viewLbl, FadeOption.FADE_OUT); //fade out label
+		viewLbl.setText(viewTitle); //change label text
+		Fadeable.fade(viewLbl, FadeOption.FADE_IN); //fade in label
 	}
 }

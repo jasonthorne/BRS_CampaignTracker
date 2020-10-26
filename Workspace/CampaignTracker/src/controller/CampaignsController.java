@@ -28,40 +28,32 @@ import view.FxmlPath;
 
 public class CampaignsController extends FrameContent implements Rootable {
 	
-	//=================toggle testing =====================
-	 @FXML
-	 private JFXRadioButton testRadioBtn1;
-	 @FXML
-	 private JFXRadioButton testRadioBtn2;
-	 @FXML
-	 private JFXRadioButton testRadioBtn3;
-	 @FXML
-	 private ToggleGroup myToggleGroup;
-	 
-	 @FXML
-	 private Label testLbl;
-	//=================toggle testing =====================
-	
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
     
     //root fxml element & children:
     @FXML private AnchorPane rootAP;
-    @FXML private JFXButton btnTest; /** ===================== */
     @FXML private JFXListView<Campaign> campaignsLV;
+	@FXML private ToggleGroup radioBtnsTG;
+	@FXML private JFXRadioButton playingRB;
+	@FXML private JFXRadioButton notPlayingRB;
+	@FXML private JFXRadioButton allRB;
+	@FXML private JFXButton newCampaignBtn;
    
     @FXML
     void initialize() {
-    	setCampaigns(); //populate campaigns
+    	setCampaigns(); //populate campaigns list
     	setToggleListener(); //add change listener to toggle group
-    	btnTest.setOnAction(event -> goToA1()); /** ==============delete laterz=========== */
-    	btnTest.setOnAction(event -> 
-    		super.changeView(root, SelectCampaignCtrlr.getRoot())
+    	newCampaignBtn.setOnAction(event ->  //set btn action
+    		super.changeView(root, selectCampaignCtrlr.getRoot(),"Select Campaign")
 		);
     }
     
     //observable list of campaigns:
-    private ObservableList<Campaign>campaigns = FXCollections.observableArrayList();
+    private final ObservableList<Campaign>campaigns = FXCollections.observableArrayList();
+    
+    //filtered list for filtering campaigns:
+    private final FilteredList<Campaign> filteredCampaigns = new FilteredList<>(campaigns, str -> true);
     
     /**===================imaginary db data: =================================*/
     public static List<Campaign>cellItemsDB = new ArrayList<Campaign>();
@@ -71,23 +63,14 @@ public class CampaignsController extends FrameContent implements Rootable {
 	private Parent root; 
 	
 	//controllers:
-	private final A1 a1; /** ==============delete laterz======================== */
-	private final SelectCampaignController SelectCampaignCtrlr;
+	private final SelectCampaignController selectCampaignCtrlr;
 	
 	//constructor:
 	CampaignsController() {
 		setRoot(); //set root node
-		this.a1 = new A1(); /** ==============delete laterz======================== */
-		this.SelectCampaignCtrlr = new SelectCampaignController();
+		this.selectCampaignCtrlr = new SelectCampaignController();
 	}
 
-	
-	/** ==============delete laterz======================== */
-	void goToA1() {
-		super.changeView(root, a1.getRoot());
-	}
-	/** ======================================= */
-	
 	//populates campaigns with campaigns from db:
 	private void setCampaigns() { /** ======= remember, this is pulling from db so may need called again for some reason =========*/
 		
@@ -112,68 +95,42 @@ public class CampaignsController extends FrameContent implements Rootable {
 		//set listView cellFactory to create CampaignCellControllers:
 		campaignsLV.setCellFactory(CampaignCellController -> new CampaignCellController(this));
 	}
+	/** +++++++++++++++++++ think about below being in an interface & using a comparator for if/elses or something! */
+	//add change listener to toggle group:
+	private void setToggleListener() {
+	
+		// add change listener to radioBtn toggle group:
+		radioBtnsTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+			@Override //override changeListener's changed: 
+			public void changed(ObservableValue<? extends Toggle> observable, Toggle oldVal, Toggle newVal) {
+		 		 
+				//get changed value from toggle group, cast to radioBtn:
+				JFXRadioButton selected = (JFXRadioButton) newVal.getToggleGroup().getSelectedToggle();
+				
+				//filter listView according to selected radioBtn: 
+		 	 	if(selected.getText().equals(playingRB.getText())) {
+					//set filteredList predicate to filter by playingRB selection:
+					filteredCampaigns.setPredicate(str -> str.getName().contains(playingRB.getText()));
+					campaignsLV.setItems(filteredCampaigns); //set listView to filteredList
+				}else if(selected.getText().equals(notPlayingRB.getText())) {
+			 		//set filteredList predicate to filter by notPlayingRB selection:
+					filteredCampaigns.setPredicate(str -> str.getName().contains(notPlayingRB.getText()));
+					campaignsLV.setItems(filteredCampaigns); //set listView to filteredList
+				}else {
+					campaignsLV.setItems(campaigns);  //set listView to non-filtered campaigns list 
+				}
+			} 
+		});
+	}
 	
 	@Override
 	void setRoot() { root = Rootable.getRoot(this, FxmlPath.CAMPAIGNS); } //set root
 	@Override
 	Parent getRoot() { return root; } //get root
 	
+	/////////https://stackoverflow.com/questions/28448851/how-to-use-javafx-filteredlist-in-a-listview
 	
-	
-	
-	//===================================================================
-	//TOGGLE TESTING! 
-	
-	 FilteredList<Campaign> filteredData = new FilteredList<>(campaigns, str -> true);
-	
-	 //adds change listener to toggle group:
-	 private void setToggleListener() {
-		 
-		 // add change listener to toggle group:
-		 myToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-		 	 @Override //override changeListener's changed method: 
-		 	 public void changed(ObservableValue<? extends Toggle> observable, Toggle oldVal, Toggle newVal) {
-		 	 	 
-		 	 	 //get changed value from toggle group, cast to radioBtn:
-		 	 	 JFXRadioButton selected = (JFXRadioButton) newVal.getToggleGroup().getSelectedToggle();
-		 	 	 filterListView(selected.getText()); //filter listView according to selected radioBtn
-	 		 } 
-        }); 
-	 	 
-	 }
-
-	private void filterListView(String selection) {
-		
-		//Fadeable.fade(campaignsLV, FadeOption.FADE_OUT);
-	 	 if(selection.equals(testRadioBtn1.getText())) {
-	 		filteredData.setPredicate(str -> str.getName().contains(testRadioBtn1.getText()));
-	 		campaignsLV.setItems(filteredData); 
-	 	 }else if(selection.equals(testRadioBtn2.getText())) {
-	 		 filteredData.setPredicate(str -> str.getName().contains(testRadioBtn2.getText()));
-	 		 campaignsLV.setItems(filteredData); 
- 	 	 }else if(selection.equals(testRadioBtn3.getText())) {
- 	 		campaignsLV.setItems(campaigns); //use unfiltered campaigns list 
- 	 	 }
-	 	//Fadeable.fade(campaignsLV, FadeOption.FADE_IN);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//accordian: 
+		//http://tutorials.jenkov.com/javafx/accordion.html
 	
 }

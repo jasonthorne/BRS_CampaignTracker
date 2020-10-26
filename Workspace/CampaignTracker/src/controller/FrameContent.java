@@ -10,18 +10,19 @@ public abstract class FrameContent implements Fadeable {
 	
 	//set frame controller:
 	void setFrameController(FrameController frameCtrlr) {
-		FrameContent.frameCtrlr = frameCtrlr;
+		FrameContent.frameCtrlr = frameCtrlr; /** +++++++++++WE WANT THIS FIRING ONLY ONCE!!++++++++++++ */
 	}
 	
 	//get frame controller:
-	FrameController getFrameController() {
+	/*FrameController getFrameController() {
 		return FrameContent.frameCtrlr;
-	}
+	} ++++++++++++++++++++try not to use thiS!! */
 	
 	//change to another view:
-	void changeView(Parent thisRoot, Parent nextRoot) {
+	void changeView(Parent thisRoot, Parent nextRoot, String viewTitle) {
+		frameCtrlr.setViewLbl(viewTitle);
 		Fadeable.fade(thisRoot, FadeOption.FADE_OUT); //fade out this root
-		FrameContent.frameCtrlr.moveFwrd(nextRoot); //move to next root
+		frameCtrlr.moveFwrd(nextRoot); //move to next root
 	}
 		
 	//force root getter/setter:

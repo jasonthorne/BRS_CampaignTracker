@@ -31,8 +31,11 @@ public class LoginController extends FrameContent implements Rootable, Fadeable 
 		loginBtn.setOnAction(event -> loginUsr());
     }
 	
+	//id of logged in player:
+	private static int playerId;
+	
 	//fxml root node:
-  	private Parent root; 
+  	private Parent root;
 	
 	//controllers:
 	private final FrameController frameCtrlr;
@@ -47,6 +50,13 @@ public class LoginController extends FrameContent implements Rootable, Fadeable 
 	}
 	
 	private void loginUsr() {
+		
+		//check db for username & pwrd
+		
+		//send an anonomous player
+		//add username to frame label:
+		frameCtrlr.setPlayerNameLbl("bob smith");
+		
 		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out root
 		frameCtrlr.loginMove(campaignsCtrlr.getRoot()); //move to campaigns
 	}
@@ -55,5 +65,7 @@ public class LoginController extends FrameContent implements Rootable, Fadeable 
 	void setRoot() { root = Rootable.getRoot(this, FxmlPath.LOGIN); } //set root
 	@Override
 	Parent getRoot() { return root; } //get root
+	
+	public static int getPlayerId() { return playerId; } //get playerId
 	
 }

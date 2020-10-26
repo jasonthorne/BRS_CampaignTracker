@@ -3,21 +3,31 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXRadioButton?>
-<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane fx:id="rootAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="640.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXButton fx:id="btnTest" layoutX="277.0" layoutY="254.0" prefHeight="39.0" prefWidth="86.0" style="-fx-background-color: yellow;" text="press me!" />
       <JFXListView fx:id="campaignsLV" layoutX="55.0" layoutY="39.0" prefHeight="190.0" prefWidth="530.0" style="-fx-background-color: pink;" />
-      <JFXRadioButton fx:id="testRadioBtn1" layoutX="55.0" layoutY="254.0" text="1">
-         <toggleGroup>
-            <ToggleGroup fx:id="myToggleGroup" />
-         </toggleGroup>
-      </JFXRadioButton>
-      <JFXRadioButton fx:id="testRadioBtn2" layoutX="114.0" layoutY="254.0" text="2" toggleGroup="$myToggleGroup" />
-      <Label fx:id="testLbl" layoutX="67.0" layoutY="14.0" prefHeight="17.0" prefWidth="162.0" text="yo!" />
-      <JFXRadioButton fx:id="testRadioBtn3" layoutX="167.0" layoutY="254.0" text="All" toggleGroup="$myToggleGroup" />
+      <HBox alignment="CENTER" layoutX="31.0" layoutY="237.0" prefHeight="17.0" prefWidth="146.0" spacing="10.0">
+         <children>
+            <JFXRadioButton fx:id="playingRB" text="1">
+               <toggleGroup>
+                  <ToggleGroup fx:id="radioBtnsTG" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="notPlayingRB" text="2" toggleGroup="$radioBtnsTG" />
+            <JFXRadioButton fx:id="allRB" contentDisplay="CENTER" selected="true" text="All" toggleGroup="$radioBtnsTG" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </HBox>
+      <JFXButton fx:id="newCampaignBtn" layoutX="277.0" layoutY="254.0" prefHeight="39.0" prefWidth="86.0" style="-fx-background-color: yellow;" text="press me!" />
    </children>
 </AnchorPane>

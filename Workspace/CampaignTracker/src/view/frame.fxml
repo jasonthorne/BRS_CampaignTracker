@@ -23,13 +23,18 @@
                         <Font name="System Bold" size="28.0" />
                      </font>zs
                   </Label>
+                  <Label fx:id="playerNameLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="30.0" prefHeight="20.0" prefWidth="121.0" text="player name here" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </top>
          <bottom>
             <AnchorPane fx:id="headerBtmAP" prefHeight="40.0" prefWidth="640.0" style="-fx-background-color: pink;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="pageLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="5.0" prefHeight="27.0" prefWidth="380.0" text="View Title" textAlignment="CENTER">
+                  <Label fx:id="viewLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="5.0" prefHeight="27.0" prefWidth="380.0" text="View Title" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
