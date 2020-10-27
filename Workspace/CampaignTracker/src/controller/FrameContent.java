@@ -20,14 +20,15 @@ public abstract class FrameContent implements Fadeable {
 	
 	//change to another view:
 	void changeView(Parent thisRoot, Parent nextRoot, String viewTitle) {
-		frameCtrlr.setViewLbl(viewTitle);
+		System.out.println("uh oh!!");
+		//////frameCtrlr.setViewLbl(viewTitle);
 		Fadeable.fade(thisRoot, FadeOption.FADE_OUT); //fade out this root
 		frameCtrlr.moveFwrd(nextRoot); //move to next root
 	}
 	
 	//change to another view:
 	void changeView(Parent thisRoot, FrameContent frameContent) {
-		/////////////////+++++++++frameCtrlr.setViewLbl(viewTitle);
+		///////frameCtrlr.setViewLbl(frameContent.getViewTitle());
 		Fadeable.fade(thisRoot, FadeOption.FADE_OUT); //fade out this root
 		frameCtrlr.moveFwrd(frameContent); //move to next root
 	}
@@ -36,8 +37,8 @@ public abstract class FrameContent implements Fadeable {
 	abstract void setRoot(); 
 	abstract Parent getRoot();
 	
-	//get child root:
-	Parent getChildRoot() { return getRoot(); } //??????????? NEEDED?????????????
-	
+	//force title getter/setter:
+	abstract void setViewTitle(); 
+	abstract String getViewTitle();	
 	
 }

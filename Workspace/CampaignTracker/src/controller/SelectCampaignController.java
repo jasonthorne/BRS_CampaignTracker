@@ -31,6 +31,19 @@ public class SelectCampaignController extends FrameContent implements Rootable {
     
     @Override
 	void setRoot() { root = Rootable.getRoot(this, FxmlPath.SELECT_CAMPAIGN); } //set root
-	////////////++++++++++@Override
+    
+	@Override
 	Parent getRoot() { return root; } //get root
+
+	@Override
+	void setViewTitle() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	String getViewTitle() {
+		//+++++++++++++++++++++++++++fix
+		return "Select Campaign";
+	}
 }

@@ -46,7 +46,8 @@ public class CampaignsController extends FrameContent implements Rootable {
     	setToggleListener(); //add change listener to toggle group
     	newCampaignBtn.setOnAction(event ->  //set btn action
     		///////////+++++++++super.changeView(root, selectCampaignCtrlr.getRoot(),"Select Campaign")
-    		super.changeView(root, selectCampaignCtrlr)
+    		//////////+++++++++++++super.changeView(root, selectCampaignCtrlr)
+    		super.changeView(root, a1)
 		);
     }
     
@@ -65,6 +66,7 @@ public class CampaignsController extends FrameContent implements Rootable {
 	
 	//controllers:
 	private final SelectCampaignController selectCampaignCtrlr;
+	private A1 a1 = new A1();
 	
 	//constructor:
 	CampaignsController() {
@@ -129,6 +131,18 @@ public class CampaignsController extends FrameContent implements Rootable {
 	
 	@Override
 	Parent getRoot() { return root; } //get root
+
+	@Override
+	void setViewTitle() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	String getViewTitle() {
+		// TODO Auto-generated method stub
+		return "Campaigns";
+	}
 
 
 	/////////https://stackoverflow.com/questions/28448851/how-to-use-javafx-filteredlist-in-a-listview

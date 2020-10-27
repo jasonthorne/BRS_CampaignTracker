@@ -38,4 +38,16 @@ public class A2 extends FrameContent implements Rootable {
 		
 	}
 
+	@Override
+	void setViewTitle() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	String getViewTitle() {
+		// TODO Auto-generated method stub
+		return "A2";
+	}
+
 }

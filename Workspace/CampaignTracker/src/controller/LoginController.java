@@ -55,7 +55,7 @@ public class LoginController extends FrameContent implements Rootable, Fadeable 
 		
 		//send an anonomous player
 		//add username to frame label:
-		frameCtrlr.setPlayerNameLbl("bob smith");
+		frameCtrlr.setPlayerLbl("bob smith");
 		
 		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out root
 		///////////+++++++++++++++++frameCtrlr.loginMove(campaignsCtrlr.getRoot()); //move to campaigns
@@ -69,6 +69,18 @@ public class LoginController extends FrameContent implements Rootable, Fadeable 
 	Parent getRoot() { return root; } //get root
 	
 	public static int getPlayerId() { return playerId; } //get playerId
+
+	@Override
+	void setViewTitle() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	String getViewTitle() {
+		// TODO Auto-generated method stub
+		return "Login";
+	}
 
 	
 	

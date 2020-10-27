@@ -23,7 +23,7 @@
                         <Font name="System Bold" size="28.0" />
                      </font>zs
                   </Label>
-                  <Label fx:id="playerNameLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="30.0" prefHeight="20.0" prefWidth="121.0" text="player name here" textFill="WHITE">
+                  <Label fx:id="playerLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="30.0" prefHeight="20.0" prefWidth="121.0" text="player name here" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>

@@ -45,11 +45,13 @@ public class A1  extends FrameContent implements Rootable {
     
     void goToA2(){
     	/////super.changeView(root, new A2().getRoot()); /** +++++++++++++++ prob not, as db pulls will happen each time you renav to a page! ++++++++++ */
+    	super.changeView(root, a2);
     }
     
     
     void goToB(){
     	///////////super.changeView(root, b.getRoot());
+    	super.changeView(root, b);
     }
     
     
@@ -62,6 +64,20 @@ public class A1  extends FrameContent implements Rootable {
 	void setRoot() {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	void setViewTitle() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	String getViewTitle() {
+		// TODO Auto-generated method stub
+		return "A1";
 	}
 
 
