@@ -58,7 +58,8 @@ public class LoginController extends FrameContent implements Rootable, Fadeable 
 		frameCtrlr.setPlayerNameLbl("bob smith");
 		
 		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out root
-		frameCtrlr.loginMove(campaignsCtrlr.getRoot()); //move to campaigns
+		///////////+++++++++++++++++frameCtrlr.loginMove(campaignsCtrlr.getRoot()); //move to campaigns
+		frameCtrlr.loginMove(campaignsCtrlr); //move to campaigns
 	}
 	
 	@Override

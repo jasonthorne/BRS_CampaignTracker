@@ -68,8 +68,8 @@ public class FrameController implements Rootable, Fadeable {
   	private final Stack<Parent>bkwrdMoves = new Stack<Parent>();
   	
   	//----------------------------
-  	private final Stack<FrameContent>test1 = new Stack<FrameContent>();
-  	
+  	private final Stack<FrameContent>fwrdMoves2 = new Stack<FrameContent>();
+  	private final Stack<FrameContent>bkwrdMoves2 = new Stack<FrameContent>();
   	
   	//------------------------------
   	
@@ -78,12 +78,6 @@ public class FrameController implements Rootable, Fadeable {
     	//create scene with fxml root:
     	scene = new Scene(Rootable.getRoot(this, FxmlPath.FRAME));
     	stage.setScene(scene); //add scene to stage
-    	
-    	//---------------
-    	test1.push(loginCtrlr);
-    	System.out.println("child root: " + test1.peek().getChildRoot());
-    	
-    	//-----------------
     }	
     
     //show stage:
@@ -121,7 +115,7 @@ public class FrameController implements Rootable, Fadeable {
     	fwrdMoves.push(root); //mark root as fwrd move
     	addRootToBody(root); //add root to bodyAP
 	}
-	
+  	/*
   	//move forward to previous view:
 	private void moveFwrd() {
 		
@@ -146,6 +140,59 @@ public class FrameController implements Rootable, Fadeable {
     		
     	addRootToBody(fwrdMoves.peek()); //add root to frame
 	}
+	*/
+	//========================================================================
+  	//move to first logged in view:
+  	void loginMove(FrameContent content) {
+  		fwrdMoves2.push(content); //mark root as fwrd move
+    	addRootToBody(content.getChildRoot()); //add root to bodyAP
+  	}
+  	
+  	//move forward to new view:
+  	void moveFwrd(FrameContent content) {
+  		
+  		//turn on back button:
+  		if(backBtn.isDisabled()) { backBtn.setDisable(false); }
+  		
+  		//if there are stored bkwrdMoves:
+    	if(!bkwrdMoves2.isEmpty()) {
+    		//turn on back button if disabled:
+        	if(backBtn.isDisabled()) { backBtn.setDisable(false); } 
+    		bkwrdMoves2.pop(); //remove obsolete element (as traversing a new path)
+        	//turn off fwrd buttons if all bkwrdMoves are removed:
+        	if(bkwrdMoves2.isEmpty()) { fwrdBtn.setDisable(true); }
+    	}
+    	
+    	fwrdMoves2.push(content); //mark root as fwrd move
+    	addRootToBody(content.getChildRoot()); //add root to bodyAP
+	}
+  	
+  	//move forward to previous view:
+	private void moveFwrd() {
+		
+		//turn on back button:
+    	if(backBtn.isDisabled()) { backBtn.setDisable(false); } 
+    	fwrdMoves2.push(bkwrdMoves2.pop()); //return previous view to fwrdMoves
+    	//disable fwrd btn if you've reached end of traversed path:
+    	if(bkwrdMoves2.isEmpty()) { fwrdBtn.setDisable(true); } 
+    	
+    	addRootToBody(fwrdMoves2.peek().getChildRoot()); //add root to frame
+	}
+	
+	//move backwards to previous view:
+	private void moveBkwrd() {
+
+		//turn on fwrd button:
+    	if(fwrdBtn.isDisabled()) { fwrdBtn.setDisable(false); }
+    	//move current fwrd move to bkwrdMoves:
+    	bkwrdMoves2.push(fwrdMoves2.pop()); 
+    	//disable back btn if now at last element in stack:
+    	if(fwrdMoves2.size() == 1) { backBtn.setDisable(true); }
+    		
+    	addRootToBody(fwrdMoves2.peek().getChildRoot()); //add root to frame
+	}
+  	
+  	//========================================================================
 	
 	//set player name label:
 	void setPlayerNameLbl(String playerName) {

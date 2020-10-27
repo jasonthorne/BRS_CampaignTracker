@@ -24,14 +24,20 @@ public abstract class FrameContent implements Fadeable {
 		Fadeable.fade(thisRoot, FadeOption.FADE_OUT); //fade out this root
 		frameCtrlr.moveFwrd(nextRoot); //move to next root
 	}
+	
+	//change to another view:
+	void changeView(Parent thisRoot, FrameContent frameContent) {
+		/////////////////+++++++++frameCtrlr.setViewLbl(viewTitle);
+		Fadeable.fade(thisRoot, FadeOption.FADE_OUT); //fade out this root
+		frameCtrlr.moveFwrd(frameContent); //move to next root
+	}
 		
 	//force root getter/setter:
 	abstract void setRoot(); 
-	
-	//abstract void setRoot(Parent root); 
 	abstract Parent getRoot();
 	
-	Parent getChildRoot() { return getRoot(); } //get root
-		
+	//get child root:
+	Parent getChildRoot() { return getRoot(); } //??????????? NEEDED?????????????
+	
 	
 }

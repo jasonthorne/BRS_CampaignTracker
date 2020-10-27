@@ -45,7 +45,8 @@ public class CampaignsController extends FrameContent implements Rootable {
     	setCampaigns(); //populate campaigns list
     	setToggleListener(); //add change listener to toggle group
     	newCampaignBtn.setOnAction(event ->  //set btn action
-    		super.changeView(root, selectCampaignCtrlr.getRoot(),"Select Campaign")
+    		///////////+++++++++super.changeView(root, selectCampaignCtrlr.getRoot(),"Select Campaign")
+    		super.changeView(root, selectCampaignCtrlr)
 		);
     }
     
