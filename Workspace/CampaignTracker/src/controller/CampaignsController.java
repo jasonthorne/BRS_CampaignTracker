@@ -47,7 +47,8 @@ public class CampaignsController extends FrameContent implements Rootable {
     	newCampaignBtn.setOnAction(event ->  //set btn action
     		///////////+++++++++super.changeView(root, selectCampaignCtrlr.getRoot(),"Select Campaign")
     		//////////+++++++++++++super.changeView(root, selectCampaignCtrlr)
-    		super.changeView(root, a1)
+    		/////////super.changeView(root, a1)
+    		super.changeView(root, a1.getRoot())
 		);
     }
     

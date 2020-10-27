@@ -119,7 +119,7 @@ public class FrameController implements Rootable, Fadeable {
     	fwrdMoves.push(root); //mark root as fwrd move
     	addRootToBody(root); //add root to bodyAP
 	}
-  	/*
+  	
   	//move forward to previous view:
 	private void moveFwrd() {
 		
@@ -144,8 +144,9 @@ public class FrameController implements Rootable, Fadeable {
     		
     	addRootToBody(fwrdMoves.peek()); //add root to frame
 	}
-	*/
+	
 	//========================================================================
+  	/*
   	//move to first logged in view:
   	void loginMove(FrameContent content) {
   		fwrdMoves2.push(content); //mark root as fwrd move
@@ -163,7 +164,7 @@ public class FrameController implements Rootable, Fadeable {
     	if(!bkwrdMoves2.isEmpty()) {
     		//turn on back button if disabled:
         	////////?????????if(backBtn.isDisabled()) { backBtn.setDisable(false); }
-    		/** instead of pop, maybe check if its the same as current pos?????? */
+    		///////// instead of pop, maybe check if its the same as current pos?????? 
     		bkwrdMoves2.pop(); //remove obsolete element (as traversing a new path)
         	//turn off fwrd buttons if all bkwrdMoves are removed:
         	if(bkwrdMoves2.isEmpty()) { fwrdBtn.setDisable(true); }
@@ -200,7 +201,7 @@ public class FrameController implements Rootable, Fadeable {
     	addRootToBody(fwrdMoves2.peek().getRoot()); //add root to frame
     	setViewLbl(fwrdMoves2.peek().getViewTitle()); //add view title
 	}
-  	
+  	*/
   	//========================================================================
 	
 	//set player name label:

@@ -19,19 +19,21 @@ public abstract class FrameContent implements Fadeable {
 	} ++++++++++++++++++++try not to use thiS!! */
 	
 	//change to another view:
-	void changeView(Parent thisRoot, Parent nextRoot, String viewTitle) {
+	void changeView(Parent thisRoot, Parent nextRoot) {
 		System.out.println("uh oh!!");
 		//////frameCtrlr.setViewLbl(viewTitle);
 		Fadeable.fade(thisRoot, FadeOption.FADE_OUT); //fade out this root
 		frameCtrlr.moveFwrd(nextRoot); //move to next root
 	}
 	
+	
+	/*
 	//change to another view:
 	void changeView(Parent thisRoot, FrameContent frameContent) {
 		///////frameCtrlr.setViewLbl(frameContent.getViewTitle());
 		Fadeable.fade(thisRoot, FadeOption.FADE_OUT); //fade out this root
 		frameCtrlr.moveFwrd(frameContent); //move to next root
-	}
+	}*/
 		
 	//force root getter/setter:
 	abstract void setRoot(); 
