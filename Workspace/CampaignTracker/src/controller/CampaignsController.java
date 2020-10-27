@@ -26,7 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import model.Campaign;
 import view.FxmlPath;
 
-public class CampaignsController extends FrameContent implements Rootable {
+public class CampaignsController implements Frameable, Rootable {
 	
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -47,8 +47,9 @@ public class CampaignsController extends FrameContent implements Rootable {
     	newCampaignBtn.setOnAction(event ->  //set btn action
     		///////////+++++++++super.changeView(root, selectCampaignCtrlr.getRoot(),"Select Campaign")
     		//////////+++++++++++++super.changeView(root, selectCampaignCtrlr)
-    		/////////super.changeView(root, a1)
-    		super.changeView(root, a1.getRoot())
+    		changeView(root, selectCampaignCtrlr.getRoot(), frameCtrlr)
+    		///////////super.changeView(root, a1.getRoot())
+    	
 		);
     }
     
@@ -66,13 +67,15 @@ public class CampaignsController extends FrameContent implements Rootable {
 	private Parent root; 
 	
 	//controllers:
+	private final FrameController frameCtrlr;
 	private final SelectCampaignController selectCampaignCtrlr;
 	private A1 a1 = new A1();
 	
 	//constructor:
-	CampaignsController() {
+	CampaignsController(FrameController frameCtrlr) {
+		this.frameCtrlr = frameCtrlr;
 		setRoot(); //set root node
-		this.selectCampaignCtrlr = new SelectCampaignController();
+		this.selectCampaignCtrlr = new SelectCampaignController(frameCtrlr);
 	}
 
 	//populates campaigns with campaigns from db:
@@ -128,18 +131,22 @@ public class CampaignsController extends FrameContent implements Rootable {
 	}
 	
 	@Override
+	public
 	void setRoot() { root = Rootable.getRoot(this, FxmlPath.CAMPAIGNS); } //set root
 	
 	@Override
+	public
 	Parent getRoot() { return root; } //get root
 
 	@Override
+	public
 	void setViewTitle() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
+	public
 	String getViewTitle() {
 		// TODO Auto-generated method stub
 		return "Campaigns";

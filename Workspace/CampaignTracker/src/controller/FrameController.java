@@ -71,8 +71,8 @@ public class FrameController implements Rootable, Fadeable {
   	private final Stack<Parent>bkwrdMoves = new Stack<Parent>();
   	
   	//----------------------------
-  	private final Stack<FrameContent>fwrdMoves2 = new Stack<FrameContent>();
-  	private final Stack<FrameContent>bkwrdMoves2 = new Stack<FrameContent>();
+  	private final Stack<Frameable>fwrdMoves2 = new Stack<Frameable>();
+  	private final Stack<Frameable>bkwrdMoves2 = new Stack<Frameable>();
   	
   	//------------------------------
   	
@@ -108,8 +108,6 @@ public class FrameController implements Rootable, Fadeable {
   		
   		//if there are stored bkwrdMoves:
     	if(!bkwrdMoves.isEmpty()) {
-    		//turn on back button if disabled:
-        	//////////////?????????if(backBtn.isDisabled()) { backBtn.setDisable(false); } 
     		/** instead of pop, maybe check if its the same as current pos?????? */
     		bkwrdMoves.pop(); //remove obsolete element (as traversing a new path)
         	//turn off fwrd buttons if all bkwrdMoves are removed:
@@ -162,8 +160,6 @@ public class FrameController implements Rootable, Fadeable {
   		
   		//if there are stored bkwrdMoves:
     	if(!bkwrdMoves2.isEmpty()) {
-    		//turn on back button if disabled:
-        	////////?????????if(backBtn.isDisabled()) { backBtn.setDisable(false); }
     		///////// instead of pop, maybe check if its the same as current pos?????? 
     		bkwrdMoves2.pop(); //remove obsolete element (as traversing a new path)
         	//turn off fwrd buttons if all bkwrdMoves are removed:
@@ -203,6 +199,12 @@ public class FrameController implements Rootable, Fadeable {
 	}
   	*/
   	//========================================================================
+	
+	
+	//+++++++++++++++++++++++++++++++
+	//void changeView() { }
+	
+	//++++++++++++++++++++++++++++++
 	
 	//set player name label:
 	void setPlayerLbl(String playerName) {

@@ -7,7 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import view.FxmlPath;
 
-public class B extends FrameContent implements Rootable {
+///public class B extends FrameContent implements Rootable {
+public class B implements Rootable, Frameable {
+
 
     @FXML
     private ResourceBundle resources;
@@ -27,10 +29,11 @@ public class B extends FrameContent implements Rootable {
   	private final Parent root = Rootable.getRoot(this, FxmlPath.b);
     
   	
-  	Parent getRoot() { return this.root; }
+  	public Parent getRoot() { return this.root; }
 
 
 	@Override
+	public
 	void setRoot() {
 		// TODO Auto-generated method stub
 		
@@ -38,6 +41,7 @@ public class B extends FrameContent implements Rootable {
 
 
 	@Override
+	public
 	void setViewTitle() {
 		// TODO Auto-generated method stub
 		
@@ -45,6 +49,7 @@ public class B extends FrameContent implements Rootable {
 
 
 	@Override
+	public
 	String getViewTitle() {
 		// TODO Auto-generated method stub
 		return "B";

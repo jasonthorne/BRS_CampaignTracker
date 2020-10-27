@@ -14,7 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import view.FxmlPath;
 
-public class LoginController extends FrameContent implements Rootable, Fadeable {
+///////////public class LoginController extends Frameable implements Rootable, Fadeable {
+public class LoginController implements Rootable, Fadeable, Frameable  {
 	
 	@FXML private ResourceBundle resources;
 	@FXML private URL location;
@@ -43,10 +44,11 @@ public class LoginController extends FrameContent implements Rootable, Fadeable 
 	
 	//constructor:
 	LoginController(FrameController frameCtrlr) {
+		//////////////super.setFrameController(frameCtrlr); //store frame controller in super
 		setRoot(); //set root node
 		this.frameCtrlr = frameCtrlr; //assign frame controller (for loginUsr)
-		this.campaignsCtrlr = new CampaignsController(); //create campaigns controller
-		super.setFrameController(frameCtrlr); //store frame controller in super
+		this.campaignsCtrlr = new CampaignsController(frameCtrlr); //create campaigns controller
+		
 	}
 	
 	private void loginUsr() {
@@ -55,28 +57,33 @@ public class LoginController extends FrameContent implements Rootable, Fadeable 
 		
 		//send an anonomous player
 		//add username to frame label:
-		frameCtrlr.setPlayerLbl("bob smith");
+		////////////////////////////////////frameCtrlr.setPlayerLbl("bob smith");
 		
 		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out root
-		frameCtrlr.loginMove(campaignsCtrlr.getRoot()); //move to campaigns
+		//////////////fcLoginMove(campaignsCtrlr.getRoot()); //move to campaigns
 		//////////////////frameCtrlr.loginMove(campaignsCtrlr); //move to campaigns
+		frameCtrlr.loginMove(campaignsCtrlr.getRoot());
 	}
 	
 	@Override
+	public
 	void setRoot() { root = Rootable.getRoot(this, FxmlPath.LOGIN); } //set root
 	
 	@Override
+	public
 	Parent getRoot() { return root; } //get root
 	
 	public static int getPlayerId() { return playerId; } //get playerId
 
 	@Override
+	public
 	void setViewTitle() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
+	public
 	String getViewTitle() {
 		// TODO Auto-generated method stub
 		return "Login";

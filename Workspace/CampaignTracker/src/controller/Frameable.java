@@ -3,15 +3,16 @@ package controller;
 import animation.Fadeable;
 import javafx.scene.Parent;
 
-public abstract class FrameContent implements Fadeable {
+//public abstract class FrameContent implements Fadeable {
+public interface Frameable extends Fadeable {
 	
 	//frame.fxml controller:
-	private static FrameController frameCtrlr;
+	//FrameController frameCtrlr;
 	
 	//set frame controller:
-	void setFrameController(FrameController frameCtrlr) {
-		FrameContent.frameCtrlr = frameCtrlr; /** +++++++++++WE WANT THIS FIRING ONLY ONCE!!++++++++++++ */
-	}
+	/*default void setFrameController(FrameController frameCtrlr2) {
+		frameCtrlr = frameCtrlr2; //+++++++++++WE WANT THIS FIRING ONLY ONCE!!++++++++++++
+	}*/
 	
 	//get frame controller:
 	/*FrameController getFrameController() {
@@ -19,21 +20,28 @@ public abstract class FrameContent implements Fadeable {
 	} ++++++++++++++++++++try not to use thiS!! */
 	
 	//change to another view:
-	void changeView(Parent thisRoot, Parent nextRoot) {
-		System.out.println("uh oh!!");
+	//default void changeView(Parent thisRoot, Parent nextRoot) {
+	default void changeView(Parent thisRoot, Parent nextRoot, FrameController frameCtrlr) {
 		//////frameCtrlr.setViewLbl(viewTitle);
 		Fadeable.fade(thisRoot, FadeOption.FADE_OUT); //fade out this root
 		frameCtrlr.moveFwrd(nextRoot); //move to next root
 	}
 	
 	
-	/*
-	//change to another view:
+	
+	/*//change to another view:
 	void changeView(Parent thisRoot, FrameContent frameContent) {
 		///////frameCtrlr.setViewLbl(frameContent.getViewTitle());
 		Fadeable.fade(thisRoot, FadeOption.FADE_OUT); //fade out this root
 		frameCtrlr.moveFwrd(frameContent); //move to next root
 	}*/
+	
+	
+	
+	//----------------tempfix-------------
+	default void fcLoginMove(Parent root){
+		/////frameCtrlr.loginMove(root);
+	}
 		
 	//force root getter/setter:
 	abstract void setRoot(); 

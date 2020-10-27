@@ -8,7 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import view.FxmlPath;
 
-public class SelectCampaignController extends FrameContent implements Rootable {
+public class SelectCampaignController implements Frameable, Rootable {
 	
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -25,23 +25,32 @@ public class SelectCampaignController extends FrameContent implements Rootable {
   	private Parent root; 
 
     //constructor:
+    SelectCampaignController(FrameController frameCtrlr) {
+    	setRoot(); //set root node
+    }
+    
     SelectCampaignController() {
     	setRoot(); //set root node
     }
     
+    
     @Override
+	public
 	void setRoot() { root = Rootable.getRoot(this, FxmlPath.SELECT_CAMPAIGN); } //set root
     
 	@Override
+	public
 	Parent getRoot() { return root; } //get root
 
 	@Override
+	public
 	void setViewTitle() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
+	public
 	String getViewTitle() {
 		//+++++++++++++++++++++++++++fix
 		return "Select Campaign";
