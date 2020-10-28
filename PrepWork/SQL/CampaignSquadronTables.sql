@@ -34,7 +34,6 @@ CREATE TABLE players (
 	name VARCHAR(64) DEFAULT NULL,
 	password VARCHAR(255) DEFAULT NULL,
 	PRIMARY KEY (playerID),
-	/*CONSTRAINT name_password UNIQUE (name, password)	/* make combined columns unique */
 	UNIQUE (name), /* prevent duplicate inserts */
 	UNIQUE (password) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

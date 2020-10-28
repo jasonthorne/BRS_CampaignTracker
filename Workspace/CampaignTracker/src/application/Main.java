@@ -12,10 +12,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-    	//////========FrameController frameCtrlr = new FrameController();
     	
     	FrameController frameCtrlr = FrameController.getFrameCtrlr();
     	frameCtrlr.showStage();
-    	
     }
 }

@@ -22,12 +22,12 @@ public class A2 implements Frameable,  Rootable {
     void initialize() {
         
     }
-    private final FrameController frameCtrlr;
+    
     //root element for this controller:
     private final Parent root = Rootable.getRoot(this, FxmlPath.a2);
     
-    A2(FrameController frameCtrlr){
-    	this.frameCtrlr = frameCtrlr;
+    A2(){
+    	
     }
     
     @Override

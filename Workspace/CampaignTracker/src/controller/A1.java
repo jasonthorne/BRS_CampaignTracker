@@ -38,12 +38,11 @@ public class A1  implements Frameable,  Rootable {
   //root element for this controller:
   	private final Parent root = Rootable.getRoot(this, FxmlPath.a1);
     
-    FrameController frameCtrlr;
-    A2 a2 = new A2(frameCtrlr);
-    B b = new B(frameCtrlr);
+    A2 a2 = new A2();
+    B b = new B();
     
-    A1(FrameController frameCtrlr){
-    	this.frameCtrlr = frameCtrlr;
+    A1(){
+    	
     }
     
     

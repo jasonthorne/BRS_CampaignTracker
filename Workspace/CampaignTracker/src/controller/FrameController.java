@@ -63,7 +63,7 @@ public class FrameController implements Rootable, Fadeable {
     private final Stage stage = new Stage(); //stage
     private Scene scene; //scene
     
-    //singleton frame.fxml controller:
+    //frame.fxml controller:
   	private static FrameController singleFrameCtrlr = null;
     
     //login.fxml controller:
@@ -75,7 +75,7 @@ public class FrameController implements Rootable, Fadeable {
   	
   	//constructor:
     private FrameController(){
-    	loginCtrlr = new LoginController(this); //instantiate login controller //??????????????passing this??
+    	loginCtrlr = new LoginController(); //instantiate login controller
     	scene = new Scene(Rootable.getRoot(this, FxmlPath.FRAME));
     	stage.setScene(scene); //add scene to stage
     }	
@@ -93,8 +93,7 @@ public class FrameController implements Rootable, Fadeable {
     //add root to body AnchorPane:
   	private void addRootToBody(Parent root){
   		root.setOpacity(0.0); //hide root from view
-  		//replace bodyAP's children with root:
-  		bodyAP.getChildren().setAll(root); 
+  		bodyAP.getChildren().setAll(root); //replace bodyAP's children with root
   		Fadeable.fade(root, FadeOption.FADE_IN); //fade in root
   	}
   	
@@ -150,6 +149,7 @@ public class FrameController implements Rootable, Fadeable {
     	setViewLbl(fwrdMoves.peek().getViewTitle()); //add view title
 	}
 	
+	/** +++++++++++++++ figure out better fades for both of these below!! +++++++++++++++:P */
 	//set player name label:
 	void setPlayerLbl(String playerName) {
 		Fadeable.fade(playerLbl, FadeOption.FADE_OUT); //fade out label
