@@ -7,17 +7,17 @@ import java.util.Properties;
 
 /** look into http://www.jasypt.org/ for encryption +++++++++++++++*/
 
-public class DatabaseConnection{
+public class ConnectDB {
 	
 	private Connection connection = null; //holds an established connection
 	
 	//constructor connects to DB using properties file:
-	private DatabaseConnection(){ 
+	private ConnectDB() { 
 		
 		try {
 			//load properties:
 			Properties properties = new Properties();	
-			properties.load(new FileInputStream("/configs/mysql/db_configs.properties"));
+			properties.load(new FileInputStream("./configs/mysql/db_configs.properties"));
 		
 			//get connection using properties: 
 			this.connection = DriverManager.getConnection(
@@ -29,8 +29,5 @@ public class DatabaseConnection{
 	}
 	
 	//return a newly established connection:
-	protected static Connection getConnection() {
-		return new DatabaseConnection().connection; 
-	}
-	
+	protected static Connection getConnection() { return new ConnectDB().connection; }
 }

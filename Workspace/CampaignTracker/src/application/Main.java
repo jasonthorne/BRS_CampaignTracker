@@ -1,10 +1,11 @@
 package application;
 
 import controller.FrameController;
+import database.InsertPlayer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class Main extends Application implements InsertPlayer{
 
     public static void main(String[] args) {
         launch(args);
@@ -13,7 +14,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
     	
+    	InsertPlayer.insert("bill", "555");
+    	
     	FrameController frameCtrlr = FrameController.getFrameCtrlr();
     	frameCtrlr.showStage();
+    	
+    	
     }
 }
