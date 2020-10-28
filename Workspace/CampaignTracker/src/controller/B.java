@@ -27,9 +27,13 @@ public class B implements Rootable, Frameable {
     
     //root element for this controller:
   	private final Parent root = Rootable.getRoot(this, FxmlPath.b);
-    
+    private FrameController frameCtrlr;
   	
   	public Parent getRoot() { return this.root; }
+  	
+  	public B( FrameController frameCtrlr) {
+  		this.frameCtrlr = frameCtrlr;
+  	}
 
 
 	@Override

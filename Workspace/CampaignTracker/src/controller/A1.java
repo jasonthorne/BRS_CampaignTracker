@@ -40,18 +40,24 @@ public class A1  implements Frameable,  Rootable {
     
     FrameController frameCtrlr;
     A2 a2 = new A2(frameCtrlr);
-    B b = new B();
+    B b = new B(frameCtrlr);
+    
+    A1(FrameController frameCtrlr){
+    	this.frameCtrlr = frameCtrlr;
+    }
     
     
     void goToA2(){
     	//////////////super.changeView(root, new A2().getRoot()); /** +++++++++++++++ prob not, as db pulls will happen each time you renav to a page! ++++++++++ */
-    	///////////super.changeView(root, a2);
+    	Frameable.changeView(root, a2);
+    	///////+++++++++changeView(root, a2.getRoot(), frameCtrlr);
     }
     
     
     void goToB(){
     	///////////////super.changeView(root, b.getRoot());
     	///////////super.changeView(root, b);
+    	Frameable.changeView(root, b);
     }
     
     

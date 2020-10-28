@@ -67,17 +67,35 @@ public class FrameController implements Rootable, Fadeable {
     private final LoginController loginCtrlr;
    
     //stacks of parent nodes. One for forward moves, one for backward moves:
-  	private final Stack<Parent>fwrdMoves = new Stack<Parent>(); 
-  	private final Stack<Parent>bkwrdMoves = new Stack<Parent>();
+  	private final Stack<Frameable>fwrdMoves = new Stack<Frameable>(); 
+  	private final Stack<Frameable>bkwrdMoves = new Stack<Frameable>();
+  	
+  	//private final Stack<Parent>fwrdMoves = new Stack<Parent>(); 
+  	//private final Stack<Parent>bkwrdMoves = new Stack<Parent>();
   	
   	//----------------------------
-  	private final Stack<Frameable>fwrdMoves2 = new Stack<Frameable>();
-  	private final Stack<Frameable>bkwrdMoves2 = new Stack<Frameable>();
+  	//private final Stack<Frameable>fwrdMoves2 = new Stack<Frameable>();
+  	///private final Stack<Frameable>bkwrdMoves2 = new Stack<Frameable>();
   	
   	//------------------------------
   	
+  	
+  	//===========================================
+  	//singleton frame.fxml controller:
+  	private static FrameController singleFrameCtrlr = null; 
+  	
+  	//gets singleton frame controller:
+    public static FrameController getFrameCtrlr() {
+    	//create singleton if necessary:
+        if (singleFrameCtrlr == null) { singleFrameCtrlr = new FrameController(); }
+        return singleFrameCtrlr; 
+    }
+    
+  	//===========================================
+  	
     //constructor:
-    public FrameController(){
+    //////////////===========public FrameController(){
+    private FrameController(){
     	loginCtrlr = new LoginController(this); //instantiate login controller 
     	scene = new Scene(Rootable.getRoot(this, FxmlPath.FRAME));
     	stage.setScene(scene); //add scene to stage
@@ -95,13 +113,15 @@ public class FrameController implements Rootable, Fadeable {
   	}
   	
   	//move to first logged in view:
-  	void loginMove(Parent root) {
-  		fwrdMoves.push(root); //mark root as fwrd move
-    	addRootToBody(root); //add root to bodyAP
+  	///////////+++++++++++++++++++void loginMove(Parent root) {
+	void loginMove(Frameable frameable) {
+  		fwrdMoves.push(frameable); //mark frameable as fwrd move
+    	addRootToBody(frameable.getRoot()); //add root to bodyAP
   	}
   	
   	//move forward to new view:
-  	void moveFwrd(Parent root) {
+  	////////+++++++++++++/void moveFwrd(Parent root) {
+	void moveFwrd(Frameable frameable) {
   		
   		//turn on back button:
   		if(backBtn.isDisabled()) { backBtn.setDisable(false); }
@@ -114,8 +134,9 @@ public class FrameController implements Rootable, Fadeable {
         	if(bkwrdMoves.isEmpty()) { fwrdBtn.setDisable(true); }
     	}
     	
-    	fwrdMoves.push(root); //mark root as fwrd move
-    	addRootToBody(root); //add root to bodyAP
+    	////////////++++++++++fwrdMoves.push(root); //mark root as fwrd move
+    	fwrdMoves.push(frameable); //mark frameable as fwrd move
+    	addRootToBody(frameable.getRoot()); //add root to bodyAP
 	}
   	
   	//move forward to previous view:
@@ -127,7 +148,8 @@ public class FrameController implements Rootable, Fadeable {
     	//disable fwrd btn if you've reached end of traversed path:
     	if(bkwrdMoves.isEmpty()) { fwrdBtn.setDisable(true); } 
     	
-    	addRootToBody(fwrdMoves.peek()); //add root to frame
+    	//////////++++++++++addRootToBody(fwrdMoves.peek()); //add root to frame
+    	addRootToBody(fwrdMoves.peek().getRoot()); //add root to frame
 	}
 	
 	//move backwards to previous view:
@@ -140,7 +162,8 @@ public class FrameController implements Rootable, Fadeable {
     	//disable back btn if now at last element in stack:
     	if(fwrdMoves.size() == 1) { backBtn.setDisable(true); }
     		
-    	addRootToBody(fwrdMoves.peek()); //add root to frame
+    	//////////++++++++++++addRootToBody(fwrdMoves.peek()); //add root to frame
+    	addRootToBody(fwrdMoves.peek().getRoot()); //add root to frame
 	}
 	
 	//========================================================================

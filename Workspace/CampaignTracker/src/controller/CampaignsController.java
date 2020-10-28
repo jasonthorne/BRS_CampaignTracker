@@ -47,10 +47,10 @@ public class CampaignsController implements Frameable, Rootable {
     	newCampaignBtn.setOnAction(event ->  //set btn action
     		///////////+++++++++super.changeView(root, selectCampaignCtrlr.getRoot(),"Select Campaign")
     		//////////+++++++++++++super.changeView(root, selectCampaignCtrlr)
-    		changeView(root, selectCampaignCtrlr.getRoot(), frameCtrlr)
+    		//changeView(root, selectCampaignCtrlr.getRoot(), frameCtrlr)
+    		////changeView(root, a1.getRoot(), frameCtrlr)
     		///////////super.changeView(root, a1.getRoot())
-    	
-		);
+    	Frameable.changeView(root, a1));
     }
     
     //observable list of campaigns:
@@ -69,13 +69,14 @@ public class CampaignsController implements Frameable, Rootable {
 	//controllers:
 	private final FrameController frameCtrlr;
 	private final SelectCampaignController selectCampaignCtrlr;
-	private A1 a1 = new A1();
+	private A1 a1;
 	
 	//constructor:
 	CampaignsController(FrameController frameCtrlr) {
 		this.frameCtrlr = frameCtrlr;
 		setRoot(); //set root node
 		this.selectCampaignCtrlr = new SelectCampaignController(frameCtrlr);
+		 a1 = new A1(frameCtrlr);
 	}
 
 	//populates campaigns with campaigns from db:

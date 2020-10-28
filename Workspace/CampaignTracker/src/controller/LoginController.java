@@ -62,7 +62,8 @@ public class LoginController implements Rootable, Fadeable, Frameable  {
 		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out root
 		//////////////fcLoginMove(campaignsCtrlr.getRoot()); //move to campaigns
 		//////////////////frameCtrlr.loginMove(campaignsCtrlr); //move to campaigns
-		frameCtrlr.loginMove(campaignsCtrlr.getRoot());
+		///////////////+++++++++++++frameCtrlr.loginMove(campaignsCtrlr.getRoot());
+		frameCtrlr.loginMove(campaignsCtrlr);
 	}
 	
 	@Override
