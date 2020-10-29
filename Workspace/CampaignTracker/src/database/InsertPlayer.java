@@ -4,26 +4,22 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**  +++++++++++++ figure out better way of making these. IE have them hidden from anything that doesnt need em! :P  +++++++*/
+
 public interface InsertPlayer {
 	
 	static void insert(String name, String password) {
-		 Connection connection = null;
-		 try {
-			connection = ConnectDB.getConnection();	//connect to DB
-			CallableStatement callableStatement = connection.prepareCall("{CALL insert_player(?,?)}"); //create statement
-	        callableStatement.setString(1, name); //set input with name
-	        callableStatement.setString(2, password); //set input with password
-	        try {
-		    	callableStatement.execute(); //execute statement
-			}catch(Exception e) { e.printStackTrace(); }
-	
-		 }catch(Exception e) { e.printStackTrace(); }
-		 finally {
-			 if (connection != null) {	//finally, try close connection:
-				 try {
-					 connection.close(); 
-				 } catch (SQLException e) { e.printStackTrace(); } 
-			 }
-		 }
+		 
+		try (Connection connection = ConnectDB.getConnection(); //get a connection to the db
+				
+			 //create statement:
+			 CallableStatement callableStatement = connection.prepareCall(
+					"{CALL insert_player(?,?)}");) {
+			
+			 callableStatement.setString(1, name); //set input with name
+	         callableStatement.setString(2, password); //set input with password
+	         callableStatement.execute(); //execute statement
+			
+		}catch(Exception e) { e.printStackTrace(); }
 	}
 }

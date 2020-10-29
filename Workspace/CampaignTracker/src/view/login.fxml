@@ -8,12 +8,12 @@
 
 <AnchorPane fx:id="rootAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXTextField fx:id="usrnameTxtFld" focusColor="#c85a54" layoutX="103.0" layoutY="57.0" prefHeight="39.0" prefWidth="434.0" promptText="Username">
+      <JFXTextField fx:id="nameTxtFld" layoutX="103.0" layoutY="57.0" prefHeight="39.0" prefWidth="434.0" promptText="Username">
          <font>
             <Font size="18.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField fx:id="pswrdTxtFld" focusColor="#c85a54" layoutX="103.0" layoutY="133.0" prefHeight="25.0" prefWidth="434.0" promptText="Password">
+      <JFXPasswordField fx:id="pswrdTxtFld" layoutX="103.0" layoutY="133.0" prefHeight="25.0" prefWidth="434.0" promptText="Password">
          <font>
             <Font size="18.0" />
          </font>

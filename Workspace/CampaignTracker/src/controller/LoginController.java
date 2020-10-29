@@ -8,10 +8,12 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import animation.Fadeable;
-import animation.Fadeable.FadeOption;
+import database.SelectPlayer;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import model.Player;
+import model.Player.Builder;
 import view.FxmlPath;
 
 public class LoginController implements Rootable, Fadeable, Frameable  {
@@ -21,7 +23,7 @@ public class LoginController implements Rootable, Fadeable, Frameable  {
 
 	//root fxml element & children:
     @FXML private AnchorPane rootAP;
-	@FXML private JFXTextField usrnameTxtFld;
+	@FXML private JFXTextField nameTxtFld;
 	@FXML private JFXPasswordField pswrdTxtFld;
 	@FXML private JFXButton loginBtn;
     
@@ -48,7 +50,12 @@ public class LoginController implements Rootable, Fadeable, Frameable  {
 	
 	private void loginUsr() {
 		
+		//check if fields aren't empty ++++++++:
+		
 		//check db for username & pwrd
+		Player player = new Builder().setName("bob").setPswrd("123").build();
+		
+		SelectPlayer.select(player);
 		
 		//send an anonomous player\
 		//add username to frame label:

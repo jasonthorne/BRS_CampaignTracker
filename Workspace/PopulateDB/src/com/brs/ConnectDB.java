@@ -20,8 +20,8 @@ public class ConnectDB {
 			//get connection using properties:
 			this.connection = DriverManager.getConnection(
 					properties.getProperty("db_url"),
-					properties.getProperty("user"), 	
-					properties.getProperty("password"));
+					properties.getProperty("db_user"), 	
+					properties.getProperty("db_password"));
 			
 		}catch(Exception e) { e.printStackTrace(); }
 	}

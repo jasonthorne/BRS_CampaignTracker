@@ -14,7 +14,7 @@ public class Main extends Application implements InsertPlayer{
     @Override
     public void start(Stage primaryStage) {
     	
-    	InsertPlayer.insert("bill", "555");
+    	InsertPlayer.insert("jo", "wood");
     	
     	FrameController frameCtrlr = FrameController.getFrameCtrlr();
     	frameCtrlr.showStage();
