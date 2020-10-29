@@ -13,7 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import model.Player;
-import model.Player.Builder;
+import model.Player.PlayerBuilder;
 import view.FxmlPath;
 
 public class LoginController implements Rootable, Fadeable, Frameable  {
@@ -50,19 +50,26 @@ public class LoginController implements Rootable, Fadeable, Frameable  {
 	
 	private void loginUsr() {
 		
-		//check if fields aren't empty ++++++++:
+		//if name & password fields aren't empty: 
+		/** ++++++if(!nameTxtFld.getText().trim().equals("") && !pswrdTxtFld.getText().trim().equals("")) { */
+			
+			//check db for player:
+			SelectPlayer.select(
+					new PlayerBuilder()
+					.setName(nameTxtFld.getText().trim())
+					.setPswrd(pswrdTxtFld.getText().trim())
+					.build());
+			
+			//send an anonomous player\
+			//add username to frame label:
+			////////////////////////////////////frameCtrlr.setPlayerLbl("bob smith");
+			
+			Fadeable.fade(root, FadeOption.FADE_OUT); //fade out root
+			FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns
+			
+		/** +++++++++}else { System.out.println("oi!"); } +++++TUTN ERROR HANDLING BACK ON LATER! +++++ */
+			
 		
-		//check db for username & pwrd
-		Player player = new Builder().setName("bob").setPswrd("123").build();
-		
-		SelectPlayer.select(player);
-		
-		//send an anonomous player\
-		//add username to frame label:
-		////////////////////////////////////frameCtrlr.setPlayerLbl("bob smith");
-		
-		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out root
-		FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns
 	}
 	
 	public static int getPlayerId() { return playerId; } //get playerId

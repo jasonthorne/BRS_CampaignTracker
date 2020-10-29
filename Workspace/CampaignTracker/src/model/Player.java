@@ -9,26 +9,28 @@ public class Player {
 	private Player() {} //blank constructor
 	
 	//builder class:
-	public static class Builder {
+	public static class PlayerBuilder {
 		
-		private Player player = new Player(); //create player
+		//create player:
+		private Player player = new Player(); 
 		
-		public Builder setId(int id) {
+		public PlayerBuilder setId(int id) {
 			player.id = id; //set id
 			return this; //return this object
 		}
 		
-		public Builder setName(String name) {
+		public PlayerBuilder setName(String name) {
 			player.name = name; //set name
 			return this; //return this object
 		}
 		
-		public Builder setPswrd(String pswrd) {
+		public PlayerBuilder setPswrd(String pswrd) {
 			player.pswrd = pswrd; //set password
 			return this; //return this object
 		}
 		
-		public Player build() { return player; } //return built player
+		//return built player:
+		public Player build() { return player; }
 	}
 	
 	//getters:
