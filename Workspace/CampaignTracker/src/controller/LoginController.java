@@ -1,16 +1,31 @@
 package controller;
 
 import java.net.URL;
+import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
 
 import animation.Fadeable;
-import database.SelectPlayer;
+import animation.Shakeable;
+import animation.Fadeable.FadeOption;
+import database.SelectPlayerID;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import model.Player;
 import model.Player.PlayerBuilder;
@@ -23,12 +38,15 @@ public class LoginController implements Rootable, Fadeable, Frameable  {
 
 	//root fxml element & children:
     @FXML private AnchorPane rootAP;
+    @FXML private Label errorLbl;
 	@FXML private JFXTextField nameTxtFld;
 	@FXML private JFXPasswordField pswrdTxtFld;
 	@FXML private JFXButton loginBtn;
     
 	@FXML
     void initialize() {
+		//initially hide error label:
+		errorLbl.setVisible(false); 
     	//set btn actions:
 		loginBtn.setOnAction(event -> loginUsr());
     }
@@ -50,24 +68,61 @@ public class LoginController implements Rootable, Fadeable, Frameable  {
 	
 	private void loginUsr() {
 		
+		
+		errorLbl.setVisible(false); //inform user with label
+		
+		//https://www.genuinecoder.com/javafx-splash-screen-loading-screen/
+		
+	
 		//if name & password fields aren't empty: 
-		/** ++++++if(!nameTxtFld.getText().trim().equals("") && !pswrdTxtFld.getText().trim().equals("")) { */
+		if(!nameTxtFld.getText().trim().equals("") && !pswrdTxtFld.getText().trim().equals("")) {
 			
-			//check db for player:
-			SelectPlayer.select(
-					new PlayerBuilder()
-					.setName(nameTxtFld.getText().trim())
-					.setPswrd(pswrdTxtFld.getText().trim())
-					.build());
+	
+		//password stuff.
+		////https://docs.oracle.com/javase/tutorial/uiswing/components/passwordfield.html
+		
+		
+		
+		/** SPLASH SCREEN +++++++++++++++++ */
+		//++++++++++++++++++https://www.genuinecoder.com/javafx-splash-screen-loading-screen/
 			
-			//send an anonomous player\
-			//add username to frame label:
-			////////////////////////////////////frameCtrlr.setPlayerLbl("bob smith");
+		/*	
+		System.out.println(pswrdTxtFld.getText().trim().toCharArray().toString()); //+++++++++opps!
+		
+		if(pswrdTxtFld.getText().trim().toCharArray().length > 0) {
+			System.out.println("full");
+		}*/
+	
+		
+		//check db for id of player with given name & password: 
+		int idCheck = SelectPlayerID.select(
+				nameTxtFld.getText().trim(), 
+				pswrdTxtFld.getText()); 
+				
+		//if result is > 0 then it's a valid id:
+		if (idCheck > 0) {
+			playerId = idCheck; //store id
 			
-			Fadeable.fade(root, FadeOption.FADE_OUT); //fade out root
-			FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns
-			
-		/** +++++++++}else { System.out.println("oi!"); } +++++TUTN ERROR HANDLING BACK ON LATER! +++++ */
+			//ew Thread(() -> {
+				FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
+				Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
+				FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
+			//}).start();
+		}else {
+			//warn user 
+			System.out.println("no dice");
+		}
+		
+			//Fadeable.fade(root, FadeOption.FADE_OUT); //fade out root
+			//FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns
+		
+		
+		}else { // a field was blank:
+			/** +++++++++++++++++ make this label thing better :P +++++++++ */
+			errorLbl.setVisible(true); //inform user with label
+			//shake elements:
+			Arrays.asList(nameTxtFld, pswrdTxtFld).forEach(fxml -> Shakeable.shake(fxml));
+		} 
 			
 		
 	}

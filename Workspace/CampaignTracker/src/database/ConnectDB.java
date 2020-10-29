@@ -14,7 +14,7 @@ public class ConnectDB {
 	//constructor connects to DB using properties file:
 	private ConnectDB() { 
 		
-		try {
+		try { /** ++++++++++++++++++++++++++++++++look at making this a singleton instead!! :P ++++++++++ */
 			//load properties:
 			Properties properties = new Properties();	
 			properties.load(new FileInputStream("./configs/mysql/db_configs.properties"));

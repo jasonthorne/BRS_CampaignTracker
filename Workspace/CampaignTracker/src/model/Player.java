@@ -4,15 +4,14 @@ public class Player {
 	
 	private int id; //player id
 	private String name; //player name
-	private String pswrd; //player password
+	private String pswrd; //player password //????????????????????????????
 
 	private Player() {} //blank constructor
 	
 	//builder class:
 	public static class PlayerBuilder {
 		
-		//create player:
-		private Player player = new Player(); 
+		private Player player = new Player(); //create player
 		
 		public PlayerBuilder setId(int id) {
 			player.id = id; //set id
@@ -29,8 +28,7 @@ public class Player {
 			return this; //return this object
 		}
 		
-		//return built player:
-		public Player build() { return player; }
+		public Player build() { return player; } //return built player
 	}
 	
 	//getters:
