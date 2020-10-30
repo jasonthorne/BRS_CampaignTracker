@@ -2,7 +2,6 @@ package database;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 /**  +++++++++++++ figure out better way of making these. IE have them hidden from anything that doesnt need em! :P  +++++++*/
 

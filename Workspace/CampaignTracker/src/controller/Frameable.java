@@ -17,7 +17,6 @@ public interface Frameable extends Fadeable {
 	abstract void setRoot(); 
 	abstract Parent getRoot();
 	
-	//force title getter/setter:
-	abstract void setViewTitle(); 
+	//force title getter:
 	abstract String getViewTitle();	
 }

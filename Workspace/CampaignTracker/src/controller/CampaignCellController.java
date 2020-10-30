@@ -11,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import model.Campaign;
-import view.FxmlPath;
 
 public class CampaignCellController extends JFXListCell<Campaign> implements Rootable {
 
@@ -29,7 +28,7 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
     }
     
     //root element for this controller:
-  	private final Parent root = Rootable.getRoot(this, FxmlPath.CAMPAIGN_CELL);
+  	private final Parent root = Rootable.getRoot(this, "/view/campaignCell.fxml");
 	
 	private CampaignsController campaignsCtrlr; //??????????????????????????? needed???
 	

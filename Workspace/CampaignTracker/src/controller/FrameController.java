@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 
 import animation.Fadeable;
 import animation.Fadeable.FadeOption;
+import database.SelectPlayerID;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -23,7 +24,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Player;
-import view.FxmlPath;
+import database.SelectPlayerID;
 
 public class FrameController implements Rootable, Fadeable {
 
@@ -54,11 +55,32 @@ public class FrameController implements Rootable, Fadeable {
     	fwrdBtn.setDisable(true);
     	
     	//add login.fxml to body:
-    	addRootToBody(loginCtrlr.getRoot());
+    	////addRootToBody(loginCtrlr.getRoot());
     	
     	//set view title:
-    	setViewLbl(loginCtrlr.getViewTitle()); 
+    	///setViewLbl(loginCtrlr.getViewTitle());
+    	
+    	setPreLoginFrameable(loginCtrlr);
     }
+    
+    //====================================
+    
+    void setPreLoginFrameable(Frameable frameable) {
+    	addRootToBody(frameable.getRoot());
+    	setViewLbl(frameable.getViewTitle()); 
+    }
+    
+    /*
+    void moveToSignup(Frameable frameable) {
+    	//turn on back button:
+  		if(backBtn.isDisabled()) { backBtn.setDisable(false); }
+    	fwrdMoves.push(frameable); //mark as forward move
+    	addRootToBody(frameable.getRoot());
+    	setViewLbl(frameable.getViewTitle()); 
+    }
+    */
+    
+    //====================================
     
     private final Stage stage = new Stage(); //stage
     private Scene scene; //scene
@@ -76,8 +98,13 @@ public class FrameController implements Rootable, Fadeable {
   	//constructor:
     private FrameController(){
     	loginCtrlr = new LoginController(); //instantiate login controller
-    	scene = new Scene(Rootable.getRoot(this, FxmlPath.FRAME));
+    	scene = new Scene(Rootable.getRoot(this, "/view/frame.fxml")); //add root to scene
     	stage.setScene(scene); //add scene to stage
+    	
+    	//==============================
+		//do some initial connection to db, to push your ip for example 
+    	//this helps spped up initial login push too.
+    	//================================
     }	
   	 
   	//get frame controller:
@@ -98,7 +125,7 @@ public class FrameController implements Rootable, Fadeable {
   	}
   	
   	//move to first logged in view:
-	void loginMove(Frameable frameable) {
+	void loginMove(Frameable frameable) { /** INNIT MOVE or somethig! */
   		fwrdMoves.push(frameable); //mark as forward move
     	addRootToBody(frameable.getRoot()); //add root to bodyAP
     	setViewLbl(frameable.getViewTitle()); //add view title
@@ -158,7 +185,7 @@ public class FrameController implements Rootable, Fadeable {
 	}
 	
 	//set view label:
-	private void setViewLbl(String viewTitle) {
+	void setViewLbl(String viewTitle) {
 		Fadeable.fade(viewLbl, FadeOption.FADE_OUT); //fade out label
 		viewLbl.setText(viewTitle); //change label text
 		Fadeable.fade(viewLbl, FadeOption.FADE_IN); //fade in label

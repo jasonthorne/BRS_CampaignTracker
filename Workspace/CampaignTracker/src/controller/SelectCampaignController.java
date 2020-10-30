@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import view.FxmlPath;
 
 public class SelectCampaignController implements Frameable, Rootable {
 	
@@ -35,24 +34,10 @@ public class SelectCampaignController implements Frameable, Rootable {
     
     
     @Override
-	public
-	void setRoot() { root = Rootable.getRoot(this, FxmlPath.SELECT_CAMPAIGN); } //set root
-    
-	@Override
-	public
-	Parent getRoot() { return root; } //get root
+	public void setRoot() { root = Rootable.getRoot(this, "/view/selectCampaign.fxml"); } //set root
+	@Override 
+	public Parent getRoot() { return root; } //get root
 
-	@Override
-	public
-	void setViewTitle() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public
-	String getViewTitle() {
-		//+++++++++++++++++++++++++++fix
-		return "Select Campaign";
-	}
+	@Override 
+	public String getViewTitle() { return "Select Campaign"; } //get title
 }

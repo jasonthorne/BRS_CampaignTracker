@@ -24,7 +24,6 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import model.Campaign;
-import view.FxmlPath;
 
 public class CampaignsController implements Frameable, Rootable {
 	
@@ -125,28 +124,14 @@ public class CampaignsController implements Frameable, Rootable {
 	}
 	
 	@Override
-	public
-	void setRoot() { root = Rootable.getRoot(this, FxmlPath.CAMPAIGNS); } //set root
+	public void setRoot() { root = Rootable.getRoot(this, "/view/campaigns.fxml"); } //set root
+	@Override
+	public Parent getRoot() { return root; } //get root
+
+	@Override 
+	public String getViewTitle() { return "Campaigns"; }
+
 	
-	@Override
-	public
-	Parent getRoot() { return root; } //get root
-
-	@Override
-	public
-	void setViewTitle() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public
-	String getViewTitle() {
-		// TODO Auto-generated method stub
-		return "Campaigns";
-	}
-
-
 	/////////https://stackoverflow.com/questions/28448851/how-to-use-javafx-filteredlist-in-a-listview
 	
 	//accordian: 
