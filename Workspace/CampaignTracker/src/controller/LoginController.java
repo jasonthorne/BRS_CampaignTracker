@@ -84,15 +84,16 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	
 	private void signupUsr() {
 		/** ++++++++ make back button turn on (but obv remove when back at login!! */
-		FrameController.getFrameCtrlr().setPreLoginFrameable(signupCtrlr);
+		//FrameController.getFrameCtrlr().setPreLoginFrameable(signupCtrlr);
+		FrameController.getFrameCtrlr().addRootToBody(signupCtrlr.getRoot()); //quick fix!!! +++++++
 	}
 	
 	private void loginUsr() {
 		
 		//====================================================
-		//shortcut to log in:
-		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
-		FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
+		//shortcut to log in: - REMEMKBER: YOU LOG IN TWICE IF YOU ENTER VALID INFO! :P
+		////Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
+		////FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
 		//============================================================
 		
 		errorLbl.setVisible(false); //ensure error label is off

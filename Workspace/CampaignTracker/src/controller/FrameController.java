@@ -55,20 +55,20 @@ public class FrameController implements Rootable, Fadeable {
     	fwrdBtn.setDisable(true);
     	
     	//add login.fxml to body:
-    	////addRootToBody(loginCtrlr.getRoot());
+    	addRootToBody(loginCtrlr.getRoot());
     	
     	//set view title:
-    	///setViewLbl(loginCtrlr.getViewTitle());
+    	setViewLbl(loginCtrlr.getViewTitle());
     	
-    	setPreLoginFrameable(loginCtrlr);
+    	//setPreLoginFrameable(loginCtrlr);
     }
     
     //====================================
     
-    void setPreLoginFrameable(Frameable frameable) {
+    /*void setPreLoginFrameable(Frameable frameable) {
     	addRootToBody(frameable.getRoot());
     	setViewLbl(frameable.getViewTitle()); 
-    }
+    }*/
     
     /*
     void moveToSignup(Frameable frameable) {
@@ -118,7 +118,7 @@ public class FrameController implements Rootable, Fadeable {
     public void showStage() { stage.showAndWait(); }
     
     //add root to body AnchorPane:
-  	private void addRootToBody(Parent root){
+  	/**private*/ void addRootToBody(Parent root){
   		root.setOpacity(0.0); //hide root from view
   		bodyAP.getChildren().setAll(root); //replace bodyAP's children with root
   		Fadeable.fade(root, FadeOption.FADE_IN); //fade in root

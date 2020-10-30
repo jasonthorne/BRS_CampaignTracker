@@ -53,10 +53,18 @@ public class SignupController implements Rootable, Fadeable, Frameable {
 			/** +++++++++++++ check that password isnt taken +++++++*/
 		
 			/**++++++++ then:  +++++++*/
+			
+			//check db for id of player with given name & password:
+			///int idCheck =
 		
 			//insert player into db, and set playerId with the returned id of said player:
-			LoginController.setPlayerId(database.InsertPlayer.insert(
-					nameTxtFld.getText().trim(), pswrdTxtFld.getText().trim())); 
+			/*LoginController.setPlayerId(database.InsertPlayer.insert(
+					nameTxtFld.getText().trim(), pswrdTxtFld.getText().trim())); */
+			
+			int idCheck = database.InsertPlayer.insert(
+					nameTxtFld.getText().trim(), pswrdTxtFld.getText().trim());
+			
+			System.out.println("idCheck: " + idCheck);
 		
 		
 		}else { // a field was blank:
