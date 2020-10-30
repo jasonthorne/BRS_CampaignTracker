@@ -65,7 +65,14 @@ public class LoginController implements Rootable, Fadeable, Frameable, Taskable 
 	//controllers:
 	private final CampaignsController campaignsCtrlr;
 	private final SignupController signupCtrlr;
-	
+	/*
+	//callable to check db for id of player with given name & password:
+	Future<Integer>futurePlayerId = Taskable.singleThreadExec.submit(()->{
+		return SelectPlayerID.select( //call method which invokes select statement
+				nameTxtFld.getText().trim(), //pass entered name into statement
+				pswrdTxtFld.getText().trim()); //pass entered pswrd into statement
+	});
+	*/
 	//constructor:
 	LoginController() {
 		setRoot(); //set root node
@@ -90,90 +97,41 @@ public class LoginController implements Rootable, Fadeable, Frameable, Taskable 
 	
 	private void loginUsr() {
 		
+		//look into this a little more +++++++++++++++++++++++++++++++++++++but not too much :P 
+		ExecutorService singleThreadExec = Executors.newSingleThreadExecutor();
+		
+		//callable to check db for id of player with given name & password:
+		Future<Integer>futurePlayerId = singleThreadExec.submit(()->{
+			return SelectPlayerID.select( //call method which invokes select statement
+					nameTxtFld.getText().trim(), //pass entered name into statement
+					pswrdTxtFld.getText().trim()); //pass entered pswrd into statement
+		});
+		
 		/** javadocs tut - START HERE! */
 		//https://docs.oracle.com/javafx/2/threads/jfxpub-threads.htm
-		
-		
-		errorLbl.setVisible(false); //inform user with label
-		
 		//https://www.genuinecoder.com/javafx-splash-screen-loading-screen/
 		
-	
+		errorLbl.setVisible(false); //ensure error label is off
+		
 		//if name & password fields aren't empty: 
 		if(!nameTxtFld.getText().trim().equals("") && !pswrdTxtFld.getText().trim().equals("")) {
 			
-	
-		//password stuff.
-		////https://docs.oracle.com/javase/tutorial/uiswing/components/passwordfield.html
-		
-		/** DB & javaFX THREADS ++++++++++++++++ */
-		//https://stackoverflow.com/questions/30249493/using-threads-to-make-database-requests
-		
-		/** SPLASH SCREEN +++++++++++++++++ */
-		//++++++++++++++++++https://www.genuinecoder.com/javafx-splash-screen-loading-screen/
-			
-		/*	
-		System.out.println(pswrdTxtFld.getText().trim().toCharArray().toString()); //+++++++++opps!
-		
-		if(pswrdTxtFld.getText().trim().toCharArray().length > 0) {
-			System.out.println("full");
-		}*/
-			
-			/*
-			int idCheck = 1; 
-			new Thread(() ->  {
-				SelectPlayerID.select(
-						nameTxtFld.getText().trim(), 
-						pswrdTxtFld.getText()); 	
-				
-			}).start();
-			
-			 */
-		
-		//check db for id of player with given name & password:
-		
-		//-------------------------------
-		 
-		
-		//callable to check db for id of player with given name & password:
-		Future<Integer>futPlayerId = Taskable.singleThreadExec.submit(()->{
-			return SelectPlayerID.select(
-					nameTxtFld.getText().trim(), 
-					pswrdTxtFld.getText().trim()); 
-		});
-		
-		///////////Future<?>test2 = service.submit(task);
-		//++++look into preloader!! 
-		
-		/*
-		int idCheck = 1; SelectPlayerID.select(
-				nameTxtFld.getText().trim(), 
-				pswrdTxtFld.getText()); */
-				
-	
-			int num2 = 0;
-			
-			try {
-				//check db for id of player with given name & password:
-				playerId = (int) futPlayerId.get();
+			/* get futurePlayerId callable result, 
+			 * which checks db for id of player with given name & password */
+			/*try {
+				playerId = (int) futurePlayerId.get();
 			} catch (InterruptedException | ExecutionException e) {
 				e.printStackTrace();
-			}finally { shutDownExec(); }  //shut down executor service
+			}finally { shutDownExec(); }  //shut down executor service*/
 				
 			
-			
-		
-		
-		
-		//------------------------------		
-				
-		
-		
-			
+			playerId = SelectPlayerID.select( //call method which invokes select statement
+					nameTxtFld.getText().trim(), //pass entered name into statement
+					pswrdTxtFld.getText().trim()); //pass entered pswrd into statement
+					
 			//if result is > 0 then a valid id was found:
 			if (playerId > 0) {
 				
-				playerId = num2; //store id
 				FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
 				Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 				FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
@@ -181,11 +139,8 @@ public class LoginController implements Rootable, Fadeable, Frameable, Taskable 
 			}else {
 				//warn user with error msg that account not found.
 				System.out.println("no dice");
+				//shutDownExec();
 			}
-		
-			//Fadeable.fade(root, FadeOption.FADE_OUT); //fade out root
-			//FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns
-		
 		
 		}else { // a field was blank:
 			/** +++++++++++++++++ make this label thing better :P +++++++++ */
@@ -195,14 +150,12 @@ public class LoginController implements Rootable, Fadeable, Frameable, Taskable 
 			Arrays.asList(nameTxtFld, pswrdTxtFld).forEach(fxml -> Shakeable.shake(fxml));
 		} 
 			
-		
 	}
 	
 	@Override 
-	public void shutDownExec() { 
+	public void shutDownExec() { //shut down executor service
 		if(!Taskable.singleThreadExec.isShutdown()) {
-			Taskable.singleThreadExec.shutdown(); //shut down executor service
-		} 
+			Taskable.singleThreadExec.shutdown(); } 
 	}
 	
 	public static int getPlayerId() { return playerId; } //get playerId
