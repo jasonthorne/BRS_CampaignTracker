@@ -5,8 +5,10 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import animation.Fadeable;
+import animation.Shakeable;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -28,6 +30,8 @@ public class SignupController implements Rootable, Fadeable, Frameable {
     @FXML
     void initialize() {
     	errorLbl.setVisible(false);  //+++++++++++++make this better! :P
+    	//set btn actions:
+    	signupBtn.setOnAction(event -> signupUsr());
     }
 
   //fxml root node:
@@ -36,6 +40,31 @@ public class SignupController implements Rootable, Fadeable, Frameable {
     //constructor:
     SignupController() {
     	setRoot(); //set root node
+    }
+    
+    private void signupUsr() {
+    	
+    	//if name & password fields aren't empty: 
+		if(!nameTxtFld.getText().trim().equals("") && !pswrdTxtFld.getText().trim().equals("")) {
+			
+			
+			/** +++++++++++++ check that username isnt taken +++++++*/
+			
+			/** +++++++++++++ check that password isnt taken +++++++*/
+		
+			/**++++++++ then:  +++++++*/
+		
+			//insert player into db, and set playerId with the returned id of said player:
+			LoginController.setPlayerId(database.InsertPlayer.insert(
+					nameTxtFld.getText().trim(), pswrdTxtFld.getText().trim())); 
+		
+		
+		}else { // a field was blank:
+			/** +++++++++++++++++ make this label thing better :P +++++++++ */
+			//errorLbl.setVisible(true); //inform user with label
+			//shake elements:
+			Arrays.asList(nameTxtFld, pswrdTxtFld).forEach(fxml -> Shakeable.shake(fxml));
+		} 
     }
     
 	@Override

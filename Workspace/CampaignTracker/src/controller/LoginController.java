@@ -24,7 +24,6 @@ import animation.Shakeable;
 import animation.Fadeable.FadeOption;
 import database.ConnectDB;
 import database.SelectPlayerID;
-import executor.Taskable;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -34,7 +33,7 @@ import javafx.scene.layout.AnchorPane;
 import model.Player;
 import model.Player.PlayerBuilder;
 
-public class LoginController implements Rootable, Fadeable, Frameable, Taskable  {
+public class LoginController implements Rootable, Fadeable, Frameable {
 	
 	@FXML private ResourceBundle resources;
 	@FXML private URL location;
@@ -65,19 +64,12 @@ public class LoginController implements Rootable, Fadeable, Frameable, Taskable 
 	//controllers:
 	private final CampaignsController campaignsCtrlr;
 	private final SignupController signupCtrlr;
-	/*
-	//callable to check db for id of player with given name & password:
-	Future<Integer>futurePlayerId = Taskable.singleThreadExec.submit(()->{
-		return SelectPlayerID.select( //call method which invokes select statement
-				nameTxtFld.getText().trim(), //pass entered name into statement
-				pswrdTxtFld.getText().trim()); //pass entered pswrd into statement
-	});
-	*/
+	
 	//constructor:
 	LoginController() {
 		setRoot(); //set root node
-		this.campaignsCtrlr = new CampaignsController(); //create campaigns controller
-		this.signupCtrlr = new SignupController(); //create signup controller
+		campaignsCtrlr = new CampaignsController(); //create campaigns controller
+		signupCtrlr = new SignupController(); //create signup controller
 		
 		//========================================
 		/** this is just a placeholder for pushing to db, before login.
@@ -97,49 +89,31 @@ public class LoginController implements Rootable, Fadeable, Frameable, Taskable 
 	
 	private void loginUsr() {
 		
-		//look into this a little more +++++++++++++++++++++++++++++++++++++but not too much :P 
-		ExecutorService singleThreadExec = Executors.newSingleThreadExecutor();
-		
-		//callable to check db for id of player with given name & password:
-		Future<Integer>futurePlayerId = singleThreadExec.submit(()->{
-			return SelectPlayerID.select( //call method which invokes select statement
-					nameTxtFld.getText().trim(), //pass entered name into statement
-					pswrdTxtFld.getText().trim()); //pass entered pswrd into statement
-		});
-		
-		/** javadocs tut - START HERE! */
-		//https://docs.oracle.com/javafx/2/threads/jfxpub-threads.htm
-		//https://www.genuinecoder.com/javafx-splash-screen-loading-screen/
+		//====================================================
+		//shortcut to log in:
+		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
+		FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
+		//============================================================
 		
 		errorLbl.setVisible(false); //ensure error label is off
 		
 		//if name & password fields aren't empty: 
 		if(!nameTxtFld.getText().trim().equals("") && !pswrdTxtFld.getText().trim().equals("")) {
 			
-			/* get futurePlayerId callable result, 
-			 * which checks db for id of player with given name & password */
-			/*try {
-				playerId = (int) futurePlayerId.get();
-			} catch (InterruptedException | ExecutionException e) {
-				e.printStackTrace();
-			}finally { shutDownExec(); }  //shut down executor service*/
-				
-			
-			playerId = SelectPlayerID.select( //call method which invokes select statement
-					nameTxtFld.getText().trim(), //pass entered name into statement
-					pswrdTxtFld.getText().trim()); //pass entered pswrd into statement
+			//check db for id of player with given name & password:
+			int idCheck = database.SelectPlayerID.select( 
+					nameTxtFld.getText().trim(), 
+					pswrdTxtFld.getText().trim()); 
 					
 			//if result is > 0 then a valid id was found:
-			if (playerId > 0) {
-				
+			if (idCheck > 0) {
+				playerId = idCheck; //store id
 				FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
 				Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 				FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
-				
 			}else {
 				//warn user with error msg that account not found.
 				System.out.println("no dice");
-				//shutDownExec();
 			}
 		
 		}else { // a field was blank:
@@ -149,16 +123,10 @@ public class LoginController implements Rootable, Fadeable, Frameable, Taskable 
 			//shake elements:
 			Arrays.asList(nameTxtFld, pswrdTxtFld).forEach(fxml -> Shakeable.shake(fxml));
 		} 
-			
 	}
 	
-	@Override 
-	public void shutDownExec() { //shut down executor service
-		if(!Taskable.singleThreadExec.isShutdown()) {
-			Taskable.singleThreadExec.shutdown(); } 
-	}
-	
-	public static int getPlayerId() { return playerId; } //get playerId
+	static int getPlayerId() { return playerId; } //get playerId //get playerId
+	static void setPlayerId(int playerId) { LoginController.playerId = playerId; } //set playerId
 	
 	@Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/login.fxml"); } //set root
