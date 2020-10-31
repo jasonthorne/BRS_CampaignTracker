@@ -1,0 +1,7 @@
+
++ proper error nadling label on login & signup
++ back button on sign up
++ proper fade transitions
++ object for playerId (for encapsulating setter)
++ better db connection
++ decide if using properties files for static controller data
