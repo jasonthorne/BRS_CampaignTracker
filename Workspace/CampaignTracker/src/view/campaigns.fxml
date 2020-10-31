@@ -28,6 +28,6 @@
             <Insets left="20.0" right="20.0" />
          </padding>
       </HBox>
-      <JFXButton fx:id="newCampaignBtn" layoutX="277.0" layoutY="254.0" prefHeight="39.0" prefWidth="86.0" style="-fx-background-color: yellow;" text="press me!" />
+      <JFXButton fx:id="newCampaignBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="246.0" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: yellow;" text="Create Campaign" />
    </children>
 </AnchorPane>

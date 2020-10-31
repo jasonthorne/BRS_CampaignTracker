@@ -13,16 +13,19 @@ public class Player { /** +++++++++++++++++++++ is this class even needed???  :P
 		
 		private Player player = new Player(); //create player
 		
+		//set id:
 		public PlayerBuilder setId(int id) {
 			player.id = id; //set id
 			return this; //return this object
 		}
 		
+		//set name:
 		public PlayerBuilder setName(String name) {
 			player.name = name; //set name
 			return this; //return this object
 		}
 		
+		//set password:
 		public PlayerBuilder setPswrd(String pswrd) {
 			player.pswrd = pswrd; //set password
 			return this; //return this object
@@ -33,7 +36,7 @@ public class Player { /** +++++++++++++++++++++ is this class even needed???  :P
 	
 	//getters:
 	public int getId() {return this.id; } /** +++++++++++++ not sure if needed??? ++++++++*/
-	public String getName() {return this.name; }
-	public String getPswrd() {return this.pswrd; }
+	public String getName() {return name; }
+	public String getPswrd() {return  pswrd; } //?????????????????????
 	
 }

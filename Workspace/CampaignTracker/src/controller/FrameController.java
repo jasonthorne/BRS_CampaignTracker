@@ -127,12 +127,12 @@ public class FrameController implements Rootable, Fadeable {
   	}
   	
   	private void signupUsr() {
+  		signupBtn.setDisable(true); //disable btn
 		/** ++++++++ make back button turn on (but obv remove when back at login!! */
   		SignupController signupCtrlr = new SignupController();
   		setViewLbl(signupCtrlr.getViewTitle());
 		addRootToBody(signupCtrlr.getRoot()); //quick fix!!! +++++++
 	}
-  	
   	
   	//move to first logged in view:
 	void loginMove(Frameable frameable) { /** INNIT MOVE or somethig! */

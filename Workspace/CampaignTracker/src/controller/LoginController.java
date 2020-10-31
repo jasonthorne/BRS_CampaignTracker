@@ -67,8 +67,8 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		
 		//====================================================
 		//shortcut to log in: - REMEMKBER: YOU LOG IN TWICE IF YOU ENTER VALID INFO! :P
-		////Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
-		////FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
+		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
+		FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
 		//============================================================
 		
 		errorLbl.setVisible(false); //ensure error label is off
@@ -84,9 +84,9 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 			//if result is > 0 then a valid id was returned:
 			if (idCheck > 0) {
 				playerId = idCheck; //store id
-				FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
-				Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
-				FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
+				///////////FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
+				/////////Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
+				//////////FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
 			}else {
 				//warn user with error msg that account not found.
 				System.out.println("no dice");
@@ -95,7 +95,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		}else { // a field was blank:
 			/** +++++++++++++++++ make this label thing better :P +++++++++ */
 			//errorLbl.setVisible(true); //inform user with label
-			FrameController.getFrameCtrlr().setViewLbl("Enter Username and Password");
+			///////////////FrameController.getFrameCtrlr().setViewLbl("Enter Username and Password");
 			//shake elements:
 			Arrays.asList(nameTxtFld, pswrdTxtFld).forEach(fxml -> Shakeable.shake(fxml));
 		} 

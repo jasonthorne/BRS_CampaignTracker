@@ -44,7 +44,7 @@ public class CampaignsController implements Frameable, Rootable {
     	setCampaigns(); //populate campaigns list
     	setToggleListener(); //add change listener to toggle group
     	//set btn action:
-    	newCampaignBtn.setOnAction(event -> Frameable.changeView(root, a1));
+    	newCampaignBtn.setOnAction(event -> Frameable.changeView(root, selectCampaignCtrlr));
     }
     
     //observable list of campaigns:
@@ -61,13 +61,13 @@ public class CampaignsController implements Frameable, Rootable {
 	private Parent root; 
 	
 	//controllers:
-	private final SelectCampaignController selectCampaignCtrlr;
+	private final SelectEventController selectCampaignCtrlr;
 	private A1 a1;
 	
 	//constructor:
 	CampaignsController() {
 		setRoot(); //set root node
-		this.selectCampaignCtrlr = new SelectCampaignController();
+		this.selectCampaignCtrlr = new SelectEventController();
 		 a1 = new A1();
 	}
 
