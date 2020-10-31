@@ -55,15 +55,13 @@ public class SelectEventController implements Frameable, Rootable {
     	/** ================== pull from db here instead! =========*/
 		//populate imaginary db data:
     	cellItemsDB.add(new Event.EventBuilder().setName("event1").build());
-    	/*cellItemsDB.add(new Campaign("1"));
-    	cellItemsDB.add(new Campaign("1"));
-    	cellItemsDB.add(new Campaign("1"));
-    	cellItemsDB.add(new Campaign("2"));
-    	cellItemsDB.add(new Campaign("2"));
-    	cellItemsDB.add(new Campaign("2"));
-    	cellItemsDB.add(new Campaign("2"));*/
+    	cellItemsDB.add(new Event.EventBuilder().setName("event2").build());
+    	cellItemsDB.add(new Event.EventBuilder().setName("event3").build());
+    	cellItemsDB.add(new Event.EventBuilder().setName("event4").build());
+    	cellItemsDB.add(new Event.EventBuilder().setName("event5").build());
+    	cellItemsDB.add(new Event.EventBuilder().setName("event6").build());
     	
-    	
+  
 		//add events from db to events:
 		events.addAll(cellItemsDB);
 		

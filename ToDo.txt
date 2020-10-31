@@ -5,3 +5,6 @@
 + object for playerId (for encapsulating setter)
 + better db connection
 + decide if using properties files for static controller data
+
++rename campaignsController and campaigns.fxml to SelectCampaignController 
+& selectCampaign.fxml

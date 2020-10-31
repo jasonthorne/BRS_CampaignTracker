@@ -4,7 +4,7 @@ import com.jfoenix.controls.JFXListCell;
 
 import model.Event;
 
-public class EventCellController extends JFXListCell<Event>{
+public class EventCellController extends JFXListCell<Event> implements Rootable {
 	
 	private final SelectEventController selectEventController; //?????????? needed????
 	
