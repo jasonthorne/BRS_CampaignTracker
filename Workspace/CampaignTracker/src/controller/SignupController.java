@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 
 import animation.Fadeable;
 import animation.Shakeable;
+import animation.Fadeable.FadeOption;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -47,26 +48,21 @@ public class SignupController implements Rootable, Fadeable, Frameable {
     	//if name & password fields aren't empty: 
 		if(!nameTxtFld.getText().trim().equals("") && !pswrdTxtFld.getText().trim().equals("")) {
 			
-			
-			/** +++++++++++++ check that username isnt taken +++++++*/
-			
-			/** +++++++++++++ check that password isnt taken +++++++*/
-		
-			/**++++++++ then:  +++++++*/
-			
-			//check db for id of player with given name & password:
-			///int idCheck =
-		
-			//insert player into db, and set playerId with the returned id of said player:
-			/*LoginController.setPlayerId(database.InsertPlayer.insert(
-					nameTxtFld.getText().trim(), pswrdTxtFld.getText().trim())); */
-			
+			//try insert player into db, setting idCheck with the returned value:
 			int idCheck = database.InsertPlayer.insert(
 					nameTxtFld.getText().trim(), pswrdTxtFld.getText().trim());
 			
-			System.out.println("idCheck: " + idCheck);
-		
-		
+			//if result is > 0 then player was inserted (as valid id was returned)
+			if (idCheck > 0) {
+				LoginController.setPlayerId(idCheck); //store id
+				FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
+				Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
+				//FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
+			}else {
+				//warn user with error msg that username or password was taken
+				System.out.println("username or password taken");
+			}
+			
 		}else { // a field was blank:
 			/** +++++++++++++++++ make this label thing better :P +++++++++ */
 			//errorLbl.setVisible(true); //inform user with label

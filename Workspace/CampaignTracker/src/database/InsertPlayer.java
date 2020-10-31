@@ -4,7 +4,9 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Types;
 
-/**  +++++++++++++ figure out better way of making these. IE have them hidden from anything that doesnt need em! :P  +++++++*/
+/** attempts to insert player to db, using name & password given by user.
+ *  if successful, returns the id of newly inserted player (a number > 0).
+ *  if not successful (due to pre-existing name or password) then returns 0  */
 
 public interface InsertPlayer {
 	
@@ -22,7 +24,7 @@ public interface InsertPlayer {
 	         callableStatement.registerOutParameter(3, Types.INTEGER); //register the out param (playerId)
 	         callableStatement.execute(); //execute statement
 	         
-	         //holds the value of returned player id ////////////////+++++++++reword :P(or 0 if unique column found)
+	         //holds the value of inserted player id (or 0 if attempted to insert pre-existing name or password)
 	         statementResult = callableStatement.getInt(3); 
 			
 		}catch(Exception e) { e.printStackTrace(); }

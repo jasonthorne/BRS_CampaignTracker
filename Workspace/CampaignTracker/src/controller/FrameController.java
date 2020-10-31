@@ -35,6 +35,7 @@ public class FrameController implements Rootable, Fadeable {
     @FXML private BorderPane rootBP;
 	@FXML private BorderPane headerBP;
 	@FXML private AnchorPane headerTopAP;
+	@FXML private JFXButton signupBtn;
 	@FXML private Label playerLbl;
 	@FXML private Label appLbl;
 	@FXML private AnchorPane headerBtmAP;
@@ -47,6 +48,7 @@ public class FrameController implements Rootable, Fadeable {
     @FXML
     void initialize() {
     	//set button actions:
+    	signupBtn.setOnAction(event -> signupUsr());
     	backBtn.setOnAction(event -> moveBkwrd());
     	fwrdBtn.setOnAction(event -> moveFwrd());
     	
@@ -118,11 +120,19 @@ public class FrameController implements Rootable, Fadeable {
     public void showStage() { stage.showAndWait(); }
     
     //add root to body AnchorPane:
-  	/**private*/ void addRootToBody(Parent root){
+  	private void addRootToBody(Parent root){
   		root.setOpacity(0.0); //hide root from view
   		bodyAP.getChildren().setAll(root); //replace bodyAP's children with root
   		Fadeable.fade(root, FadeOption.FADE_IN); //fade in root
   	}
+  	
+  	private void signupUsr() {
+		/** ++++++++ make back button turn on (but obv remove when back at login!! */
+  		SignupController signupCtrlr = new SignupController();
+  		setViewLbl(signupCtrlr.getViewTitle());
+		addRootToBody(signupCtrlr.getRoot()); //quick fix!!! +++++++
+	}
+  	
   	
   	//move to first logged in view:
 	void loginMove(Frameable frameable) { /** INNIT MOVE or somethig! */

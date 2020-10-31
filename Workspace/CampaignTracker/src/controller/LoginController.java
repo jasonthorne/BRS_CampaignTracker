@@ -1,37 +1,20 @@
 package controller;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.time.LocalTime;
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
 
 import animation.Fadeable;
 import animation.Shakeable;
-import animation.Fadeable.FadeOption;
-import database.ConnectDB;
 import database.SelectPlayerID;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import model.Player;
-import model.Player.PlayerBuilder;
 
 public class LoginController implements Rootable, Fadeable, Frameable {
 	
@@ -41,7 +24,6 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	//root fxml element & children:
     @FXML private AnchorPane rootAP;
     @FXML private Label errorLbl;
-    @FXML private JFXButton signupBtn;
 	@FXML private JFXTextField nameTxtFld;
 	@FXML private JFXPasswordField pswrdTxtFld;
 	@FXML private JFXButton loginBtn;
@@ -51,7 +33,6 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		//initially hide error label:
 		errorLbl.setVisible(false);  //+++++++++++++make this better! :P
     	//set btn actions:
-		signupBtn.setOnAction(event -> signupUsr());
 		loginBtn.setOnAction(event -> loginUsr());
     }
 	
@@ -82,12 +63,6 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		//======================================
 	}
 	
-	private void signupUsr() {
-		/** ++++++++ make back button turn on (but obv remove when back at login!! */
-		//FrameController.getFrameCtrlr().setPreLoginFrameable(signupCtrlr);
-		FrameController.getFrameCtrlr().addRootToBody(signupCtrlr.getRoot()); //quick fix!!! +++++++
-	}
-	
 	private void loginUsr() {
 		
 		//====================================================
@@ -104,9 +79,9 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 			//check db for id of player with given name & password:
 			int idCheck = database.SelectPlayerID.select( 
 					nameTxtFld.getText().trim(), 
-					pswrdTxtFld.getText().trim()); 
+					pswrdTxtFld.getText().trim());
 					
-			//if result is > 0 then a valid id was found:
+			//if result is > 0 then a valid id was returned:
 			if (idCheck > 0) {
 				playerId = idCheck; //store id
 				FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name

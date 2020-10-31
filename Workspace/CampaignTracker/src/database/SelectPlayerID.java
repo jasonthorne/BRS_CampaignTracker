@@ -4,6 +4,9 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Types;
 
+/** select playerID from db, based on given name & password.
+ *  returns id of player if record is found, or 0 if not */
+
 public interface SelectPlayerID {
 	
 	public static int select(String name, String pswrd) {

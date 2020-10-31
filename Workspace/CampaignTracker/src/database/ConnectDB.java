@@ -17,7 +17,7 @@ public class ConnectDB {
 		try { /** ++++++++++++++++++++++++++++++++look at making this a singleton instead!! :P ++++++++++ */
 			//load properties:
 			Properties properties = new Properties();	
-			properties.load(new FileInputStream("./configs/mysql/db_configs.properties"));
+			properties.load(new FileInputStream("./configs/mysql/db_configs/db_configs.properties"));
 		
 			//get connection using properties: 
 			this.connection = DriverManager.getConnection(
