@@ -63,13 +63,13 @@ public class SelectEventController implements Frameable, Rootable {
     //populates events with events from db:
     private void setEvents() {
     	
-    	//executor service for providing callable task thread:
+    	//executor service for task thread:
     	ExecutorService service = Executors.newSingleThreadExecutor(); 
     	
     	//future list of events pulled from db, returned from service task thread:
     	Future<List<Event>>futureEvents = service.submit(()->database.SelectEvents.select());
     	
-    	//firing service task thread on a thread separate from jfx application thread: 
+    	//firing task thread on a thread separate from application thread: 
     	new Thread(() -> {
     		
 	    	try {
@@ -77,10 +77,9 @@ public class SelectEventController implements Frameable, Rootable {
 	    		events.addAll(futureEvents.get());
 	    	}catch(Exception e) {
 				e.printStackTrace();
-			}finally {
-				if(!service.isShutdown()) {
-					service.shutdown(); //shut down service thread
-				} 
+			}finally { 
+				//shut down service thread:
+				if(!service.isShutdown()) { service.shutdown(); } 
 			}
 	    	
     	}).start();
