@@ -5,6 +5,7 @@
 + object for playerId (for encapsulating setter)
 + better db connection
 + decide if using properties files for static controller data
++ figure out if resourcebundle and url @FXML are needed in controllers! :P
 
-+rename campaignsController and campaigns.fxml to SelectCampaignController 
++ rename campaignsController and campaigns.fxml to SelectCampaignController 
 & selectCampaign.fxml

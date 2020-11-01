@@ -18,7 +18,7 @@ CREATE TABLE players (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 /*----------------------------------------------------*/
-/* insert a player to players. receiving player_name & password */
+/* insert a player to players. receiving player_name & password */ /*+++++++++++++ NEW (or rather UPDATED!) ++++++++++++*/
 
 DROP PROCEDURE IF EXISTS insert_player; 
 
@@ -56,7 +56,7 @@ INSERT INTO players (name, password) VALUES ("bob", SHA2(123, 512));
 INSERT INTO players (name, password) VALUES ("frank", SHA2(111, 512));
 /* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
 /*----------------------------------------------------*/ 
-/* return playerID of player matching player_name & decrypted password_string */
+/* return playerID of player matching player_name & decrypted password_string */ /* +++++++++++++ NEW ++++++++++++*/
 
 DROP PROCEDURE IF EXISTS select_playerID;
 	
@@ -69,10 +69,40 @@ BEGIN
 END $$
 DELIMITER ;
 
-/*
-https://www.mysqltutorial.org/mysql-stored-procedures-return-multiple-values/
-*/
+/*----------------------------------------------------*/
+/* historical events */
 
+CREATE TABLE events( 
+	eventID INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(64) DEFAULT NULL,
+	PRIMARY KEY (eventID),
+	UNIQUE (name) /* prevent duplicate inserts */
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+DELIMITER $$
+CREATE PROCEDURE insert_event (IN event_name VARCHAR(64))
+BEGIN
+	/* error thrown here on duplicate event_name insert: */ 
+	INSERT INTO events (name) VALUES (event_name);
+END $$
+DELIMITER ;
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ NEW ++++++++++++*/
+DELIMITER $$
+CREATE PROCEDURE select_events ()
+BEGIN
+	SELECT events.name FROM events; /* starting with just name as test +++++++++++++++++++++++++ */
+END $$
+DELIMITER ;
+
+/* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
+INSERT INTO events (name) VALUES ("Battle of Britain");
+INSERT INTO events (name) VALUES ("Assault on the Reich");
+INSERT INTO events (name) VALUES ("Stalingrad");
+/* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
+
+/*----------------------------------------------------*/
 
 
 

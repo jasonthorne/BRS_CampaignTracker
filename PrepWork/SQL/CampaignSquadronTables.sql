@@ -25,7 +25,7 @@ CREATE TABLE campaigns (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 /*----------------------------------------------------*/
-/* players */
+/* players */ /*++++++++++++++++++++++++++++++++++++++THIS IS UPDATED WITH ERROR HANDLING IN BuildDB_TEST */
 
 DROP TABLE IF EXISTS players; 
 

@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import model.Campaign;
 import model.Event;
@@ -28,6 +29,7 @@ public class SelectEventController implements Frameable, Rootable {
     @FXML private AnchorPane listViewAP;
     @FXML private JFXListView<Event> eventsLV;
     @FXML private AnchorPane eventAP;
+    @FXML private Label nameLbl;
 
     @FXML
     void initialize() {
@@ -52,7 +54,12 @@ public class SelectEventController implements Frameable, Rootable {
     //populates events with events from db:
     private void setEvents() { /** ======= remember, this is pulling from db so may need called again for some reason =========*/
     	
+    	
+    	
     	/** ================== pull from db here instead! =========*/
+    	//test pull:
+    	database.SelectEvents.select();	
+    	
 		//populate imaginary db data:
     	cellItemsDB.add(new Event.EventBuilder().setName("event1").build());
     	cellItemsDB.add(new Event.EventBuilder().setName("event2").build());
@@ -68,9 +75,23 @@ public class SelectEventController implements Frameable, Rootable {
 		/** ========================================================*/
 		//add events to listView:
 		eventsLV.setItems(events); 
-		//set listView cellFactory to create CampaignCellControllers:
+		//set listView cellFactory to create EventCellControllers:
 		eventsLV.setCellFactory(EventCellController -> new EventCellController(this));
     	
+    }
+    
+    //show event selected in list view:
+    void showEvent(String eventName) {
+    	
+    	//find event in events with given name:
+    	events.stream()
+    		.filter(event -> event.getName().equals(eventName))
+    		.findFirst()
+    		.ifPresent(event -> {
+    			nameLbl.setText(event.getName()); //add event name to nameLbl
+    		});
+    				
+    	nameLbl.setText(eventName);
     }
     
     @Override
