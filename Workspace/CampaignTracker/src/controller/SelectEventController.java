@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXListView;
 
+import database.SelectEvents;
+import database.SelectPlayerID;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -57,8 +59,12 @@ public class SelectEventController implements Frameable, Rootable {
     	
     	
     	/** ================== pull from db here instead! =========*/
-    	//test pull:
-    	database.SelectEvents.select();	
+    	
+    	
+    	new Thread(() ->  {
+    		//test pull:
+        	database.SelectEvents.select();	
+		}).start();
     	
 		//populate imaginary db data:
     	cellItemsDB.add(new Event.EventBuilder().setName("event1").build());
@@ -83,15 +89,14 @@ public class SelectEventController implements Frameable, Rootable {
     //show event selected in list view:
     void showEvent(String eventName) {
     	
-    	//find event in events with given name:
+		//find event in events with given name:
     	events.stream()
     		.filter(event -> event.getName().equals(eventName))
     		.findFirst()
     		.ifPresent(event -> {
     			nameLbl.setText(event.getName()); //add event name to nameLbl
     		});
-    				
-    	nameLbl.setText(eventName);
+		
     }
     
     @Override

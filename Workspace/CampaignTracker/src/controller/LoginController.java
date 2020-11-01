@@ -55,11 +55,11 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		//========================================
 		/** this is just a placeholder for pushing to db, before login.
 		 * should be a push done in frameController first to add ip to db, for socket creation.*/
-		new Thread(() ->  {
+		/*new Thread(() ->  {
 			SelectPlayerID.select(
 					nameTxtFld.getText().trim(), 
 					pswrdTxtFld.getText()); 	
-		}).start();
+		}).start();*/
 		//======================================
 	}
 	

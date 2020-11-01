@@ -9,3 +9,9 @@
 
 + rename campaignsController and campaigns.fxml to SelectCampaignController 
 & selectCampaign.fxml
+
+observable lists:
+https://dzone.com/articles/javafx-collections-observablelist-and-observablema
+
+tableview vrom hashmap:
+https://stackoverflow.com/questions/37171820/populating-a-tableview-with-a-hashmap-that-will-update-when-hashmap-changes

@@ -15,7 +15,6 @@ public static void /*List<Event>*/ select() {
 		//int statementResult = 0;
 		
 		try (Connection connection = ConnectDB.getConnection(); //get a connection to the db
-				
 			//create statement:
 			CallableStatement callableStatement = connection.prepareCall("{CALL select_events()}");
 			//create resultSet executing query:
