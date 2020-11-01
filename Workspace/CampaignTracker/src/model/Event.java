@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Event {
 	
-	private String eventName; //name of event
+	private String name; //name of event
 	private EventPeriod eventPeriod; //periods covered
 	private List<EventAirForce>eventAirforces; //air forces involved
 	
@@ -17,7 +17,7 @@ public class Event {
 		
 		//set name:
 		public EventBuilder setName(String name) {
-			event.eventName = name;
+			event.name = name;
 			return this;
 		}
 		
@@ -27,6 +27,14 @@ public class Event {
 	}
 	
 	//getters:
-	public String getName() {return eventName; }
+	public String getName() {return name; }
+
+	
+	@Override
+	public String toString() {
+		return "Event [eventName=" + name + "]";
+	}
+	
+	
 
 }

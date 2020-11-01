@@ -25,15 +25,14 @@ public class EventCellController extends JFXListCell<Event> implements Rootable 
 	
     @FXML 
     void initialize() {
-    	//on selection of cell, pass it's name into selectEventCtrlr's showEvent:
-    	rootAP.setOnMouseClicked(event -> selectEventCtrlr.showEvent(nameLbl.getText()));
+   
     }
 	
     //root element for this controller:
-  	private final Parent root = Rootable.getRoot(this, "/view/eventCell.fxml");
+  	private final Parent root = Rootable.getRoot(this, "/view/eventCell.fxml"); //?????????????? needed?????????
     
   	//instance of SelectEventController:
-	private final SelectEventController selectEventCtrlr; 
+	private final SelectEventController selectEventCtrlr;  //?????????????? needed?????????
 	
 	//constructor:
 	EventCellController(SelectEventController selectEventCtrlr){

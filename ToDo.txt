@@ -10,8 +10,13 @@
 + rename campaignsController and campaigns.fxml to SelectCampaignController 
 & selectCampaign.fxml
 
-observable lists:
-https://dzone.com/articles/javafx-collections-observablelist-and-observablema
++ try have first element in events be selected on it. 
++ have events data during sleect be returned ordered by start date. 
 
 tableview vrom hashmap:
 https://stackoverflow.com/questions/37171820/populating-a-tableview-with-a-hashmap-that-will-update-when-hashmap-changes
+
+
+
+Listener for background:
+https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2
