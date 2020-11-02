@@ -25,7 +25,7 @@ CREATE TABLE campaigns (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 /*----------------------------------------------------*/
-/* players */ /*++++++++++++++++++++++++++++++++++++++THIS IS UPDATED WITH ERROR HANDLING IN BuildDB_TEST */
+/* players */
 
 DROP TABLE IF EXISTS players; 
 
@@ -38,14 +38,48 @@ CREATE TABLE players (
 	UNIQUE (password) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+
 DROP PROCEDURE IF EXISTS insert_player; 
 
 DELIMITER $$
-CREATE PROCEDURE insert_player (IN player_name VARCHAR(64), IN password_string VARCHAR(64))
+CREATE PROCEDURE insert_player (IN player_name VARCHAR(64), IN password_string VARCHAR(64), OUT player_ID INT)
 BEGIN
-	INSERT INTO players (name, password) VALUES (player_name, SHA2(password_string, 512));
+	DECLARE playerID_check INT DEFAULT 0; 
+	
+	/* check if player_name is already in db: */
+	SELECT players.playerID INTO playerID_check FROM players 
+		WHERE players.name = player_name;
+		
+	IF playerID_check > 0 THEN SET player_ID = 0; /* if so, set player_ID as 0 */
+	ELSE 
+		/* else check if password_string is already in db: */
+		SELECT players.playerID INTO playerID_check FROM players 
+			WHERE players.password = SHA2(password_string, 512);
+			
+		IF playerID_check > 0 THEN SET player_ID = 0; /* if so, set player_ID as 0 */
+		ELSE
+			/* else insert new player into db: */
+			INSERT INTO players (name, password) VALUES (player_name, SHA2(password_string, 512));
+			
+			SELECT players.playerID INTO player_ID FROM players /* set player_ID as player's id */
+				WHERE players.name = player_name;
+		END IF;
+	END IF;
 END $$
 DELIMITER ;
+
+/* return playerID of player matching player_name & decrypted password_string */
+DROP PROCEDURE IF EXISTS select_playerID;
+	
+DELIMITER $$
+CREATE PROCEDURE select_playerID (IN player_name VARCHAR(64), IN password_string VARCHAR(64), OUT player_ID INT)
+BEGIN
+	SELECT players.playerID INTO player_ID FROM players 
+		WHERE players.name = player_name
+		AND players.password = SHA2(password_string, 512);
+END $$
+DELIMITER ;
+
 
 /*----------------------------------------------------*/
 /* players involded in campaigns*/
@@ -182,5 +216,6 @@ END $$
 DELIMITER ;
 
 /* https://stackoverflow.com/questions/27542617/dynamic-table-name-at-sql-statement */
+
 /*===============================================================*/
 

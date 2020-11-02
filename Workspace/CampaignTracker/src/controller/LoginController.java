@@ -55,11 +55,11 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		//========================================
 		/** this is just a placeholder for pushing to db, before login.
 		 * should be a push done in frameController first to add ip to db, for socket creation.*/
-		/*new Thread(() ->  {
+		new Thread(() ->  {
 			SelectPlayerID.select(
 					nameTxtFld.getText().trim(), 
 					pswrdTxtFld.getText()); 	
-		}).start();*/
+		}).start();
 		//======================================
 	}
 	
@@ -84,8 +84,8 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 			//if result is > 0 then a valid id was returned:
 			if (idCheck > 0) {
 				playerId = idCheck; //store id
-				///////////FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
-				/////////Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
+				////////////FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
+				//////////Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 				//////////FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
 			}else {
 				//warn user with error msg that account not found.

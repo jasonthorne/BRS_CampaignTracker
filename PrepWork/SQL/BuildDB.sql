@@ -5,6 +5,10 @@ USE blood_red_skies_db;
 
 /*DROP TABLE IF EXISTS years; /* ++++++++++++++++++++++++++++++++++++++++++ */
 
+/* ==============================AIRFORCE DATA (plus generics that are used in building thme like 'years') */
+/* ===================this is used in InsertAirForceData_TEST in com.brs.airforces of buildDB program. */
+/* =======================and pulls in data from airforceData.json */
+
 
 /* enabled to throw errors for invalid enum inserts: */
 SET GLOBAL sql_mode = 'STRICT_ALL_TABLES';
@@ -211,7 +215,7 @@ BEGIN
 END $$
 DELIMITER ;
 
-/* ====================EVENT DATA=================================================*/
+/* ====================EVENT DATA==========used in InsertEventData_TEST in com.brs.events to populate eventData.json=======================================*/
 
 /*----------------------------------------------------*/
 /* historical events */
@@ -229,6 +233,13 @@ CREATE PROCEDURE insert_event (IN event_name VARCHAR(64))
 BEGIN
 	/* error thrown here on duplicate event_name insert: */ 
 	INSERT INTO events (name) VALUES (event_name);
+END $$
+DELIMITER ;
+
+DELIMITER $$ /* ++++++++++++++++++++++++++++++++ NEW - just starting working ionthis!! +++++++++ */
+CREATE PROCEDURE select_events ()
+BEGIN
+	SELECT events.name, period FROM events; /* starting with just name as test +++++++++++++++++++++++++ */
 END $$
 DELIMITER ;
 
