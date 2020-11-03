@@ -218,4 +218,11 @@ DELIMITER ;
 /* https://stackoverflow.com/questions/27542617/dynamic-table-name-at-sql-statement */
 
 /*===============================================================*/
+/* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
+INSERT INTO players (name, password) VALUES ("1", SHA2(1, 512));
+INSERT INTO players (name, password) VALUES ("bob", SHA2(123, 512));
+INSERT INTO players (name, password) VALUES ("frank", SHA2(111, 512));
+/* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
+
+
 

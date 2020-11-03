@@ -92,7 +92,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE select_events ()
 BEGIN
-	SELECT events.name, period FROM events; /* starting with just name as test +++++++++++++++++++++++++ */
+	SELECT name FROM events; /* starting with just name as test +++++++++++++++++++++++++ */
 END $$
 DELIMITER ;
 
