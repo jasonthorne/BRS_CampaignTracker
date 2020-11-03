@@ -61,13 +61,13 @@ public class CampaignsController implements Frameable, Rootable {
 	private Parent root; 
 	
 	//controllers:
-	private final SelectEventController selectCampaignCtrlr;
+	private final EventsController selectCampaignCtrlr;
 	private A1 a1;
 	
 	//constructor:
 	CampaignsController() {
 		setRoot(); //set root node
-		this.selectCampaignCtrlr = new SelectEventController();
+		this.selectCampaignCtrlr = new EventsController();
 		 a1 = new A1();
 	}
 

@@ -236,20 +236,22 @@ BEGIN
 END $$
 DELIMITER ;
 
-/*
-DELIMITER $$ 
-CREATE PROCEDURE select_events ()
-BEGIN
-	SELECT name FROM events; 
-END $$
-DELIMITER ;
-*/
 DELIMITER $$
 CREATE PROCEDURE select_events ()
 BEGIN
 	SELECT name FROM events; /* starting with just name as test +++++++++++++++++++++++++ */
 END $$
 DELIMITER ;
+
+
+
+/* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
+/*
+INSERT INTO events (name) VALUES ("Battle of Britain");
+INSERT INTO events (name) VALUES ("Assault on the Reich");
+INSERT INTO events (name) VALUES ("Stalingrad");
+*/
+/* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
 /*----------------------------------------------------*/
 /* airforces available to events */
 

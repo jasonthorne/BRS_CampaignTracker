@@ -97,9 +97,11 @@ END $$
 DELIMITER ;
 
 /* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
+/*
 INSERT INTO events (name) VALUES ("Battle of Britain");
 INSERT INTO events (name) VALUES ("Assault on the Reich");
 INSERT INTO events (name) VALUES ("Stalingrad");
+*/
 /* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
 
 

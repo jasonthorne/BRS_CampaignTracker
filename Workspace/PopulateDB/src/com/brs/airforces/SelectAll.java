@@ -2,6 +2,7 @@ package com.brs.airforces;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -17,14 +18,32 @@ public interface SelectAll {
 			CallableStatement callableStatement = connection.prepareCall("{CALL select_all(?)}"); //create statement
 			callableStatement.setString(1, tableName); //set input with table name
 			callableStatement.execute(); //execute statement
-			ResultSet resultSet = callableStatement.getResultSet(); //get result set 
+			////////////ResultSet resultSet = callableStatement.getResultSet(); //get result set 
 			
 			System.out.println(tableName+ ":");
 			
+			//----------
+			ResultSet resultSet;
+			DatabaseMetaData databaseMetaData = connection.getMetaData();
+			resultSet = databaseMetaData.getColumns(null, null, tableName, null);
+			////int k = 0;
+			while(resultSet.next()) {
+				//k++;
+				//System.out.print("col size: " + resultSet.getMetaData().getPrecision(k));
+				System.out.print("[" + resultSet.getString("COLUMN_NAME") + "] ");
+			}
+			
+			//-------------------
+			resultSet = callableStatement.getResultSet();
+			System.out.println("\n--------------------------------");
+			
 			//print column data from result set:
 			while(resultSet.next()) {
+				//+++++++++++++++++++++++++++should have an inner lop here, getting rewult info. after getting colum name in outer
 				for(int i=1,j=resultSet.getMetaData().getColumnCount();i<=j;i++) {
+					//System.out.print( resultSet.getMetaData().getColumnName(i));
 					System.out.print("[" + resultSet.getString(i).toString() + "] ");
+					
 				}
 				System.out.print("\n");
 			}

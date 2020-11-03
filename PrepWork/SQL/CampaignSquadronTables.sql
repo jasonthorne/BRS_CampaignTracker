@@ -91,7 +91,7 @@ CREATE TABLE campaign_players (
 	campaignID INT,
 	playerID INT,
 	score INT DEFAULT 0,
-	is_active BOOLEAN DEFAULT TRUE,
+	is_active BOOLEAN DEFAULT TRUE, /* ++++++++++++++++++++++ status ENUM?? (active, retired) ??????????
 	created DATE, /* +++++++++++++++++++++++++++++++++needed?????????? */
 	PRIMARY KEY (campaign_playerID),
 	FOREIGN KEY (campaignID) REFERENCES campaigns(campaignID),
@@ -219,9 +219,10 @@ DELIMITER ;
 
 /*===============================================================*/
 /* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
-INSERT INTO players (name, password) VALUES ("1", SHA2(1, 512));
-INSERT INTO players (name, password) VALUES ("bob", SHA2(123, 512));
-INSERT INTO players (name, password) VALUES ("frank", SHA2(111, 512));
+INSERT INTO players (name, password) VALUES ("jay", SHA2(333, 512));
+INSERT INTO players (name, password) VALUES ("jo", SHA2(123, 512));
+INSERT INTO players (name, password) VALUES ("dan", SHA2(111, 512));
+INSERT INTO players (name, password) VALUES ("laura", SHA2(321, 512));
 /* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
 
 

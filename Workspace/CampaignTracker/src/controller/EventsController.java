@@ -25,7 +25,7 @@ import model.Campaign;
 import model.Event;
 import model.Event.EventBuilder;
 
-public class SelectEventController implements Frameable, Rootable {
+public class EventsController implements Frameable, Rootable {
 
     @FXML
     private ResourceBundle resources;
@@ -56,7 +56,7 @@ public class SelectEventController implements Frameable, Rootable {
   	private Parent root; 
 
     //constructor:
-    SelectEventController() {
+    EventsController() {
     	setRoot(); //set root node
     }
     
@@ -126,7 +126,7 @@ public class SelectEventController implements Frameable, Rootable {
     
    
     @Override
-	public void setRoot() { root = Rootable.getRoot(this, "/view/selectEvent.fxml"); } //set root
+	public void setRoot() { root = Rootable.getRoot(this, "/view/events.fxml"); } //set root
 	@Override 
 	public Parent getRoot() { return root; } //get root
 
