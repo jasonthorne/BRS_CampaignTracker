@@ -32,11 +32,15 @@ public static List<Event> select() {
 		
 			while(eventsRS.next()) {
 				
-				airforcesStatement.setString(1, eventsRS.getString("event_name")); //set input with event id
+				airforcesStatement.setInt(1, eventsRS.getInt("event_ID")); //set input with event id
+
+				
+				System.out.println("event: " + eventsRS.getString("event_name"));
 				airforcesRS = airforcesStatement.executeQuery(); //execute query
 				
 				while(airforcesRS.next()) {
 					System.out.println(" event airforce name: " + airforcesRS.getString("airforce_name"));
+					System.out.println("has home adv: " + airforcesRS.getBoolean("home_advantage_value"));
 				}
 				
 				/*
