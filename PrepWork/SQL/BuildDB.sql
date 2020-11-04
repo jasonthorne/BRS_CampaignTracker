@@ -237,21 +237,29 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE select_events ()
+CREATE PROCEDURE select_events () /* starting with just name as test +++++8888888888888888888888888++++++++++++++++++++ */
 BEGIN
-	SELECT name FROM events; /* starting with just name as test +++++++++++++++++++++++++ */
+	
+	SELECT 
+		events.name AS event_name,
+		airforces.name AS airforce_name
+	FROM events 
+		INNER JOIN event_airforces ON event_airforces.eventID = events.eventID
+		INNER JOIN airforces ON event_airforces.airforceID = airforces.airforceID
+	WHERE event_airforces.eventID = events.eventID;
+	
+	/*
+	SELECT 
+		events.name AS event_name,
+		airforces.name AS airforce_name
+	FROM events 
+		INNER JOIN airforces ON event_airforces.airforceID = airforces.airforceID
+		INNER JOIN event_airforces ON event_airforces.eventID = events.eventID;
+		*/
+	
 END $$
 DELIMITER ;
 
-
-
-/* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
-/*
-INSERT INTO events (name) VALUES ("Battle of Britain");
-INSERT INTO events (name) VALUES ("Assault on the Reich");
-INSERT INTO events (name) VALUES ("Stalingrad");
-*/
-/* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
 /*----------------------------------------------------*/
 /* airforces available to events */
 

@@ -69,7 +69,7 @@ public class EventsController implements Frameable, Rootable {
     	//future list of events pulled from db, returned from service task thread:
     	Future<List<Event>>futureEvents = service.submit(()->database.SelectEvents.select());
     	
-    	//firing task thread on a thread separate from application thread: 
+    	//keeping future.get() separate from application thread:
     	new Thread(() -> {
     		
 	    	try {

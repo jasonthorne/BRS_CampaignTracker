@@ -26,12 +26,15 @@ public static List<Event> select() {
 				
 				//add an event to events with data from current row:
 				events.add(new Event.EventBuilder()
-						.setName(resultSet.getString("name"))
+						.setName(resultSet.getString("event_name"))
 						.build());
 				
-				System.out.println("event name: " + resultSet.getString("name"));
+				System.out.println("event name: " + resultSet.getString("event_name"));
+				System.out.println("event airforce name: " + resultSet.getString("airforce_name"));
 				
 			}
+			
+			System.out.println("events: " + events);
 		
 		}catch(Exception e) { e.printStackTrace(); }
 		

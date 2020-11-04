@@ -140,5 +140,76 @@
 				}	
 			]
 		}
+	},
+	{
+		"airforce": {
+			"name": "Luftwaffe2",
+			"images": [
+				{
+					"image": {
+						"name": "Logo",
+						"path": "img/airforces/Luftwaffe3.png"
+					}
+				},
+				{
+					"image": {
+						"name": "Logo4",
+						"path": "img/airforces/Luftwaffe4.png"
+					}
+				}
+			],
+			"planes": [
+				{
+					"plane": {
+						"name": "C",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1945"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "D",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1941"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				}	
+			]
+		}
 	}
 ]
