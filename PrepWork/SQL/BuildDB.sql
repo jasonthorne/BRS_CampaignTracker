@@ -240,22 +240,17 @@ DELIMITER $$
 CREATE PROCEDURE select_events () /* starting with just name as test +++++8888888888888888888888888++++++++++++++++++++ */
 BEGIN
 	
-	SELECT 
-		events.name AS event_name,
-		airforces.name AS airforce_name
-	FROM events 
-		INNER JOIN event_airforces ON event_airforces.eventID = events.eventID
-		INNER JOIN airforces ON event_airforces.airforceID = airforces.airforceID
-	WHERE event_airforces.eventID = events.eventID;
+	SELECT events.name AS event_name FROM events;
+	/* get start and end period here too! */
 	
 	/*
 	SELECT 
 		events.name AS event_name,
 		airforces.name AS airforce_name
 	FROM events 
+		INNER JOIN event_airforces ON event_airforces.eventID = events.eventID
 		INNER JOIN airforces ON event_airforces.airforceID = airforces.airforceID
-		INNER JOIN event_airforces ON event_airforces.eventID = events.eventID;
-		*/
+	*/
 	
 END $$
 DELIMITER ;
@@ -283,6 +278,19 @@ BEGIN
 	(SELECT eventID FROM events WHERE events.name = event_name),
 	(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
 	home_advantage_value);
+END $$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE select_event_airforces (event_ID INT) /*(event_name VARCHAR(64))*/
+BEGIN
+	/* ++++++++++++++++++++++++++ */
+	SELECT 
+		airforces.name AS airforce_name, /* +++++++++++ AGH!!! */
+		has_home_advantage 
+	FROM event_airforces 
+		INNER JOIN airforces ON event_airforces.eventID = event_ID;
 END $$
 DELIMITER ;
 
