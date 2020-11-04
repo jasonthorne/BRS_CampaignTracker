@@ -9,11 +9,13 @@ import java.util.List;
 
 import model.Event;
 import model.Event.EventBuilder;
+import model.EventAirForce;
+import model.EventAirForce.EventAirForceBuilder;
 
 public interface SelectEvents {
 	
-public static List<Event> select() {
-	
+	public static List<Event> select() {
+
 	//++++++++++++++++++++
 	//https://www.roseindia.net/jdbc/Jdbc-nested-result-set.shtml#:~:text=The%20JDBC%20Nested%20Result%20Set,is%20the%20simplest%20join%20algorithm.
 		
@@ -21,37 +23,39 @@ public static List<Event> select() {
 		
 		try (Connection connection = ConnectDB.getConnection(); //get a connection to the db
 			
-			//create statement:
+			//statement for events :
 			CallableStatement eventsStatement = connection.prepareCall("{CALL select_events()}");
-			CallableStatement airforcesStatement = connection.prepareCall("{CALL select_event_airforces(?)}");
+			CallableStatement airForcesStatement = connection.prepareCall("{CALL select_event_airforces(?)}");
 		
-			//create resultSet executing query:
-			ResultSet eventsRS = eventsStatement.executeQuery();
-			 ) { ////////FIX THIS TRY WITH RESOURCES!! :P +++++++++++++++++++++++
-			ResultSet airforcesRS = null;
+			//result set executing events query:
+			ResultSet eventsRS = eventsStatement.executeQuery();) { 
+			
+			//result set for executing event airForces query:
+			ResultSet airForcesRS = null; ////////CLOSE THIS!! :P +++++++++++++++++++++++
 		
 			while(eventsRS.next()) {
 				
-				airforcesStatement.setInt(1, eventsRS.getInt("event_ID")); //set input with event id
-
+				EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
+				eventBuilder.setName(eventsRS.getString("event_name")); //add event name
 				
-				System.out.println("event: " + eventsRS.getString("event_name"));
-				airforcesRS = airforcesStatement.executeQuery(); //execute query
+				List<EventAirForce>eventAirForces = new ArrayList<>(); //create list for event air forces
+				airForcesStatement.setInt(1, eventsRS.getInt("event_ID")); //set input with event id
+				airForcesRS = airForcesStatement.executeQuery(); //execute event air forces query
 				
-				while(airforcesRS.next()) {
-					System.out.println(" event airforce name: " + airforcesRS.getString("airforce_name"));
-					System.out.println("has home adv: " + airforcesRS.getBoolean("home_advantage_value"));
+				while(airForcesRS.next()) {
+					
+					//add event air force to eventAirforces:
+					eventAirForces.add(new EventAirForce.EventAirForceBuilder()
+										.setAirForceName(airForcesRS.getString("airforce_name"))
+										.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value"))
+										.build());
 				}
 				
-				/*
-				//add an event to events with data from current row:
-				events.add(new Event.EventBuilder()
-						.setName(eventsRS.getString("event_name"))
-						.build());
-				*/
-				//System.out.println("event name: " + eventsRS.getString("event_name"));
+				//add event air forces to event builder:
+				eventBuilder.setEventAirForces(eventAirForces);
 				
-				
+				//add built event to events:
+				events.add(eventBuilder.build());
 			}
 			
 			System.out.println("events: " + events);

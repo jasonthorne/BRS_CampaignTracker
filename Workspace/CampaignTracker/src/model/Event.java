@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
@@ -11,13 +12,12 @@ public class Event {
 	
 	private String startPeriod; //start period
 	private String endPeriod; //end period
-	
-	private List<EventAirForce>eventAirforces; //air forces involved
+	private List<EventAirForce>eventAirForces; //air forces involved
 	
 	private Event() {} //blank constructor
 	
 	//builder class:
-	public static class EventBuilder{
+	public static class EventBuilder {
 		
 		private Event event = new Event(); //create event
 		
@@ -39,6 +39,12 @@ public class Event {
 			return this;
 		}
 		
+		//set list of event air forces:
+		public EventBuilder setEventAirForces(List<EventAirForce>eventAirForces) {
+			event.eventAirForces = new ArrayList<EventAirForce>(eventAirForces);
+			return this;
+		}
+		
 		public Event build() { return event; } //return built event
 	}
 	
@@ -46,13 +52,15 @@ public class Event {
 	public String getName() { return name; }
 	public String getStartPeriod() { return startPeriod; }
 	public String getEndPeriod() { return endPeriod; }
-
 	
+	public List<EventAirForce> getEventAirForces() {
+		return new ArrayList<EventAirForce>(eventAirForces);
+	}
 	@Override
 	public String toString() {
-		return "Event [eventName=" + name + "]";
+		return "Event [name=" + name + ", eventAirForces=" + eventAirForces + "]";
 	}
-	
-	
 
+	
+	
 }
