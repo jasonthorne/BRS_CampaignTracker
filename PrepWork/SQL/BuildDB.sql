@@ -14,6 +14,17 @@ USE blood_red_skies_db;
 SET GLOBAL sql_mode = 'STRICT_ALL_TABLES';
 SET SESSION sql_mode = 'STRICT_ALL_TABLES';
 
+/* throw custom error: */
+DELIMITER $$
+CREATE PROCEDURE throw_error (IN message VARCHAR(256))
+BEGIN
+	SIGNAL SQLSTATE 'ERR0R'
+	SET MESSAGE_TEXT = `message`;
+END $$
+DELIMITER ;
+
+/*https://stackoverflow.com/questions/4862911/how-to-throw-an-error-in-mysql-procedure */
+
 /*----------------------------------------------------*/
 /* years covered */
 
@@ -378,7 +389,6 @@ DELIMITER $$
 CREATE PROCEDURE insert_event_start (IN event_name VARCHAR(64), IN block_option VARCHAR(5),
 IN year_name VARCHAR(4))
 BEGIN
-	
 	INSERT INTO event_starts (eventID, periodID) VALUES ( 
 	(SELECT eventID FROM events WHERE events.name = event_name),
 	(SELECT periodID FROM periods 
@@ -397,19 +407,9 @@ CREATE TABLE event_ends (
 	FOREIGN KEY (periodID) REFERENCES periods(periodID),
 	UNIQUE (eventID) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+ 
+/*-----------------------*/
 
-
-DELIMITER $$
-CREATE PROCEDURE `raise`(`errno` BIGINT UNSIGNED, `message` VARCHAR(256))
-BEGIN
-SIGNAL SQLSTATE
-    'ERR0R'
-SET
-    MESSAGE_TEXT = `message`,
-    MYSQL_ERRNO = `errno`;
-
-END $$
-DELIMITER ;
 
 
 DELIMITER $$
@@ -417,14 +417,42 @@ CREATE PROCEDURE insert_event_end (IN event_name VARCHAR(64), IN block_option VA
 IN year_name VARCHAR(4))
 BEGIN
 	DECLARE event_startID_check INT DEFAULT 0; 
-	
+	DECLARE event_start_periodID_check INT DEFAULT 0; 
+    
 	/* get id of row from event_starts, with same event_name: */
+	/*
 	SELECT event_starts.event_startID INTO event_startID_check FROM event_starts
 		INNER JOIN events ON event_starts.eventID = events.eventID
 	WHERE events.name = event_name;
+	*/
 	
-	IF event_startID_check > 0 THEN CALL `raise`(1356, 'yo dawg!');
+	/* look for id of entry from event_starts with same event_name & periodID
+	   (i.e are you trying to insert the same event period into event_ends as in event_starts) */
+	SELECT event_starts.event_startID INTO event_startID_check FROM event_starts
+		INNER JOIN events ON event_starts.eventID = events.eventID
+		INNER JOIN periods ON event_starts.periodID = periods.periodID
+	WHERE events.name = event_name AND periods.periodID = (SELECT periodID FROM periods 
+		INNER JOIN years ON periods.yearID  = years.yearID
+		WHERE periods.block = block_option AND years.name = year_name);
+	
+	/* throw error if above select was successfull: */
+	IF event_startID_check > 0 THEN CALL throw_error('yo dawg!');
 	END IF;
+	
+	
+	
+	
+	/* get period id of row from event_starts, with same event_name: */
+	SELECT event_starts.periodID INTO event_start_periodID_check FROM event_starts
+		INNER JOIN events ON event_starts.eventID = events.eventID
+		INNER JOIN periods ON event_starts.periodID = periods.periodID
+	WHERE events.name = event_name;
+	
+	/* get periodId */
+	
+	IF event_start_periodID_check > 0 THEN CALL throw_error('yo dawg!');
+	END IF;
+	
 	
 	INSERT INTO event_ends (eventID, periodID) VALUES ( 
 	(SELECT eventID FROM events WHERE events.name = event_name),
