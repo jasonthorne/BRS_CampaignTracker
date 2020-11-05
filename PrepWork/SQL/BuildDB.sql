@@ -239,27 +239,29 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE select_events () /* starting with just name as test +++++8888888888888888888888888++++++++++++++++++++ */
 BEGIN
+
+	/*
 	SELECT
 		events.name AS event_name,		
 		events.eventID AS event_ID,
-		/*event_periods.event_periodID AS event_periodID*/
-		/*periods.periodID AS periodID_start
-		periods.periodID AS periodID_end*/
+		////////////event_periods.event_periodID AS event_periodID
+		///////////periods.periodID AS periodID_start
+		periods.periodID AS periodID_end
 		periods.block AS 
 			(SELECT )period_start_block
-		/*years.name AS period_start_year*/
+		//////////////years.name AS period_start_year
 		
 		
 	FROM events
 		INNER JOIN event_periods ON events.eventID = event_periods.eventID
 		INNER JOIN periods ON event_periods.periodID = periods.periodID
-			/*WHERE event_periods.periodID_start = periodID*/
-		/*INNER JOIN periods ON event_periods.periodID = periods.periodID*/
-			/*WHERE event_periods.periodID_end = periodID*/
+			//////////////WHERE event_periods.periodID_start = periodID
+		//////////INNER JOIN periods ON event_periods.periodID = periods.periodID
+			///////////WHERE event_periods.periodID_end = periodID
 		WHERE events.eventID = event_periods.eventID;
-		/*AND event_periods.periodID_start = periodID;*/
+		////////////AND event_periods.periodID_start = periodID;
 	
-	
+	*/
 	
 	
 	
@@ -381,10 +383,10 @@ BEGIN
 	(SELECT eventID FROM events WHERE events.name = event_name),
 	(SELECT periodID FROM periods 
 		INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_option AND years.name = year_name) /*,
+		WHERE periods.block = block_option AND years.name = year_name)); /*,
 	SELECT periodID FROM periods 
 		INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_end AND years.name = year_end))*/ ;
+		WHERE periods.block = block_end AND years.name = year_end)) ; */
 END $$
 DELIMITER ;
 
@@ -395,11 +397,26 @@ CREATE TABLE event_ends (
 	eventID INT,
 	periodID INT,
 	PRIMARY KEY (event_endID),
-	FOREIGN KEY (periodID_start) REFERENCES periods(periodID),
+	FOREIGN KEY (periodID) REFERENCES periods(periodID),
 	UNIQUE (eventID) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
+DELIMITER $$
+CREATE PROCEDURE insert_event_end (IN event_name VARCHAR(64), IN block_option VARCHAR(5),
+IN year_name VARCHAR(4))
+BEGIN
+	
+	INSERT INTO event_ends (eventID, periodID) VALUES ( 
+	(SELECT eventID FROM events WHERE events.name = event_name),
+	(SELECT periodID FROM periods 
+		INNER JOIN years ON periods.yearID  = years.yearID
+		WHERE periods.block = block_option AND years.name = year_name)); /*,
+	SELECT periodID FROM periods 
+		INNER JOIN years ON periods.yearID  = years.yearID
+		WHERE periods.block = block_end AND years.name = year_end)); */ 
+END $$
+DELIMITER ;
 
 
 
