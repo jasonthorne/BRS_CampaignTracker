@@ -15,20 +15,20 @@ public class Player { /** +++++++++++++++++++++ is this class even needed???  :P
 		
 		//set id:
 		public PlayerBuilder setId(int id) {
-			player.id = id; //set id
-			return this; //return this object
+			player.id = id; 
+			return this; 
 		}
 		
 		//set name:
 		public PlayerBuilder setName(String name) {
-			player.name = name; //set name
-			return this; //return this object
+			player.name = name; 
+			return this; 
 		}
 		
 		//set password:
 		public PlayerBuilder setPswrd(String pswrd) {
-			player.pswrd = pswrd; //set password
-			return this; //return this object
+			player.pswrd = pswrd; 
+			return this; 
 		}
 		
 		public Player build() { return player; } //return built player

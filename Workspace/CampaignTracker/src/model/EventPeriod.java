@@ -1,6 +1,6 @@
 package model;
 
-public class EventPeriod {
+public class EventPeriod { //????????????????????? prob not needed!!! +++++++++++++++
 	
 	private String eventName;
 	private Period startPeriod;

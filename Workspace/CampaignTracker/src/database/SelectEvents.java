@@ -13,9 +13,9 @@ import model.EventAirForce;
 import model.EventAirForce.EventAirForceBuilder;
 
 public interface SelectEvents {
-	
-	public static List<Event> select() {
 
+	public static List<Event> select() {
+	
 	//++++++++++++++++++++
 	//https://www.roseindia.net/jdbc/Jdbc-nested-result-set.shtml#:~:text=The%20JDBC%20Nested%20Result%20Set,is%20the%20simplest%20join%20algorithm.
 		
@@ -23,20 +23,23 @@ public interface SelectEvents {
 		
 		try (Connection connection = ConnectDB.getConnection(); //get a connection to the db
 			
-			//statement for events :
+			//statement for events:
 			CallableStatement eventsStatement = connection.prepareCall("{CALL select_events()}");
+			//statement for event air forces:
 			CallableStatement airForcesStatement = connection.prepareCall("{CALL select_event_airforces(?)}");
 		
-			//result set executing events query:
+			//result set events query:
 			ResultSet eventsRS = eventsStatement.executeQuery();) { 
 			
-			//result set for executing event airForces query:
-			ResultSet airForcesRS = null; ////////CLOSE THIS!! :P +++++++++++++++++++++++
+			//result set for air forces query:
+			ResultSet airForcesRS = null; 
 		
 			while(eventsRS.next()) {
 				
 				EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
 				eventBuilder.setName(eventsRS.getString("event_name")); //add event name
+				
+				//////////System.out.println("periodID_start: " + eventsRS.getInt("periodID_start"));
 				
 				List<EventAirForce>eventAirForces = new ArrayList<>(); //create list for event air forces
 				airForcesStatement.setInt(1, eventsRS.getInt("event_ID")); //set input with event id

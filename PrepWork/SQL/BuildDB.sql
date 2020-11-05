@@ -239,13 +239,41 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE select_events () /* starting with just name as test +++++8888888888888888888888888++++++++++++++++++++ */
 BEGIN
-	
 	SELECT
-		events.name AS event_name, 
-		events.eventID AS event_ID
-	FROM events;
+		events.name AS event_name,		
+		events.eventID AS event_ID,
+		/*event_periods.event_periodID AS event_periodID*/
+		/*periods.periodID AS periodID_start
+		periods.periodID AS periodID_end*/
+		periods.block AS 
+			(SELECT )period_start_block
+		/*years.name AS period_start_year*/
+		
+		
+	FROM events
+		INNER JOIN event_periods ON events.eventID = event_periods.eventID
+		INNER JOIN periods ON event_periods.periodID = periods.periodID
+			/*WHERE event_periods.periodID_start = periodID*/
+		/*INNER JOIN periods ON event_periods.periodID = periods.periodID*/
+			/*WHERE event_periods.periodID_end = periodID*/
+		WHERE events.eventID = event_periods.eventID;
+		/*AND event_periods.periodID_start = periodID;*/
 	
-	/* get start and end period here too! */
+	
+	
+	
+	
+
+	/*
+	INSERT INTO event_periods (eventID, periodID_start, periodID_end) VALUES ( 
+	(SELECT eventID FROM events WHERE events.name = event_name),
+	(SELECT periodID FROM periods 
+		INNER JOIN years ON periods.yearID  = years.yearID
+		WHERE periods.block = block_start AND years.name = year_start),
+	(SELECT periodID FROM periods 
+		INNER JOIN years ON periods.yearID  = years.yearID
+		WHERE periods.block = block_end AND years.name = year_end));
+	*/
 	
 	/*
 	SELECT 
@@ -275,7 +303,8 @@ CREATE TABLE event_airforces (
 
 
 DELIMITER $$
-CREATE PROCEDURE insert_event_airforce (IN event_name VARCHAR(64), IN airforce_name VARCHAR(64), IN home_advantage_value BOOLEAN)
+CREATE PROCEDURE insert_event_airforce (IN event_name VARCHAR(64), IN airforce_name VARCHAR(64),
+IN home_advantage_value BOOLEAN)
 BEGIN
 	/* error thrown here on duplicate airforce_plane insert: */
 	INSERT INTO event_airforces (eventID, airforceID, has_home_advantage) VALUES ( 
@@ -294,7 +323,7 @@ BEGIN
 		has_home_advantage AS home_advantage_value
 	FROM event_airforces
 		INNER JOIN airforces ON event_airforces.airforceID = airforces.airforceID
-		WHERE event_airforces.eventID = event_ID;
+	WHERE event_airforces.eventID = event_ID;
 END $$
 DELIMITER ;
 
@@ -311,7 +340,6 @@ CREATE TABLE event_periods (
 	FOREIGN KEY (periodID_end) REFERENCES periods(periodID),
 	UNIQUE (eventID) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-
 
 DELIMITER $$
 CREATE PROCEDURE insert_event_period (IN event_name VARCHAR(64), IN block_start VARCHAR(5), 
@@ -330,6 +358,57 @@ BEGIN
 		WHERE periods.block = block_end AND years.name = year_end));
 END $$
 DELIMITER ;
+
+
+/* ===============================NEW PERIOD TESTING =============================== */
+
+CREATE TABLE event_starts (
+	event_startID INT NOT NULL AUTO_INCREMENT,
+	eventID INT, 
+	periodID INT,
+	PRIMARY KEY (event_startID),
+	FOREIGN KEY (periodID) REFERENCES periods(periodID),
+	UNIQUE (eventID) /* prevent duplicate inserts */
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+DELIMITER $$
+CREATE PROCEDURE insert_event_start (IN event_name VARCHAR(64), IN block_option VARCHAR(5),
+IN year_name VARCHAR(4))
+BEGIN
+	
+	INSERT INTO event_starts (eventID, periodID) VALUES ( 
+	(SELECT eventID FROM events WHERE events.name = event_name),
+	(SELECT periodID FROM periods 
+		INNER JOIN years ON periods.yearID  = years.yearID
+		WHERE periods.block = block_option AND years.name = year_name) /*,
+	SELECT periodID FROM periods 
+		INNER JOIN years ON periods.yearID  = years.yearID
+		WHERE periods.block = block_end AND years.name = year_end))*/ ;
+END $$
+DELIMITER ;
+
+/*-----------------------*/
+
+CREATE TABLE event_ends (
+	event_endID INT NOT NULL AUTO_INCREMENT,
+	eventID INT,
+	periodID INT,
+	PRIMARY KEY (event_endID),
+	FOREIGN KEY (periodID_start) REFERENCES periods(periodID),
+	UNIQUE (eventID) /* prevent duplicate inserts */
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,6 +1,6 @@
 package model;
 
-public class Period { //+++++++++++++MIGHT NOT BE NEEDED!! 
+public class Period {
 	
 	//blocks of a year:
 	public enum Block {

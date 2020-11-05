@@ -2,13 +2,11 @@
 + proper error nadling label on login & signup
 + back button on sign up
 + proper fade transitions
-+ object for playerId (for encapsulating setter)
++ object for playerId (for encapsulating setter) - or maybe Player object stored in login. 
 + better db connection
 + decide if using properties files for static controller data
 + figure out if resourcebundle and url @FXML are needed in controllers! :P
 
-+ rename campaignsController and campaigns.fxml to SelectCampaignController 
-& selectCampaign.fxml
 
 + try have first element in events be selected on it. 
 + have events data during sleect be returned ordered by start date. 
@@ -20,3 +18,10 @@ https://stackoverflow.com/questions/37171820/populating-a-tableview-with-a-hashm
 
 Listener for background:
 https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2
+
+
+to figure out period dispanency: +++++++++++++++++++++++++++++++++++++++++++
+pull year: cast to int: compare against other year, cast to int.
+
+
+
