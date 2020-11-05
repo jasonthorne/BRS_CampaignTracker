@@ -3,7 +3,7 @@ SQL:
 status value fron json needs to be valid enum option - done
 block value fron json needs to be valid enum option - done
 
-only of each period should be inserted into periods -done
+only one of each period should be inserted into periods -done
 
 A plane cant have duplicate period in 2 or more period_status - done
 A plane cant have duplicate period_status in period_statuses - done
@@ -17,7 +17,7 @@ No duplicates of event_airforce - done
 
 No duplicate image paths in images - done
 
-no duplicates of airforce_images - done
+No duplicates of airforce_images - done
 
 
 insert_event_period: THIS NEEDS TO FAIL IF START AND END PERIODS ARE THE SAME, OR IF END DATE COMES BEFORE START DATE
@@ -25,5 +25,5 @@ insert_event_period: THIS NEEDS TO FAIL IF START AND END PERIODS ARE THE SAME, O
 //==========================
 
 
-Players cant have duplicate names and/or passwords
+Players cant have duplicate names and/or passwords - done
 player password hash shouldn't be reveiled to a user. maybe a view should block this!!??

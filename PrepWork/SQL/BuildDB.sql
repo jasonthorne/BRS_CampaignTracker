@@ -383,10 +383,7 @@ BEGIN
 	(SELECT eventID FROM events WHERE events.name = event_name),
 	(SELECT periodID FROM periods 
 		INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_option AND years.name = year_name)); /*,
-	SELECT periodID FROM periods 
-		INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_end AND years.name = year_end)) ; */
+		WHERE periods.block = block_option AND years.name = year_name)); 
 END $$
 DELIMITER ;
 
@@ -403,24 +400,43 @@ CREATE TABLE event_ends (
 
 
 DELIMITER $$
+CREATE PROCEDURE `raise`(`errno` BIGINT UNSIGNED, `message` VARCHAR(256))
+BEGIN
+SIGNAL SQLSTATE
+    'ERR0R'
+SET
+    MESSAGE_TEXT = `message`,
+    MYSQL_ERRNO = `errno`;
+
+END $$
+DELIMITER ;
+
+
+DELIMITER $$
 CREATE PROCEDURE insert_event_end (IN event_name VARCHAR(64), IN block_option VARCHAR(5),
 IN year_name VARCHAR(4))
 BEGIN
+	DECLARE event_startID_check INT DEFAULT 0; 
+	
+	/* get id of row from event_starts, with same event_name: */
+	SELECT event_starts.event_startID INTO event_startID_check FROM event_starts
+		INNER JOIN events ON event_starts.eventID = events.eventID
+	WHERE events.name = event_name;
+	
+	IF event_startID_check > 0 THEN CALL `raise`(1356, 'yo dawg!');
+	END IF;
 	
 	INSERT INTO event_ends (eventID, periodID) VALUES ( 
 	(SELECT eventID FROM events WHERE events.name = event_name),
 	(SELECT periodID FROM periods 
 		INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_option AND years.name = year_name)); /*,
-	SELECT periodID FROM periods 
-		INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_end AND years.name = year_end)); */ 
+		WHERE periods.block = block_option AND years.name = year_name));
 END $$
 DELIMITER ;
 
 
-
-
+/*THIS NEEDS TO FAIL IF START AND END PERIODS ARE THE SAME, 
+OR IF END DATE COMES BEFORE START DATE+++++++++++++++++*/
 
 
 
