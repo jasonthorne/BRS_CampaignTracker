@@ -17,12 +17,12 @@
 				}
 			],
 			"start_period": {
-				"block": "Early",
-				"year": "1945"
+				"block": "Late",
+				"year": "1941"
 			},
 			"end_period": {
 				"block": "Mid",
-				"year": "1941"
+				"year": "1945"
 			}
 		}
 	},

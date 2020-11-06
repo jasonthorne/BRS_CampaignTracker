@@ -104,7 +104,7 @@
 							{
 								"period_status":{
 									"period": {
-										"block": "Early",
+										"block": "Mid",
 										"year": "1945"
 									},
 									"status": "Limit"
@@ -176,7 +176,7 @@
 								"period_status":{
 									"period": {
 										"block": "Late",
-										"year": "1945"
+										"year": "1942"
 									},
 									"status": "Limit"
 								}
