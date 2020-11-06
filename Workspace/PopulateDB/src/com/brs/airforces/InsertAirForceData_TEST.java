@@ -81,13 +81,15 @@ public interface InsertAirForceData_TEST {
 						
 						JSONObject period = (JSONObject) periodStatus.get("period"); //get period object from periodStatus
 						String block = (String) period.get("block"); //get block from period
-						String year = (String) period.get("year"); //get year from period
+						//+++++MAKE INT+++++++++++++++++String year = (String) period.get("year"); //get year from period
+						int year = Integer.parseInt((String) period.get("year")); //get year from period
 						String status = (String) periodStatus.get("status"); //get status from periodStatus
 						callableStatement = connection.prepareCall("{CALL insert_plane_availability(?,?,?,?,?)}"); //create statement
 						callableStatement.setString(1, airForceName); //set input with air force
 				        callableStatement.setString(2, planeName); //set input with plane
 				        callableStatement.setString(3, block); //set input with block
-				        callableStatement.setString(4, year); //set input with year
+				        //++++++++MAKE INT+++++++++++++++++++callableStatement.setString(4, year); //set input with year
+				        callableStatement.setInt(4, year); //set input with year
 				        callableStatement.setString(5, status); //set input with status
 				        try {
 					    	callableStatement.execute(); //execute statement //++++++++++++++++++++++++++++++++++

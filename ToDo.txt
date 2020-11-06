@@ -11,10 +11,14 @@
 + try have first element in events be selected on it. 
 + have events data during sleect be returned ordered by start date. 
 
+
+
+---------------------------------------------------
+
+linmks:
+
 tableview vrom hashmap:
 https://stackoverflow.com/questions/37171820/populating-a-tableview-with-a-hashmap-that-will-update-when-hashmap-changes
-
-
 
 Listener for background:
 https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2
@@ -23,5 +27,8 @@ https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecti
 to figure out period dispanency: +++++++++++++++++++++++++++++++++++++++++++
 pull year: cast to int: compare against other year, cast to int.
 
+truncate all tables:
+https://stackoverflow.com/questions/1912813/truncate-all-tables-in-a-mysql-database-in-one-command
 
-
+delete child elements of db entry:
+https://stackoverflow.com/questions/16777043/how-to-delete-all-child-records-when-parent-record-is-deleted

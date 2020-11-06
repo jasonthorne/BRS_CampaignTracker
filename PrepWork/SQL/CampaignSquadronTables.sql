@@ -197,7 +197,7 @@ CREATE TABLE mission_results (
 
 
 
-/*===============================================================*/
+/*============================================-==================*/
 /* select all entries */
 
 DROP PROCEDURE IF EXISTS select_all; 
