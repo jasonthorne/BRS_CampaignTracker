@@ -60,7 +60,7 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		SelectAll.select("events");
 		SelectAll.select("years");
 		SelectAll.select("periods");
-		//SelectAll.select("event_starts");
+		SelectAll.select("event_starts");
 		SelectAll.select("event_ends");
 		
 		

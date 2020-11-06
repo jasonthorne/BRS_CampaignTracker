@@ -19,6 +19,9 @@ No duplicate image paths in images - done
 
 No duplicates of airforce_images - done
 
+event_starts & event_ends entrries cant be identical (have the same event & period) - done
+event_start period must come befroe its corresponding event_end period 
+
 
 insert_event_period: THIS NEEDS TO FAIL IF START AND END PERIODS ARE THE SAME, OR IF END DATE COMES BEFORE START DATE
 

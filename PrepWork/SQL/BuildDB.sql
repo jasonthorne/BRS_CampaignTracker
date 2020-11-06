@@ -410,23 +410,19 @@ CREATE TABLE event_ends (
  
 /*-----------------------*/
 
-
+/* text into number: +++++++++++++++++++++++
+https://stackoverflow.com/questions/5960620/convert-text-into-number-in-mysql-query
+*/
 
 DELIMITER $$
 CREATE PROCEDURE insert_event_end (IN event_name VARCHAR(64), IN block_option VARCHAR(5),
 IN year_name VARCHAR(4))
 BEGIN
-	DECLARE event_startID_check INT DEFAULT 0; 
-	DECLARE event_start_periodID_check INT DEFAULT 0; 
-    
-	/* get id of row from event_starts, with same event_name: */
-	/*
-	SELECT event_starts.event_startID INTO event_startID_check FROM event_starts
-		INNER JOIN events ON event_starts.eventID = events.eventID
-	WHERE events.name = event_name;
-	*/
+	DECLARE event_startID_check INT DEFAULT 0;
+	DECLARE event_start_block_option VARCHAR(5) DEFAULT NULL;
+	DECLARE event_start_year_name VARCHAR(4) DEFAULT NULL;
 	
-	/* look for id of entry from event_starts with same event_name & periodID
+	/* look for id from event_starts with same event_name & periodID
 	   (i.e are you trying to insert the same event period into event_ends as in event_starts) */
 	SELECT event_starts.event_startID INTO event_startID_check FROM event_starts
 		INNER JOIN events ON event_starts.eventID = events.eventID
@@ -434,24 +430,25 @@ BEGIN
 	WHERE events.name = event_name AND periods.periodID = (SELECT periodID FROM periods 
 		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE periods.block = block_option AND years.name = year_name);
+		
+	SELECT periods.block INTO event_start_block_option FROM periods
+		INNER JOIN event_starts ON periods.periodID = event_starts.eventID
+		INNER JOIN events ON event_starts.eventID = events.eventID
+		WHERE events.name = event_name;
+		
+	IF event_start_block_option IS NOT NULL
+		THEN CALL throw_error('oh yeah!');
+	END IF;
 	
 	/* throw error if above select was successfull: */
-	IF event_startID_check > 0 THEN CALL throw_error('yo dawg!');
+	IF event_startID_check > 0 
+		THEN CALL throw_error('Error: Inserting entry into event_ends, identical to event_starts entry.');
+	/*ELSE*/
+		/* ++++++++++checking that start period doesnt come after this end period ++++++*/
+		/* get corresponding event_start value's period: */
+		/*SELECT */
 	END IF;
 	
-	
-	
-	
-	/* get period id of row from event_starts, with same event_name: */
-	SELECT event_starts.periodID INTO event_start_periodID_check FROM event_starts
-		INNER JOIN events ON event_starts.eventID = events.eventID
-		INNER JOIN periods ON event_starts.periodID = periods.periodID
-	WHERE events.name = event_name;
-	
-	/* get periodId */
-	
-	IF event_start_periodID_check > 0 THEN CALL throw_error('yo dawg!');
-	END IF;
 	
 	
 	INSERT INTO event_ends (eventID, periodID) VALUES ( 
