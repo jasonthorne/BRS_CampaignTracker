@@ -433,10 +433,9 @@ CREATE PROCEDURE insert_event_end (IN event_name VARCHAR(64), IN block_option VA
 /*IN year_name VARCHAR(4))*/
 IN year_value INT(4))
 BEGIN
-	DECLARE event_startID_check INT DEFAULT 0;
 	DECLARE event_start_block_index VARCHAR(5) DEFAULT NULL;
-	/*DECLARE event_start_year_name VARCHAR(4) DEFAULT NULL;*/
 	DECLARE event_start_year_value VARCHAR(4) DEFAULT NULL;
+	DECLARE block_option_index INT DEFAULT 0;
 	
 	/* get years.year_value from event_starts: */
 	SELECT years.year_value INTO event_start_year_value FROM years 
@@ -447,30 +446,35 @@ BEGIN
 	
 	/* check that start year value isnt later than end year value: */
 	IF event_start_year_value > year_value
-		THEN CALL throw_error("Error: event_starts year_value > event_ends year_value");
+		THEN CALL throw_error("Error: event_starts [year_value] > event_ends [year_value]");
 	END IF;
 	
 	/* if years are the same: */
-	IF event_start_year_value = year_value THEN */
+	IF event_start_year_value = year_value THEN
 			
-		/* get index of periods.block from event_starts: */
+		/* get enum index of periods.block from event_starts: */
 		SELECT periods.block+0 INTO event_start_block_index FROM periods 
 			INNER JOIN event_starts ON periods.periodID = event_starts.periodID
 			INNER JOIN events ON event_starts.eventID = events.eventID
 		WHERE events.name = event_name;
 		
-		/* get index of 
-		/* check that start block option isnt later than end block option: */
+		/* get enum index of block option: */
+		SELECT periods.block+0 INTO block_option_index FROM periods
+			INNER JOIN years ON periods.yearID = years.yearID
+		WHERE periods.block = block_option AND years.year_value = year_value;
 		
-		
-		
-		IF (event_start_block_option) > block_option
-			THEN CALL throw_error("Error: event_starts periods.block > event_ends periods.block");
+		/* check that start block option index isnt later than end block option index: */
+		IF (event_start_block_index) > block_option_index
+			THEN CALL throw_error("Error: event_starts [periods.block] > event_ends [periods.block]");
 		END IF;
-			
 	END IF;
 	
-	
+	/* add event end entry to event_ends: */
+	INSERT INTO event_ends (eventID, periodID) VALUES ( 
+	(SELECT eventID FROM events WHERE events.name = event_name),
+	(SELECT periodID FROM periods 
+		INNER JOIN years ON periods.yearID  = years.yearID
+	WHERE periods.block = block_option AND years.year_value = year_value));
 	
 	
 	/*
@@ -511,12 +515,7 @@ BEGIN
 	
 	
 	
-	INSERT INTO event_ends (eventID, periodID) VALUES ( 
-	(SELECT eventID FROM events WHERE events.name = event_name),
-	(SELECT periodID FROM periods 
-		INNER JOIN years ON periods.yearID  = years.yearID
-		/*WHERE periods.block = block_option AND years.name = year_name));*/
-		WHERE periods.block = block_option AND years.year_value = year_value));
+	
 END $$
 DELIMITER ;
 
