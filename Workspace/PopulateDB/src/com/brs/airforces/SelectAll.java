@@ -20,7 +20,7 @@ public interface SelectAll {
 			callableStatement.execute(); //execute statement
 			ResultSet resultSet = callableStatement.getResultSet(); //get result set 
 			
-			System.out.println(tableName+ ":");
+			System.out.println("\n"+ tableName + ":");
 			
 			//print column data from result set:
 			while(resultSet.next()) {

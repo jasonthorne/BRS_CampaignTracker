@@ -467,6 +467,11 @@ BEGIN
 		IF (event_start_block_index) > block_option_index
 			THEN CALL throw_error("Error: event_starts [periods.block] > event_ends [periods.block]");
 		END IF;
+		
+		/* check that both enum indexes arent the same: */
+		IF (event_start_block_index) = block_option_index
+			THEN CALL throw_error("Error: event_starts entry = event_ends entry");
+		END IF;
 	END IF;
 	
 	/* add event end entry to event_ends: */
