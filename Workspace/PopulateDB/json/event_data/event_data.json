@@ -21,7 +21,7 @@
 				"year": "1942"
 			},
 			"end_period": {
-				"block": "Early",
+				"block": "Late",
 				"year": "1942"
 			}
 		}
@@ -45,7 +45,7 @@
 			],
 			"start_period": {
 				"block": "Late",
-				"year": "1942"
+				"year": "1943"
 			},
 			"end_period": {
 				"block": "Mid",

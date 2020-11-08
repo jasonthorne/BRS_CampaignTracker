@@ -24,12 +24,19 @@ public interface SelectEvents {
 		try (Connection connection = ConnectDB.getConnection(); //get a connection to the db
 			
 			//statement for events:
-			CallableStatement eventsStatement = connection.prepareCall("{CALL select_events()}");
+			CallableStatement eventsStatement = connection.prepareCall("{CALL select_events(?,?,?)}");
+				
 			//statement for event air forces:
 			CallableStatement airForcesStatement = connection.prepareCall("{CALL select_event_airforces(?)}");
 		
 			//result set events query:
-			ResultSet eventsRS = eventsStatement.executeQuery();) { 
+			/*ResultSet eventsRS = eventsStatement.executeQuery();*/) { 
+			
+			eventsStatement.registerOutParameter(1, Types.VARCHAR); //register the out param
+			eventsStatement.registerOutParameter(2, Types.INTEGER); //register the out param
+			eventsStatement.registerOutParameter(3, Types.INTEGER); //register the out param
+			ResultSet eventsRS = eventsStatement.executeQuery();
+			
 			
 			//result set for air forces query:
 			ResultSet airForcesRS = null; 
@@ -37,13 +44,17 @@ public interface SelectEvents {
 			while(eventsRS.next()) {
 				
 				EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
-				eventBuilder.setName(eventsRS.getString("event_name")); //add event name
+				////////////eventBuilder.setName(eventsRS.getString("event_name")); //add event name
+				eventBuilder.setName(eventsRS.getString(1)); //add event name
 				
 				//////////System.out.println("periodID_start: " + eventsRS.getInt("periodID_start"));
 				
 				List<EventAirForce>eventAirForces = new ArrayList<>(); //create list for event air forces
-				airForcesStatement.setInt(1, eventsRS.getInt("event_ID")); //set input with event id
+				///////////airForcesStatement.setInt(1, eventsRS.getInt("event_ID")); //set input with event id
+				airForcesStatement.setInt(1, eventsRS.getInt(2)); //set input with event id
 				airForcesRS = airForcesStatement.executeQuery(); //execute event air forces query
+				
+				//System.out.println("eventsRS.getInt(1): " + eventsRS.getInt(1));
 				
 				while(airForcesRS.next()) {
 					

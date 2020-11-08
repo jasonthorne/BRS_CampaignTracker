@@ -260,22 +260,46 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE select_events () /* starting with just name as test +++++8888888888888888888888888++++++++++++++++++++ */
+CREATE PROCEDURE select_events (OUT event_name VARCHAR(64), OUT event_ID INT, OUT event_start_year INT(4) /*, OUT event_start_block VARCHAR(5), 
+OUT event_end_year INT(4), OUT event_end_block VARCHAR(5)*/)
 BEGIN
-
-	/*
+	/*DECLARE event_ID_TEST INT DEFAULT 0;*/
+	
 	SELECT
-		events.name AS event_name,		
-		events.eventID AS event_ID,
-		////////////event_periods.event_periodID AS event_periodID
-		///////////periods.periodID AS periodID_start
-		periods.periodID AS periodID_end
-		periods.block AS 
-			(SELECT )period_start_block
-		//////////////years.name AS period_start_year
+		name INTO event_name
+	FROM events;
+    
+    SELECT
+		eventID INTO event_ID
+	FROM events;
+
+	SELECT 
+		year_value INTO event_start_year
+    FROM years
+		INNER JOIN periods ON years.yearID = periods.yearID
+		INNER JOIN event_starts ON periods.periodID = event_starts.periodID
+		INNER JOIN events ON event_starts.eventID = events.eventID
+	WHERE event_starts.eventID = events.eventID AND event_starts.periodID = periods.periodID;
+	
+	
+	
+	/*	
+	UNION
+    SELECT 
+		years.year_value AS event_start_year
 		
-		
-	FROM events
+    FROM years
+		INNER JOIN periods ON years.yearID = periods.yearID
+		INNER JOIN event_starts ON periods.periodID = event_starts.periodID
+		INNER JOIN events ON event_starts.eventID = events.eventID
+	WHERE event_starts.eventID = events.eventID AND event_starts.periodID = periods.periodID;
+	*/
+	
+	
+	
+	/*CALL throw_error(event_start_year);*/
+	
+	/*
 		INNER JOIN event_periods ON events.eventID = event_periods.eventID
 		INNER JOIN periods ON event_periods.periodID = periods.periodID
 			//////////////WHERE event_periods.periodID_start = periodID
