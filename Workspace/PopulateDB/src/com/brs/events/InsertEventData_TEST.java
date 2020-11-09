@@ -57,7 +57,7 @@ public interface InsertEventData_TEST {
 				}
 				//-------------------------------------------------
 			    //add event start & end periods to 'event_periods':
-				/*
+				
 				JSONObject startPeriod = (JSONObject) event.get("start_period");  //get event starting period
 				String startBlock = (String) startPeriod.get("block");  //get block from starting period
 				String startYear = (String) startPeriod.get("year"); //get year from starting period
@@ -73,10 +73,10 @@ public interface InsertEventData_TEST {
 		        try {
 		        	callableStatement.execute(); //execute statement //+++++++++++++++++++++++++++++
 				}catch(Exception e) { e.printStackTrace(); }
-				*/
+				
 				//-------------------------------------------------
 				//add event start period to 'event_starts':
-				
+				/*
 				JSONObject startPeriod = (JSONObject) event.get("start_period");  //get event starting period
 				String startBlock = (String) startPeriod.get("block");  //get block from starting period
 				////////////+++++++++String startYear = (String) startPeriod.get("year"); //get year from starting period
@@ -104,7 +104,7 @@ public interface InsertEventData_TEST {
 		        try {
 		        	callableStatement.execute(); //execute statement //+++++++++++++++++++++++++++++
 				}catch(Exception e) { e.printStackTrace(); }
-		        
+		        */
 			}//eventIterator
 		}catch(Exception e) { e.printStackTrace(); }
 		finally {

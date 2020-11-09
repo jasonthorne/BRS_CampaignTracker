@@ -260,11 +260,21 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE select_events (OUT event_name VARCHAR(64), OUT event_ID INT, OUT event_start_year INT(4) /*, OUT event_start_block VARCHAR(5), 
-OUT event_end_year INT(4), OUT event_end_block VARCHAR(5)*/)
+CREATE PROCEDURE select_events () /*(OUT event_name VARCHAR(64), OUT event_ID INT, OUT event_start_year INT(4) /*, OUT event_start_block VARCHAR(5), 
+OUT event_end_year INT(4), OUT event_end_block VARCHAR(5))*/
 BEGIN
-	/*DECLARE event_ID_TEST INT DEFAULT 0;*/
 	
+	
+	
+	SELECT
+		events.name AS event_name,
+		events.eventID AS event_ID,
+		
+	FROM event_periods
+		INNER JOIN events ON events.eventID = event_periods.eventID;
+	
+	
+	/*
 	SELECT
 		name INTO event_name
 	FROM events;
@@ -280,7 +290,7 @@ BEGIN
 		INNER JOIN event_starts ON periods.periodID = event_starts.periodID
 		INNER JOIN events ON event_starts.eventID = events.eventID
 	WHERE event_starts.eventID = events.eventID AND event_starts.periodID = periods.periodID;
-	
+	*/
 	
 	
 	/*	
@@ -381,13 +391,21 @@ DELIMITER ;
 
 CREATE TABLE event_periods (
 	event_periodID INT NOT NULL AUTO_INCREMENT,
-	eventID INT,
+	eventID INT, 
 	periodID_start INT,
 	periodID_end INT,
 	PRIMARY KEY (event_periodID),
 	FOREIGN KEY (periodID_start) REFERENCES periods(periodID),
 	FOREIGN KEY (periodID_end) REFERENCES periods(periodID),
-	UNIQUE (eventID) /* prevent duplicate inserts */
+	UNIQUE (eventID) /* prevent duplicate inserts
+	/*event_startID,
+	event_endID,
+	PRIMARY KEY (event_periodID),
+	FOREIGN KEY (event_startID) REFERENCES event_starts(event_startID),
+	FOREIGN KEY (event_endID) REFERENCES event_ends(event_endID),
+	UNIQUE (event_startID), /* prevent duplicate inserts 
+	UNIQUE (event_endID), /* prevent duplicate inserts 
+	CONSTRAINT event_startID_event_endID UNIQUE (event_startID, event_endID)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
@@ -396,6 +414,11 @@ IN year_start VARCHAR(4), IN block_end VARCHAR(5), IN year_end VARCHAR(4))
 BEGIN
 	
 	/*++++++++++++++THIS NEEDS TO FAIL IF START AND END PERIODS ARE THE SAME, OR IF END DATE COMES BEFORE START DATE+++++++++++++++++*/
+	
+	/* +++++++++++++++++add event start & eventEnd here */
+	
+	/* go back to 2 eventIds and try grabbing them!! */
+	
 	
 	INSERT INTO event_periods (eventID, periodID_start, periodID_end) VALUES ( 
 	(SELECT eventID FROM events WHERE events.name = event_name),
