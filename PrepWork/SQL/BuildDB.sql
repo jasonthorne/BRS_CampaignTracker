@@ -260,90 +260,21 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE select_events () /*(OUT event_name VARCHAR(64), OUT event_ID INT, OUT event_start_year INT(4) /*, OUT event_start_block VARCHAR(5), 
-OUT event_end_year INT(4), OUT event_end_block VARCHAR(5))*/
+CREATE PROCEDURE select_events ()
 BEGIN
 	
 	SELECT
 		events.name AS event_name,
 		events.eventID AS event_ID,
-		(SELECT periods.block FROM periods
+		(SELECT periods.block FROM periods 
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_start
-		WHERE periods.periodID = event_periods.periodID_start AND event_periods.eventID = event_ID) AS period_start_block,
+		WHERE periods.periodID = event_periods.periodID_start AND event_periods.eventID = event_ID) 
+		AS period_start_block,
 		(SELECT periods.block FROM periods
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_end
-		WHERE periods.periodID = event_periods.periodID_end AND event_periods.eventID = event_ID) AS period_end_block
+		WHERE periods.periodID = event_periods.periodID_end AND event_periods.eventID = event_ID) 
+		AS period_end_block
 	FROM events; 
-	
-	
-	/*
-	SELECT
-		name INTO event_name
-	FROM events;
-    
-    SELECT
-		eventID INTO event_ID
-	FROM events;
-
-	SELECT 
-		year_value INTO event_start_year
-    FROM years
-		INNER JOIN periods ON years.yearID = periods.yearID
-		INNER JOIN event_starts ON periods.periodID = event_starts.periodID
-		INNER JOIN events ON event_starts.eventID = events.eventID
-	WHERE event_starts.eventID = events.eventID AND event_starts.periodID = periods.periodID;
-	*/
-	
-	
-	/*	
-	UNION
-    SELECT 
-		years.year_value AS event_start_year
-		
-    FROM years
-		INNER JOIN periods ON years.yearID = periods.yearID
-		INNER JOIN event_starts ON periods.periodID = event_starts.periodID
-		INNER JOIN events ON event_starts.eventID = events.eventID
-	WHERE event_starts.eventID = events.eventID AND event_starts.periodID = periods.periodID;
-	*/
-	
-	
-	
-	/*CALL throw_error(event_start_year);*/
-	
-	/*
-		INNER JOIN event_periods ON events.eventID = event_periods.eventID
-		INNER JOIN periods ON event_periods.periodID = periods.periodID
-			//////////////WHERE event_periods.periodID_start = periodID
-		//////////INNER JOIN periods ON event_periods.periodID = periods.periodID
-			///////////WHERE event_periods.periodID_end = periodID
-		WHERE events.eventID = event_periods.eventID;
-		////////////AND event_periods.periodID_start = periodID;
-	
-	*/
-	
-	
-	
-
-	/*
-	INSERT INTO event_periods (eventID, periodID_start, periodID_end) VALUES ( 
-	(SELECT eventID FROM events WHERE events.name = event_name),
-	(SELECT periodID FROM periods 
-		INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_start AND years.name = year_start),
-	(SELECT periodID FROM periods 
-		INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_end AND years.name = year_end));
-	*/
-	
-	/*
-	SELECT 
-		events.name AS event_name,
-		airforces.name AS airforce_name
-	FROM events 
-		INNER JOIN event_airforces ON event_airforces.eventID = events.eventID
-		INNER JOIN airforces ON event_airforces.airforceID = airforces.airforceID
-	*/
 	
 END $$
 DELIMITER ;
@@ -395,7 +326,7 @@ CREATE TABLE event_periods (
 	event_periodID INT NOT NULL AUTO_INCREMENT,
 	eventID INT, 
 	periodID_start INT,
-	periodID_end INT,
+	periodID_end INT DEFAULT NULL,
 	PRIMARY KEY (event_periodID),
 	FOREIGN KEY (periodID_start) REFERENCES periods(periodID),
 	FOREIGN KEY (periodID_end) REFERENCES periods(periodID),
@@ -411,17 +342,56 @@ CREATE TABLE event_periods (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
+
 CREATE PROCEDURE insert_event_period (IN event_name VARCHAR(64), IN block_start VARCHAR(5), 
-IN year_start VARCHAR(4), IN block_end VARCHAR(5), IN year_end VARCHAR(4))
+IN year_start INT(4), IN block_end VARCHAR(5), IN year_end INT(4))
 BEGIN
 	
-	/*++++++++++++++THIS NEEDS TO FAIL IF START AND END PERIODS ARE THE SAME, OR IF END DATE COMES BEFORE START DATE+++++++++++++++++*/
+	DECLARE block_start_index INT DEFAULT 0;
+	DECLARE block_end_index INT DEFAULT 0;
 	
-	/* +++++++++++++++++add event start & eventEnd here */
+	/* insert eventID and periodID_start into event_periods: */
+	INSERT INTO event_periods (eventID, periodID_start) VALUES ( 
+	(SELECT eventID FROM events WHERE events.name = event_name),
+	(SELECT periodID FROM periods 
+		INNER JOIN years ON periods.yearID  = years.yearID
+	WHERE periods.block = block_start AND years.year_value = year_start)); 
 	
-	/* go back to 2 eventIds and try grabbing them!! */
+	/* check that start year value isnt later than end year value: */
+	IF year_start > year_end
+		THEN CALL throw_error("Error: event_starts [year_value] > event_ends [year_value]");
+	END IF;
 	
+	/* if years are the same: */
+	IF year_start = year_end THEN
+			
+		/* get enum index of block_start: */
+		SELECT periods.block+0 INTO block_start_index FROM periods 
+			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_start
+			INNER JOIN events ON event_periods.eventID = events.eventID
+		WHERE events.name = event_name;
+		
+		/*SELECT periods.block+0 INTO event_start_block_index FROM periods 
+			INNER JOIN event_starts ON periods.periodID = event_starts.periodID
+			INNER JOIN events ON event_starts.eventID = events.eventID
+		WHERE events.name = event_name;*/
+		
+		CALL throw_error(block_start_index);
+		/* get enum index of block option: */
+		
+		/* get enum index of block option: */
+		SELECT periods.block+0 INTO block_end_index FROM periods
+			INNER JOIN years ON periods.yearID = years.yearID
+		WHERE periods.block = block_end AND years.year_value = year_end;
+		
+		/*
+		SELECT periods.block+0 INTO block_option_index FROM periods
+			INNER JOIN years ON periods.yearID = years.yearID
+		WHERE periods.block = block_option AND years.year_value = year_value;
+		*/
+	END IF;
 	
+	/*
 	INSERT INTO event_periods (eventID, periodID_start, periodID_end) VALUES ( 
 	(SELECT eventID FROM events WHERE events.name = event_name),
 	(SELECT periodID FROM periods 
@@ -430,6 +400,7 @@ BEGIN
 	(SELECT periodID FROM periods 
 		INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE periods.block = block_end AND years.year_value = year_end));
+	*/
 END $$
 DELIMITER ;
 
