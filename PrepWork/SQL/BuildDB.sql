@@ -264,14 +264,16 @@ CREATE PROCEDURE select_events () /*(OUT event_name VARCHAR(64), OUT event_ID IN
 OUT event_end_year INT(4), OUT event_end_block VARCHAR(5))*/
 BEGIN
 	
-	
-	
 	SELECT
 		events.name AS event_name,
 		events.eventID AS event_ID,
-		
-	FROM event_periods
-		INNER JOIN events ON events.eventID = event_periods.eventID;
+		(SELECT periods.block FROM periods
+			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_start
+		WHERE periods.periodID = event_periods.periodID_start AND event_periods.eventID = event_ID) AS period_start_block,
+		(SELECT periods.block FROM periods
+			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_end
+		WHERE periods.periodID = event_periods.periodID_end AND event_periods.eventID = event_ID) AS period_end_block
+	FROM events; 
 	
 	
 	/*

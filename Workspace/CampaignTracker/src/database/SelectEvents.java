@@ -43,6 +43,8 @@ public interface SelectEvents {
 				
 				System.out.println("event_name: " + eventsRS.getString("event_name"));
 				System.out.println("event_ID: " + eventsRS.getInt("event_ID"));
+				System.out.println("period_start_block: " + eventsRS.getString("period_start_block"));
+				System.out.println("period_end_block: " + eventsRS.getString("period_end_block"));
 				
 				List<EventAirForce>eventAirForces = new ArrayList<>(); //create list for event air forces
 				airForcesStatement.setInt(1, eventsRS.getInt("event_ID")); //set input with event id
