@@ -53,6 +53,9 @@ public class EventsController implements Frameable, Rootable {
     //observable list of events:
     private final ObservableList<Event>events = FXCollections.observableArrayList();
     
+    //observable list of event's air forces::
+    private ObservableList<EventAirForce>eventAirforces;
+    
     //fxml root node:
   	private Parent root; 
 
@@ -104,6 +107,11 @@ public class EventsController implements Frameable, Rootable {
     	        nameLbl.setText(newVal.getName());
     	        startPeriodLbl.setText(newVal.getStartPeriod().toString());
     	        endPeriodLbl.setText(newVal.getEndPeriod().toString());
+    	        
+    	        //add selected event's air forces to observable eventAirforces:
+    	        eventAirforces = FXCollections.observableArrayList(newVal.getEventAirForces());
+    	        airForcesLV.setItems(eventAirforces); //set list view with eventAirforces
+    	        airForcesLV.setCellFactory(EventAirForceCellController -> new EventAirForceCellController());
     	    }
     	});
     }

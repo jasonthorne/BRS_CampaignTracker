@@ -48,7 +48,7 @@ public class EventCellController extends JFXListCell<Event> implements Rootable 
   	        setText(null);
   	        setGraphic(null);
   	    } else {
-			//populate nameLbl with data from event:
+			//populate cell with data from event:
 			nameLbl.setText(event.getName()); 
 			 
 			setText(null); 
