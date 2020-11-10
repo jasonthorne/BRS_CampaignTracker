@@ -253,14 +253,33 @@ BEGIN
 	SELECT
 		events.name AS event_name,
 		events.eventID AS event_ID,
+		
+		/* select start block: */
 		(SELECT periods.block FROM periods 
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_start
 		WHERE periods.periodID = event_periods.periodID_start AND event_periods.eventID = event_ID) 
-		AS period_start_block,
+		AS event_start_block,
+		
+		/* select start year: */
+		(SELECT years.year_value FROM years 
+			INNER JOIN periods ON years.yearID = periods.yearID
+			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_start
+		WHERE periods.periodID = event_periods.periodID_start AND event_periods.eventID = event_ID) 
+		AS event_start_year,
+		
+		/* select end block: */
 		(SELECT periods.block FROM periods
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_end
 		WHERE periods.periodID = event_periods.periodID_end AND event_periods.eventID = event_ID) 
-		AS period_end_block
+		AS event_end_block,
+		
+		/* select end year: */
+		(SELECT years.year_value FROM years 
+			INNER JOIN periods ON years.yearID = periods.yearID
+			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_end
+		WHERE periods.periodID = event_periods.periodID_end AND event_periods.eventID = event_ID) 
+		AS event_end_year
+		
 	FROM events; 
 END $$
 DELIMITER ;
@@ -320,7 +339,6 @@ CREATE TABLE event_periods (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
-
 CREATE PROCEDURE insert_event_period (IN event_name VARCHAR(64), IN block_start VARCHAR(5), 
 IN year_start INT(4), IN block_end VARCHAR(5), IN year_end INT(4))
 BEGIN
@@ -368,14 +386,4 @@ BEGIN
 		WHERE periods.block = block_end AND years.year_value = year_end));
 END $$
 DELIMITER ;
-
-
-
-
-
-
-
-
-
-
 

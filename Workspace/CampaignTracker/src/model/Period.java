@@ -14,15 +14,20 @@ public class Period {
 	}
 	
 	private Block block; //block
-	private String year; //year
+	private int year; //year
 	
 	//constructor:
-	public Period (Block block, String year) {
+	public Period (Block block, int year) {
 		this.block = block;
 		this.year = year;
 	}
 	
 	//getters:
 	public Block getBlock() { return block; }
-	public String getYear() { return year; }
+	public int getYear() { return year; }
+
+	@Override
+	public String toString() {
+		return "Period [block=" + block + ", year=" + year + "]";
+	}
 }

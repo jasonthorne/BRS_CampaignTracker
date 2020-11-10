@@ -61,10 +61,13 @@ public class Event {
 	public List<EventAirForce> getEventAirForces() {
 		return new ArrayList<EventAirForce>(eventAirForces);
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Event [name=" + name + ", eventAirForces=" + eventAirForces + "]";
+		return "Event [name=" + name + ", startPeriod=" + startPeriod + ", endPeriod=" + endPeriod + ", eventAirForces="
+				+ eventAirForces + "]";
 	}
+	
+	
 
 }

@@ -3,52 +3,60 @@ package database;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Event;
 import model.Event.EventBuilder;
 import model.EventAirForce;
-import model.EventAirForce.EventAirForceBuilder;
+import model.Period;
+import model.Period.Block;
 
 public interface SelectEvents {
 
 	public static List<Event> select() {
-	
-	//++++++++++++++++++++
-	//https://www.roseindia.net/jdbc/Jdbc-nested-result-set.shtml#:~:text=The%20JDBC%20Nested%20Result%20Set,is%20the%20simplest%20join%20algorithm.
 		
 		List<Event>events = new ArrayList<Event>(); //list for events
 		
-		try (Connection connection = ConnectDB.getConnection(); //get a connection to the db
+		try (Connection connection = ConnectDB.getConnection();) { //connect to DB
 			
-			//statement for events:
-			CallableStatement eventsStatement = connection.prepareCall("{CALL select_events()}");
-			//statement for event air forces:
-			CallableStatement airForcesStatement = connection.prepareCall("{CALL select_event_airforces(?)}");
-			//result set events query:
-			ResultSet eventsRS = eventsStatement.executeQuery();) { 
+			//prepare select_events():
+			CallableStatement callableStatement = connection.prepareCall("{CALL select_events()}");
 			
-			//result set for air forces query:
-			ResultSet airForcesRS = null; 
-		
+			//execute select_events(), storing returned result set:
+			ResultSet eventsRS = callableStatement.executeQuery();
+			
+			//prepare select_event_airforces(?): 
+			callableStatement = connection.prepareCall("{CALL select_event_airforces(?)}");
+			
+			ResultSet airForcesRS = null; //event air forces result set
+			
 			while(eventsRS.next()) {
 				
 				EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
 				eventBuilder.setName(eventsRS.getString("event_name")); //add event name
 				
+				//add start period:
+				eventBuilder.setStartPeriod(new Period(
+						Block.valueOf(eventsRS.getString("event_start_block").toUpperCase()),
+						eventsRS.getInt("event_start_year")));
+				
+				//add end period:
+				eventBuilder.setEndPeriod(new Period(
+						Block.valueOf(eventsRS.getString("event_end_block").toUpperCase()),
+						eventsRS.getInt("event_end_year")));
+				
 				System.out.println("event_name: " + eventsRS.getString("event_name"));
 				System.out.println("event_ID: " + eventsRS.getInt("event_ID"));
-				System.out.println("period_start_block: " + eventsRS.getString("period_start_block"));
-				System.out.println("period_end_block: " + eventsRS.getString("period_end_block"));
+				System.out.println("event_start_block: " + eventsRS.getString("event_start_block"));
+				System.out.println("event_start_year: " + eventsRS.getInt("event_start_year"));
+				System.out.println("event_end_block: " + eventsRS.getString("event_end_block"));
+				System.out.println("event_end_year: " + eventsRS.getInt("event_end_year"));
 				
 				List<EventAirForce>eventAirForces = new ArrayList<>(); //create list for event air forces
-				airForcesStatement.setInt(1, eventsRS.getInt("event_ID")); //set input with event id
 				
-				airForcesRS = airForcesStatement.executeQuery(); //execute event air forces query
-				
-				//System.out.println("eventsRS.getInt(1): " + eventsRS.getInt(1));
+				callableStatement.setInt(1, eventsRS.getInt("event_ID")); //set input with event id
+				airForcesRS = callableStatement.executeQuery(); //execute event air forces query
 				
 				while(airForcesRS.next()) {
 					
@@ -66,9 +74,9 @@ public interface SelectEvents {
 				events.add(eventBuilder.build());
 			}
 			
-			System.out.println("events: " + events);
+			System.out.println("events: " + events); //=============+++++++++++++
 		
-		}catch(Exception e) { e.printStackTrace(); }
+		} catch(Exception e) { e.printStackTrace(); }
 		
 		return events; //return events
 	}
