@@ -30,19 +30,15 @@ DELIMITER ;
 
 CREATE TABLE years (
 	yearID INT NOT NULL AUTO_INCREMENT,
-	/*name VARCHAR(4) DEFAULT NULL,*/
 	year_value INT(4) DEFAULT NULL,
 	PRIMARY KEY (yearID),
-	/*UNIQUE (name) /* prevent duplicate inserts */
 	UNIQUE (year_value) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
-/*CREATE PROCEDURE insert_year (IN year_name VARCHAR(4))*/
 CREATE PROCEDURE insert_year (IN year_value INT(4))
 BEGIN
-	/*INSERT IGNORE INTO years (name) VALUES (year_name); */
 	INSERT IGNORE INTO years (year_value) VALUES (year_value);
 END $$
 DELIMITER ;
@@ -61,26 +57,21 @@ CREATE TABLE periods (
 
 
 DELIMITER $$
-/*CREATE PROCEDURE insert_period (IN block_option VARCHAR(5), IN year_name VARCHAR(4))*/
 CREATE PROCEDURE insert_period (IN block_option VARCHAR(5), IN year_value INT(4))
 BEGIN
 	DECLARE periodID_check INT DEFAULT 0;
 	
 	/* insert year_name to years if not present; */
-	/*CALL insert_year (year_name);*/
 	CALL insert_year (year_value);
 	
 	/* check for periodID relating to block_option & year_name: */
 	SELECT periodID INTO periodID_check FROM periods
-		/*INNER JOIN years ON periods.yearID = years.yearID
-		WHERE periods.block = block_option AND years.name = year_name;*/
 		INNER JOIN years ON periods.yearID = years.yearID
-		WHERE periods.block = block_option AND years.year_value = year_value;
+	WHERE periods.block = block_option AND years.year_value = year_value;
 	
 	IF periodID_check = 0 THEN /* insert entry if periodID not found: */
 		/* error thrown here if block_option doesnt match enum options: */ 
 		INSERT INTO periods (block, yearID) VALUES ( 
-			/*block_option,(SELECT yearID FROM years WHERE years.name = year_name));*/
 			block_option,(SELECT yearID FROM years WHERE years.year_value = year_value));
 	END IF;
 END $$
@@ -214,25 +205,22 @@ CREATE TABLE plane_availabilities(
 
 
 DELIMITER $$
-CREATE PROCEDURE insert_plane_availability (IN airforce_name VARCHAR(64), IN plane_name VARCHAR(64), 
-/*IN block_option VARCHAR(5), IN year_name VARCHAR(4), IN status_option VARCHAR(11))*/
+CREATE PROCEDURE insert_plane_availability (IN airforce_name VARCHAR(64), IN plane_name VARCHAR(64),
 IN block_option VARCHAR(5), IN year_value INT(4), IN status_option VARCHAR(11))
 BEGIN
 	/* insert period to periods if not present */
-	/*CALL insert_period (block_option, year_name);*/
 	CALL insert_period (block_option, year_value);
 	
 	/* error thrown here if status_option doesnt match enum options, 
 	or on an attempt to insert identical periods for the same airforce_plane: */
 	
 	INSERT INTO plane_availabilities (airforce_planeID, periodID, status) VALUES ( 
-	(SELECT airforce_planeID FROM airforce_planes
-		INNER JOIN airforces ON airforce_planes.airforceID = airforces.airforceID
-		INNER JOIN planes ON airforce_planes.planeID = planes.planeID
+		(SELECT airforce_planeID FROM airforce_planes
+			INNER JOIN airforces ON airforce_planes.airforceID = airforces.airforceID
+			INNER JOIN planes ON airforce_planes.planeID = planes.planeID
 		WHERE airforces.name = airforce_name AND planes.name = plane_name),
-	(SELECT periodID FROM periods
-		INNER JOIN years ON periods.yearID = years.yearID
-		/*WHERE block = block_option AND years.name = year_name),*/
+		(SELECT periodID FROM periods
+			INNER JOIN years ON periods.yearID = years.yearID
 		WHERE block = block_option AND years.year_value = year_value),
 		status_option);
 END $$
@@ -262,7 +250,6 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE select_events ()
 BEGIN
-	
 	SELECT
 		events.name AS event_name,
 		events.eventID AS event_ID,
@@ -275,7 +262,6 @@ BEGIN
 		WHERE periods.periodID = event_periods.periodID_end AND event_periods.eventID = event_ID) 
 		AS period_end_block
 	FROM events; 
-	
 END $$
 DELIMITER ;
 
@@ -300,9 +286,9 @@ IN home_advantage_value BOOLEAN)
 BEGIN
 	/* error thrown here on duplicate airforce_plane insert: */
 	INSERT INTO event_airforces (eventID, airforceID, has_home_advantage) VALUES ( 
-	(SELECT eventID FROM events WHERE events.name = event_name),
-	(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
-	home_advantage_value);
+		(SELECT eventID FROM events WHERE events.name = event_name),
+		(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
+		home_advantage_value);
 END $$
 DELIMITER ;
 
@@ -326,19 +312,11 @@ CREATE TABLE event_periods (
 	event_periodID INT NOT NULL AUTO_INCREMENT,
 	eventID INT, 
 	periodID_start INT,
-	periodID_end INT DEFAULT NULL,
+	periodID_end INT,
 	PRIMARY KEY (event_periodID),
 	FOREIGN KEY (periodID_start) REFERENCES periods(periodID),
 	FOREIGN KEY (periodID_end) REFERENCES periods(periodID),
-	UNIQUE (eventID) /* prevent duplicate inserts
-	/*event_startID,
-	event_endID,
-	PRIMARY KEY (event_periodID),
-	FOREIGN KEY (event_startID) REFERENCES event_starts(event_startID),
-	FOREIGN KEY (event_endID) REFERENCES event_ends(event_endID),
-	UNIQUE (event_startID), /* prevent duplicate inserts 
-	UNIQUE (event_endID), /* prevent duplicate inserts 
-	CONSTRAINT event_startID_event_endID UNIQUE (event_startID, event_endID)	/* make combined columns unique */
+	UNIQUE (eventID) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
@@ -346,7 +324,6 @@ DELIMITER $$
 CREATE PROCEDURE insert_event_period (IN event_name VARCHAR(64), IN block_start VARCHAR(5), 
 IN year_start INT(4), IN block_end VARCHAR(5), IN year_end INT(4))
 BEGIN
-
 	DECLARE block_start_index INT DEFAULT 0;
 	DECLARE block_end_index INT DEFAULT 0;
 	
@@ -369,171 +346,29 @@ BEGIN
 		WHERE periods.block = block_end AND years.year_value = year_end;
 		
 		/* check that block_start_index isnt later than block_end_index: */
-		IF (block_start_index) > block_end_index
+		IF block_start_index > block_end_index
 			THEN CALL throw_error("insert_event_period: [block_start] > [block_end]");
 		END IF;
 		
 		/* check that both enum indexes arent the same: */
-		IF (block_start_index) = block_end_index
+		IF block_start_index = block_end_index
 			THEN CALL throw_error("insert_event_period: [block_start, year_start] = [block_end, year_end]");
 		END IF;
+		
 	END IF;
 	
 	/* add event period to event_periods: */
 	INSERT INTO event_periods (eventID, periodID_start, periodID_end) VALUES ( 
-	(SELECT eventID FROM events WHERE events.name = event_name),
-	(SELECT periodID FROM periods 
-		INNER JOIN years ON periods.yearID  = years.yearID
+		(SELECT eventID FROM events WHERE events.name = event_name),
+		(SELECT periodID FROM periods 
+			INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE periods.block = block_start AND years.year_value = year_start),
-	(SELECT periodID FROM periods 
-		INNER JOIN years ON periods.yearID  = years.yearID
+		(SELECT periodID FROM periods 
+			INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE periods.block = block_end AND years.year_value = year_end));
 END $$
 DELIMITER ;
 
-
-/* ===============================NEW PERIOD TESTING =============================== */
-
-CREATE TABLE event_starts (
-	event_startID INT NOT NULL AUTO_INCREMENT,
-	eventID INT, 
-	periodID INT,
-	PRIMARY KEY (event_startID),
-	FOREIGN KEY (periodID) REFERENCES periods(periodID),
-	UNIQUE (eventID) /* prevent duplicate inserts */
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-
-
-DELIMITER $$
-CREATE PROCEDURE insert_event_start (IN event_name VARCHAR(64), IN block_option VARCHAR(5),
-/*IN year_name VARCHAR(4))*/
-IN year_value INT(4))
-BEGIN
-	INSERT INTO event_starts (eventID, periodID) VALUES ( 
-	(SELECT eventID FROM events WHERE events.name = event_name),
-	(SELECT periodID FROM periods 
-		INNER JOIN years ON periods.yearID  = years.yearID
-		/*WHERE periods.block = block_option AND years.name = year_name));*/ 
-		WHERE periods.block = block_option AND years.year_value = year_value)); 
-END $$
-DELIMITER ;
-
-/*-----------------------*/
-
-CREATE TABLE event_ends (
-	event_endID INT NOT NULL AUTO_INCREMENT,
-	eventID INT,
-	periodID INT,
-	PRIMARY KEY (event_endID),
-	FOREIGN KEY (periodID) REFERENCES periods(periodID),
-	UNIQUE (eventID) /* prevent duplicate inserts */
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
- 
-/*-----------------------*/
-
-/* text into number: +++++++++++++++++++++++
-https://stackoverflow.com/questions/5960620/convert-text-into-number-in-mysql-query
-*/
-
-DELIMITER $$
-CREATE PROCEDURE insert_event_end (IN event_name VARCHAR(64), IN block_option VARCHAR(5),
-/*IN year_name VARCHAR(4))*/
-IN year_value INT(4))
-BEGIN
-	DECLARE event_start_block_index VARCHAR(5) DEFAULT NULL;
-	DECLARE event_start_year_value VARCHAR(4) DEFAULT NULL;
-	DECLARE block_option_index INT DEFAULT 0;
-	
-	/* get years.year_value from event_starts: */
-	SELECT years.year_value INTO event_start_year_value FROM years 
-		INNER JOIN periods on years.yearID = periods.yearID
-		INNER JOIN event_starts ON periods.periodID = event_starts.periodID
-		INNER JOIN events ON event_starts.eventID = events.eventID
-	WHERE events.name = event_name;
-	
-	/* check that start year value isnt later than end year value: */
-	IF event_start_year_value > year_value
-		THEN CALL throw_error("Error: event_starts [year_value] > event_ends [year_value]");
-	END IF;
-	
-	/* if years are the same: */
-	IF event_start_year_value = year_value THEN
-			
-		/* get enum index of periods.block from event_starts: */
-		SELECT periods.block+0 INTO event_start_block_index FROM periods 
-			INNER JOIN event_starts ON periods.periodID = event_starts.periodID
-			INNER JOIN events ON event_starts.eventID = events.eventID
-		WHERE events.name = event_name;
-		
-		/* get enum index of block option: */
-		SELECT periods.block+0 INTO block_option_index FROM periods
-			INNER JOIN years ON periods.yearID = years.yearID
-		WHERE periods.block = block_option AND years.year_value = year_value;
-		
-		/* check that start block option index isnt later than end block option index: */
-		IF (event_start_block_index) > block_option_index
-			THEN CALL throw_error("Error: event_starts [periods.block] > event_ends [periods.block]");
-		END IF;
-		
-		/* check that both enum indexes arent the same: */
-		IF (event_start_block_index) = block_option_index
-			THEN CALL throw_error("Error: event_starts entry = event_ends entry");
-		END IF;
-	END IF;
-	
-	/* add event end entry to event_ends: */
-	INSERT INTO event_ends (eventID, periodID) VALUES ( 
-	(SELECT eventID FROM events WHERE events.name = event_name),
-	(SELECT periodID FROM periods 
-		INNER JOIN years ON periods.yearID  = years.yearID
-	WHERE periods.block = block_option AND years.year_value = year_value));
-	
-	
-	/*
-	IF event_start_year_value IS NOT NULL
-		THEN CALL throw_error(event_start_year_value);
-	END IF;
-	*/
-	
-	/* look for id from event_starts with same event_name & periodID
-	(i.e are you trying to insert the same event period into event_ends as in event_starts) */
-	/*SELECT event_starts.event_startID INTO event_startID_check FROM event_starts
-		INNER JOIN events ON event_starts.eventID = events.eventID
-		INNER JOIN periods ON event_starts.periodID = periods.periodID
-	WHERE events.name = event_name AND periods.periodID = (SELECT periodID FROM periods 
-		INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_option AND years.name = year_name);*/
-		
-	/*+++++++++++ getting periods.block from event_starts +++++++++*/
-	/*SELECT periods.block INTO event_start_block_option FROM periods 
-		INNER JOIN event_starts ON periods.periodID = event_starts.periodID
-		INNER JOIN events ON event_starts.eventID = events.eventID
-	WHERE events.name = event_name;*/
-		
-	/*IF event_start_block_option IS NOT NULL
-		THEN CALL throw_error(event_start_block_option);
-	END IF;*/
-	
-	/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-	
-	/* throw error if above select was successfull: */
-	/*IF event_startID_check > 0 */
-		/*THEN CALL throw_error('Error: Inserting entry into event_ends, identical to event_starts entry.');*/
-	/*ELSE*/
-		/* ++++++++++checking that start period doesnt come after this end period ++++++*/
-		/* get corresponding event_start value's period: */
-		/*SELECT */
-	/*END IF;*/
-	
-	
-	
-	
-END $$
-DELIMITER ;
-
-
-/*THIS NEEDS TO FAIL IF START AND END PERIODS ARE THE SAME, 
-OR IF END DATE COMES BEFORE START DATE+++++++++++++++++*/
 
 
 
