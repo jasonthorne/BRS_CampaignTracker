@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 
 import database.SelectEvents;
@@ -24,6 +25,7 @@ import javafx.scene.layout.AnchorPane;
 import model.Campaign;
 import model.Event;
 import model.Event.EventBuilder;
+import model.EventAirForce;
 
 public class EventsController implements Frameable, Rootable {
 
@@ -34,10 +36,13 @@ public class EventsController implements Frameable, Rootable {
 
     //root fxml element & children:
     @FXML private AnchorPane rootAP;
-    @FXML private AnchorPane listViewAP;
     @FXML private JFXListView<Event> eventsLV;
     @FXML private AnchorPane eventAP;
     @FXML private Label nameLbl;
+    @FXML private Label startPeriodLbl;
+    @FXML private Label endPeriodLbl;
+    @FXML private JFXButton selectEventBtn;
+    @FXML private JFXListView<EventAirForce> airForcesLV;
 
     @FXML
     void initialize() {
@@ -47,10 +52,6 @@ public class EventsController implements Frameable, Rootable {
     
     //observable list of events:
     private final ObservableList<Event>events = FXCollections.observableArrayList();
-    
-    /**===================imaginary db data: =================================*/
-    public static List<Event>cellItemsDB = new ArrayList<Event>();
-   	/**=======================================================================*/
     
     //fxml root node:
   	private Parent root; 
@@ -89,24 +90,6 @@ public class EventsController implements Frameable, Rootable {
 		
 		//set listView cellFactory to create EventCellControllers:
 		eventsLV.setCellFactory(EventCellController -> new EventCellController(this));
-    
-    	/*
-		//populate imaginary db data:
-    	cellItemsDB.add(new Event.EventBuilder().setName("event1").build());
-    	cellItemsDB.add(new Event.EventBuilder().setName("event2").build());
-    	cellItemsDB.add(new Event.EventBuilder().setName("event3").build());
-    	cellItemsDB.add(new Event.EventBuilder().setName("event4").build());
-    	cellItemsDB.add(new Event.EventBuilder().setName("event5").build());
-    	cellItemsDB.add(new Event.EventBuilder().setName("event6").build());
-    	*/
-    	
-    	//++++++++++++++++++++++++++++++++++++++++++++++put this in anpther thread that fires 
-		//add events from db to events:
-		////////events.addAll(cellItemsDB);
-		//events.addAll(events2);// ===============TEST turn off
-		
-		/** ========================================================*/
-		
     }
     
     //add change listener to list view:
@@ -119,6 +102,8 @@ public class EventsController implements Frameable, Rootable {
     			
     			//populate fxml elements with values from selected event:
     	        nameLbl.setText(newVal.getName());
+    	        startPeriodLbl.setText(newVal.getStartPeriod().toString());
+    	        endPeriodLbl.setText(newVal.getEndPeriod().toString());
     	    }
     	});
     }
@@ -129,7 +114,7 @@ public class EventsController implements Frameable, Rootable {
 	public void setRoot() { root = Rootable.getRoot(this, "/view/events.fxml"); } //set root
 	@Override 
 	public Parent getRoot() { return root; } //get root
-
 	@Override 
+	
 	public String getViewTitle() { return "Select Event"; } //get title
 }

@@ -7,6 +7,7 @@ public class Period {
 		EARLY("Early"), MID("Mid"), LATE("Late");
 		
 		private final String block; //name of block
+		
 		//constructor sets name of block:
 		private Block(String block) { this.block = block; } 
 		@Override 
@@ -27,7 +28,5 @@ public class Period {
 	public int getYear() { return year; }
 
 	@Override
-	public String toString() {
-		return "Period [block=" + block + ", year=" + year + "]";
-	}
+	public String toString() { return block + " " + year; }
 }

@@ -15,7 +15,6 @@ public class EventCellController extends JFXListCell<Event> implements Rootable 
 
 	@FXML
     private ResourceBundle resources;
-	
     @FXML
     private URL location;
     
