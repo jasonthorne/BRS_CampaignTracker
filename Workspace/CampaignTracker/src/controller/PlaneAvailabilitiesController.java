@@ -24,10 +24,11 @@ public class PlaneAvailabilitiesController implements Rootable {
     @FXML
     void initialize() {
     	//testLbl.setText(event.getStartPeriod().toString());
-    	testLbl.setText(event.getEventName());
+    	testLbl.setText(event.getEndPeriod().toString());
     	
-    	System.out.println("YO! " + event.getEventAirForces());
-    	
+    	//System.out.println("YO! " + event.getEventAirForce());
+    	System.out.println(event.getEventAirForce());
+    	System.out.println(event);
 
     }
     
@@ -38,7 +39,7 @@ public class PlaneAvailabilitiesController implements Rootable {
     //private String airForceName; //airForce /////////////////////not needed here! :P
     
     //constructor:
-    //PlaneAvailabilitiesController(Event event, String airForceName) {
+    ///////////// PlaneAvailabilitiesController(Event event, String airForceName) {
 	PlaneAvailabilitiesController(Event event) {
 		this.event = event; //assign event covered
     	///////////////////this.airForceName = airForceName;

@@ -24,8 +24,8 @@ public class EventAirForceCellController extends JFXListCell<EventAirForce> impl
     
     //root fxml element & children:
     @FXML private AnchorPane rootAP;
-    @FXML private Label nameLbl;
-    @FXML private Label homeAdvLbl;
+    @FXML private Label airForceNameLbl;
+    @FXML private Label hasHomeAdvLbl;
     @FXML private JFXButton planesBtn;
 
     @FXML
@@ -33,24 +33,33 @@ public class EventAirForceCellController extends JFXListCell<EventAirForce> impl
       //????????????+++++++++++
     	//show planes available:
     	planesBtn.setOnAction(event -> {
-    		//new PlaneAvailabilitiesController(this.event, nameLbl.getText()).showStage();
-    		new PlaneAvailabilitiesController(eventBuilder.build()).showStage();
+    		////////////new PlaneAvailabilitiesController(this.event, airForceNameLbl.getText()).showStage();
+    		//////////////new PlaneAvailabilitiesController(eventBuilder.build()).showStage();
+    		showPlaneAvailabilities();
     	});
     }
     
     //root element for this controller:
   	private final Parent root = Rootable.getRoot(this, "/view/eventAirForceCell.fxml");
   	
-  	//private final Event event; //event covered
+  	///////private final Event event; //event covered
   	private final EventBuilder eventBuilder; //event covered
   	
   	//constructor:
-  	//EventAirForceCellController(Event event) {  //++++++++++++++++++++think about passing an eventBuilder instead!! 
+  	/////////////EventAirForceCellController(Event event) {  
   	EventAirForceCellController(EventBuilder eventBuilder) { 
-  		//this.event = event; //set event covered
+  		//////////this.event = event; //set event covered
   		this.eventBuilder = eventBuilder;
     }
     
+  	private void showPlaneAvailabilities() {
+  		
+  		eventBuilder.setEventAirForce(
+  				new EventAirForce.EventAirForceBuilder()
+  					.setAirForceName(airForceNameLbl.getText())
+				 	.build());
+  		new PlaneAvailabilitiesController(eventBuilder.build()).showStage();
+  	}
     
     //update cell with eventAirForce data:
   	@Override 
@@ -62,13 +71,13 @@ public class EventAirForceCellController extends JFXListCell<EventAirForce> impl
 	        setGraphic(null);
 	    } else {
 			//populate cell with data from eventAirForce:
-			nameLbl.setText(eventAirForce.getAirForceName()); 
-			homeAdvLbl.setText(Boolean.toString(eventAirForce.getHasHomeAdv()));
+	    	airForceNameLbl.setText(eventAirForce.getAirForceName()); 
+			hasHomeAdvLbl.setText(Boolean.toString(eventAirForce.getHasHomeAdv()));
 			
 			//add eventAirForce to eventBuilder: //++++++++++++ make a set AirForcE method ++++++++++
 			//eventBuilder.setEventAirForces(Arrays.asList(eventAirForce));
 			
-			eventBuilder.setEventAirForce(eventAirForce);
+			//eventBuilder.setEventAirForce(eventAirForce);
 			
 			/*eventBuilder.setEventAirForce(new EventAirForce.EventAirForceBuilder()
 					.setAirForceName(eventAirForce.getAirForceName())

@@ -37,13 +37,23 @@ public class Event {
 		}
 		
 		//set air force involved:
+		/*public EventBuilder setEventAirForce(EventAirForce eventAirForce) {
+			event.eventAirForce = new EventAirForce.EventAirForceBuilder()
+					.setAirForceName(eventAirForce.getAirForceName())
+					.setHasHomeAdv(eventAirForce.getHasHomeAdv())
+					.build();
+			event.eventAirForce = eventAirForce;
+			
+			return this;
+		}*/
+		
+		
 		public EventBuilder setEventAirForce(EventAirForce eventAirForce) {
 			/*event.eventAirForce = new EventAirForce.EventAirForceBuilder()
 					.setAirForceName(eventAirForce.getAirForceName())
-					/*.setHasHomeAdv(eventAirForce.getHasHomeAdv())
+					.setHasHomeAdv(eventAirForce.getHasHomeAdv())
 					.build();*/
 			event.eventAirForce = eventAirForce;
-			
 			return this;
 		}
 		
@@ -69,12 +79,17 @@ public class Event {
 		return new Period(endPeriod.getBlock(), endPeriod.getYear());
 	}
 	
+	
 	//get event air force:
 	public EventAirForce getEventAirForce() {
+		
+		/*
 		return new EventAirForce.EventAirForceBuilder()
 				.setAirForceName(eventAirForce.getAirForceName())
 				.setHasHomeAdv(eventAirForce.getHasHomeAdv())
-				.build();
+				.build();*/
+		
+		return eventAirForce;
 	}
 	
 	//get event air forces:
