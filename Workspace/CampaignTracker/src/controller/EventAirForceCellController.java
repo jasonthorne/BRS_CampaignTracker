@@ -33,34 +33,21 @@ public class EventAirForceCellController extends JFXListCell<EventAirForce> impl
       //????????????+++++++++++
     	//show planes available:
     	planesBtn.setOnAction(event -> {
-    		////////////new PlaneAvailabilitiesController(this.event, airForceNameLbl.getText()).showStage();
-    		//////////////new PlaneAvailabilitiesController(eventBuilder.build()).showStage();
-    		showPlaneAvailabilities();
+    		new PlaneAvailabilitiesController(eventBuilder.build()).showStage();
     	});
     }
     
     //root element for this controller:
   	private final Parent root = Rootable.getRoot(this, "/view/eventAirForceCell.fxml");
   	
-  	///////private final Event event; //event covered
   	private final EventBuilder eventBuilder; //event covered
   	
   	//constructor:
-  	/////////////EventAirForceCellController(Event event) {  
-  	EventAirForceCellController(EventBuilder eventBuilder) { 
-  		//////////this.event = event; //set event covered
+  	EventAirForceCellController(EventBuilder eventBuilder) {
   		this.eventBuilder = eventBuilder;
     }
     
-  	private void showPlaneAvailabilities() {
-  		
-  		eventBuilder.setEventAirForce(
-  				new EventAirForce.EventAirForceBuilder()
-  					.setAirForceName(airForceNameLbl.getText())
-				 	.build());
-  		new PlaneAvailabilitiesController(eventBuilder.build()).showStage();
-  	}
-    
+  	
     //update cell with eventAirForce data:
   	@Override 
   	protected void updateItem(EventAirForce eventAirForce, boolean isEmpty) {
@@ -70,23 +57,15 @@ public class EventAirForceCellController extends JFXListCell<EventAirForce> impl
 	        setText(null);
 	        setGraphic(null);
 	    } else {
+	    	
 			//populate cell with data from eventAirForce:
 	    	airForceNameLbl.setText(eventAirForce.getAirForceName()); 
 			hasHomeAdvLbl.setText(Boolean.toString(eventAirForce.getHasHomeAdv()));
 			
-			//add eventAirForce to eventBuilder: //++++++++++++ make a set AirForcE method ++++++++++
-			//eventBuilder.setEventAirForces(Arrays.asList(eventAirForce));
-			
-			//eventBuilder.setEventAirForce(eventAirForce);
-			
-			/*eventBuilder.setEventAirForce(new EventAirForce.EventAirForceBuilder()
-					.setAirForceName(eventAirForce.getAirForceName())
-					.build());
-					/*
+			//add eventAirForce to eventBuilder:
+			eventBuilder.setEventAirForce(
 					new EventAirForce.EventAirForceBuilder()
-						.setAirForceName(eventAirForce.getAirForceName())
-						.build());
-					*/
+	  					.setAirForceName(eventAirForce.getAirForceName()));
 			
 			setText(null); 
 			setGraphic(rootAP); //set this root element as the graphic	

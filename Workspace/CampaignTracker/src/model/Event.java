@@ -48,12 +48,14 @@ public class Event {
 		}*/
 		
 		
-		public EventBuilder setEventAirForce(EventAirForce eventAirForce) {
+		////public EventBuilder setEventAirForce(EventAirForce eventAirForce) {
+		public EventBuilder setEventAirForce(EventAirForce.EventAirForceBuilder eventAirForceBuilder) {
 			/*event.eventAirForce = new EventAirForce.EventAirForceBuilder()
 					.setAirForceName(eventAirForce.getAirForceName())
 					.setHasHomeAdv(eventAirForce.getHasHomeAdv())
 					.build();*/
-			event.eventAirForce = eventAirForce;
+			//event.eventAirForce = eventAirForce;
+			event.eventAirForce = eventAirForceBuilder.build();
 			return this;
 		}
 		
@@ -83,13 +85,12 @@ public class Event {
 	//get event air force:
 	public EventAirForce getEventAirForce() {
 		
-		/*
 		return new EventAirForce.EventAirForceBuilder()
 				.setAirForceName(eventAirForce.getAirForceName())
 				.setHasHomeAdv(eventAirForce.getHasHomeAdv())
-				.build();*/
+				.build();
 		
-		return eventAirForce;
+		//return eventAirForce;
 	}
 	
 	//get event air forces:
