@@ -85,7 +85,7 @@ public class FrameController implements Rootable, Fadeable {
     //====================================
     
     private final Stage stage = new Stage(); //stage
-    private Scene scene; //scene
+    private final Scene scene; //scene
     
     //frame.fxml controller:
   	private static FrameController singleFrameCtrlr = null;

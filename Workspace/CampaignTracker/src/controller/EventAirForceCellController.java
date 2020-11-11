@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import model.Event;
 import model.EventAirForce;
 
-public class EventAirForceCellController extends JFXListCell<EventAirForce> implements Rootable{
+public class EventAirForceCellController extends JFXListCell<EventAirForce> implements Rootable {
 	
 	@FXML
     private ResourceBundle resources;
@@ -24,15 +24,27 @@ public class EventAirForceCellController extends JFXListCell<EventAirForce> impl
     @FXML private AnchorPane rootAP;
     @FXML private Label nameLbl;
     @FXML private Label homeAdvLbl;
-    @FXML private JFXButton planesBtn; ///////???????
+    @FXML private JFXButton planesBtn;
 
     @FXML
     void initialize() {
-      
+      //????????????+++++++++++
+    	//show planes available:
+    	planesBtn.setOnAction(event -> {
+    		new PlaneAvailabilitiesController(this.event, nameLbl.getText()).showStage();
+    	});
     }
     
     //root element for this controller:
   	private final Parent root = Rootable.getRoot(this, "/view/eventAirForceCell.fxml");
+  	
+  	private final Event event; //event covered
+  	
+  	//constructor:
+  	EventAirForceCellController(Event event) {  //++++++++++++++++++++think about passing an eventBuilder instead!! 
+  		this.event = event; //set event covered
+    }
+    
     
     //update cell with eventAirForce data:
   	@Override 
@@ -46,11 +58,10 @@ public class EventAirForceCellController extends JFXListCell<EventAirForce> impl
 			//populate cell with data from eventAirForce:
 			nameLbl.setText(eventAirForce.getAirForceName()); 
 			homeAdvLbl.setText(Boolean.toString(eventAirForce.getHasHomeAdv()));
-			////++++++++++++something here with regard to setting button action ++++++++
 			
 			setText(null); 
 			setGraphic(rootAP); //set this root element as the graphic	
-      }
+	    }
   }
     
     

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Event {
 	
-	private String name; //name of event
+	private String name; //name of event //+++++++++++++++++++++++CHANGE TO EVENTNAME!!
 	private Period startPeriod; //start period
 	private Period endPeriod; //end period
 	private List<EventAirForce>eventAirForces; //air forces involved

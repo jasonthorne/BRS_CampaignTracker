@@ -28,7 +28,7 @@ public class EventCellController extends JFXListCell<Event> implements Rootable 
     }
 	
     //root element for this controller:
-  	private final Parent root = Rootable.getRoot(this, "/view/eventCell.fxml"); //?????????????? needed?????????
+  	private final Parent root = Rootable.getRoot(this, "/view/eventCell.fxml");
     
   	//instance of EventsController:
 	private final EventsController selectEventCtrlr;  //?????????????? needed?????????

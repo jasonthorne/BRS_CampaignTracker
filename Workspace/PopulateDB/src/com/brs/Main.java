@@ -46,8 +46,8 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		System.out.println(" INSERTING DATA:");
 		
 		//=====================these are adding all data: +++++++++++++++++++++++
-		InsertAirForceData_TEST.insert();
-		InsertEventData_TEST.insert();
+		////////InsertAirForceData_TEST.insert();
+		/////////////InsertEventData_TEST.insert();
 		
 		
 		//InsertPlayer_TEST.insert("Bob", "1234");
@@ -62,9 +62,11 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		SelectAll.select("periods");
 		SelectAll.select("event_periods");
 		
+		SelectAll.select("event_airforces");
 		
-		
-		
+		SelectAll.select("planes");
+		SelectAll.select("airforce_planes");
+		SelectAll.select("plane_availabilities");
 		
 		/*
 		//add blocks to DB:
