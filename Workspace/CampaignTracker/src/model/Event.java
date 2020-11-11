@@ -5,9 +5,10 @@ import java.util.List;
 
 public class Event {
 	
-	private String name; //name of event //+++++++++++++++++++++++CHANGE TO EVENTNAME!!
+	private String eventName; //name of event
 	private Period startPeriod; //start period
 	private Period endPeriod; //end period
+	private EventAirForce eventAirForce; //an air force involved
 	private List<EventAirForce>eventAirForces; //air forces involved
 	
 	private Event() {} //blank constructor
@@ -18,8 +19,8 @@ public class Event {
 		private Event event = new Event(); //create event
 		
 		//set name:
-		public EventBuilder setName(String name) {
-			event.name = name;
+		public EventBuilder setEventName(String name) {
+			event.eventName = name;
 			return this;
 		}
 		
@@ -35,6 +36,17 @@ public class Event {
 			return this;
 		}
 		
+		//set air force involved:
+		public EventBuilder setEventAirForce(EventAirForce eventAirForce) {
+			/*event.eventAirForce = new EventAirForce.EventAirForceBuilder()
+					.setAirForceName(eventAirForce.getAirForceName())
+					/*.setHasHomeAdv(eventAirForce.getHasHomeAdv())
+					.build();*/
+			event.eventAirForce = eventAirForce;
+			
+			return this;
+		}
+		
 		//set list of event air forces:
 		public EventBuilder setEventAirForces(List<EventAirForce>eventAirForces) {
 			event.eventAirForces = new ArrayList<EventAirForce>(eventAirForces);
@@ -45,7 +57,7 @@ public class Event {
 	}
 	
 	//getters:
-	public String getName() { return name; }
+	public String getEventName() { return eventName; }
 	
 	//get start period:
 	public Period getStartPeriod() {
@@ -57,6 +69,14 @@ public class Event {
 		return new Period(endPeriod.getBlock(), endPeriod.getYear());
 	}
 	
+	//get event air force:
+	public EventAirForce getEventAirForce() {
+		return new EventAirForce.EventAirForceBuilder()
+				.setAirForceName(eventAirForce.getAirForceName())
+				.setHasHomeAdv(eventAirForce.getHasHomeAdv())
+				.build();
+	}
+	
 	//get event air forces:
 	public List<EventAirForce> getEventAirForces() {
 		return new ArrayList<EventAirForce>(eventAirForces);
@@ -64,7 +84,7 @@ public class Event {
 
 	@Override
 	public String toString() {
-		return "Event [name=" + name + ", startPeriod=" + startPeriod + ", endPeriod=" + endPeriod + ", eventAirForces="
+		return "Event [name=" + eventName + ", startPeriod=" + startPeriod + ", endPeriod=" + endPeriod + ", eventAirForces="
 				+ eventAirForces + "]";
 	}
 	

@@ -49,7 +49,7 @@ public class EventCellController extends JFXListCell<Event> implements Rootable 
   	        setGraphic(null);
   	    } else {
 			//populate cell with data from event:
-			nameLbl.setText(event.getName()); 
+			nameLbl.setText(event.getEventName()); 
 			 
 			setText(null); 
 	        setGraphic(rootAP); //set this root element as the graphic	

@@ -34,7 +34,7 @@ public interface SelectEvents {
 			while(eventsRS.next()) {
 				
 				EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
-				eventBuilder.setName(eventsRS.getString("event_name")); //add event name
+				eventBuilder.setEventName(eventsRS.getString("event_name")); //add event name
 				
 				//add start period:
 				eventBuilder.setStartPeriod(new Period(
@@ -46,14 +46,8 @@ public interface SelectEvents {
 						Block.valueOf(eventsRS.getString("event_end_block").toUpperCase()),
 						eventsRS.getInt("event_end_year")));
 				
-				System.out.println("event_name: " + eventsRS.getString("event_name"));
-				System.out.println("event_ID: " + eventsRS.getInt("event_ID"));
-				System.out.println("event_start_block: " + eventsRS.getString("event_start_block"));
-				System.out.println("event_start_year: " + eventsRS.getInt("event_start_year"));
-				System.out.println("event_end_block: " + eventsRS.getString("event_end_block"));
-				System.out.println("event_end_year: " + eventsRS.getInt("event_end_year"));
-				
-				List<EventAirForce>eventAirForces = new ArrayList<>(); //create list for event air forces
+				//create list for event air forces:
+				List<EventAirForce>eventAirForces = new ArrayList<>(); 
 				
 				callableStatement.setInt(1, eventsRS.getInt("event_ID")); //set input with event id
 				airForcesRS = callableStatement.executeQuery(); //execute event air forces query
@@ -61,10 +55,11 @@ public interface SelectEvents {
 				while(airForcesRS.next()) {
 					
 					//add event air force to eventAirforces:
-					eventAirForces.add(new EventAirForce.EventAirForceBuilder()
-										.setAirForceName(airForcesRS.getString("airforce_name"))
-										.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value"))
-										.build());
+					eventAirForces.add(
+							new EventAirForce.EventAirForceBuilder()
+								.setAirForceName(airForcesRS.getString("airforce_name"))
+								.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value"))
+								.build());
 				}
 				
 				//add event air forces to event builder:
@@ -74,8 +69,6 @@ public interface SelectEvents {
 				events.add(eventBuilder.build());
 			}
 			
-			System.out.println("events: " + events); //=============+++++++++++++
-		
 		} catch(Exception e) { e.printStackTrace(); }
 		
 		return events; //return events

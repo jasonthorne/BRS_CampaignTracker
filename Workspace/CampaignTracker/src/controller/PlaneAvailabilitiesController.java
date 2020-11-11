@@ -24,23 +24,28 @@ public class PlaneAvailabilitiesController implements Rootable {
     @FXML
     void initialize() {
     	//testLbl.setText(event.getStartPeriod().toString());
-    	testLbl.setText(airForceName);
+    	testLbl.setText(event.getEventName());
+    	
+    	System.out.println("YO! " + event.getEventAirForces());
+    	
 
     }
     
   	private final Stage stage = new Stage(); //stage
     private final Scene scene; //scene
     
-    //private final Event event; //event covered
-    private String airForceName; //airForce /////////////////////not needed here! :P
+    private final Event event; //event covered
+    //private String airForceName; //airForce /////////////////////not needed here! :P
     
     //constructor:
-    PlaneAvailabilitiesController(Event event, String airForceName) {
-    	//this.event = event; //assign event covered
-    	this.airForceName = airForceName;
+    //PlaneAvailabilitiesController(Event event, String airForceName) {
+	PlaneAvailabilitiesController(Event event) {
+		this.event = event; //assign event covered
+    	///////////////////this.airForceName = airForceName;
     	//call select here, passing in values +++++++++++++++++
     	scene = new Scene(Rootable.getRoot(this, "/view/planeAvailabilities.fxml")); //add root to scene
     	stage.setScene(scene); //add scene to stage
+    	
     	
     }
     
