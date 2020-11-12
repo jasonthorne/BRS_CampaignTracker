@@ -179,7 +179,7 @@ CREATE TABLE airforce_planes(
 DELIMITER $$
 CREATE PROCEDURE insert_airforce_plane (IN airforce_name VARCHAR(64), IN plane_name VARCHAR(64))
 BEGIN
-	/* insert plane_name to planes if not present */
+	/* insert plane_name to planes if not present: */
 	CALL insert_plane (plane_name);
 	
 	/* error thrown here on duplicate airforce_plane insert: */ 
@@ -208,7 +208,7 @@ DELIMITER $$
 CREATE PROCEDURE insert_plane_availability (IN airforce_name VARCHAR(64), IN plane_name VARCHAR(64),
 IN block_option VARCHAR(5), IN year_value INT(4), IN status_option VARCHAR(11))
 BEGIN
-	/* insert period to periods if not present */
+	/* insert period to periods if not present: */
 	CALL insert_period (block_option, year_value);
 	
 	/* error thrown here if status_option doesnt match enum options, 

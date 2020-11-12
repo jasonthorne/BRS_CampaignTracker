@@ -1,4 +1,7 @@
 
+https://www.khanacademy.org/computing/computer-science/algorithms
+
+
 + proper error nadling label on login & signup
 + back button on sign up
 + proper fade transitions
