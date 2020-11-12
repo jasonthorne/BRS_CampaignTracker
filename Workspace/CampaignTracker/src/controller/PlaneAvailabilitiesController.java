@@ -26,29 +26,32 @@ public class PlaneAvailabilitiesController implements Rootable {
     	//testLbl.setText(event.getStartPeriod().toString());
     	testLbl.setText(event.getEndPeriod().toString());
     	
-    	//System.out.println("YO! " + event.getEventAirForce());
-    	System.out.println(event.getEventAirForce());
-    	System.out.println(event);
+    	//System.out.println(event.getEventAirForce());
+    	//System.out.println(event);
 
     }
     
   	private final Stage stage = new Stage(); //stage
     private final Scene scene; //scene
     
-    private final Event event; //event covered
-    //private String airForceName; //airForce /////////////////////not needed here! :P
+    private final Event event; //event covered ++++++++++++++shouldn't be needed! 
     
     //constructor:
-    ///////////// PlaneAvailabilitiesController(Event event, String airForceName) {
 	PlaneAvailabilitiesController(Event event) {
-		this.event = event; //assign event covered
-    	///////////////////this.airForceName = airForceName;
-    	//call select here, passing in values +++++++++++++++++
-    	scene = new Scene(Rootable.getRoot(this, "/view/planeAvailabilities.fxml")); //add root to scene
+		this.event = event; //assign event covered //++++++++++++++shouldn't be needed! 
+		//add root to scene:
+		scene = new Scene(Rootable.getRoot(this, "/view/planeAvailabilities.fxml")); 
     	stage.setScene(scene); //add scene to stage
-    	
-    	
+		
+		
+    	//call select here, passing in values +++++++++++++++++
+    	showPlanes();
+		
     }
+	
+	private void showPlanes() { //
+		
+	}
     
     //show stage:
     void showStage() { stage.showAndWait(); }

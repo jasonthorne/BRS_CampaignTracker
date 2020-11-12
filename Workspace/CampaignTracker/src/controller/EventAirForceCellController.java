@@ -65,7 +65,7 @@ public class EventAirForceCellController extends JFXListCell<EventAirForce> impl
 			//add eventAirForce to eventBuilder:
 			eventBuilder.setEventAirForce(
 					new EventAirForce.EventAirForceBuilder()
-	  					.setAirForceName(eventAirForce.getAirForceName()));
+	  					.setAirForceName(eventAirForce.getAirForceName()).build());
 			
 			setText(null); 
 			setGraphic(rootAP); //set this root element as the graphic	

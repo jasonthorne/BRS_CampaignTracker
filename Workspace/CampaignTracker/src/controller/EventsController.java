@@ -54,7 +54,7 @@ public class EventsController implements Frameable, Rootable {
     private final ObservableList<Event>events = FXCollections.observableArrayList();
     
     //observable list of event's air forces::
-    private ObservableList<EventAirForce>eventAirforces;
+    private ObservableList<EventAirForce>eventAirForces;
     
     //fxml root node:
   	private Parent root; 
@@ -108,20 +108,17 @@ public class EventsController implements Frameable, Rootable {
     	        startPeriodLbl.setText(newVal.getStartPeriod().toString());
     	        endPeriodLbl.setText(newVal.getEndPeriod().toString());
     	        
-    	        //add selected event's air forces to observable eventAirforces:
-    	        eventAirforces = FXCollections.observableArrayList(newVal.getEventAirForces());
-    	        airForcesLV.setItems(eventAirforces); //set list view with eventAirforces
-    	        //+++++++++++++++++make an eventbuilder here, using newVal to pull its name and periods. then pass it to event airforce controller to add to it there!! 
-    	        ///////////airForcesLV.setCellFactory(EventAirForceCellController -> new EventAirForceCellController(newVal));
-    	        //set cell factory to create controller classes with an eventBuilder holding eventName & periods of selected event:
-    	       airForcesLV.setCellFactory(
-    	        		EventAirForceCellController -> new EventAirForceCellController(
-	    	        		new Event.EventBuilder()
-								.setEventName(newVal.getEventName())
-								.setStartPeriod(newVal.getStartPeriod())
-								.setEndPeriod(newVal.getEndPeriod()))
-    	        		);
-    	      
+    	        //add selected event's air forces to observable eventAirForces:
+    	        eventAirForces = FXCollections.observableArrayList(newVal.getEventAirForces());
+    	        airForcesLV.setItems(eventAirForces); //set list view with eventAirForces
+    	        
+    	        //set cell factory to create EventAirForceCellControllers:
+    	       airForcesLV.setCellFactory(EventAirForceCellController -> new EventAirForceCellController(
+    	    		//pass eventBuilder, holding selected event's name & periods: 
+	        		new Event.EventBuilder()
+							 .setEventName(newVal.getEventName())
+							 .setStartPeriod(newVal.getStartPeriod())
+							 .setEndPeriod(newVal.getEndPeriod())));
     	    }
     	});
     }
