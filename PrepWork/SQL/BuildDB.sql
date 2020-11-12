@@ -330,7 +330,7 @@ BEGIN
 	SELECT
 		airforces.name AS airforce_name, 
 		event_airforces.has_home_advantage AS home_advantage_value,
-		event_airforces.eventID_airforceID AS eventID_airforce_ID
+		event_airforces.airforceID AS airforce_ID
 	FROM event_airforces
 		INNER JOIN airforces ON event_airforces.airforceID = airforces.airforceID
 	WHERE event_airforces.eventID = event_ID;
