@@ -189,6 +189,18 @@ BEGIN
 END $$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE select_airforce_planes (IN airforce_ID INT)
+BEGIN
+	SELECT
+		planes.name AS plane_name,
+		airforce_planes.airforce_planeID AS airforce_planeID
+	FROM airforce_planes
+		INNER JOIN planes ON airforce_planes.planeID = planes.planeID
+	WHERE airforce_planes.airforceID = airforce_ID;
+END $$
+DELIMITER ;
+
 /*----------------------------------------------------*/
 /* availability statuses of air force planes in relation to historical periods */
 
@@ -313,11 +325,12 @@ DELIMITER ;
 
 
 DELIMITER $$
-CREATE PROCEDURE select_event_airforces (event_ID INT)
+CREATE PROCEDURE select_event_airforces (IN event_ID INT)
 BEGIN
 	SELECT
 		airforces.name AS airforce_name, 
-		has_home_advantage AS home_advantage_value
+		event_airforces.has_home_advantage AS home_advantage_value,
+		event_airforces.eventID_airforceID AS eventID_airforce_ID
 	FROM event_airforces
 		INNER JOIN airforces ON event_airforces.airforceID = airforces.airforceID
 	WHERE event_airforces.eventID = event_ID;

@@ -22,7 +22,7 @@ public class Plane {
 	
 	//builder class:
 	public static class PlaneBuilder {
-		
+	
 		private Plane plane = new Plane(); //create plane
 		
 		//set name:
@@ -37,7 +37,6 @@ public class Plane {
 	//get plane name:
 	public String getPlaneName() { return planeName; }
 
-	
 	@Override
 	public String toString() {
 		return "Plane [planeName=" + planeName + ", periodToStatus=" + periodToStatus + "]";

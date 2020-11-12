@@ -1,10 +1,13 @@
 package model;
 
+import java.util.List;
+
 public class EventAirForce {
 	
 	///////////////private String eventName; //name of event
 	private String airForceName; //name of air force
 	private boolean hasHomeAdv; //if air force has home adv status
+	private List<Plane>airForcePlanes; //planes available to air force
 	
 	private EventAirForce() {} //blank constructor
 	

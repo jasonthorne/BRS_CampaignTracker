@@ -12,7 +12,7 @@ import model.EventAirForce;
 import model.Period;
 import model.Period.Block;
 
-public interface SelectEvents {
+public interface SelectEvents { //++++++++++++++++++++++++call SelectNewEvent() / SelectEventData??????
 
 	public static List<Event> select() {
 		
@@ -31,6 +31,9 @@ public interface SelectEvents {
 			
 			ResultSet airForcesRS = null; //event air forces result set
 			
+			//=============================================================
+			ResultSet planesRS = null; //air forece planes result set
+			//=============================================================
 			while(eventsRS.next()) {
 				
 				EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
