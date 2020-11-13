@@ -194,7 +194,7 @@ CREATE PROCEDURE select_airforce_planes (IN airforce_ID INT)
 BEGIN
 	SELECT
 		planes.name AS plane_name,
-		airforce_planes.airforce_planeID AS airforce_planeID
+		airforce_planes.airforce_planeID AS airforce_plane_ID
 	FROM airforce_planes
 		INNER JOIN planes ON airforce_planes.planeID = planes.planeID
 	WHERE airforce_planes.airforceID = airforce_ID;

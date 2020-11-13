@@ -90,7 +90,7 @@
 			"planes": [
 				{
 					"plane": {
-						"name": "C",
+						"name": "1",
 						"period_statuses": [
 							{
 								"period_status":{
@@ -115,7 +115,7 @@
 				},
 				{
 					"plane": {
-						"name": "D",
+						"name": "2",
 						"period_statuses": [
 							{
 								"period_status":{
@@ -161,7 +161,7 @@
 			"planes": [
 				{
 					"plane": {
-						"name": "C",
+						"name": "A1",
 						"period_statuses": [
 							{
 								"period_status":{
@@ -186,7 +186,7 @@
 				},
 				{
 					"plane": {
-						"name": "D",
+						"name": "A2",
 						"period_statuses": [
 							{
 								"period_status":{

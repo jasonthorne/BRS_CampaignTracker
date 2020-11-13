@@ -42,14 +42,15 @@ public class EventAirForceCellController extends JFXListCell<EventAirForce> impl
   	
   	private final EventBuilder eventBuilder; //event covered
   	
+  	//+++++++++++++++Have plane availabilities controller here +++++++++++++++++++++
+  	
   	//constructor:
   	EventAirForceCellController(EventBuilder eventBuilder) {
   		this.eventBuilder = eventBuilder;
     }
     
-  	
     //update cell with eventAirForce data:
-  	@Override 
+	@Override 
   	protected void updateItem(EventAirForce eventAirForce, boolean isEmpty) {
   		super.updateItem(eventAirForce, isEmpty);
 	  	
@@ -66,12 +67,11 @@ public class EventAirForceCellController extends JFXListCell<EventAirForce> impl
 			eventBuilder.setEventAirForce(
 					new EventAirForce.EventAirForceBuilder()
 	  					.setAirForceName(eventAirForce.getAirForceName()).build());
+			//++++++++++++++++++++++pass this to a method in plane availabilities ctrlr along with eventBuilder.
 			
 			setText(null); 
 			setGraphic(rootAP); //set this root element as the graphic	
 	    }
-  }
+	}
     
-    
-
 }
