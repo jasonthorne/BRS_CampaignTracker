@@ -2,6 +2,9 @@
 https://www.khanacademy.org/computing/computer-science/algorithms
 
 
+https://www.google.com/search?q=mysql+sort+by+one+then+another&rlz=1C1CHBF_enIE916IE916&oq=mysql+sort+by+one+then+another&aqs=chrome..69i57j0i22i30i457j69i64.8270j1j7&sourceid=chrome&ie=UTF-8
+
+
 + proper error nadling label on login & signup
 + back button on sign up
 + proper fade transitions

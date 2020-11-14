@@ -239,16 +239,45 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE select_plane_availabilities (IN airforce_plane_ID INT)
+CREATE PROCEDURE select_plane_availabilities (IN airforce_plane_ID INT, IN event_ID INT)
 BEGIN
+
+	/* ++++++++++++++++++++ bring in start and end periods from event
+	then grab only the period_status that lie within that range ++++++++++++++ 
+	(GET PERIOD_IDS FROM select_events  - or maybe not as we have eventID :P) ++++++++++++++++++ */
+	
+	/* ++++++++++get period data range using eventID to grab start and end vals */
+		/* ++++++++declare as a value here. use this ORDERED value for comparrison when grabbing other periods */
+		
+		/*event_periodID INT NOT NULL AUTO_INCREMENT,
+		eventID INT, 
+		periodID_start INT,
+		periodID_end INT,*/
+		
+		
+		
+	 
 	SELECT
+		/*(SELECT periods.periodID FROM periods 
+			INNER JOIN event_periods ON periods.periodID = event_periods.eventID = event_ID
+		WHERE periods.periodID = event_periods.eventID OR periods.periodID = event_periods.eventID) 
+		AS target_periods,*/
+		
+		periods.periodID AS valid_period,
+		
 		periods.block AS block_option,
 		years.year_value AS year_value,
 		plane_availabilities.status AS status_option
 	FROM plane_availabilities
 		INNER JOIN periods ON plane_availabilities.periodID = periods.periodID
 		INNER JOIN years ON periods.yearID = years.yearID
-	WHERE plane_availabilities.airforce_planeID = airforce_plane_ID;
+	/*WHERE plane_availabilities.airforce_planeID = airforce_plane_ID; ++++++++++++*/
+	WHERE plane_availabilities.airforce_planeID = airforce_plane_ID
+	AND valid_period IN (SELECT periods.periodID FROM periods 
+			INNER JOIN event_periods ON periods.periodID = event_periods.eventID = event_ID);
+	/* ++++++++++++++++ Look at what youve added above :P ++++++++++++++++ */
+	
+	
 END $$
 DELIMITER ;
 

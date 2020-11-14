@@ -29,7 +29,7 @@ public interface SelectEvents {
 			CallableStatement eventsStatement = connection.prepareCall("{CALL select_events()}");
 			CallableStatement airForcesStatement = connection.prepareCall("{CALL select_event_airforces(?)}");
 			CallableStatement planesStatement = connection.prepareCall("{CALL select_airforce_planes(?)}");
-			CallableStatement availabilitiesStatement = connection.prepareCall("{CALL select_plane_availabilities(?)}");
+			CallableStatement availabilitiesStatement = connection.prepareCall("{CALL select_plane_availabilities(?,?)}");
 			ResultSet eventsRS = eventsStatement.executeQuery();) { //execute events statement
 			
 			//result sets for nested data:
@@ -94,8 +94,9 @@ public interface SelectEvents {
 						//create map for plane availabilities:
 						Map<Period, Status>planeAvailabilities = new HashMap<>();
 						
-						//set statement input with air force plane id:
-						availabilitiesStatement.setInt(1, planesRS.getInt("airforce_plane_ID")); 
+						//set statement input parameters with air force plane id & event id:
+						availabilitiesStatement.setInt(1, planesRS.getInt("airforce_plane_ID"));
+						availabilitiesStatement.setInt(2, eventsRS.getInt("event_ID"));
 						availabilitiesRS = availabilitiesStatement.executeQuery(); //execute availabilities query
 						
 						System.out.println(""); //++++++++++

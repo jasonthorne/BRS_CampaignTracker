@@ -65,7 +65,8 @@ public class EventsController implements Frameable, Rootable {
     }
     
     //populates events with events from db:
-    private void setEvents() {
+    ////////private void setEvents() { +++++++++++++++
+	void setEvents() {
     	
     	//executor service for task thread:
     	ExecutorService service = Executors.newSingleThreadExecutor(); 
