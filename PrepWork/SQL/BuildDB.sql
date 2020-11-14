@@ -273,9 +273,17 @@ BEGIN
 		INNER JOIN years ON periods.yearID = years.yearID
 	/*WHERE plane_availabilities.airforce_planeID = airforce_plane_ID; ++++++++++++*/
 	WHERE plane_availabilities.airforce_planeID = airforce_plane_ID
-	AND valid_period IN (SELECT periods.periodID FROM periods 
-			INNER JOIN event_periods ON periods.periodID = event_periods.eventID = event_ID);
+	
+	
+	AND periods.periodID IN
+		(SELECT periods.periodID FROM periods 
+			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_start
+			AND periods.periodID = event_periods.periodID_end
+		WHERE event_periods.eventID = event_ID);
+			
+			
 	/* ++++++++++++++++ Look at what youve added above :P ++++++++++++++++ */
+	/*https://www.mysqltutorial.org/sql-in.aspx/*/
 	
 	
 END $$

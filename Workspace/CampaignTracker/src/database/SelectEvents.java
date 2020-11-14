@@ -106,6 +106,7 @@ public interface SelectEvents {
 							System.out.print("| block_option:" + availabilitiesRS.getString("block_option"));
 							System.out.print(". year_value:" + availabilitiesRS.getInt("year_value"));
 							System.out.print(". status_option:" + availabilitiesRS.getString("status_option"));
+							System.out.print(". valid_period:" + availabilitiesRS.getInt("valid_period"));
 						}
 						
 					}
