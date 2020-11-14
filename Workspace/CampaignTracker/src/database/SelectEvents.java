@@ -4,14 +4,19 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import model.Event;
 import model.Event.EventBuilder;
-import model.EventAirForce;
-import model.EventAirForce.EventAirForceBuilder;
+import model.AirForce;
+import model.AirForce.AirForceBuilder;
 import model.Period;
 import model.Period.Block;
+import model.Plane;
+import model.Plane.PlaneBuilder;
+import model.Plane.Status;
 
 public interface SelectEvents {
 
@@ -24,11 +29,13 @@ public interface SelectEvents {
 			CallableStatement eventsStatement = connection.prepareCall("{CALL select_events()}");
 			CallableStatement airForcesStatement = connection.prepareCall("{CALL select_event_airforces(?)}");
 			CallableStatement planesStatement = connection.prepareCall("{CALL select_airforce_planes(?)}");
+			CallableStatement availabilitiesStatement = connection.prepareCall("{CALL select_plane_availabilities(?)}");
 			ResultSet eventsRS = eventsStatement.executeQuery();) { //execute events statement
 			
 			//result sets for nested data:
-			ResultSet airForcesRS = null; //event air forces result set
-			ResultSet planesRS = null; //event air force planes result set
+			ResultSet airForcesRS = null; //air forces result set
+			ResultSet planesRS = null; //air force planes result set
+			ResultSet availabilitiesRS = null; //plane availabilities result set
 			
 			while(eventsRS.next()) {
 				
@@ -46,35 +53,46 @@ public interface SelectEvents {
 						eventsRS.getInt("event_end_year")));
 				
 				//create list for event air forces:
-				List<EventAirForce>eventAirForces = new ArrayList<>(); 
+				List<AirForce>eventAirForces = new ArrayList<>();
 				
-				airForcesStatement.setInt(1, eventsRS.getInt("event_ID")); //set input with event id
-				airForcesRS = airForcesStatement.executeQuery(); //execute event air forces query
+				//set statement input with event id:
+				airForcesStatement.setInt(1, eventsRS.getInt("event_ID")); 
+				airForcesRS = airForcesStatement.executeQuery(); //execute air forces query
 				
 				while(airForcesRS.next()) {
 					
-					//create event air force builder:
-					EventAirForceBuilder eventAirForceBuilder = new EventAirForce.EventAirForceBuilder()
-							.setAirForceName(airForcesRS.getString("airforce_name")) //add air force name
-							.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value")); //add home adv value
+					//create new air force builder:
+					AirForceBuilder airForceBuilder = new AirForce.AirForceBuilder();
+					airForceBuilder.setAirForceName(airForcesRS.getString("airforce_name")); //add air force name
+					airForceBuilder.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value")); //add home adv value
 					
-					/*
+					
 					//add event air force to eventAirforces:
 					eventAirForces.add(
-							new EventAirForce.EventAirForceBuilder()
+							new AirForce.AirForceBuilder()
 								.setAirForceName(airForcesRS.getString("airforce_name"))
 								.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value"))
 								//++++++++++++++++++STORE AIRFORCEID HERE TOO! ++++++++++++++++++++
-								.build());*/
+								.build());
 					
-					System.out.println("airForcesRS.getInt(airforce_ID) " + airForcesRS.getInt("airforce_ID"));
+					//create list for air force planes:
+					List<Plane>airForcePlanes = new ArrayList<>(); 
 			
-					planesStatement.setInt(1, airForcesRS.getInt("airforce_ID")); //set input with air force id
+					//set statement input with air force id:
+					planesStatement.setInt(1, airForcesRS.getInt("airforce_ID")); 
 					planesRS = planesStatement.executeQuery(); //execute planes query
 					
 					while(planesRS.next()) {
+						
+						//create new plane builder:
+						PlaneBuilder planeBuilder = new Plane.PlaneBuilder();
+						planeBuilder.setPlaneName(planesRS.getString("plane_name")); //add plane name
+						
 						System.out.println("plane_name: " + planesRS.getString("plane_name"));
 						System.out.println("airforce_plane_ID: " + planesRS.getString("airforce_plane_ID"));
+						
+						//create map for plane availabilities:
+						Map<Period, Status>planeAvailabilities = new HashMap<>();
 					}
 					
 				}

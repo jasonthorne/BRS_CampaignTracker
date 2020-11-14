@@ -15,8 +15,8 @@ public class Plane {
 		public String toString() { return status; } //return chosen status
 	}
 	
-	private String planeName; //name of plane
-	private Map<Period, Status>periodToStatus; //status per period of history
+	private String name; //name of plane
+	private Map<Period, Status>availabilities; //availability per period of history
 
 	private Plane() {} //blank constructor
 	
@@ -27,7 +27,7 @@ public class Plane {
 		
 		//set name:
 		public PlaneBuilder setPlaneName(String name) {
-			plane.planeName = name;
+			plane.name = name;
 			return this;
 		}
 		
@@ -35,11 +35,11 @@ public class Plane {
 	}
 	
 	//get plane name:
-	public String getPlaneName() { return planeName; }
+	public String getPlaneName() { return name; }
 
 	@Override
 	public String toString() {
-		return "Plane [planeName=" + planeName + ", periodToStatus=" + periodToStatus + "]";
+		return "Plane [name=" + name + ", availabilities=" + availabilities + "]";
 	}
 	
 		

@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Event {
 	
-	private String eventName; //name of event
+	private String name; //name of event
 	private Period startPeriod; //start period
 	private Period endPeriod; //end period
-	private EventAirForce eventAirForce; //an air force involved
-	private List<EventAirForce>eventAirForces; //list of air forces involved
+	private AirForce airForce; //an air force involved
+	private List<AirForce>airForces; //list of air forces involved
 	
 	private Event() {} //blank constructor
 	
@@ -20,7 +20,7 @@ public class Event {
 		
 		//set name:
 		public EventBuilder setEventName(String name) {
-			event.eventName = name;
+			event.name = name;
 			return this;
 		}
 		
@@ -36,28 +36,29 @@ public class Event {
 			return this;
 		}
 		
-		//set event air force:
-		public EventBuilder setEventAirForce(EventAirForce eventAirForce) {
-			event.eventAirForce = new EventAirForce.EventAirForceBuilder()
-					.setAirForceName(eventAirForce.getAirForceName())
-					.setHasHomeAdv(eventAirForce.getHasHomeAdv())
+		//set event air force: //+++++++++++++++++PROB DONT NEED! :P
+		public EventBuilder setEventAirForce(AirForce airForce) { //+++++++++++++++++++++++MAKE STRONGER
+			event.airForce = new AirForce.AirForceBuilder()
+					.setAirForceName(airForce.getAirForceName())
+					.setHasHomeAdv(airForce.getHasHomeAdv())
 					.build();
-			event.eventAirForce = eventAirForce;
+			///////event.airForce = airForce; +++++++++++
 			return this;
 		}
 		
 		//set list of event air forces:
 		//+++++++++++++++++++++++++++++++loop through passed list and make a new one with each val
-		public EventBuilder setEventAirForces(List<EventAirForce>eventAirForces) {
-			event.eventAirForces = new ArrayList<EventAirForce>(eventAirForces);
+		public EventBuilder setEventAirForces(List<AirForce>airForces) { //++++++++++++++++++++MAKE STRONGER
+			event.airForces = new ArrayList<AirForce>(airForces);
 			return this;
 		}
 		
-		public Event build() { return event; } //return built event
+		//return built event:
+		public Event build() { return event; } 
 	}
 	
 	//get event name:
-	public String getEventName() { return eventName; }
+	public String getEventName() { return name; }
 	
 	//get start period:
 	public Period getStartPeriod() {
@@ -70,24 +71,24 @@ public class Event {
 	}
 	
 	//get event air force:
-	public EventAirForce getEventAirForce() {
+	public AirForce getEventAirForce() {
 		
-		return new EventAirForce.EventAirForceBuilder()
-				.setAirForceName(eventAirForce.getAirForceName())
-				.setHasHomeAdv(eventAirForce.getHasHomeAdv())
+		return new AirForce.AirForceBuilder()
+				.setAirForceName(airForce.getAirForceName())
+				.setHasHomeAdv(airForce.getHasHomeAdv())
 				.build();
 	}
 	
 	//get event air forces:
-	public List<EventAirForce> getEventAirForces() {
+	public List<AirForce> getEventAirForces() {
 		//+++++++++++++++++++++++++++++++loop through passed list and make a new one with each val & pass that! 
-		return new ArrayList<EventAirForce>(eventAirForces);
+		return new ArrayList<AirForce>(airForces);
 	}
 
 	@Override
 	public String toString() {
-		return "Event [eventName=" + eventName + ", startPeriod=" + startPeriod + ", endPeriod=" + endPeriod
-				+ ", eventAirForce=" + eventAirForce + ", eventAirForces=" + eventAirForces + "]";
+		return "Event [name=" + name + ", startPeriod=" + startPeriod + ", endPeriod=" + endPeriod
+				+ ", airForce=" + airForce + ", airForces=" + airForces + "]";
 	}
 
 }

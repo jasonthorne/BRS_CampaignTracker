@@ -13,9 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import model.Event;
 import model.Event.EventBuilder;
-import model.EventAirForce;
+import model.AirForce;
 
-public class EventAirForceCellController extends JFXListCell<EventAirForce> implements Rootable {
+public class AirForceCellController extends JFXListCell<AirForce> implements Rootable {
 	
 	@FXML
     private ResourceBundle resources;
@@ -38,35 +38,35 @@ public class EventAirForceCellController extends JFXListCell<EventAirForce> impl
     }
     
     //root element for this controller:
-  	private final Parent root = Rootable.getRoot(this, "/view/eventAirForceCell.fxml");
+  	private final Parent root = Rootable.getRoot(this, "/view/airForceCell.fxml");
   	
   	private final EventBuilder eventBuilder; //event covered
   	
   	//+++++++++++++++Have plane availabilities controller here +++++++++++++++++++++
   	
   	//constructor:
-  	EventAirForceCellController(EventBuilder eventBuilder) {
+  	AirForceCellController(EventBuilder eventBuilder) {
   		this.eventBuilder = eventBuilder;
     }
     
     //update cell with eventAirForce data:
 	@Override 
-  	protected void updateItem(EventAirForce eventAirForce, boolean isEmpty) {
-  		super.updateItem(eventAirForce, isEmpty);
+  	protected void updateItem(AirForce airForce, boolean isEmpty) {
+  		super.updateItem(airForce, isEmpty);
 	  	
-		if (isEmpty || eventAirForce == null) {
+		if (isEmpty || airForce == null) {
 	        setText(null);
 	        setGraphic(null);
 	    } else {
 	    	
 			//populate cell with data from eventAirForce:
-	    	airForceNameLbl.setText(eventAirForce.getAirForceName()); 
-			hasHomeAdvLbl.setText(Boolean.toString(eventAirForce.getHasHomeAdv()));
+	    	airForceNameLbl.setText(airForce.getAirForceName()); 
+			hasHomeAdvLbl.setText(Boolean.toString(airForce.getHasHomeAdv()));
 			
 			//add eventAirForce to eventBuilder:
 			eventBuilder.setEventAirForce(
-					new EventAirForce.EventAirForceBuilder()
-	  					.setAirForceName(eventAirForce.getAirForceName()).build());
+					new AirForce.AirForceBuilder()
+	  					.setAirForceName(airForce.getAirForceName()).build());
 			//++++++++++++++++++++++pass this to a method in plane availabilities ctrlr along with eventBuilder.
 			
 			setText(null); 
