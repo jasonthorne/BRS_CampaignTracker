@@ -66,14 +66,14 @@ public interface SelectEvents {
 					airForceBuilder.setAirForceName(airForcesRS.getString("airforce_name")); //add air force name
 					airForceBuilder.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value")); //add home adv value
 					
-					
+					/*
 					//add event air force to eventAirforces:
 					eventAirForces.add(
 							new AirForce.AirForceBuilder()
 								.setAirForceName(airForcesRS.getString("airforce_name"))
 								.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value"))
 								//++++++++++++++++++STORE AIRFORCEID HERE TOO! ++++++++++++++++++++
-								.build());
+								.build());*/
 					
 					//create list for air force planes:
 					List<Plane>airForcePlanes = new ArrayList<>(); 
@@ -88,11 +88,25 @@ public interface SelectEvents {
 						PlaneBuilder planeBuilder = new Plane.PlaneBuilder();
 						planeBuilder.setPlaneName(planesRS.getString("plane_name")); //add plane name
 						
-						System.out.println("plane_name: " + planesRS.getString("plane_name"));
-						System.out.println("airforce_plane_ID: " + planesRS.getString("airforce_plane_ID"));
+						////////////System.out.println("plane_name: " + planesRS.getString("plane_name"));
+						//////////////////System.out.println("airforce_plane_ID: " + planesRS.getString("airforce_plane_ID"));
 						
 						//create map for plane availabilities:
 						Map<Period, Status>planeAvailabilities = new HashMap<>();
+						
+						//set statement input with air force plane id:
+						availabilitiesStatement.setInt(1, planesRS.getInt("airforce_plane_ID")); 
+						availabilitiesRS = availabilitiesStatement.executeQuery(); //execute availabilities query
+						
+						System.out.println(""); //++++++++++
+						
+						while(availabilitiesRS.next()) {
+							
+							System.out.print("| block_option:" + availabilitiesRS.getString("block_option"));
+							System.out.print(". year_value:" + availabilitiesRS.getInt("year_value"));
+							System.out.print(". status_option:" + availabilitiesRS.getString("status_option"));
+						}
+						
 					}
 					
 				}

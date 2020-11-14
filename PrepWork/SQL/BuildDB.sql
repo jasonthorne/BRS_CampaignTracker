@@ -238,6 +238,20 @@ BEGIN
 END $$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE select_plane_availabilities (IN airforce_plane_ID INT)
+BEGIN
+	SELECT
+		periods.block AS block_option,
+		years.year_value AS year_value,
+		plane_availabilities.status AS status_option
+	FROM plane_availabilities
+		INNER JOIN periods ON plane_availabilities.periodID = periods.periodID
+		INNER JOIN years ON periods.yearID = years.yearID
+	WHERE plane_availabilities.airforce_planeID = airforce_plane_ID;
+END $$
+DELIMITER ;
+
 /* ====================EVENT DATA==========used in InsertEventData_TEST in com.brs.events to populate eventData.json=======================================*/
 
 /*----------------------------------------------------*/
