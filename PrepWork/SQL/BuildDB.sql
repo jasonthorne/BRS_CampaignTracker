@@ -413,39 +413,50 @@ CREATE PROCEDURE insert_event_period (IN event_name VARCHAR(64), IN block_start 
 IN year_start INT(4), IN block_end VARCHAR(5), IN year_end INT(4))
 BEGIN
 	/* +++++++++++++++++++++++++++++++++++++++++++++++*/
-	DECLARE block_start_index INT DEFAULT 0; /* holds index of block_start */
-	DECLARE block_end_index INT DEFAULT 0; /* holds index of block_end */
+	/*DECLARE block_start_index INT DEFAULT 0; /* holds index of block_start */
+	/*DECLARE block_end_index INT DEFAULT 0; /* holds index of block_end */
 	/* +++++++++++++++++++++++++++++++++++++++++++++++*/
 	
-	/* max index of block enum: */
-	DECLARE block_max_index INT DEFAULT (SELECT MAX(periods.block+0)
-		FROM periods);
+	/* enum index of block_start: */
+	DECLARE block_start_index INT DEFAULT (
+		SELECT periods.block+0 FROM periods 
+			INNER JOIN years ON periods.yearID = years.yearID
+		WHERE periods.block = block_start AND years.year_value = year_start);
+	
+	/* enum index of block_end: */
+	DECLARE block_end_index INT DEFAULT	(
+		SELECT periods.block+0 FROM periods
+			INNER JOIN years ON periods.yearID = years.yearID
+		WHERE periods.block = block_end AND years.year_value = year_end);
 		
-	DECLARE year_value INT DEFAULT year_start;
-	DECLARE block_value INT DEFAULT 1; 
+	/* max enum index of block: */
+	DECLARE block_max_index INT DEFAULT (
+		SELECT MAX(periods.block+0) FROM periods);
+		
+	DECLARE curr_year INT DEFAULT year_start;
+	DECLARE curr_block INT DEFAULT 1; 
+	DECLARE can_add BOOLEAN DEFAULT FALSE; /* flag for adding values */
 	
 	DECLARE counter INT DEFAULT 0;
-
 	
-	/*CALL throw_error(block_value);*/
+	WHILE curr_year <= year_end DO
 	
-	WHILE year_value <= year_end DO
-	
-		
-		SET block_value = 1; /* (re)set block_value */
-		WHILE block_value <= block_max_index DO
+		SET curr_block = 1; /* (re)set current block */
+		WHILE curr_block <= block_max_index DO
 			
-			
+			IF curr_block = block_start_index AND curr_year = year_start THEN
+				CALL throw_error(curr_year);
+			END IF;
 			
 			SET counter = counter + 1;
-			SET block_value = block_value + 1;
+			SET curr_block = curr_block + 1;
 		END WHILE;
 		
 	
-		SET year_value = year_value + 1;
+		SET curr_year = curr_year + 1;
 	END WHILE;
 	
-	CALL throw_error(counter);
+	
 	
 	/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	
