@@ -412,10 +412,9 @@ DELIMITER $$
 CREATE PROCEDURE insert_event_period (IN event_name VARCHAR(64), IN block_start VARCHAR(5), 
 IN year_start INT(4), IN block_end VARCHAR(5), IN year_end INT(4))
 BEGIN
-	/* +++++++++++++++++++++++++++++++++++++++++++++++*/
-	/*DECLARE block_start_index INT DEFAULT 0; /* holds index of block_start */
-	/*DECLARE block_end_index INT DEFAULT 0; /* holds index of block_end */
-	/* +++++++++++++++++++++++++++++++++++++++++++++++*/
+	DECLARE curr_year INT DEFAULT year_start; /* holds year values */
+	DECLARE curr_block INT; /* holds block values */
+	DECLARE can_add BOOLEAN DEFAULT FALSE; /* flag for adding values */
 	
 	/* enum index of block_start: */
 	DECLARE block_start_index INT DEFAULT (
@@ -432,33 +431,73 @@ BEGIN
 	/* max enum index of block: */
 	DECLARE block_max_index INT DEFAULT (
 		SELECT MAX(periods.block+0) FROM periods);
+	
+	/* check that start year value isnt later than end year value: */
+	IF year_start > year_end
+		THEN CALL throw_error("insert_event_period: [year_start] > [year_end]");
+	END IF;
+	
+	/* if years are the same: */
+	IF year_start = year_end THEN
+			
+		/* check that block_start_index isnt later than block_end_index: */
+		IF block_start_index > block_end_index
+			THEN CALL throw_error("insert_event_period: [block_start] > [block_end]");
+		END IF;
 		
-	DECLARE curr_year INT DEFAULT year_start;
-	DECLARE curr_block INT DEFAULT 1; 
-	DECLARE can_add BOOLEAN DEFAULT FALSE; /* flag for adding values */
+		/* check that both enum indexes arent the same: */
+		IF block_start_index = block_end_index
+			THEN CALL throw_error("insert_event_period: [block_start, year_start] = [block_end, year_end]");
+		END IF;
+		
+	END IF;
 	
-	DECLARE counter INT DEFAULT 0;
-	
-	WHILE curr_year <= year_end DO
+	/* add event_periods: */
+	WHILE curr_year <= year_end DO /* loop through years */
 	
 		SET curr_block = 1; /* (re)set current block */
-		WHILE curr_block <= block_max_index DO
+		WHILE curr_block <= block_max_index DO /* loop through blocks */
 			
+			/* if found start date, allow adding of event periods: */
 			IF curr_block = block_start_index AND curr_year = year_start THEN
-				CALL throw_error(curr_year);
+				SET can_add = TRUE;
 			END IF;
 			
-			SET counter = counter + 1;
+			IF can_add = TRUE THEN
+			
+			/* add event period to event_periods: */
+			/*INSERT INTO event_periods (eventID, periodID) VALUES ( 
+				(SELECT eventID FROM events WHERE events.name = event_name),
+				(SELECT periodID FROM periods 
+					INNER JOIN years ON periods.yearID  = years.yearID
+				WHERE periods.block = block_start AND years.year_value = year_start),
+				(SELECT periodID FROM periods 
+					INNER JOIN years ON periods.yearID  = years.yearID
+				WHERE periods.block = block_end AND years.year_value = year_end));*/
+			
+				/* stop when final target event_period is added: */
+				IF curr_block = block_end_index AND curr_year = year_end THEN
+					SET can_add = FALSE;
+					/*CALL throw_error(curr_year);*/
+					CALL throw_error(curr_block);
+				END IF;
+				
+			END IF;
+			
 			SET curr_block = curr_block + 1;
 		END WHILE;
-		
-	
 		SET curr_year = curr_year + 1;
 	END WHILE;
 	
 	
 	
 	/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	
+	/* +++++++++++++++++++++++++++++++++++++++++++++++*/
+	/*DECLARE block_start_index INT DEFAULT 0; /* holds index of block_start */
+	/*DECLARE block_end_index INT DEFAULT 0; /* holds index of block_end */
+	/* +++++++++++++++++++++++++++++++++++++++++++++++*/
+	
 	
 	/* check that start year value isnt later than end year value: */
 	IF year_start > year_end
@@ -499,20 +538,24 @@ BEGIN
 		(SELECT periodID FROM periods 
 			INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE periods.block = block_end AND years.year_value = year_end));*/
-		
+	
+
+/*	
 	INSERT INTO event_periods (eventID, periodID, periodID_start, periodID_end) VALUES (
 		(SELECT eventID FROM events WHERE events.name = event_name),
-	/* ++++++++++++++temp fix. this is pulling wrong nbumber! ++++++++++++++++:P */
+	/* ++++++++++++++temp fix. this is pulling wrong nbumber! ++++++++++++++++:P 
 		(SELECT periodID FROM periods 
 			INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE periods.block = block_start AND years.year_value = year_start),
-	/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+	/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 		(SELECT periodID FROM periods 
 			INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE periods.block = block_start AND years.year_value = year_start),
 		(SELECT periodID FROM periods 
 			INNER JOIN years ON periods.yearID  = years.yearID
 		WHERE periods.block = block_end AND years.year_value = year_end));
+		
+		*/
 END $$
 DELIMITER ;
 
