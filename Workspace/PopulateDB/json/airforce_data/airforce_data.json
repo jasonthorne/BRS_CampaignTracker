@@ -175,7 +175,7 @@
 							{
 								"period_status":{
 									"period": {
-										"block": "Late",
+										"block": "Early",
 										"year": "1943"
 									},
 									"status": "Limit"
@@ -200,8 +200,8 @@
 							{
 								"period_status":{
 									"period": {
-										"block": "Late",
-										"year": "1941"
+										"block": "Mid",
+										"year": "1943"
 									},
 									"status": "Auto"
 								}

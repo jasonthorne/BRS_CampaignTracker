@@ -399,12 +399,13 @@ CREATE TABLE event_periods (
 	event_periodID INT NOT NULL AUTO_INCREMENT,
 	eventID INT, 
 	periodID INT, /*++++++ TEST */
-	periodID_start INT,
-	periodID_end INT,
+	/*periodID_start INT,
+	periodID_end INT,*/
 	PRIMARY KEY (event_periodID),
 	FOREIGN KEY (eventID) REFERENCES events(eventID),
-	FOREIGN KEY (periodID_start) REFERENCES periods(periodID),
-	FOREIGN KEY (periodID_end) REFERENCES periods(periodID)
+	FOREIGN KEY (periodID) REFERENCES periods(periodID)
+	/*FOREIGN KEY (periodID_start) REFERENCES periods(periodID),
+	FOREIGN KEY (periodID_end) REFERENCES periods(periodID)*/
 	/*++++++++++++++UNIQUE (eventID) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -453,6 +454,7 @@ BEGIN
 	END IF;
 	
 	/* add event_periods: */
+	outer_while:
 	WHILE curr_year <= year_end DO /* loop through years */
 	
 		SET curr_block = 1; /* (re)set current block */
@@ -466,27 +468,26 @@ BEGIN
 			IF can_add = TRUE THEN
 			
 			/* add event period to event_periods: */
-			/*INSERT INTO event_periods (eventID, periodID) VALUES ( 
+			INSERT INTO event_periods (eventID, periodID) VALUES ( 
 				(SELECT eventID FROM events WHERE events.name = event_name),
 				(SELECT periodID FROM periods 
 					INNER JOIN years ON periods.yearID  = years.yearID
-				WHERE periods.block = block_start AND years.year_value = year_start),
-				(SELECT periodID FROM periods 
-					INNER JOIN years ON periods.yearID  = years.yearID
-				WHERE periods.block = block_end AND years.year_value = year_end));*/
-			
+				WHERE periods.block = curr_block AND years.year_value = curr_year));
+				/*CALL throw_error(event_name); ++++++++++++++*/
 				/* stop when final target event_period is added: */
 				IF curr_block = block_end_index AND curr_year = year_end THEN
+					/*CALL throw_error(event_name);*/
 					SET can_add = FALSE;
+					LEAVE outer_while; /* leave outer while 
 					/*CALL throw_error(curr_year);*/
-					CALL throw_error(curr_block);
+					/*CALL throw_error(curr_block);*/
 				END IF;
 				
 			END IF;
 			
-			SET curr_block = curr_block + 1;
+			SET curr_block = curr_block + 1; /* move to next block */
 		END WHILE;
-		SET curr_year = curr_year + 1;
+		SET curr_year = curr_year + 1; /* move to next year */
 	END WHILE;
 	
 	

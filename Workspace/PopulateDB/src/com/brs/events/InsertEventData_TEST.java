@@ -63,6 +63,7 @@ public interface InsertEventData_TEST {
 				JSONObject endPeriod = (JSONObject) event.get("end_period"); //get event ending period
 				String endBlock = (String) endPeriod.get("block");  //get block from ending period
 				int endYear = Integer.parseInt((String) endPeriod.get("year")); //get year from ending period
+				System.out.println("eventName: " + eventName); //+++++++++++++++++++++++++++++++++++
 				callableStatement = connection.prepareCall("{CALL insert_event_period(?,?,?,?,?)}"); //create statement
 				callableStatement.setString(1, eventName); //set input with event name
 		        callableStatement.setString(2, startBlock); //set input with starting block
