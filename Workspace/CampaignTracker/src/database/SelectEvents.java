@@ -53,7 +53,7 @@ public interface SelectEvents {
 				eventBuilder.setEndPeriod(new Period(
 						Block.valueOf(eventsRS.getString("event_end_block").toUpperCase()),
 						eventsRS.getInt("event_end_year")));*/
-				
+				System.out.println("\nevent_name: "+ eventsRS.getString("event_name"));
 				System.out.println("event_start_block: " + eventsRS.getString("event_start_block").toUpperCase());
 				/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 				//create list for event air forces:
@@ -107,9 +107,9 @@ public interface SelectEvents {
 						
 						while(availabilitiesRS.next()) {
 							
-							System.out.print("| block_option:" + availabilitiesRS.getString("block_option"));
+							/*System.out.print("| block_option:" + availabilitiesRS.getString("block_option"));
 							System.out.print(". year_value:" + availabilitiesRS.getInt("year_value"));
-							System.out.print(". status_option:" + availabilitiesRS.getString("status_option"));
+							System.out.print(". status_option:" + availabilitiesRS.getString("status_option"));*/
 							//System.out.print(". valid_period:" + availabilitiesRS.getInt("valid_period"));
 						}
 						

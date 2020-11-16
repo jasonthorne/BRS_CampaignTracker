@@ -339,10 +339,10 @@ BEGIN
 		
 		(SELECT periods.block FROM periods
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID
-		WHERE periods.periodID = 
-			(SELECT MIN(periodID) FROM event_periods WHERE event_periods.eventID = event_ID) 
-		GROUP BY periods.periodID)
-        AS event_start_block
+		WHERE event_periods.event_periodID = 
+			(SELECT MIN(event_periodID) FROM event_periods WHERE event_periods.eventID = event_ID))
+		AS event_start_block  
+		
 		
 		/* select start year: */
 		/*(SELECT years.year_value FROM years 
