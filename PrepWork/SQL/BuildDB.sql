@@ -256,15 +256,8 @@ BEGIN
 		
 		
 		
-	 
+	/* 
 	SELECT
-		/*(SELECT periods.periodID FROM periods 
-			INNER JOIN event_periods ON periods.periodID = event_periods.eventID = event_ID
-		WHERE periods.periodID = event_periods.eventID OR periods.periodID = event_periods.eventID) 
-		AS target_periods,*/
-		
-		/*periods.periodID AS valid_period,*/
-		
 		periods.block AS block_option,
 		years.year_value AS year_value,
 		plane_availabilities.status AS status_option
@@ -275,6 +268,18 @@ BEGIN
 		INNER JOIN events ON event_periods.eventID = event_ID
 	WHERE plane_availabilities.airforce_planeID = airforce_plane_ID
 		AND plane_availabilities.periodID = event_periods.periodID;
+	*/
+	
+	SELECT
+		periods.block AS block_option,
+		years.year_value AS year_value,
+		plane_availabilities.status AS status_option
+	FROM plane_availabilities
+		INNER JOIN periods ON plane_availabilities.periodID = periods.periodID
+		INNER JOIN years ON periods.yearID = years.yearID
+		INNER JOIN event_periods ON plane_availabilities.periodID = event_periods.periodID
+	WHERE plane_availabilities.airforce_planeID = airforce_plane_ID
+		AND event_periods.eventID = event_ID;
 	
 	/*
 	WHERE plane_availabilities.airforce_planeID = airforce_plane_ID
@@ -327,43 +332,31 @@ BEGIN
 		/* select start block: */
 		(SELECT periods.block FROM periods
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID
-		WHERE event_periods.event_periodID = 
-			(SELECT MIN(event_periodID) FROM event_periods WHERE event_periods.eventID = event_ID))
+		WHERE event_periods.event_periodID = (SELECT MIN(event_periodID) 
+			FROM event_periods WHERE event_periods.eventID = event_ID))
 		AS event_start_block, 
 		
 		/* select start year: */
 		(SELECT years.year_value FROM years
 			INNER JOIN periods ON years.yearID = periods.yearID
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID
-		WHERE event_periods.event_periodID = 
-			(SELECT MIN(event_periodID) FROM event_periods WHERE event_periods.eventID = event_ID))
+		WHERE event_periods.event_periodID = (SELECT MIN(event_periodID) 
+			FROM event_periods WHERE event_periods.eventID = event_ID))
 		AS event_start_year,  
 		
 		/* select end block: */
-		/*(SELECT periods.block FROM periods
-			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_end
-		WHERE periods.periodID = event_periods.periodID_end AND event_periods.eventID = event_ID) 
-		AS event_end_block,*/
-		
 		(SELECT periods.block FROM periods
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID
-		WHERE event_periods.event_periodID = 
-			(SELECT MAX(event_periodID) FROM event_periods WHERE event_periods.eventID = event_ID))
+		WHERE event_periods.event_periodID = (SELECT MAX(event_periodID) 
+			FROM event_periods WHERE event_periods.eventID = event_ID))
 		AS event_end_block, 
 		
 		/* select end year: */
-		/*(SELECT years.year_value FROM years 
-			INNER JOIN periods ON years.yearID = periods.yearID
-			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_end
-		WHERE periods.periodID = event_periods.periodID_end AND event_periods.eventID = event_ID) 
-		AS event_end_year*/
-		
-		/* select start year: */
 		(SELECT years.year_value FROM years
 			INNER JOIN periods ON years.yearID = periods.yearID
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID
-		WHERE event_periods.event_periodID = 
-			(SELECT MAX(event_periodID) FROM event_periods WHERE event_periods.eventID = event_ID))
+		WHERE event_periods.event_periodID = (SELECT MAX(event_periodID) 
+			FROM event_periods WHERE event_periods.eventID = event_ID))
 		AS event_end_year  
 		
 	FROM events; 

@@ -19,15 +19,33 @@
 			"planes": [
 				{
 					"plane": {
-						"name": "A",
+						"name": "RAF - BOB - 1",
 						"period_statuses": [
 							{
 								"period_status":{
 									"period": {
-										"block": "Mid",
-										"year": "1940"
+										"block": "Early",
+										"year": "1941"
 									},
 									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1941"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1941"
+									},
+									"status": "Auto"
 								}
 							},
 							{
@@ -36,7 +54,7 @@
 										"block": "Early",
 										"year": "1942"
 									},
-									"status": "Auto"
+									"status": "Unavailable"
 								}
 							}
 						]
@@ -44,7 +62,7 @@
 				},
 				{
 					"plane": {
-						"name": "B",
+						"name": "RAF - BOB - 2",
 						"period_statuses": [
 							{
 								"period_status":{
@@ -90,7 +108,7 @@
 			"planes": [
 				{
 					"plane": {
-						"name": "1",
+						"name": "LUFT - BOB - 1",
 						"period_statuses": [
 							{
 								"period_status":{
@@ -115,7 +133,7 @@
 				},
 				{
 					"plane": {
-						"name": "2",
+						"name": "LUFT - BOB - 2",
 						"period_statuses": [
 							{
 								"period_status":{
