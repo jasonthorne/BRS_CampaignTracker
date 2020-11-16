@@ -41,7 +41,7 @@ public interface SelectEvents {
 				
 				EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
 				eventBuilder.setEventName(eventsRS.getString("event_name")); //add event name
-				
+				/*++++++++++++++++++++START & END STILL NEEDED SOMEWHERE FOR THESE!! :P +++++++++++++++++++ */
 				//add start period:
 				eventBuilder.setStartPeriod(new Period(
 						Block.valueOf(eventsRS.getString("event_start_block").toUpperCase()),
@@ -51,7 +51,7 @@ public interface SelectEvents {
 				eventBuilder.setEndPeriod(new Period(
 						Block.valueOf(eventsRS.getString("event_end_block").toUpperCase()),
 						eventsRS.getInt("event_end_year")));
-				
+				/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 				//create list for event air forces:
 				List<AirForce>eventAirForces = new ArrayList<>();
 				

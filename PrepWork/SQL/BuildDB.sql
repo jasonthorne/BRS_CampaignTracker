@@ -271,7 +271,10 @@ BEGIN
 	FROM plane_availabilities
 		INNER JOIN periods ON plane_availabilities.periodID = periods.periodID
 		INNER JOIN years ON periods.yearID = years.yearID
-	WHERE plane_availabilities.airforce_planeID = airforce_plane_ID; /* +++AND event ID ++++++ */
+		INNER JOIN event_periods ON periods.periodID = event_periods.periodID
+		INNER JOIN events ON event_periods.eventID = event_ID
+	WHERE plane_availabilities.airforce_planeID = airforce_plane_ID
+		AND plane_availabilities.periodID = event_periods.periodID;
 	
 	/*
 	WHERE plane_availabilities.airforce_planeID = airforce_plane_ID
@@ -322,9 +325,15 @@ BEGIN
 		events.eventID AS event_ID,
 		
 		/* select start block: */
-		(SELECT periods.block FROM periods 
+		/*(SELECT periods.block FROM periods 
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_start
 		WHERE periods.periodID = event_periods.periodID_start AND event_periods.eventID = event_ID) 
+		AS event_start_block,*/
+		
+		/* +++++++++++https://www.mysqltutorial.org/mysql-min/ */
+		(SELECT periods.block FROM periods 
+			INNER JOIN event_periods ON periods.periodID = event_periods.periodID
+		WHERE periods.periodID = event_periods.periodID AND event_periods.eventID = event_ID) 
 		AS event_start_block,
 		
 		/* select start year: */
@@ -399,6 +408,7 @@ CREATE TABLE event_periods (
 	event_periodID INT NOT NULL AUTO_INCREMENT,
 	eventID INT, 
 	periodID INT,
+	/*++++++++++++++++++++START & END STILL NEEDED SOMEWHER!! :P +++++++++++++++++++ */
 	PRIMARY KEY (event_periodID),
 	FOREIGN KEY (eventID) REFERENCES events(eventID),
 	FOREIGN KEY (periodID) REFERENCES periods(periodID),
@@ -428,7 +438,7 @@ BEGIN
 	/* max enum index of block: */
 	DECLARE block_max_index INT DEFAULT (
 		SELECT MAX(periods.block+0) FROM periods);
-	
+		
 	/* check that start year value isnt later than end year value: */
 	IF year_start > year_end
 		THEN CALL throw_error("insert_event_period: [year_start] > [year_end]");
@@ -436,6 +446,7 @@ BEGIN
 	
 	/* if years are the same: */
 	IF year_start = year_end THEN
+	
 		/* check that block_start_index isnt later than block_end_index: */
 		IF block_start_index > block_end_index
 			THEN CALL throw_error("insert_event_period: [block_start] > [block_end]");
@@ -477,74 +488,6 @@ BEGIN
 		END WHILE;
 		SET curr_year = curr_year + 1; /* move to next year */
 	END WHILE;
-	
-	
-	
-	/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-	
-	/* +++++++++++++++++++++++++++++++++++++++++++++++*/
-	/*DECLARE block_start_index INT DEFAULT 0; /* holds index of block_start */
-	/*DECLARE block_end_index INT DEFAULT 0; /* holds index of block_end */
-	/* +++++++++++++++++++++++++++++++++++++++++++++++*/
-	
-	
-	/* check that start year value isnt later than end year value: */
-	IF year_start > year_end
-		THEN CALL throw_error("insert_event_period: [year_start] > [year_end]");
-	END IF;
-	
-	/* if years are the same: */
-	IF year_start = year_end THEN
-			
-		/* get enum index of block_start: */
-		SELECT periods.block+0 INTO block_start_index FROM periods 
-			INNER JOIN years ON periods.yearID = years.yearID
-		WHERE periods.block = block_start AND years.year_value = year_start;
-		
-		/* get enum index of block_end: */
-		SELECT periods.block+0 INTO block_end_index FROM periods
-			INNER JOIN years ON periods.yearID = years.yearID
-		WHERE periods.block = block_end AND years.year_value = year_end;
-		
-		/* check that block_start_index isnt later than block_end_index: */
-		IF block_start_index > block_end_index
-			THEN CALL throw_error("insert_event_period: [block_start] > [block_end]");
-		END IF;
-		
-		/* check that both enum indexes arent the same: */
-		IF block_start_index = block_end_index
-			THEN CALL throw_error("insert_event_period: [block_start, year_start] = [block_end, year_end]");
-		END IF;
-		
-	END IF;
-	
-	/* add event period to event_periods: */
-	/*INSERT INTO event_periods (eventID, periodID_start, periodID_end) VALUES ( 
-		(SELECT eventID FROM events WHERE events.name = event_name),
-		(SELECT periodID FROM periods 
-			INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_start AND years.year_value = year_start),
-		(SELECT periodID FROM periods 
-			INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_end AND years.year_value = year_end));*/
-	
-
-/*	
-	INSERT INTO event_periods (eventID, periodID, periodID_start, periodID_end) VALUES (
-		(SELECT eventID FROM events WHERE events.name = event_name),
-	/* ++++++++++++++temp fix. this is pulling wrong nbumber! ++++++++++++++++:P 
-		(SELECT periodID FROM periods 
-			INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_start AND years.year_value = year_start),
-	/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-		(SELECT periodID FROM periods 
-			INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_start AND years.year_value = year_start),
-		(SELECT periodID FROM periods 
-			INNER JOIN years ON periods.yearID  = years.yearID
-		WHERE periods.block = block_end AND years.year_value = year_end));
-		
-		*/
 END $$
 DELIMITER ;
 
