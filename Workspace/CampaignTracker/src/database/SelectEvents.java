@@ -42,8 +42,6 @@ public interface SelectEvents {
 				EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
 				eventBuilder.setEventName(eventsRS.getString("event_name")); //add event name
 				
-				/////////////System.out.println("event_name: " + eventsRS.getString("event_name")); //++++++++++++++
-				
 				//add start period:
 				eventBuilder.setStartPeriod(new Period(
 						Block.valueOf(eventsRS.getString("event_start_block").toUpperCase()),
@@ -68,16 +66,6 @@ public interface SelectEvents {
 					airForceBuilder.setAirForceName(airForcesRS.getString("airforce_name")); //add air force name
 					airForceBuilder.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value")); //add home adv value
 					
-					/////////////System.out.println("airforce_name: " + airForcesRS.getString("airforce_name")); //++++++++++++++
-					/*
-					//add event air force to eventAirforces:
-					eventAirForces.add(
-							new AirForce.AirForceBuilder()
-								.setAirForceName(airForcesRS.getString("airforce_name"))
-								.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value"))
-								//++++++++++++++++++STORE AIRFORCEID HERE TOO! ++++++++++++++++++++
-								.build());*/
-					
 					//create list for air force planes:
 					List<Plane>airForcePlanes = new ArrayList<>(); 
 			
@@ -91,9 +79,6 @@ public interface SelectEvents {
 						PlaneBuilder planeBuilder = new Plane.PlaneBuilder();
 						planeBuilder.setPlaneName(planesRS.getString("plane_name")); //add plane name
 						
-						
-						
-						
 						//create map for plane availabilities:
 						Map<Period, Status>planeAvailabilities = new HashMap<>();
 						
@@ -102,32 +87,42 @@ public interface SelectEvents {
 						availabilitiesStatement.setInt(2, eventsRS.getInt("event_ID"));
 						availabilitiesRS = availabilitiesStatement.executeQuery(); //execute availabilities query
 						
-						System.out.println("plane_name: " + planesRS.getString("plane_name"));
-						//////////System.out.println("airforce_plane_ID: " + planesRS.getString("airforce_plane_ID"));
-						
-					
 						while(availabilitiesRS.next()) {
 							
-							
-							System.out.print("block_option:" + availabilitiesRS.getString("block_option"));
-							System.out.print(". year_value:" + availabilitiesRS.getInt("year_value"));
-							System.out.print(". status_option:" + availabilitiesRS.getString("status_option"));
-							System.out.println(""); 
+							//add plane's availabilities to map:
+							planeAvailabilities.put(new Period(
+									Block.valueOf(availabilitiesRS.getString("block_option").toUpperCase()),
+									availabilitiesRS.getInt("year_value")),
+									Status.valueOf(availabilitiesRS.getString("status_option").toUpperCase()));
 						}
 						
+						//add availabilities to plane builder:
+						planeBuilder.setPlaneAvailabilities(planeAvailabilities);
 						
-					}
+						//add built plane to air force planes:
+						airForcePlanes.add(planeBuilder.build());
+						
+					}//planesRS
 					
-				}
+					//add air force planes to air force builder:
+					airForceBuilder.setPlanes(airForcePlanes);
+					
+					//add built air force to event air forces:
+					eventAirForces.add(airForceBuilder.build());
+					
+				}//airForcesRS
 				
 				//add event air forces to event builder:
 				eventBuilder.setEventAirForces(eventAirForces);
 				
 				//add built event to events:
 				events.add(eventBuilder.build());
-			}
+				
+			}//eventsRS
 			
 		} catch(Exception e) { e.printStackTrace(); }
+		
+		System.out.println("events: "+ events);
 		
 		return events; //return events
 	}

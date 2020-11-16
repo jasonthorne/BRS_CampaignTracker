@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Plane {
@@ -28,6 +29,12 @@ public class Plane {
 		//set name:
 		public PlaneBuilder setPlaneName(String name) {
 			plane.name = name;
+			return this;
+		}
+		
+		//set availabilities:
+		public PlaneBuilder setPlaneAvailabilities(Map<Period, Status>availabilities) {
+			plane.availabilities = new HashMap<Period, Status>(availabilities);
 			return this;
 		}
 		

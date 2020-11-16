@@ -411,7 +411,6 @@ CREATE TABLE event_periods (
 	event_periodID INT NOT NULL AUTO_INCREMENT,
 	eventID INT, 
 	periodID INT,
-	/*++++++++++++++++++++START & END STILL NEEDED SOMEWHER!! :P +++++++++++++++++++ */
 	PRIMARY KEY (event_periodID),
 	FOREIGN KEY (eventID) REFERENCES events(eventID),
 	FOREIGN KEY (periodID) REFERENCES periods(periodID),
