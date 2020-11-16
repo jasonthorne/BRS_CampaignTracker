@@ -398,15 +398,11 @@ DELIMITER ;
 CREATE TABLE event_periods (
 	event_periodID INT NOT NULL AUTO_INCREMENT,
 	eventID INT, 
-	periodID INT, /*++++++ TEST */
-	/*periodID_start INT,
-	periodID_end INT,*/
+	periodID INT,
 	PRIMARY KEY (event_periodID),
 	FOREIGN KEY (eventID) REFERENCES events(eventID),
-	FOREIGN KEY (periodID) REFERENCES periods(periodID)
-	/*FOREIGN KEY (periodID_start) REFERENCES periods(periodID),
-	FOREIGN KEY (periodID_end) REFERENCES periods(periodID)*/
-	/*++++++++++++++UNIQUE (eventID) /* prevent duplicate inserts */
+	FOREIGN KEY (periodID) REFERENCES periods(periodID),
+	CONSTRAINT eventID_periodID UNIQUE (eventID, periodID) /* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DELIMITER $$
@@ -440,7 +436,6 @@ BEGIN
 	
 	/* if years are the same: */
 	IF year_start = year_end THEN
-			
 		/* check that block_start_index isnt later than block_end_index: */
 		IF block_start_index > block_end_index
 			THEN CALL throw_error("insert_event_period: [block_start] > [block_end]");
@@ -448,9 +443,9 @@ BEGIN
 		
 		/* check that both enum indexes arent the same: */
 		IF block_start_index = block_end_index
-			THEN CALL throw_error("insert_event_period: [block_start, year_start] = [block_end, year_end]");
+			THEN CALL throw_error(
+				"insert_event_period: [block_start, year_start] = [block_end, year_end]");
 		END IF;
-		
 	END IF;
 	
 	/* add event_periods: */
@@ -466,25 +461,18 @@ BEGIN
 			END IF;
 			
 			IF can_add = TRUE THEN
-			
 			/* add event period to event_periods: */
 			INSERT INTO event_periods (eventID, periodID) VALUES ( 
 				(SELECT eventID FROM events WHERE events.name = event_name),
 				(SELECT periodID FROM periods 
 					INNER JOIN years ON periods.yearID  = years.yearID
 				WHERE periods.block = curr_block AND years.year_value = curr_year));
-				/*CALL throw_error(event_name); ++++++++++++++*/
+				
 				/* stop when final target event_period is added: */
 				IF curr_block = block_end_index AND curr_year = year_end THEN
-					/*CALL throw_error(event_name);*/
-					SET can_add = FALSE;
-					LEAVE outer_while; /* leave outer while 
-					/*CALL throw_error(curr_year);*/
-					/*CALL throw_error(curr_block);*/
+					LEAVE outer_while; /* leave outer while */
 				END IF;
-				
 			END IF;
-			
 			SET curr_block = curr_block + 1; /* move to next block */
 		END WHILE;
 		SET curr_year = curr_year + 1; /* move to next year */
