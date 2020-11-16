@@ -331,30 +331,38 @@ BEGIN
 		AS event_start_block,*/
 		
 		/* +++++++++++https://www.mysqltutorial.org/mysql-min/ */
-		(SELECT periods.block FROM periods 
+		/*(SELECT periods.block FROM periods 
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID
-		WHERE periods.periodID = event_periods.periodID AND event_periods.eventID = event_ID) 
-		AS event_start_block,
+		WHERE periods.periodID = 
+			(SELECT MIN(periodID) FROM event_periods WHERE event_periods.eventID = event_ID))
+		AS event_start_block*/
+		
+		(SELECT periods.block FROM periods
+			INNER JOIN event_periods ON periods.periodID = event_periods.periodID
+		WHERE periods.periodID = 
+			(SELECT MIN(periodID) FROM event_periods WHERE event_periods.eventID = event_ID) 
+		GROUP BY periods.periodID)
+        AS event_start_block
 		
 		/* select start year: */
-		(SELECT years.year_value FROM years 
+		/*(SELECT years.year_value FROM years 
 			INNER JOIN periods ON years.yearID = periods.yearID
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_start
 		WHERE periods.periodID = event_periods.periodID_start AND event_periods.eventID = event_ID) 
-		AS event_start_year,
+		AS event_start_year,*/
 		
 		/* select end block: */
-		(SELECT periods.block FROM periods
+		/*(SELECT periods.block FROM periods
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_end
 		WHERE periods.periodID = event_periods.periodID_end AND event_periods.eventID = event_ID) 
-		AS event_end_block,
+		AS event_end_block,*/
 		
 		/* select end year: */
-		(SELECT years.year_value FROM years 
+		/*(SELECT years.year_value FROM years 
 			INNER JOIN periods ON years.yearID = periods.yearID
 			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_end
 		WHERE periods.periodID = event_periods.periodID_end AND event_periods.eventID = event_ID) 
-		AS event_end_year
+		AS event_end_year*/
 		
 	FROM events; 
 END $$
