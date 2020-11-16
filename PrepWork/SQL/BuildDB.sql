@@ -241,35 +241,6 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE select_plane_availabilities (IN airforce_plane_ID INT, IN event_ID INT)
 BEGIN
-
-	/* ++++++++++++++++++++ bring in start and end periods from event
-	then grab only the period_status that lie within that range ++++++++++++++ 
-	(GET PERIOD_IDS FROM select_events  - or maybe not as we have eventID :P) ++++++++++++++++++ */
-	
-	/* ++++++++++get period data range using eventID to grab start and end vals */
-		/* ++++++++declare as a value here. use this ORDERED value for comparrison when grabbing other periods */
-		
-		/*event_periodID INT NOT NULL AUTO_INCREMENT,
-		eventID INT, 
-		periodID_start INT,
-		periodID_end INT,*/
-		
-		
-		
-	/* 
-	SELECT
-		periods.block AS block_option,
-		years.year_value AS year_value,
-		plane_availabilities.status AS status_option
-	FROM plane_availabilities
-		INNER JOIN periods ON plane_availabilities.periodID = periods.periodID
-		INNER JOIN years ON periods.yearID = years.yearID
-		INNER JOIN event_periods ON periods.periodID = event_periods.periodID
-		INNER JOIN events ON event_periods.eventID = event_ID
-	WHERE plane_availabilities.airforce_planeID = airforce_plane_ID
-		AND plane_availabilities.periodID = event_periods.periodID;
-	*/
-	
 	SELECT
 		periods.block AS block_option,
 		years.year_value AS year_value,
@@ -280,24 +251,6 @@ BEGIN
 		INNER JOIN event_periods ON plane_availabilities.periodID = event_periods.periodID
 	WHERE plane_availabilities.airforce_planeID = airforce_plane_ID
 		AND event_periods.eventID = event_ID;
-	
-	/*
-	WHERE plane_availabilities.airforce_planeID = airforce_plane_ID
-	
-	
-	AND periods.periodID IN
-		(SELECT periods.periodID FROM periods 
-			INNER JOIN event_periods ON periods.periodID = event_periods.periodID_start
-			AND periods.periodID = event_periods.periodID_end
-		WHERE event_periods.eventID = event_ID);*/
-			
-			
-	/* ++++++++++++++++ Look at what youve added above :P ++++++++++++++++ */
-	/*https://www.mysqltutorial.org/sql-in.aspx/*/
-	
-	/* https://www.mysqltutorial.org/mysql-stored-procedure-tutorial.aspx */
-	
-	
 END $$
 DELIMITER ;
 
