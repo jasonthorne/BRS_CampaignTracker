@@ -65,8 +65,7 @@ public class EventsController implements Frameable, Rootable {
     }
     
     //populates events with events from db:
-    ////////private void setEvents() { +++++++++++++++
-	void setEvents() {
+    private void setEvents() {
     	
     	//executor service for task thread:
     	ExecutorService service = Executors.newSingleThreadExecutor(); 
@@ -112,14 +111,8 @@ public class EventsController implements Frameable, Rootable {
     	        //add selected event's air forces to observable airForces:
     	        airForces = FXCollections.observableArrayList(newVal.getEventAirForces());
     	        airForcesLV.setItems(airForces); //set list view with airForces
-    	        
     	        //set cell factory to create AirForceCellControllers:
-    	       airForcesLV.setCellFactory(AirForceCellController -> new AirForceCellController(
-    	    		//pass eventBuilder, holding selected event's name & periods: 
-	        		new Event.EventBuilder()
-							 .setEventName(newVal.getEventName())
-							 .setStartPeriod(newVal.getStartPeriod())
-							 .setEndPeriod(newVal.getEndPeriod())));
+    	       airForcesLV.setCellFactory(AirForceCellController -> new AirForceCellController());
     	    }
     	});
     }

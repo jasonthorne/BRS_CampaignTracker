@@ -52,7 +52,7 @@
 								"period_status":{
 									"period": {
 										"block": "Early",
-										"year": "1942"
+										"year": "1943"
 									},
 									"status": "Unavailable"
 								}
@@ -67,7 +67,7 @@
 							{
 								"period_status":{
 									"period": {
-										"block": "Mid",
+										"block": "Early",
 										"year": "1942"
 									},
 									"status": "Limit"
@@ -113,8 +113,8 @@
 							{
 								"period_status":{
 									"period": {
-										"block": "Early",
-										"year": "1940"
+										"block": "Mid",
+										"year": "1942"
 									},
 									"status": "Limit"
 								}

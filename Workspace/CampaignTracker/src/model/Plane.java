@@ -43,6 +43,11 @@ public class Plane {
 	
 	//get plane name:
 	public String getPlaneName() { return name; }
+	
+	//get plane availabilities:
+	public HashMap<Period, Status> getPlaneAvailabilities() { 
+		return new HashMap<Period, Status>(availabilities); 
+	}
 
 	@Override
 	public String toString() {

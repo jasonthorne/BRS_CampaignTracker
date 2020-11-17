@@ -1,7 +1,9 @@
 package controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -13,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import model.Event;
 import model.Event.EventBuilder;
+import model.Plane;
 import model.AirForce;
 
 public class AirForceCellController extends JFXListCell<AirForce> implements Rootable {
@@ -33,23 +36,18 @@ public class AirForceCellController extends JFXListCell<AirForce> implements Roo
       //????????????+++++++++++
     	//show planes available:
     	planesBtn.setOnAction(event -> {
-    		new PlaneAvailabilitiesController(eventBuilder.build()).showStage();
+    		System.out.println("planes: "+ planes);
+    		///////////new PlaneAvailabilitiesController(eventBuilder.build()).showStage();
     	});
     }
     
     //root element for this controller:
   	private final Parent root = Rootable.getRoot(this, "/view/airForceCell.fxml");
   	
-  	private final EventBuilder eventBuilder; //event covered
+  	//air force's planes:
+  	private List<Plane>planes;
   	
-  	//+++++++++++++++Have plane availabilities controller here +++++++++++++++++++++
-  	
-  	//constructor:
-  	AirForceCellController(EventBuilder eventBuilder) {
-  		this.eventBuilder = eventBuilder;
-    }
-    
-    //update cell with eventAirForce data:
+    //update cell with air force's data:
 	@Override 
   	protected void updateItem(AirForce airForce, boolean isEmpty) {
   		super.updateItem(airForce, isEmpty);
@@ -59,15 +57,11 @@ public class AirForceCellController extends JFXListCell<AirForce> implements Roo
 	        setGraphic(null);
 	    } else {
 	    	
-			//populate cell with data from eventAirForce:
+			//populate cell with data from air force:
 	    	airForceNameLbl.setText(airForce.getAirForceName()); 
 			hasHomeAdvLbl.setText(Boolean.toString(airForce.getHasHomeAdv()));
 			
-			//add eventAirForce to eventBuilder:
-			eventBuilder.setEventAirForce(
-					new AirForce.AirForceBuilder()
-	  					.setAirForceName(airForce.getAirForceName()).build());
-			//++++++++++++++++++++++pass this to a method in plane availabilities ctrlr along with eventBuilder.
+			planes = airForce.getAirForcePlanes(); //get air force's planes:
 			
 			setText(null); 
 			setGraphic(rootAP); //set this root element as the graphic	

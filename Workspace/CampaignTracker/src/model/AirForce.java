@@ -43,6 +43,10 @@ public class AirForce {
 	public String getAirForceName() { return name; } //get air force name
 	public boolean getHasHomeAdv() { return hasHomeAdv; } //get home adv status
 	
+	public List<Plane> getAirForcePlanes() { //+++++++++++++++++MAKE STRONGER :P
+		return new ArrayList<Plane>(planes);
+	} 
+	
 	@Override
 	public String toString() {
 		return "AirForce [name=" + name + ", hasHomeAdv=" + hasHomeAdv + ", planes=" + planes + "]";

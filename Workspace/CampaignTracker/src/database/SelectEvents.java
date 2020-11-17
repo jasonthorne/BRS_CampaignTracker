@@ -18,6 +18,9 @@ import model.Plane;
 import model.Plane.PlaneBuilder;
 import model.Plane.Status;
 
+/** selects events & their dependencies from db. 
+ * returning a list of event objects, for displaying to user when choosing an event during campaign creation. */
+
 public interface SelectEvents {
 
 	public static List<Event> select() {
@@ -25,7 +28,7 @@ public interface SelectEvents {
 		List<Event>events = new ArrayList<Event>(); //list for events
 		
 		try (Connection connection = ConnectDB.getConnection();  //connect to DB
-			//statements for selecting events and their nested data:
+			//statements for selecting events and their children:
 			CallableStatement eventsStatement = connection.prepareCall("{CALL select_events()}");
 			CallableStatement airForcesStatement = connection.prepareCall("{CALL select_event_airforces(?)}");
 			CallableStatement planesStatement = connection.prepareCall("{CALL select_airforce_planes(?)}");
@@ -122,7 +125,7 @@ public interface SelectEvents {
 			
 		} catch(Exception e) { e.printStackTrace(); }
 		
-		System.out.println("events: "+ events);
+		System.out.println("events: "+ events); //++++++++++++++++++++++
 		
 		return events; //return events
 	}
