@@ -19,15 +19,67 @@
 			"planes": [
 				{
 					"plane": {
-						"name": "RAF - BOB - 1",
+						"name": "Hurricane I",
 						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Hurricane II",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
+							},
 							{
 								"period_status":{
 									"period": {
 										"block": "Early",
 										"year": "1941"
 									},
-									"status": "Limit"
+									"status": "Auto"
 								}
 							},
 							{
@@ -45,6 +97,67 @@
 										"block": "Late",
 										"year": "1941"
 									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1943"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Mosquito II",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1942"
+									},
 									"status": "Auto"
 								}
 							},
@@ -54,7 +167,70 @@
 										"block": "Early",
 										"year": "1943"
 									},
-									"status": "Unavailable"
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1945"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1945"
+									},
+									"status": "Auto"
 								}
 							}
 						]
@@ -62,7 +238,211 @@
 				},
 				{
 					"plane": {
-						"name": "RAF - BOB - 2",
+						"name": "Mosquito VI",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1943"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1945"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1945"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Spitfire II",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Spitfire V",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Spitfire IX",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Spitfire XIV",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Tempest V",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Typhoon Ib",
 						"period_statuses": [
 							{
 								"period_status":{

@@ -35,20 +35,15 @@ public class AirForceCellController extends JFXListCell<AirForce> implements Roo
     @FXML
     void initialize() {
     	
-    	
-      //????????????+++++++++++
     	//show planes available:
     	planesBtn.setOnAction(event -> {
-    		System.out.println("planes: "+ planes);
-    		//new PlaneAvailabilitiesController(startPeriod, endPeriod);
-    		planeAvailabilitiesCtrlr.showStage();
+    		planeAvailabilitiesCtrlr.showPlanes(planes);
     	});
     }
     
     //root element for this controller:
-  	private final Parent root = Rootable.getRoot(
-  			this, "/view/airForceCell.fxml");
-  	
+  	private final Parent root = Rootable.getRoot(this, "/view/airForceCell.fxml");
+  			
   	//air force planes:
   	private List<Plane>planes;
   	
@@ -81,5 +76,4 @@ public class AirForceCellController extends JFXListCell<AirForce> implements Roo
 			setGraphic(rootAP); //set this root element as the graphic	
 	    }
 	}
-    
 }

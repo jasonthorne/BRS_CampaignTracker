@@ -17,12 +17,12 @@
 				}
 			],
 			"start_period": {
-				"block": "Early",
-				"year": "1941"
+				"block": "Mid",
+				"year": "1940"
 			},
 			"end_period": {
 				"block": "Early",
-				"year": "1942"
+				"year": "1941"
 			}
 		}
 	},
@@ -32,24 +32,24 @@
 			"airforces": [
 				{
 					"airforce": {
-						"name": "RAF",
+						"name": "Soviet",
 						"has_home_advantage": "true"
 					}
 				},
 				{
 					"airforce": {
-						"name": "Luftwaffe2",
+						"name": "Luftwaffe",
 						"has_home_advantage": "false"
 					}
 				}
 			],
 			"start_period": {
-				"block": "Early",
-				"year": "1942"
+				"block": "Mid",
+				"year": "1941"
 			},
 			"end_period": {
 				"block": "Late",
-				"year": "1942"
+				"year": "1941"
 			}
 		}
 	}
