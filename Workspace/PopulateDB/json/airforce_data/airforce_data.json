@@ -749,7 +749,262 @@
 			"planes": [
 				{
 					"plane": {
-						"name": "LUFT - BOB - 1",
+						"name": "Bf109 E",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Bf109 F",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1941"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1941"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1942"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1942"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1942"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1943"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Bf109 G",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1942"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1945"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1945"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Bf109 K",
 						"period_statuses": [
 							{
 								"period_status":{
@@ -774,7 +1029,132 @@
 				},
 				{
 					"plane": {
-						"name": "LUFT - BOB - 2",
+						"name": "Bf110 C",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1945"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Bf110 G",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1945"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Fw190 A",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1945"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Fw190 D",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1945"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Me 262 A",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1942"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1945"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Me 262 B",
 						"period_statuses": [
 							{
 								"period_status":{
