@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Event;
+import model.Period;
 
 public class PlaneAvailabilitiesController implements Rootable {
 	
@@ -23,36 +24,47 @@ public class PlaneAvailabilitiesController implements Rootable {
     
     @FXML
     void initialize() {
+    	
+    	
+    	
     	//testLbl.setText(event.getStartPeriod().toString());
-    	testLbl.setText(event.getEndPeriod().toString());
+    	testLbl.setText(startPeriod.toString() + " " + endPeriod.toString());
     	
     	//System.out.println(event.getEventAirForce());
-    	//System.out.println(event);
 
     }
     
   	private final Stage stage = new Stage(); //stage
     private final Scene scene; //scene
     
-    private final Event event; //event covered ++++++++++++++shouldn't be needed! 
+    private Period startPeriod; //start period
+    private Period endPeriod; //end period
     
+  
     //constructor:
-	PlaneAvailabilitiesController(Event event) {
-		this.event = event; //assign event covered //++++++++++++++shouldn't be needed! 
+	PlaneAvailabilitiesController(Period start, Period end) {
+		
+		setPeriods(start, end); //set periods
+		
 		//add root to scene:
 		scene = new Scene(Rootable.getRoot(this, "/view/planeAvailabilities.fxml")); 
     	stage.setScene(scene); //add scene to stage
 		
-		
-    	//call select here, passing in values +++++++++++++++++
-    	showPlanes();
-		
+    	
+    	
+    	//showStage();
+    	
     }
 	
-	private void showPlanes() { //
-		
+	
+	//set start & end periods:
+	void setPeriods(Period start, Period end) {
+		startPeriod = new Period(start.getBlock(), start.getYear());
+		endPeriod = new Period(end.getBlock(), end.getYear());
 	}
+	
     
+	
     //show stage:
     void showStage() { stage.showAndWait(); }
     

@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import model.Event;
 import model.Event.EventBuilder;
+import model.Period;
 import model.Plane;
 import model.AirForce;
 
@@ -33,21 +34,34 @@ public class AirForceCellController extends JFXListCell<AirForce> implements Roo
 
     @FXML
     void initialize() {
+    	
+    	
       //????????????+++++++++++
     	//show planes available:
     	planesBtn.setOnAction(event -> {
     		System.out.println("planes: "+ planes);
-    		///////////new PlaneAvailabilitiesController(eventBuilder.build()).showStage();
+    		//new PlaneAvailabilitiesController(startPeriod, endPeriod);
+    		planeAvailabilitiesCtrlr.showStage();
     	});
     }
     
     //root element for this controller:
-  	private final Parent root = Rootable.getRoot(this, "/view/airForceCell.fxml");
+  	private final Parent root = Rootable.getRoot(
+  			this, "/view/airForceCell.fxml");
   	
-  	//air force's planes:
+  	//air force planes:
   	private List<Plane>planes;
   	
-    //update cell with air force's data:
+  	//controller for showing air force plane availabilities:
+  	private final PlaneAvailabilitiesController planeAvailabilitiesCtrlr;
+  	
+  	//constructor:
+  	AirForceCellController(Period start, Period end){
+  		//create plane availabilities controller, passing it event start & end:
+  		planeAvailabilitiesCtrlr = new PlaneAvailabilitiesController(start, end);
+    }
+  	
+    //update cell with air force data:
 	@Override 
   	protected void updateItem(AirForce airForce, boolean isEmpty) {
   		super.updateItem(airForce, isEmpty);
@@ -61,7 +75,7 @@ public class AirForceCellController extends JFXListCell<AirForce> implements Roo
 	    	airForceNameLbl.setText(airForce.getAirForceName()); 
 			hasHomeAdvLbl.setText(Boolean.toString(airForce.getHasHomeAdv()));
 			
-			planes = airForce.getAirForcePlanes(); //get air force's planes:
+			planes = airForce.getAirForcePlanes(); //get air force planes
 			
 			setText(null); 
 			setGraphic(rootAP); //set this root element as the graphic	

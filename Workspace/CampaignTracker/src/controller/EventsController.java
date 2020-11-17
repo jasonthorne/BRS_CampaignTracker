@@ -111,8 +111,11 @@ public class EventsController implements Frameable, Rootable {
     	        //add selected event's air forces to observable airForces:
     	        airForces = FXCollections.observableArrayList(newVal.getEventAirForces());
     	        airForcesLV.setItems(airForces); //set list view with airForces
-    	        //set cell factory to create AirForceCellControllers:
-    	       airForcesLV.setCellFactory(AirForceCellController -> new AirForceCellController());
+    	        
+    	        //set cell factory to create AirForceCellControllers with selected event's periods:
+    	       airForcesLV.setCellFactory(AirForceCellController ->
+    	    	   new AirForceCellController(newVal.getStartPeriod(), newVal.getEndPeriod())
+    	       );  
     	    }
     	});
     }

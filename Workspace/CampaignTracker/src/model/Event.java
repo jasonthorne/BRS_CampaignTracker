@@ -71,6 +71,7 @@ public class Event {
 		return new Period(endPeriod.getBlock(), endPeriod.getYear());
 	}
 	
+	
 	/*
 	//get event air force:
 	public AirForce getEventAirForce() {
