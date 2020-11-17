@@ -47,7 +47,7 @@ public class PlaneAvailabilitiesController implements Rootable {
 	
 	
     void showPlanes(List<Plane>planes){
-    	System.out.println(planes);
+    	System.out.println(planes); //+++++++++++++++THESE ARE AIRFORCE_PLANES NOT EVENT_AIRFORCE_PLANES!! +++++++++++
     }
 	
     //show stage:
