@@ -1452,7 +1452,7 @@
 			"planes": [
 				{
 					"plane": {
-						"name": "A1",
+						"name": "Hurricane II",
 						"period_statuses": [
 							{
 								"period_status":{
@@ -1477,7 +1477,332 @@
 				},
 				{
 					"plane": {
-						"name": "A2",
+						"name": "Il-2m3 Sturmovik",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "LaGG-3",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Lavochkin La-5FN",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "MiG-3",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "P-39 Airacobra",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "P-63 Kingcobra",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Polikarpov I-15",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Polikarpov I-16",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Polikarpov I-153",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Yak-1",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Yak-3",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Yak-7B",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Yak-9D",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "Yak-9U",
 						"period_statuses": [
 							{
 								"period_status":{
