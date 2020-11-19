@@ -90,20 +90,23 @@ public interface SelectEvents {
 						availabilitiesStatement.setInt(2, eventsRS.getInt("event_ID"));
 						availabilitiesRS = availabilitiesStatement.executeQuery(); //execute availabilities query
 						
-						while(availabilitiesRS.next()) {
+						if (availabilitiesRS.isBeforeFirst()){ //if availabilities where found
 							
-							//add plane's availabilities to map:
-							planeAvailabilities.put(new Period(
-									Block.valueOf(availabilitiesRS.getString("block_option").toUpperCase()),
-									availabilitiesRS.getInt("year_value")),
-									Status.valueOf(availabilitiesRS.getString("status_option").toUpperCase()));
+							while(availabilitiesRS.next()) {
+								
+								//add plane's availabilities to map:
+								planeAvailabilities.put(new Period(
+										Block.valueOf(availabilitiesRS.getString("block_option").toUpperCase()),
+										availabilitiesRS.getInt("year_value")),
+										Status.valueOf(availabilitiesRS.getString("status_option").toUpperCase()));
+							}
+							
+							//add availabilities to plane builder:
+							planeBuilder.setPlaneAvailabilities(planeAvailabilities);
+							
+							//add built plane to air force planes:
+							airForcePlanes.add(planeBuilder.build());
 						}
-						
-						//add availabilities to plane builder:
-						planeBuilder.setPlaneAvailabilities(planeAvailabilities);
-						
-						//add built plane to air force planes:
-						airForcePlanes.add(planeBuilder.build());
 						
 					}//planesRS
 					
@@ -124,8 +127,6 @@ public interface SelectEvents {
 			}//eventsRS
 			
 		} catch(Exception e) { e.printStackTrace(); }
-		
-		System.out.println("events: "+ events); //++++++++++++++++++++++
 		
 		return events; //return events
 	}

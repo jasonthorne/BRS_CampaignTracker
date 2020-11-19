@@ -335,7 +335,7 @@ DELIMITER $$
 CREATE PROCEDURE insert_event_airforce (IN event_name VARCHAR(64), IN airforce_name VARCHAR(64),
 IN home_advantage_value BOOLEAN)
 BEGIN
-	/* error thrown here on duplicate airforce_plane insert: */
+	/* error thrown here on duplicate event_airforce insert: */
 	INSERT INTO event_airforces (eventID, airforceID, has_home_advantage) VALUES ( 
 		(SELECT eventID FROM events WHERE events.name = event_name),
 		(SELECT airforceID FROM airforces WHERE airforces.name = airforce_name),
@@ -445,4 +445,3 @@ BEGIN
 	END WHILE;
 END $$
 DELIMITER ;
-
