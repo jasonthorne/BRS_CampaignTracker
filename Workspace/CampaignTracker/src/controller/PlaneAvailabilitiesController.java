@@ -43,11 +43,14 @@ public class PlaneAvailabilitiesController implements Rootable {
     //----------------------
     
     private TableView table = new TableView();
-    TableColumn firstNameCol = new TableColumn("First Name");
-    TableColumn lastNameCol = new TableColumn("Last Name");
-    TableColumn emailCol = new TableColumn("Email");
-    
+    TableColumn planesColumn = new TableColumn("Planes");
+    TableColumn year1Column = new TableColumn("1941");
+    TableColumn year2Column = new TableColumn("1942");
    
+    TableColumn earlyColumn = new TableColumn("Early");
+    TableColumn midColumn = new TableColumn("Mid");
+    TableColumn lateColumn = new TableColumn("Late");
+    
     
     //---------------------
     
@@ -73,8 +76,9 @@ public class PlaneAvailabilitiesController implements Rootable {
     	//System.out.println(airForceName);
     	
     	//----------------------------
-    	
-		table.getColumns().setAll(firstNameCol, lastNameCol, emailCol);
+    	year1Column.getColumns().setAll(earlyColumn, midColumn, lateColumn);
+    	year2Column.getColumns().setAll(earlyColumn, midColumn, lateColumn);
+		table.getColumns().setAll(planesColumn,year1Column, year2Column);
 		rootVB.getChildren().setAll(table);
 		//-----------------------------
     	
