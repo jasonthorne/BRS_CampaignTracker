@@ -370,6 +370,7 @@ CREATE TABLE event_periods (
 	CONSTRAINT eventID_periodID UNIQUE (eventID, periodID) /* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+
 DELIMITER $$
 CREATE PROCEDURE insert_event_period (IN event_name VARCHAR(64), IN block_start VARCHAR(5), 
 IN year_start INT(4), IN block_end VARCHAR(5), IN year_end INT(4))

@@ -15,7 +15,7 @@ public interface InsertEventData_TEST {
 	
 	static void insert() {
 			
-		try (Connection connection = ConnectDB.getConnection();){ //connect to DB
+		try (Connection connection = ConnectDB.getConnection();) { //connect to DB
 			
 			//create statement:
 			CallableStatement callableStatement = null; 

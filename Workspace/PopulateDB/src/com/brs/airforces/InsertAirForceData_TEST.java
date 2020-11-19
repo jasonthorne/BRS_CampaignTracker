@@ -3,7 +3,6 @@ package com.brs.airforces;
 import java.io.FileReader;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Iterator;
 
 import org.json.simple.JSONArray;
@@ -14,13 +13,13 @@ import com.brs.ConnectDB;
 
 public interface InsertAirForceData_TEST {
 	
-	static void insert() { 
+	static void insert() {
 		
-		Connection connection = null;
-		CallableStatement callableStatement = null;
-		try {
-			connection = ConnectDB.getConnection();	//connect to DB
-		    
+		try (Connection connection = ConnectDB.getConnection();) { //connect to DB
+			
+			//create statement:
+			CallableStatement callableStatement = null; 
+		
 			//read json file to object reference, using json parser: 
 	        Object object = new JSONParser().parse(new FileReader("json/airforce_data/airforce_data.json"));
 	        JSONArray airForces = (JSONArray) object; //cast object to json array of air forces
@@ -96,12 +95,5 @@ public interface InsertAirForceData_TEST {
 				} //planeIterator
 			} //airForceIterator
 		}catch(Exception e) { e.printStackTrace(); }
-		finally {
-			if (connection != null) {	//finally, try close connection:
-				try {
-					connection.close(); 
-				} catch (SQLException e) { e.printStackTrace(); } 
-			}
-		}
 	}
 }
