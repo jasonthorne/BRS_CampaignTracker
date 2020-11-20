@@ -47,13 +47,20 @@ public class EventsController implements Frameable, Rootable {
     @FXML
     void initialize() {
     	setEvents(); //populate events list
-    	setLViewListener(); //add change listener to list view
+    	setListViewListener(); //add change listener to list view
     }
     
+    
+    
+    
+    //Event currEvent;
+    
+    
+    //+++++++++++++++++++++++++++++++++++++
     //observable list of events:
     private final ObservableList<Event>events = FXCollections.observableArrayList();
     
-    //observable list of event's air forces::
+    //observable list of event's air forces:
     private ObservableList<AirForce>airForces;
     
     //fxml root node:
@@ -71,7 +78,7 @@ public class EventsController implements Frameable, Rootable {
     	ExecutorService service = Executors.newSingleThreadExecutor(); 
     	
     	//future list of events pulled from db, returned from service task thread:
-    	Future<List<Event>>futureEvents = service.submit(()->database.SelectEvents.select());
+    	Future<List<Event>>futureEvents = service.submit(() -> database.SelectEvents.select());
     	
     	//keeping future.get() separate from application thread:
     	new Thread(() -> {
@@ -92,11 +99,11 @@ public class EventsController implements Frameable, Rootable {
 		eventsLV.setItems(events);
 		
 		//set listView cellFactory to create EventCellControllers:
-		eventsLV.setCellFactory(EventCellController -> new EventCellController(this));
+		eventsLV.setCellFactory(EventCellController -> new EventCellController(/*this*/));
     }
     
     //add change listener to list view:
-    private void setLViewListener() {
+    private void setListViewListener() {
     	
     	eventsLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Event>() {
     		
@@ -111,11 +118,11 @@ public class EventsController implements Frameable, Rootable {
     	        //add selected event's air forces to observable airForces:
     	        airForces = FXCollections.observableArrayList(newVal.getEventAirForces());
     	        airForcesLV.setItems(airForces); //set list view with airForces
-    	        
+	        	
     	        //set cell factory to create AirForceCellControllers with selected event's periods:
-    	       airForcesLV.setCellFactory(AirForceCellController ->
+    	        airForcesLV.setCellFactory(AirForceCellController ->
     	    	   new AirForceCellController(newVal.getStartPeriod(), newVal.getEndPeriod())
-    	       );  
+    	       ); 
     	    }
     	});
     }

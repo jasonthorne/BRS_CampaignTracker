@@ -27,7 +27,7 @@ import model.Period.Block;
 import model.Plane;
 import model.TEST;
 
-public class PlaneAvailabilitiesController implements Rootable {
+public class PlanesTableController implements Rootable {
 	
 	@FXML
     private ResourceBundle resources;
@@ -49,6 +49,11 @@ public class PlaneAvailabilitiesController implements Rootable {
     //+++++++++++++++++++++++++++++++++++++
     
     //=========================================================
+    
+    
+    
+    
+    
     ///////////private final TableView<String> planesTable = new TableView<>(); //table view for planes
     private final TableView<TEST> planesTable = new TableView<TEST>(); //table view for planes
     private final List<TableColumn<String,String>>yearCols = new ArrayList<>(); //list of year columns
@@ -79,6 +84,8 @@ public class PlaneAvailabilitiesController implements Rootable {
     	/*year1Column.getColumns().setAll(earlyColumn, midColumn, lateColumn);
     	year2Column.getColumns().setAll(earlyColumn, midColumn, lateColumn);*/
     	
+		testData.clear();
+		
     	testData.addAll(new TEST(), new TEST());
     	
     	/*
@@ -109,10 +116,12 @@ public class PlaneAvailabilitiesController implements Rootable {
         	);
     	planesTable.getColumns().add(aCol);
     	
+    	String testB2ColName = "colum b name";
+    	String testB2 = "b2";
     	
-    	aCol = new TableColumn<>("colum b name");
+    	aCol = new TableColumn<>(testB2ColName);
     	aCol.setCellValueFactory(
-        	    new PropertyValueFactory<TEST,String>("b2")
+        	    new PropertyValueFactory<TEST,String>(testB2)
         	);
     	planesTable.getColumns().add(aCol);
     	
@@ -126,34 +135,71 @@ public class PlaneAvailabilitiesController implements Rootable {
     
     //=========================================================
     
-    private final Period startPeriod; //start period
-    private final Period endPeriod; //end period
+    private Period startPeriod; //start period
+    private Period endPeriod; //end period
     
   	private final Stage stage = new Stage(); //stage
     private final Scene scene; //scene
-    
+   
     //constructor:
-	PlaneAvailabilitiesController(Period start, Period end) {
-		startPeriod = start; //set start period
-		endPeriod = end; //set end period
+	/////////////PlanesTableController(Period start, Period end) {
+	PlanesTableController() {
+	
+		///////startPeriod = start; //set start period
+		///////endPeriod = end; //set end period
+		System.out.println("huh???");
+		////////setTableCols(start, end);
 		
 		//add root to scene:
-		scene = new Scene(Rootable.getRoot(this, "/view/planeAvailabilities.fxml")); 
+		scene = new Scene(Rootable.getRoot(this, "/view/planesTable.fxml")); 
     	stage.setScene(scene); //add scene to stage	
     }
 	
-	private void setPeriods(Period start, Period end) {
-		
+	//set range of periods for planes:
+	void setPlanePeriods(Period start, Period end){
+		startPeriod = start; //set start period
+		endPeriod = end; //set end period
+	}
+	
+	
+	private void setTableCols(Period start, Period end) {
+	
+		int currYear = start.getYear(); //holds year values
+		Block currBlock; //holds block values
+    	Iterator<Block>blocksIterator; //blocks iterator
+    	boolean canAdd = false; //flag for adding values
+    	
+    	outerWhile:
+    	while(currYear <= end.getYear()) { //loop through years
+    		blocksIterator = Arrays.asList(Block.values()).iterator(); //(re)set blocks iterator
+    		
+    		while(blocksIterator.hasNext()) { //loop through blocks
+    			currBlock = blocksIterator.next(); //advance to next block
+    			
+    			//if found start date, allow adding of columns:
+    			if(currBlock.equals(start.getBlock()) && currYear == start.getYear()) {canAdd = true;}
+    				
+    			if(canAdd) {
+    				System.out.println(currBlock.toString() + " " + currYear);
+    				
+    				if(currBlock.equals(end.getBlock()) && currYear == end.getYear()) {break outerWhile;}
+    			}
+    		}
+    		currYear++; //advance to next year
+    	}
 	}
 	
     void showPlanes(List<Plane>planes){ //airForceName???????????????
+    	
+    	
+    	System.out.println(startPeriod + " " + endPeriod);
     	
     	test(); //+++++++++++++++++
     	
     	//System.out.println(airForceName);
     	
     	//----------------------------
-    	
+    	/*
     	int currYear = startPeriod.getYear();
     	int endYear = endPeriod.getYear();
     	Iterator<Block>blocksIterator; //blocks iterator
@@ -185,7 +231,7 @@ public class PlaneAvailabilitiesController implements Rootable {
     		
     		currYear++; //increment current year
     	}
-    	
+    	*/
 
     	/*year1Column.getColumns().setAll(earlyColumn, midColumn, lateColumn);
     	year2Column.getColumns().setAll(earlyColumn, midColumn, lateColumn);

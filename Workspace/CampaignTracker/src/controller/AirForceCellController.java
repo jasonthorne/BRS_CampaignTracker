@@ -37,7 +37,7 @@ public class AirForceCellController extends JFXListCell<AirForce> implements Roo
     	
     	//show planes available:
     	planesBtn.setOnAction(event -> {
-    		planeAvailabilitiesCtrlr.showPlanes(planes);
+    		planesTableCtrlr.showPlanes(planes);
     	});
     }
     
@@ -47,14 +47,22 @@ public class AirForceCellController extends JFXListCell<AirForce> implements Roo
   	//air force planes:
   	private List<Plane>planes;
   	
-  	//controller for showing air force plane availabilities:
-  	private final PlaneAvailabilitiesController planeAvailabilitiesCtrlr;
+  	//controller for air force planes table:
+  	private PlanesTableController planesTableCtrlr = new PlanesTableController(); 
   	
   	//constructor:
   	AirForceCellController(Period start, Period end){
-  		//create plane availabilities controller, passing it event start & end:
-  		planeAvailabilitiesCtrlr = new PlaneAvailabilitiesController(start, end);
+  		 //set the range of periods for planes table:
+  		planesTableCtrlr.setPlanePeriods(start, end);
     }
+  	
+  	AirForceCellController(){
+  		
+  		System.out.println("AirForceCellController");
+  		//create plane availabilities controller, passing it event start & end:
+  		
+    }
+  	
   	
     //update cell with air force data:
 	@Override 
