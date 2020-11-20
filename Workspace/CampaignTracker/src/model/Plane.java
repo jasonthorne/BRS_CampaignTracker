@@ -54,5 +54,4 @@ public class Plane {
 		return "Plane [name=" + name + ", availabilities=" + availabilities + "]";
 	}
 	
-		
 }

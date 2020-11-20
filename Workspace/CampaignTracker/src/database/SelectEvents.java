@@ -83,7 +83,7 @@ public interface SelectEvents {
 						planeBuilder.setPlaneName(planesRS.getString("plane_name")); //add plane name
 						
 						//create map for plane availabilities:
-						Map<Period, Status>planeAvailabilities = new HashMap<>();
+						Map<Period, Status>status = new HashMap<>();
 						
 						//set statement input parameters with air force plane id & event id:
 						availabilitiesStatement.setInt(1, planesRS.getInt("airforce_plane_ID"));
@@ -95,14 +95,14 @@ public interface SelectEvents {
 							while(availabilitiesRS.next()) {
 								
 								//add plane's availabilities to map:
-								planeAvailabilities.put(new Period(
+								status.put(new Period(
 										Block.valueOf(availabilitiesRS.getString("block_option").toUpperCase()),
 										availabilitiesRS.getInt("year_value")),
 										Status.valueOf(availabilitiesRS.getString("status_option").toUpperCase()));
 							}
 							
 							//add availabilities to plane builder:
-							planeBuilder.setPlaneAvailabilities(planeAvailabilities);
+							planeBuilder.setPlaneAvailabilities(status);
 							
 							//add built plane to air force planes:
 							airForcePlanes.add(planeBuilder.build());
