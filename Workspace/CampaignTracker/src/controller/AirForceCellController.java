@@ -47,12 +47,15 @@ public class AirForceCellController extends JFXListCell<AirForce> implements Roo
   	//air force planes:
   	private List<Plane>planes;
   	
+  	/////plane periods: ++++++++++++++++++++
+  	
+  	
   	//controller for air force planes table:
   	private PlanesTableController planesTableCtrlr = new PlanesTableController(); 
   	
   	//constructor:
   	AirForceCellController(Period start, Period end){
-  		 //set the range of periods for planes table:
+  		 //set the range of periods for planes:
   		planesTableCtrlr.setPlanePeriods(start, end);
     }
   	

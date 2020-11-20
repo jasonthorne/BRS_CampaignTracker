@@ -83,7 +83,8 @@ public interface SelectEvents {
 						planeBuilder.setPlaneName(planesRS.getString("plane_name")); //add plane name
 						
 						//create map for plane availabilities:
-						Map<Period, Status>status = new HashMap<>();
+						Map<Period, Status>status = new HashMap<>(); //+++++++++++++++++++make this the full size of event length.
+						//++++++++++++++++++++with all unavilables in it.
 						
 						//set statement input parameters with air force plane id & event id:
 						availabilitiesStatement.setInt(1, planesRS.getInt("airforce_plane_ID"));
@@ -92,7 +93,7 @@ public interface SelectEvents {
 						
 						if (availabilitiesRS.isBeforeFirst()){ //if availabilities where found
 							
-							while(availabilitiesRS.next()) {
+							while(availabilitiesRS.next()) { //++++++++++++++++++++++++++add this to the map where block = key of map
 								
 								//add plane's availabilities to map:
 								status.put(new Period(

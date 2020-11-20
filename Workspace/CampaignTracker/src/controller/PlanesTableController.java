@@ -251,7 +251,7 @@ public class PlanesTableController implements Rootable {
     
 	
     //show stage:
-    private void showStage() { stage.showAndWait(); }
+    void showStage() { stage.showAndWait(); }
     
         
 
