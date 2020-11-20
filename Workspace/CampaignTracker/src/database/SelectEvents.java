@@ -83,7 +83,7 @@ public interface SelectEvents {
 						planeBuilder.setPlaneName(planesRS.getString("plane_name")); //add plane name
 						
 						//create map for plane availabilities:
-						Map<Period, Status>status = new HashMap<>(); //+++++++++++++++++++make this the full size of event length.
+						Map<Period, Status>status = new HashMap<>(); //+++++++++++++++++make this the full size of event length.
 						//++++++++++++++++++++with all unavilables in it.
 						
 						//set statement input parameters with air force plane id & event id:
