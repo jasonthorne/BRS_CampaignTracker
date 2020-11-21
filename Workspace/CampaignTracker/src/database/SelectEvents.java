@@ -84,19 +84,6 @@ public interface SelectEvents {
 				//get event's end period from end of list:
 				eventBuilder.setEndPeriod(eventPeriods.get(eventPeriods.size()-1));
 				
-				
-				//System.out.println("eventPeriods: " + eventPeriods);
-				
-				
-				/*
-				//create map with event period keys for storing plane availabilities:
-				Map<Period, Status>planeAvailabilities = eventPeriods.stream()
-						.collect(Collectors.toMap(period -> period, status -> Status.UNAVAILABLE));
-				       
-				System.out.println("planeAvailabilities: " + planeAvailabilities);
-				*/
-				//============================================================
-				
 				//create list for event air forces:
 				List<AirForce>eventAirForces = new ArrayList<>();
 				
@@ -142,7 +129,7 @@ public interface SelectEvents {
 						
 						if (availabilitiesRS.isBeforeFirst()){ //if availabilities where found
 							
-							//create map for storing availabilities:
+							//create map for availabilities:
 							Map<Period, Status>planeAvailabilities = eventPeriods.stream()
 									.collect(Collectors.toMap(period -> period, status -> Status.UNAVAILABLE));
 							

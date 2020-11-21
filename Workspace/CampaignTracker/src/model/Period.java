@@ -27,6 +27,34 @@ public class Period {
 	public Block getBlock() { return block; }
 	public int getYear() { return year; }
 
+	//to string:
 	@Override
 	public String toString() { return block + " " + year; }
+
+	//overridden for HashMap insertion:
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((block == null) ? 0 : block.hashCode());
+		result = prime * result + year;
+		return result;
+	}
+	
+	//overridden for HashMap insertion:
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Period other = (Period) obj;
+		if (block != other.block)
+			return false;
+		if (year != other.year)
+			return false;
+		return true;
+	}
 }
