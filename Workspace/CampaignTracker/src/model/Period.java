@@ -31,7 +31,7 @@ public class Period implements Comparable <Period>{
 	@Override
 	public String toString() { return block + " " + year; }
 	
-	//overridden for ordering during TreeMap insertion:
+	//overridden for ordering during TreeSet insertion:
 	@Override	
 	public int compareTo(Period otherPeriod) { //compare periods
 		

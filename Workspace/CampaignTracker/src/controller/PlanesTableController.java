@@ -79,40 +79,153 @@ public class PlanesTableController implements Rootable {
     		new TEST()
     	);*/
     
-    final ObservableList<TEST> testData = FXCollections.observableArrayList();
     
-   
+    private final ObservableList<TEST> testData = FXCollections.observableArrayList();
+    
+    private final TableView<Plane> planesTable2 = new TableView<Plane>(); //table view for planes
+    //observable list of planes:
+    private final ObservableList<Plane> testObservPlanes = FXCollections.observableArrayList();
+    //private final ObservableList<Plane> planes = FXCollections.observableArrayList();
     
    
 	void test() {
     	
-    	/*year1Column.getColumns().setAll(earlyColumn, midColumn, lateColumn);
-    	year2Column.getColumns().setAll(earlyColumn, midColumn, lateColumn);*/
-    	
 		testData.clear();
-		
     	testData.addAll(new TEST(), new TEST());
-    	
-    	/*
-    	TableColumn<TEST,String> aCol = new TableColumn<>("colum a name");
-        TableColumn<TEST,String> bCol = new TableColumn<>("colum b name");
-        
-        aCol.setCellValueFactory(
-        	    new PropertyValueFactory<TEST,String>("a2")
-        	);
-    	bCol.setCellValueFactory(
-    	    new PropertyValueFactory<TEST,String>("b2")
-    	);
-    	
-    
-    	planesTable.setItems(testData);
-    	planesTable.getColumns().setAll(aCol,bCol);
-    	
-    	*/
-    	
     	planesTable.setItems(testData);
     	planesTable.getColumns().clear();
+    	//-------------------
+    	testObservPlanes.clear();
+    	testObservPlanes.addAll(testPlanes);
+    	planesTable2.setItems(testObservPlanes);
+    	//--------------------
     	
+    	TableColumn<TEST,String> aCol;
+    	
+    	aCol = new TableColumn<>("colum a name");
+    	aCol.setCellValueFactory(
+        	    new PropertyValueFactory<TEST,String>("a2")
+        	);
+    	planesTable.getColumns().add(aCol);
+    	
+    	//-------------------------
+    	TableColumn<Plane,String> planeName;
+    	planeName = new TableColumn<>("Plane");
+    	planeName.setCellValueFactory(
+        	    new PropertyValueFactory<Plane,String>("SSname"));
+    	planesTable2.getColumns().add(planeName);
+    	rootVB.getChildren().setAll(planesTable2);
+    	//------------------------
+    	
+    	String testB2ColName = "colum b name";
+    	String testB2 = "b2";
+    	
+    	aCol = new TableColumn<>(testB2ColName);
+    	aCol.setCellValueFactory(
+        	    new PropertyValueFactory<TEST,String>(testB2)
+        	);
+    	planesTable.getColumns().add(aCol);
+    	
+		////////rootVB.getChildren().setAll(planesTable);
+		
+		
+		//------------------------------------------
+    	/*planesTable2.getColumns().clear();
+    	TableColumn<Plane,String> planeName;
+    	planeName = new TableColumn<>("Plane");
+    	planeName.setCellValueFactory(
+        	    new PropertyValueFactory<Plane,String>("SSname"));
+    	planesTable2.getColumns().add(planeName);
+    	rootVB.getChildren().setAll(planesTable2);*/
+    	//-----------------------------------
+		
+    	
+    }
+    
+    
+    
+    
+    
+    //=========================================================
+    
+    ///////Period start; Period end;
+	List<Plane>testPlanes;
+    
+  	private final Stage stage = new Stage(); //stage
+    private final Scene scene; //scene
+   
+    //constructor:
+	/////////////PlanesTableController(Period start, Period end) {
+	PlanesTableController(List<Plane>planes) {
+
+		//add root to scene:
+		scene = new Scene(Rootable.getRoot(this, "/view/planesTable.fxml")); 
+    	stage.setScene(scene); //add scene to stage	
+    	
+    	
+    	//make observable list of planes:
+		//this.planes = FXCollections.observableArrayList(planes);
+    	/////testObservPlanes.addAll(planes);
+		////////planesTable2.setItems(testObservPlanes);
+		///////////System.out.println(this.planes);
+		
+		
+		testPlanes = new ArrayList<Plane>(planes);
+		test();
+    			
+    	//setTableCols2();
+    }
+	
+	private void setPeriods() {} //??????????????????????????????
+		
+	
+	/*
+	private void setTableCols2() {
+		
+		//get list of periods covered, from a plane's availabilities keySet:
+		List<Period>periods =  new ArrayList<Period>(
+				new TreeMap<Period, Status>( //TreeMap orders keySet by period's compareTo
+						planes.get(0).getPlaneAvailabilities()).keySet());
+		
+		Period start =  periods.get(0); //get start period
+		Period end =  periods.get(periods.size()-1); //get end period
+		
+		int currYear = start.getYear(); //holds year values
+		Block currBlock; //holds block values
+    	Iterator<Block>blocksIterator; //blocks iterator
+    	boolean canAdd = false; //flag for adding values
+    	
+    	//------------------------------------------
+    	planesTable2.getColumns().clear();
+    	TableColumn<Plane,String> planeName;
+    	planeName = new TableColumn<>("Plane");
+    	planeName.setCellValueFactory(
+        	    new PropertyValueFactory<Plane,String>("SSname"));
+    	planesTable2.getColumns().add(planeName);
+    	rootVB.getChildren().setAll(planesTable2);
+    	//-----------------------------------
+		
+    	outerWhile:
+    	while(currYear <= end.getYear()) { //loop through years
+    		blocksIterator = Arrays.asList(Block.values()).iterator(); //(re)set blocks iterator
+    		
+    		while(blocksIterator.hasNext()) { //loop through blocks
+    			currBlock = blocksIterator.next(); //advance to next block
+    			
+    			//if found start date, allow adding of columns:
+    			if(currBlock.equals(start.getBlock()) && currYear == start.getYear()) {canAdd = true;}
+    				
+    			if(canAdd) {
+    				System.out.println(currBlock.toString() + " " + currYear);
+    				
+    				if(currBlock.equals(end.getBlock()) && currYear == end.getYear()) {break outerWhile;}
+    			}
+    		}
+    		currYear++; //advance to next year
+    	}*/
+    	
+    	
+    	/*
     	TableColumn<TEST,String> aCol;
     	
     	aCol = new TableColumn<>("colum a name");
@@ -132,141 +245,25 @@ public class PlanesTableController implements Rootable {
     	
 		rootVB.getChildren().setAll(planesTable);
     	
-    }
-    
-    
-    
-    
-    
-    //=========================================================
-    
-    private Period startPeriod; //start period
-    private Period endPeriod; //end period
-    
-  	private final Stage stage = new Stage(); //stage
-    private final Scene scene; //scene
-   
-    //constructor:
-	/////////////PlanesTableController(Period start, Period end) {
-	PlanesTableController() {
-	
-		///////startPeriod = start; //set start period
-		///////endPeriod = end; //set end period
-		System.out.println("huh???");
-		////////setTableCols(start, end);
+    	
+    	
 		
-		//add root to scene:
-		scene = new Scene(Rootable.getRoot(this, "/view/planesTable.fxml")); 
-    	stage.setScene(scene); //add scene to stage	
-    }
-	
-	//set range of periods for planes:
-	void setPlanePeriods(Period start, Period end){
-		startPeriod = start; //set start period
-		endPeriod = end; //set end period
-	}
+	}*/
 	
 	
-	private void setTableCols(Period start, Period end) {
 	
-		int currYear = start.getYear(); //holds year values
-		Block currBlock; //holds block values
-    	Iterator<Block>blocksIterator; //blocks iterator
-    	boolean canAdd = false; //flag for adding values
-    	
-    	outerWhile:
-    	while(currYear <= end.getYear()) { //loop through years
-    		blocksIterator = Arrays.asList(Block.values()).iterator(); //(re)set blocks iterator
-    		
-    		while(blocksIterator.hasNext()) { //loop through blocks
-    			currBlock = blocksIterator.next(); //advance to next block
-    			
-    			//if found start date, allow adding of columns:
-    			if(currBlock.equals(start.getBlock()) && currYear == start.getYear()) {canAdd = true;}
-    				
-    			if(canAdd) {
-    				System.out.println(currBlock.toString() + " " + currYear);
-    				
-    				if(currBlock.equals(end.getBlock()) && currYear == end.getYear()) {break outerWhile;}
-    			}
-    		}
-    		currYear++; //advance to next year
-    	}
-	}
 	
-    void showPlanes(List<Plane>planes){ //airForceName???????????????
-    	
-    	
-    	System.out.println("planes" + planes);
-    	
-    	Map<Period, Status> testTree = new TreeMap<Period, Status>(planes.get(0).getPlaneAvailabilities());
-    	
-    	
-    	System.out.println("testTree: "  + testTree); //+++++++++++maybe still do this as itrating the treemaps in plane will be less efficient! 
-    	
-    	
-    	test(); //+++++++++++++++++
-    	
-    	System.out.println("unordered keySet: " + planes.get(0).getPlaneAvailabilities().keySet());
-    	
-    	Set<Period>testSet = new TreeSet<Period>(planes.get(0).getPlaneAvailabilities().keySet());
-    	
-    	System.out.println("testSet: " + testSet); //++++++++++++++++++++WINNER, WINNER! 
-    	//----------------------------
-    	/*
-    	int currYear = startPeriod.getYear();
-    	int endYear = endPeriod.getYear();
-    	Iterator<Block>blocksIterator; //blocks iterator
-    	Block currBlock;
-    	Block endBlock = endPeriod.getBlock();
-    	boolean canAdd = false; //flag for adding values
-    	
-    	outerWhile:
-    	while(currYear <= endYear) {
-    	
-    		//(re)set blocks iterator:
-    		blocksIterator = Arrays.asList(Block.values()).iterator();
-    		
-    		while(blocksIterator.hasNext()) { //iterate through blocks
-    			currBlock = blocksIterator.next(); //advance to next block
-    			
-    			if(currBlock.equals(startPeriod.getBlock()) && currYear == startPeriod.getYear()) {
-    				canAdd = true;
-    			}
-    			
-    			if(canAdd) {
-    				System.out.println(currBlock.toString() + " " + currYear);
-    				
-    				if(currBlock.equals(endBlock) && currYear == endYear) { break outerWhile; }
-    			}
-    			
-    		}
-    	
-    		
-    		currYear++; //increment current year
-    	}
-    	*/
-
-    	/*year1Column.getColumns().setAll(earlyColumn, midColumn, lateColumn);
-    	year2Column.getColumns().setAll(earlyColumn, midColumn, lateColumn);
-    	
-    	planesTable.getColumns().setAll(planesColumn,year1Column, year2Column);
-		rootVB.getChildren().setAll(planesTable);*/
-		//-----------------------------
-    	
-    	showStage();
-    }
-    
-    
-    
-    
-  
-    
-    
 	
-    //show stage:
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	    //show stage:
     void showStage() { stage.showAndWait(); }
     
-        
-
 }

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class Plane {
 	
 	public enum Status {
@@ -17,9 +19,10 @@ public class Plane {
 		public String toString() { return status; } //return chosen status
 	}
 	
-	private String name; //name of plane
+	/*private*/ String name; //name of plane
 	private Map<Period, Status>availabilities; //availability per period of history
 	
+	private SimpleStringProperty SSname; // = new SimpleStringProperty(name);
 
 	private Plane() {} //blank constructor
 	
@@ -31,6 +34,7 @@ public class Plane {
 		//set name:
 		public PlaneBuilder setPlaneName(String name) {
 			plane.name = name;
+			plane.SSname = new SimpleStringProperty(name);//++++++++++++++++++++++++++
 			return this;
 		}
 		
@@ -45,6 +49,10 @@ public class Plane {
 	
 	//get plane name:
 	public String getPlaneName() { return name; }
+	
+	public String getSSname() { return SSname.get(); }
+		
+	
 	
 	//get plane availabilities:
 	public HashMap<Period, Status> getPlaneAvailabilities() { 

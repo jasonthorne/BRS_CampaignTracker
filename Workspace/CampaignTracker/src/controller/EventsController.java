@@ -47,7 +47,8 @@ public class EventsController implements Frameable, Rootable {
     @FXML
     void initialize() {
     	setEvents(); //populate events list
-    	setListViewListener(); //add change listener to list view
+    	setEventsListener(); //add change listener to events list view
+    	setAirForcesFactory();  //set airForcesLV cell factory
     }
     
     
@@ -103,7 +104,7 @@ public class EventsController implements Frameable, Rootable {
     }
     
     //add change listener to list view:
-    private void setListViewListener() {
+    private void setEventsListener() {
     	
     	eventsLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Event>() {
     		
@@ -118,15 +119,21 @@ public class EventsController implements Frameable, Rootable {
     	        //add selected event's air forces to observable airForces:
     	        airForces = FXCollections.observableArrayList(newVal.getEventAirForces());
     	        airForcesLV.setItems(airForces); //set list view with airForces
-	        	
+	        	/*
     	        //set cell factory to create AirForceCellControllers with selected event's periods:
     	        airForcesLV.setCellFactory(AirForceCellController ->
     	    	   new AirForceCellController(newVal.getStartPeriod(), newVal.getEndPeriod()) //+++++++++++++MOVE THIS!! :P
-    	       ); 
+    	       ); */
     	    }
     	});
     }
     //https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2
+    
+    //set airForcesLV cell factory:
+    private void setAirForcesFactory() {
+        //set cell factory to create AirForceCellControllers:
+        airForcesLV.setCellFactory(AirForceCellController ->  new AirForceCellController());
+    }
     
     @Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/events.fxml"); } //set root
