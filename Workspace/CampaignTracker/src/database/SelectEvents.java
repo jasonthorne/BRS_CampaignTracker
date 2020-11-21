@@ -49,20 +49,6 @@ public interface SelectEvents {
 				EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
 				eventBuilder.setEventName(eventsRS.getString("event_name")); //add event name
 				
-				/*
-				//add start period:
-				eventBuilder.setStartPeriod(new Period(
-						Block.valueOf(eventsRS.getString("event_start_block").toUpperCase()),
-						eventsRS.getInt("event_start_year")));
-				
-				//add end period:
-				eventBuilder.setEndPeriod(new Period(
-						Block.valueOf(eventsRS.getString("event_end_block").toUpperCase()),
-						eventsRS.getInt("event_end_year")));
-				*/
-				
-				
-				//============================================================
 				//create list for event periods:
 				List<Period>eventPeriods = new ArrayList<>();
 				
@@ -78,10 +64,8 @@ public interface SelectEvents {
 							periodsRS.getInt("period_year"))); 
 				}
 				
-				//get event's start period from front of list:
+				//get start & end periods from list:
 				eventBuilder.setStartPeriod(eventPeriods.get(0));
-				
-				//get event's end period from end of list:
 				eventBuilder.setEndPeriod(eventPeriods.get(eventPeriods.size()-1));
 				
 				//create list for event air forces:
@@ -111,17 +95,6 @@ public interface SelectEvents {
 						PlaneBuilder planeBuilder = new Plane.PlaneBuilder();
 						planeBuilder.setPlaneName(planesRS.getString("plane_name")); //add plane name
 						
-						//+++++++++++++++++++++++++++++++++++++++++++++
-						//make map here, but have it be a COPY of one made above.
-						
-						//+++++++++++++++++++++++++++++++++++++++++++++++
-						//create map for plane availabilities:
-						//////Map<Period, Status>status = new HashMap<>(); //+++++++++++++++++make this the full size of event length.
-						
-						
-						
-						//++++++++++++++++++++with all unavilables in it.
-						
 						//set statement input parameters with air force plane id & event id:
 						availabilitiesStatement.setInt(1, planesRS.getInt("airforce_plane_ID"));
 						availabilitiesStatement.setInt(2, eventsRS.getInt("event_ID"));
@@ -150,7 +123,7 @@ public interface SelectEvents {
 						}
 						
 					}//planesRS
-					System.out.println("airForcePlanes: " + airForcePlanes);
+					
 					//add air force planes to air force builder:
 					airForceBuilder.setPlanes(airForcePlanes);
 					

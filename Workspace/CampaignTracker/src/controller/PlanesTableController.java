@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import animation.Fadeable;
 import animation.Fadeable.FadeOption;
@@ -25,6 +29,7 @@ import model.Event;
 import model.Period;
 import model.Period.Block;
 import model.Plane;
+import model.Plane.Status;
 import model.TEST;
 
 public class PlanesTableController implements Rootable {
@@ -192,12 +197,21 @@ public class PlanesTableController implements Rootable {
     void showPlanes(List<Plane>planes){ //airForceName???????????????
     	
     	
-    	System.out.println(startPeriod + " " + endPeriod);
+    	System.out.println("planes" + planes);
+    	
+    	Map<Period, Status> testTree = new TreeMap<Period, Status>(planes.get(0).getPlaneAvailabilities());
+    	
+    	
+    	System.out.println("testTree: "  + testTree); //+++++++++++maybe still do this as itrating the treemaps in plane will be less efficient! 
+    	
     	
     	test(); //+++++++++++++++++
     	
-    	//System.out.println(airForceName);
+    	System.out.println("unordered keySet: " + planes.get(0).getPlaneAvailabilities().keySet());
     	
+    	Set<Period>testSet = new TreeSet<Period>(planes.get(0).getPlaneAvailabilities().keySet());
+    	
+    	System.out.println("testSet: " + testSet); //++++++++++++++++++++WINNER, WINNER! 
     	//----------------------------
     	/*
     	int currYear = startPeriod.getYear();

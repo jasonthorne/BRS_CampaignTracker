@@ -1,6 +1,6 @@
 package model;
 
-public class Period {
+public class Period implements Comparable <Period>{
 	
 	//blocks of a year:
 	public enum Block {
@@ -30,8 +30,29 @@ public class Period {
 	//to string:
 	@Override
 	public String toString() { return block + " " + year; }
+	
+	//overridden for ordering during TreeMap insertion:
+	@Override	
+	public int compareTo(Period otherPeriod) { //compare periods
+		
+		//values of years: 
+		Integer thisYear = year; 
+		Integer otherYear = otherPeriod.getYear();
+		
+		//ordinal values of blocks:
+		Integer thisBlock = block.ordinal(); 
+		Integer otherBlock = otherPeriod.getBlock().ordinal(); 
+		
+		//if years are the same, order by blocks:
+		if(thisYear.equals(otherYear)) { return thisBlock.compareTo(otherBlock); }
+		
+		//if years aren't the same, order by years:
+		if(!(thisYear.equals(otherYear))) { return thisYear.compareTo(otherYear); } 
+			
+		return 0; //same periods
+	}
 
-	//overridden for HashMap insertion:
+	//overridden for unique HashMap insertion:
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -41,7 +62,7 @@ public class Period {
 		return result;
 	}
 	
-	//overridden for HashMap insertion:
+	//overridden for unique HashMap insertion:
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

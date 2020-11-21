@@ -121,7 +121,7 @@ public class EventsController implements Frameable, Rootable {
 	        	
     	        //set cell factory to create AirForceCellControllers with selected event's periods:
     	        airForcesLV.setCellFactory(AirForceCellController ->
-    	    	   new AirForceCellController(newVal.getStartPeriod(), newVal.getEndPeriod())
+    	    	   new AirForceCellController(newVal.getStartPeriod(), newVal.getEndPeriod()) //+++++++++++++MOVE THIS!! :P
     	       ); 
     	    }
     	});

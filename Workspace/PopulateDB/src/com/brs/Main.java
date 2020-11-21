@@ -29,23 +29,6 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		
 		// each county has its own class,. with - airforce name, planes, events (if home adv or not)
 		
-		 HashMap hashMap = new HashMap();    
-	        HashMap hashMap1 = new HashMap();    
-	        hashMap.put(1, "One");
-	        hashMap.put(2, "Two");
-	        hashMap.put(3, "Three");
-	        System.out.println("Original HashMap : " + hashMap);
-	        //hashMap1 = (HashMap) hashMap.clone();
-	        hashMap1 = new HashMap(hashMap);
-	        System.out.println("Copied HashMap : " + hashMap1);  
-	        
-	        hashMap1.put(4, "four");
-	        System.out.println("Original HashMap : " + hashMap);
-	        System.out.println("Copied HashMap : " + hashMap1);  
-	        hashMap1.put(2, "new 2");
-	        System.out.println("Original HashMap : " + hashMap);
-	        System.out.println("Copied HashMap : " + hashMap1);  
-		
 		/*
 		 * https://www.baeldung.com/java-connection-pooling
 		*/

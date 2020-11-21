@@ -37,7 +37,7 @@ public class Period implements Comparable <Period> {	//++++++++++++THIS WHOLE CL
 		//if years are the same, order by blocks:
 		if(year1.equals(year2)) { return block1.compareTo(block2); }
 		
-		//if years aren't the same, order by years
+		//if years aren't the same, order by years:
 		if(!(year1.equals(year2))) { return year1.compareTo(year2); } 
 			
 		return 0; //same periods

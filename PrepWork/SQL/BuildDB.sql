@@ -280,7 +280,7 @@ CREATE PROCEDURE select_events ()
 BEGIN
 	SELECT
 		events.name AS event_name,
-		events.eventID AS event_ID,
+		events.eventID AS event_ID
 	FROM events; 
 END $$
 DELIMITER ;
@@ -415,6 +415,7 @@ BEGIN
 	END WHILE;
 END $$
 DELIMITER ;
+
 
 DELIMITER $$
 CREATE PROCEDURE select_event_periods (IN event_ID INT)

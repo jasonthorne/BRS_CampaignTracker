@@ -2,6 +2,7 @@ package model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Plane {
 	
@@ -18,6 +19,7 @@ public class Plane {
 	
 	private String name; //name of plane
 	private Map<Period, Status>availabilities; //availability per period of history
+	
 
 	private Plane() {} //blank constructor
 	
