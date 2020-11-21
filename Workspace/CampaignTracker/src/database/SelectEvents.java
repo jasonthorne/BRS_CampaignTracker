@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import model.Event;
 import model.Event.EventBuilder;
@@ -30,12 +32,14 @@ public interface SelectEvents {
 		try (Connection connection = ConnectDB.getConnection();  //connect to DB
 			//statements for selecting events and their children:
 			CallableStatement eventsStatement = connection.prepareCall("{CALL select_events()}");
+			CallableStatement periodsStatement = connection.prepareCall("{CALL select_event_periods(?)}");	
 			CallableStatement airForcesStatement = connection.prepareCall("{CALL select_event_airforces(?)}");
 			CallableStatement planesStatement = connection.prepareCall("{CALL select_airforce_planes(?)}");
 			CallableStatement availabilitiesStatement = connection.prepareCall("{CALL select_plane_availabilities(?,?)}");
 			ResultSet eventsRS = eventsStatement.executeQuery();) { //execute events statement
 			
 			//result sets for nested data:
+			ResultSet periodsRS = null; //periods result set
 			ResultSet airForcesRS = null; //air forces result set
 			ResultSet planesRS = null; //air force planes result set
 			ResultSet availabilitiesRS = null; //plane availabilities result set
@@ -45,6 +49,7 @@ public interface SelectEvents {
 				EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
 				eventBuilder.setEventName(eventsRS.getString("event_name")); //add event name
 				
+				/*
 				//add start period:
 				eventBuilder.setStartPeriod(new Period(
 						Block.valueOf(eventsRS.getString("event_start_block").toUpperCase()),
@@ -54,6 +59,43 @@ public interface SelectEvents {
 				eventBuilder.setEndPeriod(new Period(
 						Block.valueOf(eventsRS.getString("event_end_block").toUpperCase()),
 						eventsRS.getInt("event_end_year")));
+				*/
+				
+				
+				//============================================================
+				//create list for event periods:
+				List<Period>eventPeriods = new ArrayList<>();
+				
+				//set statement input with event id:
+				periodsStatement.setInt(1, eventsRS.getInt("event_ID")); 
+				periodsRS = periodsStatement.executeQuery(); //execute event periods query
+				
+				while(periodsRS.next()) {
+					
+					//add period to list:
+					eventPeriods.add(new Period(
+							Block.valueOf(periodsRS.getString("period_block").toUpperCase()),
+							periodsRS.getInt("period_year"))); 
+				}
+				
+				//get event's start period from front of list:
+				eventBuilder.setStartPeriod(eventPeriods.get(0));
+				
+				//get event's end period from end of list:
+				eventBuilder.setEndPeriod(eventPeriods.get(eventPeriods.size()-1));
+				
+				
+				//System.out.println("eventPeriods: " + eventPeriods);
+				
+				
+				/*
+				//create map with event period keys for storing plane availabilities:
+				Map<Period, Status>planeAvailabilities = eventPeriods.stream()
+						.collect(Collectors.toMap(period -> period, status -> Status.UNAVAILABLE));
+				       
+				System.out.println("planeAvailabilities: " + planeAvailabilities);
+				*/
+				//============================================================
 				
 				//create list for event air forces:
 				List<AirForce>eventAirForces = new ArrayList<>();
@@ -70,7 +112,7 @@ public interface SelectEvents {
 					airForceBuilder.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value")); //add home adv value
 					
 					//create list for air force planes:
-					List<Plane>airForcePlanes = new ArrayList<>(); 
+					List<Plane>airForcePlanes = new ArrayList<>();
 			
 					//set statement input with air force id:
 					planesStatement.setInt(1, airForcesRS.getInt("airforce_ID")); 
@@ -82,8 +124,15 @@ public interface SelectEvents {
 						PlaneBuilder planeBuilder = new Plane.PlaneBuilder();
 						planeBuilder.setPlaneName(planesRS.getString("plane_name")); //add plane name
 						
+						//+++++++++++++++++++++++++++++++++++++++++++++
+						//make map here, but have it be a COPY of one made above.
+						
+						//+++++++++++++++++++++++++++++++++++++++++++++++
 						//create map for plane availabilities:
-						Map<Period, Status>status = new HashMap<>(); //+++++++++++++++++make this the full size of event length.
+						//////Map<Period, Status>status = new HashMap<>(); //+++++++++++++++++make this the full size of event length.
+						
+						
+						
 						//++++++++++++++++++++with all unavilables in it.
 						
 						//set statement input parameters with air force plane id & event id:
@@ -93,24 +142,28 @@ public interface SelectEvents {
 						
 						if (availabilitiesRS.isBeforeFirst()){ //if availabilities where found
 							
-							while(availabilitiesRS.next()) { //++++++++++++++++++++++++++add this to the map where block = key of map
+							//create map for storing availabilities:
+							Map<Period, Status>planeAvailabilities = eventPeriods.stream()
+									.collect(Collectors.toMap(period -> period, status -> Status.UNAVAILABLE));
+							
+							while(availabilitiesRS.next()) {
 								
 								//add plane's availabilities to map:
-								status.put(new Period(
+								planeAvailabilities.put(new Period(
 										Block.valueOf(availabilitiesRS.getString("block_option").toUpperCase()),
 										availabilitiesRS.getInt("year_value")),
 										Status.valueOf(availabilitiesRS.getString("status_option").toUpperCase()));
 							}
 							
 							//add availabilities to plane builder:
-							planeBuilder.setPlaneAvailabilities(status);
+							planeBuilder.setPlaneAvailabilities(planeAvailabilities);
 							
 							//add built plane to air force planes:
 							airForcePlanes.add(planeBuilder.build());
 						}
 						
 					}//planesRS
-					
+					System.out.println("airForcePlanes: " + airForcePlanes);
 					//add air force planes to air force builder:
 					airForceBuilder.setPlanes(airForcePlanes);
 					
@@ -128,7 +181,7 @@ public interface SelectEvents {
 			}//eventsRS
 			
 		} catch(Exception e) { e.printStackTrace(); }
-		
+	
 		return events; //return events
 	}
 }

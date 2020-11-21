@@ -61,10 +61,10 @@ CREATE PROCEDURE insert_period (IN block_option VARCHAR(5), IN year_value INT(4)
 BEGIN
 	DECLARE periodID_check INT DEFAULT 0;
 	
-	/* insert year_name to years if not present; */
+	/* insert year_value to years if not present; */
 	CALL insert_year (year_value);
 	
-	/* check for periodID relating to block_option & year_name: */
+	/* check for periodID relating to block_option & year_value: */
 	SELECT periodID INTO periodID_check FROM periods
 		INNER JOIN years ON periods.yearID = years.yearID
 	WHERE periods.block = block_option AND years.year_value = year_value;
@@ -446,3 +446,27 @@ BEGIN
 	END WHILE;
 END $$
 DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE select_event_periods (IN event_ID INT)
+BEGIN
+	SELECT
+		periods.block AS period_block,
+		years.year_value AS period_year
+	FROM event_periods
+		INNER JOIN periods ON event_periods.periodID = periods.periodID
+		INNER JOIN years ON periods.yearID = years.yearID
+	WHERE event_periods.eventID = event_ID
+	ORDER BY event_periods.event_periodID ASC;
+END $$
+DELIMITER ;
+
+
+
+
+
+
+
+
+

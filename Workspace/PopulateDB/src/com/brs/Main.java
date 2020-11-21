@@ -1,6 +1,7 @@
 package com.brs;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import com.brs.airforces.AirForce;
@@ -28,7 +29,22 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		
 		// each county has its own class,. with - airforce name, planes, events (if home adv or not)
 		
-		
+		 HashMap hashMap = new HashMap();    
+	        HashMap hashMap1 = new HashMap();    
+	        hashMap.put(1, "One");
+	        hashMap.put(2, "Two");
+	        hashMap.put(3, "Three");
+	        System.out.println("Original HashMap : " + hashMap);
+	        //hashMap1 = (HashMap) hashMap.clone();
+	        hashMap1 = new HashMap(hashMap);
+	        System.out.println("Copied HashMap : " + hashMap1);  
+	        
+	        hashMap1.put(4, "four");
+	        System.out.println("Original HashMap : " + hashMap);
+	        System.out.println("Copied HashMap : " + hashMap1);  
+	        hashMap1.put(2, "new 2");
+	        System.out.println("Original HashMap : " + hashMap);
+	        System.out.println("Copied HashMap : " + hashMap1);  
 		
 		/*
 		 * https://www.baeldung.com/java-connection-pooling
@@ -46,8 +62,8 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		System.out.println(" INSERTING DATA:");
 		
 		//=====================these are adding all data: +++++++++++++++++++++++
-		//InsertAirForceData_TEST.insert();
-		//InsertEventData_TEST.insert();
+		InsertAirForceData_TEST.insert();
+		InsertEventData_TEST.insert();
 		
 		
 		//InsertPlayer_TEST.insert("Bob", "1234");
