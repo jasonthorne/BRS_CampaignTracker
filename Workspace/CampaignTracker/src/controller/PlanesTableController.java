@@ -13,6 +13,7 @@ import java.util.TreeSet;
 
 import animation.Fadeable;
 import animation.Fadeable.FadeOption;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,11 +21,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.Event;
 import model.Period;
 import model.Period.Block;
@@ -45,20 +48,10 @@ public class PlanesTableController implements Rootable {
 
     @FXML
     void initialize() {
-    	////////testLbl.setText(startPeriod.toString() + " " + endPeriod.toString());
+    	
     }
     
-    //++++++++++++++++++++++++++++++++++++++
-    
-    //BUG - button needs disabled when table is opened! then enabled on close of table
-    //+++++++++++++++++++++++++++++++++++++
-    
-    //=========================================================
-    
-    
-    
-    
-    
+   
     ///////////private final TableView<String> planesTable = new TableView<>(); //table view for planes
     private final TableView<TEST> planesTable = new TableView<TEST>(); //table view for planes
     private final List<TableColumn<String,String>>yearCols = new ArrayList<>(); //list of year columns
@@ -162,7 +155,12 @@ public class PlanesTableController implements Rootable {
 		scene = new Scene(Rootable.getRoot(this, "/view/planesTable.fxml")); 
     	stage.setScene(scene); //add scene to stage	
     	
+    	/////////testPlanes = new ArrayList<Plane>(planes);
     	
+    	//////?????testObservPlanes.clear();
+    	testObservPlanes.addAll(planes);
+    	
+    	planesTable2.setItems(testObservPlanes);
     	//make observable list of planes:
 		//this.planes = FXCollections.observableArrayList(planes);
     	/////testObservPlanes.addAll(planes);
@@ -170,22 +168,22 @@ public class PlanesTableController implements Rootable {
 		///////////System.out.println(this.planes);
 		
 		
-		testPlanes = new ArrayList<Plane>(planes);
-		test();
+		
+		//test();
     			
-    	//setTableCols2();
+    	setTableCols2();
     }
 	
 	private void setPeriods() {} //??????????????????????????????
 		
 	
-	/*
+	
 	private void setTableCols2() {
 		
 		//get list of periods covered, from a plane's availabilities keySet:
 		List<Period>periods =  new ArrayList<Period>(
 				new TreeMap<Period, Status>( //TreeMap orders keySet by period's compareTo
-						planes.get(0).getPlaneAvailabilities()).keySet());
+						testObservPlanes.get(0).getPlaneAvailabilities()).keySet());
 		
 		Period start =  periods.get(0); //get start period
 		Period end =  periods.get(periods.size()-1); //get end period
@@ -196,17 +194,62 @@ public class PlanesTableController implements Rootable {
     	boolean canAdd = false; //flag for adding values
     	
     	//------------------------------------------
-    	planesTable2.getColumns().clear();
-    	TableColumn<Plane,String> planeName;
-    	planeName = new TableColumn<>("Plane");
-    	planeName.setCellValueFactory(
-        	    new PropertyValueFactory<Plane,String>("SSname"));
-    	planesTable2.getColumns().add(planeName);
-    	rootVB.getChildren().setAll(planesTable2);
-    	//-----------------------------------
+    	//System.out.println("testObservPlane is: " + testObservPlanes.get(0));
+    	//System.out.println("status is: " + testObservPlanes.get(0).getAvailability(start));
+    	/////////planesTable2.getColumns().clear();
+    	TableColumn<Plane,String> planeCol = new TableColumn<>("Plane"); ///+++++++++++++++++++add airforce name too! 
+    	planeCol.setCellValueFactory(
+        	    new PropertyValueFactory<Plane,String>("name"));
+    	planesTable2.getColumns().add(planeCol);
+    	
+    	TableColumn<Plane,String> yearCol;
+    	TableColumn<Plane,String> blockCol = null;
+    	
+    	
 		
+		
+    	
+    	
+    	
+    	/*
+    	blockCol.setCellValueFactory(Plane -> {
+    		
+	    	   return Plane.getValue().getAvailability(new Period(currBlock, currYear));
+	    	});*/
+		
+    	
+    	
+    	
+    	/*
+    	lastNameCol.setCellValueFactory(new Callback<CellDataFeatures<Person, String>, ObservableValue<String>>() {
+    	     public ObservableValue<String> call(CellDataFeatures<Person, String> p) {
+    	         // p.getValue() returns the Person instance for a particular TableView row
+    	         return p.getValue().lastNameProperty();
+    	     }
+    	  });
+    	 }*/
+    	
+    	/*
+    	blockCol.setCellValueFactory(new Callback<CellDataFeatures<Plane, String>, ObservableValue<String>>() {
+   	     public ObservableValue<String> call(CellDataFeatures<Plane, String> p) {
+   	         // p.getValue() returns the Person instance for a particular TableView row
+   	         return p.getValue().getAvailability(new Period(currBlock, currYear));
+   	     	}
+   	  	});*/
+   	 	
+    	//https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/cell/MapValueFactory.html
+    	
+    	//-----------------------------------
+    	/////////System.out.println("testObservPlanes: " + testObservPlanes);
+    	
+    	
     	outerWhile:
     	while(currYear <= end.getYear()) { //loop through years
+    		
+    		
+    		
+    		yearCol = new TableColumn<>(String.valueOf(currYear)); //add current year column
+    		
     		blocksIterator = Arrays.asList(Block.values()).iterator(); //(re)set blocks iterator
     		
     		while(blocksIterator.hasNext()) { //loop through blocks
@@ -216,13 +259,65 @@ public class PlanesTableController implements Rootable {
     			if(currBlock.equals(start.getBlock()) && currYear == start.getYear()) {canAdd = true;}
     				
     			if(canAdd) {
-    				System.out.println(currBlock.toString() + " " + currYear);
     				
-    				if(currBlock.equals(end.getBlock()) && currYear == end.getYear()) {break outerWhile;}
+        			blockCol = new TableColumn<>(String.valueOf(currBlock)); //create block column 
+        			
+        			blockCol.setCellValueFactory(
+                    	    new PropertyValueFactory<Plane,String>("status"));
+        			
+    				for (int i=0; i<testObservPlanes.size();i++) {
+    					
+    					
+            			testObservPlanes.get(i).setStatus(new Period(currBlock, currYear));
+            			
+            			
+            			
+            		}
+    				
+    				System.out.println(testObservPlanes);
+        			
+
+    				
+    				
+    				
+    				
+    				
+        			
+        			
+        			
+        			
+            		yearCol.getColumns().add(blockCol); //add block column to year column
+            		
+            		
+            		
+            		/*
+            		//observer prob replaces this! prob! :P ++++++++++++++++
+            		for (int i=0; i<testObservPlanes.size();i++) {
+            			System.out.println(testObservPlanes.get(i).getAvailability(new Period(currBlock, currYear)));
+            			////////planeMap = testObservPlanes.get(i).getPlaneAvailabilities();
+            			//++++++++++make an observable hashmap from planes map. 
+            			//this MIGHT allow table to catch values an insert them into map.
+            		}*/
+    				
+            		//if found end date:
+    				if(currBlock.equals(end.getBlock()) && currYear == end.getYear()) {
+    					planesTable2.getColumns().add(yearCol); //add year column to table 
+    					break outerWhile; //break from outer while
+    				}
     			}
     		}
+    		planesTable2.getColumns().add(yearCol); //add year column to table
     		currYear++; //advance to next year
-    	}*/
+    	}
+    	
+    	//add table to root:
+    	rootVB.getChildren().setAll(planesTable2);
+    	
+    	
+    	
+    	
+    	
+    	
     	
     	
     	/*
@@ -244,11 +339,11 @@ public class PlanesTableController implements Rootable {
     	planesTable.getColumns().add(aCol);
     	
 		rootVB.getChildren().setAll(planesTable);
-    	
+    	*/
     	
     	
 		
-	}*/
+	}
 	
 	
 	

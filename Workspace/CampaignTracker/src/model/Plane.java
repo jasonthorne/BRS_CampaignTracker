@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 
 public class Plane {
 	
@@ -19,11 +20,10 @@ public class Plane {
 		public String toString() { return status; } //return chosen status
 	}
 	
-	/*private*/ String name; //name of plane
+	private SimpleStringProperty name; //name of plane
+	private SimpleStringProperty status2 = new SimpleStringProperty("bum"); //+++++++++++++++++++++++++
 	private Map<Period, Status>availabilities; //availability per period of history
 	
-	private SimpleStringProperty SSname; // = new SimpleStringProperty(name);
-
 	private Plane() {} //blank constructor
 	
 	//builder class:
@@ -33,8 +33,7 @@ public class Plane {
 		
 		//set name:
 		public PlaneBuilder setPlaneName(String name) {
-			plane.name = name;
-			plane.SSname = new SimpleStringProperty(name);//++++++++++++++++++++++++++
+			plane.name = new SimpleStringProperty(name);
 			return this;
 		}
 		
@@ -48,20 +47,48 @@ public class Plane {
 	}
 	
 	//get plane name:
-	public String getPlaneName() { return name; }
+	public String getName() { return name.get(); }
 	
-	public String getSSname() { return SSname.get(); }
+	
+	//-----------------------
+	
+	
+	//set plane status:
+	public void setStatus(Period period) {
+		/*SimpleStringProperty availabilty = new SimpleStringProperty(
+				availabilities.get(period).toString());
+		return availabilty.get();*/
 		
+		status2 = new SimpleStringProperty(availabilities.get(period).toString());
+	}
 	
+	//get plane status:
+	public String getStatus() { return status2.get(); }
 	
+	//-----------------------
 	//get plane availabilities:
 	public HashMap<Period, Status> getPlaneAvailabilities() { 
 		return new HashMap<Period, Status>(availabilities); 
 	}
+	
+	//get availability:
+	public ObservableValue<String> getAvailability(Period period) {
+	//public String getAvailability(Period period) { 
+	/*	SimpleStringProperty availabilty = new SimpleStringProperty(
+				availabilities.get(period).toString());
+		return availabilty.get();*/
+		
+		ObservableValue<String>availabilty = new SimpleStringProperty(
+				availabilities.get(period).toString());
+		return availabilty;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Plane [name=" + name + ", availabilities=" + availabilities + "]";
+		return "Plane [name=" + name + ", status2=" + status2.get() + ", availabilities=" + availabilities + "]";
 	}
+
+	
 	
 }
