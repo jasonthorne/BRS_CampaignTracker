@@ -50,6 +50,7 @@ public class EventsController implements Frameable, Rootable {
     	setEvents(); //populate events list
     	setEventsListener(); //add change listener to events list view
     	setAirForcesFactory();  //set airForcesLV cell factory
+    	/////////////+++++++selectEventBtn.setOnAction(event -> Frameable.changeView(root, createSquadronCtrlr));
     }
     
     //observable list of events:
