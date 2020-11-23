@@ -41,6 +41,7 @@ public class EventsController implements Frameable, Rootable {
     @FXML private Label eventNameLbl;
     @FXML private Label startPeriodLbl;
     @FXML private Label endPeriodLbl;
+    @FXML private Label turnSizeLbl;
     @FXML private JFXButton selectEventBtn;
     @FXML private JFXListView<AirForce> airForcesLV;
 
@@ -51,13 +52,6 @@ public class EventsController implements Frameable, Rootable {
     	setAirForcesFactory();  //set airForcesLV cell factory
     }
     
-    
-    
-    
-    //Event currEvent;
-    
-    
-    //+++++++++++++++++++++++++++++++++++++
     //observable list of events:
     private final ObservableList<Event>events = FXCollections.observableArrayList();
     
@@ -105,30 +99,25 @@ public class EventsController implements Frameable, Rootable {
     
     //add change listener to list view:
     private void setEventsListener() {
-    	
+	/**https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2	*/
     	eventsLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Event>() {
     		
-    		@Override  //override changeListener's changed: 
+    		@Override  //override change listener's changed: 
     	    public void changed(ObservableValue<? extends Event> observable, Event oldVal, Event newVal) {
     			
     			//populate fxml elements with values from selected event:
     	        eventNameLbl.setText(newVal.getEventName());
     	        startPeriodLbl.setText(newVal.getStartPeriod().toString());
     	        endPeriodLbl.setText(newVal.getEndPeriod().toString());
-    	        
+    	        //System.out.println(newVal.getEventAirForces().get(0).getAirForcePlanes().get(0).getPlaneAvailabilities().size()*Campaign.TURNS_PER_PERIOD);
+    	        turnSizeLbl.setText(String.valueOf(newVal.getTurnSize()));
     	        //add selected event's air forces to observable airForces:
     	        airForces = FXCollections.observableArrayList(newVal.getEventAirForces());
     	        airForcesLV.setItems(airForces); //set list view with airForces
-	        	/*
-    	        //set cell factory to create AirForceCellControllers with selected event's periods:
-    	        airForcesLV.setCellFactory(AirForceCellController ->
-    	    	   new AirForceCellController(newVal.getStartPeriod(), newVal.getEndPeriod()) //+++++++++++++MOVE THIS!! :P
-    	       ); */
     	    }
     	});
-    }
-    //https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2
-    
+    } 
+   
     //set airForcesLV cell factory:
     private void setAirForcesFactory() {
         //set cell factory to create AirForceCellControllers:
@@ -141,5 +130,5 @@ public class EventsController implements Frameable, Rootable {
 	public Parent getRoot() { return root; } //get root
 	@Override 
 	
-	public String getViewTitle() { return "Select Event"; } //get title
+	public String getViewTitle() { return "Select an Event"; } //get title
 }

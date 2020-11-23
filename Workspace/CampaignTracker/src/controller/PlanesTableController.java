@@ -47,78 +47,49 @@ public class PlanesTableController implements Rootable {
     @FXML
     private URL location;
     
-    //root fxml element & children:
+    //root fxml element:
     @FXML private VBox rootVB;
   
     @FXML
-    void initialize() {
+    void initialize() { }
     	
-    }
-   
-    private final ObservableList<Plane> planes = FXCollections.observableArrayList(); //observable planes
+    private final ObservableList<Plane> observPlanes = FXCollections.observableArrayList(); //observable planes
     private final TableView<Plane> planesTable = new TableView<Plane>(); //table view for planes
-  
- 
-    /////TableColumn<Plane,String> blockCol = null;
-    ////////TableColumn<Plane,String> yearCol = null;
-    ///////Block currBlock; //holds block values
-    /////////int currYear; //holds year values
-    //=========================================================
-    
-  
-    
+   
   	private final Stage stage = new Stage(); //stage
-    private final Scene scene; //scene
+    private final Scene scene = new Scene(Rootable.getRoot(this, "/view/planesTable.fxml")); //rooted scene
    
     //constructor:
 	PlanesTableController(List<Plane>planes) {
-		//add root to scene:
-		scene = new Scene(Rootable.getRoot(this, "/view/planesTable.fxml")); 
-    	stage.setScene(scene); //add scene to stage	
-    	
-    	this.planes.addAll(planes);
-    	planesTable.setItems(this.planes);
-    	
-		System.out.println("planes: " + planes);
 		
-		
-    	setTable();
+		stage.setScene(scene); //add scene to stage	
+		observPlanes.addAll(planes); //add planes to observable list
+    	planesTable.setItems(observPlanes); //add observable list to table
+    	buildTable(); //build table
     }
 	
-	private void setPeriods() {} //??????????????????????????????
+	private void buildTable() {
 		
-	
-	
-	private void setTable() {
+		//TreeMap of a plane's availabilities, sorted by period compareTo:
+		TreeMap<Period,Status> sortedAvails = new TreeMap<Period,Status>( 
+				observPlanes.get(0).getPlaneAvailabilities());
 		
-		//get list of periods covered, from a plane's availabilities keySet:
-		List<Period>periods =  new ArrayList<Period>(
-				new TreeMap<Period, Status>( //TreeMap orders keySet by period's compareTo
-						planes.get(0).getPlaneAvailabilities()).keySet());
+		Period start =  sortedAvails.firstKey(); //get start period
+		Period end = sortedAvails.lastKey(); //get end period
 		
-		Period start =  periods.get(0); //get start period
-		Period end =  periods.get(periods.size()-1); //get end period
-		
-		int currYear = start.getYear(); //holds year values
-		Block currBlock; //holds block values
-    	Iterator<Block>blocksIterator; //blocks iterator
-    	boolean canAdd = false; //flag for adding values
-    	
-    	//------------------------------------------
-    	
     	//create plane column:
     	TableColumn<Plane,String> planeCol = new TableColumn<>("Plane");
     	
     	//set cell factory:
     	planeCol.setCellValueFactory(
-        	    new PropertyValueFactory<Plane,String>("name"));
-    	
+    			new PropertyValueFactory<Plane,String>("name"));
+        	    
     	//add plane column to table:
     	planesTable.getColumns().add(planeCol); 
     	
     	//year and block columns:
-    	TableColumn<Plane,String> yearCol = null;
-    	TableColumn<Plane,String> blockCol = null;
+    	TableColumn<Plane,String> yearCol;
+    	TableColumn<Plane,String> blockCol;
     	
     	//call back for populating block column cells with plane period availabilities:
     	Callback<TableColumn.CellDataFeatures<Plane, String>, ObservableValue<String>> callBack = 
@@ -129,12 +100,13 @@ public class PlanesTableController implements Rootable {
             			 param.getValue().getPlaneAvailabilities().get(
             					 param.getTableColumn().getUserData()).toString());		
             }
-        };
-    	
+        };/** https://stackoverflow.com/questions/21639108/javafx-tableview-objects-with-maps */
         
         
-        //++++++++NOTES HERE: 
-    	//https://stackoverflow.com/questions/21639108/javafx-tableview-objects-with-maps
+        int currYear = start.getYear(); //holds year values
+		Block currBlock; //holds block values
+    	Iterator<Block>blocksIterator; //blocks iterator
+    	boolean canAdd = false; //flag for adding values
     	
     	outerWhile:
     	while(currYear <= end.getYear()) { //loop through years
@@ -145,7 +117,7 @@ public class PlanesTableController implements Rootable {
     		while(blocksIterator.hasNext()) { //loop through blocks
     			currBlock = blocksIterator.next(); //advance to next block
     			
-    			//if found start date, allow adding of columns:
+    			//if found start date, allow adding of values:
     			if(currBlock.equals(start.getBlock()) && currYear == start.getYear()) {canAdd = true;}
     				
     			if(canAdd) {
@@ -167,10 +139,7 @@ public class PlanesTableController implements Rootable {
     	//add table to root:
     	rootVB.getChildren().setAll(planesTable);
 	}
-	
 
-	
-	    //show stage:
+    //show stage:
     void showStage() { stage.showAndWait(); }
-    
 }

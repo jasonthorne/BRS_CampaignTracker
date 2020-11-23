@@ -44,12 +44,12 @@ public class Period implements Comparable <Period>{
 		Integer otherBlock = otherPeriod.getBlock().ordinal(); 
 		
 		//if years are the same, order by blocks:
-		if(thisYear.equals(otherYear)){ 
-			return thisBlock.compareTo(otherBlock);}
+		if(thisYear.equals(otherYear)) { 
+			return thisBlock.compareTo(otherBlock); }
 		
 		//if years aren't the same, order by years:
-		if(!(thisYear.equals(otherYear))){ 
-			return thisYear.compareTo(otherYear);}
+		if(!(thisYear.equals(otherYear))) { 
+			return thisYear.compareTo(otherYear); }
 		
 		return 0; //same periods
 	}

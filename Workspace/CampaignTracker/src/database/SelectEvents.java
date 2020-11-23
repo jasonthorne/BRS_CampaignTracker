@@ -68,6 +68,9 @@ public interface SelectEvents {
 				eventBuilder.setStartPeriod(eventPeriods.get(0));
 				eventBuilder.setEndPeriod(eventPeriods.get(eventPeriods.size()-1));
 				
+				//set turns according to number of periods:
+				eventBuilder.setEventTurns(eventPeriods.size());
+				
 				//create list for event air forces:
 				List<AirForce>eventAirForces = new ArrayList<>();
 				

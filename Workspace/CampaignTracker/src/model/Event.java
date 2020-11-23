@@ -8,7 +8,7 @@ public class Event {
 	private String name; //name of event
 	private Period startPeriod; //start period
 	private Period endPeriod; //end period
-	///////////////////private AirForce airForce; //an air force involved
+	private int turnSize; //number of turns
 	private List<AirForce>airForces; //list of air forces involved
 	
 	private Event() {} //blank constructor
@@ -36,16 +36,11 @@ public class Event {
 			return this;
 		}
 		
-		/*
-		//set event air force: //+++++++++++++++++PROB DONT NEED! :P
-		public EventBuilder setEventAirForce(AirForce airForce) { //+++++++++++++++++++++++MAKE STRONGER
-			event.airForce = new AirForce.AirForceBuilder()
-					.setAirForceName(airForce.getAirForceName())
-					.setHasHomeAdv(airForce.getHasHomeAdv())
-					.build();
-			///////event.airForce = airForce; +++++++++++
+		//set number of turns:
+		public EventBuilder setEventTurns(int periodTotal) {
+			event.turnSize = (periodTotal * Campaign.TURNS_PER_PERIOD);
 			return this;
-		}*/
+		}
 		
 		//set list of event air forces:
 		//+++++++++++++++++++++++++++++++loop through passed list and make a new one with each val
@@ -71,17 +66,9 @@ public class Event {
 		return new Period(endPeriod.getBlock(), endPeriod.getYear());
 	}
 	
-	
-	/*
-	//get event air force:
-	public AirForce getEventAirForce() {
+	//get turn size:
+	public int getTurnSize() { return turnSize; }
 		
-		return new AirForce.AirForceBuilder()
-				.setAirForceName(airForce.getAirForceName())
-				.setHasHomeAdv(airForce.getHasHomeAdv())
-				.build();
-	}*/
-	
 	//get event air forces:
 	public List<AirForce> getEventAirForces() {
 		//+++++++++++++++++++++++++++++++loop through passed list and make a new one with each val & pass that! 
