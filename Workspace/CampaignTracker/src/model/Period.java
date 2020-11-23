@@ -31,7 +31,7 @@ public class Period implements Comparable <Period>{
 	@Override
 	public String toString() { return block + " " + year; }
 	
-	//overridden for ordering during TreeSet insertion:
+	//for ordering during TreeMap insertion:
 	@Override	
 	public int compareTo(Period otherPeriod) { //compare periods
 		
@@ -44,15 +44,17 @@ public class Period implements Comparable <Period>{
 		Integer otherBlock = otherPeriod.getBlock().ordinal(); 
 		
 		//if years are the same, order by blocks:
-		if(thisYear.equals(otherYear)) { return thisBlock.compareTo(otherBlock); }
+		if(thisYear.equals(otherYear)){ 
+			return thisBlock.compareTo(otherBlock);}
 		
 		//if years aren't the same, order by years:
-		if(!(thisYear.equals(otherYear))) { return thisYear.compareTo(otherYear); } 
-			
+		if(!(thisYear.equals(otherYear))){ 
+			return thisYear.compareTo(otherYear);}
+		
 		return 0; //same periods
 	}
 
-	//overridden for unique HashMap insertion:
+	//for unique HashMap insertion:
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -62,7 +64,7 @@ public class Period implements Comparable <Period>{
 		return result;
 	}
 	
-	//overridden for unique HashMap insertion:
+	//or unique HashMap insertion:
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

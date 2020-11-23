@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
+import model.Period.Block;
 
 public class Plane {
 	
@@ -21,7 +23,6 @@ public class Plane {
 	}
 	
 	private SimpleStringProperty name; //name of plane
-	private SimpleStringProperty status2 = new SimpleStringProperty("bum"); //+++++++++++++++++++++++++
 	private Map<Period, Status>availabilities; //availability per period of history
 	
 	private Plane() {} //blank constructor
@@ -49,46 +50,13 @@ public class Plane {
 	//get plane name:
 	public String getName() { return name.get(); }
 	
-	
-	//-----------------------
-	
-	
-	//set plane status:
-	public void setStatus(Period period) {
-		/*SimpleStringProperty availabilty = new SimpleStringProperty(
-				availabilities.get(period).toString());
-		return availabilty.get();*/
-		
-		status2 = new SimpleStringProperty(availabilities.get(period).toString());
-	}
-	
-	//get plane status:
-	public String getStatus() { return status2.get(); }
-	
-	//-----------------------
 	//get plane availabilities:
 	public HashMap<Period, Status> getPlaneAvailabilities() { 
 		return new HashMap<Period, Status>(availabilities); 
 	}
 	
-	//get availability:
-	public ObservableValue<String> getAvailability(Period period) {
-	//public String getAvailability(Period period) { 
-	/*	SimpleStringProperty availabilty = new SimpleStringProperty(
-				availabilities.get(period).toString());
-		return availabilty.get();*/
-		
-		ObservableValue<String>availabilty = new SimpleStringProperty(
-				availabilities.get(period).toString());
-		return availabilty;
-	}
-
-
 	@Override
 	public String toString() {
-		return "Plane [name=" + name + ", status2=" + status2.get() + ", availabilities=" + availabilities + "]";
+		return "Plane [name=" + name +  ", availabilities=" + availabilities + "]";
 	}
-
-	
-	
 }
