@@ -54,12 +54,7 @@ public class PlanesTableController implements Rootable {
     void initialize() {
     	
     }
-    
-    ///public static final String Column1MapKey = "A";
-    
-    public static final Period PeriodKey = new Period(Block.EARLY, 0);
-    
-    
+   
     private final ObservableList<Plane> planes = FXCollections.observableArrayList(); //observable planes
     private final TableView<Plane> planesTable = new TableView<Plane>(); //table view for planes
   
@@ -111,15 +106,21 @@ public class PlanesTableController implements Rootable {
     	
     	//------------------------------------------
     	
+    	//create plane column:
     	TableColumn<Plane,String> planeCol = new TableColumn<>("Plane");
+    	
+    	//set cell factory:
     	planeCol.setCellValueFactory(
         	    new PropertyValueFactory<Plane,String>("name"));
-    	planesTable.getColumns().add(planeCol);
     	
+    	//add plane column to table:
+    	planesTable.getColumns().add(planeCol); 
+    	
+    	//year and block columns:
     	TableColumn<Plane,String> yearCol = null;
     	TableColumn<Plane,String> blockCol = null;
     	
-    	
+    	//call back for populating block column cells with plane period availabilities:
     	Callback<TableColumn.CellDataFeatures<Plane, String>, ObservableValue<String>> callBack = 
                 new Callback<TableColumn.CellDataFeatures<Plane, String>, ObservableValue<String>>() {
             @Override
@@ -130,57 +131,8 @@ public class PlanesTableController implements Rootable {
             }
         };
     	
-    	
-    	
-		/*map.containsKey(
-        "ass"+Integer.toString((int)param.getTableColumn().getUserData()))
-        ? new SimpleStringProperty(String.format("%.1f",100d*param.getValue().map.get(
-            "ass"+Integer.toString((int)param.getTableColumn().getUserData()))))
-        :new SimpleStringProperty("");*/
-    	
-    	
-
-    	/*
-    	blockCol.setCellValueFactory(Plane -> {
-    		
-	    	   return Plane.getValue().getAvailability(new Period(currBlock, currYear));
-	    	});
-    	*/
-    	
-
-    	
-    	
-    	/*
-    	lastNameCol.setCellValueFactory(new Callback<CellDataFeatures<Person, String>, ObservableValue<String>>() {
-    	     public ObservableValue<String> call(CellDataFeatures<Person, String> p) {
-    	         // p.getValue() returns the Person instance for a particular TableView row
-    	         return p.getValue().lastNameProperty();
-    	     }
-    	  });
-    	 }*/
-    	
-    	/*
-    	blockCol.setCellValueFactory(new Callback<CellDataFeatures<Plane, String>, ObservableValue<String>>() {
-   	     public ObservableValue<String> call(CellDataFeatures<Plane, String> p) {
-   	         // p.getValue() returns the Person instance for a particular TableView row
-   	         return p.getValue().getAvailability(new Period(currBlock, currYear));
-   	     	}
-   	  	});
-   	 	*/
-    	
-    	
-    	
-    	//-----------------------------------
-    	/////////System.out.println("testObservPlanes: " + testObservPlanes);
-    	
-
-    	/*blockCol.setCellValueFactory(new Callback<CellDataFeatures<Plane, String>, ObservableValue<String>>() {
-	   	     public ObservableValue<String> call(CellDataFeatures<Plane, String> p) {
-	   	         // p.getValue() returns the Person instance for a particular TableView row
-	   	         return p.getValue().getStatus();//.getAvailability(currBlock, currYear);
-  	     	}
-  	  	});*/
-    	
+        
+        
         //++++++++NOTES HERE: 
     	//https://stackoverflow.com/questions/21639108/javafx-tableview-objects-with-maps
     	
@@ -197,25 +149,9 @@ public class PlanesTableController implements Rootable {
     			if(currBlock.equals(start.getBlock()) && currYear == start.getYear()) {canAdd = true;}
     				
     			if(canAdd) {
-        			//////blockCol = new TableColumn<>(String.valueOf(currBlock)); //create block column 
-        	
-    				/*TableColumn<Plane,String>*/ blockCol = new TableColumn<>(String.valueOf(currBlock)); //create block column 
-    				
-        			blockCol.setUserData(new Period(currBlock, currYear));
-        			blockCol.setCellValueFactory(callBack);
-        			
-        			
-        	
-        		
-    				for (int i=0; i<planes.size();i++) {
-            			System.out.println(planes.get(i).getName() + " " 
-            					+ new TreeMap<Period, Status>(planes.get(i).getPlaneAvailabilities()));
-    				}
-            		
-    				System.out.println(" ");
-        			
-        			
-        			
+    				blockCol = new TableColumn<>(String.valueOf(currBlock)); //create block column 
+        			blockCol.setUserData(new Period(currBlock, currYear)); //add period to block column
+        			blockCol.setCellValueFactory(callBack); //set block column cell factory
             		yearCol.getColumns().add(blockCol); //add block column to year column
             		
             		//if found end date:
@@ -228,7 +164,6 @@ public class PlanesTableController implements Rootable {
     		planesTable.getColumns().add(yearCol); //add year column to table
     		currYear++; //advance to next year
     	}
-    	
     	//add table to root:
     	rootVB.getChildren().setAll(planesTable);
 	}
