@@ -33,7 +33,7 @@ public class PlanesTableController implements Rootable {
     
     //root fxml element:
     @FXML private VBox rootVB;
-  
+    
     @FXML
     void initialize() { }
     	

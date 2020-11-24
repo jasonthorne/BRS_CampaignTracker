@@ -143,8 +143,6 @@ public class EventsController implements Frameable, Rootable {
         airForcesLV.setCellFactory(AirForceCellController ->  new AirForceCellController());
     }
     
-    
-    
     @Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/events.fxml"); } //set root
 	@Override 

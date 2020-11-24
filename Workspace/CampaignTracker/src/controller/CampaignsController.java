@@ -129,8 +129,13 @@ public class CampaignsController implements Frameable, Rootable {
 		});
 	}
 	
-	void addCampaign(){
-		//////eventsCtrlr.get
+	void createCampaign(/* event info*/) {
+		//////add to db
+		//add to campaigns obsrv list
+		//then:
+		//campaignsLV.setItems(campaigns); 
+		
+		
 	}
 	
 	@Override

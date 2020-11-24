@@ -39,6 +39,8 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	//id of logged in player:
 	private static int playerId; //HAVE A SINGLETON PLAYER OBJ HERE INSTEAD WITH ACCESS TO ITS ID THROUGH A GETTER
 	
+	
+	
 	//fxml root node:
   	private Parent root;
 	
@@ -62,6 +64,14 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		}).start();*/
 		//======================================
 	}
+	
+	//???????????????????????
+	private static final class User {
+		private static int playerId;
+		private User() {}
+		
+		
+    }//??????????????????????
 	
 	private void loginUsr() {
 		
@@ -102,7 +112,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	}
 	
 	static int getPlayerId() { return playerId; } //get playerId //get playerId
-	static void setPlayerId(int playerId) { LoginController.playerId = playerId; } //set playerId
+	private static void setPlayerId(int playerId) { LoginController.playerId = playerId; } //set playerId
 	
 	@Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/login.fxml"); } //set root

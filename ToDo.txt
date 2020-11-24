@@ -40,7 +40,8 @@ Listener for background:
 https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2
 
 
-
+change colour of table view  cells:
+//https://stackoverflow.com/questions/6998551/setting-font-color-of-javafx-tableview-cells
 
 truncate all tables:
 https://stackoverflow.com/questions/1912813/truncate-all-tables-in-a-mysql-database-in-one-command
