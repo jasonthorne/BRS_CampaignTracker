@@ -37,7 +37,7 @@ public class Event {
 		}
 		
 		//set number of turns:
-		public EventBuilder setEventTurns(int periodTotal) {
+		public EventBuilder setTurnSize(int periodTotal) {
 			event.turnSize = (periodTotal * Campaign.TURNS_PER_PERIOD);
 			return this;
 		}

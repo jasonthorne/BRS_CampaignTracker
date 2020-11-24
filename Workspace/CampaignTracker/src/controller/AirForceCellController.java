@@ -36,9 +36,8 @@ public class AirForceCellController extends JFXListCell<AirForce> implements Roo
     void initialize() {
     	
     	//show planes available:
-    	planesBtn.setOnAction(event -> {
-    	   new PlanesTableController(planes).showStage();
-    	});
+    	planesBtn.setOnAction(event -> 
+    		new PlanesTableController(planes, airForceNameLbl.getText()).showStage());
     }
     
     //root element for this controller:

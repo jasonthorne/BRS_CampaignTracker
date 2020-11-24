@@ -4,7 +4,6 @@ public class Player { /** +++++++++++++++++++++ is this class even needed???  :P
 	
 	private int id; //player id
 	private String name; //player name
-	private String pswrd; //player password //????????????????????????????
 
 	private Player() {} //blank constructor
 	
@@ -25,18 +24,11 @@ public class Player { /** +++++++++++++++++++++ is this class even needed???  :P
 			return this; 
 		}
 		
-		//set password:
-		public PlayerBuilder setPswrd(String pswrd) {
-			player.pswrd = pswrd; 
-			return this; 
-		}
-		
 		public Player build() { return player; } //return built player
 	}
 	
 	//getters:
 	public int getId() {return this.id; } /** +++++++++++++ not sure if needed??? ++++++++*/
 	public String getName() {return name; }
-	public String getPswrd() {return  pswrd; } //?????????????????????
 	
 }

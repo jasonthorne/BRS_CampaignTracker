@@ -1,44 +1,28 @@
 package controller;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
-import animation.Fadeable;
-import animation.Fadeable.FadeOption;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import javafx.util.StringConverter;
-import model.Event;
 import model.Period;
 import model.Period.Block;
 import model.Plane;
 import model.Plane.Status;
-import model.TEST;
 
 public class PlanesTableController implements Rootable {
 	
@@ -60,8 +44,8 @@ public class PlanesTableController implements Rootable {
     private final Scene scene = new Scene(Rootable.getRoot(this, "/view/planesTable.fxml")); //rooted scene
    
     //constructor:
-	PlanesTableController(List<Plane>planes) {
-		
+	PlanesTableController(List<Plane>planes, String airForceName) {
+		stage.setTitle(airForceName + " Planes"); //set title
 		stage.setScene(scene); //add scene to stage	
 		observPlanes.addAll(planes); //add planes to observable list
     	planesTable.setItems(observPlanes); //add observable list to table
