@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXListView;
 
 import database.SelectEvents;
@@ -22,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import model.Campaign;
 import model.Event;
 import model.Event.EventBuilder;
@@ -50,9 +52,22 @@ public class EventsController implements Frameable, Rootable {
     	setEvents(); //populate events list
     	setEventsListener(); //add change listener to events list view
     	setAirForcesFactory();  //set airForcesLV cell factory
-    	/////////////+++++++selectEventBtn.setOnAction(event -> Frameable.changeView(root, createSquadronCtrlr));
+    	
+    	
+    	selectEventBtn.setOnAction(event -> {
+    		
+    		//inform user they're going to create a new campaign with this event
+    		//if they're cool: create new campaign with this event in campaign ctrlr
+    		//then navigate user to that campaign page
+    		
+    		//Frameable.changeView(root, createSquadronCtrlr));
+    		
+    		//////https://stackoverflow.com/questions/50933321/how-to-show-a-dialog-with-jfoenix-javafx
+    		
+    	});
+    	
     }
-    
+   
     //observable list of events:
     private final ObservableList<Event>events = FXCollections.observableArrayList();
     
@@ -61,10 +76,13 @@ public class EventsController implements Frameable, Rootable {
     
     //fxml root node:
   	private Parent root; 
+  	
+  	private final CampaignsController campaignsCtrlr;
 
     //constructor:
-    EventsController() {
+    EventsController(CampaignsController campaignsCtrlr) {
     	setRoot(); //set root node
+    	this.campaignsCtrlr = campaignsCtrlr;
     }
     
     //populates events with events from db:
@@ -110,8 +128,8 @@ public class EventsController implements Frameable, Rootable {
     	        eventNameLbl.setText(newVal.getEventName());
     	        startPeriodLbl.setText(newVal.getStartPeriod().toString());
     	        endPeriodLbl.setText(newVal.getEndPeriod().toString());
-    	        //System.out.println(newVal.getEventAirForces().get(0).getAirForcePlanes().get(0).getPlaneAvailabilities().size()*Campaign.TURNS_PER_PERIOD);
     	        turnSizeLbl.setText(String.valueOf(newVal.getTurnSize()));
+    	        
     	        //add selected event's air forces to observable airForces:
     	        airForces = FXCollections.observableArrayList(newVal.getEventAirForces());
     	        airForcesLV.setItems(airForces); //set list view with airForces
@@ -121,9 +139,11 @@ public class EventsController implements Frameable, Rootable {
    
     //set airForcesLV cell factory:
     private void setAirForcesFactory() {
-        //set cell factory to create AirForceCellControllers:
+        //set cell factory to create air force cell controllers:
         airForcesLV.setCellFactory(AirForceCellController ->  new AirForceCellController());
     }
+    
+    
     
     @Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/events.fxml"); } //set root

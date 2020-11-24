@@ -27,6 +27,12 @@ https://www.google.com/search?q=mysql+sort+by+one+then+another&rlz=1C1CHBF_enIE9
 
 linmks:
 
+good selection of stuff:
+http://tutorials.jenkov.com/javafx/tableview.html
+
+oracle good selection of stuff:
+https://docs.oracle.com/javafx/2/ui_controls/table-view.htm
+
 tableview vrom hashmap:
 https://stackoverflow.com/questions/37171820/populating-a-tableview-with-a-hashmap-that-will-update-when-hashmap-changes
 
@@ -34,8 +40,7 @@ Listener for background:
 https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2
 
 
-to figure out period dispanency: +++++++++++++++++++++++++++++++++++++++++++
-pull year: cast to int: compare against other year, cast to int.
+
 
 truncate all tables:
 https://stackoverflow.com/questions/1912813/truncate-all-tables-in-a-mysql-database-in-one-command
