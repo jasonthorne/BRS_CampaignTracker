@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS campaigns;
 
 /*DROP TABLE IF EXISTS campaigns; */
 
-CREATE TABLE campaigns ( /*++++++++++++++++++++++++++++stick campaign host in here! :P */
+CREATE TABLE campaigns (
 	campaignID INT NOT NULL AUTO_INCREMENT,
 	eventID INT,
 	periodID INT,
@@ -122,12 +122,24 @@ DROP PROCEDURE IF EXISTS insert_campaign;
 DELIMITER $$
 CREATE PROCEDURE insert_campaign (IN player_ID VARCHAR(64), IN event_name VARCHAR(64))
 BEGIN
-	/*INSERT INTO campaigns (eventID, periodID /*, created) VALUES (
-		(SELECT eventID FROM events WHERE events.name = event_name),
-		(SELECT periodID FROM event_periods WHERE events.name = event_name)
-	);	*/
+	/* eventID from event with event_name: */
+	DECLARE event_ID INT DEFAULT (
+		SELECT eventID FROM events WHERE events.name = event_name); 
+	
+	INSERT INTO campaigns (eventID, periodID /*, created*/) VALUES (
+		event_ID,
+		(SELECT MIN(periodID) FROM event_periods 
+			INNER JOIN events ON event_periods.eventID = event_ID 
+		WHERE events.name = event_name));	
 	
 	/*
+	
+	SELECT MIN(periodID)
+FROM event_periods
+	INNER JOIN events ON event_periods.eventID = events.eventID
+WHERE events.name = 'Battle of Britain';
+	
+	
 	campaignID INT NOT NULL AUTO_INCREMENT,
 	eventID INT,
 	periodID INT,
