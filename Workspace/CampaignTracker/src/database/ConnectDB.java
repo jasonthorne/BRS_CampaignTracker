@@ -7,7 +7,7 @@ import java.util.Properties;
 
 /** look into http://www.jasypt.org/ for encryption +++++++++++++++*/
 
-public class ConnectDB {
+public final class ConnectDB {
 	
 	private Connection connection = null; //holds an established connection
 	
@@ -29,5 +29,5 @@ public class ConnectDB {
 	}
 	
 	//return a newly established connection:
-	protected static Connection getConnection() { return new ConnectDB().connection; }
+	static Connection getConnection() { return new ConnectDB().connection; }
 }

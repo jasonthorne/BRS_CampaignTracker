@@ -44,19 +44,19 @@ public class CampaignsController implements Frameable, Rootable {
     	setCampaigns(); //populate campaigns list
     	setToggleListener(); //add change listener to toggle group
     	//set btn action:
-    	newCampaignBtn.setOnAction(event -> Frameable.changeView(root, eventsCtrlr));
+    	////newCampaignBtn.setOnAction(event -> Frameable.changeView(root, eventsCtrlr));
     	
-    	//newCampaignBtn.setOnAction(event -> 
-    	//	Frameable.changeView(root, new EventsController())); 
+    	newCampaignBtn.setOnAction(event -> 
+    		Frameable.changeView(root, new EventsController(this))); 
     	
     	
     }
     
     //observable list of campaigns:
-    private final ObservableList<Campaign>campaigns = FXCollections.observableArrayList();
+    private final ObservableList<Campaign>observCampaigns = FXCollections.observableArrayList();
     
     //filtered list for filtering campaigns:
-    private final FilteredList<Campaign> filteredCampaigns = new FilteredList<>(campaigns, str -> true);
+    private final FilteredList<Campaign> filteredCampaigns = new FilteredList<>(observCampaigns, str->true);
     
     /**===================imaginary db data: =================================*/
     public static List<Campaign>cellItemsDB = new ArrayList<Campaign>();
@@ -66,13 +66,13 @@ public class CampaignsController implements Frameable, Rootable {
 	private Parent root; 
 	
 	//controllers:
-	private final EventsController eventsCtrlr; ////////????????? needed??? 
+	private final EventsController eventsCtrlr; ////////????????? needed??? +++++++
 	private A1 a1;
 	
 	//constructor:
 	CampaignsController() {
 		setRoot(); //set root node
-		this.eventsCtrlr = new EventsController(this); ////////????????? needed??? 
+		this.eventsCtrlr = new EventsController(this); ////////????????? needed??? +++++++++
 		 a1 = new A1();
 	}
 
@@ -92,11 +92,11 @@ public class CampaignsController implements Frameable, Rootable {
     	
     	
 		//add campaigns from db to campaigns:
-		campaigns.addAll(cellItemsDB);
+    	observCampaigns.addAll(cellItemsDB);
 		
 		/** ========================================================*/
 		//add campaigns to listView:
-		campaignsLV.setItems(campaigns); 
+		campaignsLV.setItems(observCampaigns); 
 		//set listView cellFactory to create CampaignCellControllers:
 		campaignsLV.setCellFactory(CampaignCellController -> new CampaignCellController(this));
 	}
@@ -123,14 +123,16 @@ public class CampaignsController implements Frameable, Rootable {
 					filteredCampaigns.setPredicate(str -> str.getName().contains(notPlayingRB.getText()));
 					campaignsLV.setItems(filteredCampaigns); //set listView to filteredList
 				}else {
-					campaignsLV.setItems(campaigns);  //set listView to non-filtered campaigns list 
+					campaignsLV.setItems(observCampaigns);  //set listView to non-filtered campaigns list 
 				}
 			} 
 		});
 	}
 	
-	void createCampaign(/* event info*/) {
-		//////add to db
+	void createCampaign(String eventName) {
+		//add campaign to db:
+		database.InsertCampaign.insert(LoginController.getPlayerId(), eventName);
+		
 		//add to campaigns obsrv list
 		//then:
 		//campaignsLV.setItems(campaigns); 

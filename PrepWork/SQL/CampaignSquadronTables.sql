@@ -101,6 +101,23 @@ CREATE TABLE campaign_players (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 /*----------------------------------------------------*/
+/* campaign players hosting campaigns*/
+
+/*DROP TABLE IF EXISTS campaign_hosts; */
+/* ++++++++++++++++++++++++++++++++++++++++++++++++TEST THESE CONSTRAINTS +++++++++++++++ */
+CREATE TABLE campaign_hosts (
+	campaign_hostID INT NOT NULL AUTO_INCREMENT,
+	/*campaignID INT,*/
+	campaign_playerID INT,
+	PRIMARY KEY (campaign_hostID),
+	/*FOREIGN KEY (campaignID) REFERENCES campaigns(campaignID),
+	FOREIGN KEY (campaign_playerID) REFERENCES campaign_players(campaign_playerID),
+	UNIQUE (campaignID) /* prevent duplicate inserts */
+	UNIQUE (campaign_playerID) /* prevent duplicate inserts */
+	/*CONSTRAINT campaignID_campaign_playerID UNIQUE (campaignID, campaign_playerID)	/* make combined columns unique */
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+/*----------------------------------------------------*/
 /* squadrons */
 
 /*DROP TABLE IF EXISTS squadrons; */

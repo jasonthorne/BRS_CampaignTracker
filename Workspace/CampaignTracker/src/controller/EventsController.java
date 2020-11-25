@@ -21,6 +21,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -50,7 +52,7 @@ public class EventsController implements Frameable, Rootable {
     @FXML private JFXListView<AirForce> airForcesLV;
 
     @FXML
-    private StackPane testStack2;
+    private StackPane testStack2; //+++++++++++++test stack (which rootAP ids wrapped in for displaying JFXDialog) +++++++
     
     @FXML
     void initialize() {
@@ -60,25 +62,30 @@ public class EventsController implements Frameable, Rootable {
     	
     	selectEventBtn.setOnAction(event -> {
     		
-    		//inform user they're going to create a new campaign with this event
-    		//if they're cool: create new campaign with this event in campaign ctrlr
+    		//inform user they're going to create a new campaign with this event:
+    		/////testJFXDialog();
+    		//if they're cool (click ok button instead of cancel/x button): create new campaign with this event in campaign ctrlr:
+    		
+    		campaignsCtrlr.createCampaign(eventNameLbl.getText());
+    		
     		//then navigate user to that campaign page
     		
-    		//Frameable.changeView(root, createSquadronCtrlr));
+    		//Frameable.changeView(root, campaignCtrlr));
     		
     		//////https://stackoverflow.com/questions/50933321/how-to-show-a-dialog-with-jfoenix-javafx
     		
     		//more detailed: https://stackoverflow.com/questions/38830883/how-to-create-a-dialog-using-jfxdialog-of-jfoenix-in-javafx
-    		show();
+    		
     	});
     	
     }
     
     //----------------------------------------
-    public void show() {
+    public void testJFXDialog() {
         JFXDialogLayout layout = new JFXDialogLayout();
         layout.setHeading(new Label("Header"));
-        layout.setBody(new Label("Lorem ipsum"));
+        layout.setBody( /*new Label("Header")*/ new JFXButton("yo"));
+       
 
         JFXDialog dialog = new JFXDialog(testStack2, layout, JFXDialog.DialogTransition.CENTER);
         dialog.show();
