@@ -11,6 +11,7 @@ import java.util.concurrent.Future;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXListView;
 
 import database.SelectEvents;
@@ -23,6 +24,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import model.Campaign;
 import model.Event;
@@ -48,11 +50,13 @@ public class EventsController implements Frameable, Rootable {
     @FXML private JFXListView<AirForce> airForcesLV;
 
     @FXML
+    private StackPane testStack2;
+    
+    @FXML
     void initialize() {
     	setEvents(); //populate events list
     	setEventsListener(); //add change listener to events list view
     	setAirForcesFactory();  //set airForcesLV cell factory
-    	
     	
     	selectEventBtn.setOnAction(event -> {
     		
@@ -64,9 +68,25 @@ public class EventsController implements Frameable, Rootable {
     		
     		//////https://stackoverflow.com/questions/50933321/how-to-show-a-dialog-with-jfoenix-javafx
     		
+    		//more detailed: https://stackoverflow.com/questions/38830883/how-to-create-a-dialog-using-jfxdialog-of-jfoenix-in-javafx
+    		show();
     	});
     	
     }
+    
+    //----------------------------------------
+    public void show() {
+        JFXDialogLayout layout = new JFXDialogLayout();
+        layout.setHeading(new Label("Header"));
+        layout.setBody(new Label("Lorem ipsum"));
+
+        JFXDialog dialog = new JFXDialog(testStack2, layout, JFXDialog.DialogTransition.CENTER);
+        dialog.show();
+        
+       //JFXDialog dialog = new JFXDialog();
+    }
+    //---------------------------------------------
+    
    
     //observable list of events:
     private final ObservableList<Event>events = FXCollections.observableArrayList();

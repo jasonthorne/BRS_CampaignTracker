@@ -54,7 +54,7 @@ public class SignupController implements Rootable, Fadeable, Frameable {
 			
 			//if result is > 0 then player was inserted (as valid id was returned)
 			if (idCheck > 0) {
-				////////+++++++++++++++++RETURN TO THIS!! :P LoginController.setPlayerId(idCheck); //store id
+				LoginController.setPlayerId(idCheck); //store id ////////+++++++++++++++++RETURN TO THIS!! :P 
 				FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
 				Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 				//FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view

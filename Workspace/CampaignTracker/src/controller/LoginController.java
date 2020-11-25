@@ -65,13 +65,14 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		//======================================
 	}
 	
-	//???????????????????????
-	private static final class User {
-		private static int playerId;
-		private User() {}
-		
-		
-    }//??????????????????????
+	//=============================idea: 
+	static User user = null;
+	static final class User {
+		private final int playerId;
+		private User(int playerId) { this.playerId = playerId; }
+		public int getId() { return playerId; }
+    }
+	//================================
 	
 	private void loginUsr() {
 		
@@ -112,7 +113,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	}
 	
 	static int getPlayerId() { return playerId; } //get playerId //get playerId
-	private static void setPlayerId(int playerId) { LoginController.playerId = playerId; } //set playerId
+	static void setPlayerId(int playerId) { LoginController.playerId = playerId; } //set playerId //+++++++++MAKE THIS BETTER!
 	
 	@Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/login.fxml"); } //set root
