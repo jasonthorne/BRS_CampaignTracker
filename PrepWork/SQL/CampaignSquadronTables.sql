@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS campaigns;
 
 /*DROP TABLE IF EXISTS campaigns; */
 
-CREATE TABLE campaigns (
+CREATE TABLE campaigns ( /*++++++++++++++++++++++++++++stick campaign host in here! :P */
 	campaignID INT NOT NULL AUTO_INCREMENT,
 	eventID INT,
 	periodID INT,
@@ -116,6 +116,29 @@ CREATE TABLE campaign_hosts (
 	UNIQUE (campaign_playerID) /* prevent duplicate inserts */
 	/*CONSTRAINT campaignID_campaign_playerID UNIQUE (campaignID, campaign_playerID)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DROP PROCEDURE IF EXISTS insert_campaign; 
+
+DELIMITER $$
+CREATE PROCEDURE insert_campaign (IN player_ID VARCHAR(64), IN event_name VARCHAR(64))
+BEGIN
+	/*INSERT INTO campaigns (eventID, periodID /*, created) VALUES (
+		(SELECT eventID FROM events WHERE events.name = event_name),
+		(SELECT periodID FROM event_periods WHERE events.name = event_name)
+	);	*/
+	
+	/*
+	campaignID INT NOT NULL AUTO_INCREMENT,
+	eventID INT,
+	periodID INT,
+	created DATE,
+	PRIMARY KEY (campaignID),
+	FOREIGN KEY (eventID) REFERENCES events(eventID),
+	FOREIGN KEY (periodID) REFERENCES periods(periodID)*/
+	
+	
+END $$
+DELIMITER ;
 
 /*----------------------------------------------------*/
 /* squadrons */

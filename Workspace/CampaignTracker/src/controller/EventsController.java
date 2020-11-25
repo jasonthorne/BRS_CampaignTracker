@@ -63,7 +63,7 @@ public class EventsController implements Frameable, Rootable {
     	selectEventBtn.setOnAction(event -> {
     		
     		//inform user they're going to create a new campaign with this event:
-    		/////testJFXDialog();
+    		/////++++++++testJFXDialog();
     		//if they're cool (click ok button instead of cancel/x button): create new campaign with this event in campaign ctrlr:
     		
     		campaignsCtrlr.createCampaign(eventNameLbl.getText());
