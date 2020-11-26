@@ -27,6 +27,9 @@ https://www.google.com/search?q=mysql+sort+by+one+then+another&rlz=1C1CHBF_enIE9
 
 linmks:
 
+date formatting:
+https://www.mysqltutorial.org/mysql-date_format/
+
 good selection of stuff:
 http://tutorials.jenkov.com/javafx/tableview.html
 

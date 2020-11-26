@@ -156,10 +156,10 @@ BEGIN
 	SELECT campaigns.campaignID INTO campaign_ID FROM campaigns 
 	WHERE campaigns.eventID  = event_ID AND campaigns.created = date_time;
 	
-	/* add player to campaign players: */
+	/* add player to campaign_players: */
 	CALL insert_campaign_player(campaign_ID, player_ID);
 	
-	/* get id inserted campaign_player: */
+	/* get id of inserted campaign_player: */
 	SELECT campaign_players.campaign_playerID INTO campaign_player_ID
 	FROM campaign_players 
 	WHERE campaign_players.campaignID  = campaign_ID

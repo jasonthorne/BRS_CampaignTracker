@@ -16,6 +16,7 @@ import com.jfoenix.controls.JFXListView;
 
 import database.SelectEvents;
 import database.SelectPlayerID;
+import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -65,6 +66,8 @@ public class EventsController implements Frameable, Rootable {
     		//inform user they're going to create a new campaign with this event:
     		/////++++++++testJFXDialog();
     		//if they're cool (click ok button instead of cancel/x button): create new campaign with this event in campaign ctrlr:
+    		
+    		//++++++++++++IMPORTANT!! : button needs disabled for a second ++++++++++++++++++++++ 
     		
     		campaignsCtrlr.createCampaign(eventNameLbl.getText());
     		
