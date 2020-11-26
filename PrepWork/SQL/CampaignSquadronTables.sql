@@ -94,7 +94,7 @@ CREATE TABLE campaign_players (
 	playerID INT,
 	score INT DEFAULT 0,
 	is_active BOOLEAN DEFAULT TRUE,
-	created DATE, /* +++++++++++++++++++++++++++++++++needed?????????? */
+	created DATETIME,
 	PRIMARY KEY (campaign_playerID),
 	FOREIGN KEY (campaignID) REFERENCES campaigns(campaignID),
 	FOREIGN KEY (playerID) REFERENCES players(playerID),
@@ -103,17 +103,12 @@ CREATE TABLE campaign_players (
 
 
 DELIMITER $$
-CREATE PROCEDURE insert_campaign_player (IN campaign_ID INT, IN player_ID INT)
+CREATE PROCEDURE insert_campaign_player (IN campaign_ID INT, IN player_ID INT, IN date_time DATETIME)
 BEGIN
-	INSERT INTO campaign_players (campaignID, playerID) VALUES (
-		campaign_ID, player_ID);
+	INSERT INTO campaign_players (campaignID, playerID, created) VALUES (
+		campaign_ID, player_ID, date_time);
 END $$
 DELIMITER ;
-
-
-
-
-
 
 /*----------------------------------------------------*/
 /* campaign players hosting campaigns*/
@@ -128,6 +123,7 @@ CREATE TABLE campaign_hosts (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP PROCEDURE IF EXISTS insert_campaign; 
+
 
 DELIMITER $$
 CREATE PROCEDURE insert_campaign (IN event_name VARCHAR(64), IN player_ID VARCHAR(64), IN date_time DATETIME)
@@ -151,7 +147,7 @@ BEGIN
 	SELECT LAST_INSERT_ID() INTO campaign_ID;
 	
 	/* add player to campaign_players: */
-	CALL insert_campaign_player(campaign_ID, player_ID);
+	CALL insert_campaign_player(campaign_ID, player_ID, date_time);
 	
 	/* get id of inserted campaign_player: */
 	SELECT campaign_players.campaign_playerID INTO campaign_player_ID
@@ -163,8 +159,6 @@ BEGIN
 	INSERT INTO campaign_hosts (campaign_playerID) VALUES (campaign_player_ID);
 END $$
 DELIMITER ;
-
-
 
 /*----------------------------------------------------*/
 /* squadrons */

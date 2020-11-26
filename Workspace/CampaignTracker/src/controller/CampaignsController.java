@@ -56,7 +56,7 @@ public class CampaignsController implements Frameable, Rootable {
     private final ObservableList<Campaign>observCampaigns = FXCollections.observableArrayList();
     
     //filtered list for filtering campaigns:
-    private final FilteredList<Campaign> filteredCampaigns = new FilteredList<>(observCampaigns, str->true);
+    private final FilteredList<Campaign> filteredCampaigns = new FilteredList<>(observCampaigns, cmp->true);
     
     /**===================imaginary db data: =================================*/
     public static List<Campaign>cellItemsDB = new ArrayList<Campaign>();
@@ -116,11 +116,11 @@ public class CampaignsController implements Frameable, Rootable {
 				//filter listView according to selected radioBtn: 
 		 	 	if(selected.getText().equals(playingRB.getText())) {
 					//set filteredList predicate to filter by playingRB selection:
-					filteredCampaigns.setPredicate(str -> str.getName().contains(playingRB.getText()));
+					filteredCampaigns.setPredicate(cmp -> cmp.getName().contains(playingRB.getText()));
 					campaignsLV.setItems(filteredCampaigns); //set listView to filteredList
 				}else if(selected.getText().equals(notPlayingRB.getText())) {
 			 		//set filteredList predicate to filter by notPlayingRB selection:
-					filteredCampaigns.setPredicate(str -> str.getName().contains(notPlayingRB.getText()));
+					filteredCampaigns.setPredicate(cmp -> cmp.getName().contains(notPlayingRB.getText()));
 					campaignsLV.setItems(filteredCampaigns); //set listView to filteredList
 				}else {
 					campaignsLV.setItems(observCampaigns);  //set listView to non-filtered campaigns list 
@@ -130,13 +130,19 @@ public class CampaignsController implements Frameable, Rootable {
 	}
 	
 	void createCampaign(String eventName) {
+		
 		System.out.println("createCampaign");
+		
+		//+++++++READ:++++++++++++++++++++++++++++++++
+		//create campaign here, using builder.
+		//pass built campaign into insertCampaign and observCampaigns.add 
+		//+++++++++++++++++++++++++++++++++++++++++++
+		
 		//add campaign to db:
 		database.InsertCampaign.insert(eventName, LoginController.getPlayerId());
 		
-		//add to campaigns obsrv list
-		//then:
-		//campaignsLV.setItems(campaigns); 
+		//add campaign to observable list of campaigns:
+		observCampaigns.add(new Campaign("new"));
 		
 		
 	}

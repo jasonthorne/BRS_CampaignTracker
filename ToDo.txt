@@ -19,13 +19,16 @@ https://www.google.com/search?q=mysql+sort+by+one+then+another&rlz=1C1CHBF_enIE9
 
 
 + try have first element in events be selected on it. 
-+ have events data during sleect be returned ordered by start date. 
++ stop new event button being clicked more than once during a second
++ fix DATETIME bug where time is being saved with an extra hour
 
-
-
++look at making plane avilabilities into an accordian instead! :P
 ---------------------------------------------------
 
 linmks:
+
+TimeZone setting: 
+https://stackoverflow.com/questions/669287/datetime-value-from-database-is-three-hours-behind
 
 last insert:
 https://dev.mysql.com/doc/connector-odbc/en/connector-odbc-usagenotes-functionality-last-insert-id.html#:~:text=To%20obtain%20the%20value%20immediately,obtain%20the%20auto%2Dincrement%20value.

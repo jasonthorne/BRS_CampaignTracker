@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
@@ -18,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import model.Period;
 import model.Period.Block;
@@ -125,5 +128,31 @@ public class PlanesTableController implements Rootable {
 	}
 
     //show stage:
-    void showStage() { stage.showAndWait(); }
+    void showStage() { 
+    	/**++++++++++++++++++++++++++++++++++++++OBV REMOVE ALL OF THIS FROM THIS PAGE :P */
+    	/*
+    	stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                System.out.println("Stage is closing");
+            }
+        }); */
+    	//https://stackoverflow.com/questions/22576261/how-do-i-get-the-close-event-of-a-stage-in-javafx
+    	
+    	stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+            @Override
+            public void handle(WindowEvent event) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                    	System.out.println("Stage is closing"); 
+                    }
+                });
+            }
+        });
+    	/**++++++++++++++++++++++++++++++++++++++++++++++*/
+    	stage.showAndWait(); 
+    }
+    
+    
 }

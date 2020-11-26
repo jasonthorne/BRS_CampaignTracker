@@ -24,7 +24,7 @@ public class Plane {
 	
 	private SimpleStringProperty name; //name of plane
 	private Map<Period, Status>availabilities; //availability per period of history
-	
+								
 	private Plane() {} //blank constructor
 	
 	//builder class:
