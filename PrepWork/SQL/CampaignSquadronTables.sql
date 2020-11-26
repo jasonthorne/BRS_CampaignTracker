@@ -18,7 +18,7 @@ CREATE TABLE campaigns (
 	campaignID INT NOT NULL AUTO_INCREMENT,
 	eventID INT,
 	periodID INT,
-	created DATE,
+	created DATETIME,
 	PRIMARY KEY (campaignID),
 	FOREIGN KEY (eventID) REFERENCES events(eventID),
 	FOREIGN KEY (periodID) REFERENCES periods(periodID)
@@ -93,17 +93,32 @@ CREATE TABLE campaign_players (
 	campaignID INT,
 	playerID INT,
 	score INT DEFAULT 0,
-	is_active BOOLEAN DEFAULT TRUE, /* ++++++++++++++++++++++ status ENUM?? (active, retired) ??????????
+	is_active BOOLEAN DEFAULT TRUE,
 	created DATE, /* +++++++++++++++++++++++++++++++++needed?????????? */
 	PRIMARY KEY (campaign_playerID),
 	FOREIGN KEY (campaignID) REFERENCES campaigns(campaignID),
-	FOREIGN KEY (playerID) REFERENCES players(playerID)
+	FOREIGN KEY (playerID) REFERENCES players(playerID),
+	CONSTRAINT campaignID_playerID UNIQUE (campaignID, playerID) /* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+DELIMITER $$
+CREATE PROCEDURE insert_campaign_player (IN campaign_ID INT, IN player_ID INT)
+BEGIN
+	INSERT INTO campaign_players (campaignID, playerID) VALUES (
+		campaign_ID, player_ID);
+END $$
+DELIMITER ;
+
+
+
+
+
 
 /*----------------------------------------------------*/
 /* campaign players hosting campaigns*/
 
-/*DROP TABLE IF EXISTS campaign_hosts; */
+DROP TABLE IF EXISTS campaign_hosts; 
 /* ++++++++++++++++++++++++++++++++++++++++++++++++TEST THESE CONSTRAINTS +++++++++++++++ */
 CREATE TABLE campaign_hosts (
 	campaign_hostID INT NOT NULL AUTO_INCREMENT,
@@ -120,37 +135,43 @@ CREATE TABLE campaign_hosts (
 DROP PROCEDURE IF EXISTS insert_campaign; 
 
 DELIMITER $$
-CREATE PROCEDURE insert_campaign (IN player_ID VARCHAR(64), IN event_name VARCHAR(64))
+CREATE PROCEDURE insert_campaign (IN event_name VARCHAR(64), IN player_ID VARCHAR(64), IN date_time DATETIME)
 BEGIN
-	/* eventID from event with event_name: */
+	/* eventID from events with event_name: */
 	DECLARE event_ID INT DEFAULT (
 		SELECT eventID FROM events WHERE events.name = event_name); 
+		
+	DECLARE campaign_ID INT DEFAULT 0; /* holds id of inserted campaign */
+	DECLARE campaign_player_ID INT DEFAULT 0; /* holds id of inserted campaign_player */
 	
-	INSERT INTO campaigns (eventID, periodID /*, created*/) VALUES (
+	/* add campaign to campaigns: */
+	INSERT INTO campaigns (eventID, periodID, created) VALUES (
 		event_ID,
 		(SELECT MIN(periodID) FROM event_periods 
 			INNER JOIN events ON event_periods.eventID = event_ID 
-		WHERE events.name = event_name));	
+		WHERE events.name = event_name),
+		date_time);	
 	
-	/*
+	/* get id of inserted campaign: */
+	SELECT campaigns.campaignID INTO campaign_ID FROM campaigns 
+	WHERE campaigns.eventID  = event_ID AND campaigns.created = date_time;
 	
-	SELECT MIN(periodID)
-FROM event_periods
-	INNER JOIN events ON event_periods.eventID = events.eventID
-WHERE events.name = 'Battle of Britain';
+	/* add player to campaign players: */
+	CALL insert_campaign_player(campaign_ID, player_ID);
 	
+	/* get id inserted campaign_player: */
+	SELECT campaign_players.campaign_playerID INTO campaign_player_ID
+	FROM campaign_players 
+	WHERE campaign_players.campaignID  = campaign_ID
+		AND campaign_players.playerID  = player_ID;
 	
-	campaignID INT NOT NULL AUTO_INCREMENT,
-	eventID INT,
-	periodID INT,
-	created DATE,
-	PRIMARY KEY (campaignID),
-	FOREIGN KEY (eventID) REFERENCES events(eventID),
-	FOREIGN KEY (periodID) REFERENCES periods(periodID)*/
-	
-	
+	/* add campaign player to campaign_hosts: */
+	INSERT INTO campaign_hosts (campaign_playerID) VALUES (campaign_player_ID);
+
 END $$
 DELIMITER ;
+
+
 
 /*----------------------------------------------------*/
 /* squadrons */

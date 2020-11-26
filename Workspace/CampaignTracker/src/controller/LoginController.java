@@ -39,8 +39,6 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	//id of logged in player:
 	private static int playerId; //HAVE A SINGLETON PLAYER OBJ HERE INSTEAD WITH ACCESS TO ITS ID THROUGH A GETTER
 	
-	
-	
 	//fxml root node:
   	private Parent root;
 	

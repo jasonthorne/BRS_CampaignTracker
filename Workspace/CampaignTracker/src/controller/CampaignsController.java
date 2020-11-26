@@ -132,7 +132,7 @@ public class CampaignsController implements Frameable, Rootable {
 	void createCampaign(String eventName) {
 		System.out.println("createCampaign");
 		//add campaign to db:
-		database.InsertCampaign.insert(LoginController.getPlayerId(), eventName);
+		database.InsertCampaign.insert(eventName, LoginController.getPlayerId());
 		
 		//add to campaigns obsrv list
 		//then:

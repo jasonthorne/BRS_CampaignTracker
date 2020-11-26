@@ -26,6 +26,19 @@ event_start period must come befroe its corresponding event_end period - done
 
 //==========================
 
-
 Players cant have duplicate names and/or passwords - done
 player password hash shouldn't be reveiled to a user. maybe a view should block this!!??
+
+
+No duplicate campaignID & playerID in campaign players -
+
+
+
+
+
+
+
+
+
+
+
