@@ -27,6 +27,9 @@ https://www.google.com/search?q=mysql+sort+by+one+then+another&rlz=1C1CHBF_enIE9
 
 linmks:
 
+last insert:
+https://dev.mysql.com/doc/connector-odbc/en/connector-odbc-usagenotes-functionality-last-insert-id.html#:~:text=To%20obtain%20the%20value%20immediately,obtain%20the%20auto%2Dincrement%20value.
+
 date formatting:
 https://www.mysqltutorial.org/mysql-date_format/
 

@@ -119,17 +119,12 @@ DELIMITER ;
 /* campaign players hosting campaigns*/
 
 DROP TABLE IF EXISTS campaign_hosts; 
-/* ++++++++++++++++++++++++++++++++++++++++++++++++TEST THESE CONSTRAINTS +++++++++++++++ */
+
 CREATE TABLE campaign_hosts (
 	campaign_hostID INT NOT NULL AUTO_INCREMENT,
-	/*campaignID INT,*/
 	campaign_playerID INT,
 	PRIMARY KEY (campaign_hostID),
-	/*FOREIGN KEY (campaignID) REFERENCES campaigns(campaignID),
-	FOREIGN KEY (campaign_playerID) REFERENCES campaign_players(campaign_playerID),
-	UNIQUE (campaignID) /* prevent duplicate inserts */
 	UNIQUE (campaign_playerID) /* prevent duplicate inserts */
-	/*CONSTRAINT campaignID_campaign_playerID UNIQUE (campaignID, campaign_playerID)	/* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP PROCEDURE IF EXISTS insert_campaign; 
@@ -137,24 +132,23 @@ DROP PROCEDURE IF EXISTS insert_campaign;
 DELIMITER $$
 CREATE PROCEDURE insert_campaign (IN event_name VARCHAR(64), IN player_ID VARCHAR(64), IN date_time DATETIME)
 BEGIN
+	DECLARE campaign_ID INT DEFAULT 0; 
+	DECLARE campaign_player_ID INT DEFAULT 0;
+	
 	/* eventID from events with event_name: */
 	DECLARE event_ID INT DEFAULT (
 		SELECT eventID FROM events WHERE events.name = event_name); 
 		
-	DECLARE campaign_ID INT DEFAULT 0; /* holds id of inserted campaign */
-	DECLARE campaign_player_ID INT DEFAULT 0; /* holds id of inserted campaign_player */
-	
 	/* add campaign to campaigns: */
 	INSERT INTO campaigns (eventID, periodID, created) VALUES (
 		event_ID,
 		(SELECT MIN(periodID) FROM event_periods 
 			INNER JOIN events ON event_periods.eventID = event_ID 
 		WHERE events.name = event_name),
-		date_time);	
+		date_time);
 	
 	/* get id of inserted campaign: */
-	SELECT campaigns.campaignID INTO campaign_ID FROM campaigns 
-	WHERE campaigns.eventID  = event_ID AND campaigns.created = date_time;
+	SELECT LAST_INSERT_ID() INTO campaign_ID;
 	
 	/* add player to campaign_players: */
 	CALL insert_campaign_player(campaign_ID, player_ID);
@@ -167,7 +161,6 @@ BEGIN
 	
 	/* add campaign player to campaign_hosts: */
 	INSERT INTO campaign_hosts (campaign_playerID) VALUES (campaign_player_ID);
-
 END $$
 DELIMITER ;
 
