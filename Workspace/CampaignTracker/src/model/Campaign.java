@@ -13,9 +13,10 @@ public class Campaign {
 	public static final int TURNS_PER_PERIOD = 4; //amount of turns played per period
 	
 	private int id; //id of campaign
-	private String name; //name of campaign
-	private Period period; //current period
-	private Timestamp created; //time stamp created
+	private String name; //name of campaign /////////////////////////REMOVE THIS! :P
+	private Event event; //historical event covered 
+	private Period period; //current period of history
+	private Timestamp created; //time stamp when created
 	private String hostName; //name of host
 	private Map<Integer, Player>players; //players involved
 	
@@ -35,11 +36,18 @@ public class Campaign {
 			return this;
 		}
 		
+		/*
 		//set name:
 		public CampaignBuilder setName(String name) {
 			campaign.name = name;
 			return this;
-		}
+		}*/
+		
+		//set event:
+		public CampaignBuilder setEvent(Event event) {
+			campaign.event = event; //+++++++++++++++++++++MAKE THIS STRONGER!!! :P 
+			return this;
+		}	
 		
 		//set period:
 		public CampaignBuilder setPeriod(Period period) {
@@ -74,12 +82,8 @@ public class Campaign {
 	}
 	
 	public int getId() { return id; } //get id
-	public String getName() { return name; } //get name
-
-	@Override
-	public String toString() {
-		return "Campaign [id=" + id + ", name=" + name + ", period=" + period + ", created=" + created + ", hostName="
-				+ hostName + ", players=" + players + "]";
-	}
+	public String getEventName() { return /*event.getName();*/ name; } //get name
+	
+	
 		
 }

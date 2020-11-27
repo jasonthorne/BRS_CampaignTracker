@@ -47,7 +47,7 @@ public interface SelectEvents {
 			while(eventsRS.next()) {
 				
 				EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
-				eventBuilder.setEventName(eventsRS.getString("event_name")); //add event name
+				eventBuilder.setName(eventsRS.getString("event_name")); //add event name
 				
 				//create list for event periods:
 				List<Period>eventPeriods = new ArrayList<>();
@@ -136,7 +136,7 @@ public interface SelectEvents {
 				}//airForcesRS
 				
 				//add event air forces to event builder:
-				eventBuilder.setEventAirForces(eventAirForces);
+				eventBuilder.setAirForces(eventAirForces);
 				
 				//add built event to events:
 				events.add(eventBuilder.build());

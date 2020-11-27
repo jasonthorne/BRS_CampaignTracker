@@ -45,7 +45,7 @@ public class EventsController implements Frameable, Rootable {
     @FXML private AnchorPane rootAP;
     @FXML private JFXListView<Event> eventsLV;
     @FXML private AnchorPane eventAP;
-    @FXML private Label eventNameLbl;
+    @FXML private Label nameLbl;
     @FXML private Label startPeriodLbl;
     @FXML private Label endPeriodLbl;
     @FXML private Label turnSizeLbl;
@@ -69,7 +69,7 @@ public class EventsController implements Frameable, Rootable {
     		
     		//++++++++++++IMPORTANT!! : button needs disabled for a second ++++++++++++++++++++++ 
     		
-    		campaignsCtrlr.createCampaign(eventNameLbl.getText());
+    		campaignsCtrlr.createCampaign(nameLbl.getText());
     		
     		//then navigate user to that campaign page
     		
@@ -155,13 +155,13 @@ public class EventsController implements Frameable, Rootable {
     	    public void changed(ObservableValue<? extends Event> observable, Event oldVal, Event newVal) {
     			
     			//populate fxml elements with values from selected event:
-    	        eventNameLbl.setText(newVal.getEventName());
+    	        nameLbl.setText(newVal.getName());
     	        startPeriodLbl.setText(newVal.getStartPeriod().toString());
     	        endPeriodLbl.setText(newVal.getEndPeriod().toString());
     	        turnSizeLbl.setText(String.valueOf(newVal.getTurnSize()));
     	        
     	        //add selected event's air forces to observable airForces:
-    	        observAirForces = FXCollections.observableArrayList(newVal.getEventAirForces());
+    	        observAirForces = FXCollections.observableArrayList(newVal.getAirForces());
     	        airForcesLV.setItems(observAirForces); //set list view with airForces
     	    }
     	});

@@ -1,6 +1,6 @@
 
 USE blood_red_skies_db;
-
+DROP TABLE IF EXISTS campaign_hosts; 
 DROP TABLE IF EXISTS logs; 
 DROP TABLE IF EXISTS mission_results; 
 DROP TABLE IF EXISTS missions; 
@@ -113,7 +113,7 @@ DELIMITER ;
 /*----------------------------------------------------*/
 /* campaign players hosting campaigns*/
 
-DROP TABLE IF EXISTS campaign_hosts; 
+
 
 CREATE TABLE campaign_hosts (
 	campaign_hostID INT NOT NULL AUTO_INCREMENT,
@@ -157,6 +157,47 @@ BEGIN
 	
 	/* add campaign player to campaign_hosts: */
 	INSERT INTO campaign_hosts (campaign_playerID) VALUES (campaign_player_ID);
+END $$
+DELIMITER ;
+
+/*
+campaignID INT NOT NULL AUTO_INCREMENT,
+	eventID INT,
+	periodID INT,
+	created DATETIME,
+	PRIMARY KEY (campaignID),
+	FOREIGN KEY (eventID) REFERENCES events(eventID),
+	FOREIGN KEY (periodID) REFERENCES periods(periodID)
+	
+	
+	SELECT
+		campaigns.campaignID AS campaign_ID,
+		periods.block AS period_block,
+		years.year_value AS period_year
+	FROM campaigns
+		INNER JOIN periods ON campaigns.periodID = periods.periodID
+		INNER JOIN years ON periods.yearID = years.yearID ;
+	
+	
+	
+	
+	
+	
+	
+	*/
+
+DELIMITER $$
+CREATE PROCEDURE select_campaigns ()
+BEGIN
+	SELECT
+		campaigns.campaignID AS campaign_ID
+		periods.block AS period_block,
+		years.year_value AS period_year
+		
+	FROM campaigns
+		INNER JOIN periods ON campaigns.periodID = periods.periodID
+		INNER JOIN years ON periods.yearID = years.yearID;
+	
 END $$
 DELIMITER ;
 
@@ -286,10 +327,10 @@ INSERT INTO players (name, password) VALUES ("jo", SHA2(123, 512));
 INSERT INTO players (name, password) VALUES ("dan", SHA2(111, 512));
 INSERT INTO players (name, password) VALUES ("laura", SHA2(321, 512));
 
+/*INSERT INTO campaigns (eventID) VALUES (1);
+INSERT INTO campaigns (eventID) VALUES (2);
 INSERT INTO campaigns (eventID) VALUES (1);
-INSERT INTO players (eventID) VALUES (2);
-INSERT INTO players (eventID) VALUES (1);
-INSERT INTO players (eventID) VALUES (2);
+INSERT INTO campaigns (eventID) VALUES (2);*/
 /* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
 
 

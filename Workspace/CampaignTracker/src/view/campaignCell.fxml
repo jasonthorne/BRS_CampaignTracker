@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="rootAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="nameLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="1.0" prefHeight="27.0" prefWidth="144.0" text="Name here" />
+      <Label fx:id="eventNameLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="1.0" prefHeight="27.0" prefWidth="144.0" text="Name here" />
       <JFXButton fx:id="showCampaignBtn" layoutX="244.0" layoutY="2.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: black;" text="Show campaign" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />

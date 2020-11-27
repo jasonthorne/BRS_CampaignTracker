@@ -38,7 +38,6 @@ public class EventCellController extends JFXListCell<Event> implements Rootable 
 		//////////////this.selectEventCtrlr = selectEventCtrlr; //assign selectEvent controller
 	}
 	
-	
 	//update cell with event data:
 	@Override 
 	protected void updateItem(Event event, boolean isEmpty) {
@@ -49,7 +48,7 @@ public class EventCellController extends JFXListCell<Event> implements Rootable 
   	        setGraphic(null);
   	    } else {
 			//populate cell with data from event:
-			nameLbl.setText(event.getEventName()); 
+			nameLbl.setText(event.getName()); 
 			 
 			setText(null); 
 	        setGraphic(rootAP); //set this root element as the graphic	

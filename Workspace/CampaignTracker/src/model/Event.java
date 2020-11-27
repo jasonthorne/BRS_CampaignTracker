@@ -19,7 +19,7 @@ public class Event {
 		private Event event = new Event(); //create event
 		
 		//set name:
-		public EventBuilder setEventName(String name) {
+		public EventBuilder setName(String name) {
 			event.name = name;
 			return this;
 		}
@@ -44,7 +44,7 @@ public class Event {
 		
 		//set list of event air forces:
 		//+++++++++++++++++++++++++++++++loop through passed list and make a new one with each val
-		public EventBuilder setEventAirForces(List<AirForce>airForces) { //++++++++++++++++++++MAKE STRONGER
+		public EventBuilder setAirForces(List<AirForce>airForces) { //++++++++++++++++++++MAKE STRONGER
 			event.airForces = new ArrayList<AirForce>(airForces);
 			return this;
 		}
@@ -54,7 +54,7 @@ public class Event {
 	}
 	
 	//get event name:
-	public String getEventName() { return name; }
+	public String getName() { return name; }
 	
 	//get start period:
 	public Period getStartPeriod() {
@@ -70,7 +70,7 @@ public class Event {
 	public int getTurnSize() { return turnSize; }
 		
 	//get event air forces:
-	public List<AirForce> getEventAirForces() {
+	public List<AirForce> getAirForces() {
 		//+++++++++++++++++++++++++++++++loop through passed list and make a new one with each val & pass that! 
 		return new ArrayList<AirForce>(airForces);
 	}
