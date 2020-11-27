@@ -160,43 +160,34 @@ BEGIN
 END $$
 DELIMITER ;
 
-/*
-campaignID INT NOT NULL AUTO_INCREMENT,
-	eventID INT,
-	periodID INT,
-	created DATETIME,
-	PRIMARY KEY (campaignID),
-	FOREIGN KEY (eventID) REFERENCES events(eventID),
-	FOREIGN KEY (periodID) REFERENCES periods(periodID)
-	
-	
-	SELECT
-		campaigns.campaignID AS campaign_ID,
-		periods.block AS period_block,
-		years.year_value AS period_year
-	FROM campaigns
-		INNER JOIN periods ON campaigns.periodID = periods.periodID
-		INNER JOIN years ON periods.yearID = years.yearID ;
-	
-	
-	
-	
-	
-	
-	
-	*/
-
 DELIMITER $$
 CREATE PROCEDURE select_campaigns ()
 BEGIN
 	SELECT
-		campaigns.campaignID AS campaign_ID
+		campaigns.campaignID AS campaign_ID,
+		/*campaigns.eventID AS event_ID,??????????????*/
+		events.name AS event_name,
 		periods.block AS period_block,
-		years.year_value AS period_year
+		years.year_value AS period_year,
+		campaigns.created AS date_time,
 		
+		(SELECT players.name FROM players /* ++++++++++++++++TEST THIS WITH MULTIPLE EXAMPLES ++++++++ */
+			INNER JOIN campaign_players ON 
+				players.playerID = campaign_players.playerID
+			INNER JOIN campaign_hosts ON 
+				campaign_players.campaign_playerID = campaign_hosts.campaign_playerID
+		WHERE campaign_players.campaignID = campaign_ID 
+			AND campaign_players.campaign_playerID = campaign_hosts.campaign_playerID)
+		AS host_name
+		
+		
+		/* get count of event_periods = event_ID for working out percentage. */
+		/* event name from events ?????????????*/
+		/* event id from events *???????????*/
 	FROM campaigns
 		INNER JOIN periods ON campaigns.periodID = periods.periodID
-		INNER JOIN years ON periods.yearID = years.yearID;
+		INNER JOIN years ON periods.yearID = years.yearID
+		INNER JOIN events ON campaigns.eventID = events.eventID;
 	
 END $$
 DELIMITER ;

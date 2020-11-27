@@ -18,7 +18,7 @@
             <AnchorPane fx:id="eventAP" layoutX="180.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="460.0" style="-fx-background-color: white;">
                <children>
                   <Label fx:id="nameLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="17.0" prefHeight="37.0" prefWidth="199.0" text="Event name here" />
-                  <Label fx:id="turnSizeLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="27.0" prefHeight="17.0" prefWidth="107.0" text="Turn size here" />
+                  <Label fx:id="maxTurnsLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="27.0" prefHeight="17.0" prefWidth="107.0" text="Turn size here" />
                   <Label fx:id="startPeriodLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="78.0" layoutY="60.0" prefHeight="17.0" prefWidth="107.0" text="Start period here" />
                   <Label fx:id="endPeriodLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="60.0" prefHeight="17.0" prefWidth="107.0" text="End period here" />
                   <JFXButton fx:id="selectEventBtn" layoutX="343.0" layoutY="23.0" style="-fx-background-color: yellow;" text="Select Event" />

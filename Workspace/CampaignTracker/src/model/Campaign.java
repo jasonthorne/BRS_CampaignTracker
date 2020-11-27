@@ -4,22 +4,25 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import model.AirForce.AirForceBuilder;
 import model.Plane.Status;
 
 public class Campaign {
-	
+	//+++++++++++++++++++++++should this be in db????:
 	public static final int TURNS_PER_PERIOD = 4; //amount of turns played per period
 	
 	private int id; //id of campaign
 	private String name; //name of campaign /////////////////////////REMOVE THIS! :P
 	private Event event; //historical event covered 
 	private Period period; //current period of history
+	private int turnNum; //current turn number
 	private Timestamp created; //time stamp when created
 	private String hostName; //name of host
-	private Map<Integer, Player>players; //players involved
+	private Map<String, Player>playerNameToPlayer; //players involved
 	
+
 	////////private boolean isPlaying; //++++++++++++++determined by whether you are a player
 	
 	private Campaign() {} //blank constructor
@@ -67,9 +70,9 @@ public class Campaign {
 			return this;
 		}
 		
-		//set host:
-		public CampaignBuilder setPlayers(Map<Integer, Player>players) {
-			campaign.players = new HashMap<Integer, Player>(players);
+		//set players:
+		public CampaignBuilder setPlayers(Map<String, Player>playersMap) {
+			campaign.playerNameToPlayer = new TreeMap<String, Player>(playersMap);
 			return this;
 		}
 		

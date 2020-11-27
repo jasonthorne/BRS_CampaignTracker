@@ -48,7 +48,7 @@ public class EventsController implements Frameable, Rootable {
     @FXML private Label nameLbl;
     @FXML private Label startPeriodLbl;
     @FXML private Label endPeriodLbl;
-    @FXML private Label turnSizeLbl;
+    @FXML private Label maxTurnsLbl;
     @FXML private JFXButton selectEventBtn;
     @FXML private JFXListView<AirForce> airForcesLV;
 
@@ -158,7 +158,7 @@ public class EventsController implements Frameable, Rootable {
     	        nameLbl.setText(newVal.getName());
     	        startPeriodLbl.setText(newVal.getStartPeriod().toString());
     	        endPeriodLbl.setText(newVal.getEndPeriod().toString());
-    	        turnSizeLbl.setText(String.valueOf(newVal.getTurnSize()));
+    	        maxTurnsLbl.setText(String.valueOf(newVal.getMaxTurns()));
     	        
     	        //add selected event's air forces to observable airForces:
     	        observAirForces = FXCollections.observableArrayList(newVal.getAirForces());

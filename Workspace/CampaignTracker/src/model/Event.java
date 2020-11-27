@@ -8,7 +8,7 @@ public class Event {
 	private String name; //name of event
 	private Period startPeriod; //start period
 	private Period endPeriod; //end period
-	private int turnSize; //number of turns
+	private int maxTurns; //number of turns
 	private List<AirForce>airForces; //list of air forces involved
 	
 	private Event() {} //blank constructor
@@ -37,8 +37,8 @@ public class Event {
 		}
 		
 		//set number of turns:
-		public EventBuilder setTurnSize(int periodTotal) {
-			event.turnSize = (periodTotal * Campaign.TURNS_PER_PERIOD);
+		public EventBuilder setMaxTurns(int periodTotal) {
+			event.maxTurns = (periodTotal * Campaign.TURNS_PER_PERIOD);
 			return this;
 		}
 		
@@ -66,8 +66,8 @@ public class Event {
 		return new Period(endPeriod.getBlock(), endPeriod.getYear());
 	}
 	
-	//get turn size:
-	public int getTurnSize() { return turnSize; }
+	//get max turns:
+	public int getMaxTurns() { return maxTurns; }
 		
 	//get event air forces:
 	public List<AirForce> getAirForces() {

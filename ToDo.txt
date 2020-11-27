@@ -20,7 +20,7 @@ https://www.google.com/search?q=mysql+sort+by+one+then+another&rlz=1C1CHBF_enIE9
 
 + try have first element in events be selected on it. 
 + stop new event button being clicked more than once during a second
-+ fix DATETIME bug where time is being saved with an extra hour
+
 
 +look at making plane avilabilities into an accordian instead! :P
 ---------------------------------------------------
