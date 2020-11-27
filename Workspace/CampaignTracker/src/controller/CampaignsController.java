@@ -47,7 +47,8 @@ public class CampaignsController implements Frameable, Rootable {
     	////newCampaignBtn.setOnAction(event -> Frameable.changeView(root, eventsCtrlr));
     	
     	newCampaignBtn.setOnAction(event -> 
-    		Frameable.changeView(root, new EventsController(this))); 
+    		//Frameable.changeView(root, new EventsController(this))); 
+    		Frameable.changeView(root, eventsCtrlr)); 
     	
     	
     }
@@ -66,18 +67,20 @@ public class CampaignsController implements Frameable, Rootable {
 	private Parent root; 
 	
 	//controllers:
-	private final EventsController eventsCtrlr; ////////????????? needed??? +++++++
+	private EventsController eventsCtrlr; ////////????????? needed??? +++++++
 	private A1 a1;
 	
 	//constructor:
 	CampaignsController() {
 		setRoot(); //set root node
-		this.eventsCtrlr = new EventsController(this); ////////????????? needed??? +++++++++
+		eventsCtrlr = new EventsController(this); ////////????????? needed??? YES - for chaining+++++++++
 		 a1 = new A1();
 	}
 
 	//populates campaigns with campaigns from db:
-	private void setCampaigns() { /** ======= remember, this is pulling from db so may need called again for some reason =========*/
+	/*private*/ void setCampaigns() { /** ======= remember, this is pulling from db so may need called again for some reason =========*/
+		System.out.println("dawg");
+		
 		
 		/** ================== pull from db here instead! =========*/
 		//populate imaginary db data:

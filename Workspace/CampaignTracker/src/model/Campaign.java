@@ -1,9 +1,11 @@
 package model;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import model.AirForce.AirForceBuilder;
 import model.Plane.Status;
 
 public class Campaign {
@@ -12,12 +14,53 @@ public class Campaign {
 	
 	private String name; //name of campaign
 	private Period period; //current period
-	private Timestamp created; //timestamp created
-	private int hostName; //name of host
-
+	private Timestamp created; //time stamp created
+	private String hostName; //name of host
+	private Map<Integer, Player>players; //players involved
+	
 	////////private boolean isPlaying; //++++++++++++++determined by whether you are a player
 	
-	private Map<Integer, Player>players; //players involved
+	private Campaign() {} //blank constructor
+	
+	//builder class:
+	public static class CampaignBuilder {
+		
+		//create campaign:
+		private Campaign campaign = new Campaign();
+		
+		//set name:
+		public CampaignBuilder setName(String name) {
+			campaign.name = name;
+			return this;
+		}
+		
+		//set period:
+		public CampaignBuilder setPeriod(Period period) {
+			campaign.period = new Period(period.getBlock(), period.getYear());
+			return this;
+		}
+		
+		//set created:
+		public CampaignBuilder setCreated(Timestamp timestamp) {
+			campaign.created = timestamp;
+			return this;
+		}
+		
+		//set host:
+		public CampaignBuilder setHostName(String name) { //++++++++PROB USE ID AND FETCH FROM MAP
+			campaign.hostName = name;
+			return this;
+		}
+		
+		//set host:
+		public CampaignBuilder setPlayers(Map<Integer, Player>players) {
+			campaign.players = new HashMap<Integer, Player>(players);
+			return this;
+		}
+		
+		//return built campaign:
+		public Campaign build() { return campaign; } 
+	}
 	
 	public Campaign(String name){
 		this.name = name;
@@ -26,17 +69,11 @@ public class Campaign {
 	public String getName() {
 		return name;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
 
-	//================delete
 	@Override
 	public String toString() {
-		
-		return name;
+		return "Campaign [name=" + name + ", period=" + period + ", created=" + created + ", hostName=" + hostName
+				+ ", players=" + players + "]";
 	}
-	//=================
 	
 }

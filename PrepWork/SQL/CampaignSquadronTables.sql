@@ -285,6 +285,11 @@ INSERT INTO players (name, password) VALUES ("jay", SHA2(333, 512));
 INSERT INTO players (name, password) VALUES ("jo", SHA2(123, 512));
 INSERT INTO players (name, password) VALUES ("dan", SHA2(111, 512));
 INSERT INTO players (name, password) VALUES ("laura", SHA2(321, 512));
+
+INSERT INTO campaigns (eventID) VALUES (1);
+INSERT INTO players (eventID) VALUES (2);
+INSERT INTO players (eventID) VALUES (1);
+INSERT INTO players (eventID) VALUES (2);
 /* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
 
 

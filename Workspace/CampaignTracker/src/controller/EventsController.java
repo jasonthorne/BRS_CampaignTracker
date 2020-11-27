@@ -99,10 +99,10 @@ public class EventsController implements Frameable, Rootable {
     
    
     //observable list of events:
-    private final ObservableList<Event>events = FXCollections.observableArrayList();
+    private final ObservableList<Event>observEvents = FXCollections.observableArrayList();
     
     //observable list of event's air forces:
-    private ObservableList<AirForce>airForces;
+    private ObservableList<AirForce>observAirForces;
     
     //fxml root node:
   	private Parent root; 
@@ -129,10 +129,10 @@ public class EventsController implements Frameable, Rootable {
     		
 	    	try {
 	    		//add events from db to events:
-	    		events.addAll(futureEvents.get());
+	    		observEvents.addAll(futureEvents.get());
 	    	}catch(Exception e) {
 				e.printStackTrace();
-			}finally { 
+			}finally { System.out.println("yo");
 				//shut down service thread:
 				if(!service.isShutdown()) { service.shutdown(); } 
 			}
@@ -140,7 +140,7 @@ public class EventsController implements Frameable, Rootable {
     	}).start();
     	
     	//add events to listView:
-		eventsLV.setItems(events);
+		eventsLV.setItems(observEvents);
 		
 		//set listView cellFactory to create EventCellControllers:
 		eventsLV.setCellFactory(EventCellController -> new EventCellController(/*this*/));
@@ -161,8 +161,8 @@ public class EventsController implements Frameable, Rootable {
     	        turnSizeLbl.setText(String.valueOf(newVal.getTurnSize()));
     	        
     	        //add selected event's air forces to observable airForces:
-    	        airForces = FXCollections.observableArrayList(newVal.getEventAirForces());
-    	        airForcesLV.setItems(airForces); //set list view with airForces
+    	        observAirForces = FXCollections.observableArrayList(newVal.getEventAirForces());
+    	        airForcesLV.setItems(observAirForces); //set list view with airForces
     	    }
     	});
     } 
