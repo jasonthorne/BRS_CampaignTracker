@@ -10,8 +10,8 @@
 
 <AnchorPane fx:id="rootAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="640.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXListView fx:id="campaignsLV" layoutX="55.0" layoutY="39.0" prefHeight="190.0" prefWidth="530.0" style="-fx-background-color: pink;" />
-      <HBox alignment="CENTER" layoutX="31.0" layoutY="237.0" prefHeight="17.0" prefWidth="146.0" spacing="10.0">
+      <JFXListView fx:id="campaignsLV" layoutX="20.0" layoutY="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="600.0" style="-fx-background-color: pink;" />
+      <HBox alignment="CENTER" layoutX="20.0" layoutY="281.0" prefHeight="17.0" prefWidth="146.0" spacing="10.0">
          <children>
             <JFXRadioButton fx:id="playingRB" text="1">
                <toggleGroup>
@@ -28,6 +28,6 @@
             <Insets left="20.0" right="20.0" />
          </padding>
       </HBox>
-      <JFXButton fx:id="newCampaignBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="246.0" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: yellow;" text="Create Campaign" />
+      <JFXButton fx:id="newCampaignBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="237.0" layoutY="273.0" prefHeight="32.0" prefWidth="142.0" style="-fx-background-color: yellow;" text="Create Campaign" />
    </children>
 </AnchorPane>

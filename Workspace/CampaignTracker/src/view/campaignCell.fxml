@@ -5,13 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="eventNameLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="1.0" prefHeight="27.0" prefWidth="144.0" text="Name here" />
-      <JFXButton fx:id="showCampaignBtn" layoutX="244.0" layoutY="2.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: black;" text="Show campaign" textFill="WHITE">
+      <JFXButton fx:id="showCampaignBtn" layoutX="485.0" layoutY="8.0" prefHeight="25.0" prefWidth="51.0" style="-fx-background-color: blue;" text="Show campaign" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
+      <Label fx:id="createdLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="158.0" layoutY="7.0" prefHeight="27.0" prefWidth="144.0" text="created" />
+      <Label fx:id="hostLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="270.0" layoutY="7.0" prefHeight="27.0" prefWidth="144.0" text="host" />
+      <Label fx:id="isPlayingLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="414.0" layoutY="7.0" prefHeight="27.0" prefWidth="40.0" text="playing" />
+      <Label fx:id="nameLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="7.0" prefHeight="27.0" prefWidth="144.0" text="name" textAlignment="CENTER" />
    </children>
 </AnchorPane>

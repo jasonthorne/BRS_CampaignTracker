@@ -197,22 +197,13 @@ BEGIN
 		(SELECT COUNT(event_periods.event_periodID) FROM event_periods
 		WHERE event_periods.eventID = campaigns.eventID)
 		AS periods_count,
-		
-		/*(SELECT players.name FROM players
-			INNER JOIN campaign_players ON players.playerID = campaign_players.playerID
-		WHERE campaign_players.campaignID = campaign_ID AND players.playerID = player_ID)
-		AS player_name*/
-		
+	
 		IFNULL(
 			(SELECT players.name FROM players
 				INNER JOIN campaign_players ON players.playerID = campaign_players.playerID
 			WHERE campaign_players.campaignID = campaign_ID AND players.playerID = player_ID), 
 			'N/A')
 		AS player_name
-		
-		
-		
-		
 		
 		/* get count of event_periods = event_ID for working out percentage. */
 		/* event name from events ?????????????*/

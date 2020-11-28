@@ -22,67 +22,50 @@ public interface SelectCampaigns {
 	
 	public static List<Campaign> select(int playerId) {
 		
-		List<Campaign>campaigns = new ArrayList<Campaign>(); //list for campaigns
+		List<Campaign>campaigns = new ArrayList<>(); //list for campaigns
 		
 		try (Connection connection = ConnectDB.getConnection();  //connect to DB
-			//statements for selecting campaigns and their players:
-			CallableStatement campaignsStatement = connection.prepareCall("{CALL select_campaigns(?)}");
 				
-			///////////CallableStatement playersStatement = connection.prepareCall("{CALL select_campaign_players(?)}");	
-			////////ResultSet campaignsRS = campaignsStatement.executeQuery(); //execute campaigns statement
-			) {
+			//create statement:
+			CallableStatement statement = connection.prepareCall("{CALL select_campaigns(?)}");) {
 			
-			////////ResultSet playersRS = null;
+			statement.setInt(1, playerId); //set input with player id:
+			ResultSet resultSet = statement.executeQuery(); //execute statement
 			
-			//set statement input with player id:
-			campaignsStatement.setInt(1, playerId); 
-			ResultSet campaignsRS = campaignsStatement.executeQuery();
-			
-			while(campaignsRS.next()) {
+			while(resultSet.next()) {
 				
 				//create campaign builder:
 				CampaignBuilder campaignBuilder = new Campaign.CampaignBuilder(); 
-				campaignBuilder.setId(campaignsRS.getInt("campaign_ID")); //set id
-				campaignBuilder.setCreated(campaignsRS.getTimestamp("date_time")); //set created
-				campaignBuilder.setHostName(campaignsRS.getString("host_name")); //set host name
+				campaignBuilder.setId(resultSet.getInt("campaign_ID")); //set id
+				campaignBuilder.setCreated(resultSet.getTimestamp("date_time")); //set created
+				campaignBuilder.setHostName(resultSet.getString("host_name")); //set host name
 				
 				//set period:
 				campaignBuilder.setPeriod((new Period(
-						Block.valueOf(campaignsRS.getString("period_block").toUpperCase()),
-						campaignsRS.getInt("period_year")))); 
+						Block.valueOf(resultSet.getString("period_block").toUpperCase()),
+						resultSet.getInt("period_year")))); 
 				
 				//create event builder:
 				EventBuilder eventBuilder = new Event.EventBuilder(); 
-				eventBuilder.setName(campaignsRS.getString("event_name")); //set event name
-				eventBuilder.setMaxTurns(campaignsRS.getInt("periods_count")); //set max turns
+				eventBuilder.setName(resultSet.getString("event_name")); //set event name
+				eventBuilder.setMaxTurns(resultSet.getInt("periods_count")); //set max turns
 				campaignBuilder.setEvent(eventBuilder.build()); //add event to campaign builder
 				
-				//create map for campaign players:
-				//Map<String, Player>playerNameToPlayer = new TreeMap<String, Player>();
-				
-				if(!campaignsRS.getString("player_name").equals("N/A")) {
+				//if player name was found in campaign:
+				if(!resultSet.getString("player_name").equals("N/A")) {
+					
+					//add player with name to players:
 					campaignBuilder.setPlayer(
-							new Player.PlayerBuilder()
-								.setName(campaignsRS.getString("player_name")).build());
+							new Player.PlayerBuilder() 
+								.setName(resultSet.getString("player_name")).build());
 				}
 				
-				System.out.println(campaignsRS.getString("player_name"));
-				
-				//set players statement input with campaign id:
-				//playersStatement.setInt(1, campaignsRS.getInt("campaign_ID")); 
-				//playersRS = playersStatement.executeQuery(); //execute players query
-				
-				//while(playersRS.next()) {
-					//playersRS.ge
-				//}
-				
-				//add built event to events:
+				//add built campaign to campaigns:
 				campaigns.add(campaignBuilder.build());
-				
 			}
 			
 		} catch(Exception e) { e.printStackTrace(); }
 		
-		return campaigns;
+		return campaigns; //return campaigns
 	}
 }
