@@ -20,9 +20,9 @@ public class Campaign {
 	private int turnNum; //current turn number
 	private Timestamp created; //time stamp when created
 	private String hostName; //name of host
-	private Map<String, Player>playerNameToPlayer; //players involved
+	private Map<String, Player>playerNameToPlayer = new TreeMap<String, Player>(); //players involved
 	
-
+	
 	////////private boolean isPlaying; //++++++++++++++determined by whether you are a player
 	
 	private Campaign() {} //blank constructor
@@ -73,6 +73,13 @@ public class Campaign {
 		//set players:
 		public CampaignBuilder setPlayers(Map<String, Player>playersMap) {
 			campaign.playerNameToPlayer = new TreeMap<String, Player>(playersMap);
+			return this;
+		}
+		
+		//set player:
+		public CampaignBuilder setPlayer(Player player) {
+			Player tempPlayer = new Player.PlayerBuilder().setName(player.getName()).build();
+			campaign.playerNameToPlayer.putIfAbsent(tempPlayer.getName(), tempPlayer);
 			return this;
 		}
 		

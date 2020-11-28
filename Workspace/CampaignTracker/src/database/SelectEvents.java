@@ -47,7 +47,7 @@ public interface SelectEvents {
 			while(eventsRS.next()) {
 				
 				EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
-				eventBuilder.setName(eventsRS.getString("event_name")); //add event name
+				eventBuilder.setName(eventsRS.getString("event_name")); //set event name
 				
 				//create list for event periods:
 				List<Period>eventPeriods = new ArrayList<>();
@@ -82,8 +82,8 @@ public interface SelectEvents {
 					
 					//create new air force builder:
 					AirForceBuilder airForceBuilder = new AirForce.AirForceBuilder();
-					airForceBuilder.setAirForceName(airForcesRS.getString("airforce_name")); //add air force name
-					airForceBuilder.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value")); //add home adv value
+					airForceBuilder.setAirForceName(airForcesRS.getString("airforce_name")); //set air force name
+					airForceBuilder.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value")); //set home adv value
 					
 					//create list for air force planes:
 					List<Plane>airForcePlanes = new ArrayList<>();
@@ -96,7 +96,7 @@ public interface SelectEvents {
 						
 						//create new plane builder:
 						PlaneBuilder planeBuilder = new Plane.PlaneBuilder();
-						planeBuilder.setPlaneName(planesRS.getString("plane_name")); //add plane name
+						planeBuilder.setPlaneName(planesRS.getString("plane_name")); //set plane name
 						
 						//set statement input parameters with air force plane id & event id:
 						availabilitiesStatement.setInt(1, planesRS.getInt("airforce_plane_ID"));

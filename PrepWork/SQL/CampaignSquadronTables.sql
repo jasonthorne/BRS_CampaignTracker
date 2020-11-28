@@ -110,11 +110,11 @@ BEGIN
 END $$
 DELIMITER ;
 
-
+/*++++++++++++++++++++prob delete! ++++++++++++ */
 DELIMITER $$
 CREATE PROCEDURE select_campaign_players (IN campaign_ID INT)
 BEGIN
-	SELECT * FROM campaign_players
+	/*SELECT * FROM campaign_players++++++++++++BAD :P*/
 	WHERE campaign_players.campaignID = campaign_ID;
 END $$
 DELIMITER ;
@@ -135,7 +135,7 @@ DROP PROCEDURE IF EXISTS insert_campaign;
 
 
 DELIMITER $$
-CREATE PROCEDURE insert_campaign (IN event_name VARCHAR(64), IN player_ID VARCHAR(64), IN date_time DATETIME)
+CREATE PROCEDURE insert_campaign (IN event_name VARCHAR(64), IN player_ID INT, IN date_time DATETIME)
 BEGIN
 	DECLARE campaign_ID INT DEFAULT 0; 
 	DECLARE campaign_player_ID INT DEFAULT 0;
@@ -170,7 +170,7 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE select_campaigns ()
+CREATE PROCEDURE select_campaigns (IN player_ID INT)
 BEGIN
 	SELECT
 		campaigns.campaignID AS campaign_ID,
@@ -191,7 +191,13 @@ BEGIN
 		
 		(SELECT COUNT(event_periods.event_periodID) FROM event_periods
 		WHERE event_periods.eventID = campaigns.eventID)
-		AS periods_count
+		AS periods_count,
+		
+		(SELECT players.name FROM players
+			INNER JOIN campaign_players ON players.playerID = campaign_players.playerID
+		WHERE campaign_players.campaignID = campaign_ID AND players.playerID = player_ID)
+		AS campaign_player_name
+		
 		/* get count of event_periods = event_ID for working out percentage. */
 		/* event name from events ?????????????*/
 		/* event id from events *???????????*/

@@ -20,18 +20,22 @@ import model.Player;
 
 public interface SelectCampaigns {
 	
-	public static List<Campaign> select() {
+	public static List<Campaign> select(int playerId) {
 		
 		List<Campaign>campaigns = new ArrayList<Campaign>(); //list for campaigns
 		
 		try (Connection connection = ConnectDB.getConnection();  //connect to DB
 			//statements for selecting campaigns and their players:
-			CallableStatement campaignsStatement = connection.prepareCall("{CALL select_campaigns()}");
-			CallableStatement playersStatement = connection.prepareCall("{CALL select_campaign_players(?)}");	
+			CallableStatement campaignsStatement = connection.prepareCall("{CALL select_campaigns(?)}");
+				
+			///////////CallableStatement playersStatement = connection.prepareCall("{CALL select_campaign_players(?)}");	
 			ResultSet campaignsRS = campaignsStatement.executeQuery(); //execute campaigns statement
 			) {
 			
-			ResultSet playersRS = null;
+			////////ResultSet playersRS = null;
+			
+			//set statement input with player id:
+			campaignsStatement.setInt(1, playerId); 
 			
 			while(campaignsRS.next()) {
 				
@@ -53,15 +57,19 @@ public interface SelectCampaigns {
 				campaignBuilder.setEvent(eventBuilder.build()); //add event to campaign builder
 				
 				//create map for campaign players:
-				Map<String, Player>playerNameToPlayer = new TreeMap<String, Player>();
+				//Map<String, Player>playerNameToPlayer = new TreeMap<String, Player>();
+				
+				campaignBuilder.setPlayer(
+						new Player.PlayerBuilder()
+							.setName(campaignsRS.getString("campaign_player_name")).build());
 				
 				//set players statement input with campaign id:
-				playersStatement.setInt(1, campaignsRS.getInt("campaign_ID")); 
-				playersRS = playersStatement.executeQuery(); //execute players query
+				//playersStatement.setInt(1, campaignsRS.getInt("campaign_ID")); 
+				//playersRS = playersStatement.executeQuery(); //execute players query
 				
-				while(playersRS.next()) {
+				//while(playersRS.next()) {
 					//playersRS.ge
-				}
+				//}
 				
 			}
 			
