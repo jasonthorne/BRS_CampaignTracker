@@ -110,6 +110,15 @@ BEGIN
 END $$
 DELIMITER ;
 
+
+DELIMITER $$
+CREATE PROCEDURE select_campaign_players (IN campaign_ID INT)
+BEGIN
+	SELECT * FROM campaign_players
+	WHERE campaign_players.campaignID = campaign_ID;
+END $$
+DELIMITER ;
+
 /*----------------------------------------------------*/
 /* campaign players hosting campaigns*/
 
@@ -165,7 +174,7 @@ CREATE PROCEDURE select_campaigns ()
 BEGIN
 	SELECT
 		campaigns.campaignID AS campaign_ID,
-		/*campaigns.eventID AS event_ID,??????????????*/
+		/*campaigns.eventID AS event_ID,*/
 		events.name AS event_name,
 		periods.block AS period_block,
 		years.year_value AS period_year,
@@ -178,9 +187,11 @@ BEGIN
 				campaign_players.campaign_playerID = campaign_hosts.campaign_playerID
 		WHERE campaign_players.campaignID = campaign_ID 
 			AND campaign_players.campaign_playerID = campaign_hosts.campaign_playerID)
-		AS host_name
+		AS host_name,
 		
-		
+		(SELECT COUNT(event_periods.event_periodID) FROM event_periods
+		WHERE event_periods.eventID = campaigns.eventID)
+		AS periods_count
 		/* get count of event_periods = event_ID for working out percentage. */
 		/* event name from events ?????????????*/
 		/* event id from events *???????????*/
@@ -188,7 +199,6 @@ BEGIN
 		INNER JOIN periods ON campaigns.periodID = periods.periodID
 		INNER JOIN years ON periods.yearID = years.yearID
 		INNER JOIN events ON campaigns.eventID = events.eventID;
-	
 END $$
 DELIMITER ;
 

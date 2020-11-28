@@ -284,7 +284,6 @@ BEGIN
 	FROM events; 
 END $$
 DELIMITER ;
-
 /*----------------------------------------------------*/
 /* airforces available to events */
 
