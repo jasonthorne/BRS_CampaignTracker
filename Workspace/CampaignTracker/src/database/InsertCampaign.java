@@ -26,7 +26,7 @@ public interface InsertCampaign {
 			 callableStatement.setString(1, eventName); //set input with name
 			 callableStatement.setInt(2, playerId); //set input with password
 	         callableStatement.setTimestamp(3, new Timestamp(
-	        		 Calendar.getInstance().getTimeInMillis())); //set input with time stamp*/
+	        		 Calendar.getInstance().getTimeInMillis())); //set input with time stamp
 	         callableStatement.execute(); //execute statement
 	      
 		}catch(Exception e) { e.printStackTrace(); }

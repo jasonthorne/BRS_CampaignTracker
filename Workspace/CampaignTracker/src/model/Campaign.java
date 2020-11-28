@@ -93,6 +93,11 @@ public class Campaign {
 	
 	public int getId() { return id; } //get id
 	public String getEventName() { return /*event.getName();*/ name; } //get name
+
+	@Override
+	public String toString() {
+		return "Campaign [id=" + id + ", playerNameToPlayer=" + playerNameToPlayer + "]";
+	}
 	
 	
 		

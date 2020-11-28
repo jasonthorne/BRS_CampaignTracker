@@ -46,12 +46,17 @@ public class CampaignsController implements Frameable, Rootable {
     	//set btn action:
     	////newCampaignBtn.setOnAction(event -> Frameable.changeView(root, eventsCtrlr));
     	
-    	newCampaignBtn.setOnAction(event -> 
+    	newCampaignBtn.setOnAction(event -> {
     		//Frameable.changeView(root, new EventsController(this))); 
-    		Frameable.changeView(root, eventsCtrlr)); 
+    		//Frameable.changeView(root, eventsCtrlr);
+    		testCamps.addAll(database.SelectCampaigns.select(LoginController.getPlayerId()));
+    		System.out.println("testCamps: " + testCamps);
+    	}); 
     	
     	
     }
+    
+    List<Campaign>testCamps = new ArrayList<Campaign>();
     
     //observable list of campaigns:
     private final ObservableList<Campaign>observCampaigns = FXCollections.observableArrayList();

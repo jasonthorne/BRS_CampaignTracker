@@ -10,7 +10,7 @@ import java.sql.Types;
 
 public interface InsertPlayer {
 	
-	static int insert(String name, String pswrd) {
+	static int insert(String name, String password) {
 		
 		int statementResult = 0;
 		try (Connection connection = ConnectDB.getConnection(); //get a connection to the db
@@ -20,7 +20,7 @@ public interface InsertPlayer {
 					"{CALL insert_player(?,?,?)}");) {
 			
 			 callableStatement.setString(1, name); //set input with name
-	         callableStatement.setString(2, pswrd); //set input with password
+	         callableStatement.setString(2, password); //set input with password
 	         callableStatement.registerOutParameter(3, Types.INTEGER); //register the out param (playerId)
 	         callableStatement.execute(); //execute statement
 	         

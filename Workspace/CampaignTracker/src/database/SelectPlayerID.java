@@ -9,7 +9,7 @@ import java.sql.Types;
 
 public interface SelectPlayerID {
 	
-	public static int select(String name, String pswrd) {
+	public static int select(String name, String password) {
 		
 		int statementResult = 0;
 		try (Connection connection = ConnectDB.getConnection(); //get a connection to the db
@@ -19,7 +19,7 @@ public interface SelectPlayerID {
 					"{CALL select_playerID(?,?,?)}");) {
 			
 			 callableStatement.setString(1, name); //set input with player name
-	         callableStatement.setString(2, pswrd); //set input with player password
+	         callableStatement.setString(2, password); //set input with player password
 	         callableStatement.registerOutParameter(3, Types.INTEGER); //register the out param (playerId)
 	         callableStatement.execute(); //execute statement
 	        

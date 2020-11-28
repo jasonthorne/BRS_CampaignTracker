@@ -76,7 +76,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		
 		//====================================================
 		//shortcut to log in: - REMEMKBER: YOU LOG IN TWICE IF YOU ENTER VALID INFO! :P
-		playerId = 1;  //test account of Jay
+		playerId = 2;  //test account of Jay
 		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 		FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
 		//============================================================

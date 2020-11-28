@@ -29,13 +29,14 @@ public interface SelectCampaigns {
 			CallableStatement campaignsStatement = connection.prepareCall("{CALL select_campaigns(?)}");
 				
 			///////////CallableStatement playersStatement = connection.prepareCall("{CALL select_campaign_players(?)}");	
-			ResultSet campaignsRS = campaignsStatement.executeQuery(); //execute campaigns statement
+			////////ResultSet campaignsRS = campaignsStatement.executeQuery(); //execute campaigns statement
 			) {
 			
 			////////ResultSet playersRS = null;
 			
 			//set statement input with player id:
 			campaignsStatement.setInt(1, playerId); 
+			ResultSet campaignsRS = campaignsStatement.executeQuery();
 			
 			while(campaignsRS.next()) {
 				
@@ -59,9 +60,13 @@ public interface SelectCampaigns {
 				//create map for campaign players:
 				//Map<String, Player>playerNameToPlayer = new TreeMap<String, Player>();
 				
-				campaignBuilder.setPlayer(
-						new Player.PlayerBuilder()
-							.setName(campaignsRS.getString("campaign_player_name")).build());
+				if(!campaignsRS.getString("player_name").equals("N/A")) {
+					campaignBuilder.setPlayer(
+							new Player.PlayerBuilder()
+								.setName(campaignsRS.getString("player_name")).build());
+				}
+				
+				System.out.println(campaignsRS.getString("player_name"));
 				
 				//set players statement input with campaign id:
 				//playersStatement.setInt(1, campaignsRS.getInt("campaign_ID")); 
@@ -70,6 +75,9 @@ public interface SelectCampaigns {
 				//while(playersRS.next()) {
 					//playersRS.ge
 				//}
+				
+				//add built event to events:
+				campaigns.add(campaignBuilder.build());
 				
 			}
 			

@@ -115,7 +115,7 @@ DELIMITER $$
 CREATE PROCEDURE select_campaign_players (IN campaign_ID INT)
 BEGIN
 	/*SELECT * FROM campaign_players++++++++++++BAD :P*/
-	WHERE campaign_players.campaignID = campaign_ID;
+	/*WHERE campaign_players.campaignID = campaign_ID;*/
 END $$
 DELIMITER ;
 
@@ -172,6 +172,11 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE select_campaigns (IN player_ID INT)
 BEGIN
+	/*DECLARE campaign_playerID_check INT DEFAULT 0; https://stackoverflow.com/questions/5951157/if-in-select-statement-choose-output-value-based-on-column-values
+	
+	SELECT players.playerID INTO playerID_check FROM players 
+	WHERE players.name = player_name;*/
+	
 	SELECT
 		campaigns.campaignID AS campaign_ID,
 		/*campaigns.eventID AS event_ID,*/
@@ -193,10 +198,21 @@ BEGIN
 		WHERE event_periods.eventID = campaigns.eventID)
 		AS periods_count,
 		
-		(SELECT players.name FROM players
+		/*(SELECT players.name FROM players
 			INNER JOIN campaign_players ON players.playerID = campaign_players.playerID
 		WHERE campaign_players.campaignID = campaign_ID AND players.playerID = player_ID)
-		AS campaign_player_name
+		AS player_name*/
+		
+		IFNULL(
+			(SELECT players.name FROM players
+				INNER JOIN campaign_players ON players.playerID = campaign_players.playerID
+			WHERE campaign_players.campaignID = campaign_ID AND players.playerID = player_ID), 
+			'N/A')
+		AS player_name
+		
+		
+		
+		
 		
 		/* get count of event_periods = event_ID for working out percentage. */
 		/* event name from events ?????????????*/
