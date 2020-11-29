@@ -43,9 +43,13 @@ public class PlanesTableController implements Rootable {
     	
     private final ObservableList<Plane> observPlanes = FXCollections.observableArrayList(); //observable planes
     private final TableView<Plane> planesTable = new TableView<Plane>(); //table view for planes
-   
+    
   	private final Stage stage = new Stage(); //stage
     private final Scene scene = new Scene(Rootable.getRoot(this, "/view/planesTable.fxml")); //rooted scene
+    
+   
+    	
+   
    
     //constructor:
 	PlanesTableController(List<Plane>planes, String airForceName) {
@@ -62,7 +66,8 @@ public class PlanesTableController implements Rootable {
     	//- not needed (for now!)- planesTable.maxHeightProperty().bind(planesTable.prefHeightProperty());
     	System.out.println(Double.valueOf(Status.UNAVAILABLE.toString().length()));
     	
-    	
+    	/* https://stackoverflow.com/questions/28428280/how-to-set-column-width-in-tableview-in-javafx */
+    	planesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); //+++++++++NOT QUITE FIXED. SEE barbarossa soviet planes! 
     	
     	//----------------------
     	buildTable(); //build table
@@ -88,12 +93,8 @@ public class PlanesTableController implements Rootable {
     	planesTable.getColumns().add(planeCol); 
     	
     	//year and block columns:
-    	TableColumn<Plane,String> yearCol = null;
-    	TableColumn<Plane,String> blockCol = null;
-    	//----------
-    	//yearCol.prefWidthProperty().bind(planesTable.widthProperty().multiply(0.3));
-    	
-    	//-------
+    	TableColumn<Plane,String> yearCol;
+    	TableColumn<Plane,String> blockCol;
     	
     	//call back for populating block column cells with plane period availabilities:
     	Callback<TableColumn.CellDataFeatures<Plane, String>, ObservableValue<String>> callBack = 
@@ -126,7 +127,6 @@ public class PlanesTableController implements Rootable {
     				
     			if(canAdd) {
     				blockCol = new TableColumn<>(String.valueOf(currBlock)); //create block column 
-    				blockCol.prefWidthProperty().bind(planesTable.widthProperty()); //---------
         			blockCol.setUserData(new Period(currBlock, currYear)); //add period to block column
         			blockCol.setCellValueFactory(callBack); //set block column cell factory
             		yearCol.getColumns().add(blockCol); //add block column to year column
