@@ -10,6 +10,6 @@
       <Label fx:id="hostNameLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="270.0" layoutY="7.0" prefHeight="27.0" prefWidth="144.0" text="host" />
       <Label fx:id="isPlayingLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="437.0" layoutY="7.0" prefHeight="27.0" prefWidth="40.0" text="playing" />
       <Label fx:id="eventNameLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="7.0" prefHeight="27.0" prefWidth="144.0" text="name" textAlignment="CENTER" />
-      <ProgressIndicator fx:id="progressPI" layoutX="505.0" layoutY="1.0" prefWidth="20.0" progress="0.0" />
+      <ProgressIndicator fx:id="progressPI" layoutX="497.0" prefWidth="23.0" progress="0.0" />
    </children>
 </AnchorPane>

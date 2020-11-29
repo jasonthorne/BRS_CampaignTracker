@@ -33,6 +33,7 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
     	//show campaign:
     	/*showCampaignBtn.setOnAction(event -> 
 		new CampaignController().showStage());*/
+    	//progressPI = new ProgressIndicator();
 
     }
     
@@ -61,6 +62,9 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
 			hostNameLbl.setText(campaign.getHostName()); //get host name
 			//isPlayingLbl.setText(value);
 			//https://docs.oracle.com/javafx/2/ui_controls/progress.htm#CHDDJAJE
+			progressPI.setProgress(0.75);
+			
+			
 			
 			setText(null); 
 	        setGraphic(rootAP); //set this root element as the graphic	
