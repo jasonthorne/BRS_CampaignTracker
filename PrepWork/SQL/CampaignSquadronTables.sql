@@ -172,19 +172,14 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE select_campaigns (IN player_ID INT)
 BEGIN
-	/*DECLARE campaign_playerID_check INT DEFAULT 0; https://stackoverflow.com/questions/5951157/if-in-select-statement-choose-output-value-based-on-column-values
-	
-	SELECT players.playerID INTO playerID_check FROM players 
-	WHERE players.name = player_name;*/
-	
 	SELECT
 		campaigns.campaignID AS campaign_ID,
-		/*campaigns.eventID AS event_ID,*/
 		events.name AS event_name,
 		periods.block AS period_block,
 		years.year_value AS period_year,
 		campaigns.created AS date_time,
 		
+		/* get name of host: */
 		(SELECT players.name FROM players /* ++++++++++++++++TEST THIS WITH MULTIPLE EXAMPLES ++++++++ */
 			INNER JOIN campaign_players ON 
 				players.playerID = campaign_players.playerID
@@ -194,10 +189,12 @@ BEGIN
 			AND campaign_players.campaign_playerID = campaign_hosts.campaign_playerID)
 		AS host_name,
 		
+		/* get count of event_periods: */
 		(SELECT COUNT(event_periods.event_periodID) FROM event_periods
 		WHERE event_periods.eventID = campaigns.eventID)
 		AS periods_count,
 	
+		/* return player naame if part of campaign: */
 		IFNULL(
 			(SELECT players.name FROM players
 				INNER JOIN campaign_players ON players.playerID = campaign_players.playerID
@@ -205,9 +202,6 @@ BEGIN
 			'N/A')
 		AS player_name
 		
-		/* get count of event_periods = event_ID for working out percentage. */
-		/* event name from events ?????????????*/
-		/* event id from events *???????????*/
 	FROM campaigns
 		INNER JOIN periods ON campaigns.periodID = periods.periodID
 		INNER JOIN years ON periods.yearID = years.yearID

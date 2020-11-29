@@ -13,9 +13,11 @@ import java.time.temporal.ChronoField;
 import java.util.Calendar;
 import java.util.Date;
 
+import model.Campaign;
+
 public interface InsertCampaign {
 	
-	static void insert(String eventName, int playerId) {
+	static void insert(Campaign campaign, int playerId) {
 			
 		try (Connection connection = ConnectDB.getConnection(); //get a connection to the db
 			
@@ -23,10 +25,9 @@ public interface InsertCampaign {
 			 CallableStatement callableStatement = connection.prepareCall(
 					"{CALL insert_campaign(?,?,?)}");) {
 			
-			 callableStatement.setString(1, eventName); //set input with name
+			 callableStatement.setString(1, campaign.getEventName()); //set input with name
 			 callableStatement.setInt(2, playerId); //set input with password
-	         callableStatement.setTimestamp(3, new Timestamp(
-	        		 Calendar.getInstance().getTimeInMillis())); //set input with time stamp
+	         callableStatement.setTimestamp(3, campaign.getCreated()); //set input with time stamp
 	         callableStatement.execute(); //execute statement
 	      
 		}catch(Exception e) { e.printStackTrace(); }

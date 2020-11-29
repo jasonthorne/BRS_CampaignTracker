@@ -1,9 +1,14 @@
 package controller;
 
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 import com.jfoenix.controls.JFXButton;
@@ -24,6 +29,8 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import model.Campaign;
+import model.Event;
+import model.Campaign.CampaignBuilder;
 
 public class CampaignsController implements Frameable, Rootable {
 	
@@ -56,7 +63,7 @@ public class CampaignsController implements Frameable, Rootable {
     	
     }
     
-    List<Campaign>testCamps = new ArrayList<Campaign>();
+    List<Campaign>testCamps = new ArrayList<Campaign>(); //=============DELETE LATER :P
     
     //observable list of campaigns:
     private final ObservableList<Campaign>observCampaigns = FXCollections.observableArrayList();
@@ -64,10 +71,6 @@ public class CampaignsController implements Frameable, Rootable {
     //filtered list for filtering campaigns:
     private final FilteredList<Campaign> filteredCampaigns = new FilteredList<>(observCampaigns, cmp->true);
     
-    /**===================imaginary db data: =================================*/
-    public static List<Campaign>cellItemsDB = new ArrayList<Campaign>();
-   	/**=======================================================================*/
-	
     //fxml root node:
 	private Parent root; 
 	
@@ -83,26 +86,30 @@ public class CampaignsController implements Frameable, Rootable {
 	}
 
 	//populates campaigns with campaigns from db:
-	/*private*/ void setCampaigns() { /** ======= remember, this is pulling from db so may need called again for some reason =========*/
-		System.out.println("dawg");
+	private void setCampaigns() { 
 		
-		
-		/** ================== pull from db here instead! =========*/
-		//populate imaginary db data:
-    	cellItemsDB.add(new Campaign("1"));
-    	cellItemsDB.add(new Campaign("1"));
-    	cellItemsDB.add(new Campaign("1"));
-    	cellItemsDB.add(new Campaign("1"));
-    	cellItemsDB.add(new Campaign("2"));
-    	cellItemsDB.add(new Campaign("2"));
-    	cellItemsDB.add(new Campaign("2"));
-    	cellItemsDB.add(new Campaign("2"));
+		//executor service for task thread:
+    	ExecutorService service = Executors.newSingleThreadExecutor(); 
     	
+    	//future list of campaigns pulled from db, returned from service task thread:
+    	Future<List<Campaign>>futureCampaigns = service.submit(() -> 
+    		database.SelectCampaigns.select(LoginController.getPlayerId()));
     	
-		//add campaigns from db to campaigns:
-    	observCampaigns.addAll(cellItemsDB);
+    	//keeping future.get() separate from application thread:
+    	new Thread(() -> {
+    		
+	    	try {
+	    		//add campaigns from db to observCampaigns:
+	    		observCampaigns.addAll(futureCampaigns.get());
+	    	}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				//shut down service thread:
+				if(!service.isShutdown()) { service.shutdown(); } 
+			}
+	    	
+    	}).start();
 		
-		/** ========================================================*/
 		//add campaigns to listView:
 		campaignsLV.setItems(observCampaigns); 
 		//set listView cellFactory to create CampaignCellControllers:
@@ -137,22 +144,20 @@ public class CampaignsController implements Frameable, Rootable {
 		});
 	}
 	
+	//create a new campaign:
 	void createCampaign(String eventName) {
 		
-		System.out.println("createCampaign");
-		
-		//+++++++READ:++++++++++++++++++++++++++++++++
-		//create campaign here, using builder.
-		//pass built campaign into insertCampaign and observCampaigns.add 
-		//+++++++++++++++++++++++++++++++++++++++++++
+		//create campaign holding event name and creation time stamp:
+		Campaign campaign = new Campaign.CampaignBuilder()
+				.setEvent(new Event.EventBuilder().setName(eventName).build())
+				.setCreated(new Timestamp(Calendar.getInstance().getTimeInMillis()))
+				.build();
 		
 		//add campaign to db:
-		database.InsertCampaign.insert(eventName, LoginController.getPlayerId());
+		database.InsertCampaign.insert(campaign, LoginController.getPlayerId());
 		
 		//add campaign to observable list of campaigns:
-		observCampaigns.add(new Campaign("new"));
-		
-		
+		observCampaigns.add(campaign);
 	}
 	
 	@Override

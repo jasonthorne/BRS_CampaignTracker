@@ -19,7 +19,10 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
     
     //root fxml element & children:
     @FXML private AnchorPane rootAP;
-    @FXML private Label nameLbl;
+    @FXML private Label eventNameLbl;
+    @FXML private Label createdLbl;
+    @FXML private Label hostNameLbl;
+    @FXML private Label isPlayingLbl;
     @FXML private JFXButton showCampaignBtn;
     
     @FXML
@@ -51,7 +54,10 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
   	        setGraphic(null);
   	    } else {
   	    	//populate cell with data from campaign:
-  	    	nameLbl.setText(campaign.getEventName()); //get event name
+  	    	eventNameLbl.setText(campaign.getEventName()); //get event name
+  	    	createdLbl.setText(campaign.getCreated().toString()); //get created
+			hostNameLbl.setText(campaign.getHostName()); //get host name
+			//isPlayingLbl.setText(value);
 			
 			setText(null); 
 	        setGraphic(rootAP); //set this root element as the graphic	
