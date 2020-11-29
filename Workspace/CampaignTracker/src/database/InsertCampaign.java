@@ -25,8 +25,8 @@ public interface InsertCampaign {
 			 CallableStatement callableStatement = connection.prepareCall(
 					"{CALL insert_campaign(?,?,?)}");) {
 			
-			 callableStatement.setString(1, campaign.getEventName()); //set input with name
-			 callableStatement.setInt(2, playerId); //set input with password
+			 callableStatement.setString(1, campaign.getEventName()); //set input with event name
+			 callableStatement.setInt(2, playerId); //set input with player id
 	         callableStatement.setTimestamp(3, campaign.getCreated()); //set input with time stamp
 	         callableStatement.execute(); //execute statement
 	      

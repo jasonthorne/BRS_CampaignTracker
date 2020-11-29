@@ -55,9 +55,9 @@ public class CampaignsController implements Frameable, Rootable {
     	
     	newCampaignBtn.setOnAction(event -> {
     		//Frameable.changeView(root, new EventsController(this))); 
-    		//Frameable.changeView(root, eventsCtrlr);
-    		testCamps.addAll(database.SelectCampaigns.select(LoginController.getPlayerId()));
-    		System.out.println("testCamps: " + testCamps);
+    		Frameable.changeView(root, eventsCtrlr);
+    		//testCamps.addAll(database.SelectCampaigns.select(LoginController.getPlayerId()));
+    		//System.out.println("testCamps: " + testCamps);
     	}); 
     	
     	
@@ -155,7 +155,7 @@ public class CampaignsController implements Frameable, Rootable {
 		
 		//add campaign to db:
 		database.InsertCampaign.insert(campaign, LoginController.getPlayerId());
-		
+		//+++++++++++++++++++++++++++++++++++++++++add your name to this as host: +++prob should have user table now!! ++++++++++++
 		//add campaign to observable list of campaigns:
 		observCampaigns.add(campaign);
 	}
