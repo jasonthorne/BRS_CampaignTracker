@@ -20,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
@@ -47,10 +48,6 @@ public class PlanesTableController implements Rootable {
   	private final Stage stage = new Stage(); //stage
     private final Scene scene = new Scene(Rootable.getRoot(this, "/view/planesTable.fxml")); //rooted scene
     
-   
-    	
-   
-   
     //constructor:
 	PlanesTableController(List<Plane>planes, String airForceName) {
 		stage.setTitle(airForceName + " Planes"); //set title
@@ -64,13 +61,23 @@ public class PlanesTableController implements Rootable {
     	planesTable.prefHeightProperty().bind(planesTable.fixedCellSizeProperty().multiply(Bindings.size(planesTable.getItems()).add(2.01)));
     	// - not needed (for now!)- planesTable.minHeightProperty().bind(planesTable.prefHeightProperty());
     	//- not needed (for now!)- planesTable.maxHeightProperty().bind(planesTable.prefHeightProperty());
-    	System.out.println(Double.valueOf(Status.UNAVAILABLE.toString().length()));
     	
     	/* https://stackoverflow.com/questions/28428280/how-to-set-column-width-in-tableview-in-javafx */
     	planesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); //+++++++++NOT QUITE FIXED. SEE barbarossa soviet planes! 
     	
+    	//https://stackoverflow.com/questions/14650787/javafx-column-in-tableview-auto-fit-size/38686402
+    	/*planesTable.setColumnResizePolicy(new Callback<TableView.ResizeFeatures, Boolean>() {
+    		  @Override
+    		  public Boolean call(ResizeFeatures p) {
+    		     return true;
+    		  }
+    	
+    	});*/
     	//----------------------
+    	//planesTable.setStyle("-fx-table-cell-border-color: transparent;");
     	buildTable(); //build table
+    	
+    	////////autoResizeColumns(planesTable);
     }
 	
 	private void buildTable() {
@@ -96,6 +103,7 @@ public class PlanesTableController implements Rootable {
     	TableColumn<Plane,String> yearCol;
     	TableColumn<Plane,String> blockCol;
     	
+    	
     	//call back for populating block column cells with plane period availabilities:
     	Callback<TableColumn.CellDataFeatures<Plane, String>, ObservableValue<String>> callBack = 
                 new Callback<TableColumn.CellDataFeatures<Plane, String>, ObservableValue<String>>() {
@@ -118,7 +126,7 @@ public class PlanesTableController implements Rootable {
     		
     		yearCol = new TableColumn<>(String.valueOf(currYear)); //create year column
     		blocksIterator = Arrays.asList(Block.values()).iterator(); //(re)set blocks iterator
-    		
+    		yearCol.setStyle( "-fx-alignment: CENTER;");
     		while(blocksIterator.hasNext()) { //loop through blocks
     			currBlock = blocksIterator.next(); //advance to next block
     			
@@ -127,6 +135,7 @@ public class PlanesTableController implements Rootable {
     				
     			if(canAdd) {
     				blockCol = new TableColumn<>(String.valueOf(currBlock)); //create block column 
+    				blockCol.setStyle( "-fx-alignment: CENTER;"); ///////https://stackoverflow.com/questions/13455326/javafx-tableview-text-alignment
         			blockCol.setUserData(new Period(currBlock, currYear)); //add period to block column
         			blockCol.setCellValueFactory(callBack); //set block column cell factory
             		yearCol.getColumns().add(blockCol); //add block column to year column
@@ -171,6 +180,5 @@ public class PlanesTableController implements Rootable {
     	/**++++++++++++++++++++++++++++++++++++++++++++++*/
     	stage.showAndWait(); 
     }
-    
     
 }
