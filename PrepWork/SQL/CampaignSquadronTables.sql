@@ -161,8 +161,8 @@ BEGIN
 	/* get id of inserted campaign_player: */
 	SELECT campaign_players.campaign_playerID INTO campaign_player_ID
 	FROM campaign_players 
-	WHERE campaign_players.campaignID  = campaign_ID
-		AND campaign_players.playerID  = player_ID;
+	WHERE campaign_players.campaignID = campaign_ID
+		AND campaign_players.playerID = player_ID;
 	
 	/* add campaign player to campaign_hosts: */
 	INSERT INTO campaign_hosts (campaign_playerID) VALUES (campaign_player_ID);
