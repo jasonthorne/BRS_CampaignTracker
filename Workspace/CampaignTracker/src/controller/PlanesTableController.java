@@ -126,7 +126,7 @@ public class PlanesTableController implements Rootable {
     		
     		yearCol = new TableColumn<>(String.valueOf(currYear)); //create year column
     		blocksIterator = Arrays.asList(Block.values()).iterator(); //(re)set blocks iterator
-    		yearCol.setStyle( "-fx-alignment: CENTER;");
+    		
     		while(blocksIterator.hasNext()) { //loop through blocks
     			currBlock = blocksIterator.next(); //advance to next block
     			
@@ -135,7 +135,7 @@ public class PlanesTableController implements Rootable {
     				
     			if(canAdd) {
     				blockCol = new TableColumn<>(String.valueOf(currBlock)); //create block column 
-    				blockCol.setStyle( "-fx-alignment: CENTER;"); ///////https://stackoverflow.com/questions/13455326/javafx-tableview-text-alignment
+    				blockCol.setStyle( "-fx-alignment: CENTER;"); ///+++++++++HAVE THIS IN A CSS FILE FOR TABLE VIEWS ////https://stackoverflow.com/questions/13455326/javafx-tableview-text-alignment
         			blockCol.setUserData(new Period(currBlock, currYear)); //add period to block column
         			blockCol.setCellValueFactory(callBack); //set block column cell factory
             		yearCol.getColumns().add(blockCol); //add block column to year column
