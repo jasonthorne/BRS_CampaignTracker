@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS mission_results;
 DROP TABLE IF EXISTS missions; 
 DROP TABLE IF EXISTS squadron_pilots; 
 DROP TABLE IF EXISTS squadrons; 
-DROP TABLE IF EXISTS campaign_players; 
+DROP TABLE IF EXISTS players; 
 DROP TABLE IF EXISTS campaigns;
 
 /*----------------------------------------------------*/
@@ -86,33 +86,33 @@ DELIMITER ;
 /*----------------------------------------------------*/
 /* players involded in campaigns*/
 
-/*DROP TABLE IF EXISTS campaign_players; */
+/*DROP TABLE IF EXISTS players; */
 
-CREATE TABLE campaign_players (
-	campaign_playerID INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE players (
+	playerID INT NOT NULL AUTO_INCREMENT,
 	campaignID INT,
-	playerID INT,
+	userID INT,
 	score INT DEFAULT 0,
 	is_active BOOLEAN DEFAULT TRUE,
 	created DATETIME,
-	PRIMARY KEY (campaign_playerID),
+	PRIMARY KEY (playerID),
 	FOREIGN KEY (campaignID) REFERENCES campaigns(campaignID),
-	FOREIGN KEY (playerID) REFERENCES players(playerID),
-	CONSTRAINT campaignID_playerID UNIQUE (campaignID, playerID) /* make combined columns unique */
+	FOREIGN KEY (userID) REFERENCES users(userID),
+	CONSTRAINT campaignID_userID UNIQUE (campaignID, userID) /* make combined columns unique */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 DELIMITER $$
-CREATE PROCEDURE insert_campaign_player (IN campaign_ID INT, IN player_ID INT, IN date_time DATETIME)
+CREATE PROCEDURE insert_player (IN campaign_ID INT, IN user_ID INT, IN date_time DATETIME)
 BEGIN
-	INSERT INTO campaign_players (campaignID, playerID, created) VALUES (
-		campaign_ID, player_ID, date_time);
+	INSERT INTO players (campaignID, userID, created) VALUES (
+		campaign_ID, user_ID, date_time);
 END $$
 DELIMITER ;
 
 /*++++++++++++++++++++prob delete! ++++++++++++ */
 DELIMITER $$
-CREATE PROCEDURE select_campaign_players (IN campaign_ID INT)
+CREATE PROCEDURE select_players (IN campaign_ID INT)
 BEGIN
 	/*SELECT * FROM campaign_players++++++++++++BAD :P*/
 	/*WHERE campaign_players.campaignID = campaign_ID;*/
@@ -120,25 +120,22 @@ END $$
 DELIMITER ;
 
 /*----------------------------------------------------*/
-/* campaign players hosting campaigns*/
+/* players hosting campaigns*/
 
-
-
-CREATE TABLE campaign_hosts (
-	campaign_hostID INT NOT NULL AUTO_INCREMENT,
-	campaign_playerID INT,
-	PRIMARY KEY (campaign_hostID),
-	UNIQUE (campaign_playerID) /* prevent duplicate inserts */
+CREATE TABLE hosts (
+	hostID INT NOT NULL AUTO_INCREMENT,
+	playerID INT,
+	PRIMARY KEY (hostID),
+	UNIQUE (playerID) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP PROCEDURE IF EXISTS insert_campaign; 
 
-
 DELIMITER $$
-CREATE PROCEDURE insert_campaign (IN event_name VARCHAR(64), IN player_ID INT, IN date_time DATETIME)
+CREATE PROCEDURE insert_campaign (IN event_name VARCHAR(64), IN user_ID INT, IN date_time DATETIME)
 BEGIN
 	DECLARE campaign_ID INT DEFAULT 0; 
-	DECLARE campaign_player_ID INT DEFAULT 0;
+	DECLARE player_ID INT DEFAULT 0;
 	
 	/* eventID from events with event_name: */
 	DECLARE event_ID INT DEFAULT (
@@ -155,22 +152,22 @@ BEGIN
 	/* get id of inserted campaign: */
 	SELECT LAST_INSERT_ID() INTO campaign_ID;
 	
-	/* add player to campaign_players: */
-	CALL insert_campaign_player(campaign_ID, player_ID, date_time);
+	/* add user to players: */
+	CALL insert_player(campaign_ID, user_ID, date_time);
 	
-	/* get id of inserted campaign_player: */
-	SELECT campaign_players.campaign_playerID INTO campaign_player_ID
-	FROM campaign_players 
-	WHERE campaign_players.campaignID = campaign_ID
-		AND campaign_players.playerID = player_ID;
+	/* get id of inserted player: */
+	SELECT players.playerID INTO player_ID
+	FROM players 
+	WHERE players.campaignID = campaign_ID
+		AND players.userID = user_ID;
 	
-	/* add campaign player to campaign_hosts: */
-	INSERT INTO campaign_hosts (campaign_playerID) VALUES (campaign_player_ID);
+	/* add player to hosts: */
+	INSERT INTO hosts (playerID) VALUES (player_ID);
 END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE select_campaigns (IN player_ID INT)
+CREATE PROCEDURE select_campaigns (IN user_ID INT)
 BEGIN
 	SELECT
 		campaigns.campaignID AS campaign_ID,
@@ -180,13 +177,13 @@ BEGIN
 		campaigns.created AS date_time,
 		
 		/* get name of host: */
-		(SELECT players.name FROM players /* ++++++++++++++++TEST THIS WITH MULTIPLE EXAMPLES ++++++++ */
-			INNER JOIN campaign_players ON 
-				players.playerID = campaign_players.playerID
-			INNER JOIN campaign_hosts ON 
-				campaign_players.campaign_playerID = campaign_hosts.campaign_playerID
-		WHERE campaign_players.campaignID = campaign_ID 
-			AND campaign_players.campaign_playerID = campaign_hosts.campaign_playerID)
+		(SELECT users.name FROM users /* ++++++++++++++++TEST THIS WITH MULTIPLE EXAMPLES ++++++++ */
+			INNER JOIN players ON 
+				users.userID = players.userID
+			INNER JOIN hosts ON 
+				players.playerID = hosts.playerID
+		WHERE players.campaignID = campaign_ID 
+			AND players.playerID = hosts.playerID)
 		AS host_name,
 		
 		/* get count of event_periods: */
@@ -194,13 +191,13 @@ BEGIN
 		WHERE event_periods.eventID = campaigns.eventID)
 		AS periods_count,
 	
-		/* return player naame if part of campaign: */
+		/* return user naame if part of campaign: */
 		IFNULL(
-			(SELECT players.name FROM players
-				INNER JOIN campaign_players ON players.playerID = campaign_players.playerID
-			WHERE campaign_players.campaignID = campaign_ID AND players.playerID = player_ID), 
+			(SELECT users.name FROM users
+				INNER JOIN players ON users.userID = players.userID
+			WHERE players.campaignID = campaign_ID AND users.userID = user_ID), 
 			'N/A')
-		AS player_name
+		AS user_name
 		
 	FROM campaigns
 		INNER JOIN periods ON campaigns.periodID = periods.periodID
