@@ -213,11 +213,11 @@ DELIMITER ;
 
 CREATE TABLE squadrons (
 	squadronID INT NOT NULL AUTO_INCREMENT,
-	campaign_playerID INT,
+	playerID INT, /* needed????????????????????????????????? */
 	airforceID INT, /* when they've added their player to the campaign, theyre taken to a 'choose airforce' page that displays all airforce options (planes & dates & whether airforce has home adv) */
 	skill_points INT DEFAULT 24, /* skill points start at 24 */
 	PRIMARY KEY (squadronID),
-	FOREIGN KEY (campaign_playerID) REFERENCES campaign_players(campaign_playerID),
+	FOREIGN KEY (playerID) REFERENCES players(playerID),
 	FOREIGN KEY (airforceID) REFERENCES airforces(airforceID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -296,11 +296,11 @@ CREATE TABLE logs (
 CREATE TABLE mission_results (
 	mission_resultID INT NOT NULL AUTO_INCREMENT,
 	missionID INT,
-	campaign_playerID INT,
+	playerID INT,
 	result ENUM ('Defeat','Victory') NOT NULL DEFAULT 'Defeat',
 	PRIMARY KEY (mission_resultID),
 	FOREIGN KEY (missionID) REFERENCES missions(missionID),
-	FOREIGN KEY (campaign_playerID) REFERENCES campaign_players(campaign_playerID)
+	FOREIGN KEY (playerID) REFERENCES players(playerID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
