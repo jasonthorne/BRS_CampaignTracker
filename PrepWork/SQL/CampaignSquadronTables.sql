@@ -25,60 +25,60 @@ CREATE TABLE campaigns (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 /*----------------------------------------------------*/
-/* players */
+/* users */
 
-DROP TABLE IF EXISTS players; 
+DROP TABLE IF EXISTS users; 
 
-CREATE TABLE players (
-	playerID INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE users (
+	userID INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(64) DEFAULT NULL,
 	password VARCHAR(255) DEFAULT NULL,
-	PRIMARY KEY (playerID),
+	PRIMARY KEY (userID),
 	UNIQUE (name), /* prevent duplicate inserts */
 	UNIQUE (password) /* prevent duplicate inserts */
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
-DROP PROCEDURE IF EXISTS insert_player; 
+DROP PROCEDURE IF EXISTS insert_user; 
 
 DELIMITER $$
-CREATE PROCEDURE insert_player (IN player_name VARCHAR(64), IN password_string VARCHAR(64), OUT player_ID INT)
+CREATE PROCEDURE insert_user (IN user_name VARCHAR(64), IN password_string VARCHAR(64), OUT user_ID INT)
 BEGIN
-	DECLARE playerID_check INT DEFAULT 0; 
+	DECLARE userID_check INT DEFAULT 0; 
 	
-	/* check if player_name is already in db: */
-	SELECT players.playerID INTO playerID_check FROM players 
-	WHERE players.name = player_name;
+	/* check if user_name is already in db: */
+	SELECT users.userID INTO userID_check FROM users 
+	WHERE users.name = user_name;
 	
-	/* if so, set player_ID as 0: */
-	IF playerID_check > 0 THEN SET player_ID = 0; 
+	/* if so, set user_ID as 0: */
+	IF userID_check > 0 THEN SET user_ID = 0; 
 	ELSE 
 		/* else check if password_string is already in db: */
-		SELECT players.playerID INTO playerID_check FROM players 
-		WHERE players.password = SHA2(password_string, 512);
+		SELECT users.userID INTO userID_check FROM users 
+		WHERE users.password = SHA2(password_string, 512);
 		
-		/* if so, set player_ID as 0: */
-		IF playerID_check > 0 THEN SET player_ID = 0; 
+		/* if so, set user_ID as 0: */
+		IF userID_check > 0 THEN SET user_ID = 0; 
 		ELSE
-			/* else insert new player into db: */
-			INSERT INTO players (name, password) VALUES (player_name, SHA2(password_string, 512));
+			/* else insert new user into db: */
+			INSERT INTO users (name, password) VALUES (user_name, SHA2(password_string, 512));
 			
-			SELECT players.playerID INTO player_ID FROM players /* set player_ID as player's id */
-			WHERE players.name = player_name;
+			SELECT users.userID INTO user_ID FROM users /* set user_ID as user's id */
+			WHERE users.name = user_name;
 		END IF;
 	END IF;
 END $$
 DELIMITER ;
 
-/* return playerID of player matching player_name & decrypted password_string */
-DROP PROCEDURE IF EXISTS select_playerID;
+/* return userID of user matching user_name & decrypted password_string */
+DROP PROCEDURE IF EXISTS select_userID;
 	
 DELIMITER $$
-CREATE PROCEDURE select_playerID (IN player_name VARCHAR(64), IN password_string VARCHAR(64), OUT player_ID INT)
+CREATE PROCEDURE select_userID (IN user_name VARCHAR(64), IN password_string VARCHAR(64), OUT user_ID INT)
 BEGIN
-	SELECT players.playerID INTO player_ID FROM players 
-	WHERE players.name = player_name
-	AND players.password = SHA2(password_string, 512);
+	SELECT users.userID INTO user_ID FROM users 
+	WHERE users.name = user_name
+	AND users.password = SHA2(password_string, 512);
 END $$
 DELIMITER ;
 
@@ -330,10 +330,10 @@ DELIMITER ;
 
 /*===============================================================*/
 /* ++++++++++++++ TESTING HERE +++++++++++++++++++++ */
-INSERT INTO players (name, password) VALUES ("jay", SHA2(333, 512));
-INSERT INTO players (name, password) VALUES ("jo", SHA2(123, 512));
-INSERT INTO players (name, password) VALUES ("dan", SHA2(111, 512));
-INSERT INTO players (name, password) VALUES ("laura", SHA2(321, 512));
+INSERT INTO users (name, password) VALUES ("jay", SHA2(333, 512));
+INSERT INTO users (name, password) VALUES ("jo", SHA2(123, 512));
+INSERT INTO users (name, password) VALUES ("dan", SHA2(111, 512));
+INSERT INTO users (name, password) VALUES ("laura", SHA2(321, 512));
 
 /*INSERT INTO campaigns (eventID) VALUES (1);
 INSERT INTO campaigns (eventID) VALUES (2);
