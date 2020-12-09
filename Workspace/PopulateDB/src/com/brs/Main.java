@@ -65,9 +65,10 @@ public class Main implements InsertBlocks, InsertYears, InsertPeriods, InsertEve
 		SelectAll.select("airforce_planes");
 		SelectAll.select("plane_availabilities");
 		
+		SelectAll.select("users");
 		SelectAll.select("campaigns");
-		SelectAll.select("campaign_players");
-		SelectAll.select("campaign_hosts");
+		SelectAll.select("players");
+		SelectAll.select("hosts");
 		/*
 		//add blocks to DB:
 		System.out.println("------------------");

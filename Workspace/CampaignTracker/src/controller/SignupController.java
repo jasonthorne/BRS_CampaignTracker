@@ -49,7 +49,7 @@ public class SignupController implements Rootable, Fadeable, Frameable {
 		if(!nameTxtFld.getText().trim().equals("") && !pswrdTxtFld.getText().trim().equals("")) {
 			
 			//try insert player into db, setting idCheck with the returned value:
-			int idCheck = database.InsertPlayer.insert(
+			int idCheck = database.InsertUser.insert(
 					nameTxtFld.getText().trim(), pswrdTxtFld.getText().trim());
 			
 			//if result is > 0 then player was inserted (as valid id was returned)

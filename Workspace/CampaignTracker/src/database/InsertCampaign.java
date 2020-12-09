@@ -17,7 +17,7 @@ import model.Campaign;
 
 public interface InsertCampaign {
 	
-	static void insert(Campaign campaign, int playerId) {
+	static void insert(Campaign campaign, int userId) {
 			
 		try (Connection connection = ConnectDB.getConnection(); //get a connection to the db
 			
@@ -26,7 +26,7 @@ public interface InsertCampaign {
 					"{CALL insert_campaign(?,?,?)}");) {
 			
 			 callableStatement.setString(1, campaign.getEventName()); //set input with event name
-			 callableStatement.setInt(2, playerId); //set input with player id
+			 callableStatement.setInt(2, userId); //set input with user id
 	         callableStatement.setTimestamp(3, campaign.getCreated()); //set input with time stamp
 	         callableStatement.execute(); //execute statement
 	      

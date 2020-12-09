@@ -4,7 +4,7 @@ import com.jfoenix.controls.JFXButton;
 
 import animation.Fadeable;
 import animation.Fadeable.FadeOption;
-import database.SelectPlayerID;
+import database.SelectUserID;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -24,7 +24,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Player;
-import database.SelectPlayerID;
+import database.SelectUserID;
 
 public class FrameController implements Rootable, Fadeable {
 

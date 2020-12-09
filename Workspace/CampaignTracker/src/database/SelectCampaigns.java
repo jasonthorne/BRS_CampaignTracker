@@ -20,7 +20,7 @@ import model.Player;
 
 public interface SelectCampaigns {
 	
-	public static List<Campaign> select(int playerId) {
+	public static List<Campaign> select(int userId) {
 		
 		List<Campaign>campaigns = new ArrayList<>(); //list for campaigns
 		
@@ -29,7 +29,7 @@ public interface SelectCampaigns {
 			//create statement:
 			CallableStatement statement = connection.prepareCall("{CALL select_campaigns(?)}");) {
 			
-			statement.setInt(1, playerId); //set input with player id:
+			statement.setInt(1, userId); //set input with user id:
 			ResultSet resultSet = statement.executeQuery(); //execute statement
 			
 			while(resultSet.next()) {
@@ -51,13 +51,13 @@ public interface SelectCampaigns {
 				eventBuilder.setMaxTurns(resultSet.getInt("periods_count")); //set max turns
 				campaignBuilder.setEvent(eventBuilder.build()); //add event to campaign builder
 				
-				//if player name was found in campaign:
-				if(!resultSet.getString("player_name").equals("N/A")) {
+				//if user was found in campaign:
+				if(!resultSet.getString("user_name").equals("N/A")) {
 					
 					//add player with name to players:
 					campaignBuilder.setPlayer(
 							new Player.PlayerBuilder() 
-								.setName(resultSet.getString("player_name")).build());
+								.setName(resultSet.getString("user_name")).build());
 				}
 				
 				//add built campaign to campaigns:

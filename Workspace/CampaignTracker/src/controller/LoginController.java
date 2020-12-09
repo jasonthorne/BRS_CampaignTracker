@@ -10,7 +10,7 @@ import com.jfoenix.controls.JFXTextField;
 
 import animation.Fadeable;
 import animation.Shakeable;
-import database.SelectPlayerID;
+import database.SelectUserID;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -56,7 +56,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		/** this is just a placeholder for pushing to db, before login.
 		 * should be a push done in frameController first to add ip to db, for socket creation.*/
 		/*new Thread(() ->  {
-			SelectPlayerID.select(
+			SelectUserID.select(
 					nameTxtFld.getText().trim(), 
 					pswrdTxtFld.getText()); 	
 		}).start();*/
@@ -87,7 +87,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		if(!nameTxtFld.getText().trim().equals("") && !pswrdTxtFld.getText().trim().equals("")) {
 			
 			//check db for id of player with given name & password:
-			int idCheck = database.SelectPlayerID.select( 
+			int idCheck = database.SelectUserID.select( 
 					nameTxtFld.getText().trim(), 
 					pswrdTxtFld.getText().trim());
 					

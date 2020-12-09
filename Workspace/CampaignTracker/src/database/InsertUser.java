@@ -4,11 +4,11 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Types;
 
-/** attempts to insert player to db, using name & password given by user.
- *  if successful, returns the id of newly inserted player (a number > 0).
+/** attempts to insert user to db, using name & password given by user.
+ *  if successful, returns the id of newly inserted user (a number > 0).
  *  if not successful (due to pre-existing name or password) then returns 0  */
 
-public interface InsertPlayer {
+public interface InsertUser {
 	
 	static int insert(String name, String password) {
 		
@@ -17,14 +17,14 @@ public interface InsertPlayer {
 				
 			 //create statement:
 			 CallableStatement callableStatement = connection.prepareCall(
-					"{CALL insert_player(?,?,?)}");) {
+					"{CALL insert_user(?,?,?)}");) {
 			
 			 callableStatement.setString(1, name); //set input with name
 	         callableStatement.setString(2, password); //set input with password
-	         callableStatement.registerOutParameter(3, Types.INTEGER); //register the out param (playerId)
+	         callableStatement.registerOutParameter(3, Types.INTEGER); //register the out param (userId)
 	         callableStatement.execute(); //execute statement
 	         
-	         //holds the value of inserted player id (or 0 if attempted to insert pre-existing name or password)
+	         //holds the value of inserted user id (or 0 if attempted to insert pre-existing name or password)
 	         statementResult = callableStatement.getInt(3); 
 			
 		}catch(Exception e) { e.printStackTrace(); }
