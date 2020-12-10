@@ -55,9 +55,9 @@ public class CampaignsController implements Frameable, Rootable {
     	
     	newCampaignBtn.setOnAction(event -> {
     		//Frameable.changeView(root, new EventsController(this))); 
-    		Frameable.changeView(root, eventsCtrlr);
-    		//testCamps.addAll(database.SelectCampaigns.select(LoginController.getPlayerId()));
-    		//System.out.println("testCamps: " + testCamps);
+    		////////////////////Frameable.changeView(root, eventsCtrlr);
+    		testCamps.addAll(database.SelectCampaigns.select(LoginController.getPlayerId()));
+    		System.out.println("testCamps: " + testCamps);
     	}); 
     	
     	
