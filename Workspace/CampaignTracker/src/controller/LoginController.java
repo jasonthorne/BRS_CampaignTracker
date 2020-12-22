@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import model.User;
 
 public class LoginController implements Rootable, Fadeable, Frameable {
 	
@@ -44,7 +45,10 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	
 	//controllers:
 	private final CampaignsController campaignsCtrlr;
-	private final SignupController signupCtrlr;
+	private final SignupController signupCtrlr; //????????????????????????NEEDED???? (found in login controller too!!)
+	
+	//logged in user:
+	private static User user; 
 	
 	//constructor:
 	LoginController() {
@@ -64,12 +68,15 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	}
 	
 	//=============================idea: 
-	static User user = null;
+	
+	
+	
+	/*static User user = null;
 	static final class User {
 		private final int playerId;
 		private User(int playerId) { this.playerId = playerId; }
 		public int getId() { return playerId; }
-    }
+    }*/
 	//================================
 	
 	private void loginUsr() {
@@ -77,6 +84,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		//====================================================
 		//shortcut to log in: - REMEMKBER: YOU LOG IN TWICE IF YOU ENTER VALID INFO! :P
 		userId = 1;  //test account of Jay
+		user = new User(1, "Jay");
 		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 		FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
 		//============================================================
@@ -103,7 +111,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 			}
 		
 		}else { // a field was blank:
-			/** +++++++++++++++++ make this label thing better :P +++++++++ */
+			/** +++++++++++++++++ make this label thing better :P USE A POP UP ALERT BOX +++++++++ */
 			//errorLbl.setVisible(true); //inform user with label
 			///////////////FrameController.getFrameCtrlr().setViewLbl("Enter Username and Password");
 			//shake elements:

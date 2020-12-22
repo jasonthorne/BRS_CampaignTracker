@@ -103,7 +103,6 @@ public class PlanesTableController implements Rootable {
     	TableColumn<Plane,String> yearCol;
     	TableColumn<Plane,String> blockCol;
     	
-    	
     	//call back for populating block column cells with plane period availabilities:
     	Callback<TableColumn.CellDataFeatures<Plane, String>, ObservableValue<String>> callBack = 
                 new Callback<TableColumn.CellDataFeatures<Plane, String>, ObservableValue<String>>() {

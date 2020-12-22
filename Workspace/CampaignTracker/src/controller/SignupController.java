@@ -64,7 +64,7 @@ public class SignupController implements Rootable, Fadeable, Frameable {
 			}
 			
 		}else { // a field was blank:
-			/** +++++++++++++++++ make this label thing better :P +++++++++ */
+			/** +++++++++++++++++ make this label thing better :P BY SHOWING ALERT BOX INSTEAD!!  +++++++++ */
 			//errorLbl.setVisible(true); //inform user with label
 			//shake elements:
 			Arrays.asList(nameTxtFld, pswrdTxtFld).forEach(fxml -> Shakeable.shake(fxml));
