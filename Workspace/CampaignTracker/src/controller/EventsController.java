@@ -67,7 +67,7 @@ public class EventsController implements Frameable, Rootable {
     		/////++++++++testJFXDialog();
     		//if they're cool (click ok button instead of cancel/x button): create new campaign with this event in campaign ctrlr:
     		
-    		//++++++++++++IMPORTANT!! : button needs disabled for a second ++++++++++++++++++++++ 
+    		//++++++++++++IMPORTANT!! : button needs disabled for a second +++++++OR DOES IT?? I THINK THIS WAS FIXED. CHECK!"+++++++++++++++ 
     		
     		campaignsCtrlr.createCampaign(nameLbl.getText());
     		
@@ -126,7 +126,6 @@ public class EventsController implements Frameable, Rootable {
     	
     	//keeping future.get() separate from application thread:
     	new Thread(() -> {
-    		
 	    	try {
 	    		//add events from db to events:
 	    		observEvents.addAll(futureEvents.get());
@@ -136,7 +135,6 @@ public class EventsController implements Frameable, Rootable {
 				//shut down service thread:
 				if(!service.isShutdown()) { service.shutdown(); } 
 			}
-	    	
     	}).start();
     	
     	//add events to listView:

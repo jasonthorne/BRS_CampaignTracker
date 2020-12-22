@@ -97,7 +97,6 @@ public class CampaignsController implements Frameable, Rootable {
     	
     	//keeping future.get() separate from application thread:
     	new Thread(() -> {
-    		
 	    	try {
 	    		//add campaigns from db to observCampaigns:
 	    		observCampaigns.addAll(futureCampaigns.get());
@@ -107,7 +106,6 @@ public class CampaignsController implements Frameable, Rootable {
 				//shut down service thread:
 				if(!service.isShutdown()) { service.shutdown(); } 
 			}
-	    	
     	}).start();
 		
 		//add campaigns to listView:
