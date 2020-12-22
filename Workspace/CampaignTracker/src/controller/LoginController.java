@@ -36,8 +36,8 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		loginBtn.setOnAction(event -> loginUsr());
     }
 	
-	//id of logged in player:
-	private static int playerId; //HAVE A SINGLETON PLAYER OBJ HERE INSTEAD WITH ACCESS TO ITS ID THROUGH A GETTER
+	//id of logged in user:
+	private static int userId; //HAVE A SINGLETON PLAYER OBJ HERE INSTEAD WITH ACCESS TO ITS ID THROUGH A GETTER
 	
 	//fxml root node:
   	private Parent root;
@@ -76,7 +76,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		
 		//====================================================
 		//shortcut to log in: - REMEMKBER: YOU LOG IN TWICE IF YOU ENTER VALID INFO! :P
-		playerId = 1;  //test account of Jay
+		userId = 1;  //test account of Jay
 		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 		FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
 		//============================================================
@@ -93,7 +93,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 					
 			//if result is > 0 then a valid id was returned:
 			if (idCheck > 0) {
-				playerId = idCheck; //store id
+				userId = idCheck; //store id
 				////////////FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
 				//////////Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 				//////////FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
@@ -111,8 +111,9 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		} 
 	}
 	
-	static int getPlayerId() { return playerId; } //get playerId //get playerId
-	static void setPlayerId(int playerId) { LoginController.playerId = playerId; } //set playerId //+++++++++MAKE THIS BETTER!
+	static int getPlayerId() { return userId; } //get playerId //get playerId
+	//+++++SET AN IMMUTABLE USER OBJECR HERE, HOLDING USERNAME & USERID +++++++++++++//
+	static void setPlayerId(int playerId) { LoginController.userId = playerId; } //set playerId //+++++++++MAKE THIS BETTER!
 	
 	@Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/login.fxml"); } //set root
