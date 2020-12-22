@@ -48,7 +48,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	private final SignupController signupCtrlr; //????????????????????????NEEDED???? (found in login controller too!!)
 	
 	//logged in user:
-	private static User user; 
+	private static User user = null;
 	
 	//constructor:
 	LoginController() {
@@ -67,18 +67,6 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		//======================================
 	}
 	
-	//=============================idea: 
-	
-	
-	
-	/*static User user = null;
-	static final class User {
-		private final int playerId;
-		private User(int playerId) { this.playerId = playerId; }
-		public int getId() { return playerId; }
-    }*/
-	//================================
-	
 	private void loginUsr() {
 		
 		//====================================================
@@ -89,7 +77,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
 		//============================================================
 		
-		errorLbl.setVisible(false); //ensure error label is off
+		errorLbl.setVisible(false); //ensure error label is off //+++++++++++PTOB RTEMOVE A USING POP UP BOX NOW! :P
 		
 		//if name & password fields aren't empty: 
 		if(!nameTxtFld.getText().trim().equals("") && !pswrdTxtFld.getText().trim().equals("")) {
@@ -119,9 +107,20 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		} 
 	}
 	
-	static int getPlayerId() { return userId; } //get playerId //get playerId
+	//+++++++THESE CAN BE CALLED BEFORE A USER IS MADE (no longer null)!! MAKE THIS BETTER :P ++++++++++++++++++++ 
+	static int getUserId() { return user.getId(); } //get user id
+	static String getUserName() { return user.getName(); } //get user name
+	
 	//+++++SET AN IMMUTABLE USER OBJECR HERE, HOLDING USERNAME & USERID +++++++++++++//
-	static void setPlayerId(int playerId) { LoginController.userId = playerId; } //set playerId //+++++++++MAKE THIS BETTER!
+	//static void setPlayerId(int playerId) { LoginController.userId = playerId; } //set playerId //+++++++++MAKE THIS BETTER!
+	
+	//create logged in user:
+	public static void setUser(int id, String name) {
+		if(user == null) { user = new User(id, name); }
+		//+++++++++++ ELSE THROW AN EXCEPTION HERE! ++++++++++++++++
+	}
+	
+	
 	
 	@Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/login.fxml"); } //set root

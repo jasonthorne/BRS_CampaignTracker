@@ -56,7 +56,7 @@ public class CampaignsController implements Frameable, Rootable {
     	newCampaignBtn.setOnAction(event -> {
     		//Frameable.changeView(root, new EventsController(this))); 
     		////////////////////Frameable.changeView(root, eventsCtrlr);
-    		testCamps.addAll(database.SelectCampaigns.select(LoginController.getPlayerId()));
+    		testCamps.addAll(database.SelectCampaigns.select(LoginController.getUserId()));
     		System.out.println("testCamps: " + testCamps);
     	}); 
     	
@@ -93,7 +93,7 @@ public class CampaignsController implements Frameable, Rootable {
     	
     	//future list of campaigns pulled from db, returned from service task thread:
     	Future<List<Campaign>>futureCampaigns = service.submit(() -> 
-    		database.SelectCampaigns.select(LoginController.getPlayerId()));
+    		database.SelectCampaigns.select(LoginController.getUserId()));
     	
     	//keeping future.get() separate from application thread:
     	new Thread(() -> {
@@ -154,7 +154,7 @@ public class CampaignsController implements Frameable, Rootable {
 				.build(); //+++++++++++++++++add yourself as host here! :P ++++++++AND MARK AS PLAYING!!! 
 		
 		//add campaign to db:
-		database.InsertCampaign.insert(campaign, LoginController.getPlayerId());
+		database.InsertCampaign.insert(campaign, LoginController.getUserId());
 		//+++++++++++++++++++++++++++++++++++++++++add your name to this as host: +++prob should have user table now!! ++++++++++++
 		//add campaign to observable list of campaigns:
 		observCampaigns.add(campaign);

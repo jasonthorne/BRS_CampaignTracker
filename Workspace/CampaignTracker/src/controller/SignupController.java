@@ -45,17 +45,20 @@ public class SignupController implements Rootable, Fadeable, Frameable {
     
     private void signupUsr() {
     	
-    	//if name & password fields aren't empty: 
-		if(!nameTxtFld.getText().trim().equals("") && !pswrdTxtFld.getText().trim().equals("")) {
+    	//trim name & password fields:
+		String name = nameTxtFld.getText().trim();
+		String password = pswrdTxtFld.getText().trim();
+    	
+    	//if fields aren't empty: 
+		if(!name.equals("") && !password.equals("")) {
 			
 			//try insert player into db, setting idCheck with the returned value:
-			int idCheck = database.InsertUser.insert(
-					nameTxtFld.getText().trim(), pswrdTxtFld.getText().trim());
+			int idCheck = database.InsertUser.insert(name, password);
 			
 			//if result is > 0 then player was inserted (as valid id was returned)
 			if (idCheck > 0) {
-				LoginController.setPlayerId(idCheck); //store id ////////+++++++++++++++++RETURN TO THIS!! :P 
-				FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
+				LoginController.setUser(idCheck, name); //set logged in user with id & name
+				FrameController.getFrameCtrlr().setPlayerLbl(name); //set frame's name label with name
 				Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 				//FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
 			}else {
