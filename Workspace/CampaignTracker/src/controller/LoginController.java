@@ -48,7 +48,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	private final SignupController signupCtrlr; //????????????????????????NEEDED???? (found in login controller too!!)
 	
 	//logged in user:
-	private static User user = null;
+	static User user;
 	
 	//constructor:
 	LoginController() {
@@ -108,7 +108,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	}
 	
 	//+++++++THESE CAN BE CALLED BEFORE A USER IS MADE (no longer null)!! MAKE THIS BETTER :P ++++++++++++++++++++ 
-	static int getUserId() { return user.getId(); } //get user id
+	static int getUserId() { return userId; /*user.getId();*/ } //get user id
 	static String getUserName() { return user.getName(); } //get user name
 	
 	//+++++SET AN IMMUTABLE USER OBJECR HERE, HOLDING USERNAME & USERID +++++++++++++//
@@ -120,7 +120,11 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		//+++++++++++ ELSE THROW AN EXCEPTION HERE! ++++++++++++++++
 	}
 	
-	
+	//+++++++++++++++++++++maybe use this & store map of userId to players in campaign??????????
+	public static void setUserId(int id) {
+		if(userId == 0) { userId = id; }
+		//+++++++++++ ELSE THROW AN EXCEPTION HERE! ++++++++++++++++
+	}
 	
 	@Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/login.fxml"); } //set root

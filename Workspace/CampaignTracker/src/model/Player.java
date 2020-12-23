@@ -28,7 +28,7 @@ public class Player { /** +++++++++++++++++++++ is this class even needed???  :P
 	}
 	
 	//getters:
-	public int getId() {return this.id; } /** +++++++++++++ not sure if needed??? ++++++++*/
+	public int getId() {return id; } /** +++++++++++++ not sure if needed??? ++++++++*/
 	public String getName() {return name; }
 	
 }
