@@ -38,7 +38,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
     }
 	
 	//id of logged in user:
-	private static int userId; //HAVE A SINGLETON PLAYER OBJ HERE INSTEAD WITH ACCESS TO ITS ID THROUGH A GETTER
+	///////private static int userId; //HAVE A SINGLETON PLAYER OBJ HERE INSTEAD WITH ACCESS TO ITS ID THROUGH A GETTER
 	
 	//fxml root node:
   	private Parent root;
@@ -48,14 +48,14 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	private final SignupController signupCtrlr; //????????????????????????NEEDED???? (found in login controller too!!)
 	
 	//logged in user:
-	static User user;
+	private static final User user = new User();
 	
 	//constructor:
 	LoginController() {
 		setRoot(); //set root node
 		campaignsCtrlr = new CampaignsController(); //create campaigns controller
 		signupCtrlr = new SignupController(); //create signup controller
-		
+		//user = new User();
 		//========================================
 		/** this is just a placeholder for pushing to db, before login.
 		 * should be a push done in frameController first to add ip to db, for socket creation.*/
@@ -71,8 +71,9 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		
 		//====================================================
 		//shortcut to log in: - REMEMKBER: YOU LOG IN TWICE IF YOU ENTER VALID INFO! :P
-		userId = 1;  //test account of Jay
-		user = new User(1, "Jay");
+		////////////////userId = 1;  //test account of Jay
+		//user = new User(1, "Jay");
+		user.setValues(1, "Jay");
 		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 		FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
 		//============================================================
@@ -89,7 +90,8 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 					
 			//if result is > 0 then a valid id was returned:
 			if (idCheck > 0) {
-				userId = idCheck; //store id
+				///userId = idCheck; //store id
+				user.setValues(1, "Jay");
 				////////////FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
 				//////////Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 				//////////FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
@@ -108,23 +110,26 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	}
 	
 	//+++++++THESE CAN BE CALLED BEFORE A USER IS MADE (no longer null)!! MAKE THIS BETTER :P ++++++++++++++++++++ 
-	static int getUserId() { return userId; /*user.getId();*/ } //get user id
+	static int getUserId() { return user.getId(); } //get user id
 	static String getUserName() { return user.getName(); } //get user name
 	
 	//+++++SET AN IMMUTABLE USER OBJECR HERE, HOLDING USERNAME & USERID +++++++++++++//
 	//static void setPlayerId(int playerId) { LoginController.userId = playerId; } //set playerId //+++++++++MAKE THIS BETTER!
 	
 	//create logged in user:
-	public static void setUser(int id, String name) {
-		if(user == null) { user = new User(id, name); }
-		//+++++++++++ ELSE THROW AN EXCEPTION HERE! ++++++++++++++++
+	static void setUserValues(int id, String name) {
+		if(!user.setValues(id, name)) {
+			System.out.println("uh oh!");//+++++++++++ ELSE THROW AN EXCEPTION HERE IF THIS HAS RETURNED FALSE! ++++++++++++++++
+		}
 	}
 	
+	
+	/*
 	//+++++++++++++++++++++maybe use this & store map of userId to players in campaign??????????
 	public static void setUserId(int id) {
 		if(userId == 0) { userId = id; }
 		//+++++++++++ ELSE THROW AN EXCEPTION HERE! ++++++++++++++++
-	}
+	}*/
 	
 	@Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/login.fxml"); } //set root

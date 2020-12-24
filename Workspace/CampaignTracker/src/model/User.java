@@ -4,16 +4,19 @@ package model;
 
 public class User {
 	
-	private final int id; //id of user
-	private final String name; //name of user
+	private int id = 0; //id of user
+	private String name = " "; //name of user
 	
-	//constructor:
-	public User(int id, String name){
-		this.id = id;
-		this.name = name;
+	//setter:
+	public boolean setValues(int id, String name){
+		//set user values if not yet set:
+		if (this.id == 0 && this.name == " "){
+			this.id = id; this.name = name;
+			return true;
+		}else { return false; }
 	}
 	
 	//getters:
-	public int getId() { return id; }
-	public String getName() { return name; }	
+	public int getId() { return id; } //get id
+	public String getName() { return name; }//get name
 }
