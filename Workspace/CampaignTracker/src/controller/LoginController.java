@@ -117,7 +117,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	//static void setPlayerId(int playerId) { LoginController.userId = playerId; } //set playerId //+++++++++MAKE THIS BETTER!
 	
 	//create logged in user:
-	static void setUserValues(int id, String name) {
+	static void setUserVals(int id, String name) {
 		if(!user.setValues(id, name)) {
 			System.out.println("uh oh!");//+++++++++++ ELSE THROW AN EXCEPTION HERE IF THIS HAS RETURNED FALSE! ++++++++++++++++
 		}
