@@ -91,7 +91,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 			//if result is > 0 then a valid id was returned:
 			if (idCheck > 0) {
 				///userId = idCheck; //store id
-				user.setValues(1, "Jay");
+				user.setValues(1, "jo");
 				////////////FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
 				//////////Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 				//////////FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
@@ -109,14 +109,12 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		} 
 	}
 	
-	//+++++++THESE CAN BE CALLED BEFORE A USER IS MADE (no longer null)!! MAKE THIS BETTER :P ++++++++++++++++++++ 
+	//get user values:
 	static int getUserId() { return user.getId(); } //get user id
 	static String getUserName() { return user.getName(); } //get user name
 	
-	//+++++SET AN IMMUTABLE USER OBJECR HERE, HOLDING USERNAME & USERID +++++++++++++//
-	//static void setPlayerId(int playerId) { LoginController.userId = playerId; } //set playerId //+++++++++MAKE THIS BETTER!
 	
-	//set user values:
+	//let SignupController set user values:
 	void setUserVals(int id, String name) { user.setValues(id, name); }
 		
 	

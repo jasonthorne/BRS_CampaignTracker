@@ -7,10 +7,10 @@ public class User {
 	private int id = 0; //id of user
 	private String name = " "; //name of user
 	
-	//setter:
+	//set user values:
 	public void setValues(int id, String name){
 		if (this.id == 0 && this.name == " "){
-			this.id = id; this.name = name; //set user values
+			this.id = id; this.name = name;
 		}
 	}
 	

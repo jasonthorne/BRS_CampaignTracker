@@ -84,6 +84,11 @@ public class Campaign {
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
 	public String getHostName() { return hostName; } //get host name
 	
+	//returns whether user is present in campaign:
+	public boolean userIsPlaying(String userName) {
+		return playerNameToPlayer.containsKey(userName);
+	}
+	
 	@Override
 	public String toString() {
 		return "Campaign [id=" + id + ", playerNameToPlayer=" + playerNameToPlayer + "]";
