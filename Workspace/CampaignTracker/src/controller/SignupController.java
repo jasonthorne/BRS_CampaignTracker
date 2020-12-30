@@ -35,11 +35,14 @@ public class SignupController implements Rootable, Fadeable, Frameable {
     	signupBtn.setOnAction(event -> signupUsr());
     }
 
-  //fxml root node:
+   //fxml root node:
   	private Parent root;
   	
+  	private final LoginController loginCtrlr;
+  	
     //constructor:
-    SignupController() {
+    SignupController(LoginController loginCtrlr) {
+    	this.loginCtrlr = loginCtrlr;
     	setRoot(); //set root node
     }
     
@@ -57,7 +60,8 @@ public class SignupController implements Rootable, Fadeable, Frameable {
 			
 			//if result is > 0 then player was inserted (as valid id was returned)
 			if (idCheck > 0) {
-				LoginController.setUserVals(idCheck, name); //set logged in user with id & name
+				//////LoginController.setUserVals(idCheck, name); //set logged in user with id & name
+				loginCtrlr.setUserVals(idCheck, name); //set logged in user with id & name
 				FrameController.getFrameCtrlr().setPlayerLbl(name); //set frame's name label with name
 				Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 				//FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view

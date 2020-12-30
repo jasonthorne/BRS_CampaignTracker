@@ -8,12 +8,10 @@ public class User {
 	private String name = " "; //name of user
 	
 	//setter:
-	public boolean setValues(int id, String name){
-		//set user values if not yet set:
+	public void setValues(int id, String name){
 		if (this.id == 0 && this.name == " "){
-			this.id = id; this.name = name;
-			return true;
-		}else { return false; }
+			this.id = id; this.name = name; //set user values
+		}
 	}
 	
 	//getters:

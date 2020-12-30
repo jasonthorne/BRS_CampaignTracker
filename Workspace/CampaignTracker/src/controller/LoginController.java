@@ -45,7 +45,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	
 	//controllers:
 	private final CampaignsController campaignsCtrlr;
-	private final SignupController signupCtrlr; //????????????????????????NEEDED???? (found in login controller too!!)
+	////////////////////private final SignupController signupCtrlr; //????????????????????????NEEDED???? (found in login controller too!!)
 	
 	//logged in user:
 	private static final User user = new User();
@@ -54,7 +54,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	LoginController() {
 		setRoot(); //set root node
 		campaignsCtrlr = new CampaignsController(); //create campaigns controller
-		signupCtrlr = new SignupController(); //create signup controller
+		////////////////////////signupCtrlr = new SignupController(); //create signup controller
 		//user = new User();
 		//========================================
 		/** this is just a placeholder for pushing to db, before login.
@@ -116,13 +116,9 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 	//+++++SET AN IMMUTABLE USER OBJECR HERE, HOLDING USERNAME & USERID +++++++++++++//
 	//static void setPlayerId(int playerId) { LoginController.userId = playerId; } //set playerId //+++++++++MAKE THIS BETTER!
 	
-	//create logged in user:
-	static void setUserVals(int id, String name) {
-		if(!user.setValues(id, name)) {
-			System.out.println("uh oh!");//+++++++++++ ELSE THROW AN EXCEPTION HERE IF THIS HAS RETURNED FALSE! ++++++++++++++++
-		}
-	}
-	
+	//set user values:
+	void setUserVals(int id, String name) { user.setValues(id, name); }
+		
 	
 	/*
 	//+++++++++++++++++++++maybe use this & store map of userId to players in campaign??????????
