@@ -21,7 +21,7 @@ import model.Player;
 public interface SelectCampaigns {
 	
 	public static List<Campaign> select(int userId) {
-		
+		System.out.println("USER ID: " +  userId);
 		List<Campaign>campaigns = new ArrayList<>(); //list for campaigns
 		
 		try (Connection connection = ConnectDB.getConnection();  //connect to DB

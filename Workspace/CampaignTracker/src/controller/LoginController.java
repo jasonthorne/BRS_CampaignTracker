@@ -73,7 +73,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		//shortcut to log in: - REMEMKBER: YOU LOG IN TWICE IF YOU ENTER VALID INFO! :P
 		////////////////userId = 1;  //test account of Jay
 		//user = new User(1, "Jay");
-		user.setValues(1, "Jay");
+		user.setValues(2, "jo");
 		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 		FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
 		//============================================================
@@ -91,7 +91,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 			//if result is > 0 then a valid id was returned:
 			if (idCheck > 0) {
 				///userId = idCheck; //store id
-				user.setValues(1, "jo");
+				user.setValues(2, "jo");
 				////////////FrameController.getFrameCtrlr().setPlayerLbl(nameTxtFld.getText().trim()); //set name
 				//////////Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 				//////////FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
