@@ -53,7 +53,7 @@ public interface SelectCampaigns {
 				
 				//if user was found in campaign:
 				if(!resultSet.getString("user_name").equals("N/A")) {
-					
+					/** ++++++++++++++++++++++++++++++++++++just get ALL player names here, and add to list. */
 					//add player with name to players:
 					campaignBuilder.setPlayer(
 							new Player.PlayerBuilder() 
