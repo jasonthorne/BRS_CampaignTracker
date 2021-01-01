@@ -74,6 +74,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		////////////////userId = 1;  //test account of Jay
 		//user = new User(1, "Jay");
 		user.setValues(2, "jo");
+		/////////////database.SelectCampaigns.select(LoginController.getUserId()); //++++++++++TEST
 		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 		FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view
 		//============================================================
