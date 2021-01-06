@@ -68,7 +68,8 @@ public interface SelectCampaigns {
 				playerNamesRS = playerNamesStatement.executeQuery(); //execute player names query
 				
 				while(playerNamesRS.next()) {
-					campaignBuilder.setPlayer(playerNamesRS.getString("player_name"));
+					//add player with user name to campaign::
+					campaignBuilder.setPlayer(playerNamesRS.getString("name"));
 				}
 				
 				//+++++++++++++++++++++++++++++++++++++++++++++++

@@ -56,7 +56,8 @@ public class CampaignsController implements Frameable, Rootable {
     	newCampaignBtn.setOnAction(event -> {
     		//Frameable.changeView(root, new EventsController(this))); 
     		////////////////////Frameable.changeView(root, eventsCtrlr);
-    		testCamps.addAll(database.SelectCampaigns.select(LoginController.getUserId()));
+    		///testCamps.addAll(database.SelectCampaigns.select(LoginController.getUserId()));
+    		testCamps.addAll(database.SelectCampaigns.select());
     		System.out.println("testCamps: " + testCamps);
     	}); 
     	
@@ -93,7 +94,7 @@ public class CampaignsController implements Frameable, Rootable {
     	
     	//future list of campaigns pulled from db, returned from service task thread:
     	Future<List<Campaign>>futureCampaigns = service.submit(() -> 
-    		database.SelectCampaigns.select(LoginController.getUserId()));
+    		database.SelectCampaigns.select(/*LoginController.getUserId()*/));
     	
     	//keeping future.get() separate from application thread:
     	new Thread(() -> {

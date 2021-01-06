@@ -110,12 +110,12 @@ BEGIN
 END $$
 DELIMITER ;
 
-/*++++++++++++++++++++prob delete! ++++++++++++ */
 DELIMITER $$
 CREATE PROCEDURE select_player_names (IN campaign_ID INT)
 BEGIN
-	/*SELECT * FROM campaign_players++++++++++++BAD :P*/
-	/*WHERE campaign_players.campaignID = campaign_ID;*/
+	SELECT users.name FROM users
+		INNER JOIN players ON users.userID = players.userID
+	WHERE players.campaignID = campaign_ID;
 END $$
 DELIMITER ;
 
@@ -189,7 +189,7 @@ BEGIN
 		/* get count of event_periods: */
 		(SELECT COUNT(event_periods.event_periodID) FROM event_periods
 		WHERE event_periods.eventID = campaigns.eventID)
-		AS periods_count,
+		AS periods_count
 	
 		/* return user naame if part of campaign: */
 		/*IFNULL(
