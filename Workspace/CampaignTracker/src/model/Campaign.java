@@ -69,9 +69,10 @@ public class Campaign {
 		}
 		
 		//set player:
-		public CampaignBuilder setPlayer(Player player) {
-			Player tempPlayer = new Player.PlayerBuilder().setName(player.getName()).build();
-			campaign.playerNameToPlayer.putIfAbsent(tempPlayer.getName(), tempPlayer);
+		//////////////public CampaignBuilder setPlayer(Player player) {
+		public CampaignBuilder setPlayer(String name) {
+			////////Player tempPlayer = new Player.PlayerBuilder().setName(player.getName()).build();
+			campaign.playerNameToPlayer.putIfAbsent(name, new Player.PlayerBuilder().setName(name).build());
 			return this;
 		}
 		

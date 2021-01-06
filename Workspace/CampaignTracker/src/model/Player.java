@@ -1,6 +1,6 @@
 package model;
 
-public class Player { /** +++++++++++++++++++++ is this class even needed???  :P */ 
+public class Player {
 	
 	private int id; //player id
 	private String name; //player name

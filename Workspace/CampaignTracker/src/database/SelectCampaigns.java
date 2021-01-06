@@ -20,19 +20,20 @@ import model.Player;
 
 public interface SelectCampaigns {
 	
-	public static List<Campaign> select(int userId) {
-		System.out.println("USER ID: " +  userId);
+	public static List<Campaign> select() {
+		
 		List<Campaign>campaigns = new ArrayList<>(); //list for campaigns
 		
 		try (Connection connection = ConnectDB.getConnection();  //connect to DB
 				
-			//create statement:
-			CallableStatement statement = connection.prepareCall("{CALL select_campaigns(?)}");) {
+			//statements for selecting campaigns and their players:
+			CallableStatement campaignsStatement = connection.prepareCall("{CALL select_campaigns()}");
+			CallableStatement playersStatement = connection.prepareCall("{CALL select_players(?)}");
+			ResultSet campaignsRS = campaignsStatement.executeQuery(); ) { //execute campaigns statement
 			
-			statement.setInt(1, userId); //set input with user id:
-			ResultSet resultSet = statement.executeQuery(); //execute statement
+			ResultSet playersRS = null; //periods result set
 			
-			while(resultSet.next()) {
+			while(campaignsRS.next()) {
 				
 				//create campaign builder:
 				CampaignBuilder campaignBuilder = new Campaign.CampaignBuilder(); 
@@ -51,14 +52,20 @@ public interface SelectCampaigns {
 				eventBuilder.setMaxTurns(resultSet.getInt("periods_count")); //set max turns
 				campaignBuilder.setEvent(eventBuilder.build()); //add event to campaign builder
 				
+				//+++++++++++++++++++++++++++++++++++++++++++++++
+				
 				//if user was found in campaign:
 				if(!resultSet.getString("user_name").equals("N/A")) {
 					/** ++++++++++++++++++++++++++++++++++++just get ALL player names here, and add to list. */
 					//add player with name to players:
 					campaignBuilder.setPlayer(
-							new Player.PlayerBuilder() 
+							new Player.PlayerBuilder()  /** #WHY IS THIS A PLAYER AND NOT JUST A STRING??? */
 								.setName(resultSet.getString("user_name")).build());
 				}
+				
+				
+				
+				//+++++++++++++++++++++++++++++++++++++++++++++++
 				
 				//add built campaign to campaigns:
 				campaigns.add(campaignBuilder.build());

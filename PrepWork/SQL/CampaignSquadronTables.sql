@@ -192,12 +192,12 @@ BEGIN
 		AS periods_count,
 	
 		/* return user naame if part of campaign: */
-		IFNULL(
+		/*IFNULL(
 			(SELECT users.name FROM users
 				INNER JOIN players ON users.userID = players.userID
 			WHERE players.campaignID = campaign_ID AND users.userID = user_ID), 
 			'N/A')
-		AS user_name
+		AS user_name*/
 		
 	FROM campaigns
 		INNER JOIN periods ON campaigns.periodID = periods.periodID
