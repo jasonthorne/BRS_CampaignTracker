@@ -28,42 +28,48 @@ public interface SelectCampaigns {
 				
 			//statements for selecting campaigns and their players:
 			CallableStatement campaignsStatement = connection.prepareCall("{CALL select_campaigns()}");
-			CallableStatement playersStatement = connection.prepareCall("{CALL select_players(?)}");
+			CallableStatement playerNamesStatement = connection.prepareCall("{CALL select_player_names(?)}"); /** +++++++++++should just give player names! */
 			ResultSet campaignsRS = campaignsStatement.executeQuery(); ) { //execute campaigns statement
 			
-			ResultSet playersRS = null; //periods result set
+			ResultSet playerNamesRS = null; //player names result set
 			
 			while(campaignsRS.next()) {
 				
 				//create campaign builder:
 				CampaignBuilder campaignBuilder = new Campaign.CampaignBuilder(); 
-				campaignBuilder.setId(resultSet.getInt("campaign_ID")); //set id
-				campaignBuilder.setCreated(resultSet.getTimestamp("date_time")); //set created
-				campaignBuilder.setHostName(resultSet.getString("host_name")); //set host name
+				campaignBuilder.setId(campaignsRS.getInt("campaign_ID")); //set id
+				campaignBuilder.setCreated(campaignsRS.getTimestamp("date_time")); //set created
+				campaignBuilder.setHostName(campaignsRS.getString("host_name")); //set host name
 				
 				//set period:
 				campaignBuilder.setPeriod((new Period(
-						Block.valueOf(resultSet.getString("period_block").toUpperCase()),
-						resultSet.getInt("period_year")))); 
+						Block.valueOf(campaignsRS.getString("period_block").toUpperCase()),
+						campaignsRS.getInt("period_year")))); 
 				
 				//create event builder:
 				EventBuilder eventBuilder = new Event.EventBuilder(); 
-				eventBuilder.setName(resultSet.getString("event_name")); //set event name
-				eventBuilder.setMaxTurns(resultSet.getInt("periods_count")); //set max turns
+				eventBuilder.setName(campaignsRS.getString("event_name")); //set event name
+				eventBuilder.setMaxTurns(campaignsRS.getInt("periods_count")); //set max turns
 				campaignBuilder.setEvent(eventBuilder.build()); //add event to campaign builder
 				
 				//+++++++++++++++++++++++++++++++++++++++++++++++
 				
 				//if user was found in campaign:
-				if(!resultSet.getString("user_name").equals("N/A")) {
-					/** ++++++++++++++++++++++++++++++++++++just get ALL player names here, and add to list. */
+				/*if(!resultSet.getString("user_name").equals("N/A")) {
+					//++++++++++++++++++++++++++++++++++++just get ALL player names here, and add to list. 
 					//add player with name to players:
 					campaignBuilder.setPlayer(
-							new Player.PlayerBuilder()  /** #WHY IS THIS A PLAYER AND NOT JUST A STRING??? */
+							new Player.PlayerBuilder()  // #WHY IS THIS A PLAYER AND NOT JUST A STRING???
 								.setName(resultSet.getString("user_name")).build());
+				}*/
+				
+				//set statement input with campaign id:
+				playerNamesStatement.setInt(1, campaignsRS.getInt("campaign_ID")); 
+				playerNamesRS = playerNamesStatement.executeQuery(); //execute player names query
+				
+				while(playerNamesRS.next()) {
+					campaignBuilder.setPlayer(playerNamesRS.getString("player_name"));
 				}
-				
-				
 				
 				//+++++++++++++++++++++++++++++++++++++++++++++++
 				

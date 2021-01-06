@@ -112,7 +112,7 @@ DELIMITER ;
 
 /*++++++++++++++++++++prob delete! ++++++++++++ */
 DELIMITER $$
-CREATE PROCEDURE select_players (IN campaign_ID INT)
+CREATE PROCEDURE select_player_names (IN campaign_ID INT)
 BEGIN
 	/*SELECT * FROM campaign_players++++++++++++BAD :P*/
 	/*WHERE campaign_players.campaignID = campaign_ID;*/
@@ -167,7 +167,7 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE select_campaigns (IN user_ID INT)
+CREATE PROCEDURE select_campaigns ()
 BEGIN
 	SELECT
 		campaigns.campaignID AS campaign_ID,
