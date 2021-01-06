@@ -3,7 +3,7 @@ package model;
 public class Player {
 	
 	private int id; //player id
-	private String name; //player name
+	private String userName; //user name
 
 	private Player() {} //blank constructor
 	
@@ -20,7 +20,7 @@ public class Player {
 		
 		//set name:
 		public PlayerBuilder setName(String name) {
-			player.name = name; 
+			player.userName = name; 
 			return this; 
 		}
 		
@@ -29,6 +29,6 @@ public class Player {
 	
 	//getters:
 	public int getId() {return id; } /** +++++++++++++ not sure if needed??? ++++++++*/
-	public String getName() {return name; }
+	public String getName() {return userName; }
 	
 }

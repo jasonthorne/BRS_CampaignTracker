@@ -159,7 +159,7 @@ public class CampaignsController implements Frameable, Rootable {
 		
 		//add campaign to db:
 		database.InsertCampaign.insert(campaign, LoginController.getUserId());
-		//+++++++++++++++++++++++++++++++++++++++++add your name to this as host: +++prob should have user table now!! ++++++++++++
+
 		//add campaign to observable list of campaigns:
 		observCampaigns.add(campaign);
 	}

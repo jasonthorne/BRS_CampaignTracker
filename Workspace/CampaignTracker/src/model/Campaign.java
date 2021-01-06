@@ -19,7 +19,7 @@ public class Campaign {
 	private int turnNum; //current turn number
 	private Timestamp created; //time stamp when created
 	private String hostName; //name of host
-	private Map<String, Player>playerNameToPlayer = new TreeMap<String, Player>(); //players involved
+	private Map<String, Player>userNameToPlayer = new TreeMap<String, Player>(); //players involved
 	
 	
 	////////private boolean isPlaying; //++++++++++++++determined by whether you are a player
@@ -64,7 +64,7 @@ public class Campaign {
 		
 		//set players:
 		public CampaignBuilder setPlayers(Map<String, Player>playersMap) {
-			campaign.playerNameToPlayer = new TreeMap<String, Player>(playersMap);
+			campaign.userNameToPlayer = new TreeMap<String, Player>(playersMap);
 			return this;
 		}
 		
@@ -72,7 +72,7 @@ public class Campaign {
 		//////////////public CampaignBuilder setPlayer(Player player) {
 		public CampaignBuilder setPlayer(String name) {
 			////////Player tempPlayer = new Player.PlayerBuilder().setName(player.getName()).build();
-			campaign.playerNameToPlayer.putIfAbsent(name, new Player.PlayerBuilder().setName(name).build());
+			campaign.userNameToPlayer.putIfAbsent(name, new Player.PlayerBuilder().setName(name).build());
 			return this;
 		}
 		
@@ -87,12 +87,12 @@ public class Campaign {
 	
 	//returns whether user is present in campaign:
 	public boolean userIsPlaying(String userName) {
-		return playerNameToPlayer.containsKey(userName);
+		return userNameToPlayer.containsKey(userName);
 	}
 	
 	@Override
 	public String toString() {
-		return "Campaign [id=" + id + ", playerNameToPlayer=" + playerNameToPlayer + "]";
+		return "Campaign [id=" + id + ", playerNameToPlayer=" + userNameToPlayer + "]";
 	}
 	
 }
