@@ -57,6 +57,11 @@ public class CampaignsController implements Frameable, Rootable {
     		//Frameable.changeView(root, new EventsController(this))); 
     		////////////////////Frameable.changeView(root, eventsCtrlr);
     		///testCamps.addAll(database.SelectCampaigns.select(LoginController.getUserId()));
+    		
+    		/** TEST CAMPAIGNS ADDDED */
+   		 	
+   		 	createCampaign("Battle of Britain");
+   		 	
     		testCamps.addAll(database.SelectCampaigns.select());
     		System.out.println("testCamps: " + testCamps);
     	}); 
