@@ -16,6 +16,8 @@ import java.util.Date;
 
 import model.Campaign;
 
+/** inserts a new campaign to database, returning its id for local storage */
+
 public interface InsertCampaign {
 	
 	static int insert(String eventName, int userId, Timestamp timestamp) {

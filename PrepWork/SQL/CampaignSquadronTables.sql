@@ -134,8 +134,6 @@ DROP PROCEDURE IF EXISTS insert_campaign;
 DELIMITER $$
 CREATE PROCEDURE insert_campaign (IN event_name VARCHAR(64), IN user_ID INT, IN date_time DATETIME, OUT campaign_ID INT)
 BEGIN
-	DECLARE player_ID INT DEFAULT 0; /* holds id of inserted player */
-	
 	/* eventID from events with event_name: */
 	DECLARE event_ID INT DEFAULT (
 		SELECT eventID FROM events WHERE events.name = event_name); 
@@ -154,14 +152,12 @@ BEGIN
 	/* add user to players: */
 	CALL insert_player(campaign_ID, user_ID, date_time);
 	
-	/* get id of inserted player: */
-	SELECT players.playerID INTO player_ID
-	FROM players 
-	WHERE players.campaignID = campaign_ID
-		AND players.userID = user_ID;
-	
-	/* add player to hosts: */
-	INSERT INTO hosts (playerID) VALUES (player_ID); /* +++++++++++++ADD ID OF INSERTED PLAYER TO HOSTS ++++++++++*/
+	/* add id of inserted player to hosts: */
+	INSERT INTO hosts (playerID) VALUES (
+		(SELECT players.playerID 
+		FROM players 
+		WHERE players.campaignID = campaign_ID
+			AND players.userID = user_ID));
 END $$
 DELIMITER ;
 
@@ -190,14 +186,6 @@ BEGIN
 		WHERE event_periods.eventID = campaigns.eventID)
 		AS periods_count
 	
-		/* return user naame if part of campaign: */
-		/*IFNULL(
-			(SELECT users.name FROM users
-				INNER JOIN players ON users.userID = players.userID
-			WHERE players.campaignID = campaign_ID AND users.userID = user_ID), 
-			'N/A')
-		AS user_name*/
-		
 	FROM campaigns
 		INNER JOIN periods ON campaigns.periodID = periods.periodID
 		INNER JOIN years ON periods.yearID = years.yearID

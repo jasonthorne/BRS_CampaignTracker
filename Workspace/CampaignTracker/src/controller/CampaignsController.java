@@ -51,22 +51,7 @@ public class CampaignsController implements Frameable, Rootable {
     	setCampaigns(); //populate campaigns list
     	setToggleListener(); //add change listener to toggle group
     	//set btn action:
-    	////newCampaignBtn.setOnAction(event -> Frameable.changeView(root, eventsCtrlr));
-    	
-    	newCampaignBtn.setOnAction(event -> {
-    		//Frameable.changeView(root, new EventsController(this))); 
-    		Frameable.changeView(root, eventsCtrlr);
-    		///testCamps.addAll(database.SelectCampaigns.select(LoginController.getUserId()));
-    		
-    		/** TEST CAMPAIGNS ADDDED */
-   		 	
-   		 	/////////createCampaign("Battle of Britain");
-   		 	
-    		///////testCamps.addAll(database.SelectCampaigns.select());
-    		//////System.out.println("testCamps: " + testCamps);
-    	}); 
-    	
-    	
+    	newCampaignBtn.setOnAction(event -> Frameable.changeView(root, eventsCtrlr));
     }
     
     List<Campaign>testCamps = new ArrayList<Campaign>(); //=============DELETE LATER :P

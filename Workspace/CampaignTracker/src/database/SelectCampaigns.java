@@ -28,7 +28,7 @@ public interface SelectCampaigns {
 				
 			//statements for selecting campaigns and their players:
 			CallableStatement campaignsStatement = connection.prepareCall("{CALL select_campaigns()}");
-			CallableStatement playerNamesStatement = connection.prepareCall("{CALL select_player_names(?)}"); /** +++++++++++should just give player names! */
+			CallableStatement playerNamesStatement = connection.prepareCall("{CALL select_player_names(?)}");
 			ResultSet campaignsRS = campaignsStatement.executeQuery(); ) { //execute campaigns statement
 			
 			ResultSet playerNamesRS = null; //player names result set
@@ -52,18 +52,7 @@ public interface SelectCampaigns {
 				eventBuilder.setMaxTurns(campaignsRS.getInt("periods_count")); //set max turns
 				campaignBuilder.setEvent(eventBuilder.build()); //add event to campaign builder
 				
-				//+++++++++++++++++++++++++++++++++++++++++++++++
-				
-				//if user was found in campaign:
-				/*if(!resultSet.getString("user_name").equals("N/A")) {
-					//++++++++++++++++++++++++++++++++++++just get ALL player names here, and add to list. 
-					//add player with name to players:
-					campaignBuilder.setPlayer(
-							new Player.PlayerBuilder()  // #WHY IS THIS A PLAYER AND NOT JUST A STRING???
-								.setName(resultSet.getString("user_name")).build());
-				}*/
-				
-				//set statement input with campaign id:
+				//set player names statement input with campaign id:
 				playerNamesStatement.setInt(1, campaignsRS.getInt("campaign_ID")); 
 				playerNamesRS = playerNamesStatement.executeQuery(); //execute player names query
 				
@@ -72,14 +61,12 @@ public interface SelectCampaigns {
 					campaignBuilder.setPlayer(playerNamesRS.getString("name"));
 				}
 				
-				//+++++++++++++++++++++++++++++++++++++++++++++++
-				
 				//add built campaign to campaigns:
 				campaigns.add(campaignBuilder.build());
 			}
 			
 		} catch(Exception e) { e.printStackTrace(); }
-		System.out.println(campaigns);
+		
 		return campaigns; //return campaigns
 	}
 }
