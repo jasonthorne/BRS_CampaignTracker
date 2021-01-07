@@ -151,21 +151,21 @@ public class CampaignsController implements Frameable, Rootable {
 	//create a new campaign:
 	void createCampaign(String eventName) {
 		
-		String user = LoginController.getUserName();
+		//get time stamp of creation:
+		Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
 		
-		//create campaign:
+		//insert campaign to db, storing returned id:
+		int campaignId = database.InsertCampaign.insert(eventName, LoginController.getUserId(), timestamp); 
+		
+		//create local campaign:
 		Campaign campaign = new Campaign.CampaignBuilder()
 				.setEvent(new Event.EventBuilder().setName(eventName).build()) //set event name
-				.setCreated(new Timestamp(Calendar.getInstance().getTimeInMillis())) //set creation time stamp
-				.setHost(user) //set user as host
-				.setPlayer(user) //set user as player
+				.setCreated(timestamp) //set creation time stamp
+				.setHost(LoginController.getUserName()) //set user as host
+				.setPlayer(LoginController.getUserName()) //set user as player
+				.setId(campaignId) //add id of db inserted campaign
 				.build();
 		
-		//add campaign to db:
-		database.InsertCampaign.insert(campaign, LoginController.getUserId());
-		
-		/** ID NEEDS OT BE SOURCED. SHOPULD PROB BE RETURNED IN MYSQL INSERT */
-
 		//add campaign to observable list of campaigns:
 		observCampaigns.add(campaign);
 	}

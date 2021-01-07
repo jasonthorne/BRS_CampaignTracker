@@ -132,10 +132,9 @@ CREATE TABLE hosts (
 DROP PROCEDURE IF EXISTS insert_campaign; 
 
 DELIMITER $$
-CREATE PROCEDURE insert_campaign (IN event_name VARCHAR(64), IN user_ID INT, IN date_time DATETIME)
+CREATE PROCEDURE insert_campaign (IN event_name VARCHAR(64), IN user_ID INT, IN date_time DATETIME, OUT campaign_ID INT)
 BEGIN
-	DECLARE campaign_ID INT DEFAULT 0; 
-	DECLARE player_ID INT DEFAULT 0;
+	DECLARE player_ID INT DEFAULT 0; /* holds id of inserted player */
 	
 	/* eventID from events with event_name: */
 	DECLARE event_ID INT DEFAULT (
@@ -162,7 +161,7 @@ BEGIN
 		AND players.userID = user_ID;
 	
 	/* add player to hosts: */
-	INSERT INTO hosts (playerID) VALUES (player_ID);
+	INSERT INTO hosts (playerID) VALUES (player_ID); /* +++++++++++++ADD ID OF INSERTED PLAYER TO HOSTS ++++++++++*/
 END $$
 DELIMITER ;
 
