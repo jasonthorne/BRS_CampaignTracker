@@ -10,8 +10,9 @@ import model.AirForce.AirForceBuilder;
 import model.Plane.Status;
 
 public class Campaign {
-	//+++++++++++++++++++++++should this be in db????:
-	public static final int TURNS_PER_PERIOD = 4; //amount of turns played per period
+	
+	//amount of turns played per period:
+	public static final int TURNS_PER_PERIOD = 4; //+++++++++++++++++++++++should this be in db????:
 	
 	private int id; //id of campaign
 	private Event event; //historical event covered 
@@ -82,7 +83,12 @@ public class Campaign {
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
 	public String getHostName() { return host; } //get host name
 	
-	//returns whether user is present in campaign:
+	//return current progress:
+	public double getProgress() {
+		return (((double) turnNum) / event.getMaxTurns());
+	}
+	
+	//return whether user is present in campaign:
 	public boolean userIsPlaying(String userName) {
 		return nameToPlayer.containsKey(userName);
 	}

@@ -61,11 +61,8 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
   	    	createdLbl.setText(campaign.getCreated().toString()); //get created
 			hostNameLbl.setText(campaign.getHostName()); //get host name
 			isPlayingLbl.setText((campaign.userIsPlaying(LoginController.getUserName())?"Yes":"No")); //if user is playing
-			
-			//https://docs.oracle.com/javafx/2/ui_controls/progress.htm#CHDDJAJE
-			progressPI.setProgress(0.75);
-			
-			
+			progressPI.setProgress(campaign.getProgress()); //get progress
+			//https://docs.oracle.com/javafx/2/ui_controls/progress.htm
 			
 			setText(null); 
 	        setGraphic(rootAP); //set this root element as the graphic	
