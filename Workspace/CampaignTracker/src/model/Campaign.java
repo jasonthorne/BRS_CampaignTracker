@@ -19,10 +19,8 @@ public class Campaign {
 	private int turnNum; //current turn number
 	private Timestamp created; //time stamp when created
 	private String host; //name of host
-	private Map<String, Player>userNameToPlayer = new TreeMap<String, Player>(); //players involved
 	
-	
-	////////private boolean isPlaying; //++++++++++++++determined by whether you are a player
+	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //players involved
 	
 	private Campaign() {} //blank constructor
 	
@@ -59,21 +57,20 @@ public class Campaign {
 		//set host:
 		public CampaignBuilder setHost(String name) { //++++++++PROB USE ID AND FETCH FROM MAP
 			campaign.host = name; //set name of host
-			setPlayer(name); //set host as a player (if absent from map)
 			return this;
 		}
 		
 		//set players:
-		/*public CampaignBuilder setPlayers(Map<String, Player>playersMap) {
-			campaign.userNameToPlayer = new TreeMap<String, Player>(playersMap);
+		public CampaignBuilder setPlayers(Map<String, Player>playersMap) {
+			campaign.nameToPlayer = new TreeMap<String, Player>(playersMap);
 			return this;
-		}*/
+		}
 		
 		//set player:
 		//////////////public CampaignBuilder setPlayer(Player player) {
 		public CampaignBuilder setPlayer(String name) {
-			////////Player tempPlayer = new Player.PlayerBuilder().setName(player.getName()).build();
-			campaign.userNameToPlayer.putIfAbsent(name, new Player.PlayerBuilder().setName(name).build());
+			campaign.nameToPlayer.putIfAbsent(
+					name, new Player.PlayerBuilder().setName(name).build());
 			return this;
 		}
 		
@@ -88,12 +85,12 @@ public class Campaign {
 	
 	//returns whether user is present in campaign:
 	public boolean userIsPlaying(String userName) {
-		return userNameToPlayer.containsKey(userName);
+		return nameToPlayer.containsKey(userName);
 	}
 	
 	@Override
 	public String toString() {
-		return "Campaign [id=" + id + ", playerNameToPlayer=" + userNameToPlayer + "]";
+		return "Campaign [id=" + id + ", nameToPlayer=" + nameToPlayer + "]";
 	}
 	
 }

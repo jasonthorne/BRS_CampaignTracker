@@ -151,11 +151,14 @@ public class CampaignsController implements Frameable, Rootable {
 	//create a new campaign:
 	void createCampaign(String eventName) {
 		
+		String user = LoginController.getUserName();
+		
 		//create campaign:
 		Campaign campaign = new Campaign.CampaignBuilder()
 				.setEvent(new Event.EventBuilder().setName(eventName).build()) //set event name
 				.setCreated(new Timestamp(Calendar.getInstance().getTimeInMillis())) //set creation time stamp
-				.setHost(LoginController.getUserName()) //set user as host
+				.setHost(user) //set user as host
+				.setPlayer(user) //set user as player
 				.build();
 		
 		//add campaign to db:
