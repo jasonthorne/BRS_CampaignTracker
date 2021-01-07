@@ -106,7 +106,7 @@ public class CampaignsController implements Frameable, Rootable {
 	}
 	
 	//add change listener to toggle group:
-	private void setToggleListener() { //+++++++++++++++++++++++++++++++.getEventName() below should be checking something else :D ++++++++++++
+	private void setToggleListener() {
 	
 		// add change listener to radioBtn toggle group:
 		radioBtnsTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
@@ -120,11 +120,11 @@ public class CampaignsController implements Frameable, Rootable {
 				//filter listView according to selected radioBtn: 
 		 	 	if(selected.getText().equals(playingRB.getText())) {
 					//set filteredList predicate to filter by playingRB selection:
-					filteredCampaigns.setPredicate(cmp -> cmp.getEventName().contains(playingRB.getText()));
+					filteredCampaigns.setPredicate(cmp -> cmp.userIsPlaying(LoginController.getUserName())); 
 					campaignsLV.setItems(filteredCampaigns); //set listView to filteredList
 				}else if(selected.getText().equals(notPlayingRB.getText())) {
 			 		//set filteredList predicate to filter by notPlayingRB selection:
-					filteredCampaigns.setPredicate(cmp -> cmp.getEventName().contains(notPlayingRB.getText()));
+					filteredCampaigns.setPredicate(cmp -> !cmp.userIsPlaying(LoginController.getUserName())); 
 					campaignsLV.setItems(filteredCampaigns); //set listView to filteredList
 				}else {
 					campaignsLV.setItems(observCampaigns);  //set listView to non-filtered campaigns list 
@@ -148,7 +148,7 @@ public class CampaignsController implements Frameable, Rootable {
 				.setCreated(timestamp) //set creation time stamp
 				.setHost(LoginController.getUserName()) //set user as host
 				.setPlayer(LoginController.getUserName()) //set user as player
-				.setId(campaignId) //add id of db inserted campaign
+				.setId(campaignId) //add id of inserted campaign
 				.build();
 		
 		//add campaign to observable list of campaigns:

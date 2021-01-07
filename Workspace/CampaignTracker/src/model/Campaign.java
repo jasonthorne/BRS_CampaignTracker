@@ -83,9 +83,9 @@ public class Campaign {
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
 	public String getHostName() { return host; } //get host name
 	
-	//return current progress:
+	//get current progress:
 	public double getProgress() {
-		return (((double) turnNum) / event.getMaxTurns());
+		return (((double) turnNum) / event.getMaxTurns()); //current turn / max turns
 	}
 	
 	//return whether user is present in campaign:
