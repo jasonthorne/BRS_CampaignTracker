@@ -39,7 +39,7 @@ public interface SelectCampaigns {
 				CampaignBuilder campaignBuilder = new Campaign.CampaignBuilder(); 
 				campaignBuilder.setId(campaignsRS.getInt("campaign_ID")); //set id
 				campaignBuilder.setCreated(campaignsRS.getTimestamp("date_time")); //set created
-				campaignBuilder.setHostName(campaignsRS.getString("host_name")); //set host name
+				campaignBuilder.setHost(campaignsRS.getString("host_name")); //set host name
 				
 				//set period:
 				campaignBuilder.setPeriod((new Period(

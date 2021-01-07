@@ -55,15 +55,15 @@ public class CampaignsController implements Frameable, Rootable {
     	
     	newCampaignBtn.setOnAction(event -> {
     		//Frameable.changeView(root, new EventsController(this))); 
-    		////////////////////Frameable.changeView(root, eventsCtrlr);
+    		Frameable.changeView(root, eventsCtrlr);
     		///testCamps.addAll(database.SelectCampaigns.select(LoginController.getUserId()));
     		
     		/** TEST CAMPAIGNS ADDDED */
    		 	
-   		 	createCampaign("Battle of Britain");
+   		 	/////////createCampaign("Battle of Britain");
    		 	
-    		testCamps.addAll(database.SelectCampaigns.select());
-    		System.out.println("testCamps: " + testCamps);
+    		///////testCamps.addAll(database.SelectCampaigns.select());
+    		//////System.out.println("testCamps: " + testCamps);
     	}); 
     	
     	
@@ -151,14 +151,17 @@ public class CampaignsController implements Frameable, Rootable {
 	//create a new campaign:
 	void createCampaign(String eventName) {
 		
-		//create campaign holding event name and creation time stamp:
+		//create campaign:
 		Campaign campaign = new Campaign.CampaignBuilder()
-				.setEvent(new Event.EventBuilder().setName(eventName).build())
-				.setCreated(new Timestamp(Calendar.getInstance().getTimeInMillis()))
-				.build(); //+++++++++++++++++add yourself as host here! :P ++++++++AND MARK AS PLAYING!!! 
+				.setEvent(new Event.EventBuilder().setName(eventName).build()) //set event name
+				.setCreated(new Timestamp(Calendar.getInstance().getTimeInMillis())) //set creation time stamp
+				.setHost(LoginController.getUserName()) //set user as host
+				.build();
 		
 		//add campaign to db:
 		database.InsertCampaign.insert(campaign, LoginController.getUserId());
+		
+		/** ID NEEDS OT BE SOURCED. SHOPULD PROB BE RETURNED IN MYSQL INSERT */
 
 		//add campaign to observable list of campaigns:
 		observCampaigns.add(campaign);

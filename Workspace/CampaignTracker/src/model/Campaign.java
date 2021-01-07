@@ -18,7 +18,7 @@ public class Campaign {
 	private Period period; //current period of history
 	private int turnNum; //current turn number
 	private Timestamp created; //time stamp when created
-	private String hostName; //name of host
+	private String host; //name of host
 	private Map<String, Player>userNameToPlayer = new TreeMap<String, Player>(); //players involved
 	
 	
@@ -57,16 +57,17 @@ public class Campaign {
 		}
 		
 		//set host:
-		public CampaignBuilder setHostName(String name) { //++++++++PROB USE ID AND FETCH FROM MAP
-			campaign.hostName = name;
+		public CampaignBuilder setHost(String name) { //++++++++PROB USE ID AND FETCH FROM MAP
+			campaign.host = name; //set name of host
+			setPlayer(name); //set host as a player (if absent from map)
 			return this;
 		}
 		
 		//set players:
-		public CampaignBuilder setPlayers(Map<String, Player>playersMap) {
+		/*public CampaignBuilder setPlayers(Map<String, Player>playersMap) {
 			campaign.userNameToPlayer = new TreeMap<String, Player>(playersMap);
 			return this;
-		}
+		}*/
 		
 		//set player:
 		//////////////public CampaignBuilder setPlayer(Player player) {
@@ -83,7 +84,7 @@ public class Campaign {
 	public int getId() { return id; } //get id
 	public String getEventName() { return event.getName(); } //get event name
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
-	public String getHostName() { return hostName; } //get host name
+	public String getHostName() { return host; } //get host name
 	
 	//returns whether user is present in campaign:
 	public boolean userIsPlaying(String userName) {
