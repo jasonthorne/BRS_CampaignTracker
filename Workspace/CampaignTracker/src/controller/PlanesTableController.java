@@ -50,10 +50,38 @@ public class PlanesTableController implements Rootable {
     
     //constructor:
 	PlanesTableController(List<Plane>planes, String airForceName) {
+		setStage(airForceName); //set stage
+		setPlanesTable(planes); //set planes table 
+    	buildTable(); //build table
+    }
+	
+	
+	//set stage:
+	private void setStage(String airForceName) {
+		
 		stage.setTitle(airForceName + " Planes"); //set title
 		stage.setScene(scene); //add scene to stage	
+		
+		//set close event:
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			////https://stackoverflow.com/questions/22576261/how-do-i-get-the-close-event-of-a-stage-in-javafx
+            @Override
+            public void handle(WindowEvent event) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                    	System.out.println("Stage is closing"); 
+                    }
+                });
+            }
+        });
+	}
+	
+	
+	private void setPlanesTable(List<Plane>planes) {
+		
 		observPlanes.addAll(planes); //add planes to observable list
-    	planesTable.setItems(observPlanes); //add observable list to table
+		planesTable.setItems(observPlanes); //add observable list to table
     	
     	//-------------------
     	//https://stackoverflow.com/questions/27945817/javafx-adapt-tableview-height-to-number-of-rows
@@ -75,10 +103,8 @@ public class PlanesTableController implements Rootable {
     	});*/
     	//----------------------
     	//planesTable.setStyle("-fx-table-cell-border-color: transparent;");
-    	buildTable(); //build table
-    	
-    	////////autoResizeColumns(planesTable);
-    }
+		
+	}
 	
 	private void buildTable() {
 		
@@ -86,7 +112,7 @@ public class PlanesTableController implements Rootable {
 		TreeMap<Period,Status> sortedAvails = new TreeMap<Period,Status>( 
 				observPlanes.get(0).getPlaneAvailabilities());
 		
-		Period start =  sortedAvails.firstKey(); //get start period
+		Period start = sortedAvails.firstKey(); //get start period
 		Period end = sortedAvails.lastKey(); //get end period
 		
     	//create plane column:
@@ -152,6 +178,9 @@ public class PlanesTableController implements Rootable {
     	//add table to root:
     	rootVB.getChildren().setAll(planesTable);
 	}
+	
+	
+	
 
     //show stage:
     void showStage() { 
@@ -164,7 +193,7 @@ public class PlanesTableController implements Rootable {
         }); */
     	//https://stackoverflow.com/questions/22576261/how-do-i-get-the-close-event-of-a-stage-in-javafx
     	
-    	stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+    	/*stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 
             @Override
             public void handle(WindowEvent event) {
@@ -175,7 +204,7 @@ public class PlanesTableController implements Rootable {
                     }
                 });
             }
-        });
+        });*/
     	/**++++++++++++++++++++++++++++++++++++++++++++++*/
     	stage.showAndWait(); 
     }

@@ -66,7 +66,7 @@ public class CampaignsController implements Frameable, Rootable {
 	private Parent root; 
 	
 	//controllers:
-	private EventsController eventsCtrlr; ////////????????? needed??? +++++++
+	private EventsController eventsCtrlr; 
 	private A1 a1;
 	
 	//constructor:
@@ -83,8 +83,7 @@ public class CampaignsController implements Frameable, Rootable {
     	ExecutorService service = Executors.newSingleThreadExecutor(); 
     	
     	//future list of campaigns pulled from db, returned from service task thread:
-    	Future<List<Campaign>>futureCampaigns = service.submit(() -> 
-    		database.SelectCampaigns.select(/*LoginController.getUserId()*/));
+    	Future<List<Campaign>>futureCampaigns = service.submit(() -> database.SelectCampaigns.select());
     	
     	//keeping future.get() separate from application thread:
     	new Thread(() -> {
@@ -108,7 +107,7 @@ public class CampaignsController implements Frameable, Rootable {
 	//add change listener to toggle group:
 	private void setToggleListener() {
 	
-		// add change listener to radioBtn toggle group:
+		//add change listener to radioBtn toggle group:
 		radioBtnsTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			
 			@Override //override changeListener's changed: 
