@@ -73,7 +73,7 @@ public class EventsController implements Frameable, Rootable {
     		
     		//then navigate user to that campaign page
     		
-    		new CampaignController().showStage();
+    		////////////////new CampaignController().showStage();
     		
     		//////https://stackoverflow.com/questions/50933321/how-to-show-a-dialog-with-jfoenix-javafx
     		
