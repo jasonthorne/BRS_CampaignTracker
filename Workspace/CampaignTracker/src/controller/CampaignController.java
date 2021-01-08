@@ -38,6 +38,9 @@ public class CampaignController implements Rootable{
 	}
 	
 	//show stage:
-    void showStage() { System.out.println("showing campainCtrlr stage"); }
+    void showStage() { 
+    	System.out.println("showing campainCtrlr stage"); 
+    	stage.showAndWait(); 
+	}
 
 }

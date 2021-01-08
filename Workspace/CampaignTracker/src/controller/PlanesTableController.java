@@ -64,7 +64,7 @@ public class PlanesTableController implements Rootable {
 		
 		//set close event:
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			////https://stackoverflow.com/questions/22576261/how-do-i-get-the-close-event-of-a-stage-in-javafx
+			/** https://stackoverflow.com/questions/22576261/how-do-i-get-the-close-event-of-a-stage-in-javafx */
             @Override
             public void handle(WindowEvent event) {
                 Platform.runLater(new Runnable() {
@@ -75,6 +75,7 @@ public class PlanesTableController implements Rootable {
                 });
             }
         });
+		
 	}
 	
 	
