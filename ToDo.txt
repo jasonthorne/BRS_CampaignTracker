@@ -21,6 +21,7 @@ https://www.google.com/search?q=mysql+sort+by+one+then+another&rlz=1C1CHBF_enIE9
 
 + proper error nadling label on login & signup
 + back button on sign up
++ back button on creation of new campaign (remove the ability to go back to event selection)
 + proper fade transitions
 + object for playerId (for encapsulating setter) - or maybe Player object stored in login. 
 + better db connection

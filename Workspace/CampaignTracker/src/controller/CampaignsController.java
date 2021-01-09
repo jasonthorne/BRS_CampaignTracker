@@ -133,28 +133,41 @@ public class CampaignsController implements Frameable, Rootable {
 	}
 	
 	//create a new campaign:
-	void createCampaign(String eventName) {
+	/////////void createCampaign(String eventName) { //++++++++++++PASSD EVENT HERE IUNSTEAD OF EVENTNAME +++++++++
+	void createCampaign(Event event) { //++++++++++++PASSD EVENT HERE IUNSTEAD OF EVENTNAME +++++++++
 		
 		//get time stamp of creation:
 		Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
 		
 		//insert campaign to db, storing returned id:
-		int campaignId = database.InsertCampaign.insert(eventName, LoginController.getUserId(), timestamp); 
+		//int campaignId = database.InsertCampaign.insert(eventName, LoginController.getUserId(), timestamp);
+		int campaignId = database.InsertCampaign.insert(event.getName(), LoginController.getUserId(), timestamp); 
 		
 		//create local campaign:
-		Campaign campaign = new Campaign.CampaignBuilder()
+		/*Campaign campaign = new Campaign.CampaignBuilder()
 				.setEvent(new Event.EventBuilder().setName(eventName).build()) //set event name
 				.setCreated(timestamp) //set creation time stamp
 				.setHost(LoginController.getUserName()) //set user as host
 				.setPlayer(LoginController.getUserName()) //set user as player
 				.setId(campaignId) //add id of inserted campaign
-				.build();
+				.build();*/
+		
+		Campaign campaign = new Campaign.CampaignBuilder()
+		.setEvent(new Event.EventBuilder()
+				.setName(event.getName()) //set event name
+				.setAirForces(event.getAirForces()) //set event air forces
+				.build()) 
+		.setCreated(timestamp) //set creation time stamp
+		.setHost(LoginController.getUserName()) //set user as host
+		.setPlayer(LoginController.getUserName()) //set user as player
+		.setId(campaignId) //add id of inserted campaign
+		.build();
 		
 		//add campaign to observable list of campaigns:
 		observCampaigns.add(campaign);
 		
 		//navigate to campaign:
-		Frameable.changeView(root, new CampaignController());
+		Frameable.changeView(root, new CampaignController(campaign));
 	}
 	
 	@Override

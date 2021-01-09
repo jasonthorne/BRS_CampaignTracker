@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Campaign;
 
 public class CampaignController implements Rootable, Frameable{
 	
@@ -39,7 +40,7 @@ public class CampaignController implements Rootable, Frameable{
    
     
 	//constructor:
-	CampaignController(){
+	CampaignController(Campaign campaign){
 		//////////////stage.setScene(scene); //add scene to stage
 		setRoot(); //set root node
 		

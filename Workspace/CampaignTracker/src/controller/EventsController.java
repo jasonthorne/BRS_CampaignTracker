@@ -69,7 +69,9 @@ public class EventsController implements Frameable, Rootable {
     		
     		//++++++++++++IMPORTANT!! : button needs disabled for a second +++++++OR DOES IT?? I THINK THIS WAS FIXED. CHECK!"+++++++++++++++ 
     		
-    		campaignsCtrlr.createCampaign(nameLbl.getText());
+    		///////////////campaignsCtrlr.createCampaign(nameLbl.getText());
+    		
+    		campaignsCtrlr.createCampaign(selectedEvent);
     		
     		//then navigate user to that campaign page
     		
@@ -108,6 +110,8 @@ public class EventsController implements Frameable, Rootable {
   	private Parent root; 
   	
   	private final CampaignsController campaignsCtrlr;
+  	
+  	private Event selectedEvent; //++++++++++++++++++++++++++++TEST
 
     //constructor:
     EventsController(CampaignsController campaignsCtrlr) {
@@ -161,6 +165,8 @@ public class EventsController implements Frameable, Rootable {
     	        //add selected event's air forces to observable airForces:
     	        observAirForces = FXCollections.observableArrayList(newVal.getAirForces());
     	        airForcesLV.setItems(observAirForces); //set list view with airForces
+    	        
+    	        selectedEvent = newVal; //++++++++++++++++TEST: save selected event data +++++++++++
     	    }
     	});
     } 
