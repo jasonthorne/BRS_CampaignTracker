@@ -135,7 +135,7 @@ public class FrameController implements Rootable, Fadeable {
 	}
   	
   	//move to first logged in view:
-	void loginMove(Frameable frameable) { /** INNIT MOVE or somethig! */
+	void loginMove(Frameable frameable) { //++++++++++ INNIT MOVE or somethig!
   		fwrdMoves.push(frameable); //mark as forward move
     	addRootToBody(frameable.getRoot()); //add root to bodyAP
     	setViewLbl(frameable.getViewTitle()); //add view title
