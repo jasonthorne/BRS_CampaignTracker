@@ -101,7 +101,7 @@ public class CampaignsController implements Frameable, Rootable {
 		//add campaigns to listView:
 		campaignsLV.setItems(observCampaigns); 
 		//set listView cellFactory to create CampaignCellControllers:
-		campaignsLV.setCellFactory(CampaignCellController -> new CampaignCellController(this));
+		campaignsLV.setCellFactory(CampaignCellController -> new CampaignCellController(this)); //+++++++++NOT SURE this needs passed here :P
 	}
 	
 	//add change listener to toggle group:
