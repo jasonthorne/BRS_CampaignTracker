@@ -21,6 +21,7 @@ import model.Player;
 public interface SelectCampaigns {
 	
 	public static List<Campaign> select() {
+	//////////public static List<Campaign> select(Map<String, Event>nameToEvent) {
 		
 		List<Campaign>campaigns = new ArrayList<>(); //list for campaigns
 		

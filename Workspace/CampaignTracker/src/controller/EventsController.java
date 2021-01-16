@@ -2,12 +2,15 @@ package controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
@@ -31,7 +34,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import model.Campaign;
 import model.Event;
+import model.Period;
 import model.Event.EventBuilder;
+import model.Plane.Status;
 import model.AirForce;
 
 public class EventsController implements Frameable, Rootable {
@@ -112,6 +117,8 @@ public class EventsController implements Frameable, Rootable {
   	private final CampaignsController campaignsCtrlr;
   	
   	private Event selectedEvent; //++++++++++++++++++++++++++++TEST
+  	
+  	Map<Object, Object> nameToEvent = new HashMap<>();
 
     //constructor:
     EventsController(CampaignsController campaignsCtrlr) {
@@ -130,16 +137,37 @@ public class EventsController implements Frameable, Rootable {
     	
     	//keeping future.get() separate from application thread:
     	new Thread(() -> {
-	    	try {
+	    	try {System.out.println("yo");
 	    		//add events from db to events:
 	    		observEvents.addAll(futureEvents.get());
+	    		
+	    		List<Event> test = futureEvents.get();
+	    		
+	    		/*nameToEvent = futureEvents.get().stream()
+	    				.collect(Collectors.toMap(z -> z, a -> a.getName()));
+	    		
+	    		System.out.println(nameToEvent.entrySet());
+	    		System.out.println(nameToEvent.keySet());*/
+	    		
+	    		
+	    		Map<String, Event> test2 = test.stream()
+                        .collect(Collectors.toMap(Event -> Event.getName(),Event -> Event));
+	    		
+	    		System.out.println(test2.keySet());
+	    		System.out.println(test2.entrySet());
+	    		
+	    		
 	    	}catch(Exception e) {
 				e.printStackTrace();
-			}finally { System.out.println("yo");
+			}finally { 
 				//shut down service thread:
 				if(!service.isShutdown()) { service.shutdown(); } 
 			}
     	}).start();
+    	
+    	
+    	
+    	
     	
     	//add events to listView:
 		eventsLV.setItems(observEvents);
@@ -176,6 +204,12 @@ public class EventsController implements Frameable, Rootable {
         //set cell factory to create air force cell controllers:
         airForcesLV.setCellFactory(AirForceCellController ->  new AirForceCellController());
     }
+    
+    //+++++++++++++++++++++++++++++++++++++++++++++++
+    Map<Object, Object> getNameToEvent(){
+    	return nameToEvent;
+    }
+    //+++++++++++++++++++++++++++++++++++++++++++++++
     
     @Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/events.fxml"); } //set root

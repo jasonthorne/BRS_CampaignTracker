@@ -83,16 +83,19 @@ public class CampaignsController implements Frameable, Rootable {
     	ExecutorService service = Executors.newSingleThreadExecutor(); 
     	
     	//future list of campaigns pulled from db, returned from service task thread:
-    	Future<List<Campaign>>futureCampaigns = service.submit(() -> database.SelectCampaigns.select());
+    	///////////////Future<List<Campaign>>futureCampaigns = service.submit(() -> database.SelectCampaigns.select());
+    	Future<List<Campaign>>futureCampaigns = service.submit(() -> 
+    		//////////////database.SelectCampaigns.select(eventsCtrlr.getNameToEvent()));
+    	database.SelectCampaigns.select());
     	
     	//keeping future.get() separate from application thread:
     	new Thread(() -> {
-	    	try {
+	    	try {System.out.println("dawg");
 	    		//add campaigns from db to observCampaigns:
 	    		observCampaigns.addAll(futureCampaigns.get());
 	    	}catch(Exception e) {
 				e.printStackTrace();
-			}finally {
+			}finally { 
 				//shut down service thread:
 				if(!service.isShutdown()) { service.shutdown(); } 
 			}
