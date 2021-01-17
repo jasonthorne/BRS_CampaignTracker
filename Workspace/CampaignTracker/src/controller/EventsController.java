@@ -142,7 +142,7 @@ public class EventsController implements Frameable, Rootable {
 	    		List<Event> events = futureEvents.get(); //get events
 	    		observEvents.addAll(events); //add events to observable list
 	    		
-	    		//populate campaigns list, passing map of events data:
+	    		//populate campaigns list, passing map of events:
 	    		campaignsCtrlr.setCampaigns(events.stream()
                         .collect(Collectors.toMap(event -> event.getName(), event -> event))); 
 	    		

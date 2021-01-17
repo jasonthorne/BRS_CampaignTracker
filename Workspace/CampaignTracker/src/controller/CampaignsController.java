@@ -79,14 +79,13 @@ public class CampaignsController implements Frameable, Rootable {
 	}
 
 	//populates campaigns with campaigns from db:
-	//////void setCampaigns() {
-	void setCampaigns(Map<String,Event>events) { 
-		System.out.println(events);
+	void setCampaigns(Map<String,Event>nameToEvent) { 
+		
 		//executor service for task thread:
     	ExecutorService service = Executors.newSingleThreadExecutor(); 
     	
     	//future list of campaigns pulled from db, returned from service task thread:
-    	Future<List<Campaign>>futureCampaigns = service.submit(() -> database.SelectCampaigns.select());
+    	Future<List<Campaign>>futureCampaigns = service.submit(() -> database.SelectCampaigns.select(nameToEvent));
     	
     	//keeping future.get() separate from application thread:
     	new Thread(() -> {
@@ -101,9 +100,7 @@ public class CampaignsController implements Frameable, Rootable {
 			}
     	}).start();
     	
-    	//////////////////////////System.out.println("you got mail! " + eventsCtrlr.getNameToEvent());
-		
-		//add campaigns to listView:
+		//add observable campaigns to listView:
 		campaignsLV.setItems(observCampaigns); 
 		//set listView cellFactory to create CampaignCellControllers:
 		campaignsLV.setCellFactory(CampaignCellController -> new CampaignCellController(this)); //+++++++++NOT SURE this needs passed here :P
@@ -137,46 +134,16 @@ public class CampaignsController implements Frameable, Rootable {
 		});
 	}
 	
-	//update campaign events with data pulled from events controller:
-	void updateCampaignEvents() {
-		
-		//get map of events from events controller:
-		Map<String, Event>nameToEvent = new HashMap<String, Event>(eventsCtrlr.getNameToEvent());
-		
-		//update event of each campaign according to it's name:
-		observCampaigns.stream().forEach(cmp -> {
-			
-			Event event = nameToEvent.get(cmp.getEventName());
-			
-			//////new Event.EventBuilder()
-		////	.setName(event.getName()) //set event name
-		//	.setAirForces(event.getAirForces()) //set event air forces
-		///	.build(); ///////////
-			
-		});
-		
-	}
-	
 	//create a new campaign:
-	/////////void createCampaign(String eventName) { //++++++++++++PASSD EVENT HERE IUNSTEAD OF EVENTNAME +++++++++
-	void createCampaign(Event event) { //++++++++++++PASSD EVENT HERE IUNSTEAD OF EVENTNAME +++++++++
+	void createCampaign(Event event) {
 		
 		//get time stamp of creation:
 		Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
 		
 		//insert campaign to db, storing returned id:
-		//int campaignId = database.InsertCampaign.insert(eventName, LoginController.getUserId(), timestamp);
 		int campaignId = database.InsertCampaign.insert(event.getName(), LoginController.getUserId(), timestamp); 
 		
 		//create local campaign:
-		/*Campaign campaign = new Campaign.CampaignBuilder()
-				.setEvent(new Event.EventBuilder().setName(eventName).build()) //set event name
-				.setCreated(timestamp) //set creation time stamp
-				.setHost(LoginController.getUserName()) //set user as host
-				.setPlayer(LoginController.getUserName()) //set user as player
-				.setId(campaignId) //add id of inserted campaign
-				.build();*/
-		
 		Campaign campaign = new Campaign.CampaignBuilder()
 		.setEvent(new Event.EventBuilder()
 				.setName(event.getName()) //set event name
@@ -192,7 +159,7 @@ public class CampaignsController implements Frameable, Rootable {
 		observCampaigns.add(campaign);
 		
 		//navigate to campaign:
-		Frameable.changeView(root, new CampaignController(campaign));
+		Frameable.changeView(root, new CampaignController(campaign)); //++++++++++++++++++++REMEMBER TO FIX NAV BUTTONS HERE!! ++++
 	}
 	
 	@Override

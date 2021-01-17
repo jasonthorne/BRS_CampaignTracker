@@ -95,7 +95,10 @@ public class Campaign {
 	
 	@Override
 	public String toString() {
-		return "Campaign [id=" + id + ", nameToPlayer=" + nameToPlayer + "]";
+		return "Campaign [id=" + id + ", event=" + event + ", period=" + period + ", turnNum=" + turnNum + ", created="
+				+ created + ", host=" + host + ", nameToPlayer=" + nameToPlayer + "]";
 	}
+	
+	
 	
 }

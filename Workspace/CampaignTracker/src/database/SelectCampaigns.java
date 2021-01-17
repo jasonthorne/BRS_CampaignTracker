@@ -20,7 +20,7 @@ import model.Player;
 
 public interface SelectCampaigns {
 	
-	public static List<Campaign> select() {
+	public static List<Campaign> select(Map<String, Event>nameToEvent) {
 		
 		List<Campaign>campaigns = new ArrayList<>(); //list for campaigns
 		
@@ -47,9 +47,14 @@ public interface SelectCampaigns {
 						campaignsRS.getInt("period_year")))); 
 				
 				//create event builder:
-				EventBuilder eventBuilder = new Event.EventBuilder(); 
-				eventBuilder.setName(campaignsRS.getString("event_name")); //set event name
+				EventBuilder eventBuilder = new Event.EventBuilder();
+				String eventName = campaignsRS.getString("event_name"); //get event name
+				eventBuilder.setName(eventName); //set event name
+				eventBuilder.setStartPeriod(nameToEvent.get(eventName).getStartPeriod()); //set start period
+				eventBuilder.setEndPeriod(nameToEvent.get(eventName).getEndPeriod()); //set end period
 				eventBuilder.setMaxTurns(campaignsRS.getInt("periods_count")); //set max turns
+				eventBuilder.setAirForces(nameToEvent.get(eventName).getAirForces()); //set air forces
+				
 				campaignBuilder.setEvent(eventBuilder.build()); //add event to campaign builder
 				
 				//set player names statement input with campaign id:
@@ -57,7 +62,7 @@ public interface SelectCampaigns {
 				playerNamesRS = playerNamesStatement.executeQuery(); //execute player names query
 				
 				while(playerNamesRS.next()) {
-					//add player with user name to campaign::
+					//add player with user name to campaign:
 					campaignBuilder.setPlayer(playerNamesRS.getString("name"));
 				}
 				
@@ -66,7 +71,7 @@ public interface SelectCampaigns {
 			}
 			
 		} catch(Exception e) { e.printStackTrace(); }
-		
+		System.out.println(campaigns);
 		return campaigns; //return campaigns
 	}
 }
