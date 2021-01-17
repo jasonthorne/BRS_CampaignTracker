@@ -118,8 +118,6 @@ public class EventsController implements Frameable, Rootable {
   	
   	private Event selectedEvent; //++++++++++++++++++++++++++++TEST
   	
-  	Map<Object, Object> nameToEvent = new HashMap<>();
-
     //constructor:
     EventsController(CampaignsController campaignsCtrlr) {
     	setRoot(); //set root node
@@ -189,15 +187,6 @@ public class EventsController implements Frameable, Rootable {
         //set cell factory to create air force cell controllers:
         airForcesLV.setCellFactory(AirForceCellController ->  new AirForceCellController());
     }
-    
-    //+++++++++++++++++++++++++++++++++++++++++++++++
-    Map<String, Event> getNameToEvent(){
-    	return observEvents.stream()
-                .collect(Collectors.toMap(event -> event.getName(), event -> event));
-    }
-    
-    
-    //+++++++++++++++++++++++++++++++++++++++++++++++
     
     @Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/events.fxml"); } //set root

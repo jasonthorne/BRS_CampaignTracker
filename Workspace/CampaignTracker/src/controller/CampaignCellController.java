@@ -25,16 +25,12 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
     @FXML private Label hostNameLbl;
     @FXML private Label isPlayingLbl;
     @FXML private ProgressIndicator progressPI;
-    //@FXML private JFXButton showCampaignBtn;
+    @FXML private JFXButton showCampaignBtn;
     
     @FXML
     void initialize() {
-    	
     	//show campaign:
-    	/*showCampaignBtn.setOnAction(event -> 
-		new CampaignController().showStage());*/
-    	//progressPI = new ProgressIndicator();
-
+    	showCampaignBtn.setOnAction(event -> System.out.println("yo"));
     }
     
     //root element for this controller:

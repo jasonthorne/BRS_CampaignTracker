@@ -34,6 +34,8 @@ https://www.google.com/search?q=mysql+sort+by+one+then+another&rlz=1C1CHBF_enIE9
 
 
 +look at making plane avilabilities into an accordian instead! :P
+
++ look at using a folder icon for open campaign btn (with typewriter top secret text)
 ----------------------------------------
 
 linmks:
