@@ -138,43 +138,23 @@ public class EventsController implements Frameable, Rootable {
     	//keeping future.get() separate from application thread:
     	new Thread(() -> {
 	    	try {System.out.println("yo");
-	    		//add events from db to events:
-	    		observEvents.addAll(futureEvents.get());
+	    	
+	    		List<Event> events = futureEvents.get(); //get events
+	    		observEvents.addAll(events); //add events to observable list
 	    		
-	    		List<Event> test = futureEvents.get();
-	    		
-	    		/*nameToEvent = futureEvents.get().stream()
-	    				.collect(Collectors.toMap(z -> z, a -> a.getName()));
-	    		
-	    		System.out.println(nameToEvent.entrySet());
-	    		System.out.println(nameToEvent.keySet());*/
-	    		
-	    		campaignsCtrlr.updateCampaignEvents();
-	    		
-	    		Map<String, Event> test2 =  futureEvents.get().stream()
-                        .collect(Collectors.toMap(event -> event.getName(), event -> event));
-	    		
-	    		System.out.println(test2.keySet());
-	    		System.out.println(test2.entrySet());
-	    		
+	    		//populate campaigns list, passing map of events data:
+	    		campaignsCtrlr.setCampaigns(events.stream()
+                        .collect(Collectors.toMap(event -> event.getName(), event -> event))); 
 	    		
 	    	}catch(Exception e) {
 				e.printStackTrace();
-			}finally { 
+			}finally {
 				//shut down service thread:
 				if(!service.isShutdown()) { service.shutdown(); } 
 			}
     	}).start();
     	
-    	Map<String, Event> test2 =  observEvents.stream()
-                .collect(Collectors.toMap(event -> event.getName(), event -> event));
-		
-		System.out.println(test2.keySet());
-		System.out.println(test2.entrySet());
-    	
-    	
-    	
-    	//add events to listView:
+    	//add observable events to listView:
 		eventsLV.setItems(observEvents);
 		
 		//set listView cellFactory to create EventCellControllers:

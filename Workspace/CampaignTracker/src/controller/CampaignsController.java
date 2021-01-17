@@ -50,7 +50,7 @@ public class CampaignsController implements Frameable, Rootable {
    
     @FXML	
     void initialize() {
-    	setCampaigns(); //populate campaigns list
+    	//////////////////////////setCampaigns(); //populate campaigns list
     	setToggleListener(); //add change listener to toggle group
     	//set btn action:
     	newCampaignBtn.setOnAction(event -> Frameable.changeView(root, eventsCtrlr));
@@ -79,8 +79,9 @@ public class CampaignsController implements Frameable, Rootable {
 	}
 
 	//populates campaigns with campaigns from db:
-	private void setCampaigns() { 
-		
+	//////void setCampaigns() {
+	void setCampaigns(Map<String,Event>events) { 
+		System.out.println(events);
 		//executor service for task thread:
     	ExecutorService service = Executors.newSingleThreadExecutor(); 
     	
@@ -147,10 +148,10 @@ public class CampaignsController implements Frameable, Rootable {
 			
 			Event event = nameToEvent.get(cmp.getEventName());
 			
-			new Event.EventBuilder()
-			.setName(event.getName()) //set event name
-			.setAirForces(event.getAirForces()) //set event air forces
-			.build()
+			//////new Event.EventBuilder()
+		////	.setName(event.getName()) //set event name
+		//	.setAirForces(event.getAirForces()) //set event air forces
+		///	.build(); ///////////
 			
 		});
 		
