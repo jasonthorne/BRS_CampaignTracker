@@ -41,7 +41,7 @@ public class Campaign {
 		public CampaignBuilder setEvent(Event event) {
 			campaign.event = event; //+++++++++++++++++++++MAKE THIS STRONGER!!! :P 
 			return this;
-		}	
+		}
 		
 		//set period:
 		public CampaignBuilder setPeriod(Period period) {

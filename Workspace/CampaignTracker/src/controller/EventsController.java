@@ -149,9 +149,10 @@ public class EventsController implements Frameable, Rootable {
 	    		System.out.println(nameToEvent.entrySet());
 	    		System.out.println(nameToEvent.keySet());*/
 	    		
+	    		campaignsCtrlr.updateCampaignEvents();
 	    		
-	    		Map<String, Event> test2 = test.stream()
-                        .collect(Collectors.toMap(Event -> Event.getName(),Event -> Event));
+	    		Map<String, Event> test2 =  futureEvents.get().stream()
+                        .collect(Collectors.toMap(event -> event.getName(), event -> event));
 	    		
 	    		System.out.println(test2.keySet());
 	    		System.out.println(test2.entrySet());
@@ -165,7 +166,11 @@ public class EventsController implements Frameable, Rootable {
 			}
     	}).start();
     	
-    	
+    	Map<String, Event> test2 =  observEvents.stream()
+                .collect(Collectors.toMap(event -> event.getName(), event -> event));
+		
+		System.out.println(test2.keySet());
+		System.out.println(test2.entrySet());
     	
     	
     	
@@ -206,9 +211,12 @@ public class EventsController implements Frameable, Rootable {
     }
     
     //+++++++++++++++++++++++++++++++++++++++++++++++
-    Map<Object, Object> getNameToEvent(){
-    	return nameToEvent;
+    Map<String, Event> getNameToEvent(){
+    	return observEvents.stream()
+                .collect(Collectors.toMap(event -> event.getName(), event -> event));
     }
+    
+    
     //+++++++++++++++++++++++++++++++++++++++++++++++
     
     @Override

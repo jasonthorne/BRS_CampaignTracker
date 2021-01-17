@@ -57,6 +57,6 @@ public class Plane {
 	
 	@Override
 	public String toString() {
-		return "Plane [name=" + name +  ", availabilities=" + availabilities + "]";
+		return "Plane [name=" + name.get() +  ", availabilities=" + availabilities + "]";
 	}
 }

@@ -4,7 +4,9 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -83,10 +85,7 @@ public class CampaignsController implements Frameable, Rootable {
     	ExecutorService service = Executors.newSingleThreadExecutor(); 
     	
     	//future list of campaigns pulled from db, returned from service task thread:
-    	///////////////Future<List<Campaign>>futureCampaigns = service.submit(() -> database.SelectCampaigns.select());
-    	Future<List<Campaign>>futureCampaigns = service.submit(() -> 
-    		//////////////database.SelectCampaigns.select(eventsCtrlr.getNameToEvent()));
-    	database.SelectCampaigns.select());
+    	Future<List<Campaign>>futureCampaigns = service.submit(() -> database.SelectCampaigns.select());
     	
     	//keeping future.get() separate from application thread:
     	new Thread(() -> {
@@ -100,6 +99,8 @@ public class CampaignsController implements Frameable, Rootable {
 				if(!service.isShutdown()) { service.shutdown(); } 
 			}
     	}).start();
+    	
+    	//////////////////////////System.out.println("you got mail! " + eventsCtrlr.getNameToEvent());
 		
 		//add campaigns to listView:
 		campaignsLV.setItems(observCampaigns); 
@@ -133,6 +134,26 @@ public class CampaignsController implements Frameable, Rootable {
 				}
 			} 
 		});
+	}
+	
+	//update campaign events with data pulled from events controller:
+	void updateCampaignEvents() {
+		
+		//get map of events from events controller:
+		Map<String, Event>nameToEvent = new HashMap<String, Event>(eventsCtrlr.getNameToEvent());
+		
+		//update event of each campaign according to it's name:
+		observCampaigns.stream().forEach(cmp -> {
+			
+			Event event = nameToEvent.get(cmp.getEventName());
+			
+			new Event.EventBuilder()
+			.setName(event.getName()) //set event name
+			.setAirForces(event.getAirForces()) //set event air forces
+			.build()
+			
+		});
+		
 	}
 	
 	//create a new campaign:
