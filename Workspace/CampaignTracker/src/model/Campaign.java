@@ -20,9 +20,9 @@ public class Campaign {
 	private int turnNum; //current turn number
 	private Timestamp created; //time stamp when created
 	private String host; //name of host
-	public boolean wasOpened = false; ////////isLoaded??? if loaded from db
-	
 	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //players involved
+	
+	private boolean isAllLoaded = false; //if fully loaded from db
 	
 	private Campaign() {} //blank constructor
 	
@@ -75,6 +75,9 @@ public class Campaign {
 			return this;
 		}
 		
+		//set if db loaded:
+		
+		
 		//return built campaign:
 		public Campaign build() { return campaign; } 
 	}
@@ -83,7 +86,8 @@ public class Campaign {
 	public String getEventName() { return event.getName(); } //get event name
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
 	public String getHostName() { return host; } //get host name
-	
+	public boolean getIsAllLoaded() { return isAllLoaded; } //get if fully loaded from db
+		
 	//get current progress:
 	public double getProgress() {
 		return (((double) turnNum) / event.getMaxTurns()); //current turn / max turns

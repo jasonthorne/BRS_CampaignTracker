@@ -30,31 +30,18 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
     
     @FXML
     void initialize() {
-    	//show campaign:
-    	///////showCampaignBtn.setOnAction(event -> System.out.println("yo"));
-    	//showCampaignBtn.setOnAction(event -> Frameable.changeView(root, new CampaignController(campaign)));
-    	//https://stackoverflow.com/questions/51536489/how-can-i-detect-javafx-double-click-on-listview
-    	/*setOnMouseClicked(mouseClickedEvent -> {
-            if (mouseClickedEvent.getButton().equals(MouseButton.PRIMARY) && mouseClickedEvent.getClickCount() == 2) {
-                System.out.println("double clicked");                       
-            }
-        });*/
-    	
+
     }
     
     //root element for this controller:
   	private final Parent root = Rootable.getRoot(this, "/view/campaignCell.fxml");
   
-	private final CampaignsController campaignsCtrlr; //??????????????????????????? needed??? ~YES - for nav
-	
-	//whether cell has been previously clicked:
-	////////////////////private boolean wasClicked = false;
-	
-	////new CampaignController(campaign)); MIGHT BE NEEDED HERE: :P
-	
+  	//campaigns controller:
+	private final CampaignsController campaignsCtrlr;
+
 	//constructor:
 	CampaignCellController(CampaignsController campaignsCtrlr){
-		this.campaignsCtrlr = campaignsCtrlr; //assign campaigns controller //??????????????????????????? needed???
+		this.campaignsCtrlr = campaignsCtrlr; //assign campaigns controller
 	}
 	
 	//update cell with campaign data:
@@ -74,24 +61,17 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
 			progressPI.setProgress(campaign.getProgress()); //get progress
 			//https://docs.oracle.com/javafx/2/ui_controls/progress.htm
 			
-			//add double click event:
+			//add double-click event:
 	        setOnMouseClicked(mouseClickedEvent -> {
                 if (mouseClickedEvent.getButton().equals(MouseButton.PRIMARY) && mouseClickedEvent.getClickCount() == 2) {
                     System.out.println("double clicked: " + campaign.getId());    
                     
-                    if(!campaign.wasOpened){ //+++++++++++++++++++++++++++NEED TO STORE THIS IN CAMPAIGN CONTROLLER NOT CAMPAIGN!! :P
+                    if(!campaign.getIsAllLoaded()){ //+++++++++++++++++++++++++++NEED TO STORE THIS IN CAMPAIGN CONTROLLER NOT CAMPAIGN!! :P
                     	  System.out.println("wasnt clicked ");
-                    	  campaign.wasOpened = true;
+                    	  //////campaign. = true;
                     }else {
                     	  System.out.println("was clicked "); 
                     }
-                    
-                    if(!wasClicked){ //+++++++++++++++++++++++++++NEED TO STORE THIS IN CAMPAIGN CONTROLLER NOT CAMPAIGN!! :P
-                  	  System.out.println("WASNT ");
-                  	  wasClicked = true;
-                  }else {
-                  	  System.out.println("WAS "); 
-                  }
                     
                   //navigate to campaign:
                   Frameable.changeView(campaignsCtrlr.getRoot(), new CampaignController(campaign));
