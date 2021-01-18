@@ -37,13 +37,20 @@ public class CampaignController implements Rootable, Frameable{
     //fxml root node:
   	private Parent root; 
   	
-   
+  	boolean wasOpened = false;
     
 	//constructor:
 	CampaignController(Campaign campaign){
 		//////////////stage.setScene(scene); //add scene to stage
 		setRoot(); //set root node
 		
+		/*
+		if(!wasOpened){ 
+		  	  System.out.println("wasnt clicked ");
+		  	  wasOpened = true;
+		  }else {
+		  	  System.out.println("was clicked "); 
+		  }*/
 	}
 	
 	//show stage:

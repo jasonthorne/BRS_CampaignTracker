@@ -52,7 +52,6 @@ public class CampaignsController implements Frameable, Rootable {
     @FXML	
     void initialize() {
     	setToggleListener(); //add listener to radio buttons toggle group
-    	setCampaignsListener(); //add listener to observable campaigns
     	//set btn action:
     	newCampaignBtn.setOnAction(event -> Frameable.changeView(root, eventsCtrlr));
     }
@@ -133,37 +132,16 @@ public class CampaignsController implements Frameable, Rootable {
 		});
 	}
 	
+	/*
+	void yo() {
 	
-	//=====================================================++++++++++++++++++++++++++++++++
-	private Campaign selectedCampaign; //++++++++++++++++++++++++++++TEST
+		campaignsLV.setOnMouseClicked(mouseClickedEvent -> {
+        if (mouseClickedEvent.getButton().equals(MouseButton.PRIMARY) && mouseClickedEvent.getClickCount() == 2) {
+            System.out.println("double clicked");                       
+        }
+    });
+	}*/
 	
-	//add change listener to list view:
-    private void setCampaignsListener() {
-    	
-    	 
-    	/* campaignsLV.setOnMouseClicked(mouseClickedEvent -> {
-        	        if (mouseClickedEvent.getButton().equals(MouseButton.PRIMARY) && mouseClickedEvent.getClickCount() == 2) {
-        	            System.out.println("double clicked");                       
-        	        }
-        	    });
-     	  */
-     	
-    	
-	/**https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2	*/
-    /*	campaignsLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Campaign>() {
-    		@Override  //override change listener's changed: 
-    	    public void changed(ObservableValue<? extends Campaign> observable, Campaign oldVal, Campaign newVal) {
-    			selectedCampaign = newVal; //++++++++++++++++TEST: save selected event data +++++++++++
-    			System.out.println("you selected: " + selectedCampaign);
-    	    }
-    	});*/
-    } 
-    
-    
-   
-	
-	
-	//=====================================================++++++++++++++++++++++++++++++++
 	
 	//create a new campaign:
 	void createCampaign(Event event) {

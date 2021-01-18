@@ -45,10 +45,12 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
     //root element for this controller:
   	private final Parent root = Rootable.getRoot(this, "/view/campaignCell.fxml");
   
-	private final CampaignsController campaignsCtrlr; //??????????????????????????? needed???
+	private final CampaignsController campaignsCtrlr; //??????????????????????????? needed??? ~YES - for nav
 	
 	//whether cell has been previously clicked:
-	boolean wasClicked = false;
+	////////////////////private boolean wasClicked = false;
+	
+	////new CampaignController(campaign)); MIGHT BE NEEDED HERE: :P
 	
 	//constructor:
 	CampaignCellController(CampaignsController campaignsCtrlr){
@@ -72,17 +74,29 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
 			progressPI.setProgress(campaign.getProgress()); //get progress
 			//https://docs.oracle.com/javafx/2/ui_controls/progress.htm
 			
-			//add click event 
+			//add double click event:
 	        setOnMouseClicked(mouseClickedEvent -> {
                 if (mouseClickedEvent.getButton().equals(MouseButton.PRIMARY) && mouseClickedEvent.getClickCount() == 2) {
                     System.out.println("double clicked: " + campaign.getId());    
                     
-                    if(!wasClicked){
+                    if(!campaign.wasOpened){ //+++++++++++++++++++++++++++NEED TO STORE THIS IN CAMPAIGN CONTROLLER NOT CAMPAIGN!! :P
                     	  System.out.println("wasnt clicked ");
-                    	  wasClicked = true;
+                    	  campaign.wasOpened = true;
                     }else {
                     	  System.out.println("was clicked "); 
                     }
+                    
+                    if(!wasClicked){ //+++++++++++++++++++++++++++NEED TO STORE THIS IN CAMPAIGN CONTROLLER NOT CAMPAIGN!! :P
+                  	  System.out.println("WASNT ");
+                  	  wasClicked = true;
+                  }else {
+                  	  System.out.println("WAS "); 
+                  }
+                    
+                  //navigate to campaign:
+                  Frameable.changeView(campaignsCtrlr.getRoot(), new CampaignController(campaign));
+                  /////////////////////////https://www.geeksforgeeks.org/stack-contains-method-in-java-with-example/   
+                   
                 }
                 /**https://stackoverflow.com/questions/51536489/how-can-i-detect-javafx-double-click-on-listview*/
             });

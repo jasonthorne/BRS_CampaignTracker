@@ -20,6 +20,7 @@ public class Campaign {
 	private int turnNum; //current turn number
 	private Timestamp created; //time stamp when created
 	private String host; //name of host
+	public boolean wasOpened = false; ////////isLoaded??? if loaded from db
 	
 	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //players involved
 	

@@ -58,7 +58,7 @@ public class EventsController implements Frameable, Rootable {
     @FXML private JFXListView<AirForce> airForcesLV;
 
     @FXML
-    private StackPane testStack2; //+++++++++++++test stack (which rootAP ids wrapped in for displaying JFXDialog) +++++++
+    private StackPane testStack2; //+++++++++dialogSP++++test stack (which rootAP ids wrapped in for displaying JFXDialog) +++++++
     
     @FXML
     void initialize() {
