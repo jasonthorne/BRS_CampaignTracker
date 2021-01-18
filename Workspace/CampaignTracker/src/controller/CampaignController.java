@@ -36,14 +36,21 @@ public class CampaignController implements Rootable, Frameable{
     //fxml root node:
   	private Parent root; 
   	
-  	private final Campaign campaign;
+  	private /*final*/ Campaign campaign;
     
 	//constructor:
 	CampaignController(Campaign campaign){
 		setRoot(); //set root node
-		this.campaign = campaign; //assign  campaign
+		setCampaign(campaign);
+		//////////////TRY LOAD CAMPAIGN:
+		
+		
+		
+		//IF CANT, THEN GRAB FROM SAVED CAMPAIGN USING ID
+		
+		
 		//////////////stage.setScene(scene); //add scene to stage
-		eventNameLbl.setText(Integer.toString(campaign.getId()));
+		
 		
 		
 		/*
@@ -54,6 +61,28 @@ public class CampaignController implements Rootable, Frameable{
 		  	  System.out.println("was clicked "); 
 		  }*/
 	}
+	
+	
+	private void setCampaign(Campaign campaign) {
+		
+		//if campaign hasn't been fully downloaded:
+		if(!campaign.getIsAllDownloaded()) {
+			
+			//download campaign:
+			//++++++HAVE A LOADING ANIMATION HERE TOO! WHILE THIS DOWNLOADS! ++++++++++++++
+			
+			
+			//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
+			
+			
+		}else {this.campaign = campaign;} //else, assign campaign
+			
+		
+	}
+	
+	
+	
+	
 	
 	//show stage:
     /*void showStage() { 

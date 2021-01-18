@@ -18,6 +18,7 @@ CREATE TABLE campaigns (
 	campaignID INT NOT NULL AUTO_INCREMENT,
 	eventID INT,
 	periodID INT,
+	turn INT DEFAULT 0, 
 	created DATETIME,
 	PRIMARY KEY (campaignID),
 	FOREIGN KEY (eventID) REFERENCES events(eventID),

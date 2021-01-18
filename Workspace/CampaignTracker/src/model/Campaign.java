@@ -18,12 +18,12 @@ public class Campaign implements Loadable{
 	private int id; //id of campaign
 	private Event event; //historical event covered 
 	private Period period; //current period of history
-	private int turnNum; //current turn number
+	private int turn; //current turn number
 	private Timestamp created; //time stamp when created
 	private String host; //name of host
 	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //players involved
 	
-	private boolean isAllDownloaded = false; //if fully downloaded from db
+	private boolean isAllDownloaded = false; //if fully downloaded from db //+++++++++++++++++'isFullDownload'?? 
 	////////////////private boolean isAllUploaded = false; //if fully uploaded from db
 	
 	private Campaign() {} //blank constructor
@@ -97,7 +97,7 @@ public class Campaign implements Loadable{
 		
 	//get current progress:
 	public double getProgress() {
-		return (((double) turnNum) / event.getMaxTurns()); //current turn / max turns
+		return (((double) turn) / event.getMaxTurns()); //current turn / max turns
 	}
 	
 	//return whether user is present in campaign:
@@ -107,7 +107,7 @@ public class Campaign implements Loadable{
 	
 	@Override
 	public String toString() {
-		return "Campaign [id=" + id + ", event=" + event + ", period=" + period + ", turnNum=" + turnNum + ", created="
+		return "Campaign [id=" + id + ", event=" + event + ", period=" + period + ", turnNum=" + turn + ", created="
 				+ created + ", host=" + host + ", nameToPlayer=" + nameToPlayer + "]";
 	}
 	

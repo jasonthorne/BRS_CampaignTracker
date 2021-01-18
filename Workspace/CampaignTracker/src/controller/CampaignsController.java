@@ -137,12 +137,12 @@ public class CampaignsController implements Frameable, Rootable {
 		
 		//get time stamp of creation:
 		Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
-		
+		//++++++++++++++++++++++++++++++++++++++++++++++++HAVE ISERT BELOW BE IN A TRY, AND IF NOT SUCCEFULL INFORM USER & 
 		//insert campaign to db, storing returned id:
 		int campaignId = database.InsertCampaign.insert(event.getName(), LoginController.getUserId(), timestamp); 
 		
 		//create local campaign:
-		Campaign campaign = new Campaign.CampaignBuilder()
+		Campaign campaign = new Campaign.CampaignBuilder() //+++++++++++++++MARK AS NOT FULLY UPLOADED!!! 
 		.setEvent(new Event.EventBuilder()
 				.setName(event.getName()) //set event name
 				.setAirForces(event.getAirForces()) //set event air forces
