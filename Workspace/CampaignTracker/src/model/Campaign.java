@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import controller.Loadable;
 import model.AirForce.AirForceBuilder;
 import model.Plane.Status;
 
-public class Campaign {
+public class Campaign implements Loadable{
 	
 	//amount of turns played per period:
 	public static final int TURNS_PER_PERIOD = 4; //+++++++++++++++++++++++should this be in db????:
@@ -22,7 +23,8 @@ public class Campaign {
 	private String host; //name of host
 	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //players involved
 	
-	private boolean isAllLoaded = false; //if fully loaded from db
+	private boolean isAllDownloaded = false; //if fully downloaded from db
+	////////////////private boolean isAllUploaded = false; //if fully uploaded from db
 	
 	private Campaign() {} //blank constructor
 	
@@ -75,8 +77,11 @@ public class Campaign {
 			return this;
 		}
 		
-		//set if db loaded:
-		
+		//set if fully uploaded:
+		public CampaignBuilder setIsAllDownloaded(boolean bool) {
+			campaign.isAllDownloaded = bool;
+			return this;
+		}
 		
 		//return built campaign:
 		public Campaign build() { return campaign; } 
@@ -86,7 +91,9 @@ public class Campaign {
 	public String getEventName() { return event.getName(); } //get event name
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
 	public String getHostName() { return host; } //get host name
-	public boolean getIsAllLoaded() { return isAllLoaded; } //get if fully loaded from db
+	
+	public boolean getIsAllDownloaded() { return isAllDownloaded; } //get if fully downloaded
+	///////////////public boolean getIsAllUploaded() { return isAllUploaded; } //get if fully uploaded
 		
 	//get current progress:
 	public double getProgress() {
@@ -94,7 +101,7 @@ public class Campaign {
 	}
 	
 	//return whether user is present in campaign:
-	public boolean userIsPlaying(String userName) {
+	public boolean getUserIsPlaying(String userName) {
 		return nameToPlayer.containsKey(userName);
 	}
 	
@@ -103,6 +110,7 @@ public class Campaign {
 		return "Campaign [id=" + id + ", event=" + event + ", period=" + period + ", turnNum=" + turnNum + ", created="
 				+ created + ", host=" + host + ", nameToPlayer=" + nameToPlayer + "]";
 	}
+	
 	
 	
 	

@@ -119,11 +119,11 @@ public class CampaignsController implements Frameable, Rootable {
 				//filter listView according to selected radioBtn: 
 		 	 	if(selected.getText().equals(playingRB.getText())) {
 					//set filteredList predicate to filter by playingRB selection:
-					filteredCampaigns.setPredicate(cmp -> cmp.userIsPlaying(LoginController.getUserName())); 
+					filteredCampaigns.setPredicate(cmp -> cmp.getUserIsPlaying(LoginController.getUserName())); 
 					campaignsLV.setItems(filteredCampaigns); //set listView to filteredList
 				}else if(selected.getText().equals(notPlayingRB.getText())) {
 			 		//set filteredList predicate to filter by notPlayingRB selection:
-					filteredCampaigns.setPredicate(cmp -> !cmp.userIsPlaying(LoginController.getUserName())); 
+					filteredCampaigns.setPredicate(cmp -> !cmp.getUserIsPlaying(LoginController.getUserName())); 
 					campaignsLV.setItems(filteredCampaigns); //set listView to filteredList
 				}else {
 					campaignsLV.setItems(observCampaigns);  //set listView to non-filtered campaigns list 
@@ -131,17 +131,6 @@ public class CampaignsController implements Frameable, Rootable {
 			} 
 		});
 	}
-	
-	/*
-	void yo() {
-	
-		campaignsLV.setOnMouseClicked(mouseClickedEvent -> {
-        if (mouseClickedEvent.getButton().equals(MouseButton.PRIMARY) && mouseClickedEvent.getClickCount() == 2) {
-            System.out.println("double clicked");                       
-        }
-    });
-	}*/
-	
 	
 	//create a new campaign:
 	void createCampaign(Event event) {

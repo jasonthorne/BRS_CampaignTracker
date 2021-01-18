@@ -3,6 +3,8 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXListView;
+
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,21 +15,18 @@ import model.Campaign;
 
 public class CampaignController implements Rootable, Frameable{
 	
-	@FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private AnchorPane testAP;
-
-    @FXML
-    private Label testLbl;
-
+	
+	@FXML private ResourceBundle resources;
+    @FXML private URL location;
+   
+    @FXML private AnchorPane rootAP;
+    @FXML  private Label eventNameLbl;
+    @FXML private JFXListView<?> missionsLV;
+    @FXML private JFXListView<?> playersLV;
+   
     @FXML
     void initialize() {
-    
+    	
     }
 	
 	
@@ -37,12 +36,15 @@ public class CampaignController implements Rootable, Frameable{
     //fxml root node:
   	private Parent root; 
   	
-  	boolean wasOpened = false;
+  	private final Campaign campaign;
     
 	//constructor:
 	CampaignController(Campaign campaign){
-		//////////////stage.setScene(scene); //add scene to stage
 		setRoot(); //set root node
+		this.campaign = campaign; //assign  campaign
+		//////////////stage.setScene(scene); //add scene to stage
+		eventNameLbl.setText(Integer.toString(campaign.getId()));
+		
 		
 		/*
 		if(!wasOpened){ 
