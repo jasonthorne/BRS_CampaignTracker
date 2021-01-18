@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import model.Campaign;
 
@@ -30,13 +31,24 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
     @FXML
     void initialize() {
     	//show campaign:
-    	showCampaignBtn.setOnAction(event -> System.out.println("yo"));
+    	///////showCampaignBtn.setOnAction(event -> System.out.println("yo"));
+    	//showCampaignBtn.setOnAction(event -> Frameable.changeView(root, new CampaignController(campaign)));
+    	//https://stackoverflow.com/questions/51536489/how-can-i-detect-javafx-double-click-on-listview
+    	/*setOnMouseClicked(mouseClickedEvent -> {
+            if (mouseClickedEvent.getButton().equals(MouseButton.PRIMARY) && mouseClickedEvent.getClickCount() == 2) {
+                System.out.println("double clicked");                       
+            }
+        });*/
+    	
     }
     
     //root element for this controller:
   	private final Parent root = Rootable.getRoot(this, "/view/campaignCell.fxml");
-	
+  
 	private final CampaignsController campaignsCtrlr; //??????????????????????????? needed???
+	
+	//whether cell has been previously clicked:
+	boolean wasClicked = false;
 	
 	//constructor:
 	CampaignCellController(CampaignsController campaignsCtrlr){
@@ -60,9 +72,26 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
 			progressPI.setProgress(campaign.getProgress()); //get progress
 			//https://docs.oracle.com/javafx/2/ui_controls/progress.htm
 			
-			setText(null); 
-	        setGraphic(rootAP); //set this root element as the graphic	
+			//add click event 
+	        setOnMouseClicked(mouseClickedEvent -> {
+                if (mouseClickedEvent.getButton().equals(MouseButton.PRIMARY) && mouseClickedEvent.getClickCount() == 2) {
+                    System.out.println("double clicked: " + campaign.getId());    
+                    
+                    if(!wasClicked){
+                    	  System.out.println("wasnt clicked ");
+                    	  wasClicked = true;
+                    }else {
+                    	  System.out.println("was clicked "); 
+                    }
+                }
+                /**https://stackoverflow.com/questions/51536489/how-can-i-detect-javafx-double-click-on-listview*/
+            });
+	        
+	        setText(null); 
+	        setGraphic(rootAP); //set this root element as the graphic
         }
     }
+	
+	
 
 }

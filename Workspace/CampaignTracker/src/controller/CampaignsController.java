@@ -29,6 +29,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import model.Campaign;
 import model.Event;
@@ -50,13 +51,11 @@ public class CampaignsController implements Frameable, Rootable {
    
     @FXML	
     void initialize() {
-    	//////////////////////////setCampaigns(); //populate campaigns list
-    	setToggleListener(); //add change listener to toggle group
+    	setToggleListener(); //add listener to radio buttons toggle group
+    	setCampaignsListener(); //add listener to observable campaigns
     	//set btn action:
     	newCampaignBtn.setOnAction(event -> Frameable.changeView(root, eventsCtrlr));
     }
-    
-    List<Campaign>testCamps = new ArrayList<Campaign>(); //=============DELETE LATER :P
     
     //observable list of campaigns:
     private final ObservableList<Campaign>observCampaigns = FXCollections.observableArrayList();
@@ -133,6 +132,38 @@ public class CampaignsController implements Frameable, Rootable {
 			} 
 		});
 	}
+	
+	
+	//=====================================================++++++++++++++++++++++++++++++++
+	private Campaign selectedCampaign; //++++++++++++++++++++++++++++TEST
+	
+	//add change listener to list view:
+    private void setCampaignsListener() {
+    	
+    	 
+    	/* campaignsLV.setOnMouseClicked(mouseClickedEvent -> {
+        	        if (mouseClickedEvent.getButton().equals(MouseButton.PRIMARY) && mouseClickedEvent.getClickCount() == 2) {
+        	            System.out.println("double clicked");                       
+        	        }
+        	    });
+     	  */
+     	
+    	
+	/**https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2	*/
+    /*	campaignsLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Campaign>() {
+    		@Override  //override change listener's changed: 
+    	    public void changed(ObservableValue<? extends Campaign> observable, Campaign oldVal, Campaign newVal) {
+    			selectedCampaign = newVal; //++++++++++++++++TEST: save selected event data +++++++++++
+    			System.out.println("you selected: " + selectedCampaign);
+    	    }
+    	});*/
+    } 
+    
+    
+   
+	
+	
+	//=====================================================++++++++++++++++++++++++++++++++
 	
 	//create a new campaign:
 	void createCampaign(Event event) {
