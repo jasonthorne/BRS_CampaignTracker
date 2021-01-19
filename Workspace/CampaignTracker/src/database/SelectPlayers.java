@@ -3,23 +3,22 @@ package database;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.Map;
 
 import model.Campaign;
 import model.Campaign.CampaignBuilder;
+import model.Player;
 
-public interface SelectCampaign {
-
-	public static Campaign select(Campaign campaign) { //++++++++++++++++THIS SHOULD BE SELECT PLAYERS!!! :P AND GET ALL OF IT'S NESTED DATA AND ADD IT TO CAMPAIGN
-		
-		//create campaign builder:
-		CampaignBuilder campaignBuilder = new Campaign.CampaignBuilder(); 
+public interface SelectPlayers {
+	
+	public static Map<String, Player> select(Map<String, Player>nameToPlayer, int campaignId) {
 		
 		try (Connection connection = ConnectDB.getConnection();  //connect to DB
 			//statements for selecting campaign and it's children:
-			CallableStatement campaignStatement = connection.prepareCall("{CALL select_campaign(?)}");
-			CallableStatement playersStatement = connection.prepareCall("{CALL select_players(?)}");) {
+			CallableStatement campaignStatement = connection.prepareCall("{CALL select_players(?)}");
+			/*CallableStatement playersStatement = connection.prepareCall("{CALL select_players(?)}");*/) {
 			
-			campaignStatement.setInt(1, campaign.getId()); //set input with name
+			////campaignStatement.setInt(1, campaign.getId()); //set input with name
 			ResultSet campaignRS = campaignStatement.executeQuery(); //execute statement
 			
 			//result sets for nested data:
@@ -33,6 +32,6 @@ public interface SelectCampaign {
 				
 		} catch(Exception e) { e.printStackTrace(); }
 		
-		return campaignBuilder.build(); //return campaign
+		return nameToPlayer; //return campaign
 	}
 }
