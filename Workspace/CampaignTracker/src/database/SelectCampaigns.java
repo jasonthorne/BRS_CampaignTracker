@@ -18,6 +18,8 @@ import model.Period.Block;
 import model.Plane.Status;
 import model.Player;
 
+/** ?????? ++++++++++++++++++  */
+
 public interface SelectCampaigns {
 	
 	public static List<Campaign> select(Map<String, Event>nameToEvent) {
@@ -71,7 +73,7 @@ public interface SelectCampaigns {
 			}
 			
 		} catch(Exception e) { e.printStackTrace(); }
-		System.out.println(campaigns);
+		
 		return campaigns; //return campaigns
 	}
 }

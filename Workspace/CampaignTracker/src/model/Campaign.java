@@ -18,7 +18,7 @@ public class Campaign implements Loadable{
 	private int id; //id of campaign
 	private Event event; //historical event covered 
 	private Period period; //current period of history
-	private int turn; //current turn number
+	private int turn; //current turn
 	private Timestamp created; //time stamp when created
 	private String host; //name of host
 	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //players involved

@@ -71,6 +71,8 @@ public class CampaignController implements Rootable, Frameable{
 			//download campaign:
 			//++++++HAVE A LOADING ANIMATION HERE TOO! WHILE THIS DOWNLOADS! ++++++++++++++
 			
+			//download campaign:
+			this.campaign = database.SelectCampaign.select(campaign);
 			
 			//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
 			

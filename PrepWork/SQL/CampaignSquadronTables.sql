@@ -292,6 +292,22 @@ CREATE TABLE mission_results (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
+/*----------------------------------------------------*/
+
+DELIMITER $$
+CREATE PROCEDURE select_campaign (IN campaign_ID INT)
+BEGIN
+	/*
+	SELECT users.name FROM users
+		INNER JOIN players ON users.userID = players.userID
+	WHERE players.campaignID = campaign_ID;
+	*/
+	
+	
+END $$
+DELIMITER ;
+
+
 
 /*============================================-==================*/
 /* select all entries */
