@@ -107,7 +107,7 @@ DELIMITER $$
 CREATE PROCEDURE insert_player (IN campaign_ID INT, IN user_ID INT, IN date_time DATETIME)
 BEGIN
 	INSERT INTO players (campaignID, userID, created) VALUES (
-		campaign_ID, user_ID, date_time);
+		campaign_ID, user_ID, date_time); /* +++++++++++++++++++++++++++ADD Player Id to squadron here too! AND RETURN SQADRON ID*/
 END $$
 DELIMITER ;
 

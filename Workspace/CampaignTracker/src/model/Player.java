@@ -4,11 +4,11 @@ import java.sql.Timestamp;
 
 public class Player {
 	
-	private int id; //player id ????????????NEEDED?????????
+	//////////////private int id; //player id ????????????NEEDED????????? ++++++++++PROB NOT :P
 	private String name; //user name
 	private int score; //score
 	private boolean isActive; //if active participant
-	private Timestamp created; //time stamp when created ?????????????NEEDED????????
+	private Timestamp created; //creation time stamp ?????????????NEEDED????????
 	private Squadron squadron; //squadron managed
 	
 	private Player() {} //blank constructor
@@ -19,10 +19,10 @@ public class Player {
 		private Player player = new Player(); //create player
 		
 		//set id:
-		public PlayerBuilder setId(int id) {
+		/*public PlayerBuilder setId(int id) {
 			player.id = id; 
 			return this; 
-		}
+		}*/
 		
 		//set name:
 		public PlayerBuilder setName(String name) {
@@ -52,7 +52,7 @@ public class Player {
 	}
 	
 	//getters:
-	public int getId() { return id; } /** +++++++++++++ not sure if needed??? ++++++++*/
+	/////////////public int getId() { return id; } /** +++++++++++++ not sure if needed??? ++++++++*/
 	public String getName() { return name; }
 	public int getScore() { return score; }
 	public boolean getIsActive() { return isActive; } 
@@ -62,12 +62,9 @@ public class Player {
 	
 	@Override
 	public String toString() {
-		return "Player [id=" + id + ", name=" + name + ", score=" + score + ", isActive=" + isActive + ", created="
-				+ created + ", squadron=" + squadron + "]";
+		return "Player [name=" + name + ", score=" + score + ", isActive=" + isActive + ", created=" + created
+				+ ", squadron=" + squadron + "]";
 	}
-	
-	
-	
 	
 	
 	
