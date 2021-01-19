@@ -163,7 +163,7 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE select_campaigns () /*+++++++++++++++++++ADD GET TURN HERE TOO! */
+CREATE PROCEDURE select_campaigns ()
 BEGIN
 	SELECT
 		campaigns.campaignID AS campaign_ID,
@@ -298,18 +298,24 @@ CREATE TABLE mission_results (
 DELIMITER $$
 CREATE PROCEDURE select_players (IN campaign_ID INT)
 BEGIN
-	/*
-	get all player data
-	playerID - YES
-	////////campaignID INT,
-	////////////userID INT,
-	userName - YES
-	score INT DEFAULT 0, - YES
-	is_active BOOLEAN DEFAULT TRUE,- YES
-	created DATETIME, - YES
-	*/
+	SELECT
+		players.playerID AS player_ID,
+		(SELECT users.name FROM users 
+			INNER JOIN players ON 
+				users.userID = players.userID 
+				AND players.playerID = player_ID)
+		AS name,
+		players.score AS score,
+		players.is_active AS is_active,
+		players.created AS created,
+		
+		/* squadron id and others++++++++++++++++++++ */
+		squadrons.skill_points AS skill_points /* +++++++++++++ no squadron added, so this doesnt work :P */
+		
 	
-	
+	FROM players
+	INNER JOIN squadrons ON players.playerID = squadrons.playerID
+	WHERE players.campaignID = campaign_ID;
 END $$
 DELIMITER ;
 /*
@@ -321,8 +327,45 @@ BEGIN
 	WHERE players.campaignID = campaign_ID;
 END $$
 DELIMITER ;
-*/
 
+
+playerID INT NOT NULL AUTO_INCREMENT,
+	campaignID INT,
+	userID INT,
+	score INT DEFAULT 0,
+	is_active BOOLEAN DEFAULT TRUE,
+	created DATETIME,
+
+*/
+/*
+SELECT
+		campaigns.campaignID AS campaign_ID,
+		events.name AS event_name,
+		periods.block AS period_block,
+		years.year_value AS period_year,
+		campaigns.turn AS turn,
+		campaigns.created AS date_time,
+		
+		
+		(SELECT users.name FROM users 
+			INNER JOIN players ON 
+				users.userID = players.userID
+			INNER JOIN hosts ON 
+				players.playerID = hosts.playerID
+		WHERE players.campaignID = campaign_ID 
+			AND players.playerID = hosts.playerID)
+		AS host_name,
+		
+		
+		(SELECT COUNT(event_periods.event_periodID) FROM event_periods
+		WHERE event_periods.eventID = campaigns.eventID)
+		AS periods_count
+	
+	FROM campaigns
+		INNER JOIN periods ON campaigns.periodID = periods.periodID
+		INNER JOIN years ON periods.yearID = years.yearID
+		INNER JOIN events ON campaigns.eventID = events.eventID;
+*/
 /*============================================-==================*/
 /* select all entries */
 
