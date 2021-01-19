@@ -40,7 +40,7 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
 
 	//constructor:
 	CampaignCellController(CampaignsController campaignsCtrlr){
-		this.campaignsCtrlr = campaignsCtrlr; //assign campaigns controller
+		this.campaignsCtrlr = campaignsCtrlr; 
 	}
 	
 	//update cell with campaign data:
@@ -57,7 +57,7 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
   	    	eventNameLbl.setText(campaign.getEventName()); //get event name
   	    	createdLbl.setText(campaign.getCreated().toString()); //get created
 			hostNameLbl.setText(campaign.getHostName()); //get host name
-			isPlayingLbl.setText((campaign.getUserIsPlaying(LoginController.getUserName())?"Yes":"No")); //get if user is playing
+			isPlayingLbl.setText(campaign.getUserIsPlaying(LoginController.getUserName())?"Yes":"No"); //get if user is playing
 			progressPI.setProgress(campaign.getProgress()); //get progress
 		
 			//add double-click event:

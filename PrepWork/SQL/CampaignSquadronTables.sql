@@ -170,6 +170,7 @@ BEGIN
 		events.name AS event_name,
 		periods.block AS period_block,
 		years.year_value AS period_year,
+		campaigns.turn AS turn,
 		campaigns.created AS date_time,
 		
 		/* get name of host: */
@@ -339,7 +340,7 @@ DELIMITER ;
 
 
 DELIMITER $$
-CREATE PROCEDURE select_players (IN campaign_ID INT)
+CREATE PROCEDURE select_players (IN campaign_ID INT) /*/++++++++++++++++++REPLACES ABOVE! */
 BEGIN
 	/*
 	get all player data

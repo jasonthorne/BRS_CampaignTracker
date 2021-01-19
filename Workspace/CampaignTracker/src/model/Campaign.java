@@ -52,6 +52,12 @@ public class Campaign implements Loadable{
 			return this;
 		}
 		
+		//set turn:
+		public CampaignBuilder setTurn(int turn) {
+			campaign.turn = turn;
+			return this;
+		}
+		
 		//set created:
 		public CampaignBuilder setCreated(Timestamp timestamp) {
 			campaign.created = timestamp;

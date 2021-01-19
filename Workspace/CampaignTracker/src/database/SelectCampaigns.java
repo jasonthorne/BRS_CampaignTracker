@@ -40,6 +40,7 @@ public interface SelectCampaigns {
 				//create campaign builder:
 				CampaignBuilder campaignBuilder = new Campaign.CampaignBuilder(); 
 				campaignBuilder.setId(campaignsRS.getInt("campaign_ID")); //set id
+				campaignBuilder.setTurn(campaignsRS.getInt("turn")); //set turn
 				campaignBuilder.setCreated(campaignsRS.getTimestamp("date_time")); //set created
 				campaignBuilder.setHost(campaignsRS.getString("host_name")); //set host name
 				

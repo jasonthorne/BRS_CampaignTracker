@@ -114,9 +114,11 @@ public class EventsController implements Frameable, Rootable {
     //fxml root node:
   	private Parent root; 
   	
+  	//campaigns controller:
   	private final CampaignsController campaignsCtrlr;
   	
-  	private Event selectedEvent; //++++++++++++++++++++++++++++TEST
+  	//mark selected event:
+  	private Event selectedEvent;
   	
     //constructor:
     EventsController(CampaignsController campaignsCtrlr) {
@@ -177,7 +179,7 @@ public class EventsController implements Frameable, Rootable {
     	        observAirForces = FXCollections.observableArrayList(newVal.getAirForces());
     	        airForcesLV.setItems(observAirForces); //set list view with airForces
     	        
-    	        selectedEvent = newVal; //++++++++++++++++TEST: save selected event data +++++++++++
+    	        selectedEvent = newVal; //mark selected event
     	    }
     	});
     } 
