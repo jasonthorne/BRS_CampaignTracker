@@ -9,7 +9,7 @@ import model.Campaign.CampaignBuilder;
 
 public interface SelectCampaign {
 
-	public static Campaign select(Campaign campaign) {
+	public static Campaign select(Campaign campaign) { //++++++++++++++++THIS SHOULD BE SELECT PLAYERS!!! :P AND GET ALL OF IT'S NESTED DATA AND ADD IT TO CAMPAIGN
 		
 		//create campaign builder:
 		CampaignBuilder campaignBuilder = new Campaign.CampaignBuilder(); 
@@ -25,15 +25,12 @@ public interface SelectCampaign {
 			//result sets for nested data:
 			ResultSet playersRS = null; //players result set
 			
-			if(campaignRS.next()) {
+			while(campaignRS.next()) {  
 				
-				//add pulled data from existing campaign:
+				//grab data known already to passed campaign+++++++++++++++++
 				
+			}
 				
-			}else{
-				//throw exception as more than 1 result was returned:
-				throw new Exception(); } 
-			
 		} catch(Exception e) { e.printStackTrace(); }
 		
 		return campaignBuilder.build(); //return campaign

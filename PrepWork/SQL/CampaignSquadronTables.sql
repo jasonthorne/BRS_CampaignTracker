@@ -163,7 +163,7 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE select_campaigns ()
+CREATE PROCEDURE select_campaigns () /*+++++++++++++++++++ADD GET TURN HERE TOO! */
 BEGIN
 	SELECT
 		campaigns.campaignID AS campaign_ID,
@@ -295,12 +295,60 @@ CREATE TABLE mission_results (
 /*----------------------------------------------------*/
 
 DELIMITER $$
-CREATE PROCEDURE select_campaign (IN campaign_ID INT)
+CREATE PROCEDURE select_campaign (IN campaign_ID INT) /*/+++++++++++++++++++++++SHOULD PROB GO!! */
 BEGIN
 	/*
 	SELECT users.name FROM users
 		INNER JOIN players ON users.userID = players.userID
 	WHERE players.campaignID = campaign_ID;
+	
+	
+	campaignID INT NOT NULL AUTO_INCREMENT, - NO
+	eventID INT, - NO
+	periodID INT, - NO
+	turn INT DEFAULT 0,  - YES - worth pulling just for this????
+	created DATETIME, - NO
+	
+	*/
+	
+	
+END $$
+DELIMITER ;
+
+	/*
+	campaigns.campaignID AS campaign_ID,
+		events.name AS event_name,
+		periods.block AS period_block,
+		years.year_value AS period_year,
+		campaigns.created AS date_time,
+		
+		
+		(SELECT users.name FROM users 
+			INNER JOIN players ON 
+				users.userID = players.userID
+			INNER JOIN hosts ON 
+				players.playerID = hosts.playerID
+		WHERE players.campaignID = campaign_ID 
+			AND players.playerID = hosts.playerID)
+		AS host_name,
+		
+		
+		(SELECT COUNT(event_periods.event_periodID) FROM event_periods
+		WHERE event_periods.eventID = campaigns.eventID)
+		AS periods_count*/
+
+
+DELIMITER $$
+CREATE PROCEDURE select_players (IN campaign_ID INT)
+BEGIN
+	/*
+	get all player data
+	playerID - YES
+	////////campaignID INT,
+	////////////userID INT,
+	score INT DEFAULT 0, - YES
+	is_active BOOLEAN DEFAULT TRUE,- YES
+	created DATETIME, - YES
 	*/
 	
 	
