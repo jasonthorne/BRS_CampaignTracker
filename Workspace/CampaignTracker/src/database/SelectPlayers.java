@@ -14,19 +14,19 @@ public interface SelectPlayers {
 	public static Map<String, Player> select(Map<String, Player>nameToPlayer, int campaignId) {
 		
 		try (Connection connection = ConnectDB.getConnection();  //connect to DB
-			//statements for selecting campaign and it's children:
-			CallableStatement campaignStatement = connection.prepareCall("{CALL select_players(?)}");
+			//statements for selecting players and their children:
+			CallableStatement playersStatement = connection.prepareCall("{CALL select_players(?)}");
 			/*CallableStatement playersStatement = connection.prepareCall("{CALL select_players(?)}");*/) {
 			
-			////campaignStatement.setInt(1, campaign.getId()); //set input with name
-			ResultSet campaignRS = campaignStatement.executeQuery(); //execute statement
+			playersStatement.setInt(1, campaignId); //set input with campaignId
+			ResultSet playersRS = playersStatement.executeQuery(); //execute statement
 			
 			//result sets for nested data:
-			ResultSet playersRS = null; //players result set
+			/////ResultSet playersRS = null; //players result set
 			
-			while(campaignRS.next()) {  
+			while(playersRS.next()) {  
 				
-				//grab data known already to passed campaign+++++++++++++++++
+				
 				
 			}
 				

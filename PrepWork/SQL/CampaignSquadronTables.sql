@@ -106,8 +106,12 @@ CREATE TABLE players (
 DELIMITER $$
 CREATE PROCEDURE insert_player (IN campaign_ID INT, IN user_ID INT, IN date_time DATETIME)
 BEGIN
+	/* add player to players: */
 	INSERT INTO players (campaignID, userID, created) VALUES (
-		campaign_ID, user_ID, date_time); /* +++++++++++++++++++++++++++ADD Player Id to squadron here too! AND RETURN SQADRON ID*/
+		campaign_ID, user_ID, date_time);
+		
+	/* add squadron with id of player: */
+	INSERT INTO squadrons (playerID) VALUES (LAST_INSERT_ID());
 END $$
 DELIMITER ;
 
@@ -202,8 +206,8 @@ DELIMITER ;
 
 CREATE TABLE squadrons (
 	squadronID INT NOT NULL AUTO_INCREMENT,
-	playerID INT, /* needed????????????????????????????????? */
-	airforceID INT, /* when they've added their player to the campaign, theyre taken to a 'choose airforce' page that displays all airforce options (planes & dates & whether airforce has home adv) */
+	playerID INT,
+	airforceID INT DEFAULT 0, /* ++++++++++Default of 0 means none is picked yet, so inform user they need ot pick an airforce! ++++when they've added their player to the campaign, theyre taken to a 'choose airforce' page that displays all airforce options (planes & dates & whether airforce has home adv) */
 	skill_points INT DEFAULT 24, /* skill points start at 24 */
 	PRIMARY KEY (squadronID),
 	FOREIGN KEY (playerID) REFERENCES players(playerID),
@@ -300,72 +304,28 @@ CREATE PROCEDURE select_players (IN campaign_ID INT)
 BEGIN
 	SELECT
 		players.playerID AS player_ID,
+		
+		/* get player name: */
 		(SELECT users.name FROM users 
 			INNER JOIN players ON 
 				users.userID = players.userID 
 				AND players.playerID = player_ID)
 		AS name,
+		
 		players.score AS score,
 		players.is_active AS is_active,
 		players.created AS created,
 		
-		/* squadron id and others++++++++++++++++++++ */
-		squadrons.skill_points AS skill_points /* +++++++++++++ no squadron added, so this doesnt work :P */
+		/* get squadron data: */
+		squadrons.squadronID AS squadron_ID,
+		squadrons.skill_points AS squadron_skill_points
 		
-	
 	FROM players
-	INNER JOIN squadrons ON players.playerID = squadrons.playerID
-	WHERE players.campaignID = campaign_ID;
-END $$
-DELIMITER ;
-/*
-DELIMITER $$
-CREATE PROCEDURE select_player_names (IN campaign_ID INT)
-BEGIN
-	SELECT users.name FROM users
-		INNER JOIN players ON users.userID = players.userID
+		INNER JOIN squadrons ON players.playerID = squadrons.playerID
 	WHERE players.campaignID = campaign_ID;
 END $$
 DELIMITER ;
 
-
-playerID INT NOT NULL AUTO_INCREMENT,
-	campaignID INT,
-	userID INT,
-	score INT DEFAULT 0,
-	is_active BOOLEAN DEFAULT TRUE,
-	created DATETIME,
-
-*/
-/*
-SELECT
-		campaigns.campaignID AS campaign_ID,
-		events.name AS event_name,
-		periods.block AS period_block,
-		years.year_value AS period_year,
-		campaigns.turn AS turn,
-		campaigns.created AS date_time,
-		
-		
-		(SELECT users.name FROM users 
-			INNER JOIN players ON 
-				users.userID = players.userID
-			INNER JOIN hosts ON 
-				players.playerID = hosts.playerID
-		WHERE players.campaignID = campaign_ID 
-			AND players.playerID = hosts.playerID)
-		AS host_name,
-		
-		
-		(SELECT COUNT(event_periods.event_periodID) FROM event_periods
-		WHERE event_periods.eventID = campaigns.eventID)
-		AS periods_count
-	
-	FROM campaigns
-		INNER JOIN periods ON campaigns.periodID = periods.periodID
-		INNER JOIN years ON periods.yearID = years.yearID
-		INNER JOIN events ON campaigns.eventID = events.eventID;
-*/
 /*============================================-==================*/
 /* select all entries */
 
