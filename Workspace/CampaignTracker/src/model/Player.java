@@ -42,6 +42,12 @@ public class Player {
 			return this; 
 		}
 		
+		//set created:
+		public PlayerBuilder setCreated(Timestamp timestamp) {
+			player.created = timestamp;
+			return this;
+		}
+		
 		//set squadron:
 		public PlayerBuilder setSquadron(Squadron squadron) { //++++++++++++++++++++++MAKE STRONGER!! :P
 			player.squadron = squadron; 

@@ -310,14 +310,15 @@ BEGIN
 			INNER JOIN players ON 
 				users.userID = players.userID 
 				AND players.playerID = player_ID)
-		AS name,
+		AS player_name,
 		
-		players.score AS score,
-		players.is_active AS is_active,
-		players.created AS created,
+		players.score AS player_score,
+		players.is_active AS player_is_active,
+		players.created AS player_created,
 		
 		/* get squadron data: */
 		squadrons.squadronID AS squadron_ID,
+		squadrons.airforceID AS squadron_airforceID,
 		squadrons.skill_points AS squadron_skill_points
 		
 	FROM players

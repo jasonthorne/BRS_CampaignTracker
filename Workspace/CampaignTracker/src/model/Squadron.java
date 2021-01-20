@@ -1,8 +1,14 @@
 package model;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 public class Squadron {
 	
 	int skillPoints; //skill points available
+	AirForce airForce; //airForce flown for
+	
+	private Map<String, Pilot>nameToPilot = new TreeMap<String, Pilot>(); //pilots involved
 	
 	private Squadron() {} //blank constructor
 	
