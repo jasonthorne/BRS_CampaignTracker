@@ -47,7 +47,7 @@ public interface SelectPlayers {
 				
 				//if player has selected an air force:
 				if(airForceIdCheck > 0) {
-					squadronBuilder.setAirForce(playersRS.getString("airforce_name"));
+					squadronBuilder.setAirForce(playersRS.getString("airforce_name")); //set air force name
 					
 					//if so then there COULD be a squadron +++++++++++++++
 					

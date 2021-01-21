@@ -207,7 +207,7 @@ DELIMITER ;
 CREATE TABLE squadrons (
 	squadronID INT NOT NULL AUTO_INCREMENT,
 	playerID INT,
-	airforceID INT DEFAULT 0, /* ++++++++++Default of 0 means none is picked yet, so inform user they need ot pick an airforce! ++++when they've added their player to the campaign, theyre taken to a 'choose airforce' page that displays all airforce options (planes & dates & whether airforce has home adv) */
+	airforceID INT, /*DEFAULT 0, /* ++++++++++CANT BE DEFAULT dummy :P  ++++++++++++++++++Default of 0 means none is picked yet, so inform user they need ot pick an airforce! ++++when they've added their player to the campaign, theyre taken to a 'choose airforce' page that displays all airforce options (planes & dates & whether airforce has home adv) */
 	skill_points INT DEFAULT 24, /* skill points start at 24 */
 	PRIMARY KEY (squadronID),
 	FOREIGN KEY (playerID) REFERENCES players(playerID),
@@ -305,7 +305,6 @@ BEGIN
 	SELECT
 		players.playerID AS player_ID,
 		
-		/* player data: */
 		(SELECT users.name FROM users 
 			INNER JOIN players ON 
 				users.userID = players.userID 
@@ -316,12 +315,35 @@ BEGIN
 		players.is_active AS player_is_active,
 		players.created AS player_created,
 		
-		/* squadron data: */
+		
+		/*===========================================*/
+		DECLARE squadronID_check INT DEFAULT 0;
+	
+		/* check if user_name is already in db: */
+		SELECT users.userID INTO userID_check FROM users 
+		WHERE users.name = user_name;
+	
+		/* if so, set user_ID as 0: */
+		IF userID_check > 0 THEN SET user_ID = 0; 
+	
+		
+		/*===========================================*/
+		
+		/*++++++++++++++++WE DONT KNOW IF A PLAYER HAS ADED A SQUADRON. WE should return an id or 0 if they have. 
+		If tyhey have, THEN there'll be a chosen airforce too! */
 		squadrons.squadronID AS squadron_ID,
-		squadrons.airforceID AS squadron_airforceID,
-		squadrons.skill_points AS squadron_skill_points
+		squadrons.skill_points AS squadron_skill_points,
+		squadrons.airforceID AS squadron_airforceID
 		/* ++++++++++++++add airforce name here then give option to grab in SelectPlayers, based on id result. ++++++*/
 		/*airforces.name AS */
+		
+		/* passing in airforce id, 
+			getting airforce name*/
+		/* get count of event_periods: */
+		/*(SELECT airforces.name FROM airforces
+		WHERE airforces.airforceID = squadron_airforceID)
+		AS airforce_name	*/
+			
 		
 	FROM players
 		INNER JOIN squadrons ON players.playerID = squadrons.playerID
