@@ -327,6 +327,24 @@ BEGIN
 		IF userID_check > 0 THEN SET user_ID = 0; 
 	
 		
+		
+		/* return user naame if part of campaign: */
+		/*
+		IFNULL(
+			(SELECT users.name FROM users
+				INNER JOIN players ON users.userID = players.userID
+			WHERE players.campaignID = campaign_ID AND users.userID = user_ID), 
+			'N/A')
+		AS user_name
+		*/
+		
+		
+		
+		
+		
+		
+		
+		
 		/*===========================================*/
 		
 		/*++++++++++++++++WE DONT KNOW IF A PLAYER HAS ADED A SQUADRON. WE should return an id or 0 if they have. 
