@@ -305,7 +305,7 @@ BEGIN
 	SELECT
 		players.playerID AS player_ID,
 		
-		/* get player name: */
+		/* player data: */
 		(SELECT users.name FROM users 
 			INNER JOIN players ON 
 				users.userID = players.userID 
@@ -316,10 +316,12 @@ BEGIN
 		players.is_active AS player_is_active,
 		players.created AS player_created,
 		
-		/* get squadron data: */
+		/* squadron data: */
 		squadrons.squadronID AS squadron_ID,
 		squadrons.airforceID AS squadron_airforceID,
 		squadrons.skill_points AS squadron_skill_points
+		/* ++++++++++++++add airforce name here then give option to grab in SelectPlayers, based on id result. ++++++*/
+		/*airforces.name AS */
 		
 	FROM players
 		INNER JOIN squadrons ON players.playerID = squadrons.playerID

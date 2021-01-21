@@ -111,6 +111,8 @@ public class Campaign implements Loadable{
 		return nameToPlayer.containsKey(userName);
 	}
 	
+	/////////////public int getAirForceName(int airForceId) { return event.get} +++++++++++++
+	
 	@Override
 	public String toString() {
 		return "Campaign [id=" + id + ", event=" + event + ", period=" + period + ", turnNum=" + turn + ", created="

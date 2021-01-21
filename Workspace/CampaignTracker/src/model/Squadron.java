@@ -5,8 +5,8 @@ import java.util.TreeMap;
 
 public class Squadron {
 	
-	int skillPoints; //skill points available
-	AirForce airForce; //airForce flown for
+	private String airForce = ""; //airForce name
+	private int skillPoints; //skill points available
 	
 	private Map<String, Pilot>nameToPilot = new TreeMap<String, Pilot>(); //pilots involved
 	
@@ -17,6 +17,12 @@ public class Squadron {
 		
 		//create squadron:
 		private Squadron squadron = new Squadron();
+		
+		//set air force:
+		public SquadronBuilder setAirForce(String airForce) {
+			squadron.airForce = airForce;
+			return this;
+		}
 		
 		//set skill points:
 		public SquadronBuilder setSkillPoints(int skillPoints) {

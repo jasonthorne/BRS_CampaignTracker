@@ -40,6 +40,23 @@ public interface SelectPlayers {
 				playerBuilder.setCreated(playersRS.getTimestamp("player_created")); //set created
 				
 				SquadronBuilder squadronBuilder = new Squadron.SquadronBuilder(); //create squadron builder
+				squadronBuilder.setSkillPoints(playersRS.getInt("squadron_skill_points")); //set skill points
+				/////int squadronId = playersRS.getInt("squadron_ID"); //get squadron id
+				
+				int airForceIdCheck = playersRS.getInt("squadron_airforceID"); //get air force id
+				
+				//if player has selected an air force:
+				if(airForceIdCheck > 0) {
+					squadronBuilder.setAirForce(playersRS.getString("airforce_name"));
+					
+					//if so then there COULD be a squadron +++++++++++++++
+					
+					/** +++++++++++++++++++++++++++ THOUGHT ABOUT SAFE SETTERS: ++++++++++++++++++*/
+					//pass the object in to the setter + the value you want to add to it, then add it inside trhe method & pass back the entered object!!! 
+					//walah! :P
+					
+				}
+				
 				
 			}
 				
