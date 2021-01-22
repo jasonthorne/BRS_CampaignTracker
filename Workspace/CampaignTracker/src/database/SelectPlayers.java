@@ -34,11 +34,13 @@ public interface SelectPlayers {
 			while(playersRS.next()) {  
 				
 				PlayerBuilder playerBuilder = new Player.PlayerBuilder(); //create new player builder
-				playerBuilder.setName(playersRS.getString("player_name")); //set player name
-				playerBuilder.setScore(playersRS.getInt("player_score")); //set player score
-				playerBuilder.setIsActive(playersRS.getBoolean("player_is_active")); //set if active
-				playerBuilder.setCreated(playersRS.getTimestamp("player_created")); //set created
+				playerBuilder.setName(playersRS.getString("name")); //set player name
+				playerBuilder.setScore(playersRS.getInt("score")); //set player score
+				playerBuilder.setIsActive(playersRS.getBoolean("is_active")); //set if active
+				playerBuilder.setCreated(playersRS.getTimestamp("created")); //set created
 				
+				
+				/*
 				SquadronBuilder squadronBuilder = new Squadron.SquadronBuilder(); //create squadron builder
 				squadronBuilder.setSkillPoints(playersRS.getInt("squadron_skill_points")); //set skill points
 				/////int squadronId = playersRS.getInt("squadron_ID"); //get squadron id
@@ -51,12 +53,27 @@ public interface SelectPlayers {
 					
 					//if so then there COULD be a squadron +++++++++++++++
 					
-					/** +++++++++++++++++++++++++++ THOUGHT ABOUT SAFE SETTERS: ++++++++++++++++++*/
-					//pass the object in to the setter + the value you want to add to it, then add it inside trhe method & pass back the entered object!!! 
-					//walah! :P
+					
+					
+				}*/
+				
+				int squadronIdCheck = playersRS.getInt("squadron_ID_check"); //check for squadron id
+				
+				//if valid squadron id was returned (> 0)
+				if(squadronIdCheck > 0) {
+					
+					//////squadronBuilder.setAirForce(playersRS.getString("airforce_name")); //set air force name
+					
+					//if so then there COULD be a squadron +++++++++++++++
+					
+					
 					
 				}
 				
+				
+				/** +++++++++++++++++++++++++++ THOUGHT ABOUT SAFE SETTERS: ++++++++++++++++++*/
+				//pass the object in to the setter + the value you want to add to it, then add it inside trhe method & pass back the entered object!!! 
+				//walah! :P
 				
 			}
 				

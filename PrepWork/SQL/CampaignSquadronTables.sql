@@ -109,9 +109,6 @@ BEGIN
 	/* add player to players: */
 	INSERT INTO players (campaignID, userID, created) VALUES (
 		campaign_ID, user_ID, date_time);
-		
-	/* add squadron with id of player: */
-	INSERT INTO squadrons (playerID) VALUES (LAST_INSERT_ID());
 END $$
 DELIMITER ;
 
@@ -309,33 +306,16 @@ BEGIN
 			INNER JOIN players ON 
 				users.userID = players.userID 
 				AND players.playerID = player_ID)
-		AS player_name,
+		AS name,
 		
-		players.score AS player_score,
-		players.is_active AS player_is_active,
-		players.created AS player_created,
-		
-		
-		/*===========================================*/
-		
-		
-		
-		/* return user naame if part of campaign: */
-		/*
-		IFNULL(
-			(SELECT users.name FROM users
-				INNER JOIN players ON users.userID = players.userID
-			WHERE players.campaignID = campaign_ID AND users.userID = user_ID), 
-			'N/A')
-		AS user_name
-		*/
-		
-		squadrons.airforceID AS squadron_airforceID,
+		players.score AS score,
+		players.is_active AS is_active,
+		players.created AS created,
 		
 		/* checks if squadron id exists for player (returns 0 if no id found): */ 
 		IFNULL(
 			(SELECT squadrons.squadronID FROM squadrons
-			WHERE squadrons.playerID = player_ID),0 )
+			WHERE squadrons.playerID = player_ID), 0)
 		AS squadron_ID_check
 		
 		
