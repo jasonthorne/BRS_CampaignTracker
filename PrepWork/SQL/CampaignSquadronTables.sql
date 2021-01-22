@@ -317,15 +317,7 @@ BEGIN
 		
 		
 		/*===========================================*/
-		DECLARE squadronID_check INT DEFAULT 0;
-	
-		/* check if user_name is already in db: */
-		SELECT users.userID INTO userID_check FROM users 
-		WHERE users.name = user_name;
-	
-		/* if so, set user_ID as 0: */
-		IF userID_check > 0 THEN SET user_ID = 0; 
-	
+		
 		
 		
 		/* return user naame if part of campaign: */
@@ -338,8 +330,13 @@ BEGIN
 		AS user_name
 		*/
 		
+		squadrons.airforceID AS squadron_airforceID,
 		
-		
+		/* checks if squadron id exists for player (returns 0 if no id found): */ 
+		IFNULL(
+			(SELECT squadrons.squadronID FROM squadrons
+			WHERE squadrons.playerID = player_ID),0 )
+		AS squadron_ID_check
 		
 		
 		
@@ -349,9 +346,9 @@ BEGIN
 		
 		/*++++++++++++++++WE DONT KNOW IF A PLAYER HAS ADED A SQUADRON. WE should return an id or 0 if they have. 
 		If tyhey have, THEN there'll be a chosen airforce too! */
-		squadrons.squadronID AS squadron_ID,
-		squadrons.skill_points AS squadron_skill_points,
-		squadrons.airforceID AS squadron_airforceID
+		/*squadrons.squadronID AS squadron_ID,
+		squadrons.skill_points AS squadron_skill_points,*/
+		
 		/* ++++++++++++++add airforce name here then give option to grab in SelectPlayers, based on id result. ++++++*/
 		/*airforces.name AS */
 		
