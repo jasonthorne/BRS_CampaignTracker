@@ -16,22 +16,22 @@ import model.Squadron.SquadronBuilder;
 
 public interface SelectPlayers {
 	
-	public static Map<String, Player> select(/*Map<String, Player>nameToPlayer,*/ int campaignId) {
+	public static Map<String, Player> select(int campaignId) {
 		
 		Map<String, Player>nameToPlayer = new HashMap<String, Player>(); //map for players
 		
 		try (Connection connection = ConnectDB.getConnection();  //connect to DB
 			//statements for selecting players and their children:
 			CallableStatement playersStatement = connection.prepareCall("{CALL select_players(?)}");
-			/*CallableStatement playersStatement = connection.prepareCall("{CALL select_players(?)}");*/) {
+			CallableStatement squadronStatement = connection.prepareCall("{CALL select_squadron(?)}");) {
 			
 			playersStatement.setInt(1, campaignId); //set input with campaignId
 			ResultSet playersRS = playersStatement.executeQuery(); //execute statement
 			
 			//result sets for nested data:
-			/////ResultSet playersRS = null; //players result set
+			ResultSet squadronRS = null; //squadron result set
 			
-			while(playersRS.next()) {  
+			while(playersRS.next()) {
 				
 				PlayerBuilder playerBuilder = new Player.PlayerBuilder(); //create new player builder
 				playerBuilder.setName(playersRS.getString("name")); //set player name
@@ -39,35 +39,26 @@ public interface SelectPlayers {
 				playerBuilder.setIsActive(playersRS.getBoolean("is_active")); //set if active
 				playerBuilder.setCreated(playersRS.getTimestamp("created")); //set created
 				
-				
-				/*
-				SquadronBuilder squadronBuilder = new Squadron.SquadronBuilder(); //create squadron builder
-				squadronBuilder.setSkillPoints(playersRS.getInt("squadron_skill_points")); //set skill points
-				/////int squadronId = playersRS.getInt("squadron_ID"); //get squadron id
-				
-				int airForceIdCheck = playersRS.getInt("squadron_airforceID"); //get air force id
-				
-				//if player has selected an air force:
-				if(airForceIdCheck > 0) {
-					squadronBuilder.setAirForce(playersRS.getString("airforce_name")); //set air force name
-					
-					//if so then there COULD be a squadron +++++++++++++++
-					
-					
-					
-				}*/
-				
 				int squadronIdCheck = playersRS.getInt("squadron_ID_check"); //check for squadron id
 				
 				//if valid squadron id was returned (> 0)
 				if(squadronIdCheck > 0) {
 					
-					//////squadronBuilder.setAirForce(playersRS.getString("airforce_name")); //set air force name
+					//set squadron statement input with squadron id:
+					squadronStatement.setInt(1, squadronIdCheck); 
+					squadronRS = squadronStatement.executeQuery(); //execute squadron query
 					
-					//if so then there COULD be a squadron +++++++++++++++
+					while(squadronRS.next()) { 
+						
+						SquadronBuilder squadronBuilder = new Squadron.SquadronBuilder(); //create squadron builder
+						squadronBuilder.setAirForce(squadronRS.getString("airforce_name")); //set air force name
+						squadronBuilder.setSkillPoints(squadronRS.getInt("skill_points")); //set skill points
+						
+					}
 					
-					
-					
+					////////////NEEXT DO SQUADRON PILOTS ADDED to Squadron
+					//////////tghen logs added to squadron pilots
+					//then missions (added to???????)
 				}
 				
 				

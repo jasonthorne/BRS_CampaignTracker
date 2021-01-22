@@ -228,6 +228,35 @@ BEGIN
 END $$
 DELIMITER ;
 
+
+DELIMITER $$
+CREATE PROCEDURE select_players (IN campaign_ID INT)
+BEGIN
+	SELECT
+		players.playerID AS player_ID,
+		
+		/* get name of player: */
+		(SELECT users.name FROM users 
+			INNER JOIN players ON 
+				users.userID = players.userID 
+				AND players.playerID = player_ID)
+		AS name,
+		
+		players.score AS score,
+		players.is_active AS is_active,
+		players.created AS created,
+		
+		/* check for player's squadron id: */ 
+		IFNULL(
+			(SELECT squadrons.squadronID FROM squadrons
+			WHERE squadrons.playerID = player_ID), 0)
+		AS squadron_ID_check
+		
+	FROM players
+	WHERE players.campaignID = campaign_ID;
+END $$
+DELIMITER ;
+
 /*----------------------------------------------------*/
 /* pilots */
 
@@ -313,33 +342,7 @@ CREATE TABLE mission_results (
 
 /*----------------------------------------------------*/
 
-DELIMITER $$
-CREATE PROCEDURE select_players (IN campaign_ID INT)
-BEGIN
-	SELECT
-		players.playerID AS player_ID,
-		
-		/* get name of player: */
-		(SELECT users.name FROM users 
-			INNER JOIN players ON 
-				users.userID = players.userID 
-				AND players.playerID = player_ID)
-		AS name,
-		
-		players.score AS score,
-		players.is_active AS is_active,
-		players.created AS created,
-		
-		/* check for player's squadron id: */ 
-		IFNULL(
-			(SELECT squadrons.squadronID FROM squadrons
-			WHERE squadrons.playerID = player_ID), 0)
-		AS squadron_ID_check
-		
-	FROM players
-	WHERE players.campaignID = campaign_ID;
-END $$
-DELIMITER ;
+
 
 /*============================================-==================*/
 /* select all entries */

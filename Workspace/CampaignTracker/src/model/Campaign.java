@@ -22,6 +22,7 @@ public class Campaign implements Loadable{
 	private Timestamp created; //time stamp when created
 	private String host; //name of host
 	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //players involved
+	//+++++++++++++++++++++++turnToMission +++++++++++++++++++++where missions are held!! ADD THIS :P +++++++++++++++++
 	
 	private boolean isAllDownloaded = false; //if fully downloaded from db //+++++++++++++++++'isFullDownload'?? 
 	////////////////private boolean isAllUploaded = false; //if fully uploaded from db
