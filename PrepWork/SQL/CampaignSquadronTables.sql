@@ -211,6 +211,23 @@ CREATE TABLE squadrons (
 	FOREIGN KEY (airforceID) REFERENCES airforces(airforceID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+
+DELIMITER $$
+CREATE PROCEDURE select_squadron (IN squadron_ID INT)
+BEGIN
+	SELECT 
+		squadrons.skill_points AS skill_points,
+
+		/* get name of airforce: */
+		(SELECT airforces.name FROM airforces
+		WHERE airforces.airforceID = squadrons.airforceID)
+		AS airforce_name
+
+	FROM squadrons
+	WHERE squadrons.squadronID = squadron_ID;
+END $$
+DELIMITER ;
+
 /*----------------------------------------------------*/
 /* pilots */
 
@@ -302,6 +319,7 @@ BEGIN
 	SELECT
 		players.playerID AS player_ID,
 		
+		/* get name of player: */
 		(SELECT users.name FROM users 
 			INNER JOIN players ON 
 				users.userID = players.userID 
@@ -312,36 +330,13 @@ BEGIN
 		players.is_active AS is_active,
 		players.created AS created,
 		
-		/* checks if squadron id exists for player (returns 0 if no id found): */ 
+		/* check for player's squadron id: */ 
 		IFNULL(
 			(SELECT squadrons.squadronID FROM squadrons
 			WHERE squadrons.playerID = player_ID), 0)
 		AS squadron_ID_check
 		
-		
-		
-		
-		
-		/*===========================================*/
-		
-		/*++++++++++++++++WE DONT KNOW IF A PLAYER HAS ADED A SQUADRON. WE should return an id or 0 if they have. 
-		If tyhey have, THEN there'll be a chosen airforce too! */
-		/*squadrons.squadronID AS squadron_ID,
-		squadrons.skill_points AS squadron_skill_points,*/
-		
-		/* ++++++++++++++add airforce name here then give option to grab in SelectPlayers, based on id result. ++++++*/
-		/*airforces.name AS */
-		
-		/* passing in airforce id, 
-			getting airforce name*/
-		/* get count of event_periods: */
-		/*(SELECT airforces.name FROM airforces
-		WHERE airforces.airforceID = squadron_airforceID)
-		AS airforce_name	*/
-			
-		
 	FROM players
-		INNER JOIN squadrons ON players.playerID = squadrons.playerID
 	WHERE players.campaignID = campaign_ID;
 END $$
 DELIMITER ;
