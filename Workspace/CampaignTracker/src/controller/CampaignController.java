@@ -13,6 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Campaign;
+import model.Campaign.CampaignBuilder;
+import model.Event;
 
 public class CampaignController implements Rootable, Frameable{
 	
@@ -71,20 +73,28 @@ public class CampaignController implements Rootable, Frameable{
 	private void setCampaign(Campaign campaign) {
 		
 		//if campaign hasn't been fully downloaded:
-		if(!campaign.getIsAllDownloaded()) {
+		if(!campaign.getIsAllDownloaded()) { //++++++++++++++++++RENAME THIS!! 
 			
 			//download campaign:
 			//++++++HAVE A LOADING ANIMATION HERE TOO! WHILE THIS DOWNLOADS! ++++++++++++++
 			
-			//ddddddddddddddddd
-			///this.campaign = database.SelectPlayers.select(campaign.getId());
+			this.campaign = new Campaign.CampaignBuilder()
+					.setId(campaign.getId())
+					.setEvent(new Event.EventBuilder()
+							.setName(campaign.getEventName())
+							/////////.setAirForces(campaign.get)) hmmm....
+							.build())
+					.setPlayers(database.SelectPlayers.select(campaign.getId()))
+					.setIsAllDownloaded(true)
+					.build();
 			
 			//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
 			
 			
 		}else {this.campaign = campaign;} //else, assign campaign
 			
-		
+		System.out.println("has downloaded all palyers:");
+		System.out.println(this.campaign);
 	}
 	
 	

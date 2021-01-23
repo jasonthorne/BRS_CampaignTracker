@@ -99,6 +99,8 @@ public class Campaign implements Loadable{
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
 	public String getHostName() { return host; } //get host name
 	
+	public 
+	
 	public boolean getIsAllDownloaded() { return isAllDownloaded; } //get if fully downloaded
 	///////////////public boolean getIsAllUploaded() { return isAllUploaded; } //get if fully uploaded
 		

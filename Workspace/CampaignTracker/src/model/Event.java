@@ -74,6 +74,10 @@ public class Event {
 		//+++++++++++++++++++++++++++++++loop through passed list and make a new one with each val & pass that! 
 		return new ArrayList<AirForce>(airForces);
 	}
+	
+	/*public Event getEvent() {
+		return 
+	}*/
 
 	@Override
 	public String toString() {

@@ -294,7 +294,7 @@ DELIMITER $$
 CREATE PROCEDURE select_squadron_pilots (IN squadron_ID INT)
 BEGIN
 	SELECT
-		squadron_pilots.pilotID AS pilot_ID,
+		squadron_pilots.pilotID AS pilot_ID /*,*/
 		
 		/* ++++++++++++++++++COME BACK TO THIS LATER :P +++++++++++++++++ */
 		
