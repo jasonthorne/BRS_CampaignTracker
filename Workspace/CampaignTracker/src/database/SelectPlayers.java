@@ -56,6 +56,8 @@ public interface SelectPlayers {
 						
 					}
 					
+					
+					
 					////////////NEEXT DO SQUADRON PILOTS ADDED to Squadron
 					//////////tghen logs added to squadron pilots
 					//then missions (added to???????)

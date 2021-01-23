@@ -289,6 +289,38 @@ CREATE TABLE squadron_pilots (
 	FOREIGN KEY (pilotID) REFERENCES pilots(pilotID)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+
+DELIMITER $$
+CREATE PROCEDURE select_squadron_pilots (IN squadron_ID INT)
+BEGIN
+	SELECT
+		squadron_pilots.pilotID AS pilot_ID,
+		
+		/* 
+		(SELECT users.name FROM users 
+			INNER JOIN players ON 
+				users.userID = players.userID 
+				AND players.playerID = player_ID)
+		AS name,
+		
+		players.score AS score,
+		players.is_active AS is_active,
+		players.created AS created,
+		
+		 
+		IFNULL(
+			(SELECT squadrons.squadronID FROM squadrons
+			WHERE squadrons.playerID = player_ID), 0)
+		AS squadron_ID_check
+		*/ 
+		
+	FROM squadron_pilots
+	WHERE squadron_pilots.squadronID = squadron_ID;
+END $$
+DELIMITER ;
+
+
+
 /*----------------------------------------------------*/
 /* missions */
 
