@@ -34,7 +34,8 @@ public interface SelectPlayers {
 			while(playersRS.next()) {
 				
 				PlayerBuilder playerBuilder = new Player.PlayerBuilder(); //create new player builder
-				playerBuilder.setName(playersRS.getString("name")); //set player name
+				String playerName = playersRS.getString("name"); //get player name
+				playerBuilder.setName(playerName); //set player name
 				playerBuilder.setScore(playersRS.getInt("score")); //set player score
 				playerBuilder.setIsActive(playersRS.getBoolean("is_active")); //set if active
 				playerBuilder.setCreated(playersRS.getTimestamp("created")); //set created
@@ -61,6 +62,8 @@ public interface SelectPlayers {
 					////////////NEEXT DO SQUADRON PILOTS ADDED to Squadron
 					//////////tghen logs added to squadron pilots
 					//then missions (added to???????)
+					
+					//finally add squadron to player ++++++++++++
 				}
 				
 				
@@ -68,10 +71,12 @@ public interface SelectPlayers {
 				//pass the object in to the setter + the value you want to add to it, then add it inside trhe method & pass back the entered object!!! 
 				//walah! :P
 				
+				//add built player to map:
+				nameToPlayer.put(playerName, playerBuilder.build());
 			}
 				
 		} catch(Exception e) { e.printStackTrace(); }
 		
-		return nameToPlayer; //return campaign
+		return nameToPlayer; //return map of players
 	}
 }

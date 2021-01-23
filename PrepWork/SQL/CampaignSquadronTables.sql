@@ -296,6 +296,8 @@ BEGIN
 	SELECT
 		squadron_pilots.pilotID AS pilot_ID,
 		
+		/* ++++++++++++++++++COME BACK TO THIS LATER :P +++++++++++++++++ */
+		
 		/* 
 		(SELECT users.name FROM users 
 			INNER JOIN players ON 

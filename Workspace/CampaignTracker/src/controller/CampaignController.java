@@ -3,6 +3,7 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 
 import javafx.fxml.FXML;
@@ -21,11 +22,15 @@ public class CampaignController implements Rootable, Frameable{
    
     @FXML private AnchorPane rootAP;
     @FXML  private Label eventNameLbl;
+    @FXML private JFXButton addUserBtn;
     @FXML private JFXListView<?> missionsLV;
     @FXML private JFXListView<?> playersLV;
+    
    
     @FXML
     void initialize() {
+    	
+    	addUserBtn.setOnAction(event -> System.out.println("yo dawg!"));
     	
     }
 	
@@ -72,7 +77,7 @@ public class CampaignController implements Rootable, Frameable{
 			//++++++HAVE A LOADING ANIMATION HERE TOO! WHILE THIS DOWNLOADS! ++++++++++++++
 			
 			//ddddddddddddddddd
-			///this.campaign = database.SelectPlayers.select(campaign.getId()); //CALL THIS 'selectPlayers'
+			///this.campaign = database.SelectPlayers.select(campaign.getId());
 			
 			//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
 			
