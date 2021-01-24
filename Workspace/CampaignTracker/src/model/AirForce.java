@@ -54,4 +54,16 @@ public class AirForce {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	// https://stackoverflow.com/questions/1488472/best-practices-throwing-exceptions-from-properties
+	
+	
+	
+	
 }

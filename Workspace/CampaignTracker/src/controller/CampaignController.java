@@ -82,7 +82,7 @@ public class CampaignController implements Rootable, Frameable{
 					.setId(campaign.getId())
 					.setEvent(new Event.EventBuilder()
 							.setName(campaign.getEventName())
-							/////////.setAirForces(campaign.get)) hmmm....
+							.setAirForces(campaign.getEventAirForces())
 							.build())
 					.setPlayers(database.SelectPlayers.select(campaign.getId()))
 					.setIsAllDownloaded(true)

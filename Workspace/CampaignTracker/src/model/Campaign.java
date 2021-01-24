@@ -96,10 +96,9 @@ public class Campaign implements Loadable{
 	
 	public int getId() { return id; } //get id
 	public String getEventName() { return event.getName(); } //get event name
+	public List<AirForce> getEventAirForces() { return event.getAirForces(); } //get event air forces
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
 	public String getHostName() { return host; } //get host name
-	
-	public 
 	
 	public boolean getIsAllDownloaded() { return isAllDownloaded; } //get if fully downloaded
 	///////////////public boolean getIsAllUploaded() { return isAllUploaded; } //get if fully uploaded

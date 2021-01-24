@@ -17,7 +17,7 @@ import model.AirForce.AirForceBuilder;
 import model.Period;
 import model.Period.Block;
 import model.Plane;
-import model.Plane.PlaneBuilder;
+/*import model.Plane.PlaneBuilder;*/
 import model.Plane.Status;
 
 /** selects events & their dependencies from db. 
@@ -95,8 +95,9 @@ public interface SelectEvents {
 					while(planesRS.next()) {
 						
 						//create new plane builder:
-						PlaneBuilder planeBuilder = new Plane.PlaneBuilder();
-						planeBuilder.setPlaneName(planesRS.getString("plane_name")); //set plane name
+						///////////////////PlaneBuilder planeBuilder = new Plane.PlaneBuilder();
+						////////////////////planeBuilder.setPlaneName(planesRS.getString("plane_name")); //set plane name
+						String planeNane = planesRS.getString("plane_name"); //get plane name
 						
 						//set statement input parameters with air force plane id & event id:
 						availabilitiesStatement.setInt(1, planesRS.getInt("airforce_plane_ID"));
@@ -119,10 +120,11 @@ public interface SelectEvents {
 							}
 							
 							//add availabilities to plane builder:
-							planeBuilder.setPlaneAvailabilities(planeAvailabilities);
+							/////////////planeBuilder.setPlaneAvailabilities(planeAvailabilities);
 							
 							//add built plane to air force planes:
-							airForcePlanes.add(planeBuilder.build());
+							///////////airForcePlanes.add(planeBuilder.build());
+							airForcePlanes.add(new Plane(planeNane, planeAvailabilities));
 						}
 						
 					}//planesRS

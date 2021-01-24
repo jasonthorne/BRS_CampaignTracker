@@ -24,7 +24,17 @@ public class Plane {
 	
 	private SimpleStringProperty name; //name of plane
 	private Map<Period, Status>availabilities; //availability per period of history
-								
+	
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	private Map<Period, Status>periodToStatus; //periods available and their corresponding status
+	
+	public Plane(String name, Map<Period, Status>periodToStatus) {
+		this.name = new SimpleStringProperty(name);
+		this.periodToStatus = new HashMap<Period, Status>(periodToStatus);
+	}
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		
+	/*							
 	private Plane() {} //blank constructor
 	
 	//builder class:
@@ -45,18 +55,27 @@ public class Plane {
 		}
 		
 		public Plane build() { return plane; } //return built plane
-	}
+	}*/
 	
 	//get plane name:
 	public String getName() { return name.get(); }
 	
+	/*
 	//get plane availabilities:
 	public HashMap<Period, Status> getPlaneAvailabilities() { 
 		return new HashMap<Period, Status>(availabilities); 
+	}*/
+	
+	//get plane availabilities:
+	public HashMap<Period, Status> getPlaneAvailabilities() { 
+		return new HashMap<Period, Status>(periodToStatus); 
 	}
 	
 	@Override
 	public String toString() {
 		return "Plane [name=" + name.get() +  ", availabilities=" + availabilities + "]";
 	}
+	
+	
+	
 }
