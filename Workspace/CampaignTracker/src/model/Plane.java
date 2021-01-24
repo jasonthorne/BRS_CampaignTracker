@@ -25,9 +25,8 @@ public class Plane {
 	private SimpleStringProperty name; //name of plane
 	///////////private Map<Period, Status>availabilities; //availability per period of history
 	
-	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	//periods available and their corresponding status
-	private Map<Period, Status>periodToStatus; 
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++MAKE ALL PROPERTIES FINAL TOO!! 
+	private Map<Period, Status>periodToStatus; //periods available and their corresponding status
 	
 	public Plane(String name, Map<Period, Status>periodToStatus) {
 		this.name = new SimpleStringProperty(name);

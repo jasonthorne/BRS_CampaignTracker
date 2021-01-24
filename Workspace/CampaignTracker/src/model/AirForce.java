@@ -11,6 +11,15 @@ public class AirForce {
 	
 	private AirForce() {} //blank constructor
 	
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++MAKE ALL PROPERTIES FINAL TOO!! 
+	public AirForce(String name, boolean hasHomeAdv, List<Plane>planes){
+		this.name = name;
+		this.hasHomeAdv = hasHomeAdv;
+		this.planes = new ArrayList<Plane>(planes);
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	
+	/*
 	//builder class:
 	public static class AirForceBuilder {
 		
@@ -38,7 +47,7 @@ public class AirForce {
 		//return built event air force:
 		public AirForce build() { return airForce; } 
 	}
-	
+	*/
 	
 	public String getAirForceName() { return name; } //get air force name
 	public boolean getHasHomeAdv() { return hasHomeAdv; } //get home adv status

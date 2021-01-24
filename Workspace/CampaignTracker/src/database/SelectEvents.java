@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 import model.Event;
 import model.Event.EventBuilder;
 import model.AirForce;
-import model.AirForce.AirForceBuilder;
+/*import model.AirForce.AirForceBuilder;*/
 import model.Period;
 import model.Period.Block;
 import model.Plane;
@@ -81,9 +81,12 @@ public interface SelectEvents {
 				while(airForcesRS.next()) {
 					
 					//create new air force builder:
-					AirForceBuilder airForceBuilder = new AirForce.AirForceBuilder();
-					airForceBuilder.setAirForceName(airForcesRS.getString("airforce_name")); //set air force name
-					airForceBuilder.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value")); //set home adv value
+					//////////////////////////AirForceBuilder airForceBuilder = new AirForce.AirForceBuilder();
+					////////////////airForceBuilder.setAirForceName(airForcesRS.getString("airforce_name")); //set air force name
+					/////////////////airForceBuilder.setHasHomeAdv(airForcesRS.getBoolean("home_advantage_value")); //set home adv value
+					String airForceName = airForcesRS.getString("airforce_name"); //get air force name
+					boolean hasHomeAdv = airForcesRS.getBoolean("home_advantage_value"); //get home adv value
+					
 					
 					//create list for air force planes:
 					List<Plane>airForcePlanes = new ArrayList<>();
@@ -124,16 +127,21 @@ public interface SelectEvents {
 							
 							//add built plane to air force planes:
 							///////////airForcePlanes.add(planeBuilder.build());
+							//ad plane to air force planes:
 							airForcePlanes.add(new Plane(planeNane, planeAvailabilities));
 						}
 						
 					}//planesRS
 					
 					//add air force planes to air force builder:
-					airForceBuilder.setPlanes(airForcePlanes);
+					///////////airForceBuilder.setPlanes(airForcePlanes);
 					
 					//add built air force to event air forces:
-					eventAirForces.add(airForceBuilder.build());
+					//////eventAirForces.add(airForceBuilder.build());
+					
+					//add air force to event air forces:
+					eventAirForces.add(new AirForce(airForceName, hasHomeAdv, airForcePlanes));
+					
 					
 				}//airForcesRS
 				
