@@ -111,7 +111,7 @@ public class PlanesTableController implements Rootable {
 		
 		//TreeMap of a plane's availabilities, sorted by period compareTo:
 		TreeMap<Period,Status> sortedAvails = new TreeMap<Period,Status>( 
-				observPlanes.get(0).getPlaneAvailabilities());
+				observPlanes.get(0).getAvailabilities());
 		
 		Period start = sortedAvails.firstKey(); //get start period
 		Period end = sortedAvails.lastKey(); //get end period
@@ -136,7 +136,7 @@ public class PlanesTableController implements Rootable {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Plane, String> param) {
             	 return new SimpleStringProperty(
-            			 param.getValue().getPlaneAvailabilities().get(
+            			 param.getValue().getAvailabilities().get(
             					 param.getTableColumn().getUserData()).toString());		
             }
         };/** https://stackoverflow.com/questions/21639108/javafx-tableview-objects-with-maps */

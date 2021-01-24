@@ -12,21 +12,22 @@ import model.Period.Block;
 public class Plane {
 	
 	public enum Status {
+		
 		UNAVAILABLE("Unavailable"), LIMIT("Limit"), AUTO("Auto");
 		
-		private final String status; //name of status
-		
-		//constructor sets name of status:
+		private final String status; //status
+		//constructor:
 		private Status(String status) { this.status = status; } 
 		@Override 
-		public String toString() { return status; } //return chosen status
+		public String toString() { return status; } //return status
 	}
 	
 	private SimpleStringProperty name; //name of plane
-	private Map<Period, Status>availabilities; //availability per period of history
+	///////////private Map<Period, Status>availabilities; //availability per period of history
 	
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	private Map<Period, Status>periodToStatus; //periods available and their corresponding status
+	//periods available and their corresponding status
+	private Map<Period, Status>periodToStatus; 
 	
 	public Plane(String name, Map<Period, Status>periodToStatus) {
 		this.name = new SimpleStringProperty(name);
@@ -67,15 +68,13 @@ public class Plane {
 	}*/
 	
 	//get plane availabilities:
-	public HashMap<Period, Status> getPlaneAvailabilities() { 
+	public HashMap<Period, Status> getAvailabilities() { 
 		return new HashMap<Period, Status>(periodToStatus); 
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Plane [name=" + name.get() +  ", availabilities=" + availabilities + "]";
+		return "Plane [name=" + name + ", periodToStatus=" + periodToStatus + "]";
 	}
-	
-	
 	
 }
