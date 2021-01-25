@@ -10,7 +10,7 @@ import controller.Loadable;
 /*import model.AirForce.AirForceBuilder;*/
 import model.Plane.Status;
 
-public class Campaign implements Loadable{
+public final class Campaign implements Loadable{
 	
 	//amount of turns played per period:
 	public static final int TURNS_PER_PERIOD = 4; //+++++++++++++++++++++++should this be in db????:
@@ -21,13 +21,32 @@ public class Campaign implements Loadable{
 	private int turn; //current turn
 	private Timestamp created; //time stamp when created
 	private String host; //name of host
-	private Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //players involved
+	private Map<String, Player>nameToPlayer; // = new TreeMap<String, Player>(); //players involved
 	//+++++++++++++++++++++++turnToMission +++++++++++++++++++++where missions are held!! ADD THIS :P +++++++++++++++++
 	
 	private boolean isAllDownloaded = false; //if fully downloaded from db //+++++++++++++++++'isFullDownload'?? 
 	////////////////private boolean isAllUploaded = false; //if fully uploaded from db
 	
 	private Campaign() {} //blank constructor
+	
+	
+	//====================================================================================
+	
+	public Campaign(int id, Event event, Period period, int turn, Timestamp created, 
+			String host, Map<String, Player>nameToPlayer) {
+		this.id = id;
+		this.event = event; //+++++++++++make stronger?????? needed????
+		this.period = new Period(period.getBlock(), period.getYear()); //++++++make less strong?????? needed???????
+		this.turn = turn;
+		this.created = created;
+		this.host = host;
+		this.nameToPlayer = new HashMap<String, Player>(nameToPlayer); //+++++++make stronger
+	}
+	
+	
+	
+	
+	//====================================================================================
 	
 	//builder class:
 	public static class CampaignBuilder {

@@ -93,13 +93,16 @@ public interface SelectCampaigns {
 					///////add player with user name to campaign:
 					////////////campaignBuilder.setPlayer(playerNamesRS.getString("name"));
 					
+					String playerName = playerNamesRS.getString("name"); //get player name
 					
-					//add player with user name to map:
-					nameToPlayer.putIfAbsent(name, new Player(name));
+					//add player with name to map:
+					nameToPlayer.putIfAbsent(playerName, new Player(playerName));
 				}
 				
 				//add built campaign to campaigns:
-				campaigns.add(campaignBuilder.build());
+				////////////campaigns.add(campaignBuilder.build());
+				//add campaign to campaigns:
+				campaigns.add(new Campaign(campaignId, event, period, turn, created, host, nameToPlayer));
 			}
 			
 		} catch(Exception e) { e.printStackTrace(); }
