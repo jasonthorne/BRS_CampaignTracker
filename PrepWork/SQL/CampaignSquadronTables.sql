@@ -182,12 +182,13 @@ BEGIN
 				players.playerID = hosts.playerID
 		WHERE players.campaignID = campaign_ID 
 			AND players.playerID = hosts.playerID)
-		AS host_name,
+		AS host_name
 		
-		/* get count of event_periods: */
+		/* get count of event_periods: */ /* +++++++++++++++++++++++++++++++++++++NOT NEEDED!! ++++++++++++++++ */
+		/*
 		(SELECT COUNT(event_periods.event_periodID) FROM event_periods
 		WHERE event_periods.eventID = campaigns.eventID)
-		AS periods_count
+		AS periods_count*/
 	
 	FROM campaigns
 		INNER JOIN periods ON campaigns.periodID = periods.periodID

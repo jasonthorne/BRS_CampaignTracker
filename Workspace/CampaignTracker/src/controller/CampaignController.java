@@ -80,11 +80,11 @@ public class CampaignController implements Rootable, Frameable{
 			
 			this.campaign = new Campaign.CampaignBuilder()
 					.setId(campaign.getId())
-					.setEvent(new Event.EventBuilder()
+					/*.setEvent(new Event.EventBuilder()
 							.setName(campaign.getEventName())
 							.setAirForces(campaign.getEventAirForces())
-							.build())
-					.setPlayers(database.SelectPlayers.select(campaign.getId()))
+							.build())*/
+					.setPlayers(database.SelectPlayers.select(campaign.getId())) /////players will need overloading!! 
 					.setIsAllDownloaded(true)
 					.build();
 			

@@ -14,7 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import model.Event;
-import model.Event.EventBuilder;
+/*import model.Event.EventBuilder;*/
 import model.Period;
 import model.Plane;
 import model.AirForce;

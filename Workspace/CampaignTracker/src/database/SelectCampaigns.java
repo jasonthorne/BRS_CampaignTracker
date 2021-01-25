@@ -49,13 +49,16 @@ public interface SelectCampaigns {
 						Block.valueOf(campaignsRS.getString("period_block").toUpperCase()),
 						campaignsRS.getInt("period_year")))); 
 				
-				//create event builder:
+				//create event builder: //+++++++++++++++++++++++++++++ALL OF THIS could be gotten from nameToEvent!!! (it just isnt added in Campaigns controller when the cmapi)
+				
+				//++++++++++use getEvent() here ++++++++++++++++++++++++++++++++++++++
 				EventBuilder eventBuilder = new Event.EventBuilder();
 				String eventName = campaignsRS.getString("event_name"); //get event name
 				eventBuilder.setName(eventName); //set event name
 				eventBuilder.setStartPeriod(nameToEvent.get(eventName).getStartPeriod()); //set start period
 				eventBuilder.setEndPeriod(nameToEvent.get(eventName).getEndPeriod()); //set end period
-				eventBuilder.setMaxTurns(campaignsRS.getInt("periods_count")); //set max turns
+				////////////////eventBuilder.setMaxTurns(campaignsRS.getInt("periods_count")); //set max turns
+				eventBuilder.setMaxTurns(nameToEvent.get(eventName).getMaxTurns()); //set max turns ++++++++
 				eventBuilder.setAirForces(nameToEvent.get(eventName).getAirForces()); //set air forces
 				
 				campaignBuilder.setEvent(eventBuilder.build()); //add event to campaign builder

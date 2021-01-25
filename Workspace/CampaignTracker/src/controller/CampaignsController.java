@@ -31,8 +31,10 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import model.AirForce;
 import model.Campaign;
 import model.Event;
+import model.Period;
 import model.Campaign.CampaignBuilder;
 
 public class CampaignsController implements Frameable, Rootable {
@@ -141,13 +143,16 @@ public class CampaignsController implements Frameable, Rootable {
 		//insert campaign to db, storing returned id:
 		int campaignId = database.InsertCampaign.insert(event.getName(), LoginController.getUserId(), timestamp); 
 		
+		/** +++++++++++++++++++++++++++++BUILD ENTIRE EVENT in CAMPAIGN BELOW !! ++++++++++++++++++++++++++++ */
 		//create local campaign:
 		Campaign campaign = new Campaign.CampaignBuilder() //+++++++++++++++MARK AS NOT FULLY UPLOADED!!! 
 		/*.setEvent(new Event.EventBuilder() //++++++++++++++++WHY IS EVENT NOT FULLY MADE HERE. CHECK THIS! :P
-				.setName(event.getName()) //set event name
-				.setAirForces(event.getAirForces()) //set event air forces
+				.setName(event.getName()) //set event name ++++++++++++++this is so campaign can be shown in campaignsLV
+				.setAirForces(event.getAirForces()) //set event air forces ++++++++++this is os user can select air forces 
 				//++++++++++++++++++AD ALL OTHER STUFF TOO!!  +++++++++++++++++++++++++++++ why not????
 				.build()) */
+				//(String name, Period startPeriod, Period endPeriod, int periodTotal, List<AirForce>airForces) {
+		.setEvent(event.getEvent())
 		.setCreated(timestamp) //set creation time stamp
 		.setHost(LoginController.getUserName()) //set user as host
 		.setPlayer(LoginController.getUserName()) //set user as player

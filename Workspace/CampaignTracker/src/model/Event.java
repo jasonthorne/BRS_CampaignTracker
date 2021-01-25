@@ -22,8 +22,14 @@ public class Event {
 		this.airForces = new ArrayList<AirForce>(airForces); //++++++++++++MAKE STRONGER :P
 	}
 	
+	
+	
 	private int setMaxTurns(int periodTotal) {
 		return periodTotal * Campaign.TURNS_PER_PERIOD;
+	}
+	
+	private int getPeriodTotal() {
+		return maxTurns / Campaign.TURNS_PER_PERIOD;
 	}
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++MAKE ALL PROPERTIES FINAL TOO!! 
@@ -90,10 +96,12 @@ public class Event {
 		return new ArrayList<AirForce>(airForces);
 	}
 	
-	/*public Event getEvent() {
-		return 
-	}*/
+	public Event getEvent() {
+		return new Event(name, startPeriod, endPeriod, getPeriodTotal(), airForces);
+	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "Event [name=" + name + ", startPeriod=" + startPeriod + ", endPeriod=" + endPeriod
