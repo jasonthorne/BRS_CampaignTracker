@@ -3,6 +3,7 @@ package database;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ public interface SelectCampaigns {
 			while(campaignsRS.next()) {
 				
 				//create campaign builder:
-				CampaignBuilder campaignBuilder = new Campaign.CampaignBuilder(); 
+				/*CampaignBuilder campaignBuilder = new Campaign.CampaignBuilder(); 
 				campaignBuilder.setId(campaignsRS.getInt("campaign_ID")); //set id
 				campaignBuilder.setTurn(campaignsRS.getInt("turn")); //set turn
 				campaignBuilder.setCreated(campaignsRS.getTimestamp("date_time")); //set created
@@ -48,7 +49,17 @@ public interface SelectCampaigns {
 				//set period:
 				campaignBuilder.setPeriod((new Period(
 						Block.valueOf(campaignsRS.getString("period_block").toUpperCase()),
-						campaignsRS.getInt("period_year")))); 
+						campaignsRS.getInt("period_year"))));*/
+				
+				int campaignId = campaignsRS.getInt("campaign_ID"); //get id
+				int turn = campaignsRS.getInt("turn"); //get turn
+				Timestamp created = campaignsRS.getTimestamp("date_time"); //get created
+				String host = campaignsRS.getString("host_name"); //get host name
+				
+				//get period:
+				Period period = new Period(
+						Block.valueOf(campaignsRS.getString("period_block").toUpperCase()),
+						campaignsRS.getInt("period_year")); 
 				
 				//create event builder: //+++++++++++++++++++++++++++++ALL OF THIS could be gotten from nameToEvent!!! (it just isnt added in Campaigns controller when the cmapi)
 				
@@ -67,15 +78,24 @@ public interface SelectCampaigns {
 				List<AirForce>airForces = nameToEvent.get(eventName).getAirForces(); //get air forces
 				
 				/////campaignBuilder.setEvent(eventBuilder.build()); //add event to campaign builder
-				campaignBuilder.setEvent(new Event(eventName, startPeriod, endPeriod, maxTurns, airForces)); //add event to campaign builder
+				//////////campaignBuilder.setEvent(new Event(eventName, startPeriod, endPeriod, maxTurns, airForces)); //add event to campaign builder
+				Event event = new Event(eventName, startPeriod, endPeriod, maxTurns, airForces); //create event
+				//++++++++++++HAVE THIS BE multilined and passed directly into the constructor ++++++++++++++++++++++++
 				
 				//set player names statement input with campaign id:
 				playerNamesStatement.setInt(1, campaignsRS.getInt("campaign_ID")); 
 				playerNamesRS = playerNamesStatement.executeQuery(); //execute player names query
 				
+				
+				Map<String, Player>nameToPlayer = new TreeMap<String, Player>(); //map for players involved
+				
 				while(playerNamesRS.next()) {
-					//add player with user name to campaign:
-					campaignBuilder.setPlayer(playerNamesRS.getString("name"));
+					///////add player with user name to campaign:
+					////////////campaignBuilder.setPlayer(playerNamesRS.getString("name"));
+					
+					
+					//add player with user name to map:
+					nameToPlayer.putIfAbsent(name, new Player(name));
 				}
 				
 				//add built campaign to campaigns:
