@@ -2,7 +2,7 @@ package model;
 
 import java.sql.Timestamp;
 
-public class Player {
+public final class Player {
 	
 	//////////////private int id; //player id ????????????NEEDED????????? ++++++++++PROB NOT :P
 	private String name; //user name
@@ -12,6 +12,12 @@ public class Player {
 	private Squadron squadron; //squadron managed
 	
 	private Player() {} //blank constructor
+	
+	//=========================================================================
+	
+	
+	
+	//=========================================================================
 	
 	//builder class:
 	public static class PlayerBuilder {

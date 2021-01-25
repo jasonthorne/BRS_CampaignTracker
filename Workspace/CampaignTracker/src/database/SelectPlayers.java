@@ -12,7 +12,7 @@ import model.Campaign.CampaignBuilder;
 import model.Player;
 import model.Player.PlayerBuilder;
 import model.Squadron;
-import model.Squadron.SquadronBuilder;
+/*import model.Squadron.SquadronBuilder;*/
 
 public interface SelectPlayers {
 	
@@ -51,10 +51,14 @@ public interface SelectPlayers {
 					
 					while(squadronRS.next()) { 
 						
+						/*
 						SquadronBuilder squadronBuilder = new Squadron.SquadronBuilder(); //create squadron builder
 						squadronBuilder.setAirForce(squadronRS.getString("airforce_name")); //set air force name
 						squadronBuilder.setSkillPoints(squadronRS.getInt("skill_points")); //set skill points
+						*/
 						
+						String airForce = squadronRS.getString("airforce_name"); //get air force name
+						int skillPoints = squadronRS.getInt("skill_points"); //get skill points
 					}
 					
 					

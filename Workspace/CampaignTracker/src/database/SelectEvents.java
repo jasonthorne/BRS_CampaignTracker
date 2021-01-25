@@ -118,7 +118,7 @@ public interface SelectEvents {
 						
 						if (availabilitiesRS.isBeforeFirst()){ //if availabilities where found
 							
-							//create map for availabilities:
+							//create map for availabilities, using event periods:
 							Map<Period, Status>planeAvailabilities = eventPeriods.stream()
 									.collect(Collectors.toMap(period -> period, status -> Status.UNAVAILABLE));
 							

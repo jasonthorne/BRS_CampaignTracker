@@ -9,7 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import model.Period.Block;
 
-public class Plane {
+public final class Plane {
 	
 	public enum Status {
 		
@@ -22,11 +22,11 @@ public class Plane {
 		public String toString() { return status; } //return status
 	}
 	
-	private SimpleStringProperty name; //name of plane
+	private final SimpleStringProperty name; //name of plane
 	///////////private Map<Period, Status>availabilities; //availability per period of history
 	
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++MAKE ALL PROPERTIES FINAL TOO!! 
-	private Map<Period, Status>periodToStatus; //periods available and their corresponding status
+	private final Map<Period, Status>periodToStatus; //periods available and their corresponding status
 	
 	public Plane(String name, Map<Period, Status>periodToStatus) {
 		this.name = new SimpleStringProperty(name);
@@ -68,7 +68,7 @@ public class Plane {
 	
 	//get plane availabilities:
 	public HashMap<Period, Status> getAvailabilities() { 
-		return new HashMap<Period, Status>(periodToStatus); 
+		return new HashMap<Period, Status>(periodToStatus); //+++++++++++++++++++++make stronger+++++++++++++!
 	}
 
 	@Override

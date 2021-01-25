@@ -1,6 +1,6 @@
 package model;
 
-public class Period implements Comparable <Period>{
+public final class Period implements Comparable <Period>{
 	
 	//blocks of a year:
 	public enum Block {
@@ -14,8 +14,8 @@ public class Period implements Comparable <Period>{
 		public String toString() { return block; } //return chosen block
 	}
 	
-	private Block block; //block
-	private int year; //year
+	private final Block block; //block
+	private final int year; //year
 	
 	//constructor:
 	public Period (Block block, int year) {

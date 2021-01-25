@@ -3,15 +3,15 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event {
+public final class Event {
 	
-	private String name; //name of event
-	private Period startPeriod; //start period
-	private Period endPeriod; //end period
-	private int maxTurns; //number of turns
-	private List<AirForce>airForces; //list of air forces involved
+	private final String name; //name of event
+	private final Period startPeriod; //start period
+	private final Period endPeriod; //end period
+	private final int maxTurns; //number of turns
+	private final List<AirForce>airForces; //list of air forces involved
 	
-	private Event() {} //blank constructor
+	///////////////private Event() {} //blank constructor
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++MAKE ALL PROPERTIES FINAL TOO!! 
 	public Event(String name, Period startPeriod, Period endPeriod, int periodTotal, List<AirForce>airForces) {
@@ -23,14 +23,14 @@ public class Event {
 	}
 	
 	
-	
+
 	private int setMaxTurns(int periodTotal) {
 		return periodTotal * Campaign.TURNS_PER_PERIOD;
 	}
 	
-	private int getPeriodTotal() {
+	/*private int getPeriodTotal() {
 		return maxTurns / Campaign.TURNS_PER_PERIOD;
-	}
+	}*/
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++MAKE ALL PROPERTIES FINAL TOO!! 
 	/*
@@ -96,9 +96,9 @@ public class Event {
 		return new ArrayList<AirForce>(airForces);
 	}
 	
-	public Event getEvent() {
+	/*public Event getEvent() {
 		return new Event(name, startPeriod, endPeriod, getPeriodTotal(), airForces);
-	}
+	}*/
 
 	
 	

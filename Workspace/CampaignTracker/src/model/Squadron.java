@@ -3,15 +3,25 @@ package model;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Squadron {
+public final class Squadron {
 	
-	private String airForce; //airForce name
-	private int skillPoints; //skill points available
+	private final String airForce; //airForce name
+	private final int skillPoints; //skill points available
 	
 	private Map<String, Pilot>nameToPilot = new TreeMap<String, Pilot>(); //pilots involved
 	
-	private Squadron() {} //blank constructor
+	///////////private Squadron() {} //blank constructor
 	
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public Squadron(String airForce, int skillPoints) {
+		this.airForce = airForce;
+		this.skillPoints = skillPoints;
+	}
+	
+	
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	
+	/*
 	//builder class:
 	public static class SquadronBuilder {
 		
@@ -32,7 +42,7 @@ public class Squadron {
 		
 		//return built squadron:
 		public Squadron build() { return squadron; } 
-	}
+	}*/
 
 	@Override
 	public String toString() {

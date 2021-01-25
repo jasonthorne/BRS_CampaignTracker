@@ -152,7 +152,7 @@ public class CampaignsController implements Frameable, Rootable {
 				//++++++++++++++++++AD ALL OTHER STUFF TOO!!  +++++++++++++++++++++++++++++ why not????
 				.build()) */
 				//(String name, Period startPeriod, Period endPeriod, int periodTotal, List<AirForce>airForces) {
-		.setEvent(event.getEvent())
+		.setEvent(event) //set event
 		.setCreated(timestamp) //set creation time stamp
 		.setHost(LoginController.getUserName()) //set user as host
 		.setPlayer(LoginController.getUserName()) //set user as player

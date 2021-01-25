@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+import model.AirForce;
 import model.Campaign;
 import model.Campaign.CampaignBuilder;
 import model.Event;
@@ -52,16 +53,21 @@ public interface SelectCampaigns {
 				//create event builder: //+++++++++++++++++++++++++++++ALL OF THIS could be gotten from nameToEvent!!! (it just isnt added in Campaigns controller when the cmapi)
 				
 				//++++++++++use getEvent() here ++++++++++++++++++++++++++++++++++++++
-				EventBuilder eventBuilder = new Event.EventBuilder();
+				//////////////////EventBuilder eventBuilder = new Event.EventBuilder();
 				String eventName = campaignsRS.getString("event_name"); //get event name
-				eventBuilder.setName(eventName); //set event name
-				eventBuilder.setStartPeriod(nameToEvent.get(eventName).getStartPeriod()); //set start period
-				eventBuilder.setEndPeriod(nameToEvent.get(eventName).getEndPeriod()); //set end period
+				/////////////eventBuilder.setName(eventName); //set event name
+				///////////////eventBuilder.setStartPeriod(nameToEvent.get(eventName).getStartPeriod()); //set start period
+				Period startPeriod = nameToEvent.get(eventName).getStartPeriod(); //get start period
+				//////////////eventBuilder.setEndPeriod(nameToEvent.get(eventName).getEndPeriod()); //set end period
+				Period endPeriod = nameToEvent.get(eventName).getEndPeriod(); //get end period
 				////////////////eventBuilder.setMaxTurns(campaignsRS.getInt("periods_count")); //set max turns
-				eventBuilder.setMaxTurns(nameToEvent.get(eventName).getMaxTurns()); //set max turns ++++++++
-				eventBuilder.setAirForces(nameToEvent.get(eventName).getAirForces()); //set air forces
+				///////////////eventBuilder.setMaxTurns(nameToEvent.get(eventName).getMaxTurns()); //set max turns ++++++++
+				int maxTurns = nameToEvent.get(eventName).getMaxTurns(); //get max turns
+				/////////////eventBuilder.setAirForces(nameToEvent.get(eventName).getAirForces()); //set air forces
+				List<AirForce>airForces = nameToEvent.get(eventName).getAirForces(); //get air forces
 				
-				campaignBuilder.setEvent(eventBuilder.build()); //add event to campaign builder
+				/////campaignBuilder.setEvent(eventBuilder.build()); //add event to campaign builder
+				campaignBuilder.setEvent(new Event(eventName, startPeriod, endPeriod, maxTurns, airForces)); //add event to campaign builder
 				
 				//set player names statement input with campaign id:
 				playerNamesStatement.setInt(1, campaignsRS.getInt("campaign_ID")); 

@@ -3,13 +3,13 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AirForce {
+public final class AirForce {
 	
-	private String name; //name of air force
-	private boolean hasHomeAdv; //if air force has home adv status
-	private List<Plane>planes; //planes available to air force
+	private final String name; //name of air force
+	private final boolean hasHomeAdv; //if air force has home adv status
+	private final List<Plane>planes; //planes available to air force
 	
-	private AirForce() {} //blank constructor
+	//////////////private AirForce() {} //blank constructor
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++MAKE ALL PROPERTIES FINAL TOO!! 
 	public AirForce(String name, boolean hasHomeAdv, List<Plane>planes){
