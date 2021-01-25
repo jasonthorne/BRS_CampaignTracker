@@ -3,6 +3,7 @@ package database;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -10,7 +11,7 @@ import java.util.TreeMap;
 import model.Campaign;
 import model.Campaign.CampaignBuilder;
 import model.Player;
-import model.Player.PlayerBuilder;
+/*import model.Player.PlayerBuilder;*/
 import model.Squadron;
 /*import model.Squadron.SquadronBuilder;*/
 
@@ -33,12 +34,19 @@ public interface SelectPlayers {
 			
 			while(playersRS.next()) {
 				
-				PlayerBuilder playerBuilder = new Player.PlayerBuilder(); //create new player builder
+				/*PlayerBuilder playerBuilder = new Player.PlayerBuilder(); //create new player builder
 				String playerName = playersRS.getString("name"); //get player name
 				playerBuilder.setName(playerName); //set player name
 				playerBuilder.setScore(playersRS.getInt("score")); //set player score
 				playerBuilder.setIsActive(playersRS.getBoolean("is_active")); //set if active
 				playerBuilder.setCreated(playersRS.getTimestamp("created")); //set created
+				*/
+				
+				String playerName = playersRS.getString("name"); //get player name
+				int score = playersRS.getInt("score"); //get player score
+				boolean isActive = playersRS.getBoolean("is_active"); //get if active
+				Timestamp created = playersRS.getTimestamp("created"); //get created
+				
 				
 				int squadronIdCheck = playersRS.getInt("squadron_ID_check"); //check for squadron id
 				
@@ -48,6 +56,8 @@ public interface SelectPlayers {
 					//set squadron statement input with squadron id:
 					squadronStatement.setInt(1, squadronIdCheck); 
 					squadronRS = squadronStatement.executeQuery(); //execute squadron query
+					
+					///////Squadron squadron; // = new Squadron();
 					
 					while(squadronRS.next()) { 
 						
@@ -59,6 +69,8 @@ public interface SelectPlayers {
 						
 						String airForce = squadronRS.getString("airforce_name"); //get air force name
 						int skillPoints = squadronRS.getInt("skill_points"); //get skill points
+						
+						
 					}
 					
 					
@@ -68,6 +80,13 @@ public interface SelectPlayers {
 					//then missions (added to???????)
 					
 					//finally add squadron to player ++++++++++++
+					
+					//add player with squadron to map:
+					/*nameToPlayer.put(playerName, 
+									new Player(playerName, score, isActive, created, squadron));*/
+				}else {
+					//add player without squadron to map:
+					nameToPlayer.put(playerName, new Player(playerName, score, isActive, created));
 				}
 				
 				
@@ -75,8 +94,7 @@ public interface SelectPlayers {
 				//pass the object in to the setter + the value you want to add to it, then add it inside trhe method & pass back the entered object!!! 
 				//walah! :P
 				
-				//add built player to map:
-				nameToPlayer.put(playerName, playerBuilder.build());
+				
 			}
 				
 		} catch(Exception e) { e.printStackTrace(); }

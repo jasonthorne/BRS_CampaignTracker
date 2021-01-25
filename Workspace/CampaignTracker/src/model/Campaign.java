@@ -78,9 +78,15 @@ public class Campaign implements Loadable{
 		}
 		
 		//set player:
-		public CampaignBuilder setPlayer(String name) {
+		/*public CampaignBuilder setPlayer(String name) {
 			campaign.nameToPlayer.putIfAbsent(
 					name, new Player.PlayerBuilder().setName(name).build());
+			return this;
+		}*/
+		
+		//set player:
+		public CampaignBuilder setPlayer(String name) {
+			campaign.nameToPlayer.putIfAbsent(name, new Player(name));
 			return this;
 		}
 		
