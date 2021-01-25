@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import model.Event;
-import model.Event.EventBuilder;
+/*import model.Event.EventBuilder;*/
 import model.AirForce;
 /*import model.AirForce.AirForceBuilder;*/
 import model.Period;
@@ -46,8 +46,9 @@ public interface SelectEvents {
 			
 			while(eventsRS.next()) {
 				
-				EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
-				eventBuilder.setName(eventsRS.getString("event_name")); //set event name
+				////////////////EventBuilder eventBuilder = new Event.EventBuilder(); //create new event builder
+				//////////////eventBuilder.setName(eventsRS.getString("event_name")); //set event name
+				String eventName = eventsRS.getString("event_name"); //get event name
 				
 				//create list for event periods:
 				List<Period>eventPeriods = new ArrayList<>();
@@ -65,11 +66,19 @@ public interface SelectEvents {
 				}
 				
 				//get start & end periods from list:
-				eventBuilder.setStartPeriod(eventPeriods.get(0));
-				eventBuilder.setEndPeriod(eventPeriods.get(eventPeriods.size()-1));
+				////////////eventBuilder.setStartPeriod(eventPeriods.get(0));
+				////////////eventBuilder.setEndPeriod(eventPeriods.get(eventPeriods.size()-1));
+				
+				//get start & end periods from list:
+				Period startPeriod = eventPeriods.get(0);
+				Period endPeriod = eventPeriods.get(eventPeriods.size()-1);
+				
 				
 				//set turn size using number of periods:
-				eventBuilder.setMaxTurns(eventPeriods.size());
+				/////////eventBuilder.setMaxTurns(eventPeriods.size());
+				
+				//get period total:
+				int periodTotal = eventPeriods.size(); 
 				
 				//create list for event air forces:
 				List<AirForce>eventAirForces = new ArrayList<>();
@@ -146,10 +155,13 @@ public interface SelectEvents {
 				}//airForcesRS
 				
 				//add event air forces to event builder:
-				eventBuilder.setAirForces(eventAirForces);
+				/////////////eventBuilder.setAirForces(eventAirForces);
 				
 				//add built event to events:
-				events.add(eventBuilder.build());
+				///////////events.add(eventBuilder.build());
+				
+				//add event to events:
+				events.add(new Event(eventName, startPeriod, endPeriod, periodTotal, eventAirForces));
 				
 			}//eventsRS
 			

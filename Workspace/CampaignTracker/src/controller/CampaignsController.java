@@ -143,10 +143,11 @@ public class CampaignsController implements Frameable, Rootable {
 		
 		//create local campaign:
 		Campaign campaign = new Campaign.CampaignBuilder() //+++++++++++++++MARK AS NOT FULLY UPLOADED!!! 
-		.setEvent(new Event.EventBuilder() //++++++++++++++++WHY IS EVENT NOT FULLY MADE HERE. CHECK THIS! :P
+		/*.setEvent(new Event.EventBuilder() //++++++++++++++++WHY IS EVENT NOT FULLY MADE HERE. CHECK THIS! :P
 				.setName(event.getName()) //set event name
 				.setAirForces(event.getAirForces()) //set event air forces
-				.build()) 
+				//++++++++++++++++++AD ALL OTHER STUFF TOO!!  +++++++++++++++++++++++++++++ why not????
+				.build()) */
 		.setCreated(timestamp) //set creation time stamp
 		.setHost(LoginController.getUserName()) //set user as host
 		.setPlayer(LoginController.getUserName()) //set user as player

@@ -35,7 +35,7 @@ import javafx.scene.layout.StackPane;
 import model.Campaign;
 import model.Event;
 import model.Period;
-import model.Event.EventBuilder;
+/*import model.Event.EventBuilder;*/
 import model.Plane.Status;
 import model.AirForce;
 
