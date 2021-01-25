@@ -13,6 +13,21 @@ public class Event {
 	
 	private Event() {} //blank constructor
 	
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++MAKE ALL PROPERTIES FINAL TOO!! 
+	public Event(String name, Period startPeriod, Period endPeriod, int periodTotal, List<AirForce>airForces) {
+		this.name = name;
+		this.startPeriod = new Period(startPeriod.getBlock(), startPeriod.getYear());
+		this.endPeriod = new Period(endPeriod.getBlock(), endPeriod.getYear());
+		this.maxTurns = setMaxTurns(periodTotal);
+		this.airForces = new ArrayList<AirForce>(airForces); //++++++++++++MAKE STRONGER :P
+	}
+	
+	private int setMaxTurns(int periodTotal) {
+		return periodTotal * Campaign.TURNS_PER_PERIOD;
+	}
+	
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++MAKE ALL PROPERTIES FINAL TOO!! 
+	/*
 	//builder class:
 	public static class EventBuilder {
 		
@@ -51,7 +66,7 @@ public class Event {
 		
 		//return built event:
 		public Event build() { return event; } 
-	}
+	}*/
 	
 	//get event name:
 	public String getName() { return name; }
