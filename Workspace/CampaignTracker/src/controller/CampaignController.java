@@ -94,7 +94,7 @@ public class CampaignController implements Rootable, Frameable{
 		}else {this.campaign = campaign;} //else, assign campaign
 			
 		System.out.println("has downloaded all palyers:");
-		System.out.println(this.campaign);
+		////////System.out.println(this.campaign);
 	}
 	
 	

@@ -21,7 +21,7 @@ public final class Campaign implements Loadable{
 	private int turn; //current turn
 	private Timestamp created; //time stamp when created
 	private String host; //name of host
-	private Map<String, Player>nameToPlayer; // = new TreeMap<String, Player>(); //players involved
+	private Map<String, Player>nameToPlayer = new HashMap<String, Player>(); //players involved
 	//+++++++++++++++++++++++turnToMission +++++++++++++++++++++where missions are held!! ADD THIS :P +++++++++++++++++
 	
 	private boolean isAllDownloaded = false; //if fully downloaded from db //+++++++++++++++++'isFullDownload'?? 
@@ -31,12 +31,26 @@ public final class Campaign implements Loadable{
 	
 	
 	//====================================================================================
+	//https://softwareengineering.stackexchange.com/questions/284215/how-do-you-avoid-getters-and-setters
+	
+	//constructor for creating a campaign:
+	public Campaign(int id, Event event, /*Period period,*/ int turn, Timestamp created, 
+			String host, Map<String, Player>nameToPlayer) {
+		this.id = id;
+		this.event = event; //+++++++++++make stronger?????? needed????
+		this.period = event.getStartPeriod(); 
+		this.turn = turn;
+		this.created = created; //++++++++++++make stronger?????
+		this.host = host;
+		this.nameToPlayer = new HashMap<String, Player>(nameToPlayer); //+++++++make stronger
+		//+++isAllDownloaded?????? 
+	}
 	
 	public Campaign(int id, Event event, Period period, int turn, Timestamp created, 
 			String host, Map<String, Player>nameToPlayer) {
 		this.id = id;
 		this.event = event; //+++++++++++make stronger?????? needed????
-		this.period = new Period(period.getBlock(), period.getYear()); //++++++make less strong?????? needed???????
+		this.period = event.getStartPeriod(); 
 		this.turn = turn;
 		this.created = created; //++++++++++++make stronger?????
 		this.host = host;
@@ -45,7 +59,7 @@ public final class Campaign implements Loadable{
 	}
 	
 	//====================================================================================
-	/*
+	
 	//builder class:
 	public static class CampaignBuilder {
 		
@@ -99,7 +113,7 @@ public final class Campaign implements Loadable{
 			campaign.nameToPlayer.putIfAbsent(
 					name, new Player.PlayerBuilder().setName(name).build());
 			return this;
-		}
+		}*/
 		
 		//set player:
 		public CampaignBuilder setPlayer(String name) {
@@ -115,7 +129,7 @@ public final class Campaign implements Loadable{
 		
 		//return built campaign:
 		public Campaign build() { return campaign; } 
-	}*/
+	}
 	
 	public int getId() { return id; } //get id
 	public String getEventName() { return event.getName(); } //get event name

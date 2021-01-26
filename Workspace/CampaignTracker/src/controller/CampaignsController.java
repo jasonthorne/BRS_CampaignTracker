@@ -145,16 +145,16 @@ public class CampaignsController implements Frameable, Rootable {
 		
 		/** +++++++++++++++++++++++++++++BUILD ENTIRE EVENT in CAMPAIGN BELOW !! ++++++++++++++++++++++++++++ */
 		//create local campaign:
-		/*Campaign campaign = new Campaign.CampaignBuilder() //+++++++++++++++MARK AS NOT FULLY UPLOADED!!! 
+		Campaign campaign = new Campaign.CampaignBuilder() //+++++++++++++++MARK AS NOT FULLY UPLOADED!!! 
 		.setEvent(event) //set event
 		.setCreated(timestamp) //set creation time stamp
 		.setHost(LoginController.getUserName()) //set user as host
 		.setPlayer(LoginController.getUserName()) //set user as player
 		.setId(campaignId) //add id of inserted campaign
-		.build();*/
+		.build();
 		String host, player = LoginController.getUserName(); //set user as player and host
 		
-		Campaign campaign = new Campaign(campaignId, event, period, turn, timestamp, ) //+++++++++++++++MARK AS NOT FULLY UPLOADED!!! 
+		//Campaign campaign = new Campaign(campaignId, event, period, turn, timestamp, ) //+++++++++++++++MARK AS NOT FULLY UPLOADED!!! 
 		
 		//add campaign to observable list of campaigns:
 		observCampaigns.add(campaign);
