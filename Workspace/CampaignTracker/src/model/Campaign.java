@@ -38,16 +38,14 @@ public final class Campaign implements Loadable{
 		this.event = event; //+++++++++++make stronger?????? needed????
 		this.period = new Period(period.getBlock(), period.getYear()); //++++++make less strong?????? needed???????
 		this.turn = turn;
-		this.created = created;
+		this.created = created; //++++++++++++make stronger?????
 		this.host = host;
 		this.nameToPlayer = new HashMap<String, Player>(nameToPlayer); //+++++++make stronger
+		//+++isAllDownloaded?????? 
 	}
 	
-	
-	
-	
 	//====================================================================================
-	
+	/*
 	//builder class:
 	public static class CampaignBuilder {
 		
@@ -101,7 +99,7 @@ public final class Campaign implements Loadable{
 			campaign.nameToPlayer.putIfAbsent(
 					name, new Player.PlayerBuilder().setName(name).build());
 			return this;
-		}*/
+		}
 		
 		//set player:
 		public CampaignBuilder setPlayer(String name) {
@@ -117,7 +115,7 @@ public final class Campaign implements Loadable{
 		
 		//return built campaign:
 		public Campaign build() { return campaign; } 
-	}
+	}*/
 	
 	public int getId() { return id; } //get id
 	public String getEventName() { return event.getName(); } //get event name
