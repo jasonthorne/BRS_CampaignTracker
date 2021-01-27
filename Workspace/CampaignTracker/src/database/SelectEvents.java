@@ -67,7 +67,7 @@ public interface SelectEvents {
 				
 				//get start & end periods from list:
 				////////////eventBuilder.setStartPeriod(eventPeriods.get(0));
-				////////////eventBuilder.setEndPeriod(eventPeriods.get(eventPeriods.size()-1));
+				/////////////eventBuilder.setEndPeriod(eventPeriods.get(eventPeriods.size()-1));
 				
 				//get start & end periods from list:
 				Period startPeriod = eventPeriods.get(0);
