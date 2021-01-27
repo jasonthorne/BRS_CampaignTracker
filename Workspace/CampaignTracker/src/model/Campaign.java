@@ -58,6 +58,13 @@ public final class Campaign implements Loadable{
 		//+++isAllDownloaded?????? 
 	}
 	
+	
+	/*Campaign increasePeriod(Period period){
+		this.period = period;
+		return this;
+	
+	}*/
+	
 	//====================================================================================
 	
 	//builder class:

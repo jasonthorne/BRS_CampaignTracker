@@ -16,8 +16,8 @@ public final class Event {
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++MAKE ALL PROPERTIES FINAL TOO!! 
 	public Event(String name, Period startPeriod, Period endPeriod, int periodTotal, List<AirForce>airForces) {
 		this.name = name;
-		this.startPeriod = new Period(startPeriod.getBlock(), startPeriod.getYear());
-		this.endPeriod = new Period(endPeriod.getBlock(), endPeriod.getYear());
+		this.startPeriod = startPeriod; //++++++++++new Period(startPeriod.getBlock(), startPeriod.getYear());
+		this.endPeriod = endPeriod; //++++++++++++new Period(endPeriod.getBlock(), endPeriod.getYear());
 		this.maxTurns = setMaxTurns(periodTotal);
 		this.airForces = new ArrayList<AirForce>(airForces); //++++++++++++MAKE STRONGER :P
 	}
