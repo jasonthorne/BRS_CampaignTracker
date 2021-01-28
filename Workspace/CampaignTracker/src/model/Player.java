@@ -13,7 +13,7 @@ public final class Player {
 	
 	private Player() {} //blank constructor
 	
-	//=========================================================================
+	//============================================================================
 	
 	//player with just name:
 	public Player(String name) { this.name = name; }
