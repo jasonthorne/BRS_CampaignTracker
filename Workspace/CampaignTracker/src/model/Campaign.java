@@ -116,17 +116,17 @@ public final class Campaign implements Loadable{
 		}
 		
 		//set player:
-		/*public CampaignBuilder setPlayer(String name) {
+		public CampaignBuilder setPlayer(String name) {
 			campaign.nameToPlayer.putIfAbsent(
 					name, new Player.PlayerBuilder().setName(name).build());
 			return this;
-		}*/
+		}
 		
 		//set player:
-		public CampaignBuilder setPlayer(String name) {
+		/*public CampaignBuilder setPlayer(String name) {
 			campaign.nameToPlayer.putIfAbsent(name, new Player(name));
 			return this;
-		}
+		}*/
 		
 		//set if fully uploaded:
 		public CampaignBuilder setIsAllDownloaded(boolean bool) {

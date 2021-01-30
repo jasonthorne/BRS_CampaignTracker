@@ -14,7 +14,7 @@ public final class Player {
 	private Player() {} //blank constructor
 	
 	//============================================================================
-	
+	/*
 	//player with just name:
 	public Player(String name) { this.name = name; }
 		
@@ -34,9 +34,9 @@ public final class Player {
 		this.created = created; //++++++++++++++++++might need strengthening! +++++++
 		this.squadron = squadron; //++++++++++++++++++might need strengthening! +++++++
 	}
-	
+	*/
 	//=========================================================================
-	/*
+	
 	//builder class:
 	public static class PlayerBuilder {
 		
@@ -74,7 +74,7 @@ public final class Player {
 		}
 		
 		public Player build() { return player; } //return built player
-	}*/
+	}
 	
 	//getters:
 	/////////////public int getId() { return id; } /** +++++++++++++ not sure if needed??? ++++++++*/
