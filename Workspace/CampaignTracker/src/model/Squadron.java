@@ -7,8 +7,7 @@ public final class Squadron {
 	
 	private final String airForce; //airForce name
 	private final int skillPoints; //skill points available
-	
-	private Map<String, Pilot>nameToPilot = new TreeMap<String, Pilot>(); //pilots involved
+	private final Map<String, Pilot>nameToPilot = new TreeMap<String, Pilot>(); //pilots involved
 	
 	///////////private Squadron() {} //blank constructor
 	

@@ -23,48 +23,16 @@ public final class Plane {
 	}
 	
 	private final SimpleStringProperty name; //name of plane
-	///////////private Map<Period, Status>availabilities; //availability per period of history
-	
-	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++MAKE ALL PROPERTIES FINAL TOO!! 
 	private final Map<Period, Status>periodToStatus; //periods available and their corresponding status
 	
+	//constructor:
 	public Plane(String name, Map<Period, Status>periodToStatus) {
 		this.name = new SimpleStringProperty(name);
-		this.periodToStatus = new HashMap<Period, Status>(periodToStatus);
+		this.periodToStatus = new HashMap<Period, Status>(periodToStatus); //+++++++++++++++++++++make stronger+++++++++++++!
 	}
-	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-		
-	/*							
-	private Plane() {} //blank constructor
-	
-	//builder class:
-	public static class PlaneBuilder {
-	
-		private Plane plane = new Plane(); //create plane
-		
-		//set name:
-		public PlaneBuilder setPlaneName(String name) {
-			plane.name = new SimpleStringProperty(name);
-			return this;
-		}
-		
-		//set availabilities:
-		public PlaneBuilder setPlaneAvailabilities(Map<Period, Status>availabilities) {
-			plane.availabilities = new HashMap<Period, Status>(availabilities);
-			return this;
-		}
-		
-		public Plane build() { return plane; } //return built plane
-	}*/
 	
 	//get plane name:
 	public String getName() { return name.get(); }
-	
-	/*
-	//get plane availabilities:
-	public HashMap<Period, Status> getPlaneAvailabilities() { 
-		return new HashMap<Period, Status>(availabilities); 
-	}*/
 	
 	//get plane availabilities:
 	public HashMap<Period, Status> getAvailabilities() { 

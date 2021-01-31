@@ -11,9 +11,7 @@ public final class Event {
 	private final int maxTurns; //number of turns
 	private final List<AirForce>airForces; //list of air forces involved
 	
-	///////////////private Event() {} //blank constructor
-	
-	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++MAKE ALL PROPERTIES FINAL TOO!! 
+	//constructor:
 	public Event(String name, Period startPeriod, Period endPeriod, int periodTotal, List<AirForce>airForces) {
 		this.name = name;
 		this.startPeriod = startPeriod; //++++++++++new Period(startPeriod.getBlock(), startPeriod.getYear());
@@ -22,69 +20,21 @@ public final class Event {
 		this.airForces = new ArrayList<AirForce>(airForces); //++++++++++++MAKE STRONGER :P
 	}
 	
-	
-
 	private int setMaxTurns(int periodTotal) {
 		return periodTotal * Campaign.TURNS_PER_PERIOD;
 	}
-	
-	/*private int getPeriodTotal() {
-		return maxTurns / Campaign.TURNS_PER_PERIOD;
-	}*/
-	
-	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++MAKE ALL PROPERTIES FINAL TOO!! 
-	/*
-	//builder class:
-	public static class EventBuilder {
-		
-		private Event event = new Event(); //create event
-		
-		//set name:
-		public EventBuilder setName(String name) {
-			event.name = name;
-			return this;
-		}
-		
-		//set start period:
-		public EventBuilder setStartPeriod(Period period) {
-			event.startPeriod = new Period(period.getBlock(), period.getYear());
-			return this;
-		}
-		
-		//set end period:
-		public EventBuilder setEndPeriod(Period period) {
-			event.endPeriod = new Period(period.getBlock(), period.getYear());
-			return this;
-		}
-		
-		//set number of turns:
-		public EventBuilder setMaxTurns(int periodTotal) {
-			event.maxTurns = (periodTotal * Campaign.TURNS_PER_PERIOD);
-			return this;
-		}
-		
-		//set list of event air forces:
-		//+++++++++++++++++++++++++++++++loop through passed list and make a new one with each val
-		public EventBuilder setAirForces(List<AirForce>airForces) { //++++++++++++++++++++MAKE STRONGER
-			event.airForces = new ArrayList<AirForce>(airForces);
-			return this;
-		}
-		
-		//return built event:
-		public Event build() { return event; } 
-	}*/
 	
 	//get event name:
 	public String getName() { return name; }
 	
 	//get start period:
 	public Period getStartPeriod() {
-		return new Period(startPeriod.getBlock(), startPeriod.getYear());
+		return new Period(startPeriod.getBlock(), startPeriod.getYear()); //+++++++++++++++too strong??????
 	}
 	
 	//get end period:
 	public Period getEndPeriod() {
-		return new Period(endPeriod.getBlock(), endPeriod.getYear());
+		return new Period(endPeriod.getBlock(), endPeriod.getYear()); //+++++++++++++++too strong??????
 	}
 	
 	//get max turns:
