@@ -91,12 +91,12 @@ public interface SelectCampaigns {
 				
 				while(playerNamesRS.next()) {
 					//add player with user name to campaign:
-					campaignBuilder.setPlayer(playerNamesRS.getString("name"));
+					////////campaignBuilder.setPlayer(playerNamesRS.getString("name"));
 					
 					String playerName = playerNamesRS.getString("name"); //get player name
 					
 					//add player with name to map:
-					//////////////nameToPlayer.putIfAbsent(playerName, new Player(playerName));
+					nameToPlayer.putIfAbsent(playerName, new Player(playerName));
 					////nameToPlayer.putIfAbsent(playerName, new Player(playerName));
 				}
 				

@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import controller.Loadable;
-/*import model.AirForce.AirForceBuilder;*/
 import model.Plane.Status;
 
 public final class Campaign implements Loadable{

@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Period.Block;
+
 public final class Event {
 	
 	private final String name; //name of event
@@ -14,10 +16,10 @@ public final class Event {
 	//constructor:
 	public Event(String name, Period startPeriod, Period endPeriod, int periodTotal, List<AirForce>airForces) {
 		this.name = name;
-		this.startPeriod = startPeriod; //++++++++++new Period(startPeriod.getBlock(), startPeriod.getYear());
-		this.endPeriod = endPeriod; //++++++++++++new Period(endPeriod.getBlock(), endPeriod.getYear());
+		this.startPeriod = startPeriod; 
+		this.endPeriod = endPeriod; 
 		this.maxTurns = setMaxTurns(periodTotal);
-		this.airForces = new ArrayList<AirForce>(airForces); //++++++++++++MAKE STRONGER :P
+		this.airForces = new ArrayList<AirForce>(airForces);
 	}
 	
 	private int setMaxTurns(int periodTotal) {

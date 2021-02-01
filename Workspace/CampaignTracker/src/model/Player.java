@@ -14,7 +14,7 @@ public final class Player {
 	private Player() {} //blank constructor
 	
 	//============================================================================
-	/*
+	
 	//player with just name:
 	public Player(String name) { this.name = name; }
 		
@@ -34,7 +34,7 @@ public final class Player {
 		this.created = created; //++++++++++++++++++might need strengthening! +++++++
 		this.squadron = squadron; //++++++++++++++++++might need strengthening! +++++++
 	}
-	*/
+	
 	//=========================================================================
 	
 	//builder class:
