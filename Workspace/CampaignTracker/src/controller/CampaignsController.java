@@ -159,6 +159,7 @@ public class CampaignsController implements Frameable, Rootable {
 		//add campaign to observable list of campaigns:
 		observCampaigns.add(campaign);
 		
+		
 		//navigate to campaign:
 		Frameable.changeView(root, new CampaignController(campaign)); //++++++++++++++++++++REMEMBER TO FIX NAV BUTTONS HERE!! ++++
 	}
