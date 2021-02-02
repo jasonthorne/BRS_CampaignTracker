@@ -33,9 +33,9 @@ public final class Campaign implements Loadable{
 	
 	//====================================================================================
 	//https://softwareengineering.stackexchange.com/questions/284215/how-do-you-avoid-getters-and-setters
-	
+	/*
 	//constructor for creating a campaign:
-	public Campaign(int id, Event event, /*Period period,*/ int turn, Timestamp created, 
+	public Campaign(int id, Event event, int turn, Timestamp created, 
 			String host, Map<String, Player>nameToPlayer) {
 		this.id = id;
 		this.event = event; //+++++++++++make stronger?????? needed????
@@ -59,7 +59,7 @@ public final class Campaign implements Loadable{
 		//+++isAllDownloaded?????? 
 	}
 	
-	
+	*/
 	/*Campaign increasePeriod(Period period){
 		this.period = period;
 		return this;

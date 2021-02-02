@@ -86,7 +86,7 @@ public interface SelectPlayers {
 									new Player(playerName, score, isActive, created, squadron));*/
 				}else {
 					//add player without squadron to map:
-					nameToPlayer.put(playerName, new Player(playerName, score, isActive, created));
+					////nameToPlayer.put(playerName, new Player(playerName, score, isActive, created));
 				}
 				
 				

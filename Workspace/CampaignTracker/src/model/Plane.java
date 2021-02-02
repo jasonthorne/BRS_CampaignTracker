@@ -41,7 +41,7 @@ public final class Plane {
 
 	@Override
 	public String toString() {
-		return "Plane [name=" + name + ", periodToStatus=" + periodToStatus + "]";
+		return "Plane [name=" + name.get() + ", periodToStatus=" + periodToStatus + "]";
 	}
 	
 }

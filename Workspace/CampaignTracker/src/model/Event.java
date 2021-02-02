@@ -49,7 +49,8 @@ public final class Event {
 	}
 	
 	/*public Event getEvent() {
-		return new Event(name, startPeriod, endPeriod, getPeriodTotal(), airForces);
+		//////return new Event(name, startPeriod, endPeriod, getPeriodTotal(), airForces);
+		return this; //SJOULD I USE THE ABOVE INSTEAD???????????
 	}*/
 
 	
