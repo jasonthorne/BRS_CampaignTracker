@@ -67,6 +67,7 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
                 } /**https://stackoverflow.com/questions/51536489/how-can-i-detect-javafx-double-click-on-listview*/
             });
 	        
+	        //+++++++++++++++++++++++ADD SINGLE CLIKC EVENT SHOWING POP UP, TELLING USER TO DBL CLICK TO OPEN ++++++
 	        setText(null); 
 	        setGraphic(rootAP); //set this root element as the graphic
         }

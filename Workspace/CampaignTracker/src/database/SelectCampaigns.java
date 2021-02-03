@@ -54,15 +54,15 @@ public interface SelectCampaigns {
 				
 				//add campaign to campaigns:
 				campaigns.add(new Campaign(
-						campaignsRS.getInt("campaign_ID"), //get id
-						nameToEvent.get(campaignsRS.getString("event_name")), //get event 
-						new Period( //get period
+						campaignsRS.getInt("campaign_ID"), //id
+						nameToEvent.get(campaignsRS.getString("event_name")), //event 
+						new Period( //period
 								Block.valueOf(campaignsRS.getString("period_block").toUpperCase()),
 								campaignsRS.getInt("period_year")), 
-						campaignsRS.getInt("turn"), //get turn
-						campaignsRS.getTimestamp("date_time"), //get created
-						campaignsRS.getString("host_name"), //get host
-						nameToPlayer));
+						campaignsRS.getInt("turn"), //turn
+						campaignsRS.getTimestamp("date_time"), //created
+						campaignsRS.getString("host_name"), //host
+						nameToPlayer)); //nameToPlayer
 			}
 			
 		} catch(Exception e) { e.printStackTrace(); }

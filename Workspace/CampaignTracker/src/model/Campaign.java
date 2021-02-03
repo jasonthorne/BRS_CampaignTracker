@@ -20,13 +20,13 @@ public final class Campaign implements Loadable{
 	private int turn; //current turn
 	private Timestamp created; //time stamp when created
 	private String host; //name of host
-	private Map<String, Player>nameToPlayer; // = new HashMap<String, Player>(); //players involved
+	private Map<String, Player>nameToPlayer; // = new HashMap<String, Player>(); //players involved 
 	//+++++++++++++++++++++++turnToMission +++++++++++++++++++++where missions are held!! ADD THIS :P +++++++++++++++++
 	
 	///////private boolean isAllDownloaded = false; //if fully downloaded from db //+++++++++++++++++'isFullDownload'?? 
 	////////////////private boolean isAllUploaded = false; //if fully uploaded from db
 	private boolean wasCreated; //++++++++++++++++++NEEDED???????
-	private boolean isUploaded;
+	private boolean isUploaded; //+++++++++'was' instead of 'is'????
 	private boolean isDownloaded;
 	
 	private Campaign() {} //blank constructor
@@ -37,8 +37,26 @@ public final class Campaign implements Loadable{
 	
 	
 	//++++++++++++++TAKE WHATS IN COMMON FROM THESE AND MAKE ANOTHER CONSTRUCTOR FOR THEM TO CALL (a PRIVATE one!! :P)
+	/*private Campaign(int id, Event event, Timestamp created, String host) {
+		this.id = id;
+		this.event = event;
+		this.host = host;
+	}*/
 	
-	//constructor for downloading a campaign:
+	
+	//new campaign:
+	public Campaign(int id, Event event, Timestamp created, String user) {
+		this.id = id;
+		this.event = event; 
+		this.created = created;
+		this.host = user;
+		//add user as player:
+		this.nameToPlayer = new HashMap<String, Player>(Collections.singletonMap(user, new Player(user)));
+		/** https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way/6802523 */
+		wasCreated = true; //flag as created
+	}
+		
+	//campaign cell campaign:
 	public Campaign(int id, Event event, Period period, int turn, Timestamp created, 
 			String host, Map<String, Player>nameToPlayer) {
 		this.id = id;
@@ -48,24 +66,15 @@ public final class Campaign implements Loadable{
 		this.created = created; //++++++++++++make stronger?????
 		this.host = host;
 		this.nameToPlayer = new HashMap<String, Player>(nameToPlayer); //+++++++make stronger?????
-		///////////////////wasDownloaded = true; //flag as down-loaded +++++++++WRONG!! 
+		///////////////////wasDownloaded = true; //flag as down-loaded +++++++++WRONG!!
 	}
 	
-	//constructor for creating a campaign:
-	public Campaign(int id, Event event, Period period, int turn, Timestamp created, 
-			String host, Player player) {
-		this.id = id;
-		this.event = event; //+++++++++++make stronger?????? needed????
-		////++++++this.period = event.getStartPeriod();
-		/////////++++++this.turn = turn;
-		this.created = created; //++++++++++++make stronger?????
-		this.host = host;
-		//create map with player:
-		this.nameToPlayer = new HashMap<String, Player>(Collections.singletonMap(player.getName(), player));
-		/** https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way/6802523 */
+	
+	//downloaded campaign:
+	public Campaign(int i) {
 		
-		//+++isAllDownloaded?????? 
 	}
+	
 	
 	
 	/*Campaign increasePeriod(Period period){
