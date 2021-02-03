@@ -41,23 +41,6 @@ public interface SelectCampaigns {
 			
 			while(campaignsRS.next()) {
 				
-				/*
-				//create campaign builder:
-				CampaignBuilder campaignBuilder = new Campaign.CampaignBuilder(); 
-				campaignBuilder.setId(campaignsRS.getInt("campaign_ID")); //set id
-				campaignBuilder.setTurn(campaignsRS.getInt("turn")); //set turn
-				campaignBuilder.setCreated(campaignsRS.getTimestamp("date_time")); //set created
-				campaignBuilder.setHost(campaignsRS.getString("host_name")); //set host name
-				
-				//set period:
-				campaignBuilder.setPeriod((new Period(
-						Block.valueOf(campaignsRS.getString("period_block").toUpperCase()),
-						campaignsRS.getInt("period_year"))));
-				
-				//set event using nameToEvent:
-				campaignBuilder.setEvent(nameToEvent.get(campaignsRS.getString("event_name")));*/
-				
-				
 				int id = campaignsRS.getInt("campaign_ID"); //get id
 				Event event = nameToEvent.get(campaignsRS.getString("event_name")); //get event
 				
@@ -67,57 +50,27 @@ public interface SelectCampaigns {
 						campaignsRS.getInt("period_year"));
 				
 				int turn = campaignsRS.getInt("turn"); //get turn
-				Timestamp created = (campaignsRS.getTimestamp("date_time")); //get created
+				Timestamp created = campaignsRS.getTimestamp("date_time"); //get created
 				String host = campaignsRS.getString("host_name"); //get host name
 				
-				//=============================================
 				//map for players:
 				Map<String, Player>nameToPlayer = new HashMap<String, Player>();
-				//=============================================
-				
-				//set player names statement input with campaign id:
+			
+				//set player names statement with campaign id:
 				playerNamesStatement.setInt(1, campaignsRS.getInt("campaign_ID")); 
 				playerNamesRS = playerNamesStatement.executeQuery(); //execute player names query
 				
 				while(playerNamesRS.next()) {
-					//add player with name to campaign:
-					////////////campaignBuilder.setPlayer(playerNamesRS.getString("name"));
-					
-					//==================
-					//get name of player:
-					String name = playerNamesRS.getString("name");
+					String name = playerNamesRS.getString("name"); //get player name
 					nameToPlayer.put(name, new Player(name)); //add player to map
-					//====================
-					
 				}
-				
-				
-				
-				//===========================================
-				
-				
 				
 				//add campaign to campaigns:
 				campaigns.add(new Campaign(id, event, period, turn, created, host, nameToPlayer));
-				
-				//get event using nameToEvent:
-				//Event event = nameToEvent.get(campaignsRS.getString("event_name"));
-				
-				
-			
-				//===========================================
-				
-				
-				
-				
-				
-				
-				//add built campaign to campaigns:
-				////////////campaigns.add(campaignBuilder.build());
 			}
 			
 		} catch(Exception e) { e.printStackTrace(); }
-		System.out.println(campaigns);
+		System.out.println(campaigns); //++++++++++++++++++++++++++++++
 		return campaigns; //return campaigns
 	}
 }

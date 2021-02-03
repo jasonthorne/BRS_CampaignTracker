@@ -47,8 +47,8 @@ public final class Campaign implements Loadable{
 		this.turn = turn;
 		this.created = created; //++++++++++++make stronger?????
 		this.host = host;
-		this.nameToPlayer = new HashMap<String, Player>(nameToPlayer); //+++++++make stronger
-		wasDownloaded = true; //flag as down-loaded
+		this.nameToPlayer = new HashMap<String, Player>(nameToPlayer); //+++++++make stronger?????
+		///////////////////wasDownloaded = true; //flag as down-loaded +++++++++WRONG!! 
 	}
 	
 	//constructor for creating a campaign:
@@ -56,7 +56,7 @@ public final class Campaign implements Loadable{
 			String host, Player player) {
 		this.id = id;
 		this.event = event; //+++++++++++make stronger?????? needed????
-		////++++++this.period = event.getStartPeriod(); 
+		////++++++this.period = event.getStartPeriod();
 		/////////++++++this.turn = turn;
 		this.created = created; //++++++++++++make stronger?????
 		this.host = host;
