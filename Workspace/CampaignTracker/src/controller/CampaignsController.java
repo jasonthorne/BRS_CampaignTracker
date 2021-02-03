@@ -152,7 +152,7 @@ public class CampaignsController implements Frameable, Rootable {
 		.setPlayer(LoginController.getUserName()) //set user as player
 		.setId(campaignId) //add id of inserted campaign
 		.build();
-		String host, player = LoginController.getUserName(); //set user as player and host
+		////////String host, player = LoginController.getUserName(); //set user as player and host
 		
 		//Campaign campaign = new Campaign(campaignId, event, period, turn, timestamp, ) //+++++++++++++++MARK AS NOT FULLY UPLOADED!!! 
 		

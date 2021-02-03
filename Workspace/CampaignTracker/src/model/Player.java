@@ -14,13 +14,13 @@ public final class Player {
 	private Player() {} //blank constructor
 	
 	//============================================================================
-	/*
+	
 	//player with just name:
 	public Player(String name) { this.name = name; }
 		
 	//player without squadron:
 	public Player(String name, int score, boolean isActive, Timestamp created) {
-		this.name = name;
+		this(name);
 		this.score = score;
 		this.isActive = isActive;
 		this.created = created; //++++++++++++++++++might need strengthening! +++++++
@@ -28,15 +28,12 @@ public final class Player {
 	
 	//player with squadron:
 	public Player(String name, int score, boolean isActive, Timestamp created, Squadron squadron) {
-		this.name = name;
-		this.score = score;
-		this.isActive = isActive;
-		this.created = created; //++++++++++++++++++might need strengthening! +++++++
+		this(name, score, isActive, created);
 		this.squadron = squadron; //++++++++++++++++++might need strengthening! +++++++
 	}
-	*/
-	//=========================================================================
 	
+	//=========================================================================
+	/*
 	//builder class:
 	public static class PlayerBuilder {
 		
@@ -74,7 +71,7 @@ public final class Player {
 		}
 		
 		public Player build() { return player; } //return built player
-	}
+	}*/
 	
 	//getters:
 	/////////////public int getId() { return id; } /** +++++++++++++ not sure if needed??? ++++++++*/

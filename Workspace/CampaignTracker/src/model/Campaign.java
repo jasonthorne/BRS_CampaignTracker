@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Timestamp;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,10 +20,10 @@ public final class Campaign implements Loadable{
 	private int turn; //current turn
 	private Timestamp created; //time stamp when created
 	private String host; //name of host
-	private Map<String, Player>nameToPlayer = new HashMap<String, Player>(); //players involved
+	private Map<String, Player>nameToPlayer; // = new HashMap<String, Player>(); //players involved
 	//+++++++++++++++++++++++turnToMission +++++++++++++++++++++where missions are held!! ADD THIS :P +++++++++++++++++
 	
-	private boolean isAllDownloaded = false; //if fully downloaded from db //+++++++++++++++++'isFullDownload'?? 
+	///////private boolean isAllDownloaded = false; //if fully downloaded from db //+++++++++++++++++'isFullDownload'?? 
 	////////////////private boolean isAllUploaded = false; //if fully uploaded from db
 	private boolean wasCreated;
 	private boolean wasUploaded;
@@ -33,33 +34,40 @@ public final class Campaign implements Loadable{
 	
 	//====================================================================================
 	//https://softwareengineering.stackexchange.com/questions/284215/how-do-you-avoid-getters-and-setters
-	/*
-	//constructor for creating a campaign:
-	public Campaign(int id, Event event, int turn, Timestamp created, 
-			String host, Map<String, Player>nameToPlayer) {
-		this.id = id;
-		this.event = event; //+++++++++++make stronger?????? needed????
-		this.period = event.getStartPeriod(); 
-		this.turn = turn;
-		this.created = created; //++++++++++++make stronger?????
-		this.host = host;
-		this.nameToPlayer = new HashMap<String, Player>(nameToPlayer); //+++++++make stronger
-		//+++isAllDownloaded?????? 
-	}
 	
+	
+	//++++++++++++++TAKE WHATS IN COMMON FROM THESE AND MAKE ANOTHER CONSTRUCTOR FOR THEM TO CALL (a PRIVATE one!! :P)
+	
+	//constructor for downloading a campaign:
 	public Campaign(int id, Event event, Period period, int turn, Timestamp created, 
 			String host, Map<String, Player>nameToPlayer) {
 		this.id = id;
 		this.event = event; //+++++++++++make stronger?????? needed????
-		this.period = event.getStartPeriod(); 
+		this.period = period; 
 		this.turn = turn;
 		this.created = created; //++++++++++++make stronger?????
 		this.host = host;
 		this.nameToPlayer = new HashMap<String, Player>(nameToPlayer); //+++++++make stronger
+		wasDownloaded = true; //flag as down-loaded
+	}
+	
+	//constructor for creating a campaign:
+	public Campaign(int id, Event event, Period period, int turn, Timestamp created, 
+			String host, Player player) {
+		this.id = id;
+		this.event = event; //+++++++++++make stronger?????? needed????
+		////++++++this.period = event.getStartPeriod(); 
+		/////////++++++this.turn = turn;
+		this.created = created; //++++++++++++make stronger?????
+		this.host = host;
+		//create map with player:
+		this.nameToPlayer = new HashMap<String, Player>(Collections.singletonMap(player.getName(), player));
+		/** https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way/6802523 */
+		
 		//+++isAllDownloaded?????? 
 	}
 	
-	*/
+	
 	/*Campaign increasePeriod(Period period){
 		this.period = period;
 		return this;
@@ -82,7 +90,7 @@ public final class Campaign implements Loadable{
 		
 		//set event:
 		public CampaignBuilder setEvent(Event event) {
-			campaign.event = event; //+++++++++++++++++++++MAKE THIS STRONGER!!! :P 
+			campaign.event = event;
 			return this;
 		}
 		
@@ -112,28 +120,28 @@ public final class Campaign implements Loadable{
 		
 		//set players:
 		public CampaignBuilder setPlayers(Map<String, Player>playersMap) {
-			campaign.nameToPlayer = new TreeMap<String, Player>(playersMap);
-			return this;
-		}
-		
-		//set player:
-		public CampaignBuilder setPlayer(String name) {
-			campaign.nameToPlayer.putIfAbsent(
-					name, new Player.PlayerBuilder().setName(name).build());
+			campaign.nameToPlayer = new HashMap<String, Player>(playersMap);
 			return this;
 		}
 		
 		//set player:
 		/*public CampaignBuilder setPlayer(String name) {
-			campaign.nameToPlayer.putIfAbsent(name, new Player(name));
+			campaign.nameToPlayer.putIfAbsent(
+					name, new Player.PlayerBuilder().setName(name).build());
 			return this;
 		}*/
 		
-		//set if fully uploaded:
-		public CampaignBuilder setIsAllDownloaded(boolean bool) {
-			campaign.isAllDownloaded = bool;
+		//set player:
+		public CampaignBuilder setPlayer(String name) {
+			campaign.nameToPlayer.putIfAbsent(name, new Player(name));
 			return this;
 		}
+		
+		//set if fully uploaded:
+		/*public CampaignBuilder setIsAllDownloaded(boolean bool) {
+			campaign.isAllDownloaded = bool;
+			return this;
+		}*/
 		
 		//return built campaign:
 		public Campaign build() { return campaign; } 
@@ -145,9 +153,6 @@ public final class Campaign implements Loadable{
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
 	public String getHostName() { return host; } //get host name
 	
-	public boolean getIsAllDownloaded() { return isAllDownloaded; } //get if fully downloaded
-	///////////////public boolean getIsAllUploaded() { return isAllUploaded; } //get if fully uploaded
-		
 	//get current progress:
 	public double getProgress() {
 		return (((double) turn) / event.getMaxTurns()); //current turn / max turns
@@ -162,8 +167,9 @@ public final class Campaign implements Loadable{
 	
 	@Override
 	public String toString() {
-		return "Campaign [id=" + id + ", event=" + event + ", period=" + period + ", turnNum=" + turn + ", created="
-				+ created + ", host=" + host + ", nameToPlayer=" + nameToPlayer + "]";
+		return "Campaign [id=" + id + ", event=" + event + ", period=" + period + ", turn=" + turn + ", created="
+				+ created + ", host=" + host + ", nameToPlayer=" + nameToPlayer + ", wasCreated=" + wasCreated
+				+ ", wasUploaded=" + wasUploaded + ", wasDownloaded=" + wasDownloaded + "]";
 	}
 
 	@Override
@@ -173,7 +179,7 @@ public final class Campaign implements Loadable{
 	@Override
 	public boolean getWasUploaded() { return wasUploaded; }
 	
-		
+	
 	
 	
 	

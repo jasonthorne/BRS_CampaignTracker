@@ -73,7 +73,7 @@ public class CampaignController implements Rootable, Frameable{
 	private void setCampaign(Campaign campaign) {
 		
 		//if campaign hasn't been fully downloaded:
-		if(!campaign.getIsAllDownloaded()) { //++++++++++++++++++RENAME THIS!! 
+		if(/*!campaign.getIsAllDownloaded()*/ true) { //++++++++++++++++++RENAME THIS!! 
 			
 			//download campaign:
 			//++++++HAVE A LOADING ANIMATION HERE TOO! WHILE THIS DOWNLOADS! ++++++++++++++
