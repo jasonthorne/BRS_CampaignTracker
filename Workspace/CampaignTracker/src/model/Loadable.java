@@ -8,8 +8,8 @@ public interface Loadable {
 	
 	//force boolean getters:
 	abstract boolean getWasCreated();
-	abstract boolean getWasDownloaded();
-	abstract boolean getWasUploaded();
+	abstract boolean getIsDownloaded();
+	abstract boolean getIsUploaded();
 	
 	
 }

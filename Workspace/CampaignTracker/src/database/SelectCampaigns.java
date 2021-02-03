@@ -41,21 +41,8 @@ public interface SelectCampaigns {
 			
 			while(campaignsRS.next()) {
 				
-				int id = campaignsRS.getInt("campaign_ID"); //get id
-				Event event = nameToEvent.get(campaignsRS.getString("event_name")); //get event
+				Map<String, Player>nameToPlayer = new HashMap<String, Player>(); //map for players
 				
-				//get period:
-				Period period = new Period(
-						Block.valueOf(campaignsRS.getString("period_block").toUpperCase()),
-						campaignsRS.getInt("period_year"));
-				
-				int turn = campaignsRS.getInt("turn"); //get turn
-				Timestamp created = campaignsRS.getTimestamp("date_time"); //get created
-				String host = campaignsRS.getString("host_name"); //get host name
-				
-				//map for players:
-				Map<String, Player>nameToPlayer = new HashMap<String, Player>();
-			
 				//set player names statement with campaign id:
 				playerNamesStatement.setInt(1, campaignsRS.getInt("campaign_ID")); 
 				playerNamesRS = playerNamesStatement.executeQuery(); //execute player names query
@@ -66,11 +53,20 @@ public interface SelectCampaigns {
 				}
 				
 				//add campaign to campaigns:
-				campaigns.add(new Campaign(id, event, period, turn, created, host, nameToPlayer));
+				campaigns.add(new Campaign(
+						campaignsRS.getInt("campaign_ID"), //get id
+						nameToEvent.get(campaignsRS.getString("event_name")), //get event 
+						new Period( //get period
+								Block.valueOf(campaignsRS.getString("period_block").toUpperCase()),
+								campaignsRS.getInt("period_year")), 
+						campaignsRS.getInt("turn"), //get turn
+						campaignsRS.getTimestamp("date_time"), //get created
+						campaignsRS.getString("host_name"), //get host
+						nameToPlayer));
 			}
 			
 		} catch(Exception e) { e.printStackTrace(); }
-		System.out.println(campaigns); //++++++++++++++++++++++++++++++
+		System.out.println(campaigns); //++++++++++++++++++++++++++
 		return campaigns; //return campaigns
 	}
 }

@@ -25,9 +25,9 @@ public final class Campaign implements Loadable{
 	
 	///////private boolean isAllDownloaded = false; //if fully downloaded from db //+++++++++++++++++'isFullDownload'?? 
 	////////////////private boolean isAllUploaded = false; //if fully uploaded from db
-	private boolean wasCreated;
-	private boolean wasUploaded;
-	private boolean wasDownloaded;
+	private boolean wasCreated; //++++++++++++++++++NEEDED???????
+	private boolean isUploaded;
+	private boolean isDownloaded;
 	
 	private Campaign() {} //blank constructor
 	
@@ -169,15 +169,15 @@ public final class Campaign implements Loadable{
 	public String toString() {
 		return "Campaign [id=" + id + ", event=" + event + ", period=" + period + ", turn=" + turn + ", created="
 				+ created + ", host=" + host + ", nameToPlayer=" + nameToPlayer + ", wasCreated=" + wasCreated
-				+ ", wasUploaded=" + wasUploaded + ", wasDownloaded=" + wasDownloaded + "]";
+				+ ", isUploaded=" + isUploaded + ", isDownloaded=" + isDownloaded + "]";
 	}
 
 	@Override
 	public boolean getWasCreated() { return wasCreated; }
 	@Override
-	public boolean getWasDownloaded() { return wasDownloaded; }
+	public boolean getIsDownloaded() { return isDownloaded; }
 	@Override
-	public boolean getWasUploaded() { return wasUploaded; }
+	public boolean getIsUploaded() { return isUploaded; }
 	
 	
 	
