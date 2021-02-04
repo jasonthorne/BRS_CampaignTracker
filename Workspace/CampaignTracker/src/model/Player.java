@@ -7,7 +7,7 @@ public final class Player {
 	//////////////private int id; //player id ????????????NEEDED????????? ++++++++++PROB NOT :P
 	private String name; //user name
 	private int score; //score
-	private boolean isActive; //if active participant
+	private boolean isActive = true; //if active participant
 	private Timestamp created; //creation time stamp ?????????????NEEDED????????
 	private Squadron squadron; //squadron managed
 	

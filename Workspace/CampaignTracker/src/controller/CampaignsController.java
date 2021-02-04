@@ -171,6 +171,9 @@ public class CampaignsController implements Frameable, Rootable {
 		System.out.println("after test: " + campaign.getId());
 		System.out.println("obsList after test: " + observCampaigns);
 		*/
+		
+		//////+++++++++++https://dzone.com/articles/javafx-collections-observablelist-and-observablema
+		/*
 		System.out.println("obsList b4: " + observCampaigns);
 		System.out.println("b4 select:");
 		campaign.test();
@@ -178,6 +181,7 @@ public class CampaignsController implements Frameable, Rootable {
 		System.out.println("after select:");
 		campaign.test();
 		System.out.println("obsList after: " + observCampaigns); //++++++++++++++HASNT WORKED. THIS IS STILL THE SAME :P 
+		*/
 	}
 	
 	@Override

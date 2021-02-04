@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import controller.CampaignController;
 import model.Plane.Status;
 
 public final class Campaign implements Loadable{
@@ -93,7 +94,14 @@ public final class Campaign implements Loadable{
 		System.out.println("nameToPlayer: " +  nameToPlayer);
 	}
 	
-	
+	//update nameToPlayer if not fully downloaded:
+	public void updateNameToPlayer(Campaign campaign) {
+		if(!isDownloaded) {
+			campaign.nameToPlayer = database.SelectPlayers.select(campaign.getId());
+			campaign.isDownloaded = true;
+		}
+		//++++++++++++else throw?????????
+	}
 	
 	//====================================================================================
 	/*
