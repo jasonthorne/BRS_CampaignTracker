@@ -29,7 +29,7 @@ public final class Campaign implements Loadable{
 	private boolean isUploaded; //+++++++++'was' instead of 'is'????
 	private boolean isDownloaded;
 	
-	private Campaign() {} //blank constructor
+	////////////private Campaign() {} //blank constructor
 	
 	
 	//====================================================================================
@@ -37,19 +37,23 @@ public final class Campaign implements Loadable{
 	
 	
 	//++++++++++++++TAKE WHATS IN COMMON FROM THESE AND MAKE ANOTHER CONSTRUCTOR FOR THEM TO CALL (a PRIVATE one!! :P)
-	/*private Campaign(int id, Event event, Timestamp created, String host) {
+	private Campaign(int id, Timestamp created, Event event, String host) {
 		this.id = id;
 		this.event = event;
+		this.created = created;
 		this.host = host;
-	}*/
+	}
 	
 	
 	//new campaign:
 	public Campaign(int id, Event event, Timestamp created, String user) {
-		this.id = id;
+		/*this.id = id;
 		this.event = event; 
+		this.period = event.getStartPeriod();
 		this.created = created;
-		this.host = user;
+		this.host = user;*/
+		this(id, created, event, user);
+		this.period = event.getStartPeriod();
 		//add user as player:
 		this.nameToPlayer = new HashMap<String, Player>(Collections.singletonMap(user, new Player(user)));
 		/** https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way/6802523 */
@@ -59,19 +63,22 @@ public final class Campaign implements Loadable{
 	//campaign cell campaign:
 	public Campaign(int id, Event event, Period period, int turn, Timestamp created, 
 			String host, Map<String, Player>nameToPlayer) {
-		this.id = id;
-		this.event = event; //+++++++++++make stronger?????? needed????
-		this.period = period; 
-		this.turn = turn;
-		this.created = created; //++++++++++++make stronger?????
-		this.host = host;
+		this(id, created, event, host);
+		////////////////this.id = id;
+		/////////////this.event = event; //+++++++++++make stronger?????? needed????
+		this.period = period; //?????????
+		this.turn = turn; //???????????
+		///////////this.created = created; //++++++++++++make stronger?????
+		//////////////this.host = host;
 		this.nameToPlayer = new HashMap<String, Player>(nameToPlayer); //+++++++make stronger?????
 		///////////////////wasDownloaded = true; //flag as down-loaded +++++++++WRONG!!
 	}
 	
 	
-	//downloaded campaign:
+	//full campaign:
 	public Campaign(int i) {
+		
+		isDownloaded = true;
 		
 	}
 	
@@ -84,7 +91,7 @@ public final class Campaign implements Loadable{
 	}*/
 	
 	//====================================================================================
-	
+	/*
 	//builder class:
 	public static class CampaignBuilder {
 		
@@ -138,7 +145,7 @@ public final class Campaign implements Loadable{
 			campaign.nameToPlayer.putIfAbsent(
 					name, new Player.PlayerBuilder().setName(name).build());
 			return this;
-		}*/
+		}
 		
 		//set player:
 		public CampaignBuilder setPlayer(String name) {
@@ -150,11 +157,11 @@ public final class Campaign implements Loadable{
 		/*public CampaignBuilder setIsAllDownloaded(boolean bool) {
 			campaign.isAllDownloaded = bool;
 			return this;
-		}*/
+		}
 		
 		//return built campaign:
 		public Campaign build() { return campaign; } 
-	}
+	}*/
 	
 	public int getId() { return id; } //get id
 	public String getEventName() { return event.getName(); } //get event name

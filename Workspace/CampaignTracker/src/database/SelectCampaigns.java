@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 import model.AirForce;
 import model.Campaign;
-import model.Campaign.CampaignBuilder;
 /*import model.Campaign.CampaignBuilder;*/
 import model.Event;
 import model.Period;
@@ -66,7 +65,7 @@ public interface SelectCampaigns {
 			}
 			
 		} catch(Exception e) { e.printStackTrace(); }
-		System.out.println(campaigns); //++++++++++++++++++++++++++
+		////////System.out.println(campaigns); //++++++++++++++++++++++++++
 		return campaigns; //return campaigns
 	}
 }

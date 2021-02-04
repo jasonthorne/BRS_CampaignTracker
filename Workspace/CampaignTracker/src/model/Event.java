@@ -31,12 +31,12 @@ public final class Event {
 	
 	//get start period:
 	public Period getStartPeriod() {
-		return new Period(startPeriod.getBlock(), startPeriod.getYear()); //+++++++++++++++too strong??????
+		return startPeriod; ///////////new Period(startPeriod.getBlock(), startPeriod.getYear()); //+++++++++++++++too strong??????
 	}
 	
 	//get end period:
 	public Period getEndPeriod() {
-		return new Period(endPeriod.getBlock(), endPeriod.getYear()); //+++++++++++++++too strong??????
+		return endPeriod; /////////new Period(endPeriod.getBlock(), endPeriod.getYear()); //+++++++++++++++too strong??????
 	}
 	
 	//get max turns:
