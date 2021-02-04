@@ -72,27 +72,13 @@ public class CampaignController implements Rootable, Frameable{
 	
 	private void setCampaign(Campaign campaign) {
 		
-		//if campaign wasn't just created, and hasn't been downloaded:
+		//if campaign wasn't just created, and hasn't been fully downloaded:
 		if(!campaign.getWasCreated() && !campaign.getIsDownloaded()) {
 			
-			//download campaign:
-			//++++++HAVE A LOADING ANIMATION HERE TOO! WHILE THIS DOWNLOADS! ++++++++++++++
-			
-			/*this.campaign = new Campaign.CampaignBuilder()
-					.setId(campaign.getId())
-					.setEvent(new Event.EventBuilder()
-							.setName(campaign.getEventName())
-							.setAirForces(campaign.getEventAirForces())
-							.build())
-					.setPlayers(database.SelectPlayers.select(campaign.getId())) /////players will need overloading!! 
-					.setIsAllDownloaded(true)
-					.build();*/
-			
-			//download full campaign:
-			///////////this.campaign = new Campaign();
+			//create full campaign with selected player data:
+			this.campaign = new Campaign(campaign, database.SelectPlayers.select(campaign.getId()));
 		
 			//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
-			
 			
 		}else {this.campaign = campaign;} //else, assign campaign
 			

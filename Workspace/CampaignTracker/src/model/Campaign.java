@@ -76,10 +76,9 @@ public final class Campaign implements Loadable{
 	
 	
 	//full campaign:
-	public Campaign(int i) {
-		
+	public Campaign(Campaign cmp, Map<String, Player>nameToPlayer) {
+		this(cmp.id, cmp.event, cmp.period, cmp.turn, cmp.created, cmp.host, nameToPlayer);
 		isDownloaded = true;
-		
 	}
 	
 	
@@ -165,6 +164,7 @@ public final class Campaign implements Loadable{
 	
 	public int getId() { return id; } //get id
 	public String getEventName() { return event.getName(); } //get event name
+	////////++++public Event getEvent() { return event; }
 	public List<AirForce> getEventAirForces() { return event.getAirForces(); } //get event air forces
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
 	public String getHostName() { return host; } //get host name
