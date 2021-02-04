@@ -73,17 +73,22 @@ public class CampaignController implements Rootable, Frameable{
 	private void setCampaign(Campaign campaign) {
 		
 		//if campaign wasn't just created, and hasn't been fully downloaded:
-		if(!campaign.getWasCreated() && !campaign.getIsDownloaded()) {
+		if(/*!campaign.getWasCreated() && */ campaign.getIsDownloaded() == false) {
+			System.out.println("DWONLOADING PLAYERS");
+			System.out.println("agh1 " + campaign.getIsDownloaded());
 			
 			//create full campaign with selected player data:
 			this.campaign = new Campaign(campaign, database.SelectPlayers.select(campaign.getId()));
-		
+			System.out.println("agh2 " + this.campaign.getIsDownloaded());
 			//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
 			
-		}else {this.campaign = campaign;} //else, assign campaign
+		}else {
+			this.campaign = campaign;
+			System.out.println("has downloaded all palyers:");
+			System.out.println(this.campaign);
+		} //else, assign campaign
 			
-		System.out.println("has downloaded all palyers:");
-		////////System.out.println(this.campaign);
+		
 	}
 	
 	

@@ -42,7 +42,7 @@ public interface SelectPlayers {
 				playerBuilder.setCreated(playersRS.getTimestamp("created")); //set created
 				*/
 				
-				String playerName = playersRS.getString("name"); //get player name
+				String name = playersRS.getString("name"); //get player name
 				int score = playersRS.getInt("score"); //get player score
 				boolean isActive = playersRS.getBoolean("is_active"); //get if active
 				Timestamp created = playersRS.getTimestamp("created"); //get created
@@ -86,7 +86,7 @@ public interface SelectPlayers {
 									new Player(playerName, score, isActive, created, squadron));*/
 				}else {
 					//add player without squadron to map:
-					////nameToPlayer.put(playerName, new Player(playerName, score, isActive, created));
+					nameToPlayer.put(name, new Player(name, score, isActive, created));
 				}
 				
 				
@@ -98,7 +98,7 @@ public interface SelectPlayers {
 			}
 				
 		} catch(Exception e) { e.printStackTrace(); }
-		
+		System.out.println("nameToPlayer: " + nameToPlayer);
 		return nameToPlayer; //return map of players
 	}
 }
