@@ -89,6 +89,12 @@ public final class Campaign implements Loadable{
 	
 	}*/
 	
+	public void test() {
+		System.out.println("nameToPlayer: " +  nameToPlayer);
+	}
+	
+	
+	
 	//====================================================================================
 	/*
 	//builder class:

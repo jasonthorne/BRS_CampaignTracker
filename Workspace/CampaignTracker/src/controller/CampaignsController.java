@@ -103,7 +103,7 @@ public class CampaignsController implements Frameable, Rootable {
 		//add observable campaigns to listView:
 		campaignsLV.setItems(observCampaigns); 
 		//set listView cellFactory to create CampaignCellControllers:
-		campaignsLV.setCellFactory(CampaignCellController -> new CampaignCellController(this)); //+++++++++NOT SURE this needs passed here :P
+		campaignsLV.setCellFactory(CampaignCellController -> new CampaignCellController(this));
 	}
 	
 	//add change listener to toggle group:
@@ -162,6 +162,22 @@ public class CampaignsController implements Frameable, Rootable {
 		
 		//navigate to campaign:
 		Frameable.changeView(root, new CampaignController(campaign)); //++++++++++++++++++++REMEMBER TO FIX NAV BUTTONS HERE!! ++++
+	}
+	
+	void setCampaign(Campaign campaign){
+		/*
+		System.out.println("b4 test: " + campaign.getId());
+		campaign.test();
+		System.out.println("after test: " + campaign.getId());
+		System.out.println("obsList after test: " + observCampaigns);
+		*/
+		System.out.println("obsList b4: " + observCampaigns);
+		System.out.println("b4 select:");
+		campaign.test();
+		campaign = new Campaign(campaign, database.SelectPlayers.select(campaign.getId()));
+		System.out.println("after select:");
+		campaign.test();
+		System.out.println("obsList after: " + observCampaigns); //++++++++++++++HASNT WORKED. THIS IS STILL THE SAME :P 
 	}
 	
 	@Override

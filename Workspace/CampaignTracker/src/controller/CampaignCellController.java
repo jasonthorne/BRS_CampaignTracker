@@ -63,7 +63,13 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
 			//add double-click event:
 	        setOnMouseClicked(mouseClickedEvent -> {
                 if (mouseClickedEvent.getButton().equals(MouseButton.PRIMARY) && mouseClickedEvent.getClickCount() == 2) {
-                	Frameable.changeView(campaignsCtrlr.getRoot(), new CampaignController(campaign)); //navigate to campaign
+                	//++++++++++++++++PASS IN CAMPAIGNSController below???????????? 
+                	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                	campaignsCtrlr.setCampaign(campaign);
+                	
+                	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                	
+                	///////////////////+TURN BACK ON++++++++++Frameable.changeView(campaignsCtrlr.getRoot(), new CampaignController(campaign)); //navigate to campaign
                 } /**https://stackoverflow.com/questions/51536489/how-can-i-detect-javafx-double-click-on-listview*/
             });
 	        
