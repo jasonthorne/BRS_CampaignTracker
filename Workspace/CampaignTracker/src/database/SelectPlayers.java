@@ -34,19 +34,10 @@ public interface SelectPlayers {
 			
 			while(playersRS.next()) {
 				
-				/*PlayerBuilder playerBuilder = new Player.PlayerBuilder(); //create new player builder
-				String playerName = playersRS.getString("name"); //get player name
-				playerBuilder.setName(playerName); //set player name
-				playerBuilder.setScore(playersRS.getInt("score")); //set player score
-				playerBuilder.setIsActive(playersRS.getBoolean("is_active")); //set if active
-				playerBuilder.setCreated(playersRS.getTimestamp("created")); //set created
-				*/
-				
 				String name = playersRS.getString("name"); //get player name
 				int score = playersRS.getInt("score"); //get player score
 				boolean isActive = playersRS.getBoolean("is_active"); //get if active
 				Timestamp created = playersRS.getTimestamp("created"); //get created
-				
 				
 				int squadronIdCheck = playersRS.getInt("squadron_ID_check"); //check for squadron id
 				

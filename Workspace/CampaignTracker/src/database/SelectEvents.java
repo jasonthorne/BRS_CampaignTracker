@@ -46,7 +46,8 @@ public interface SelectEvents {
 			
 			while(eventsRS.next()) {
 				
-				String eventName = eventsRS.getString("event_name"); //get event name
+				//get event name: 
+				String eventName = eventsRS.getString("event_name");
 				
 				//create list for event periods:
 				List<Period>eventPeriods = new ArrayList<>();
