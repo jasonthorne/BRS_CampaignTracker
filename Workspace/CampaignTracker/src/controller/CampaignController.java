@@ -71,39 +71,20 @@ public class CampaignController implements Rootable, Frameable{
 	
 	
 	private void setCampaign(Campaign campaign) {
+		this.campaign = campaign;
 		
 		//if campaign wasn't just created, and hasn't been fully downloaded:
-		if(/*!campaign.getWasCreated() && */ campaign.getIsDownloaded() == false) {
+		if(!campaign.getWasCreated() && !campaign.getIsDownloaded()) {
 			
-			
-			
-			/*
-			System.out.println("DWONLOADING PLAYERS");
-			System.out.println("campaign.getIsDownloaded() " + campaign.getIsDownloaded());
-			
-			//create full campaign with selected player data:
-			campaign = new Campaign(campaign, database.SelectPlayers.select(campaign.getId()));
-			this.campaign = campaign;
-			System.out.println("this.campaign.getIsDownloaded() " + this.campaign.getIsDownloaded());
-			*/
-			System.out.println("needs to download players");
-			System.out.println("BEFORE: this.campaign: " + this.campaign);
-			System.out.println("BEFORE: campaign: " + campaign);
 			campaign.updateNameToPlayer(campaign);
-			this.campaign = campaign;
-			System.out.println("AFTER: this.campaign: " + this.campaign);
-			System.out.println("AFTER: campaign: " + campaign);
-			
 			//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
 			
-		}else {
-			this.campaign = campaign;
+		}else { //???????????????
+
 			System.out.println("has downloaded all palyers:");
-			System.out.println("this.campaign: " + this.campaign);
-			System.out.println("campaign: " + campaign);
-		} //else, assign campaign
 			
-		
+		}
+
 	}
 	
 	

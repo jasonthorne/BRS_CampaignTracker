@@ -11,11 +11,7 @@ public final class Player {
 	private Timestamp created; //creation time stamp ?????????????NEEDED????????
 	private Squadron squadron; //squadron managed
 	
-	private Player() {} //blank constructor
-	
-	//============================================================================
-	
-	//player with just name:
+	//player with name:
 	public Player(String name) { this.name = name; }
 		
 	//player without squadron:
@@ -32,47 +28,6 @@ public final class Player {
 		this.squadron = squadron; //++++++++++++++++++might need strengthening! +++++++
 	}
 	
-	//=========================================================================
-	/*
-	//builder class:
-	public static class PlayerBuilder {
-		
-		private Player player = new Player(); //create player
-		
-		
-		//set name:
-		public PlayerBuilder setName(String name) {
-			player.name = name; 
-			return this; 
-		}
-		
-		//set score:
-		public PlayerBuilder setScore(int score) {
-			player.score = score; 
-			return this; 
-		}
-		
-		//set isActive:
-		public PlayerBuilder setIsActive(boolean bool) {
-			player.isActive = bool; 
-			return this; 
-		}
-		
-		//set created:
-		public PlayerBuilder setCreated(Timestamp timestamp) {
-			player.created = timestamp;
-			return this;
-		}
-		
-		//set squadron:
-		public PlayerBuilder setSquadron(Squadron squadron) { //++++++++++++++++++++++MAKE STRONGER!! :P
-			player.squadron = squadron; 
-			return this; 
-		}
-		
-		public Player build() { return player; } //return built player
-	}*/
-	
 	//getters:
 	/////////////public int getId() { return id; } /** +++++++++++++ not sure if needed??? ++++++++*/
 	public String getName() { return name; }
@@ -87,7 +42,5 @@ public final class Player {
 		return "Player [name=" + name + ", score=" + score + ", isActive=" + isActive + ", created=" + created
 				+ ", squadron=" + squadron + "]";
 	}
-	
-	
 	
 }
