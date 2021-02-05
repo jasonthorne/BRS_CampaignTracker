@@ -98,7 +98,7 @@ public interface SelectPlayers {
 			}
 				
 		} catch(Exception e) { e.printStackTrace(); }
-		//////////////////////System.out.println("nameToPlayer: " + nameToPlayer);
+		
 		return nameToPlayer; //return map of players
 	}
 }

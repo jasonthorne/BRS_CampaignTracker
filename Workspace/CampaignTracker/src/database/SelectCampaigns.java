@@ -65,7 +65,7 @@ public interface SelectCampaigns {
 			}
 			
 		} catch(Exception e) { e.printStackTrace(); }
-		////////System.out.println(campaigns); //++++++++++++++++++++++++++
+
 		return campaigns; //return campaigns
 	}
 }
