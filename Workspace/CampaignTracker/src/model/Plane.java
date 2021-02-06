@@ -28,7 +28,7 @@ public final class Plane {
 	//constructor:
 	public Plane(String name, Map<Period, Status>periodToStatus) {
 		this.name = new SimpleStringProperty(name);
-		this.periodToStatus = new HashMap<Period, Status>(periodToStatus); //+++++++++++++++++++++make stronger+++++++++++++!
+		this.periodToStatus = new HashMap<Period, Status>(periodToStatus); 
 	}
 	
 	//get plane name:
@@ -36,7 +36,7 @@ public final class Plane {
 	
 	//get plane availabilities:
 	public HashMap<Period, Status> getAvailabilities() { 
-		return new HashMap<Period, Status>(periodToStatus); //+++++++++++++++++++++make stronger+++++++++++++!
+		return new HashMap<Period, Status>(periodToStatus); 
 	}
 
 	@Override

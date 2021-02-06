@@ -43,4 +43,15 @@ public final class Player {
 				+ ", squadron=" + squadron + "]";
 	}
 	
+	
+	
+	/** ++++++++++++++++++++++++++++++++++++++++
+	 * https://www.genuinecoder.com/javafx-observables-and-bindings/
+	 */
+	
+	
+	
+	
+	
+	
 }

@@ -70,3 +70,17 @@ https://stackoverflow.com/questions/1912813/truncate-all-tables-in-a-mysql-datab
 
 delete child elements of db entry:
 https://stackoverflow.com/questions/16777043/how-to-delete-all-child-records-when-parent-record-is-deleted
+
+
+BINDING:
+https://docs.oracle.com/javase/8/javafx/properties-binding-tutorial/binding.htm
+https://stackoverflow.com/questions/37785689/javafx-listener-to-check-for-a-boolean-value
+https://www.genuinecoder.com/javafx-observables-and-bindings/
+
+
+
+
+
+
+
+

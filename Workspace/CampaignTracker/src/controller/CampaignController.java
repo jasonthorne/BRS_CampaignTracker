@@ -35,7 +35,7 @@ public class CampaignController implements Rootable, Frameable{
     	addUserBtn.setOnAction(event -> System.out.println("yo dawg!"));
     	
     }
-	
+	///////////////https://stackoverflow.com/questions/26313756/implementing-an-observablevalue
 	
 	////////////////private final Stage stage = new Stage(); //stage
     ///////////////private final Scene scene = new Scene(Rootable.getRoot(this, "/view/campaign.fxml")); //rooted scene
@@ -43,35 +43,18 @@ public class CampaignController implements Rootable, Frameable{
     //fxml root node:
   	private Parent root; 
   	
-  	private /*final*/ Campaign campaign;
+  	private final Campaign campaign;
     
 	//constructor:
 	CampaignController(Campaign campaign){
 		setRoot(); //set root node
 		setCampaign(campaign);
-		//////////////TRY LOAD CAMPAIGN:
-		
-		
-		
-		//IF CANT, THEN GRAB FROM SAVED CAMPAIGN USING ID
-		
-		
-		//////////////stage.setScene(scene); //add scene to stage
-		
-		
-		
-		/*
-		if(!wasOpened){ 
-		  	  System.out.println("wasnt clicked ");
-		  	  wasOpened = true;
-		  }else {
-		  	  System.out.println("was clicked "); 
-		  }*/
+		this.campaign = campaign;
 	}
 	
 	
 	private void setCampaign(Campaign campaign) {
-		this.campaign = campaign;
+		
 		
 		//if campaign wasn't just created, and hasn't been fully downloaded:
 		if(!campaign.getWasCreated() && !campaign.getIsDownloaded()) {
