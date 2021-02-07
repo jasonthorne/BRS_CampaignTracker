@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -48,16 +50,22 @@ public class CampaignController implements Rootable, Frameable{
 	//constructor:
 	CampaignController(Campaign campaign){
 		setRoot(); //set root node
-		setCampaign(campaign);
+		///setCampaign(campaign);
 		this.campaign = campaign;
 	}
+	
+	private BooleanProperty  wasCreated;
+    private BooleanProperty finalValueProperty = new SimpleBooleanProperty(false);
+    private BooleanProperty completedProperty = new SimpleBooleanProperty();
 	
 	
 	private void setCampaign(Campaign campaign) {
 		
+		wasCreated  = new SimpleBooleanProperty(campaign.getWasCreated());
+		
 		
 		//if campaign wasn't just created, and hasn't been fully downloaded:
-		if(!campaign.getWasCreated() && !campaign.getIsDownloaded()) {
+		if(!campaign.getWasCreated() && !campaign.getHasPlayersData()) {
 			
 			System.out.println("DOWNLOADING PLAYERS");
 			

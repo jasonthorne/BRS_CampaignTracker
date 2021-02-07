@@ -10,7 +10,7 @@ import java.util.TreeMap;
 import controller.CampaignController;
 import model.Plane.Status;
 
-public final class Campaign implements Loadable{
+public final class Campaign {
 	
 	//amount of turns played per period:
 	public static final int TURNS_PER_PERIOD = 4; //+++++++++++++++++++++++should this be in db????:
@@ -24,19 +24,11 @@ public final class Campaign implements Loadable{
 	private Map<String, Player>nameToPlayer; //players involved 
 	//+++++++++++++++++++++++turnToMission +++++++++++++++++++++where missions are held!! ADD THIS :P +++++++++++++++++
 	
-	///////private boolean isAllDownloaded = false; //if fully downloaded from db //+++++++++++++++++'isFullDownload'?? 
-	////////////////private boolean isAllUploaded = false; //if fully uploaded from db
+
 	private boolean wasCreated; //++++++++++++++++++NEEDED???????
-	private boolean isUploaded; //+++++++++'was' instead of 'is'????
-	private boolean isDownloaded;
+	private boolean hasPlayersData;
+	private boolean wasUploaded;
 	
-	////////////private Campaign() {} //blank constructor
-	boolean hasAllData; 
-	boolean hasDownloadedAll;
-	boolean hasPulledAll;
-	boolean hasPushedAll;
-	boolean wasUploaded;
-	boolean hasUploadedAll;
 	//====================================================================================
 	//https://softwareengineering.stackexchange.com/questions/284215/how-do-you-avoid-getters-and-setters
 	
@@ -68,9 +60,9 @@ public final class Campaign implements Loadable{
 	
 	//update nameToPlayer:
 	public void updateNameToPlayer(Campaign campaign) {
-		if(!wasCreated && !isDownloaded) {
+		if(!wasCreated && !hasPlayersData) {
 			campaign.nameToPlayer = database.SelectPlayers.select(campaign.getId());
-			campaign.isDownloaded = true;
+			campaign.hasPlayersData = true;
 		}
 		//++++++++++++else throw?????????
 	}
@@ -93,25 +85,9 @@ public final class Campaign implements Loadable{
 		return nameToPlayer.containsKey(userName);
 	}
 	
-	/////////////public int getAirForceName(int airForceId) { return event.get} +++++++++++++
 	
-	@Override
-	public String toString() {
-		return "Campaign [id=" + id + ", event=" + event + ", period=" + period + ", turn=" + turn + ", created="
-				+ created + ", host=" + host + ", nameToPlayer=" + nameToPlayer + ", wasCreated=" + wasCreated
-				+ ", isUploaded=" + isUploaded + ", isDownloaded=" + isDownloaded + "]";
-	}
-
-	@Override
-	public boolean getWasCreated() { return wasCreated; }
-	@Override
-	public boolean getIsDownloaded() { return isDownloaded; }
-	@Override
-	public boolean getIsUploaded() { return isUploaded; }
-	
-	
-	
-	
+	public boolean getWasCreated() {return wasCreated;}
+	public boolean getHasPlayersData() {return hasPlayersData;}
 	
 	
 }
