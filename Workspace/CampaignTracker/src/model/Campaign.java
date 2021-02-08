@@ -67,6 +67,11 @@ public final class Campaign {
 		//++++++++++++else throw?????????
 	}
 	
+	//add player:
+	public void addPlayer() {
+		
+	}
+	
 	
 	public int getId() { return id; } //get id
 	public String getEventName() { return event.getName(); } //get event name

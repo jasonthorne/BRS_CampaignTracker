@@ -83,13 +83,23 @@ public class CampaignController implements Rootable, Frameable{
 			
 		}
 		
+		//========================================
+		campaign.updatePlayers2(this);
+		//=======================================
 		
-
+		
 	}
+	
+	//update player data from db:
+	private void updatePlayers() {
+		
+	}
+	
 	
 	//add player to campaign:
 	private void addPlayer() {
 		
+		/*
 		//get time stamp of creation:
 		Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
 		
@@ -97,6 +107,8 @@ public class CampaignController implements Rootable, Frameable{
 				campaign.getId(), 
 				LoginController.getUserId(),
 				new Timestamp(Calendar.getInstance().getTimeInMillis()));
+				
+				*/
 	}
 	
 	
