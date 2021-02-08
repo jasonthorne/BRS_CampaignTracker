@@ -69,13 +69,11 @@ public class CampaignsController implements Frameable, Rootable {
 	
 	//controllers:
 	private EventsController eventsCtrlr; 
-	private A1 a1;
 	
 	//constructor:
 	CampaignsController() {
 		setRoot(); //set root node
-		eventsCtrlr = new EventsController(this); ////////????????? needed??? YES - for chaining+++++++++
-		 a1 = new A1();
+		eventsCtrlr = new EventsController(this);
 	}
 
 	//populates campaigns with campaigns from db:
@@ -143,17 +141,6 @@ public class CampaignsController implements Frameable, Rootable {
 		//insert campaign to db, storing returned id:
 		int campaignId = database.InsertCampaign.insert(event.getName(), LoginController.getUserId(), timestamp); 
 		
-		/** +++++++++++++++++++++++++++++BUILD ENTIRE EVENT in CAMPAIGN BELOW !! ++++++++++++++++++++++++++++ */
-		//create local campaign:
-		/*Campaign campaign = new Campaign.CampaignBuilder() //+++++++++++++++MARK AS NOT FULLY UPLOADED!!! 
-		.setEvent(event) //set event
-		.setCreated(timestamp) //set creation time stamp
-		.setHost(LoginController.getUserName()) //set user as host
-		.setPlayer(LoginController.getUserName()) //set user as player
-		.setId(campaignId) //add id of inserted campaign
-		.build();*/
-		////////String host, player = LoginController.getUserName(); //set user as player and host
-		
 		//create local campaign:
 		Campaign campaign = new Campaign(campaignId, event, timestamp, LoginController.getUserName());
 		
@@ -164,25 +151,6 @@ public class CampaignsController implements Frameable, Rootable {
 		Frameable.changeView(root, new CampaignController(campaign)); //++++++++++++++++++++REMEMBER TO FIX NAV BUTTONS HERE!! ++++
 	}
 	
-	void setCampaign(Campaign campaign){
-		/*
-		System.out.println("b4 test: " + campaign.getId());
-		campaign.test();
-		System.out.println("after test: " + campaign.getId());
-		System.out.println("obsList after test: " + observCampaigns);
-		*/
-		
-		//////+++++++++++https://dzone.com/articles/javafx-collections-observablelist-and-observablema
-		/*
-		System.out.println("obsList b4: " + observCampaigns);
-		System.out.println("b4 select:");
-		campaign.test();
-		campaign = new Campaign(campaign, database.SelectPlayers.select(campaign.getId()));
-		System.out.println("after select:");
-		campaign.test();
-		System.out.println("obsList after: " + observCampaigns); //++++++++++++++HASNT WORKED. THIS IS STILL THE SAME :P 
-		*/
-	}
 	
 	@Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/campaigns.fxml"); } //set root

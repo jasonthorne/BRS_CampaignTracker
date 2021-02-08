@@ -1,6 +1,8 @@
 package controller;
 
 import java.net.URL;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -26,7 +28,7 @@ public class CampaignController implements Rootable, Frameable{
    
     @FXML private AnchorPane rootAP;
     @FXML  private Label eventNameLbl;
-    @FXML private JFXButton addUserBtn;
+    @FXML private JFXButton addPlayerBtn;
     @FXML private JFXListView<?> missionsLV;
     @FXML private JFXListView<?> playersLV;
     
@@ -34,7 +36,9 @@ public class CampaignController implements Rootable, Frameable{
     @FXML
     void initialize() {
     	
-    	addUserBtn.setOnAction(event -> System.out.println("yo dawg!"));
+    	//+++++++++++++++++set to show this button only if user isn't a player. Use listeneer to do this!!
+    	//add user to 
+    	addPlayerBtn.setOnAction(event -> addPlayer());
     	
     }
 	///////////////https://stackoverflow.com/questions/26313756/implementing-an-observablevalue
@@ -50,8 +54,9 @@ public class CampaignController implements Rootable, Frameable{
 	//constructor:
 	CampaignController(Campaign campaign){
 		setRoot(); //set root node
-		///setCampaign(campaign);
+		
 		this.campaign = campaign;
+		setCampaign(campaign);
 	}
 	
 	private BooleanProperty  wasCreated;
@@ -69,7 +74,7 @@ public class CampaignController implements Rootable, Frameable{
 			
 			System.out.println("DOWNLOADING PLAYERS");
 			
-			campaign.updateNameToPlayer(campaign);
+			campaign.updatePlayers(campaign); //update players data
 			//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
 			
 		}else { //???????????????
@@ -82,8 +87,17 @@ public class CampaignController implements Rootable, Frameable{
 
 	}
 	
-	
-	
+	//add player to campaign:
+	private void addPlayer() {
+		
+		//get time stamp of creation:
+		Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
+		
+		database.InsertPlayer.insert(
+				campaign.getId(), 
+				LoginController.getUserId(),
+				new Timestamp(Calendar.getInstance().getTimeInMillis()));
+	}
 	
 	
 	//show stage:

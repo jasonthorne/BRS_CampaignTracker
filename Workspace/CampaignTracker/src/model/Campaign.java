@@ -59,7 +59,7 @@ public final class Campaign {
 	}
 	
 	//update nameToPlayer:
-	public void updateNameToPlayer(Campaign campaign) {
+	public void updatePlayers(Campaign campaign) {
 		if(!wasCreated && !hasPlayersData) {
 			campaign.nameToPlayer = database.SelectPlayers.select(campaign.getId());
 			campaign.hasPlayersData = true;
@@ -86,8 +86,8 @@ public final class Campaign {
 	}
 	
 	
-	public boolean getWasCreated() {return wasCreated;}
-	public boolean getHasPlayersData() {return hasPlayersData;}
+	public boolean getWasCreated() { return wasCreated; }
+	public boolean getHasPlayersData() { return hasPlayersData; }
 	
 	
 }
