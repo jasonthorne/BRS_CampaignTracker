@@ -60,17 +60,44 @@ public final class Campaign {
 	
 	//update nameToPlayer:
 	public void updatePlayers(Campaign campaign) {
-		if(!wasCreated && !hasPlayersData) {
+		if(!campaign.wasCreated && !campaign.hasPlayersData) {
 			campaign.nameToPlayer = database.SelectPlayers.select(campaign.getId());
 			campaign.hasPlayersData = true;
 		}
 		//++++++++++++else throw?????????
 	}
 	
-	//add player:
-	public void addPlayer() {
-		
+	//update nameToPlayer:
+	public void updatePlayers() {
+		//if campaign wasn't just created, and players haven't yet been updated:
+		if(!wasCreated && !hasPlayersData) {
+			nameToPlayer = database.SelectPlayers.select(id);
+			hasPlayersData = true;
+		}
+		//++++++++++++else throw?????????
 	}
+	
+	//add new player:
+	public void addPlayer(Campaign campaign, String playerName, Timestamp created) {
+		campaign.nameToPlayer.putIfAbsent(playerName, new Player(playerName, created));
+	}
+	
+	
+	
+	
+	
+	/*
+	//update nameToPlayer:
+	public void updatePlayers2(CampaignController campaignCtrlr) {
+		if(!wasCreated && !hasPlayersData) {
+			campaignCtrlr.updatePlayers();
+			campaign.nameToPlayer = database.SelectPlayers.select(campaign.getId());
+			campaign.hasPlayersData = true;
+		}
+		//++++++++++++else throw?????????
+	}*/
+	
+	
 	
 	
 	public int getId() { return id; } //get id

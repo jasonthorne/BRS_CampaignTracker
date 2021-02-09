@@ -11,18 +11,23 @@ public final class Player {
 	private Timestamp created; //creation time stamp ?????????????NEEDED????????
 	private Squadron squadron; //squadron managed
 	
-	//player with name:
+	//existing player with name:
 	public Player(String name) { this.name = name; }
-		
-	//player without squadron:
-	public Player(String name, int score, boolean isActive, Timestamp created) {
+	
+	//new player without squadron:
+	public Player(String name, Timestamp created) {
 		this(name);
-		this.score = score;
-		this.isActive = isActive;
 		this.created = created; //++++++++++++++++++might need strengthening! +++++++
 	}
+		
+	//existing player without squadron:
+	public Player(String name, int score, boolean isActive, Timestamp created) {
+		this(name, created);
+		this.score = score;
+		this.isActive = isActive;
+	}
 	
-	//player with squadron:
+	//existing player with squadron:
 	public Player(String name, int score, boolean isActive, Timestamp created, Squadron squadron) {
 		this(name, score, isActive, created);
 		this.squadron = squadron; //++++++++++++++++++might need strengthening! +++++++
