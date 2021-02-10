@@ -60,12 +60,14 @@ public final class Campaign {
 	
 	//update nameToPlayer:
 	public void updatePlayers(Campaign campaign) {
+		//if campaign wasn't just created, and players haven't yet been updated:
 		if(!campaign.wasCreated && !campaign.hasPlayersData) {
 			campaign.nameToPlayer = database.SelectPlayers.select(campaign.getId());
 			campaign.hasPlayersData = true;
 		}
 		//++++++++++++else throw?????????
 	}
+	
 	
 	//update nameToPlayer:
 	public void updatePlayers() {

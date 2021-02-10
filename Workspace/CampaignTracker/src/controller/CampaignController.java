@@ -69,7 +69,7 @@ public class CampaignController implements Rootable, Frameable{
 		wasCreated  = new SimpleBooleanProperty(campaign.getWasCreated());
 		
 		
-		//if campaign wasn't just created, and hasn't been fully downloaded:
+		//if campaign wasn't just created, and players haven't yet been updated:
 		if(!campaign.getWasCreated() && !campaign.getHasPlayersData()) {
 			
 			System.out.println("DOWNLOADING PLAYERS");
@@ -103,8 +103,7 @@ public class CampaignController implements Rootable, Frameable{
 		Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
 		
 		//add player to db:
-		database.InsertPlayer.insert(
-				campaign.getId(), LoginController.getUserId(), timestamp);
+		database.InsertPlayer.insert(campaign.getId(), LoginController.getUserId(), timestamp);
 				
 		//add player to campaign:
 		campaign.addPlayer(campaign, LoginController.getUserName(), timestamp);
