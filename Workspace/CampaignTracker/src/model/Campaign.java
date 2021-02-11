@@ -58,6 +58,7 @@ public final class Campaign {
 		this.nameToPlayer = new HashMap<String, Player>(nameToPlayer);
 	}
 	
+	/*
 	//update nameToPlayer:
 	public void updatePlayers(Campaign campaign) {
 		//if campaign wasn't just created, and players haven't yet been updated:
@@ -66,7 +67,7 @@ public final class Campaign {
 			campaign.hasPlayersData = true;
 		}
 		//++++++++++++else throw?????????
-	}
+	}*/
 	
 	
 	//update nameToPlayer:
@@ -79,9 +80,16 @@ public final class Campaign {
 		//++++++++++++else throw?????????
 	}
 	
+	/*
 	//add new player:
 	public void addPlayer(Campaign campaign, String playerName, Timestamp created) {
 		campaign.nameToPlayer.putIfAbsent(playerName, new Player(playerName, created));
+	}*/
+	
+	
+	//add new player:
+	public void addPlayer(String playerName, Timestamp created) {
+		nameToPlayer.putIfAbsent(playerName, new Player(playerName, created));
 	}
 	
 	
@@ -105,7 +113,7 @@ public final class Campaign {
 	public int getId() { return id; } //get id
 	public String getEventName() { return event.getName(); } //get event name
 	////////++++public Event getEvent() { return event; }
-	public List<AirForce> getEventAirForces() { return event.getAirForces(); } //get event air forces
+	public List<AirForce> getEventAirForces() { return event.getAirForces(); } //get event air forces ++++++++++++++Just have a getEvent() instead????
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
 	public String getHostName() { return host; } //get host name
 	

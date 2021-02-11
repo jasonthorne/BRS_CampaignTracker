@@ -74,7 +74,7 @@ public class CampaignController implements Rootable, Frameable{
 			
 			System.out.println("DOWNLOADING PLAYERS");
 			
-			campaign.updatePlayers(campaign); //update players data
+			campaign.updatePlayers(); //update players data
 			//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
 			
 		}else { //???????????????
@@ -106,7 +106,7 @@ public class CampaignController implements Rootable, Frameable{
 		database.InsertPlayer.insert(campaign.getId(), LoginController.getUserId(), timestamp);
 				
 		//add player to campaign:
-		campaign.addPlayer(campaign, LoginController.getUserName(), timestamp);
+		campaign.addPlayer(LoginController.getUserName(), timestamp);
 	}
 	
 	
