@@ -56,17 +56,18 @@ public class CampaignController implements Rootable, Frameable{
 		setRoot(); //set root node
 		
 		this.campaign = campaign;
-		setCampaign(campaign);
+		setCampaign();
 	}
 	
+	/*
 	private BooleanProperty  wasCreated;
     private BooleanProperty finalValueProperty = new SimpleBooleanProperty(false);
     private BooleanProperty completedProperty = new SimpleBooleanProperty();
+	*/
 	
-	
-	private void setCampaign(Campaign campaign) {
+	private void setCampaign() {
 		
-		wasCreated  = new SimpleBooleanProperty(campaign.getWasCreated());
+		//wasCreated  = new SimpleBooleanProperty(campaign.getWasCreated());
 		
 		
 		//if campaign wasn't just created, and players haven't yet been updated:
@@ -90,23 +91,17 @@ public class CampaignController implements Rootable, Frameable{
 		
 	}
 	
-	//update player data from db:
-	public void updatePlayers() {
-		
-	}
-	
-	
+
 	//add player to campaign:
 	private void addPlayer() {
-		
+		System.out.println("B4 add: " + campaign);
 		//get time stamp of creation:
 		Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
-		
 		//add player to db:
 		database.InsertPlayer.insert(campaign.getId(), LoginController.getUserId(), timestamp);
-				
 		//add player to campaign:
 		campaign.addPlayer(LoginController.getUserName(), timestamp);
+		System.out.println("AFTER add: " + campaign);
 	}
 	
 	

@@ -130,6 +130,13 @@ public final class Campaign {
 	
 	public boolean getWasCreated() { return wasCreated; }
 	public boolean getHasPlayersData() { return hasPlayersData; }
+
+	@Override
+	public String toString() {
+		return "Campaign [nameToPlayer=" + nameToPlayer + "]";
+	}
+	
+	
 	
 	
 }
