@@ -56,7 +56,7 @@ public class CampaignController implements Rootable, Frameable{
   	CampaignController(Campaign campaign){
   		setRoot(); //set root node
   		this.campaign = campaign;
-  		setCampaign();
+  		setNewCampaign();
   	}
   	
 	//campaign from list view cell selection:
@@ -64,7 +64,7 @@ public class CampaignController implements Rootable, Frameable{
 		setRoot(); //set root node
 		this.campaignCellCtrlr = campaignCellCtrlr;
 		this.campaign = campaign;
-		setCampaign();
+		setExistingCampaign();
 	}
 	
 	
@@ -75,13 +75,13 @@ public class CampaignController implements Rootable, Frameable{
     private BooleanProperty completedProperty = new SimpleBooleanProperty();
 	*/
 	
-	private void setCampaign() {
+	private void setExistingCampaign() {
 		
 		//wasCreated  = new SimpleBooleanProperty(campaign.getWasCreated());
 		
 		
-		//if campaign wasn't just created, and players haven't yet been updated:
-		if(!campaign.getWasCreated() && !campaign.getHasPlayersData()) {
+		//if players hasn't yet been updated:
+		if(!campaign.getHasPlayersData()) {
 			campaign.updatePlayers(); //update players data
 			//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
 		}
@@ -96,6 +96,10 @@ public class CampaignController implements Rootable, Frameable{
 		//campaign.updatePlayers2(this);
 		//=======================================
 		
+		
+	}
+	
+	private void setNewCampaign() {
 		
 	}
 	

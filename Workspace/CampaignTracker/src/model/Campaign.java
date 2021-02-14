@@ -93,7 +93,6 @@ public final class Campaign {
 	//add new player:
 	public void addPlayer(String playerName, Timestamp created) {
 		nameToPlayer.putIfAbsent(playerName, new Player(playerName, created));
-		userIsPlaying.setValue(true); ///////////////TEST
 	}
 	
 	
@@ -127,12 +126,12 @@ public final class Campaign {
 	}
 	
 	//return whether user is present in campaign:
-	public boolean getUserIsPlaying(String userName) { //++++++++++++++++++++checkPlayer????????
+	public boolean getUserIsPlaying(String userName) {
 		return nameToPlayer.containsKey(userName);
 	}
 	
 	//=======================TYEST get booleran +++++++++
-	SimpleBooleanProperty userIsPlaying = new SimpleBooleanProperty(false);
+	/*SimpleBooleanProperty userIsPlaying = new SimpleBooleanProperty(false);
 	
 	//return whether user is present in campaign:
 	public SimpleBooleanProperty getUserIsPlayingTEST() {
@@ -146,7 +145,7 @@ public final class Campaign {
 	boolean testMe = false;
 	
 	///////////boolean hasUser??? 
-	
+	*/
 	//=================================================
 	
 	
