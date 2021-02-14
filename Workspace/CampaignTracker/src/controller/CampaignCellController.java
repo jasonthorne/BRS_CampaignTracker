@@ -6,6 +6,10 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListCell;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -37,7 +41,10 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
   
   	//campaigns controller:
 	private final CampaignsController campaignsCtrlr;
-
+	
+	//--------------------------
+	private BooleanProperty isPlaying; //= new SimpleBooleanProperty(campaign.getWasCreated());
+	//-------------------
 	//constructor:
 	CampaignCellController(CampaignsController campaignsCtrlr){
 		this.campaignsCtrlr = campaignsCtrlr; 
@@ -52,6 +59,17 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
   	        setText(null);
   	        setGraphic(null);
   	    } else {
+  	    	
+  	    	/*
+  	    	isPlaying = new SimpleBooleanProperty(campaign.getUserIsPlaying(LoginController.getUserName())); //+++++++++++++++++
+  	    	
+  	    	isPlaying.addListener(new ChangeListener<Boolean>() {
+				@Override
+				public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2) {
+					System.out.println("isPlaying is now: " + isPlaying);
+					
+				}
+  	    	});*/
   	    	
   	    	//populate cell with data from campaign:
   	    	eventNameLbl.setText(campaign.getEventName()); //get event name
@@ -72,4 +90,13 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
 	        setGraphic(rootAP); //set this root element as the graphic
         }
     }
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

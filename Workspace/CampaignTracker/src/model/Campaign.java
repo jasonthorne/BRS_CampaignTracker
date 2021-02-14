@@ -127,6 +127,11 @@ public final class Campaign {
 		return nameToPlayer.containsKey(userName);
 	}
 	
+	//=======================TYEST get booleran +++++++++
+	
+	
+	//=================================================
+	
 	
 	public boolean getWasCreated() { return wasCreated; }
 	public boolean getHasPlayersData() { return hasPlayersData; }

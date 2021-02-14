@@ -72,18 +72,16 @@ public class CampaignController implements Rootable, Frameable{
 		
 		//if campaign wasn't just created, and players haven't yet been updated:
 		if(!campaign.getWasCreated() && !campaign.getHasPlayersData()) {
-			
-			System.out.println("DOWNLOADING PLAYERS");
-			
 			campaign.updatePlayers(); //update players data
 			//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
-			
-		}else { //???????????????
-
-			System.out.println("has downloaded all palyers:");
-			
 		}
 		
+		if(!campaign.getUserIsPlaying(LoginController.getUserName())) {
+			System.out.println("show add plyr btn");
+		}else {
+			System.out.println("show menu btn");
+		}
+
 		//========================================
 		//campaign.updatePlayers2(this);
 		//=======================================
@@ -95,13 +93,17 @@ public class CampaignController implements Rootable, Frameable{
 	//add player to campaign:
 	private void addPlayer() {
 		System.out.println("B4 add: " + campaign);
+		
 		//get time stamp of creation:
 		Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
 		//add player to db:
 		database.InsertPlayer.insert(campaign.getId(), LoginController.getUserId(), timestamp);
 		//add player to campaign:
 		campaign.addPlayer(LoginController.getUserName(), timestamp);
+		
+		//update campaigns
 		System.out.println("AFTER add: " + campaign);
+		//I THINK WE NEED A LISTENER IN CampaignCellController +++++++++===========!!!!!!!!!
 	}
 	
 	
