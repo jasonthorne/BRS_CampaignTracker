@@ -43,7 +43,7 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
 	private final CampaignsController campaignsCtrlr;
 	
 	//--------------------------
-	private BooleanProperty isPlaying; //= new SimpleBooleanProperty(campaign.getWasCreated());
+	/////////private BooleanProperty isPlaying; //= new SimpleBooleanProperty(campaign.getWasCreated());
 	//-------------------
 	//constructor:
 	CampaignCellController(CampaignsController campaignsCtrlr){
@@ -70,6 +70,17 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
 					
 				}
   	    	});*/
+  	    	
+  	    	
+  	    	campaign.getUserIsPlayingTEST().addListener(new ChangeListener<Boolean>() {
+  	    		@Override
+				public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2) {
+					System.out.println("++++++isPlaying is now:+++++++ " + arg2);
+					isPlayingLbl.setText(arg2.toString());
+					
+				}
+  	        });
+  	       
   	    	
   	    	//populate cell with data from campaign:
   	    	eventNameLbl.setText(campaign.getEventName()); //get event name

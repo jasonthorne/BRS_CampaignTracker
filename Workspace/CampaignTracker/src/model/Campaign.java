@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import controller.CampaignController;
+import controller.LoginController;
+import javafx.beans.property.SimpleBooleanProperty;
 import model.Plane.Status;
 
 public final class Campaign {
@@ -90,6 +92,7 @@ public final class Campaign {
 	//add new player:
 	public void addPlayer(String playerName, Timestamp created) {
 		nameToPlayer.putIfAbsent(playerName, new Player(playerName, created));
+		userIsPlaying.setValue(true); ///////////////TEST
 	}
 	
 	
@@ -128,7 +131,13 @@ public final class Campaign {
 	}
 	
 	//=======================TYEST get booleran +++++++++
+	SimpleBooleanProperty userIsPlaying = new SimpleBooleanProperty(false);
 	
+	//return whether user is present in campaign:
+	public SimpleBooleanProperty getUserIsPlayingTEST() {
+		return userIsPlaying;
+		//return new SimpleBooleanProperty(nameToPlayer.containsKey(userName));
+	}
 	
 	//=================================================
 	
