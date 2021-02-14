@@ -49,6 +49,7 @@ public final class Campaign {
 		this.nameToPlayer = new HashMap<String, Player>(Collections.singletonMap(user, new Player(user)));
 		/** https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way/6802523 */
 		wasCreated = true; //flag as created
+		//isPlaying = true;//+++++++++++++
 	}
 		
 	//campaign cell campaign:
@@ -76,8 +77,8 @@ public final class Campaign {
 	public void updatePlayers() {
 		//if campaign wasn't just created, and players haven't yet been updated:
 		if(!wasCreated && !hasPlayersData) {
-			nameToPlayer = database.SelectPlayers.select(id);
-			hasPlayersData = true;
+			nameToPlayer = database.SelectPlayers.select(id); //get players data from db
+			hasPlayersData = true; //mark as having players data
 		}
 		//++++++++++++else throw?????????
 	}
@@ -126,7 +127,7 @@ public final class Campaign {
 	}
 	
 	//return whether user is present in campaign:
-	public boolean getUserIsPlaying(String userName) {
+	public boolean getUserIsPlaying(String userName) { //++++++++++++++++++++checkPlayer????????
 		return nameToPlayer.containsKey(userName);
 	}
 	
@@ -138,6 +139,13 @@ public final class Campaign {
 		return userIsPlaying;
 		//return new SimpleBooleanProperty(nameToPlayer.containsKey(userName));
 	}
+	
+	//------------
+	
+	
+	boolean testMe = false;
+	
+	///////////boolean hasUser??? 
 	
 	//=================================================
 	

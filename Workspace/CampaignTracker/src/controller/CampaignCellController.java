@@ -42,9 +42,6 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
   	//campaigns controller:
 	private final CampaignsController campaignsCtrlr;
 	
-	//--------------------------
-	/////////private BooleanProperty isPlaying; //= new SimpleBooleanProperty(campaign.getWasCreated());
-	//-------------------
 	//constructor:
 	CampaignCellController(CampaignsController campaignsCtrlr){
 		this.campaignsCtrlr = campaignsCtrlr; 
@@ -60,28 +57,6 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
   	        setGraphic(null);
   	    } else {
   	    	
-  	    	/*
-  	    	isPlaying = new SimpleBooleanProperty(campaign.getUserIsPlaying(LoginController.getUserName())); //+++++++++++++++++
-  	    	
-  	    	isPlaying.addListener(new ChangeListener<Boolean>() {
-				@Override
-				public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2) {
-					System.out.println("isPlaying is now: " + isPlaying);
-					
-				}
-  	    	});*/
-  	    	
-  	    	
-  	    	campaign.getUserIsPlayingTEST().addListener(new ChangeListener<Boolean>() {
-  	    		@Override
-				public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2) {
-					System.out.println("++++++isPlaying is now:+++++++ " + arg2);
-					isPlayingLbl.setText(arg2.toString());
-					
-				}
-  	        });
-  	       
-  	    	
   	    	//populate cell with data from campaign:
   	    	eventNameLbl.setText(campaign.getEventName()); //get event name
   	    	createdLbl.setText(campaign.getCreated().toString()); //get created
@@ -92,7 +67,7 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
 			//add double-click event:
 	        setOnMouseClicked(mouseClickedEvent -> {
                 if (mouseClickedEvent.getButton().equals(MouseButton.PRIMARY) && mouseClickedEvent.getClickCount() == 2) {
-                	Frameable.changeView(campaignsCtrlr.getRoot(), new CampaignController(campaign)); //navigate to campaign
+                	Frameable.changeView(campaignsCtrlr.getRoot(), new CampaignController(campaign, this)); //navigate to campaign
                 } /**https://stackoverflow.com/questions/51536489/how-can-i-detect-javafx-double-click-on-listview*/
             });
 	        
@@ -102,12 +77,15 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
         }
     }
 	
+	//update IsPlaying label:
+	void updateIsPlaying(Campaign campaign) {
+		isPlayingLbl.setText(campaign.getUserIsPlaying(LoginController.getUserName())?"Yes":"No"); 
+	}
 	
-	
-	
-	
-	
-	
+	//update progress indicator:
+	void updateProgressPI(Campaign campaign) {
+		progressPI.setProgress(campaign.getProgress());
+	}
 	
 	
 }

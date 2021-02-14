@@ -28,7 +28,7 @@ public class CampaignController implements Rootable, Frameable{
    
     @FXML private AnchorPane rootAP;
     @FXML  private Label eventNameLbl;
-    @FXML private JFXButton addPlayerBtn;
+    @FXML private JFXButton addUserBtn;
     @FXML private JFXListView<?> missionsLV;
     @FXML private JFXListView<?> playersLV;
     
@@ -38,7 +38,7 @@ public class CampaignController implements Rootable, Frameable{
     	
     	//+++++++++++++++++set to show this button only if user isn't a player. Use listeneer to do this!!
     	//add user to 
-    	addPlayerBtn.setOnAction(event -> addPlayer());
+    	addUserBtn.setOnAction(event -> addUser());
     	
     }
 	///////////////https://stackoverflow.com/questions/26313756/implementing-an-observablevalue
@@ -50,14 +50,24 @@ public class CampaignController implements Rootable, Frameable{
   	private Parent root; 
   	
   	private final Campaign campaign;
+  	private CampaignCellController campaignCellCtrlr;
     
-	//constructor:
-	CampaignController(Campaign campaign){
+  	//newly created campaign:
+  	CampaignController(Campaign campaign){
+  		setRoot(); //set root node
+  		this.campaign = campaign;
+  		setCampaign();
+  	}
+  	
+	//campaign from list view cell selection:
+	CampaignController(Campaign campaign, CampaignCellController campaignCellCtrlr){
 		setRoot(); //set root node
-		
+		this.campaignCellCtrlr = campaignCellCtrlr;
 		this.campaign = campaign;
 		setCampaign();
 	}
+	
+	
 	
 	/*
 	private BooleanProperty  wasCreated;
@@ -90,20 +100,16 @@ public class CampaignController implements Rootable, Frameable{
 	}
 	
 
-	//add player to campaign:
-	private void addPlayer() {
-		System.out.println("B4 add: " + campaign);
-		
-		//get time stamp of creation:
+	//add user as player:
+	private void addUser() {
+		//make time stamp:
 		Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
 		//add player to db:
 		database.InsertPlayer.insert(campaign.getId(), LoginController.getUserId(), timestamp);
 		//add player to campaign:
 		campaign.addPlayer(LoginController.getUserName(), timestamp);
-		
-		//update campaigns
-		System.out.println("AFTER add: " + campaign);
-		//I THINK WE NEED A LISTENER IN CampaignCellController +++++++++===========!!!!!!!!!
+		//update campaign cell:
+		campaignCellCtrlr.updateIsPlaying(campaign);
 	}
 	
 	
