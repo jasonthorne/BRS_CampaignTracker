@@ -39,10 +39,6 @@ public class CampaignController implements Rootable, Frameable{
     	addUserBtn.setVisible(false); //hide from view
 		addUserBtn.setDisable(false); //disable state
     }
-	///////////////https://stackoverflow.com/questions/26313756/implementing-an-observablevalue
-	
-	////////////////private final Stage stage = new Stage(); //stage
-    ///////////////private final Scene scene = new Scene(Rootable.getRoot(this, "/view/campaign.fxml")); //rooted scene
 	
     //fxml root node:
   	private Parent root; 
@@ -73,15 +69,13 @@ public class CampaignController implements Rootable, Frameable{
 		
 		//if user isn't playing:
 		if(!campaign.getUserIsPlaying(LoginController.getUserName())) {
-			System.out.println("show add plyr btn");
 			addUserBtn.setVisible(true); //show addUserBtn
 			addUserBtn.setDisable(false); //enable addUserBtn
 		}else {
 			System.out.println("show menu btn");
-			
+			//++++++++++show menu button
 		}
 	}
-	
 	
 	//add user as player:
 	private void addUser() {
@@ -95,13 +89,6 @@ public class CampaignController implements Rootable, Frameable{
 		campaignCellCtrlr.updateIsPlaying(campaign);
 	}
 	
-	
-	//show stage:
-    /*void showStage() { 
-    	System.out.println("showing campainCtrlr stage"); 
-    	stage.showAndWait(); 
-	}*/
-
     @Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/campaign.fxml"); } //set root
 	@Override
@@ -109,6 +96,14 @@ public class CampaignController implements Rootable, Frameable{
 	@Override
 	public String getViewTitle() { return "Campaign"; } 
 		
-	
+	///////////////https://stackoverflow.com/questions/26313756/implementing-an-observablevalue
+		
+	////////////////private final Stage stage = new Stage(); //stage
+	///////////////private final Scene scene = new Scene(Rootable.getRoot(this, "/view/campaign.fxml")); //rooted scene
+	//show stage:
+    /*void showStage() { 
+    	System.out.println("showing campainCtrlr stage"); 
+    	stage.showAndWait(); 
+	}*/
 
 }

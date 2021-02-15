@@ -87,5 +87,4 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
 		progressPI.setProgress(campaign.getProgress());
 	}
 	
-	
 }
