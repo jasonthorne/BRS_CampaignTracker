@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 import model.Campaign;
 /*import model.Campaign.CampaignBuilder;*/
 import model.Event;
+import model.Mission;
+import model.Player;
 
 public class CampaignController implements Rootable, Frameable{
 	
@@ -29,17 +31,15 @@ public class CampaignController implements Rootable, Frameable{
     @FXML private AnchorPane rootAP;
     @FXML  private Label eventNameLbl;
     @FXML private JFXButton addUserBtn;
-    @FXML private JFXListView<?> missionsLV;
-    @FXML private JFXListView<?> playersLV;
+    @FXML private JFXListView<Mission> missionsLV;
+    @FXML private JFXListView<Player> playersLV;
     
    
     @FXML
     void initialize() {
-    	
-    	//+++++++++++++++++set to show this button only if user isn't a player. Use listeneer to do this!!
-    	//add user to 
-    	addUserBtn.setOnAction(event -> addUser());
-    	
+    	addUserBtn.setOnAction(event -> addUser()); //set btn event
+    	addUserBtn.setVisible(false); //hide from view
+		addUserBtn.setDisable(false); //disable state
     }
 	///////////////https://stackoverflow.com/questions/26313756/implementing-an-observablevalue
 	
@@ -56,7 +56,6 @@ public class CampaignController implements Rootable, Frameable{
   	CampaignController(Campaign campaign){
   		setRoot(); //set root node
   		this.campaign = campaign;
-  		setNewCampaign();
   	}
   	
 	//campaign from list view cell selection:
@@ -64,46 +63,28 @@ public class CampaignController implements Rootable, Frameable{
 		setRoot(); //set root node
 		this.campaignCellCtrlr = campaignCellCtrlr;
 		this.campaign = campaign;
-		setExistingCampaign();
+		initCampaign();	
 	}
 	
-	
-	
-	/*
-	private BooleanProperty  wasCreated;
-    private BooleanProperty finalValueProperty = new SimpleBooleanProperty(false);
-    private BooleanProperty completedProperty = new SimpleBooleanProperty();
-	*/
-	
-	private void setExistingCampaign() {
+
+	private void initCampaign() {
 		
-		//wasCreated  = new SimpleBooleanProperty(campaign.getWasCreated());
+		//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
+		//update players data if not done:
+		if(!campaign.getHasPlayersData()) { campaign.updatePlayers(); }
 		
-		
-		//if players hasn't yet been updated:
-		if(!campaign.getHasPlayersData()) {
-			campaign.updatePlayers(); //update players data
-			//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
-		}
-		
+		//if user isn't playing:
 		if(!campaign.getUserIsPlaying(LoginController.getUserName())) {
 			System.out.println("show add plyr btn");
+			addUserBtn.setVisible(true); //show addUserBtn
+			addUserBtn.setDisable(false); //enable addUserBtn
 		}else {
 			System.out.println("show menu btn");
+			
 		}
-
-		//========================================
-		//campaign.updatePlayers2(this);
-		//=======================================
-		
-		
 	}
 	
-	private void setNewCampaign() {
-		
-	}
 	
-
 	//add user as player:
 	private void addUser() {
 		//make time stamp:
