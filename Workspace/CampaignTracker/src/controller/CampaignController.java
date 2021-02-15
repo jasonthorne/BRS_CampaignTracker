@@ -24,7 +24,6 @@ import model.Player;
 
 public class CampaignController implements Rootable, Frameable{
 	
-	
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
    
@@ -34,7 +33,6 @@ public class CampaignController implements Rootable, Frameable{
     @FXML private JFXListView<Mission> missionsLV;
     @FXML private JFXListView<Player> playersLV;
     
-   
     @FXML
     void initialize() {
     	addUserBtn.setOnAction(event -> addUser()); //set btn event
@@ -63,14 +61,14 @@ public class CampaignController implements Rootable, Frameable{
 		setRoot(); //set root node
 		this.campaignCellCtrlr = campaignCellCtrlr;
 		this.campaign = campaign;
-		initCampaign();	
+		initCampaign();	//initialize campaign
 	}
 	
-
+	//initialize campaign:
 	private void initCampaign() {
 		
 		//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
-		//update players data if not done:
+		//update players data if needed:
 		if(!campaign.getHasPlayersData()) { campaign.updatePlayers(); }
 		
 		//if user isn't playing:

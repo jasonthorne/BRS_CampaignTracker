@@ -77,7 +77,7 @@ public class CampaignCellController extends JFXListCell<Campaign> implements Roo
         }
     }
 	
-	//update IsPlaying label:
+	//update isPlaying label:
 	void updateIsPlaying(Campaign campaign) {
 		isPlayingLbl.setText(campaign.getUserIsPlaying(LoginController.getUserName())?"Yes":"No"); 
 	}
