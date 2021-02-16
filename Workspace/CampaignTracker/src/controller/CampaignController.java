@@ -10,6 +10,8 @@ import com.jfoenix.controls.JFXListView;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -45,23 +47,35 @@ public class CampaignController implements Rootable, Frameable{
   	
   	private final Campaign campaign;
   	private CampaignCellController campaignCellCtrlr;
+  	
+  	//observable list of players:
+    private final ObservableList<Player>observPlayers = FXCollections.observableArrayList();
     
   	//newly created campaign:
   	CampaignController(Campaign campaign){
   		setRoot(); //set root node
-  		this.campaign = campaign;
+  		this.campaign = campaign; //assign campaign
+  		setListViews();
   	}
   	
 	//campaign from list view cell selection:
 	CampaignController(Campaign campaign, CampaignCellController campaignCellCtrlr){
-		setRoot(); //set root node
+		this(campaign);
 		this.campaignCellCtrlr = campaignCellCtrlr;
-		this.campaign = campaign;
 		initCampaign();	//initialize campaign
 	}
 	
+	private void setListViews() {
+		 //add players to observable list:
+		observPlayers.addAll(campaign.getPlayers());
+		//add observable events to listView:
+		playersLV.setItems(observPlayers);
+		//set listView cellFactory to create PlayerCellControllers:
+		playersLV.setCellFactory(PlayerCellController -> new PlayerCellController());
+	}
+	
 	//initialize campaign:
-	private void initCampaign() {
+	private void initCampaign() { //++++++++++++++NEEDS BETTER NAME :P +++++++++
 		
 		//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
 		//update players data if needed:

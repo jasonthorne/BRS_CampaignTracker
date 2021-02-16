@@ -1,6 +1,8 @@
 package model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -119,6 +121,8 @@ public final class Campaign {
 	public List<AirForce> getEventAirForces() { return event.getAirForces(); } //get event air forces ++++++++++++++Just have a getEvent() instead????
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
 	public String getHostName() { return host; } //get host name
+	public List<Player> getPlayers() { return new ArrayList<Player>(nameToPlayer.values()); } //get players
+	
 	
 	//get current progress:
 	public double getProgress() {
