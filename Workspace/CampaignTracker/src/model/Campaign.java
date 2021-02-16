@@ -24,11 +24,10 @@ public final class Campaign {
 	private Period period; //current period of history
 	private int turn; //current turn
 	private Timestamp created; //time stamp when created
-	/** +++++++DONT THINK THIS SHOULD BE HERE :P  use ++++++++++++ have a getter in player for if they're the host */
 	private String host; //name of host 
 	
 	private Map<String, Player>nameToPlayer; //players involved 
-	private Map<Integer, Mission>turnToMission; //missions assigned
+	private Map<Integer, List<Mission>>turnToMissions; //missions assigned
 	
 	private boolean wasCreated; //if campaign was created this session
 	private boolean hasPlayersData; //if campaign has all players data
@@ -120,9 +119,15 @@ public final class Campaign {
 	////////++++public Event getEvent() { return event; }
 	public List<AirForce> getEventAirForces() { return event.getAirForces(); } //get event air forces ++++++++++++++Just have a getEvent() instead????
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
+	/** THIS BECOMES A PROB IF YOU LOSE HOST HERE :P ++++++++++++++ */
 	public String getHostName() { return host; } //get host name
+	
 	public List<Player> getPlayers() { return new ArrayList<Player>(nameToPlayer.values()); } //get players
 	
+	//get missions based on turn (or empty list if not found):
+	public List<Mission> getMissions(int turn) {
+		return new ArrayList<Mission>(turnToMissions.getOrDefault(turn, Collections.emptyList())); 
+	} 
 	
 	//get current progress:
 	public double getProgress() {

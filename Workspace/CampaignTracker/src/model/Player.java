@@ -8,8 +8,6 @@ public final class Player {
 	private String name; //user name
 	private int score; //score
 	private boolean isActive = true; //if active participant
-	/**++++++++++++++++++++++++++++++++++++TEST BELOW. if store host here, then dont need to pass it into the ocnstructor! :P*/
-	private boolean isHost; //if player is host 
 	private Timestamp created; //creation time stamp ?????????????NEEDED????????
 	private Squadron squadron; //squadron managed
 	
