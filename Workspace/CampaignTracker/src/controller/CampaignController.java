@@ -55,7 +55,7 @@ public class CampaignController implements Rootable, Frameable{
   	CampaignController(Campaign campaign){
   		setRoot(); //set root node
   		this.campaign = campaign; //assign campaign
-  		setListViews();
+  		setListViews(); //set list views 
   	}
   	
 	//campaign from list view cell selection:

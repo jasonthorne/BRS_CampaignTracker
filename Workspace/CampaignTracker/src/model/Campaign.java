@@ -17,21 +17,22 @@ import model.Plane.Status;
 public final class Campaign {
 	
 	//amount of turns played per period:
-	public static final int TURNS_PER_PERIOD = 4; //+++++++++++++++++++++++should this be in db????:
+	public static final int TURNS_PER_PERIOD = 4;
 	
 	private int id; //id of campaign
 	private Event event; //historical event covered 
 	private Period period; //current period of history
 	private int turn; //current turn
 	private Timestamp created; //time stamp when created
-	private String host; //name of host
-	private Map<String, Player>nameToPlayer; //players involved 
-	//+++++++++++++++++++++++turnToMission +++++++++++++++++++++where missions are held!! ADD THIS :P +++++++++++++++++
+	/** +++++++DONT THINK THIS SHOULD BE HERE :P  use ++++++++++++ have a getter in player for if they're the host */
+	private String host; //name of host 
 	
-
-	private boolean wasCreated; //++++++++++++++++++NEEDED???????
-	private boolean hasPlayersData;
-	private boolean wasUploaded;
+	private Map<String, Player>nameToPlayer; //players involved 
+	private Map<Integer, Mission>turnToMission; //missions assigned
+	
+	private boolean wasCreated; //if campaign was created this session
+	private boolean hasPlayersData; //if campaign has all players data
+	private boolean wasUploaded; //if campaign was uploaded to db
 	
 	//====================================================================================
 	//https://softwareengineering.stackexchange.com/questions/284215/how-do-you-avoid-getters-and-setters
@@ -51,12 +52,11 @@ public final class Campaign {
 		this.nameToPlayer = new HashMap<String, Player>(Collections.singletonMap(user, new Player(user)));
 		/** https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way/6802523 */
 		wasCreated = true; //flag as created
-		//isPlaying = true;//+++++++++++++
 	}
 		
 	//campaign cell campaign:
-	public Campaign(int id, Event event, Period period, int turn, Timestamp created, String host, Map<String,
-			Player>nameToPlayer) {
+	public Campaign(int id, Event event, Period period, int turn, Timestamp created, String host, 
+			Map<String, Player>nameToPlayer) {
 		this(id, created, event, host);
 		this.period = period; 
 		this.turn = turn; 
