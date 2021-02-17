@@ -34,7 +34,7 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		//initially hide error label:
 		errorLbl.setVisible(false);  //+++++++++++++make this better! :P
     	//set btn actions:
-		loginBtn.setOnAction(event -> loginUsr());
+		loginBtn.setOnAction(event -> loginUser());
     }
 	
 	//id of logged in user:
@@ -67,14 +67,17 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		//======================================
 	}
 	
-	private void loginUsr() {
+	private void loginUser() {
 		
 		//====================================================
 		//shortcut to log in: - REMEMKBER: YOU LOG IN TWICE IF YOU ENTER VALID INFO! :P
 		////////////////userId = 1;  //test account of Jay
-		//user = new User(1, "Jay");
-		user.setValues(1, "jay");
+		///////////////user = new User(1, "Jay");
+		//user.setValues(1, "jay");
 		//user.setValues(2, "jo");
+		//user.setValues(3, "dan");
+		user.setValues(4, "laura");
+		
 		/////////////database.SelectCampaigns.select(LoginController.getUserId()); //++++++++++TEST
 		Fadeable.fade(root, FadeOption.FADE_OUT); //fade out this view
 		FrameController.getFrameCtrlr().loginMove(campaignsCtrlr); //move to campaigns view

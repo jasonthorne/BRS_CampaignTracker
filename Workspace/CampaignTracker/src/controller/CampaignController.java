@@ -95,12 +95,15 @@ public class CampaignController implements Rootable, Frameable{
 	private void addUser() {
 		//make time stamp:
 		Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
+		
 		//add player to db:
 		database.InsertPlayer.insert(campaign.getId(), LoginController.getUserId(), timestamp);
-		//add player to campaign:
-		campaign.addPlayer(LoginController.getUserName(), timestamp);
-		//update campaign cell:
-		campaignCellCtrlr.updateIsPlaying(campaign);
+		//create local player:
+		Player player = new Player(LoginController.getUserName(), timestamp); 
+		
+		campaign.addPlayer(player); //add player to campaign
+		observPlayers.add(player); //add player to observable players
+		campaignCellCtrlr.updateIsPlaying(campaign); //update campaign cell
 	}
 	
     @Override

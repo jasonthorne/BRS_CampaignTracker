@@ -28,8 +28,9 @@ public final class Campaign {
 	
 	private Map<String, Player>nameToPlayer; //players involved 
 	private Map<Integer, List<Mission>>turnToMissions; //missions assigned
+	//+++++turnToPairngToMission
 	
-	private boolean wasCreated; //if campaign was created this session
+	private boolean wasCreated; //if campaign was created this session //++++++++++++++++++isNew???
 	private boolean hasPlayersData; //if campaign has all players data
 	private boolean wasUploaded; //if campaign was uploaded to db
 	
@@ -90,13 +91,18 @@ public final class Campaign {
 		campaign.nameToPlayer.putIfAbsent(playerName, new Player(playerName, created));
 	}*/
 	
-	
+	/*
 	//add new player:
 	public void addPlayer(String playerName, Timestamp created) {
 		nameToPlayer.putIfAbsent(playerName, new Player(playerName, created));
+		//+++++++++++++create pairings for player, and remove/add BYE from/to pool as necessary
+	}*/
+	
+	//add new player:
+	public void addPlayer(Player player) {
+		nameToPlayer.putIfAbsent(player.getName(), new Player(player.getName(), player.getCreated()));
+		//+++++++++++++create pairings for player, and remove/add BYE from/to pool as necessary
 	}
-	
-	
 	
 	
 	
@@ -119,7 +125,6 @@ public final class Campaign {
 	////////++++public Event getEvent() { return event; }
 	public List<AirForce> getEventAirForces() { return event.getAirForces(); } //get event air forces ++++++++++++++Just have a getEvent() instead????
 	public Timestamp getCreated() { return created; } //get created //?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
-	/** THIS BECOMES A PROB IF YOU LOSE HOST HERE :P ++++++++++++++ */
 	public String getHostName() { return host; } //get host name
 	
 	public List<Player> getPlayers() { return new ArrayList<Player>(nameToPlayer.values()); } //get players

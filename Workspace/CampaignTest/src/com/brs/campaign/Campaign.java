@@ -141,7 +141,6 @@ public class Campaign implements Date {
 			
 			//pairingToMission.put(new Pairing(pairing), new Mission(pairing.stream().map((name)->nameToPlayer.get(name)).collect(Collectors.toList()), period, turnNum));
 			
-			
 			//=========================
 		});													
 		

@@ -40,7 +40,7 @@ public final class Player {
 	public boolean getIsActive() { return isActive; } 
 	public Timestamp getCreated() { return created; } //** +++++++++++++ not sure if needed??? ++++++++*//?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
 	
-	public Squadron getSquadron() { return squadron; } //++++++++++++++++++++++MAKE STRONGER!! :P
+	public Squadron getSquadron() { return squadron; } //++++++++++++++++++++++MAKE STRONGER!! :P ISSUE if called with no squadron existing :P 
 	
 	@Override
 	public String toString() {
