@@ -63,6 +63,7 @@ public class CampaignController implements Rootable, Frameable{
 		this(campaign);
 		this.campaignCellCtrlr = campaignCellCtrlr;
 		initCampaign();	//initialize campaign
+		campaign.setPairings();//++++++++++++++++TEST
 	}
 	
 	private void setListViews() {

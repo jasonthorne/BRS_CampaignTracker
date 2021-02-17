@@ -9,10 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.TreeMap;
-
-import com.brs.mission.Mission;
-import com.brs.mission.Pairing;
 
 import controller.CampaignController;
 import controller.LoginController;
@@ -36,17 +34,14 @@ public final class Campaign {
 	private boolean hasPlayersData; //if campaign has all players data
 	private boolean wasUploaded; //if campaign was uploaded to db
 	
+	private static final String BYE = "bye"; //bye entry for pairing odd number of players
 	//combinations of player pairings, for each turn of each period in the campaign:
 	private final Queue<List<List<String>>>pairings = new LinkedList<List<List<String>>>(); //+++++++++++Might be Mot needed!! +++++++
 	/////private Map<Integer, List<Mission>>turnToMissions; //missions assigned to players
 	
-	//missions assigned to pairings for each turn of each period in the campaign:
-	private final Map<Integer, Map<Pairing, Mission>>turnToPairingToMission = new HashMap<Integer, Map<Pairing,Mission>(); 
+	//missions assigned to pairings, for each turn of each period: //++++++++++PERIOD should maybe be used instead of turn!! :P
+	private final Map<Integer, Map<Pairing, Mission>>turnToPairingsToMission = new HashMap<Integer, Map<Pairing,Mission>>(); 
 	
-	
-	
-	//====================================================================================
-	//https://softwareengineering.stackexchange.com/questions/284215/how-do-you-avoid-getters-and-setters
 	
 	private Campaign(int id, Timestamp created, Event event, String host) {
 		this.id = id;
@@ -73,6 +68,55 @@ public final class Campaign {
 		this.turn = turn; 
 		this.nameToPlayer = new HashMap<String, Player>(nameToPlayer);
 	}
+	
+	//===================================================================
+	public void setPairings() { //++++++++++++++++++++++++++++++++++++++++++++++Should this be allowed to be called repeatadly?? eg: if empty, THEN fill??
+		/**
+		 * Round-robin 'circle method' scheduling algorithm: https://en.m.wikipedia.org/wiki/Round-robin_tournament
+		 * Code adapted from: https://stackoverflow.com/questions/26471421/round-robin-algorithm-implementation-java
+		 */
+		List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
+		if (players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
+		Collections.shuffle(players); //shuffle positions of players 
+		String fixedPlayer = players.remove(0); //1st player is removed from list (in order to be given a fixed position for pairing)
+		
+		//loop through the number of turns (with unique pairings) available: 
+	    for (int turn=0, turns=players.size(); turn<turns; turn++) {
+	        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
+	        List<List<String>>pairing = new ArrayList<List<String>>(); //list to hold new pairing
+	        
+	        //Set<String> pairing = new HashSet<String>();
+	       
+	        System.out.println(players.get(turn) + " vs " + fixedPlayer); //++++++++++++++++++
+	        
+	        //each turn, pair the fixed player against a player in players (at the index pos of that turn):
+	        //++++++++++++++++++++++++pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
+	        //////////////////pairing2.add(players.get(turn), fixedPlayer);
+	        pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
+	       
+	        /////// System.out.println("PAIRING2: " + pairing2);
+	        
+	        //endPos is at players.size()+1 to replace the removed fixedPlayer's index. 
+	        for (int pairPos=1, endPos=(players.size()+1)/2; pairPos<endPos; pairPos++) {  //pairPos starts at 1 to ignore first 
+	            int player1Pos = (turn + pairPos) % turns; //turn number + pairingPos (set at 1 to ignore ..........++++++++++)
+	            int player2Pos = (turn  + turns - pairPos) % turns;
+	            
+	            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos)); //+++++++++++++++++
+	            
+	            pairing.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
+	            //pairing2.addAll(players.get(player1Pos), players.get(player2Pos));  //add players to pairing
+	        }
+	        
+	      // pairings.add(Arrays.asList(pairing)); //add pairing to pairings
+	        pairings.add(pairing);
+	    }
+	    
+	    System.out.println(pairings);
+	}
+	
+	
+	//==================================================================
+	
 	
 	/*
 	//update nameToPlayer:
