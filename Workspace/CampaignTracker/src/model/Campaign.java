@@ -5,9 +5,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.TreeMap;
+
+import com.brs.mission.Mission;
+import com.brs.mission.Pairing;
 
 import controller.CampaignController;
 import controller.LoginController;
@@ -25,14 +30,20 @@ public final class Campaign {
 	private int turn; //current turn
 	private Timestamp created; //time stamp when created
 	private String host; //name of host 
-	
-	private Map<String, Player>nameToPlayer; //players involved 
-	private Map<Integer, List<Mission>>turnToMissions; //missions assigned
-	//+++++turnToPairngToMission
+	private Map<String, Player>nameToPlayer; //players involved
 	
 	private boolean wasCreated; //if campaign was created this session //++++++++++++++++++isNew???
 	private boolean hasPlayersData; //if campaign has all players data
 	private boolean wasUploaded; //if campaign was uploaded to db
+	
+	//combinations of player pairings, for each turn of each period in the campaign:
+	private final Queue<List<List<String>>>pairings = new LinkedList<List<List<String>>>(); //+++++++++++Might be Mot needed!! +++++++
+	/////private Map<Integer, List<Mission>>turnToMissions; //missions assigned to players
+	
+	//missions assigned to pairings for each turn of each period in the campaign:
+	private final Map<Integer, Map<Pairing, Mission>>turnToPairingToMission = new HashMap<Integer, Map<Pairing,Mission>(); 
+	
+	
 	
 	//====================================================================================
 	//https://softwareengineering.stackexchange.com/questions/284215/how-do-you-avoid-getters-and-setters
@@ -129,10 +140,11 @@ public final class Campaign {
 	
 	public List<Player> getPlayers() { return new ArrayList<Player>(nameToPlayer.values()); } //get players
 	
+	/*
 	//get missions based on turn (or empty list if not found):
 	public List<Mission> getMissions(int turn) {
 		return new ArrayList<Mission>(turnToMissions.getOrDefault(turn, Collections.emptyList())); 
-	} 
+	} */
 	
 	//get current progress:
 	public double getProgress() {
