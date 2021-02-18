@@ -32,6 +32,7 @@ public class CampaignController implements Rootable, Frameable{
     @FXML private AnchorPane rootAP;
     @FXML  private Label eventNameLbl;
     @FXML private JFXButton addUserBtn;
+    @FXML private JFXButton makePairingsBtn;
     @FXML private JFXListView<Mission> missionsLV;
     @FXML private JFXListView<Player> playersLV;
     
@@ -40,6 +41,9 @@ public class CampaignController implements Rootable, Frameable{
     	addUserBtn.setOnAction(event -> addUser()); //set btn event
     	addUserBtn.setVisible(false); //hide from view
 		addUserBtn.setDisable(false); //disable state
+		makePairingsBtn.setOnAction(event -> makePairings());
+		makePairingsBtn.setVisible(false); //hide from view
+		makePairingsBtn.setDisable(false); //disable state
     }
 	
     //fxml root node:
@@ -63,7 +67,7 @@ public class CampaignController implements Rootable, Frameable{
 		this(campaign);
 		this.campaignCellCtrlr = campaignCellCtrlr;
 		initCampaign();	//initialize campaign
-		campaign.setPairings();//++++++++++++++++TEST
+		//////////////campaign.setPairings();//++++++++++++++++TEST
 	}
 	
 	private void setListViews() {
@@ -78,6 +82,7 @@ public class CampaignController implements Rootable, Frameable{
 	//initialize campaign:
 	private void initCampaign() { //++++++++++++++NEEDS BETTER NAME :P +++++++++
 		
+		//++++++++++++I THINK all of these chacks can be doen with a boolean listener. I think!! 
 		//++++++++++++++HERE WE NEED TO LOK FOR CAMPAIGN IN SAVED DATA IF THIS IS UNSUCCESSFUL< AND USE RTHAT ONE> AND INBFORM USER OF ERROR DOWNLOADING! 
 		//update players data if needed:
 		if(!campaign.getHasPlayersData()) { campaign.updatePlayers(); }
@@ -89,6 +94,11 @@ public class CampaignController implements Rootable, Frameable{
 		}else {
 			System.out.println("show menu btn");
 			//++++++++++show menu button
+			
+			if((LoginController.getUserName().equals(campaign.getHostName()) && campaign.hasMissionsTEST())) {
+				makePairingsBtn.setVisible(true); //show addUserBtn
+				makePairingsBtn.setDisable(false); //enable addUserBtn
+			}
 		}
 	}
 	
@@ -106,6 +116,14 @@ public class CampaignController implements Rootable, Frameable{
 		observPlayers.add(player); //add player to observable players
 		campaignCellCtrlr.updateIsPlaying(campaign); //update campaign cell
 	}
+	
+	//make player pairings:
+	private void makePairings() {
+		
+		//+++++++++++show alert asking t oconfirm make pairings. then...s++++
+		campaign.setPairings();
+	}
+	
 	
     @Override
 	public void setRoot() { root = Rootable.getRoot(this, "/view/campaign.fxml"); } //set root

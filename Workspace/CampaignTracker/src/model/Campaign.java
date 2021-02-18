@@ -27,7 +27,7 @@ public final class Campaign {
 	private Period period; //current period of history
 	private int turn; //current turn
 	private Timestamp created; //time stamp when created
-	private String host; //name of host 
+	private String host; //name of host //+++++++++++++++++++++++++++++Have this be a property thingy, for listener checking!?????????
 	private Map<String, Player>nameToPlayer; //players involved
 	
 	private boolean wasCreated; //if campaign was created this session //++++++++++++++++++isNew???
@@ -76,7 +76,7 @@ public final class Campaign {
 		 * Round-robin 'circle method' scheduling algorithm: https://en.m.wikipedia.org/wiki/Round-robin_tournament
 		 * Code adapted from: https://stackoverflow.com/questions/26471421/round-robin-algorithm-implementation-java
 		 */
-		if (pairings.isEmpty()) { //if pairings is empty:
+		if (pairings.isEmpty()) { //if pairings is empty
 			
 			List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
 			if (players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
@@ -207,12 +207,14 @@ public final class Campaign {
 	//------------
 	
 	
-	boolean testMe = false;
-	
-	///////////boolean hasUser??? 
+	pu
 	*/
 	//=================================================
 	
+	
+	public boolean hasMissionsTEST() {
+		return turnToPairingsToMission.isEmpty();
+	}
 	
 	public boolean getWasCreated() { return wasCreated; }
 	public boolean getHasPlayersData() { return hasPlayersData; }
