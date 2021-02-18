@@ -1,6 +1,8 @@
 package model;
 import java.util.Queue;
 
+/** object for holding the names of two paired players */
+
 public class Pairing {
 	
 	//players:
@@ -17,5 +19,4 @@ public class Pairing {
 	public String toString() {
 		return "Pairing [player1=" + player1 + ", player2=" + player2 + "]";
 	}
-	
 }

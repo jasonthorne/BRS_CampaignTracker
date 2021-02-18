@@ -37,6 +37,8 @@ public final class Campaign {
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
 	//combinations of player pairings, for each turn of each period in the campaign:
 	private final Queue<List<List<String>>>pairings = new LinkedList<List<List<String>>>(); //+++++++++++Might be Mot needed!! +++++++
+	
+	private final Queue<List<List<String>>>pairingsTEST = new LinkedList<List<List<String>>>(); //+++++++++++Might be Mot needed!! +++++++
 	/////private Map<Integer, List<Mission>>turnToMissions; //missions assigned to players
 	
 	//missions assigned to pairings, for each turn of each period: //++++++++++PERIOD should maybe be used instead of turn!! :P
@@ -78,13 +80,14 @@ public final class Campaign {
 		List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
 		if (players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
 		Collections.shuffle(players); //shuffle positions of players 
-		String fixedPlayer = players.remove(0); //1st player is removed from list (in order to be given a fixed position for pairing)
+		String fixedPlayer = players.remove(0); //1st player is removed from list (to be given a fixed position for pairing)
 		
 		//loop through the number of turns (with unique pairings) available: 
-	    for (int turn=0, turns=players.size(); turn<turns; turn++) {
+	    for (int turn=0, turns=players.size(); turn < turns; turn++) {
 	        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
 	        List<List<String>>pairing = new ArrayList<List<String>>(); //list to hold new pairing
 	        
+	        List<String>pairingTEST = new ArrayList<String>(); //list to hold new pairing //####################
 	        //Set<String> pairing = new HashSet<String>();
 	       
 	        System.out.println(players.get(turn) + " vs " + fixedPlayer); //++++++++++++++++++
@@ -93,11 +96,14 @@ public final class Campaign {
 	        //++++++++++++++++++++++++pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
 	        //////////////////pairing2.add(players.get(turn), fixedPlayer);
 	        pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
+	        
+	        pairingTEST.addAll(Arrays.asList(players.get(turn), fixedPlayer)); //##################
 	       
-	        /////// System.out.println("PAIRING2: " + pairing2);
+	        System.out.println("PAIRING: " + pairing);
+	        System.out.println("PAIRING_TEST: " + pairingTEST); //#####################
 	        
 	        //endPos is at players.size()+1 to replace the removed fixedPlayer's index. 
-	        for (int pairPos=1, endPos=(players.size()+1)/2; pairPos<endPos; pairPos++) {  //pairPos starts at 1 to ignore first 
+	        for (int pairPos=1, endPos=(players.size()+1)/2; pairPos < endPos; pairPos++) {  //pairPos starts at 1 to ignore first 
 	            int player1Pos = (turn + pairPos) % turns; //turn number + pairingPos (set at 1 to ignore ..........++++++++++)
 	            int player2Pos = (turn  + turns - pairPos) % turns;
 	            
@@ -105,13 +111,17 @@ public final class Campaign {
 	            
 	            pairing.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
 	            //pairing2.addAll(players.get(player1Pos), players.get(player2Pos));  //add players to pairing
+	            
+	            pairingTEST.addAll(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing //############
 	        }
 	        
 	      // pairings.add(Arrays.asList(pairing)); //add pairing to pairings
 	        pairings.add(pairing);
+	        pairingsTEST.add(Arrays.asList(pairingTEST));
 	    }
 	    
-	    System.out.println(pairings);
+	    System.out.println("pairings____: " + pairings);
+	    System.out.println("pairingsTEST: " + pairingsTEST); //########################NO dice! :P
 	}
 	
 	
