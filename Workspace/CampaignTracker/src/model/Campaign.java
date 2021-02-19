@@ -75,12 +75,13 @@ public final class Campaign {
 		/**
 		 * Round-robin 'circle method' scheduling algorithm: https://en.m.wikipedia.org/wiki/Round-robin_tournament
 		 * Code adapted from: https://stackoverflow.com/questions/26471421/round-robin-algorithm-implementation-java
-		 */
+		 */ pairings.clear(); //+++++++++++++++++++++++++++++REMOVE :P
 		if (pairings.isEmpty()) { //if pairings is empty
 			
 			List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
 			if (players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
 			Collections.shuffle(players); //shuffle positions of players 
+			System.out.println("PLAYERS: " + players); //+++++++++++++++++++++
 			String fixedPlayer = players.remove(0); //1st player is removed from list (to be given a fixed position for pairing)
 			
 			//loop through the number of turns (with unique pairings) available: 
@@ -213,7 +214,7 @@ public final class Campaign {
 	
 	
 	public boolean hasMissionsTEST() {
-		return turnToPairingsToMission.isEmpty();
+		return !turnToPairingsToMission.isEmpty();
 	}
 	
 	public boolean getWasCreated() { return wasCreated; }

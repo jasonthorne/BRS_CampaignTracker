@@ -24,13 +24,13 @@ import model.Event;
 import model.Mission;
 import model.Player;
 
-public class CampaignController implements Rootable, Frameable{
+public class CampaignController implements Rootable, Frameable, Disableable{
 	
 	@FXML private ResourceBundle resources;
     @FXML private URL location;
    
     @FXML private AnchorPane rootAP;
-    @FXML  private Label eventNameLbl;
+    @FXML private Label eventNameLbl;
     @FXML private JFXButton addUserBtn;
     @FXML private JFXButton makePairingsBtn;
     @FXML private JFXListView<Mission> missionsLV;
@@ -39,11 +39,10 @@ public class CampaignController implements Rootable, Frameable{
     @FXML
     void initialize() {
     	addUserBtn.setOnAction(event -> addUser()); //set btn event
-    	addUserBtn.setVisible(false); //hide from view
-		addUserBtn.setDisable(false); //disable state
+    	Disableable.disableJFXBtn(addUserBtn); //disable btn
+    	
 		makePairingsBtn.setOnAction(event -> makePairings());
-		makePairingsBtn.setVisible(false); //hide from view
-		makePairingsBtn.setDisable(false); //disable state
+		Disableable.disableJFXBtn(makePairingsBtn); //disable btn
     }
 	
     //fxml root node:
@@ -95,12 +94,12 @@ public class CampaignController implements Rootable, Frameable{
 			System.out.println("show menu btn");
 			//++++++++++show menu button
 			
-			if((LoginController.getUserName().equals(campaign.getHostName()) && campaign.hasMissionsTEST())) {
-				makePairingsBtn.setVisible(true); //show addUserBtn
-				makePairingsBtn.setDisable(false); //enable addUserBtn
+			if((LoginController.getUserName().equals(campaign.getHostName()) && !campaign.hasMissionsTEST())) {
+				Disableable.enableJFXBtn(makePairingsBtn); //enable makePairingsBtn
 			}
 		}
 	}
+	
 	
 	//add user as player:
 	private void addUser() {
