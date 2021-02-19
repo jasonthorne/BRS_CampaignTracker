@@ -55,7 +55,6 @@ public class PlanesTableController implements Rootable {
     	buildTable(); //build table
     }
 	
-	
 	//set stage:
 	private void setStage(String airForceName) {
 		

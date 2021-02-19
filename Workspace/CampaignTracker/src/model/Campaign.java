@@ -12,6 +12,7 @@ import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import controller.CampaignController;
 import controller.LoginController;
@@ -46,13 +47,23 @@ public final class Campaign {
 	//period TO turn TO pairingID to pairings - TRY CONSTRUCT IT LIKE THAT> Have 
 	
 	/*
+	 * 
+	 * https://stackoverflow.com/questions/822322/how-to-implement-a-map-with-multiple-keys
+	 * 
+	 *###########################periodToTurnsToPlayersToMission
+	 *[early 1940, turn 2, bob, bob's mission]
+	 *early 1940 turn 1...4
+	 *
+	 *Event.getMaxturns
 	 
 	 [ [[a,b],[c,d]], [[a,c],[b,d]] ] - current setup
 	 
 	 
-	 queue > list of maps > list of names as values
+	 queue > list of maps with hash as key & list of names as values
 	 
-	 [ [ [NO_BYE,[a,b]] , [BYE,[c,d]] ], [ [BYE,[a,c]] , [NO_BYE,[b,d]] ] ] - set up with bye flag
+	 WHAT ABOUT THE SECOND PLAYER'S NAME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!????????
+	 
+	 [ [ [NO_BYE + name,[a,b]] , [BYE,[c,d]] ], [ [BYE,[a,c]] , [NO_BYE + name,[b,d]] ] ] - set up with bye flag
 	 
 	 private final Queue<List<Map<String, List<String>>>>pairings = new LinkedList<List<Map<String,List<String>>>>();
 	 
@@ -66,8 +77,15 @@ public final class Campaign {
 	/////private Map<Integer, List<Mission>>turnToMissions; //missions assigned to players
 	
 	//missions assigned to pairings, for each turn of each period: //++++++++++PERIOD should maybe be used instead of turn!! :P
-	private final Map<Integer, Map<Pairing, Mission>>turnToPairingsToMission = new HashMap<Integer, Map<Pairing,Mission>>(); 
+	/////////////private final Map<Integer, Map<Pairing, Mission>>turnToPairingsToMission = new HashMap<Integer, Map<Pairing,Mission>>(); 
 	
+	
+	//=========================
+	
+	//queue > set(or list) of maps with hash as key & list of names as values
+	private final Queue<Map<Integer, Set<String>>>PAIRINGS_TEST = new LinkedList<Map<Integer, Set<String>>>(); 
+	
+	//===============================
 	
 	private Campaign(int id, Timestamp created, Event event, String host) {
 		this.id = id;
@@ -139,8 +157,8 @@ public final class Campaign {
 		/**
 		 * Round-robin 'circle method' scheduling algorithm: https://en.m.wikipedia.org/wiki/Round-robin_tournament
 		 * Code adapted from: https://stackoverflow.com/questions/26471421/round-robin-algorithm-implementation-java
-		 */ pairings.clear(); //+++++++++++++++++++++++++++++REMOVE :P
-		if (pairings.isEmpty()) { //if pairings is empty
+		 */ PAIRINGS_TEST.clear(); //+++++++++++++++++++++++++++++REMOVE :P
+		if (PAIRINGS_TEST.isEmpty()) { //if pairings is empty
 			
 			List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
 			if (players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
@@ -167,7 +185,17 @@ public final class Campaign {
 		            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos)); //+++++++++++++++++
 		            pairing.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
 		        }
-		        pairings.add(pairing); //add pairing to pairings
+		        ////////pairings.add(pairing); //add pairing to pairings
+		        
+		        //for each pair in pairings:
+		        pairings.forEach(pair -> {
+		        	
+		        });
+		        
+		        /////PAIRINGS_TEST.add(
+		        		pairing.stream()
+                        .collect(Collectors.toMap(pairing -> pairing.hashCode(), event -> event))); 
+		        		
 		    }
 		}
 	    
@@ -189,7 +217,7 @@ public final class Campaign {
 	public void addPlayer(Player player) {
 		nameToPlayer.putIfAbsent(player.getName(), new Player(player.getName(), player.getCreated()));
 		
-		if(pairings.isEmpty()) { //add to pairings
+		if(!pairings.isEmpty()) { //add to pairings //CHECK THIS WORKS :P ????????????????????????????????????????
 			
 			if (nameToPlayer.size()%2==1) {  //if odd number of players
 				
