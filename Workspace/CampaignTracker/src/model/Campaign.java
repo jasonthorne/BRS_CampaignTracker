@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
 import java.util.TreeMap;
@@ -55,6 +56,12 @@ public final class Campaign {
 	 
 	 private final Queue<List<Map<String, List<String>>>>pairings = new LinkedList<List<Map<String,List<String>>>>();
 	 
+	 Soooooo.... we want the key consisting of a combination (hash) of both player names. 
+	 make each key equal to hash of name + hash of NO_BYE ++++++++++ YES,, YES, YES!!! 
+	 
+	 to get value: map.get(name # by NO_BYE)
+	 
+	 https://stackoverflow.com/questions/14677993/how-to-create-a-hashmap-with-two-keys-key-pair-value
 	*/
 	/////private Map<Integer, List<Mission>>turnToMissions; //missions assigned to players
 	

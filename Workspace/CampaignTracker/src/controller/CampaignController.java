@@ -2,7 +2,12 @@ package controller;
 
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -36,6 +41,8 @@ public class CampaignController implements Rootable, Frameable, Disableable{
     @FXML private JFXListView<Mission> missionsLV;
     @FXML private JFXListView<Player> playersLV;
     
+    private final Map<Integer, List<String>>TEST = new HashMap<Integer, List<String>>(); //++++++++++++++TEST
+    
     @FXML
     void initialize() {
     	addUserBtn.setOnAction(event -> addUser()); //set btn event
@@ -66,7 +73,32 @@ public class CampaignController implements Rootable, Frameable, Disableable{
 		this(campaign);
 		this.campaignCellCtrlr = campaignCellCtrlr;
 		initCampaign();	//initialize campaign
-		//////////////campaign.setPairings();//++++++++++++++++TEST
+		
+		//========================
+		String a = "a";
+		String CONST = "b";
+		
+		System.out.println("a.hashCode() " + a.hashCode());
+		System.out.println("CONST.hashCode() " + CONST.hashCode());
+		
+		System.out.println("Objects.hash(a, CONST) " + Objects.hash(a, CONST));
+		
+		TEST.put(Objects.hash(a, CONST), Arrays.asList(a, "unknown var"));
+		
+		System.out.println("TEST: " + TEST);
+		
+		System.out.println("TEST.get:" +  TEST.get(Objects.hash(a, CONST)));
+		
+		//NOW WHAT ABOUT A HASH KEY for no bye??
+		//and what if player to find (leave) had a bye this round?? - check reserves for player first maybe :P?????
+		
+		//so if there IS a bye, the the key is only made from hashing a BYE. 
+		//If there ISNT a bye, then key is made from name + hashing a NO_BYE
+		//BOTH OF THESZE CHECKS WILL NEED PERFORMED AS WE DONT KNOW WHICH CONDITION WILL EXIST FOR TARGET PLAYER EACH ROUND ++++++++++
+		//actually, will they!! WE know if were looking for a bye key by the length of the players list!! :P
+		//==========================
+		
+		
 	}
 	
 	private void setListViews() {
