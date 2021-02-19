@@ -46,10 +46,10 @@ public class CampaignController implements Rootable, Frameable, Disableable{
     @FXML
     void initialize() {
     	addUserBtn.setOnAction(event -> addUser()); //set btn event
-    	Disableable.disableJFXBtn(addUserBtn); //disable btn
+    	Disableable.disableJfxBtn(addUserBtn); //disable btn
     	
 		makePairingsBtn.setOnAction(event -> makePairings());
-		Disableable.disableJFXBtn(makePairingsBtn); //disable btn
+		Disableable.disableJfxBtn(makePairingsBtn); //disable btn
     }
 	
     //fxml root node:
@@ -81,6 +81,10 @@ public class CampaignController implements Rootable, Frameable, Disableable{
 		System.out.println("a.hashCode() " + a.hashCode());
 		System.out.println("CONST.hashCode() " + CONST.hashCode());
 		
+		System.out.println("Objects.hash(CONST) " + Objects.hash(CONST)); //NOT THE SAME AS .hashCode()!! 
+		
+		System.out.println("Objects.hashCode() " + Objects.hashCode(CONST));
+		
 		System.out.println("Objects.hash(a, CONST) " + Objects.hash(a, CONST));
 		
 		TEST.put(Objects.hash(a, CONST), Arrays.asList(a, "unknown var"));
@@ -89,6 +93,7 @@ public class CampaignController implements Rootable, Frameable, Disableable{
 		
 		System.out.println("TEST.get:" +  TEST.get(Objects.hash(a, CONST)));
 		
+		//READ ALL THESE NOTES :P +++++++++++++++++++++
 		//NOW WHAT ABOUT A HASH KEY for no bye??
 		//and what if player to find (leave) had a bye this round?? - check reserves for player first maybe :P?????
 		
@@ -96,6 +101,36 @@ public class CampaignController implements Rootable, Frameable, Disableable{
 		//If there ISNT a bye, then key is made from name + hashing a NO_BYE
 		//BOTH OF THESZE CHECKS WILL NEED PERFORMED AS WE DONT KNOW WHICH CONDITION WILL EXIST FOR TARGET PLAYER EACH ROUND ++++++++++
 		//actually, will they!! WE know if were looking for a bye key by the length of the players list!! :P
+		//USE DoubleKey object NOT Strings in map :P and override the hashcode method as per eclipse recommendation! 
+		
+		//EXTRA NOTES:
+		/*
+		 * each players key is hashed from their name & either BYE or NO_BYE
+		 * when searching for a player and there is odd number:
+		 * 	check each round of pairings for their name without bye THEN with bye - UNTILL THE BYE FORTHAT ROUND IS FOUND
+		 * if even number of players, then just check for that player without bye.  
+		 */
+		
+		/*
+		 * Above is WRONG
+		 * player is given their name + NO_BYE hash OR a BYE Hash.
+		 * to remove player with odd:
+		 * check a round for name + NO_BYE hash. If not their then USE the BYE key to grab player element for removal.
+		 * 
+		 * If even number of players, then just check each round for name + NO_BYE hash to grab player element for removal.
+		 * 
+		 * if adding new player:
+		 * if odd number of players - grab each rounds BYE hash and replace element with new player name.
+		 * If even number of players: assign bye to new player, then for each round add a new pairing with exswting player & new player
+		 * 
+		 * BOOM!! 
+		 *  
+		 * 
+		 */
+		
+		//IF LOOKING FOR 'BYE' part of key for adding a new player:
+		//ummmmm..........
+		
 		//==========================
 		
 		
@@ -127,7 +162,7 @@ public class CampaignController implements Rootable, Frameable, Disableable{
 			//++++++++++show menu button
 			
 			if((LoginController.getUserName().equals(campaign.getHostName()) && !campaign.hasMissionsTEST())) {
-				Disableable.enableJFXBtn(makePairingsBtn); //enable makePairingsBtn
+				Disableable.enableJfxBtn(makePairingsBtn); //enable makePairingsBtn
 			}
 		}
 	}

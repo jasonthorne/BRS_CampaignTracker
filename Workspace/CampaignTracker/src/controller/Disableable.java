@@ -7,13 +7,13 @@ import com.jfoenix.controls.JFXButton;
 public interface Disableable {
 	
 	//disable JFX Button:
-	static void disableJFXBtn(JFXButton btn) {
+	static void disableJfxBtn(JFXButton btn) {
 		btn.setVisible(false); //hide from view
 		btn.setDisable(true); //disable state
 	}
 	
 	//enable JFX Button:
-	static void enableJFXBtn(JFXButton btn) {
+	static void enableJfxBtn(JFXButton btn) {
 		btn.setVisible(true); //show in view
 		btn.setDisable(false); //enable state
 	}
