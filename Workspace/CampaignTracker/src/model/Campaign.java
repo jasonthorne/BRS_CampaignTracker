@@ -38,6 +38,24 @@ public final class Campaign {
 	//combinations of player pairings, for each turn of each period in the campaign:
 	private final Queue<List<List<String>>>pairings = new LinkedList<List<List<String>>>();
 	
+	//queue holding a list of maps, each holding a list of strings
+	private final Queue<List<Map<String, List<String>>>>pairingsTEST = new LinkedList<List<Map<String,List<String>>>>();
+	
+	//++++++++++++ID LIKE ABOVE TO BE:
+	//period TO turn TO pairingID to pairings - TRY CONSTRUCT IT LIKE THAT> Have 
+	
+	/*
+	 
+	 [ [[a,b],[c,d]], [[a,c],[b,d]] ] - current setup
+	 
+	 
+	 queue > list of maps > list of names as values
+	 
+	 [ [ [NO_BYE,[a,b]] , [BYE,[c,d]] ], [ [BYE,[a,c]] , [NO_BYE,[b,d]] ] ] - set up with bye flag
+	 
+	 private final Queue<List<Map<String, List<String>>>>pairings = new LinkedList<List<Map<String,List<String>>>>();
+	 
+	*/
 	/////private Map<Integer, List<Mission>>turnToMissions; //missions assigned to players
 	
 	//missions assigned to pairings, for each turn of each period: //++++++++++PERIOD should maybe be used instead of turn!! :P
@@ -110,22 +128,46 @@ public final class Campaign {
 	    System.out.println("pairings: " + pairings); //++++++++++
 	}
 	
-	
-	//==================================================================
-	
-	
-	/*
-	//update nameToPlayer:
-	public void updatePlayers(Campaign campaign) {
-		//if campaign wasn't just created, and players haven't yet been updated:
-		if(!campaign.wasCreated && !campaign.hasPlayersData) {
-			campaign.nameToPlayer = database.SelectPlayers.select(campaign.getId());
-			campaign.hasPlayersData = true;
+	public void setPairingsTEST() {
+		/**
+		 * Round-robin 'circle method' scheduling algorithm: https://en.m.wikipedia.org/wiki/Round-robin_tournament
+		 * Code adapted from: https://stackoverflow.com/questions/26471421/round-robin-algorithm-implementation-java
+		 */ pairings.clear(); //+++++++++++++++++++++++++++++REMOVE :P
+		if (pairings.isEmpty()) { //if pairings is empty
+			
+			List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
+			if (players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
+			Collections.shuffle(players); //shuffle positions of players 
+			System.out.println("PLAYERS: " + players); //+++++++++++++++++++++
+			String fixedPlayer = players.remove(0); //1st player is removed from list (to be given a fixed position for pairing)
+			
+			//loop through the number of turns (with unique pairings) available: 
+		    for (int turn=0, turns=players.size(); turn < turns; turn++) {
+		        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
+		        List<List<String>>pairing = new ArrayList<List<String>>(); //list to hold new pairing
+		        System.out.println(players.get(turn) + " vs " + fixedPlayer); //++++++++++++++++++
+		        
+		        //each turn, pair the fixed player against a player in players (at the index pos of that turn):
+		        pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
+		        
+		        System.out.println("PAIRING: " + pairing);
+		        
+		        //endPos is at players.size()+1 to replace the removed fixedPlayer's index. 
+		        for (int pairPos=1, endPos=(players.size()+1)/2; pairPos < endPos; pairPos++) {  //pairPos starts at 1 to ignore first 
+		            int player1Pos = (turn + pairPos) % turns; //turn number + pairingPos (set at 1 to ignore ..........++++++++++)
+		            int player2Pos = (turn  + turns - pairPos) % turns;
+		            
+		            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos)); //+++++++++++++++++
+		            pairing.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
+		        }
+		        pairings.add(pairing); //add pairing to pairings
+		    }
 		}
-		//++++++++++++else throw?????????
-	}*/
-	
-	
+	    
+	    System.out.println("pairings: " + pairings); //++++++++++
+	}
+	//==================================================================
+
 	//update nameToPlayer:
 	public void updatePlayers() {
 		//if campaign wasn't just created, and players haven't yet been updated:
@@ -136,39 +178,21 @@ public final class Campaign {
 		//++++++++++++else throw?????????
 	}
 	
-	/*
-	//add new player:
-	public void addPlayer(Campaign campaign, String playerName, Timestamp created) {
-		campaign.nameToPlayer.putIfAbsent(playerName, new Player(playerName, created));
-	}*/
-	
-	/*
-	//add new player:
-	public void addPlayer(String playerName, Timestamp created) {
-		nameToPlayer.putIfAbsent(playerName, new Player(playerName, created));
-		//+++++++++++++create pairings for player, and remove/add BYE from/to pool as necessary
-	}*/
-	
 	//add new player:
 	public void addPlayer(Player player) {
 		nameToPlayer.putIfAbsent(player.getName(), new Player(player.getName(), player.getCreated()));
+		
+		if(pairings.isEmpty()) { //add to pairings
+			
+			if (nameToPlayer.size()%2==1) {  //if odd number of players
+				
+				pairings.forEach(pairing -> {
+					//++++++++++++++find bye player and add new player instead
+				});
+			}
+		}
 		//+++++++++++++create pairings for player, and remove/add BYE from/to pool as necessary
 	}
-	
-	
-	
-	/*
-	//update nameToPlayer:
-	public void updatePlayers2(CampaignController campaignCtrlr) {
-		if(!wasCreated && !hasPlayersData) {
-			campaignCtrlr.updatePlayers();
-			campaign.nameToPlayer = database.SelectPlayers.select(campaign.getId());
-			campaign.hasPlayersData = true;
-		}
-		//++++++++++++else throw?????????
-	}*/
-	
-	
 	
 	
 	public int getId() { return id; } //get id
