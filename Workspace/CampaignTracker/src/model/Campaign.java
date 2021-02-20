@@ -27,7 +27,7 @@ public final class Campaign {
 	
 	private int id; //id of campaign
 	private Event event; //historical event covered 
-	private Period period; //current period of history
+	private Period period; //current period of history //++++++++++++++++++should prob be iterator, like in prev project #######
 	private int turn; //current turn
 	private Timestamp created; //time stamp when created
 	private String host; //name of host //+++++++++++++++++++++++++++++Have this be a property thingy, for listener checking!?????????
@@ -98,7 +98,7 @@ public final class Campaign {
 	//new campaign:
 	public Campaign(int id, Event event, Timestamp created, String user) {
 		this(id, created, event, user);
-		this.period = event.getStartPeriod();
+		this.period = event.getPeriods().get(0);
 		//add user as player:
 		this.nameToPlayer = new HashMap<String, Player>(Collections.singletonMap(user, new Player(user)));
 		/** https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way/6802523 */

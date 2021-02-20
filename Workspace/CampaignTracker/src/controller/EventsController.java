@@ -171,8 +171,8 @@ public class EventsController implements Frameable, Rootable {
     			
     			//populate fxml elements with values from selected event:
     	        nameLbl.setText(newVal.getName());
-    	        startPeriodLbl.setText(newVal.getStartPeriod().toString());
-    	        endPeriodLbl.setText(newVal.getEndPeriod().toString());
+    	        startPeriodLbl.setText(newVal.getPeriods().get(0).toString()); 
+    	        endPeriodLbl.setText(newVal.getPeriods().get(newVal.getPeriods().size()-1).toString());
     	        maxTurnsLbl.setText(String.valueOf(newVal.getMaxTurns()));
     	        
     	        //add selected event's air forces to observable airForces:

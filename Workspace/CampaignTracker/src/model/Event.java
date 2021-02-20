@@ -34,14 +34,14 @@ public final class Event {
 	public String getName() { return name; }
 	
 	//get start period:
-	public Period getStartPeriod() {
+	/*public Period getStartPeriod() {
 		return periods.get(0);//////////startPeriod; ///////////new Period(startPeriod.getBlock(), startPeriod.getYear()); //+++++++++++++++too strong??????
-	}
+	}*/
 	
 	//get end period:
-	public Period getEndPeriod() {
+	/*public Period getEndPeriod() {
 		return periods.get(periods.size()-1);//////////endPeriod; /////////new Period(endPeriod.getBlock(), endPeriod.getYear()); //+++++++++++++++too strong??????
-	}
+	}*/
 	
 	//get max turns:
 	public int getMaxTurns() { return maxTurns; }
