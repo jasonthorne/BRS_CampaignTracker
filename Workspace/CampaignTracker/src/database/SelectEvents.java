@@ -64,6 +64,7 @@ public interface SelectEvents {
 							periodsRS.getInt("period_year"))); 
 				}
 				
+				//+++++++++++++++++++++++++++++++++++++++PASS THE LIST OF PERIODS TO EVENT, INSTEAD OF JUST THE STARRT & END :P 
 				//get start & end periods from list:
 				Period startPeriod = eventPeriods.get(0);
 				Period endPeriod = eventPeriods.get(eventPeriods.size()-1);
@@ -126,7 +127,8 @@ public interface SelectEvents {
 				}//airForcesRS
 				
 				//add event to events:
-				events.add(new Event(eventName, startPeriod, endPeriod, periodTotal, eventAirForces));
+				//////////////////////##########events.add(new Event(eventName, startPeriod, endPeriod, periodTotal, eventAirForces));
+				events.add(new Event(eventName, eventPeriods, eventAirForces));
 				
 			}//eventsRS
 			
