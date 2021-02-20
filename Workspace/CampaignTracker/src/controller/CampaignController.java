@@ -78,6 +78,7 @@ public class CampaignController implements Rootable, Frameable, Disableable{
 		String a = "a";
 		String CONST = "b";
 		
+		/*
 		System.out.println("a.hashCode() " + a.hashCode());
 		System.out.println("CONST.hashCode() " + CONST.hashCode());
 		
@@ -92,6 +93,7 @@ public class CampaignController implements Rootable, Frameable, Disableable{
 		System.out.println("TEST: " + TEST);
 		
 		System.out.println("TEST.get:" +  TEST.get(Objects.hash(a, CONST)));
+		*/
 		
 		//READ ALL THESE NOTES :P +++++++++++++++++++++
 		//NOW WHAT ABOUT A HASH KEY for no bye??
@@ -187,7 +189,8 @@ public class CampaignController implements Rootable, Frameable, Disableable{
 	private void makePairings() {
 		
 		//+++++++++++show alert asking t oconfirm make pairings. then...s++++
-		campaign.setPairings();
+		///////////campaign.setPairings();
+		campaign.setPairingsTEST();
 	}
 	
 	

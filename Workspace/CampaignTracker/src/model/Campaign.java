@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -77,13 +78,13 @@ public final class Campaign {
 	/////private Map<Integer, List<Mission>>turnToMissions; //missions assigned to players
 	
 	//missions assigned to pairings, for each turn of each period: //++++++++++PERIOD should maybe be used instead of turn!! :P
-	/////////////private final Map<Integer, Map<Pairing, Mission>>turnToPairingsToMission = new HashMap<Integer, Map<Pairing,Mission>>(); 
+	private final Map<Integer, Map<Pairing, Mission>>turnToPairingsToMission = new HashMap<Integer, Map<Pairing,Mission>>(); 
 	
 	
 	//=========================
 	
 	//queue > set(or list) of maps with hash as key & list of names as values
-	private final Queue<Map<Integer, Set<String>>>PAIRINGS_TEST = new LinkedList<Map<Integer, Set<String>>>(); 
+	private final List<Map<Integer, Set<String>>>PAIRINGS_TEST = new LinkedList<Map<Integer, Set<String>>>(); 
 	
 	//===============================
 	
@@ -169,13 +170,16 @@ public final class Campaign {
 			//loop through the number of turns (with unique pairings) available: 
 		    for (int turn=0, turns=players.size(); turn < turns; turn++) {
 		        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
-		        List<List<String>>pairing = new ArrayList<List<String>>(); //list to hold new pairing
+		        ////////////////////////////////##############List<List<String>>pairing = new ArrayList<List<String>>(); //list to hold new pairing ##############WHY a list of lists?????
+		        Set<String>pairing = new HashSet<String>(); 
+		        
 		        System.out.println(players.get(turn) + " vs " + fixedPlayer); //++++++++++++++++++
 		        
 		        //each turn, pair the fixed player against a player in players (at the index pos of that turn):
-		        pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
+		        ///////////////////////////##############/pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
+		        pairing.addAll(Arrays.asList(players.get(turn), fixedPlayer));
 		        
-		        System.out.println("PAIRING: " + pairing);
+		        System.out.println("PAIRING 1: " + pairing);
 		        
 		        //endPos is at players.size()+1 to replace the removed fixedPlayer's index. 
 		        for (int pairPos=1, endPos=(players.size()+1)/2; pairPos < endPos; pairPos++) {  //pairPos starts at 1 to ignore first 
@@ -183,18 +187,21 @@ public final class Campaign {
 		            int player2Pos = (turn  + turns - pairPos) % turns;
 		            
 		            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos)); //+++++++++++++++++
-		            pairing.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
+		            /////////////##################pairing.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
+		            pairing.addAll(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
+		            
+		            System.out.println("PAIRING 2: " + pairing);
 		        }
 		        ////////pairings.add(pairing); //add pairing to pairings
 		        
-		        //for each pair in pairings:
-		        pairings.forEach(pair -> {
-		        	
+		        //for each player in pairing:
+		        pairing.forEach(player -> {
+		        	System.out.println("PLAYER: " + player);
 		        });
 		        
 		        /////PAIRINGS_TEST.add(
-		        		pairing.stream()
-                        .collect(Collectors.toMap(pairing -> pairing.hashCode(), event -> event))); 
+		        	//	pairing.stream()
+                    //    .collect(Collectors.toMap(pairing -> pairing.hashCode(), event -> event))); 
 		        		
 		    }
 		}
@@ -271,7 +278,7 @@ public final class Campaign {
 	*/
 	//=================================================
 	
-	
+
 	public boolean hasMissionsTEST() {
 		return !turnToPairingsToMission.isEmpty();
 	}
