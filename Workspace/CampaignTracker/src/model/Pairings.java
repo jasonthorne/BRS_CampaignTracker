@@ -10,9 +10,23 @@ import java.util.Map;
 
 public class Pairings {
 	
-	private final Map<String, Pairing> keyOneToPairing = new HashMap<String, Pairing>();
-    private final Map<String, Pairing> keyTwoToPairing = new HashMap<String, Pairing>();
+	//maps with their own unique key (player name), holding the same pairing:
+	private final Map<String, Pairing> playerOneToPairing = new HashMap<String, Pairing>();
+    private final Map<String, Pairing> playerTwoToPairing = new HashMap<String, Pairing>();
     
+    
+    public void put(String player1, String player2 /*,maybe pairing too! */) {
+    	//pairing holding player names:
+    	Pairing pairing = new Pairing(player1, player2);
+    	//add keys with pairing to maps:
+    	playerOneToPairing.put(player1, pairing);
+    	playerTwoToPairing.put(player2, pairing);
+    }
+    
+    /*
+    public String getP1ToPairing() {
+    	
+    }*/
     
    /*
     public String<K1, V> getMap1() {
