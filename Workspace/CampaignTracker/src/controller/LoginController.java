@@ -73,8 +73,8 @@ public class LoginController implements Rootable, Fadeable, Frameable {
 		//shortcut to log in: - REMEMKBER: YOU LOG IN TWICE IF YOU ENTER VALID INFO! :P
 		////////////////userId = 1;  //test account of Jay
 		///////////////user = new User(1, "Jay");
-		//user.setValues(1, "jay");
-		user.setValues(2, "jo");
+		user.setValues(1, "jay");
+		//user.setValues(2, "jo");
 		//user.setValues(3, "dan");
 		//user.setValues(4, "laura");
 		

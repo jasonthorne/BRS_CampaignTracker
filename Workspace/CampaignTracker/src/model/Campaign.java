@@ -38,7 +38,7 @@ public final class Campaign {
 	private boolean wasUploaded; //if campaign was uploaded to db
 	
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
-	//combinations of player pairings, for each turn of each period in the campaign:
+	//combinations of player pairings, for use during each turn of each period in the campaign:
 	private final Queue<List<List<String>>>pairings = new LinkedList<List<List<String>>>();
 	
 	//queue holding a list of maps, each holding a list of strings
@@ -84,7 +84,7 @@ public final class Campaign {
 	//=========================
 	
 	//queue > set(or list) of maps with hash as key & list of names as values
-	private final List<Map<Integer, Set<String>>>PAIRINGS_TEST = new LinkedList<Map<Integer, Set<String>>>(); 
+	private final List<List<Pairing>>PAIRINGS_TEST = new LinkedList<List<Pairing>>(); //+++++++++++++turnPairings
 	
 	//===============================
 	
@@ -171,15 +171,15 @@ public final class Campaign {
 		    for (int turn=0, turns=players.size(); turn < turns; turn++) {
 		        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
 		        ////////////////////////////////##############List<List<String>>pairing = new ArrayList<List<String>>(); //list to hold new pairing ##############WHY a list of lists?????
-		        Set<String>pairing = new HashSet<String>(); 
+		        List<Pairing>pairings = new ArrayList<Pairing>();
 		        
 		        System.out.println(players.get(turn) + " vs " + fixedPlayer); //++++++++++++++++++
 		        
 		        //each turn, pair the fixed player against a player in players (at the index pos of that turn):
 		        ///////////////////////////##############/pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
-		        pairing.addAll(Arrays.asList(players.get(turn), fixedPlayer));
+		        pairings.add(new Pairing(players.get(turn), fixedPlayer));
 		        
-		        System.out.println("PAIRING 1: " + pairing);
+		        //////////System.out.println("PAIRING 1: " + pairings);
 		        
 		        //endPos is at players.size()+1 to replace the removed fixedPlayer's index. 
 		        for (int pairPos=1, endPos=(players.size()+1)/2; pairPos < endPos; pairPos++) {  //pairPos starts at 1 to ignore first 
@@ -188,25 +188,32 @@ public final class Campaign {
 		            
 		            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos)); //+++++++++++++++++
 		            /////////////##################pairing.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
-		            pairing.addAll(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
+		            pairings.add(new Pairing(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
 		            
-		            System.out.println("PAIRING 2: " + pairing);
+		            //////////System.out.println("PAIRING 2: " + pairings);
 		        }
 		        ////////pairings.add(pairing); //add pairing to pairings
 		        
 		        //for each player in pairing:
-		        pairing.forEach(player -> {
+		        /*pairing.forEach(player -> {
 		        	System.out.println("PLAYER: " + player);
-		        });
+		        });*/
 		        
-		        /////PAIRINGS_TEST.add(
-		        	//	pairing.stream()
-                    //    .collect(Collectors.toMap(pairing -> pairing.hashCode(), event -> event))); 
-		        		
+		        PAIRINGS_TEST.add(pairings);
+		       
 		    }
+		    System.out.println("PAIRINGS_TEST: " + PAIRINGS_TEST);
 		}
 	    
 	    System.out.println("pairings: " + pairings); //++++++++++
+	    
+	    PAIRINGS_TEST.forEach(list ->{
+	    	list.forEach(pair ->{
+	    		System.out.println(pair.getPairing("jo"));
+				System.out.println(pair.getPairing("jay"));
+	    	});
+			
+		});
 	}
 	//==================================================================
 
