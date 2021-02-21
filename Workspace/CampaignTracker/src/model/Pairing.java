@@ -20,6 +20,8 @@ public class Pairing {
 		this.player2 = player2;
 	}
 	
+	
+	
 	@Override
 	public int hashCode() {
 		/*
