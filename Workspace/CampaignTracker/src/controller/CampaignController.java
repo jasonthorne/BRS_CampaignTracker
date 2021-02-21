@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Queue;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -27,6 +28,7 @@ import model.Campaign;
 /*import model.Campaign.CampaignBuilder;*/
 import model.Event;
 import model.Mission;
+import model.Pairing;
 import model.Player;
 
 public class CampaignController implements Rootable, Frameable, Disableable{
@@ -78,6 +80,22 @@ public class CampaignController implements Rootable, Frameable, Disableable{
 		String a = "a";
 		String CONST = "b";
 		
+		Map<Pairing, String>TESTY_TEST = new HashMap<Pairing, String>();
+		
+		TESTY_TEST.put(new Pairing("Bob", "Bill"), "Bob & Bill"); 
+		TESTY_TEST.put(new Pairing("Frank", "Fiona"), "Frank & Fiona"); 
+		TESTY_TEST.put(new Pairing("Dan", "Laura"), "Dan & Laura"); 
+		
+		System.out.println("===============================================");
+		System.out.println(TESTY_TEST);
+		
+		System.out.println(TESTY_TEST.get(new Pairing("Bob", "Bill")));
+		System.out.println(TESTY_TEST.get("Bob"));
+		
+		
+		
+		
+		System.out.println("===============================================");
 		/*
 		System.out.println("a.hashCode() " + a.hashCode());
 		System.out.println("CONST.hashCode() " + CONST.hashCode());
