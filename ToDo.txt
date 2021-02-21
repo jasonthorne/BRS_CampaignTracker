@@ -78,7 +78,8 @@ https://stackoverflow.com/questions/37785689/javafx-listener-to-check-for-a-bool
 https://www.genuinecoder.com/javafx-observables-and-bindings/
 
 
-
+Empty list returning explination:
+https://stackoverflow.com/questions/6546875/collections-emptylist-instead-of-null-check
 
 
 

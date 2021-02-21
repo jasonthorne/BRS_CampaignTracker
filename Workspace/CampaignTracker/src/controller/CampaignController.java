@@ -2,6 +2,7 @@ package controller;
 
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -29,6 +30,7 @@ import model.Campaign;
 import model.Event;
 import model.Mission;
 import model.Pairing;
+import model.PairingOLD;
 import model.Player;
 
 public class CampaignController implements Rootable, Frameable, Disableable{
@@ -80,20 +82,27 @@ public class CampaignController implements Rootable, Frameable, Disableable{
 		String a = "a";
 		String CONST = "b";
 		
-		Map<Pairing, String>TESTY_TEST = new HashMap<Pairing, String>();
+		Map<PairingOLD, String>TESTY_TEST = new HashMap<PairingOLD, String>();
 		
-		TESTY_TEST.put(new Pairing("Bob", "Bill"), "Bob & Bill"); 
-		TESTY_TEST.put(new Pairing("Frank", "Fiona"), "Frank & Fiona"); 
-		TESTY_TEST.put(new Pairing("Dan", "Laura"), "Dan & Laura"); 
+		TESTY_TEST.put(new PairingOLD("Bob", "Bill"), "Bob & Bill"); 
+		TESTY_TEST.put(new PairingOLD("Frank", "Fiona"), "Frank & Fiona"); 
+		TESTY_TEST.put(new PairingOLD("Dan", "Laura"), "Dan & Laura"); 
 		
 		System.out.println("===============================================");
-		System.out.println(TESTY_TEST);
-		
-		System.out.println(TESTY_TEST.get(new Pairing("Bob", "Bill")));
-		System.out.println(TESTY_TEST.get("Bob"));
-		
+		///System.out.println(TESTY_TEST);
+		//System.out.println(TESTY_TEST.get(new PairingOLD("Bob", "Bill")));
+		//System.out.println(TESTY_TEST.get("Bob"));
 		
 		
+		List<Pairing>pairings = new ArrayList<Pairing>();
+		
+		pairings.add(new Pairing("bob", "billy"));
+		
+		pairings.forEach(pair ->{
+			System.out.println(pair.getPairing("bob"));
+			System.out.println(pair.getPairing("billy"));
+			System.out.println(pair.getPairing("frank"));
+		});
 		
 		System.out.println("===============================================");
 		/*

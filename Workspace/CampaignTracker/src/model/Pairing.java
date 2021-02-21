@@ -1,62 +1,71 @@
 package model;
-import java.util.List;
-import java.util.Queue;
 
-/** object for holding the names of two paired players */
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+//////////ADAPTED FROM:
+//https://stackoverflow.com/questions/822322/how-to-implement-a-map-with-multiple-keys
+
+
 
 public class Pairing {
 	
-	
-	//players:
-	private final String player1;
-	private final String player2;
-	
-	//constructor:
-	public Pairing(String player1, String player2) { //+++++++++++++++Should check that this is of size 2, and throw if not!! 
-		/*player1 = list.poll();
-		player2 = list.poll();*/
+	//maps with their own unique key (player name), holding the same pairing:
+	private final Map<String, List<String>> playerOneToPairing = new HashMap<String, List<String>>();
+    private final Map<String, List<String>> playerTwoToPairing = new HashMap<String, List<String>>();
+    
+    //constructor:
+    public Pairing(String player1, String player2) {
+    	
+    	//create pairing holding player names:
+    	List<String> pairing = Arrays.asList(player1, player2);
+    	
+    	//add keys with pairing to maps:
+    	playerOneToPairing.put(player1, pairing);
+    	playerTwoToPairing.put(player2, pairing);
+    }
+    
+    //try both maps with key, or return empty list:
+    public List<String> getPairing(String key) {
+    	return playerOneToPairing.getOrDefault(
+    			key, playerTwoToPairing.getOrDefault(
+    					key, Collections.emptyList())); //+++++++++++++++REMEMBER TO CHECK FOR EMPTY LIST WHEN CALLING :P 
+    }
+    
+    
+    
+   /*
+    public String<K1, V> getMap1() {
+        return Collections.unmodifiableMap(map1);
+    }
+
+   
+    public Map<K2, V> getMap2() {
+        return Collections.unmodifiableMap(map2);
+    }
+
+  
+    public void put(K1 key1, K2 key2, V value) {
+        map1.put(key1, value);
+        map2.put(key2, value);
+    }*/
+    
+   /*
+    //holds the names of 2 paired players:
+	private class Pairing {
 		
-		this.player1 = player1;
-		this.player2 = player2;
-	}
-	
-	
-	
-	@Override
-	public int hashCode() {
-		/*
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((player1 == null) ? 0 : player1.hashCode());
-		result = prime * result + ((player2 == null) ? 0 : player2.hashCode());
-		return result;
-		*/
+		//paired player names:
+		private String player1;
+		private String player2;
 		
-		 return player1.hashCode() ^ player2.hashCode();
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		 if (!(obj instanceof Pairing))
-		        return false;
-		 Pairing ref = (Pairing) obj;
-		      return this.player1.equals(ref.player1) && 
-		          this.player2.equals(ref.player2);
-		        
-	}
-
-
-
-
-
-	@Override
-	public String toString() {
-		return "Pairing [player1=" + player1 + ", player2=" + player2 + "]";
-	}
-	
-	
-
-	
-	
+		//constructor:
+		private Pairing(String player1, String player2) {
+			this.player1 = player1;
+			this.player2 = player2;
+		}
+	}*/
 }
+

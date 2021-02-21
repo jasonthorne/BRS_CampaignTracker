@@ -78,7 +78,7 @@ public final class Campaign {
 	/////private Map<Integer, List<Mission>>turnToMissions; //missions assigned to players
 	
 	//missions assigned to pairings, for each turn of each period: //++++++++++PERIOD should maybe be used instead of turn!! :P
-	private final Map<Integer, Map<Pairing, Mission>>turnToPairingsToMission = new HashMap<Integer, Map<Pairing,Mission>>(); 
+	private final Map<Integer, Map<PairingOLD, Mission>>turnToPairingsToMission = new HashMap<Integer, Map<PairingOLD,Mission>>(); 
 	
 	
 	//=========================
