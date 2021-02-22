@@ -3,8 +3,10 @@ package model;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import controller.LoginController;
 
@@ -14,14 +16,17 @@ import controller.LoginController;
 public class Pairing {
 	
 	//maps with their own player name key, holding the same pairing:
-	private final Map<String, List<String>> playerOneToPairing = new HashMap<String, List<String>>();
-    private final Map<String, List<String>> playerTwoToPairing = new HashMap<String, List<String>>();
+	//////////private final Map<String, List<String>> playerOneToPairing = new HashMap<String, List<String>>();
+    ///////////private final Map<String, List<String>> playerTwoToPairing = new HashMap<String, List<String>>();
+    private final Map<String, Set<String>> playerOneToPairing = new HashMap<String, Set<String>>();
+    private final Map<String, Set<String>> playerTwoToPairing = new HashMap<String, Set<String>>();
     
     //constructor:
     public Pairing(String player1, String player2) {
     	
     	//create pairing holding player names:
-    	List<String> pairing = Arrays.asList(player1, player2); //++++++++++++++++CHANGE ALL THIS TO A SET :P 
+    	//////////List<String> pairing = Arrays.asList(player1, player2);
+    	Set<String> pairing = new HashSet<String>(Arrays.asList(player1, player2));
     	
     	//add keys with pairing to maps:
     	playerOneToPairing.put(player1, pairing);
@@ -29,10 +34,11 @@ public class Pairing {
     }
     
     //try both maps with key, or return empty list:
-    public List<String> getPairing(String key) {
+    public Set<String> getPairing(String key) {
     	return playerOneToPairing.getOrDefault(
     			key, playerTwoToPairing.getOrDefault(
-    					key, Collections.emptyList())); //+++++++++++++++REMEMBER TO CHECK FOR EMPTY LIST WHEN CALLING :P 
+    					/////////key, Collections.emptyList())); //+++++++++++++++REMEMBER TO CHECK FOR EMPTY LIST WHEN CALLING :P
+    					key, Collections.emptySet())); //+++++++++++++++REMEMBER TO CHECK FOR EMPTY LIST WHEN CALLING :P 
     }
 
 
@@ -44,16 +50,16 @@ public class Pairing {
     
     public void swapPlayer(String oldKey, String newKey) {
     	
-    	List<String> pairing; //list for pairing
+    	Set<String> pairing; //set for holding pairing
     	
     	//if pairing was found using oldKey:
     	if(!(pairing = this.getPairing(oldKey)).isEmpty()) {
     		
     		//replace oldKey with newKey in pairing:
-    		Collections.replaceAll(pairing, oldKey, newKey);
+    		//Collections.replaceAll(pairing, oldKey, newKey);
     		
     		pairing.remove(oldKey); //remove old key from list
-    		
+    		String otherKey = /////////////?????? SET SHOULD PROB BE A QUEUE :P
     		
     		//remove old entry 
     		if(playerOneToPairing.containsKey(oldKey)) {
