@@ -38,7 +38,7 @@ public final class Campaign {
 	private boolean wasUploaded; //if campaign was uploaded to db
 	
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
-	//combinations of player pairings, for use during each turn of each period in the campaign:
+	//lists of combinations of player pairings, for use during each turn of each period in the campaign:
 	private final Queue<List<List<String>>>pairings = new LinkedList<List<List<String>>>();
 	
 	//queue holding a list of maps, each holding a list of strings
@@ -211,6 +211,7 @@ public final class Campaign {
 	    	list.forEach(pair ->{
 	    		System.out.println(pair.getPairing("jo"));
 				System.out.println(pair.getPairing("jay"));
+				System.out.println();
 	    	});
 			
 		});
@@ -229,14 +230,21 @@ public final class Campaign {
 	
 	//add new player:
 	public void addPlayer(Player player) {
-		nameToPlayer.putIfAbsent(player.getName(), new Player(player.getName(), player.getCreated()));
+		String playerName = player.getName();
+		Player newPlayer = new Player(playerName, player.getCreated());
+		nameToPlayer.putIfAbsent(playerName, newPlayer); //add to map
 		
 		if(!pairings.isEmpty()) { //add to pairings //CHECK THIS WORKS :P ????????????????????????????????????????
 			
 			if (nameToPlayer.size()%2==1) {  //if odd number of players
 				
-				pairings.forEach(pairing -> {
-					//++++++++++++++find bye player and add new player instead
+				//replace bye entry in each list of pairings with new player:
+				PAIRINGS_TEST.forEach(list ->{
+					list.forEach(pair ->{
+						if(pair.getHasKey(BYE)) { //if bye was found
+							pair.swapPlayer(BYE, playerName);
+						}
+					});
 				});
 			}
 		}

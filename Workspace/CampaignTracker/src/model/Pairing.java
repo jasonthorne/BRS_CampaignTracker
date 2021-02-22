@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import controller.LoginController;
+
 //////////ADAPTED FROM:
 //https://stackoverflow.com/questions/822322/how-to-implement-a-map-with-multiple-keys
 
@@ -34,6 +36,30 @@ public class Pairing {
     }
 
 
+    //return if a map contains given key:
+    public boolean getHasKey(String key) {
+    	return playerOneToPairing.containsKey(key)? true: 
+    		playerTwoToPairing.containsKey(key)? true: false;
+    }
+    
+    public void swapPlayer(String oldKey, String newKey) {
+    	
+    	List<String> pairing; //list for pairing
+    	
+    	//if valid pairing was found using oldName:
+    	if(!(pairing = this.getPairing(oldKey)).isEmpty()) {
+    		
+    	}
+    	
+    	//if pairing was found using oldName:
+    	/*if(playerOneToPairing.get(oldName)!= null) {
+    		playerOneToPairing.remove(key)
+    	}*/
+    	
+    	
+    	//
+    	
+    }
     
    /*
     public String<K1, V> getMap1() {
