@@ -25,7 +25,7 @@ public class Pairing {
     public Pairing(String player1, String player2) {
     	
     	//create pairing holding player names:
-    	Stack<String> pairing  = new Stack<String>();
+    	Stack<String> pairing = new Stack<String>();
     	pairing.addAll(Arrays.asList(player1, player2));
     	
     	//add keys with pairing to maps:
@@ -54,25 +54,23 @@ public class Pairing {
     	if(!(pairing = this.getPairing(oldKey)).isEmpty()) {
     		
     		pairing.remove(oldKey); //remove old key
-    		String otherKey = pairing.peek(); //copy other key
     		pairing.push(newKey); //add new key
     		
     		//if old key is in playerOne map:
     		if(playerOneToPairing.containsKey(oldKey)) {
     			playerOneToPairing.remove(oldKey); //remove old entry
     			playerOneToPairing.put(newKey, pairing); //add new entry
-    			playerTwoToPairing.replace(otherKey, pairing); //update playerTwo
-    		} else { //is in playerTwo
+    		} else { //is in playerTwo map:
     			playerTwoToPairing.remove(oldKey); //remove old entry
     			playerTwoToPairing.put(newKey, pairing); //add new entry
-    			playerOneToPairing.replace(otherKey, pairing); //update playerOne
 			}
     	}
+    	System.out.println("pairing: ================= " + this);
     }
     
 	@Override
 	public String toString() {
-		return  playerOneToPairing.toString(); /*+ ", p2ToPairing=" + playerTwoToPairing*/ 
+		return  playerOneToPairing.toString() + ", " + playerTwoToPairing.toString(); 
 	}
     
 }

@@ -10,10 +10,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+
+import com.mysql.cj.protocol.StandardSocketFactory;
 
 import controller.CampaignController;
 import controller.LoginController;
@@ -201,6 +204,7 @@ public final class Campaign {
 	    
 	    System.out.println("pairings: " + pairings); //++++++++++
 	    
+	    /*
 	    PAIRINGS_TEST.forEach(list ->{
 	    	list.forEach(pair ->{
 	    		System.out.println(pair.getPairing("jo"));
@@ -208,7 +212,9 @@ public final class Campaign {
 				System.out.println();
 	    	});
 			
-		});
+		});*/
+	    
+	    addPlayer(new Player("yo dawg"));
 	}
 	//==================================================================
 
@@ -225,21 +231,30 @@ public final class Campaign {
 	//add new player:
 	public void addPlayer(Player player) {
 		String playerName = player.getName();
-		Player newPlayer = new Player(playerName, player.getCreated());
+		Player newPlayer = new Player(playerName /*, player.getCreated()*/);
 		nameToPlayer.putIfAbsent(playerName, newPlayer); //add to map
 		
-		if(!pairings.isEmpty()) { //add to pairings //CHECK THIS WORKS :P ????????????????????????????????????????
+		////////if(!PAIRINGS_TEST.isEmpty()) { //add to pairings
 			
-			if (nameToPlayer.size()%2==1) {  //if odd number of players
-				//replace bye entry in each list of pairings with new player:
+			/////////////if(nameToPlayer.size()%2==1) {  //if odd number of players:
+				//iterate through each list of pairings:
 				PAIRINGS_TEST.forEach(list ->{
-					list.forEach(pair ->{
-						//if bye is found, replace it with new player:
-						if(pair.getHasKey(BYE)) { pair.swapPlayer(BYE, playerName); }
+					
+					//find pairing with bye & replace with new player:
+					/*list.stream()
+						.filter(pairing -> pairing.getHasKey(BYE)).findFirst()
+						.ifPresent(pairing -> pairing.swapPlayer(BYE, playerName));*/
+					
+					list.forEach(pairing ->{
+						//if bye is found, replace with new player:
+						if(pairing.getHasKey(BYE)) { pairing.swapPlayer(BYE, playerName); }
+						//+++++++++++++++++WE NEED TO LEAVE BOTH THESE ONCE BY IS FOUND!! :P 
 					});
 				});
-			}else {
-				//give new player a bye, and add entry to reserves, then add a a new pairing with newe player to each list of pairings AND a new pairing with a BYE to each list of pairings.
+			//////////}else {
+				//give new player a bye, and add entry to reserves, 
+				
+				//then add a a new pairing with newe player to each list of pairings AND a new pairing with a BYE to each list of pairings.
 				
 				/*
 				PAIRINGS_TEST.forEach(list ->{
@@ -249,9 +264,10 @@ public final class Campaign {
 						}
 					});
 				});*/
-			}
-		}
+			////////////////}
+		///////////}
 		//+++++++++++++create pairings for player, and remove/add BYE from/to pool as necessary
+			System.out.println("NEW PAIRINGS_TEST: " + PAIRINGS_TEST);
 	}
 	
 	
