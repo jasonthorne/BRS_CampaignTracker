@@ -21,7 +21,7 @@ public class Pairing {
     public Pairing(String player1, String player2) {
     	
     	//create pairing holding player names:
-    	List<String> pairing = Arrays.asList(player1, player2);
+    	List<String> pairing = Arrays.asList(player1, player2); //++++++++++++++++CHANGE ALL THIS TO A SET :P 
     	
     	//add keys with pairing to maps:
     	playerOneToPairing.put(player1, pairing);
@@ -46,19 +46,26 @@ public class Pairing {
     	
     	List<String> pairing; //list for pairing
     	
-    	//if valid pairing was found using oldName:
+    	//if pairing was found using oldKey:
     	if(!(pairing = this.getPairing(oldKey)).isEmpty()) {
     		
+    		//replace oldKey with newKey in pairing:
+    		Collections.replaceAll(pairing, oldKey, newKey);
+    		
+    		pairing.remove(oldKey); //remove old key from list
+    		
+    		
+    		//remove old entry 
+    		if(playerOneToPairing.containsKey(oldKey)) {
+    			
+    			playerOneToPairing.remove(oldKey); //remove entry
+    			playerOneToPairing.put(newKey, pairing); //add new entry
+    			playerTwoToPairing.replace(key, value) //replace entry in 2 with new entry (you know what i mean!! :P)
+    		}else { 
+    			playerTwoToPairing.remove(oldKey); //remove entry
+    			playerTwoToPairing.put(newKey, pairing); //add new entry
+			}
     	}
-    	
-    	//if pairing was found using oldName:
-    	/*if(playerOneToPairing.get(oldName)!= null) {
-    		playerOneToPairing.remove(key)
-    	}*/
-    	
-    	
-    	//
-    	
     }
     
    /*
