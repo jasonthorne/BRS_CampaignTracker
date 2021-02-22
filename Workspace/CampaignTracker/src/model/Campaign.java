@@ -3,6 +3,7 @@ package model;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -214,7 +215,7 @@ public final class Campaign {
 			
 		});*/
 	    
-	    addPlayer(new Player("yo dawg"));
+	    addPlayer(new Player("yo dawg", new Timestamp(Calendar.getInstance().getTimeInMillis())));
 	}
 	//==================================================================
 
@@ -231,27 +232,21 @@ public final class Campaign {
 	//add new player:
 	public void addPlayer(Player player) {
 		String playerName = player.getName();
-		Player newPlayer = new Player(playerName /*, player.getCreated()*/);
+		Player newPlayer = new Player(playerName, player.getCreated());
 		nameToPlayer.putIfAbsent(playerName, newPlayer); //add to map
 		
 		////////if(!PAIRINGS_TEST.isEmpty()) { //add to pairings
 			
-			/////////////if(nameToPlayer.size()%2==1) {  //if odd number of players:
+			if(nameToPlayer.size()%2==0) {  //if even number of players:
 				//iterate through each list of pairings:
 				PAIRINGS_TEST.forEach(list ->{
 					
 					//find pairing with bye & replace with new player:
-					/*list.stream()
+					list.stream()
 						.filter(pairing -> pairing.getHasKey(BYE)).findFirst()
-						.ifPresent(pairing -> pairing.swapPlayer(BYE, playerName));*/
-					
-					list.forEach(pairing ->{
-						//if bye is found, replace with new player:
-						if(pairing.getHasKey(BYE)) { pairing.swapPlayer(BYE, playerName); }
-						//+++++++++++++++++WE NEED TO LEAVE BOTH THESE ONCE BY IS FOUND!! :P 
-					});
+						.ifPresent(pairing -> pairing.swapPlayer(BYE, playerName));
 				});
-			//////////}else {
+			}else {
 				//give new player a bye, and add entry to reserves, 
 				
 				//then add a a new pairing with newe player to each list of pairings AND a new pairing with a BYE to each list of pairings.
@@ -264,8 +259,8 @@ public final class Campaign {
 						}
 					});
 				});*/
-			////////////////}
-		///////////}
+			}
+		/////////////////////}
 		//+++++++++++++create pairings for player, and remove/add BYE from/to pool as necessary
 			System.out.println("NEW PAIRINGS_TEST: " + PAIRINGS_TEST);
 	}
