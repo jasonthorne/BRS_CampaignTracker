@@ -48,7 +48,7 @@ public class Pairing {
     
     public void swapPlayer(String oldKey, String newKey) {
     	
-    	Stack<String> pairing; //set for holding pairing
+    	Stack<String> pairing; //stack for holding pairing
     	
     	//if pairing was found using oldKey:
     	if(!(pairing = this.getPairing(oldKey)).isEmpty()) {
@@ -62,7 +62,7 @@ public class Pairing {
     			playerOneToPairing.remove(oldKey); //remove old entry
     			playerOneToPairing.put(newKey, pairing); //add new entry
     			playerTwoToPairing.replace(otherKey, pairing); //update playerTwo
-    		} else { 
+    		} else { //is in playerTwo
     			playerTwoToPairing.remove(oldKey); //remove old entry
     			playerTwoToPairing.put(newKey, pairing); //add new entry
     			playerOneToPairing.replace(otherKey, pairing); //update playerOne
@@ -70,28 +70,9 @@ public class Pairing {
     	}
     }
     
-   /*
-    public String<K1, V> getMap1() {
-        return Collections.unmodifiableMap(map1);
-    }
-
-   
-    public Map<K2, V> getMap2() {
-        return Collections.unmodifiableMap(map2);
-    }
-
-  
-    public void put(K1 key1, K2 key2, V value) {
-        map1.put(key1, value);
-        map2.put(key2, value);
-    }*/
-    
 	@Override
 	public String toString() {
 		return  playerOneToPairing.toString(); /*+ ", p2ToPairing=" + playerTwoToPairing*/ 
 	}
     
-    
-    
 }
-

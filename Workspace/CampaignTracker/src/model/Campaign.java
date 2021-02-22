@@ -171,13 +171,13 @@ public final class Campaign {
 		    for (int turn=0, turns=players.size(); turn < turns; turn++) {
 		        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
 		        ////////////////////////////////##############List<List<String>>pairing = new ArrayList<List<String>>(); //list to hold new pairing ##############WHY a list of lists?????
-		        List<Pairing>pairings = new ArrayList<Pairing>();
+		        List<Pairing>pairingsList = new ArrayList<Pairing>();
 		        
 		        System.out.println(players.get(turn) + " vs " + fixedPlayer); //++++++++++++++++++
 		        
 		        //each turn, pair the fixed player against a player in players (at the index pos of that turn):
 		        ///////////////////////////##############/pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
-		        pairings.add(new Pairing(players.get(turn), fixedPlayer));
+		        pairingsList.add(new Pairing(players.get(turn), fixedPlayer));
 		        
 		        //////////System.out.println("PAIRING 1: " + pairings);
 		        
@@ -188,19 +188,13 @@ public final class Campaign {
 		            
 		            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos)); //+++++++++++++++++
 		            /////////////##################pairing.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
-		            pairings.add(new Pairing(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
+		            pairingsList.add(new Pairing(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
 		            
 		            //////////System.out.println("PAIRING 2: " + pairings);
 		        }
 		        ////////pairings.add(pairing); //add pairing to pairings
 		        
-		        //for each player in pairing:
-		        /*pairing.forEach(player -> {
-		        	System.out.println("PLAYER: " + player);
-		        });*/
-		        
-		        PAIRINGS_TEST.add(pairings);
-		       
+		        PAIRINGS_TEST.add(pairingsList); //add list of pairings to pairings
 		    }
 		    System.out.println("PAIRINGS_TEST: " + PAIRINGS_TEST);
 		}
@@ -237,15 +231,24 @@ public final class Campaign {
 		if(!pairings.isEmpty()) { //add to pairings //CHECK THIS WORKS :P ????????????????????????????????????????
 			
 			if (nameToPlayer.size()%2==1) {  //if odd number of players
-				
 				//replace bye entry in each list of pairings with new player:
 				PAIRINGS_TEST.forEach(list ->{
 					list.forEach(pair ->{
-						if(pair.getHasKey(BYE)) { //if bye was found
-							pair.swapPlayer(BYE, playerName);
-						}
+						//if bye is found, replace it with new player:
+						if(pair.getHasKey(BYE)) { pair.swapPlayer(BYE, playerName); }
 					});
 				});
+			}else {
+				//give new player a bye, and add entry to reserves, then add a a new pairing with newe player to each list of pairings AND a new pairing with a BYE to each list of pairings.
+				
+				/*
+				PAIRINGS_TEST.forEach(list ->{
+					list.forEach(pair ->{
+						if(pair.getHasKey(BYE)) { //if bye was found
+							pair.swapPlayer(BYE, playerName); //swap with player
+						}
+					});
+				});*/
 			}
 		}
 		//+++++++++++++create pairings for player, and remove/add BYE from/to pool as necessary
