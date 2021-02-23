@@ -143,8 +143,7 @@ public final class Campaign {
 				//iterate through each list of pairings:
 				pairings.forEach(list ->{			
 					//find pairing with bye & replace with new player:
-					list.stream()
-						.filter(pairing -> pairing.getHasKey(BYE)).findFirst()
+					list.stream().filter(pairing -> pairing.getHasKey(BYE)).findFirst()
 						.ifPresent(pairing -> pairing.swapPlayer(BYE, playerName));
 				});
 				
