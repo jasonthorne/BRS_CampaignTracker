@@ -43,54 +43,14 @@ public final class Campaign {
 	
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
 	//lists of combinations of player pairings, for use during each turn of each period in the campaign:
-	private final Queue<List<List<String>>>pairings = new LinkedList<List<List<String>>>();
+	//////////++++++++++++private final Queue<List<List<String>>>pairings = new LinkedList<List<List<String>>>();
+	private final List<List<Pairing>>pairings = new LinkedList<List<Pairing>>(); 
 	
-	//queue holding a list of maps, each holding a list of strings
-	private final Queue<List<Map<String, List<String>>>>pairingsTEST = new LinkedList<List<Map<String,List<String>>>>();
-	
-	//++++++++++++ID LIKE ABOVE TO BE:
-	//period TO turn TO pairingID to pairings - TRY CONSTRUCT IT LIKE THAT> Have 
-	
-	/*
-	 * 
-	 * https://stackoverflow.com/questions/822322/how-to-implement-a-map-with-multiple-keys
-	 * 
-	 *###########################periodToTurnsToPlayersToMission
-	 *[early 1940, turn 2, bob, bob's mission]
-	 *early 1940 turn 1...4
-	 *
-	 *Event.getMaxturns
-	 
-	 [ [[a,b],[c,d]], [[a,c],[b,d]] ] - current setup
-	 
-	 
-	 queue > list of maps with hash as key & list of names as values
-	 
-	 WHAT ABOUT THE SECOND PLAYER'S NAME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!????????
-	 
-	 [ [ [NO_BYE + name,[a,b]] , [BYE,[c,d]] ], [ [BYE,[a,c]] , [NO_BYE + name,[b,d]] ] ] - set up with bye flag
-	 
-	 private final Queue<List<Map<String, List<String>>>>pairings = new LinkedList<List<Map<String,List<String>>>>();
-	 
-	 Soooooo.... we want the key consisting of a combination (hash) of both player names. 
-	 make each key equal to hash of name + hash of NO_BYE ++++++++++ YES,, YES, YES!!! 
-	 
-	 to get value: map.get(name # by NO_BYE)
-	 
-	 https://stackoverflow.com/questions/14677993/how-to-create-a-hashmap-with-two-keys-key-pair-value
-	*/
 	/////private Map<Integer, List<Mission>>turnToMissions; //missions assigned to players
 	
 	//missions assigned to pairings, for each turn of each period: //++++++++++PERIOD should maybe be used instead of turn!! :P
 	private final Map<Integer, Map<PairingOLD, Mission>>turnToPairingsToMission = new HashMap<Integer, Map<PairingOLD,Mission>>(); 
 	
-	
-	//=========================
-	
-	//queue > set(or list) of maps with hash as key & list of names as values
-	private final List<List<Pairing>>PAIRINGS_TEST = new LinkedList<List<Pairing>>(); //+++++++++++++turnPairings
-	
-	//===============================
 	
 	private Campaign(int id, Timestamp created, Event event, String host) {
 		this.id = id;
@@ -119,6 +79,7 @@ public final class Campaign {
 	}
 	
 	//===================================================================
+	
 	public void setPairings() {
 		/**
 		 * Round-robin 'circle method' scheduling algorithm: https://en.m.wikipedia.org/wiki/Round-robin_tournament
@@ -135,53 +96,12 @@ public final class Campaign {
 			//loop through the number of turns (with unique pairings) available: 
 		    for (int turn=0, turns=players.size(); turn < turns; turn++) {
 		        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
-		        List<List<String>>pairing = new ArrayList<List<String>>(); //list to hold new pairing
-		        System.out.println(players.get(turn) + " vs " + fixedPlayer); //++++++++++++++++++
-		        
-		        //each turn, pair the fixed player against a player in players (at the index pos of that turn):
-		        pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
-		        
-		        System.out.println("PAIRING: " + pairing);
-		        
-		        //endPos is at players.size()+1 to replace the removed fixedPlayer's index. 
-		        for (int pairPos=1, endPos=(players.size()+1)/2; pairPos < endPos; pairPos++) {  //pairPos starts at 1 to ignore first 
-		            int player1Pos = (turn + pairPos) % turns; //turn number + pairingPos (set at 1 to ignore ..........++++++++++)
-		            int player2Pos = (turn  + turns - pairPos) % turns;
-		            
-		            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos)); //+++++++++++++++++
-		            pairing.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
-		        }
-		        pairings.add(pairing); //add pairing to pairings
-		    }
-		}
-	    
-	    System.out.println("pairings: " + pairings); //++++++++++
-	}
-	
-	public void setPairingsTEST() {
-		/**
-		 * Round-robin 'circle method' scheduling algorithm: https://en.m.wikipedia.org/wiki/Round-robin_tournament
-		 * Code adapted from: https://stackoverflow.com/questions/26471421/round-robin-algorithm-implementation-java
-		 */ PAIRINGS_TEST.clear(); //+++++++++++++++++++++++++++++REMOVE :P
-		if (PAIRINGS_TEST.isEmpty()) { //if pairings is empty
-			
-			List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
-			if (players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
-			Collections.shuffle(players); //shuffle positions of players 
-			System.out.println("PLAYERS: " + players); //+++++++++++++++++++++
-			String fixedPlayer = players.remove(0); //1st player is removed from list (to be given a fixed position for pairing)
-			
-			//loop through the number of turns (with unique pairings) available: 
-		    for (int turn=0, turns=players.size(); turn < turns; turn++) {
-		        System.out.println("\nTurn:" + (turn + 1));  //++++++++++++++++++++++++
-		        ////////////////////////////////##############List<List<String>>pairing = new ArrayList<List<String>>(); //list to hold new pairing ##############WHY a list of lists?????
-		        List<Pairing>pairingsList = new ArrayList<Pairing>();
+		        List<Pairing>pairsList = new ArrayList<Pairing>(); //list of pairings
 		        
 		        System.out.println(players.get(turn) + " vs " + fixedPlayer); //++++++++++++++++++
 		        
 		        //each turn, pair the fixed player against a player in players (at the index pos of that turn):
-		        ///////////////////////////##############/pairing.add(Arrays.asList(players.get(turn), fixedPlayer));
-		        pairingsList.add(new Pairing(players.get(turn), fixedPlayer));
+		        pairsList.add(new Pairing(players.get(turn), fixedPlayer));
 		        
 		        //////////System.out.println("PAIRING 1: " + pairings);
 		        
@@ -191,31 +111,18 @@ public final class Campaign {
 		            int player2Pos = (turn  + turns - pairPos) % turns;
 		            
 		            System.out.println(players.get(player1Pos) + " vs " + players.get(player2Pos)); //+++++++++++++++++
-		            /////////////##################pairing.add(Arrays.asList(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
-		            pairingsList.add(new Pairing(players.get(player1Pos), players.get(player2Pos)));  //add players to pairing
+		            pairsList.add(new Pairing(players.get(player1Pos), players.get(player2Pos)));  //add paired players to list
 		            
 		            //////////System.out.println("PAIRING 2: " + pairings);
 		        }
 		        ////////pairings.add(pairing); //add pairing to pairings
 		        
-		        PAIRINGS_TEST.add(pairingsList); //add list of pairings to pairings
+		        pairings.add(pairsList); //add list of pairings to pairings
 		    }
-		    System.out.println("PAIRINGS_TEST: " + PAIRINGS_TEST);
+		    System.out.println("PAIRINGS: " + pairings);
 		}
 	    
-	    System.out.println("pairings: " + pairings); //++++++++++
-	    
-	    /*
-	    PAIRINGS_TEST.forEach(list ->{
-	    	list.forEach(pair ->{
-	    		System.out.println(pair.getPairing("jo"));
-				System.out.println(pair.getPairing("jay"));
-				System.out.println();
-	    	});
-			
-		});*/
-	    
-	    addPlayer(new Player("yo dawg", new Timestamp(Calendar.getInstance().getTimeInMillis())));
+	    addPlayer(new Player("yo dawg", new Timestamp(Calendar.getInstance().getTimeInMillis()))); //+++++++++++++
 	}
 	//==================================================================
 
@@ -233,19 +140,20 @@ public final class Campaign {
 	public void addPlayer(Player player) {
 		String playerName = player.getName();
 		Player newPlayer = new Player(playerName, player.getCreated());
-		nameToPlayer.putIfAbsent(playerName, newPlayer); //add to map
+		nameToPlayer.putIfAbsent(playerName, newPlayer); //add player to map
 		
 		////////if(!PAIRINGS_TEST.isEmpty()) { //add to pairings
 			
 			if(nameToPlayer.size()%2==0) {  //if even number of players:
+				
 				//iterate through each list of pairings:
-				PAIRINGS_TEST.forEach(list ->{
-					
+				pairings.forEach(list ->{			
 					//find pairing with bye & replace with new player:
 					list.stream()
 						.filter(pairing -> pairing.getHasKey(BYE)).findFirst()
 						.ifPresent(pairing -> pairing.swapPlayer(BYE, playerName));
 				});
+				
 			}else {
 				//give new player a bye, and add entry to reserves, 
 				
@@ -262,7 +170,7 @@ public final class Campaign {
 			}
 		/////////////////////}
 		//+++++++++++++create pairings for player, and remove/add BYE from/to pool as necessary
-			System.out.println("NEW PAIRINGS_TEST: " + PAIRINGS_TEST);
+			System.out.println("NEW PAIRINGS: " + pairings);
 	}
 	
 	
