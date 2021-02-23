@@ -217,7 +217,7 @@ public class CampaignController implements Rootable, Frameable, Disableable{
 		
 		//+++++++++++show alert asking t oconfirm make pairings. then...s++++
 		///////////campaign.setPairings();
-		campaign.setPairingsTEST();
+		campaign.setPairings();
 	}
 	
 	

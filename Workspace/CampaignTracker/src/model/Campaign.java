@@ -17,8 +17,6 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import com.mysql.cj.protocol.StandardSocketFactory;
-
 import controller.CampaignController;
 import controller.LoginController;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -50,7 +48,6 @@ public final class Campaign {
 	
 	//missions assigned to pairings, for each turn of each period: //++++++++++PERIOD should maybe be used instead of turn!! :P
 	private final Map<Integer, Map<PairingOLD, Mission>>turnToPairingsToMission = new HashMap<Integer, Map<PairingOLD,Mission>>(); 
-	
 	
 	private Campaign(int id, Timestamp created, Event event, String host) {
 		this.id = id;
@@ -89,7 +86,7 @@ public final class Campaign {
 			
 			List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
 			if (players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
-			Collections.shuffle(players); //shuffle positions of players 
+			//////////////Collections.shuffle(players); //shuffle positions of players  //??????????????????needed???
 			System.out.println("PLAYERS: " + players); //+++++++++++++++++++++
 			String fixedPlayer = players.remove(0); //1st player is removed from list (to be given a fixed position for pairing)
 			
@@ -115,13 +112,10 @@ public final class Campaign {
 		            
 		            //////////System.out.println("PAIRING 2: " + pairings);
 		        }
-		        ////////pairings.add(pairing); //add pairing to pairings
-		        
 		        pairings.add(pairsList); //add list of pairings to pairings
 		    }
 		    System.out.println("PAIRINGS: " + pairings);
 		}
-	    
 	    addPlayer(new Player("yo dawg", new Timestamp(Calendar.getInstance().getTimeInMillis()))); //+++++++++++++
 	}
 	//==================================================================
@@ -142,7 +136,7 @@ public final class Campaign {
 		Player newPlayer = new Player(playerName, player.getCreated());
 		nameToPlayer.putIfAbsent(playerName, newPlayer); //add player to map
 		
-		////////if(!PAIRINGS_TEST.isEmpty()) { //add to pairings
+		////////if(!pairings.isEmpty()) { //add to pairings
 			
 			if(nameToPlayer.size()%2==0) {  //if even number of players:
 				
