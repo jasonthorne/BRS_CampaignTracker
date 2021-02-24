@@ -48,7 +48,7 @@ public final class Campaign {
 	/////private Map<Integer, List<Mission>>turnToMissions; //missions assigned to players
 	
 	//comparator for nameToPlayer, sorting by created time stamp: 
-	Comparator<Player> playerComparator = (p1, p2) -> p1.getCreated().compareTo(p2.getCreated());
+	///////////##########Comparator<Player> playerComparator = (p1, p2) -> p1.getCreated().compareTo(p2.getCreated());
 	
 	//missions assigned to pairings, for each turn of each period: //++++++++++PERIOD should maybe be used instead of turn!! :P
 	private final Map<Integer, Map<PairingOLD, Mission>>turnToPairingsToMission = new HashMap<Integer, Map<PairingOLD,Mission>>(); 
