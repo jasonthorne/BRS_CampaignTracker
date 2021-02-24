@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -46,6 +47,9 @@ public final class Campaign {
 	
 	/////private Map<Integer, List<Mission>>turnToMissions; //missions assigned to players
 	
+	//comparator for nameToPlayer, sorting by created time stamp: 
+	Comparator<Player> playerComparator = (p1, p2) -> p1.getCreated().compareTo(p2.getCreated());
+	
 	//missions assigned to pairings, for each turn of each period: //++++++++++PERIOD should maybe be used instead of turn!! :P
 	private final Map<Integer, Map<PairingOLD, Mission>>turnToPairingsToMission = new HashMap<Integer, Map<PairingOLD,Mission>>(); 
 	
@@ -61,7 +65,7 @@ public final class Campaign {
 		this(id, created, event, user);
 		this.period = event.getPeriods().get(0);
 		//add user as player:
-		this.nameToPlayer = new HashMap<String, Player>(Collections.singletonMap(user, new Player(user)));
+		this.nameToPlayer = new TreeMap<String, Player>(Collections.singletonMap(user, new Player(user, created)));
 		/** https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way/6802523 */
 		wasCreated = true; //flag as created
 	}
@@ -72,7 +76,7 @@ public final class Campaign {
 		this(id, created, event, host);
 		this.period = period; 
 		this.turn = turn; 
-		this.nameToPlayer = new HashMap<String, Player>(nameToPlayer);
+		this.nameToPlayer = new TreeMap<String, Player>(nameToPlayer);
 	}
 	
 	//===================================================================
@@ -85,7 +89,8 @@ public final class Campaign {
 		if (pairings.isEmpty()) { //if pairings is empty
 			
 			List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
-			if (players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
+			/////////############if (players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
+			if (players.size()%2==1) {players.add(0, BYE);} //if odd number of players, add a bye
 			//////////////Collections.shuffle(players); //shuffle positions of players  //??????????????????needed???
 			System.out.println("PLAYERS: " + players); //+++++++++++++++++++++
 			String fixedPlayer = players.remove(0); //1st player is removed from list (to be given a fixed position for pairing)
@@ -116,7 +121,7 @@ public final class Campaign {
 		    }
 		    System.out.println("PAIRINGS: " + pairings);
 		}
-	    addPlayer(new Player("yo dawg", new Timestamp(Calendar.getInstance().getTimeInMillis()))); //+++++++++++++
+	    ///////////////##############addPlayer(new Player("yo dawg", new Timestamp(Calendar.getInstance().getTimeInMillis()))); //+++++++++++++
 	}
 	//==================================================================
 
@@ -134,6 +139,7 @@ public final class Campaign {
 	public void addPlayer(Player player) {
 		String playerName = player.getName();
 		Player newPlayer = new Player(playerName, player.getCreated());
+		/////##########nameToPlayer.putIfAbsent(playerName, newPlayer); //add player to map
 		nameToPlayer.putIfAbsent(playerName, newPlayer); //add player to map
 		
 		////////if(!pairings.isEmpty()) { //add to pairings
@@ -152,14 +158,14 @@ public final class Campaign {
 				
 				//then add a a new pairing with newe player to each list of pairings AND a new pairing with a BYE to each list of pairings.
 				
+				
+				///==========================
 				/*
-				PAIRINGS_TEST.forEach(list ->{
-					list.forEach(pair ->{
-						if(pair.getHasKey(BYE)) { //if bye was found
-							pair.swapPlayer(BYE, playerName); //swap with player
-						}
-					});
-				});*/
+				 * add bye as first entry to players 
+				 */
+				
+				
+				//=============================
 			}
 		/////////////////////}
 		//+++++++++++++create pairings for player, and remove/add BYE from/to pool as necessary
