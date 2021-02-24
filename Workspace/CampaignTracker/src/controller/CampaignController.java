@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Queue;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
@@ -79,30 +80,24 @@ public class CampaignController implements Rootable, Frameable, Disableable{
 		initCampaign();	//initialize campaign
 		
 		//========================
-		String a = "a";
-		String CONST = "b";
 		
-		Map<PairingOLD, String>TESTY_TEST = new HashMap<PairingOLD, String>();
+		Timestamp ts1 = new Timestamp(1);
+		Timestamp ts2 = new Timestamp(2);
+		Timestamp ts3 = new Timestamp(3);
 		
-		TESTY_TEST.put(new PairingOLD("Bob", "Bill"), "Bob & Bill"); 
-		TESTY_TEST.put(new PairingOLD("Frank", "Fiona"), "Frank & Fiona"); 
-		TESTY_TEST.put(new PairingOLD("Dan", "Laura"), "Dan & Laura"); 
+		
+		Map<String, Player>TESTY_TEST = new TreeMap<String, Player>();
+		
+		TESTY_TEST.put("1", new Player("ts3", ts3));
+		TESTY_TEST.put("2", new Player("ts1", ts1));
+		TESTY_TEST.put("3", new Player("ts2", ts2));
 		
 		System.out.println("===============================================");
-		///System.out.println(TESTY_TEST);
+		System.out.println("TESTY_TEST: " + TESTY_TEST);
 		//System.out.println(TESTY_TEST.get(new PairingOLD("Bob", "Bill")));
 		//System.out.println(TESTY_TEST.get("Bob"));
 		
 		
-		List<Pairing>pairings = new ArrayList<Pairing>();
-		
-		pairings.add(new Pairing("bob", "billy"));
-		
-		pairings.forEach(pair ->{
-			System.out.println(pair.getPairing("bob"));
-			System.out.println(pair.getPairing("billy"));
-			System.out.println(pair.getPairing("frank"));
-		});
 		
 		System.out.println("===============================================");
 		/*

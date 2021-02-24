@@ -1,7 +1,6 @@
 package model;
 
 import java.sql.Timestamp;
-import java.util.Comparator;
 
 public final class Player {
 	
@@ -51,7 +50,7 @@ public final class Player {
 
 	
 	
-	
+	/*
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -75,7 +74,7 @@ public final class Player {
 		} else if (!created.equals(other.created))
 			return false;
 		return true;
-	}
+	}*/
 
 	
 	/** ++++++++++++++++++++++++++++++++++++++++
