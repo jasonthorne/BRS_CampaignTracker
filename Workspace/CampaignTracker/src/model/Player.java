@@ -50,31 +50,6 @@ public final class Player {
 
 	
 	
-	/*
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((created == null) ? 0 : created.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Player other = (Player) obj;
-		if (created == null) {
-			if (other.created != null)
-				return false;
-		} else if (!created.equals(other.created))
-			return false;
-		return true;
-	}*/
 
 	
 	/** ++++++++++++++++++++++++++++++++++++++++
