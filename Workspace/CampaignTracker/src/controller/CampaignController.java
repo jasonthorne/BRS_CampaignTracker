@@ -92,14 +92,14 @@ public class CampaignController implements Rootable, Frameable, Disableable{
 		TESTY_TEST.put("2", new Player("ts1", ts1));
 		TESTY_TEST.put("3", new Player("ts2", ts2));
 		
-		System.out.println("===============================================");
-		System.out.println("TESTY_TEST: " + TESTY_TEST);
+		//System.out.println("===============================================");
+		//System.out.println("TESTY_TEST: " + TESTY_TEST);
 		//System.out.println(TESTY_TEST.get(new PairingOLD("Bob", "Bill")));
 		//System.out.println(TESTY_TEST.get("Bob"));
 		
 		
 		
-		System.out.println("===============================================");
+		//System.out.println("===============================================");
 		/*
 		System.out.println("a.hashCode() " + a.hashCode());
 		System.out.println("CONST.hashCode() " + CONST.hashCode());

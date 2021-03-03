@@ -17,6 +17,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import controller.CampaignController;
 import controller.LoginController;
@@ -48,7 +49,7 @@ public final class Campaign {
 	/////private Map<Integer, List<Mission>>turnToMissions; //missions assigned to players
 	
 	//comparator for nameToPlayer, sorting by created time stamp: 
-	///////////##########Comparator<Player> playerComparator = (p1, p2) -> p1.getCreated().compareTo(p2.getCreated());
+	Comparator<Player> playerComparator = (p1, p2) -> p1.getCreated().compareTo(p2.getCreated());
 	
 	//missions assigned to pairings, for each turn of each period: //++++++++++PERIOD should maybe be used instead of turn!! :P
 	private final Map<Integer, Map<PairingOLD, Mission>>turnToPairingsToMission = new HashMap<Integer, Map<PairingOLD,Mission>>(); 
@@ -65,7 +66,7 @@ public final class Campaign {
 		this(id, created, event, user);
 		this.period = event.getPeriods().get(0);
 		//add user as player:
-		this.nameToPlayer = new TreeMap<String, Player>(Collections.singletonMap(user, new Player(user, created)));
+		this.nameToPlayer = new HashMap<String, Player>(Collections.singletonMap(user, new Player(user, created)));
 		/** https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way/6802523 */
 		wasCreated = true; //flag as created
 	}
@@ -76,7 +77,7 @@ public final class Campaign {
 		this(id, created, event, host);
 		this.period = period; 
 		this.turn = turn; 
-		this.nameToPlayer = new TreeMap<String, Player>(nameToPlayer);
+		this.nameToPlayer = new HashMap<String, Player>(nameToPlayer);
 	}
 	
 	//===================================================================
@@ -87,6 +88,21 @@ public final class Campaign {
 		 * Code adapted from: https://stackoverflow.com/questions/26471421/round-robin-algorithm-implementation-java
 		 */ pairings.clear(); //+++++++++++++++++++++++++++++REMOVE :P
 		if (pairings.isEmpty()) { //if pairings is empty
+			
+			System.out.println("+++++++++++++nameToPlayer: " + nameToPlayer);
+			
+			//////////https://stackoverflow.com/questions/30425836/java-8-stream-map-to-list-of-keys-sorted-by-values
+			
+			List<String>playersTEST = 
+					
+			//nameToPlayer.entrySet().stream().sorted(playerComparator).collect(Collectors.toList());
+			
+			nameToPlayer.entrySet().stream().sorted((e1, e2) -> e1.getValue().getCreated().compareTo(e2.getValue().getCreated()))
+			//.map(Map.Entry::getKey)
+			.map(e -> e.getKey())
+			.collect(Collectors.toList());
+			
+			System.out.println("+++++++++PLAYERS_TEST: " + playersTEST);
 			
 			List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
 			/////////############if (players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
