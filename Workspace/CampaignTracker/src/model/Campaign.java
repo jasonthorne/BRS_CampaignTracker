@@ -42,14 +42,13 @@ public final class Campaign {
 	private boolean wasUploaded; //if campaign was uploaded to db
 	
 	private static final String BYE = "bye"; //bye entry for pairing odd number of players
+	private static String reserve; //holds name of reserve player
+	
 	//lists of combinations of player pairings, for use during each turn of each period in the campaign:
 	//////////++++++++++++private final Queue<List<List<String>>>pairings = new LinkedList<List<List<String>>>();
 	private final List<List<Pairing>>pairings = new LinkedList<List<Pairing>>(); 
 	
 	/////private Map<Integer, List<Mission>>turnToMissions; //missions assigned to players
-	
-	//comparator for nameToPlayer, sorting by created time stamp: 
-	Comparator<Player> playerComparator = (p1, p2) -> p1.getCreated().compareTo(p2.getCreated());
 	
 	//missions assigned to pairings, for each turn of each period: //++++++++++PERIOD should maybe be used instead of turn!! :P
 	private final Map<Integer, Map<PairingOLD, Mission>>turnToPairingsToMission = new HashMap<Integer, Map<PairingOLD,Mission>>(); 
@@ -93,18 +92,15 @@ public final class Campaign {
 			
 			//////////https://stackoverflow.com/questions/30425836/java-8-stream-map-to-list-of-keys-sorted-by-values
 			
-			List<String>playersTEST = 
-					
-			//nameToPlayer.entrySet().stream().sorted(playerComparator).collect(Collectors.toList());
+			//create list of player's names from map of players, sorted by creation date:
+			List<String>players = nameToPlayer.entrySet().stream()
+		    	.sorted((e1, e2) -> e1.getValue().getCreated().compareTo(e2.getValue().getCreated()))
+		    	.map(e -> e.getKey())
+		    	.collect(Collectors.toList());
 			
-			nameToPlayer.entrySet().stream().sorted((e1, e2) -> e1.getValue().getCreated().compareTo(e2.getValue().getCreated()))
-			//.map(Map.Entry::getKey)
-			.map(e -> e.getKey())
-			.collect(Collectors.toList());
+			System.out.println("+++++++++PLAYERS_TEST: " + players);
 			
-			System.out.println("+++++++++PLAYERS_TEST: " + playersTEST);
-			
-			List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
+			///////List<String>players = new ArrayList<String>(nameToPlayer.keySet()); //list of all players
 			/////////############if (players.size()%2==1) {players.add(BYE);} //if odd number of players, add a bye
 			if (players.size()%2==1) {players.add(0, BYE);} //if odd number of players, add a bye
 			//////////////Collections.shuffle(players); //shuffle positions of players  //??????????????????needed???
@@ -172,7 +168,8 @@ public final class Campaign {
 			}else {
 				//give new player a bye, and add entry to reserves, 
 				
-				//then add a a new pairing with newe player to each list of pairings AND a new pairing with a BYE to each list of pairings.
+				//then add a a new pairing with new player to each list of pairings AND a new pairing with a BYE to each list of pairings.
+				
 				
 				
 				///==========================
@@ -180,6 +177,16 @@ public final class Campaign {
 				 * add bye as first entry to players 
 				 */
 				
+				/*
+				 * 
+				 * 
+				 * add bye to player, and add player as 'reserve'.optional??????
+				 * 
+				 * when all missions done: check if 
+				 * 
+				 * 
+				 * 
+				 */
 				
 				//=============================
 			}
