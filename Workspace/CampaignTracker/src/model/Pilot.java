@@ -1,6 +1,6 @@
 package model;
 
-public class Pilot {
+public final class Pilot {
 	
 	//come back to this later :P 
 

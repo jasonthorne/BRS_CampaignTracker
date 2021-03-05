@@ -1,11 +1,15 @@
 package model;
 
+import java.util.Stack;
+
 /** user logged into application */
 
-public class User {
+public final class User {
 	
 	private int id = 0; //id of user
 	private String name = " "; //name of user
+	
+	private Stack<Notification>notifications;
 	
 	//set user values:
 	public void setValues(int id, String name){

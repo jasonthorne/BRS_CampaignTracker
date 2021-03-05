@@ -15,7 +15,7 @@ import controller.LoginController;
 //////////ADAPTED FROM:
 //https://stackoverflow.com/questions/822322/how-to-implement-a-map-with-multiple-keys
 
-public class Pairing {
+public final class Pairing {
 	
 	//maps with their own player name key, holding the same pairing:
     private final Map<String, Stack<String>> playerOneToPairing = new HashMap<String, Stack<String>>();
