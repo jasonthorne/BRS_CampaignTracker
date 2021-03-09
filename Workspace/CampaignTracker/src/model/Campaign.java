@@ -237,7 +237,7 @@ public final class Campaign {
 	*/
 	//=================================================
 	
-
+	//++++++++++++++WHY IS THIS BEING CHECKED :P 
 	public boolean hasMissionsTEST() {
 		return !turnToPairingsToMission.isEmpty();
 	}
