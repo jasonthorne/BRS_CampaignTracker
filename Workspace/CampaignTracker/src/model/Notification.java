@@ -16,7 +16,7 @@ public final class Notification {
 	}
 	
 	
-	public Notification(Status status, String path) {
+	public Notification(Status status, int campaignId) {
 		
 	}
 	
@@ -28,8 +28,21 @@ public final class Notification {
 	 * message
 	 * 
 	 * link
+	 * 
+	 * 
+	 * 
+	 * 
+	 * Play Match
+	 * 
+	 * Campaign:
+	 * Host:
+	 * 
+	 * * Link here *
+	 * 
 	 */
 	
+	//player is part of campaign. so when they click on the campaign, THEN the notifications get updated. 
+	//according to each specific campaign! :P 
 	
 	
 
