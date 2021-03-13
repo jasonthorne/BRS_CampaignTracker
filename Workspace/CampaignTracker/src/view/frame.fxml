@@ -33,6 +33,7 @@
                         <Font name="System Bold" size="28.0" />
                      </font>zs
                   </Label>
+                  <JFXButton fx:id="rulesBtn" layoutX="494.0" layoutY="28.0" style="-fx-background-color: yellow;" text="Rules" />
                </children>
             </AnchorPane>
          </top>

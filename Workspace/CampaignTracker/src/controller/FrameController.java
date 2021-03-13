@@ -38,6 +38,7 @@ public class FrameController implements Rootable, Fadeable {
 	@FXML private JFXButton signupBtn;
 	@FXML private Label playerLbl;
 	@FXML private Label appLbl;
+	@FXML private JFXButton rulesBtn;
 	@FXML private AnchorPane headerBtmAP;
 	@FXML private Label viewLbl;
 	@FXML private JFXButton backBtn;
@@ -49,6 +50,7 @@ public class FrameController implements Rootable, Fadeable {
     void initialize() {
     	//set button actions:
     	signupBtn.setOnAction(event -> signupUsr());
+    	rulesBtn.setOnAction(event -> System.out.println("rules btn"));
     	backBtn.setOnAction(event -> moveBkwrd());
     	fwrdBtn.setOnAction(event -> moveFwrd());
     	
