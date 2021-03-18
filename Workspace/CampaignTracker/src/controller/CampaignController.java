@@ -31,7 +31,6 @@ import model.Campaign;
 import model.Event;
 import model.Mission;
 import model.Pairing;
-import model.PairingOLD;
 import model.Player;
 
 public class CampaignController implements Rootable, Frameable, Disableable{
