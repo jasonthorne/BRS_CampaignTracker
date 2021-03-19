@@ -41,12 +41,21 @@ public final class Player {
 	public Timestamp getCreated() { return created; } //** +++++++++++++ not sure if needed??? ++++++++*//?????????? should this return timestamp??? +MAKE STRONGER IF SOI! +++++++++?
 	
 	public Squadron getSquadron() { return squadron; } //++++++++++++++++++++++MAKE STRONGER!! :P ISSUE if called with no squadron existing :P 
+
+	@Override
+	public String toString() {
+		return "Player [created=" + created + "]";
+	}
+
 	
+	/*
 	@Override
 	public String toString() {
 		return "Player [name=" + name + ", score=" + score + ", isActive=" + isActive + ", created=" + created
 				+ ", squadron=" + squadron + "]";
-	}
+	}*/
+	
+	
 
 	
 	

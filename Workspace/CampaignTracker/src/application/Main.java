@@ -53,6 +53,28 @@ public class Main extends Application {
     }
     
     //===============================================================================
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public void setPairings() {
 		
 		 pairings.clear(); //+++++++++++++++++++++++++++++REMOVE :P
@@ -96,7 +118,7 @@ public class Main extends Application {
 		        }
 		        pairings.add(pairsList); //add list of pairings to pairings
 		    }
-		    System.out.println("PAIRINGS: " + pairings);
+		    System.out.println("\npairings: " + pairings);
 		}
 	    ///////////////##############addPlayer(new Player("yo dawg", new Timestamp(Calendar.getInstance().getTimeInMillis()))); //+++++++++++++
 	}
