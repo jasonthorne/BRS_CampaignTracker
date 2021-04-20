@@ -3,6 +3,8 @@ CREATE DATABASE blood_red_skies_db;
 
 USE blood_red_skies_db;
 
+SET GLOBAL time_zone = '+0:00';
+
 /*DROP TABLE IF EXISTS years; /* ++++++++++++++++++++++++++++++++++++++++++ */
 
 /* ==============================AIRFORCE DATA (plus generics that are used in building thme like 'years') */

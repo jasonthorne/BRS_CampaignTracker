@@ -32,9 +32,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
     	
-    	/////////++TURN BACK ON+++++++++FrameController frameCtrlr = FrameController.getFrameCtrlr();
-    	/////////++TURN BACK ON+++++++++frameCtrlr.showStage();
+    	FrameController frameCtrlr = FrameController.getFrameCtrlr();
+    	frameCtrlr.showStage();
     	
+    	/*
     	//adding EVEN number of players: (so the bye needs evenly spread here)
     	nameToPlayer.put("Adam", new Player("Adam", new Timestamp(Calendar.getInstance().getTimeInMillis())));
     	nameToPlayer.put("Bob", new Player("Bob", new Timestamp(Calendar.getInstance().getTimeInMillis())));
@@ -45,7 +46,7 @@ public class Main extends Application {
     	//System.out.println(nameToPlayer);
     	
     	setPairings();
-    	
+    	*/
     	
     	
     	
