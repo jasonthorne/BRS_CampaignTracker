@@ -3,7 +3,8 @@ CREATE DATABASE blood_red_skies_db;
 
 USE blood_red_skies_db;
 
-SET GLOBAL time_zone = '+0:00';
+/* set time zone: */
+SET GLOBAL time_zone = '+1:00';
 
 /*DROP TABLE IF EXISTS years; /* ++++++++++++++++++++++++++++++++++++++++++ */
 
