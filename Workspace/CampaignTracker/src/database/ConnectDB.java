@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
+import application.Paths;
+
 /** look into http://www.jasypt.org/ for encryption +++++++++++++++*/
 
 public final class ConnectDB {
@@ -18,6 +20,7 @@ public final class ConnectDB {
 			//load properties:
 			Properties properties = new Properties();	
 			properties.load(new FileInputStream("./configs/mysql/db_configs/db_configs.properties"));
+			/////////properties.load(new FileInputStream(Paths.DB_CONFIGS)); /** ++++++++++WORKS BUT NOT NEEDED FOR DB. GOOD FOR FXML PATHS THOUGH!
 		
 			//get connection using properties: 
 			this.connection = DriverManager.getConnection(
