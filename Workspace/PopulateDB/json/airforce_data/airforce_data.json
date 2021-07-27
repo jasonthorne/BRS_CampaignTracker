@@ -3483,7 +3483,7 @@
 				},
 				{
 					"plane": {
-						"name": "P-51D Mustang", //===========
+						"name": "P-51D Mustang",
 						"period_statuses": [
 							{
 								"period_status":{
@@ -3528,6 +3528,190 @@
 										"year": "1945"
 									},
 									"status": "Auto"
+								}
+							}
+						]
+					}
+				}	
+			]
+		}
+	},
+	{
+		"airforce": {
+			"name": "Japan",
+			"images": [
+				{
+					"image": {
+						"name": "Logo",
+						"path": "resources/img/airforces/Japan_logo.png"
+					}
+				}
+		 	],
+			"planes": [
+				{
+					"plane": {
+						"name": "A6-M2 Zero",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1940"
+									},
+									"status": "Auto"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "A6-M5 Zero",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "J2M Raiden",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "N1K1-J Shiden",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "N1K2-J Shiden-Kai",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "KI-43 Hayabusa",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "KI-44 Shoki",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "KI-61 Hien",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "KI-84 Hayate",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
+								}
+							}
+						]
+					}
+				},
+				{
+					"plane": {
+						"name": "KI-100 Hien",
+						"period_statuses": [
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1940"
+									},
+									"status": "Limit"
 								}
 							}
 						]
