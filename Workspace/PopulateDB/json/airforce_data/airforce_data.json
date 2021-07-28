@@ -3555,8 +3555,26 @@
 							{
 								"period_status":{
 									"period": {
-										"block": "Early",
+										"block": "Late",
 										"year": "1940"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1941"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1941"
 									},
 									"status": "Auto"
 								}
@@ -3565,9 +3583,63 @@
 								"period_status":{
 									"period": {
 										"block": "Late",
-										"year": "1940"
+										"year": "1941"
 									},
 									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1942"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1942"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1942"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1943"
+									},
+									"status": "Limit"
 								}
 							}
 						]
@@ -3581,9 +3653,63 @@
 								"period_status":{
 									"period": {
 										"block": "Mid",
-										"year": "1940"
+										"year": "1943"
 									},
 									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1945"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1945"
+									},
+									"status": "Auto"
 								}
 							}
 						]
@@ -3596,8 +3722,44 @@
 							{
 								"period_status":{
 									"period": {
+										"block": "Early",
+										"year": "1944"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
 										"block": "Mid",
-										"year": "1940"
+										"year": "1944"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1944"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1945"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1945"
 									},
 									"status": "Limit"
 								}
@@ -3613,7 +3775,34 @@
 								"period_status":{
 									"period": {
 										"block": "Mid",
-										"year": "1940"
+										"year": "1944"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1944"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1945"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1945"
 									},
 									"status": "Limit"
 								}
@@ -3628,8 +3817,17 @@
 							{
 								"period_status":{
 									"period": {
+										"block": "Early",
+										"year": "1945"
+									},
+									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
 										"block": "Mid",
-										"year": "1940"
+										"year": "1945"
 									},
 									"status": "Limit"
 								}
@@ -3645,9 +3843,117 @@
 								"period_status":{
 									"period": {
 										"block": "Mid",
-										"year": "1940"
+										"year": "1941"
 									},
 									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1941"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1942"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1942"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1942"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1945"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1945"
+									},
+									"status": "Auto"
 								}
 							}
 						]
@@ -3661,9 +3967,90 @@
 								"period_status":{
 									"period": {
 										"block": "Mid",
-										"year": "1940"
+										"year": "1942"
 									},
 									"status": "Limit"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1942"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1943"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Late",
+										"year": "1944"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Early",
+										"year": "1945"
+									},
+									"status": "Auto"
+								}
+							},
+							{
+								"period_status":{
+									"period": {
+										"block": "Mid",
+										"year": "1945"
+									},
+									"status": "Auto"
 								}
 							}
 						]
@@ -3671,7 +4058,7 @@
 				},
 				{
 					"plane": {
-						"name": "KI-61 Hien",
+						"name": "KI-61 Hien",//===========
 						"period_statuses": [
 							{
 								"period_status":{
@@ -3681,7 +4068,7 @@
 									},
 									"status": "Limit"
 								}
-							}
+							},
 						]
 					}
 				},
@@ -3697,7 +4084,7 @@
 									},
 									"status": "Limit"
 								}
-							}
+							},
 						]
 					}
 				},
@@ -3713,7 +4100,7 @@
 									},
 									"status": "Limit"
 								}
-							}
+							},
 						]
 					}
 				}	
