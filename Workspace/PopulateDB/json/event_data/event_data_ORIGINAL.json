@@ -5,12 +5,14 @@
 			"airforces": [
 				{
 					"airforce": {
-						"name": "RAF"
+						"name": "RAF",
+						"has_home_advantage": "true"
 					}
 				},
 				{
 					"airforce": {
-						"name": "Luftwaffe"
+						"name": "Luftwaffe",
+						"has_home_advantage": "false"
 					}
 				}
 			],
@@ -30,12 +32,14 @@
 			"airforces": [
 				{
 					"airforce": {
-						"name": "Soviet"
+						"name": "Soviet",
+						"has_home_advantage": "true"
 					}
 				},
 				{
 					"airforce": {
-						"name": "Luftwaffe"
+						"name": "Luftwaffe",
+						"has_home_advantage": "false"
 					}
 				}
 			],

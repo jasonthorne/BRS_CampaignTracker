@@ -6,7 +6,7 @@
 				{
 					"image": {
 						"name": "Logo",
-						"path": "resources/img/airforces/logos/raf-logo.png"
+						"path": "resources/img/airforces/logos/raf_logo.png"
 					}
 				}
 		 	],
@@ -730,7 +730,7 @@
 				{
 					"image": {
 						"name": "Logo",
-						"path": "resources/img/airforces/logos/luftwaffe-logo.png"
+						"path": "resources/img/airforces/logos/luftwaffe_logo.png"
 					}
 				}
 		 	],
@@ -1427,7 +1427,7 @@
 				{
 					"image": {
 						"name": "Logo",
-						"path": "resources/img/airforces/logos/soviet-logo.png"
+						"path": "resources/img/airforces/logos/soviet_logo.png"
 					}
 				}
 		 	],
@@ -2681,7 +2681,7 @@
 				{
 					"image": {
 						"name": "Logo",
-						"path": "resources/img/airforces/logos/usaaf-logo.png"
+						"path": "resources/img/airforces/logos/usaaf_logo.png"
 					}
 				}
 		 	],
@@ -3543,7 +3543,7 @@
 				{
 					"image": {
 						"name": "Logo",
-						"path": "resources/img/airforces/logos/japan-logo.png"
+						"path": "resources/img/airforces/logos/japan_logo.png"
 					}
 				}
 		 	],

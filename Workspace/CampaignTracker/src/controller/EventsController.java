@@ -88,6 +88,25 @@ public class EventsController implements Frameable, Rootable {
     		
     	});
     	
+    	
+    	/*
+    	//add change listener to air forces list view:
+    	airForcesLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AirForce>() {
+   
+			@Override //override change listener's changed: 
+			public void changed(ObservableValue<? extends AirForce> observable, AirForce oldVal, AirForce newVal) {
+				
+				new Thread(() -> { //fire new thread:
+        	    	try {
+        	    		System.out.println("airforce is: " + newVal.getAirForceName());
+        	    	}catch(Exception e) { e.printStackTrace(); }
+            	}).start();
+				
+				
+			}
+
+    	});*/
+    	
     }
     
     //----------------------------------------

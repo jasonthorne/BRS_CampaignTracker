@@ -2,12 +2,8 @@ package model;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
-import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import model.Period.Block;
 
 public final class Plane {
 	
